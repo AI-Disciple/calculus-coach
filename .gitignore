@@ -1,0 +1,30 @@
+# Dependencies and build output
+node_modules/
+/.worktrees/
+dist/
+test-results/
+playwright-report/
+*.tsbuildinfo
+__pycache__/
+*.pyc
+
+# Personal data: progress, plan and per-machine source links
+data/
+progress*.json
+plan.json
+*.plan.json
+sources.local.json
+review.config.json
+tests/smoke/fixtures/progress.json
+tests/smoke/fixtures/progress.json.*.tmp
+
+# Local environment
+.env
+.env.*
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Local agent and working files
+.claude/
+audit-*.md

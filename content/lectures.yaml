@@ -1,0 +1,17 @@
+# The eight lectures of the course, in order. Nodes attach to a lecture by number.
+- number: 1
+  title: Review of functions, limits and derivatives
+- number: 2
+  title: Derivatives at work
+- number: 3
+  title: Taylor polynomials and integration
+- number: 4
+  title: Space geometry and functions of several variables
+- number: 5
+  title: Limits, partial derivatives and the gradient
+- number: 6
+  title: Extrema and constrained optimisation
+- number: 7
+  title: Double integrals
+- number: 8
+  title: Change of variables and triple integrals

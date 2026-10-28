@@ -1,0 +1,332 @@
+/*
+ * Sidebar
+ *
+ * The course navigation on the left of every page except the print view of the formula sheet. The site name and
+ * search stay at the top, the links and lectures scroll on their own, and the theme toggle stays at the bottom.
+ * Below 900px wide the sidebar hides behind the Menu button of a small top bar and opens as a panel over the page.
+ * The top bar keeps the class .site-header, because the node page measures that element to place its anchors.
+ */
+
+/* Layout */
+
+.app-shell {
+  display: grid;
+  grid-template-columns: 17rem minmax(0, 1fr);
+}
+
+.app-content {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* A flex item with auto side margins shrinks to its content, so the page keeps its width from here. */
+.app-content > .main {
+  flex: 1 0 auto;
+  width: 100%;
+}
+
+.app-content > .site-footer {
+  flex: none;
+}
+
+.sidebar {
+  position: sticky;
+  top: 0;
+  align-self: start;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  height: 100dvh;
+  background: var(--panel-soft);
+  border-right: 1px solid var(--border);
+  font-size: 0.92rem;
+  line-height: 1.4;
+  transition: background-color var(--fade), border-color var(--fade);
+}
+
+:where(.sidebar ul) {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* The focus ring sits inside the box, because the scrolling region would cut off a ring drawn outside it. */
+.sidebar :focus-visible {
+  outline: 2px solid var(--text);
+  outline-offset: -2px;
+}
+
+.sidebar-top {
+  flex: none;
+  display: grid;
+  gap: 0.85rem;
+  padding: 1.1rem 1rem 0.9rem;
+}
+
+.sidebar .site-name {
+  display: block;
+  font-size: 1.2rem;
+  text-decoration: none;
+}
+
+/* A grid item is as wide as its content by default, and the search input would push the button out of the sidebar. */
+.sidebar .search-form {
+  min-width: 0;
+}
+
+.sidebar .search-form .button {
+  padding: 0.4rem 0.7rem;
+}
+
+.sidebar-scroll {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 0.25rem 0.75rem 1rem;
+}
+
+.sidebar-footer {
+  flex: none;
+  display: flex;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  border-top: 1px solid var(--border);
+}
+
+/* Links */
+
+.sidebar-link,
+.sidebar-lecture-link,
+.sidebar-node-link {
+  border-radius: 6px;
+  color: var(--text);
+  text-decoration: none;
+  transition: background-color var(--fade), color var(--fade);
+}
+
+.sidebar-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0.4rem 0.65rem;
+}
+
+.sidebar-link:hover,
+.sidebar-lecture-link:hover,
+.sidebar-node-link:hover {
+  background: var(--hover);
+}
+
+.sidebar-link[aria-current='page'],
+.sidebar-lecture-link[aria-current='page'],
+.sidebar-node-link[aria-current='page'] {
+  background: var(--accent-soft);
+  color: var(--heading);
+  font-weight: 500;
+}
+
+/* Lectures */
+
+.sidebar-lectures {
+  display: grid;
+  gap: 0.1rem;
+  margin-top: 0.15rem;
+}
+
+.sidebar-lecture-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.1rem;
+}
+
+.sidebar-lecture-link {
+  flex: 1 1 auto;
+  min-width: 0;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.55rem;
+  padding: 0.4rem 0.5rem 0.4rem 0.65rem;
+}
+
+.sidebar-lecture-number {
+  flex: none;
+  min-width: 0.9rem;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+}
+
+.sidebar-lecture-text {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar-lecture-share {
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.sidebar-lecture.is-current .sidebar-lecture-title {
+  color: var(--heading);
+  font-weight: 500;
+}
+
+.sidebar-toggle {
+  flex: none;
+  width: 1.9rem;
+  height: 1.9rem;
+  margin-top: 0.2rem;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+  transition: background-color var(--fade), color var(--fade);
+}
+
+.sidebar-toggle:hover {
+  background: var(--hover);
+  color: var(--text);
+}
+
+.sidebar-toggle svg {
+  width: 1rem;
+  height: 1rem;
+  display: block;
+  transition: transform var(--fade);
+}
+
+.sidebar-toggle[aria-expanded='true'] svg {
+  transform: rotate(90deg);
+}
+
+/* Nodes */
+
+.sidebar-nodes {
+  display: grid;
+  gap: 0.05rem;
+  margin: 0.1rem 0 0.45rem 1.1rem;
+  padding-left: 0.5rem;
+  border-left: 1px solid var(--border);
+}
+
+.sidebar-node-link {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.55rem;
+  padding: 0.3rem 0.55rem;
+  font-size: 0.88rem;
+}
+
+.sidebar-node-title {
+  min-width: 0;
+}
+
+/* The state of a node: an empty ring, a half filled blue ring or a filled green dot. */
+
+.sidebar-state {
+  flex: none;
+  width: 0.7rem;
+  height: 0.7rem;
+  margin-top: 0.38em;
+  border: 1.5px solid var(--muted);
+  border-radius: 50%;
+  box-sizing: border-box;
+}
+
+.sidebar-state-in-progress {
+  border-color: var(--blue-text);
+  background: linear-gradient(90deg, var(--blue-text) 50%, transparent 50%);
+}
+
+.sidebar-state-done {
+  border-color: var(--green-text);
+  background: var(--green-text);
+}
+
+/* The top bar and the panel on a narrow window */
+
+.mobile-bar,
+.sidebar-backdrop {
+  display: none;
+}
+
+@media (max-width: 900px) {
+  .app-shell {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .mobile-bar {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+    padding: 0.55rem 1rem;
+  }
+
+  .mobile-bar .site-name {
+    min-width: 0;
+    text-decoration: none;
+  }
+
+  .mobile-menu-button {
+    flex: none;
+    margin-top: 0;
+  }
+
+  .sidebar {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    z-index: 30;
+    width: min(20rem, 85vw);
+    height: 100dvh;
+    box-shadow: 0 0 2rem color-mix(in srgb, var(--heading) 25%, transparent);
+  }
+
+  .sidebar.is-open {
+    display: flex;
+  }
+
+  .sidebar-backdrop {
+    display: block;
+    position: fixed;
+    inset: 0;
+    z-index: 20;
+    background: color-mix(in srgb, var(--heading) 40%, transparent);
+  }
+}
+
+/* Higher contrast: the open page gets an outline besides its fill. */
+@media (prefers-contrast: more) {
+  .sidebar-link[aria-current='page'],
+  .sidebar-lecture-link[aria-current='page'],
+  .sidebar-node-link[aria-current='page'] {
+    outline: 1px solid var(--accent);
+    outline-offset: -1px;
+  }
+}
+
+@media print {
+  .sidebar,
+  .mobile-bar,
+  .sidebar-backdrop {
+    display: none !important;
+  }
+
+  .app-shell,
+  .app-content {
+    display: block;
+    min-height: 0;
+  }
+}

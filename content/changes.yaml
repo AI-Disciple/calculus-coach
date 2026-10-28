@@ -1,0 +1,243 @@
+# What changed: one entry per content update, newest first. See content/guide/adding-content.md, step 6.
+- date: "2026-10-24"
+  title: Lecture 6 notes
+  text: |
+    Added the lecture 6 notes. The Lagrange topic now states the Euler-Lagrange theorem as the professor gave it: several constraints, linearly independent gradients, and a necessary condition for any extremum. The global extrema topic has a new exercise on a quadratic whose maximum lies outside the rectangle, and a tip on where to look first. The notes also cover implicit tangent planes and the family x^2 + y^2 + kxy, which the app already taught, so those topics only list the new source.
+  nodes: [l5-tangent-plane, l6-global-extrema, l6-lagrange, l6-parameter-families]
+- date: "2026-10-24"
+  title: Easier-to-read text for lecture 8
+  text: |
+    The text of the six lecture 8 topics now follows the layout of the Dot product and cross product topic. Conditions and cases are bullet lists, procedures are numbered steps, important formulas sit on their own line, and calculations of more than one step are shown one step per line. Key terms are bold where they are introduced.
+    Formulas that were too wide for a phone screen are split into lines. The maths, the examples and the solutions are unchanged.
+  nodes: [l8-change-of-variables, l8-cylindrical-spherical-integrals, l8-mass-centre, l8-probability, l8-triple-integrals, l8-volumes-between-surfaces]
+- date: "2026-10-24"
+  title: Easier-to-read text for lecture 7
+  text: |
+    The text of the six lecture 7 topics now follows the layout of the Dot product and cross product topic. Conditions and cases are bullet lists, procedures are numbered steps, important formulas sit on their own line, and calculations of more than one step are shown one step per line. Key terms are bold where they are introduced.
+    Formulas that were too wide for a phone screen are split into lines. The maths, the examples and the solutions are unchanged.
+  nodes: [l7-average-value, l7-double-integrals-rectangles, l7-general-regions, l7-order-of-integration, l7-polar-integrals, l7-volumes]
+- date: "2026-10-24"
+  title: Easier-to-read text for lecture 6
+  text: |
+    The text of the seven lecture 6 topics now follows the layout of the Dot product and cross product topic. Conditions and cases are bullet lists, procedures are numbered steps, important formulas sit on their own line, and calculations of more than one step are shown one step per line. Key terms are bold where they are introduced.
+    Formulas that were too wide for a phone screen are split into lines. The maths, the examples and the solutions are unchanged.
+  nodes: [l6-critical-points, l6-degenerate-case, l6-global-extrema, l6-lagrange, l6-parameter-families, l6-second-derivative-test, l6-worded-optimisation]
+- date: "2026-10-24"
+  title: Easier-to-read text for lecture 5
+  text: |
+    The text of the ten lecture 5 topics now follows the layout of the Dot product and cross product topic. Conditions and cases are bullet lists, procedures are numbered steps, important formulas sit on their own line, and calculations of more than one step are shown one step per line. Key terms are bold where they are introduced.
+    Formulas that were too wide for a phone screen are split into lines. The maths, the examples and the solutions are unchanged.
+  nodes: [l5-chain-rule-general, l5-chain-rule-path, l5-differentiability, l5-directional-derivative, l5-hessian, l5-higher-derivatives, l5-limits-continuity, l5-partial-derivatives, l5-steepest-ascent, l5-tangent-plane]
+- date: "2026-10-24"
+  title: Easier-to-read text for lecture 4
+  text: |
+    The text of the nine lecture 4 topics now follows the layout of the Dot product and cross product topic. Conditions and cases are bullet lists, procedures are numbered steps, important formulas sit on their own line, and calculations of more than one step are shown one step per line. Key terms are bold where they are introduced.
+    Formulas that were too wide for a phone screen are split into lines. The maths, the examples and the solutions are unchanged.
+  nodes: [l4-coordinates-vectors, l4-cross-sections, l4-cylindrical-spherical, l4-dot-cross-product, l4-functions-several-variables, l4-graphs-planes, l4-level-sets, l4-lines-planes, l4-quadrics]
+- date: "2026-10-24"
+  title: Easier-to-read text for lecture 2
+  text: |
+    The text of the thirteen lecture 2 topics now follows the layout of the Dot product and cross product topic. Conditions and cases are bullet lists, procedures are numbered steps, important formulas sit on their own line, and calculations of more than one step are shown one step per line. Key terms are bold where they are introduced.
+    Formulas that were too wide for a phone screen are split into lines. The maths, the examples and the solutions are unchanged.
+  nodes: [l2-asymptotes, l2-concavity, l2-curve-sketching, l2-implicit-differentiation, l2-inverse-functions, l2-ivt, l2-lhopital, l2-linear-approximation, l2-monotonicity-extrema, l2-mvt, l2-newton, l2-optimisation, l2-related-rates]
+- date: "2026-10-24"
+  title: Easier-to-read text for lecture 3
+  text: |
+    The text of the thirteen lecture 3 topics now follows the layout of the Dot product and cross product topic. Conditions and cases are bullet lists, procedures are numbered steps, important formulas sit on their own line, and calculations of more than one step are shown one step per line. Key terms are bold where they are introduced.
+    Formulas that were too wide for a phone screen are split into lines. The maths, the examples and the solutions are unchanged.
+  nodes: [l3-area-between-curves, l3-fundamental-theorem, l3-improper-integrals, l3-integration-by-parts, l3-numerical-integration, l3-partial-fractions, l3-probability-densities, l3-real-powers, l3-riemann-sums, l3-substitution, l3-taylor-composition, l3-taylor, l3-trig-integrals]
+- date: "2026-10-19"
+  title: Easier-to-read text for lecture 1
+  text: |
+    The text of the nine lecture 1 topics now follows the layout of the Dot product and cross product topic. Conditions and cases are bullet lists, procedures are numbered steps, important formulas sit on their own line, and calculations of more than one step are shown one step per line. Key terms are bold where they are introduced.
+    Formulas that were too wide for a phone screen are split into lines. The maths, the examples and the solutions are unchanged.
+  nodes: [l1-functions, l1-trigonometry, l1-exp-log, l1-transformations, l1-limits, l1-limit-techniques, l1-continuity, l1-derivative, l1-derivative-rules]
+- date: "2026-10-18"
+  title: Exercise bank, and 117 new exercises
+  text: |
+    A new Exercise bank page lists every exercise of the course by lecture and topic, from Core to Exam level, and each exercise opens in place with its solution and marking form. It filters by lecture, level, words and past papers, and it can hide the exercises already marked right.
+    117 computation exercises at Extra and Exam level were added to 65 topics across all eight lectures. They come from the removed recall cards and were checked with SymPy. Their written solutions and difficulty levels have not yet been reviewed by a person.
+  nodes: [l1-derivative, l1-limit-techniques, l1-functions, l1-derivative-rules, l1-exp-log, l1-limits, l1-trigonometry, l1-transformations, l2-asymptotes, l2-implicit-differentiation, l2-concavity, l2-inverse-functions, l2-ivt, l2-lhopital, l2-linear-approximation, l2-monotonicity-extrema, l2-mvt, l2-newton, l2-optimisation, l2-related-rates, l3-fundamental-theorem, l3-improper-integrals, l3-numerical-integration, l3-integration-by-parts, l3-area-between-curves, l3-partial-fractions, l3-taylor, l3-probability-densities, l3-real-powers, l3-riemann-sums, l3-taylor-composition, l3-trig-integrals, l4-cylindrical-spherical, l4-dot-cross-product, l4-lines-planes, l4-coordinates-vectors, l4-functions-several-variables, l4-graphs-planes, l4-quadrics, l4-level-sets, l4-cross-sections, l5-chain-rule-general, l5-differentiability, l5-directional-derivative, l5-hessian, l5-higher-derivatives, l5-limits-continuity, l5-partial-derivatives, l5-steepest-ascent, l5-tangent-plane, l6-degenerate-case, l6-parameter-families, l6-lagrange, l6-worded-optimisation, l6-global-extrema, l6-critical-points, l7-double-integrals-rectangles, l7-general-regions, l7-order-of-integration, l8-change-of-variables, l8-mass-centre, l8-triple-integrals, l8-volumes-between-surfaces, l8-cylindrical-spherical-integrals, l8-probability]
+- date: "2026-10-14"
+  title: Lighter text and key points for lecture 8
+  text: |
+    Every Learn section of the six lecture 8 nodes now ends with a Key points box that sums up the result, its condition and the usual slip. Two remarks on technique are now tips: a constant density factors out of the mass integral, and in a cylindrical iterated integral the factor stays \(r\) and the differentials follow the order of the bounds.
+    Two figures were added. The region figure shows the event \(X + Y \le t\) for an independent exponential pair, and the shadow of the solid below both \(z = 1 - x - y\) and \(z = x^2 + y^2\), split where its ceiling changes.
+  nodes: [l8-triple-integrals, l8-cylindrical-spherical-integrals, l8-change-of-variables, l8-volumes-between-surfaces, l8-mass-centre, l8-probability]
+- date: "2026-10-14"
+  title: Lighter text and key points for lecture 7
+  text: |
+    Every Learn section of the six lecture 7 nodes now ends with a Key points box that sums up the result, its condition and the usual slip. Five remarks on technique are now tips, among them splitting the outer interval where a boundary formula changes and trying the other order when the inner integral has no elementary antiderivative.
+    One figure was added. The region figure on the volumes node shows the triangle under the roof example, with its limits in both orders.
+  nodes: [l7-double-integrals-rectangles, l7-general-regions, l7-order-of-integration, l7-average-value, l7-volumes, l7-polar-integrals]
+- date: "2026-10-14"
+  title: Lighter text and key points for lecture 6
+  text: |
+    Every Learn section of the seven lecture 6 nodes now ends with a Key points box that sums up the result, its condition and the usual slip. Two remarks on technique are now tips: a corner shared by two edges is evaluated once, and in a worded problem the function is watched as a side tends to \(0\) or to infinity.
+    Two figures were added. The tangent-plane figure shows the horizontal tangent plane of \(x^2 + y^2\) at its critical point, the origin. The critical-point viewer on the degenerate-case node opens at \(k = 2\), where \(D = 0\) and the test is inconclusive.
+  nodes: [l6-critical-points, l6-second-derivative-test, l6-degenerate-case, l6-parameter-families, l6-global-extrema, l6-worded-optimisation, l6-lagrange]
+- date: "2026-10-14"
+  title: Lighter text and key points for lecture 5
+  text: |
+    Every Learn section of the ten lecture 5 nodes now ends with a Key points box that sums up the result, its condition and the usual slip. Three remarks on technique are now tips: checking a parabola in the two-path test, holding one variable constant for a partial derivative, and writing a vector perpendicular to the gradient.
+    Four figures were added. The quadric figure shows the paraboloid \(z = x^2 + y^2\) and the sphere \(x^2 + y^2 + z^2 = 4\) cut at a fixed \(y\), for partial derivatives and for implicit differentiation. The tangent-plane figure shows the tangent plane of \(x^2 + y^2\) at \((1, 2)\) on the differentiability node. The gradient figure shows the directional derivatives \(2\) and \(-2\) at \((1, 0)\) in the directions of \(\nabla f\) and \(-\nabla f\).
+  nodes: [l5-limits-continuity, l5-partial-derivatives, l5-higher-derivatives, l5-differentiability, l5-tangent-plane, l5-directional-derivative, l5-steepest-ascent, l5-chain-rule-path, l5-chain-rule-general, l5-hessian]
+- date: "2026-10-14"
+  title: Lighter text and key points for lecture 4
+  text: |
+    Every Learn section of the nine lecture 4 nodes now ends with a Key points box that sums up the result, its condition and the usual slip. The first explanation of the lines-and-planes node and the explanation of level sets in three variables are split under subheadings, and five remarks on technique are now tips.
+    Eight figures were added. The quadric figure shows the unit sphere and the sphere of radius \(2\) cut by horizontal planes, the trace \(z = x^2\) of the paraboloid, the circles at each height of \(z = x^2 + y^2\) and the circular cuts of the hyperboloid of one sheet. The cylindrical region figure shows a point that moves up the unit cylinder while \(r\) and \(\theta\) stay fixed. The spherical region figure shows the cone \(\phi = \pi/4\) and the disk \(\phi = \pi/2\).
+  nodes: [l4-coordinates-vectors, l4-dot-cross-product, l4-lines-planes, l4-cylindrical-spherical, l4-functions-several-variables, l4-graphs-planes, l4-cross-sections, l4-level-sets, l4-quadrics]
+- date: "2026-10-13"
+  title: Lighter text and key points for lecture 3
+  text: |
+    Every Learn section of the thirteen lecture 3 nodes now ends with a Key points box that sums up the result, its condition and the usual slip. Long explanations and traps in the improper-integral and Taylor-composition nodes are split under subheadings, and a remark on trigonometric substitution is now a tip.
+    Three figures were added. The Riemann figure shows right sums for \(x^2\) on \([0, 1]\) and the half disk under \(\sqrt{1-x^2}\). The Taylor figure shows the order-2 polynomial of \(\sqrt{1+x^2}\).
+  nodes: [l3-real-powers, l3-riemann-sums, l3-fundamental-theorem, l3-substitution, l3-integration-by-parts, l3-trig-integrals, l3-partial-fractions, l3-numerical-integration, l3-improper-integrals, l3-area-between-curves, l3-probability-densities, l3-taylor, l3-taylor-composition]
+- date: "2026-10-13"
+  title: Lighter text and key points for lecture 2
+  text: |
+    Every Learn section of the thirteen lecture 2 nodes now ends with a Key points box that sums up the result, its condition and the usual slip. The explanation of the intermediate value theorem is split under subheadings, and a remark on Newton's method is now a tip.
+    Eight figures were added. The curve-sketching figure shows the vertical asymptote of \(1/x\), a root of a cubic between \(0\) and \(1\), the sign of the derivative of \(x^3\), the domain of \(\sqrt{x^2-1}\) and the closed-interval method for a parabola. The limit figure shows \(\sin x / x\) at \(0\) and a quotient at infinity. The Taylor figure shows the tangent line of \(\sqrt{x+4}\) at \(5\).
+  nodes: [l2-inverse-functions, l2-implicit-differentiation, l2-lhopital, l2-asymptotes, l2-monotonicity-extrema, l2-concavity, l2-curve-sketching, l2-optimisation, l2-newton, l2-ivt, l2-mvt, l2-related-rates, l2-linear-approximation]
+- date: "2026-10-13"
+  title: Lighter text and key points for lecture 1
+  text: |
+    Every Learn section of the nine lecture 1 nodes now ends with a Key points box that sums up the result, its condition and the usual slip. Long explanations and traps are split into short chunks under subheadings, and three remarks on technique are now tips.
+    Ten figures were added. The limit figure shows the one-sided limits of \(x/|x|\) at \(0\), the limit of \(x \ln x\), the reciprocal near \(0\) and a limit at infinity. The curve-sketching figure shows a line with its intercepts, two natural domains, the logarithm, the sine and the tangent.
+  nodes: [l1-functions, l1-transformations, l1-trigonometry, l1-exp-log, l1-limits, l1-limit-techniques, l1-continuity, l1-derivative, l1-derivative-rules]
+- date: "2026-10-12"
+  title: One-variable figures on lecture 1 to 3 nodes
+  text: |
+    Ten nodes now carry an interactive figure. The limit figure sits on the limits and limit-techniques nodes. The curve-sketching figure, with layers for the domain, asymptotes, signs of f' and f'', extrema and inflection points, sits on the curve-sketching, asymptote, concavity and extrema nodes. The Newton figure shows the tangent steps on the Newton node. The Taylor figure sits on the Taylor and Taylor-composition nodes, and the Riemann figure sits on the Riemann-sums node.
+    Each figure accepts another function, so it can be used to practise. The text it prints is checked against SymPy.
+  nodes: [l1-limits, l1-limit-techniques, l2-curve-sketching, l2-asymptotes, l2-concavity, l2-monotonicity-extrema, l2-newton, l3-taylor, l3-taylor-composition, l3-riemann-sums]
+- date: "2026-10-12"
+  title: Faithfulness audit corrections
+  text: |
+    A sampled comparison of lectures 1 to 8 with their sources found a few errors, now fixed. The final 2025 exercise 4a integrand is the square root of x times y squared, with value 14/9. The mixed-partials theorem requires continuous second partials, and a limit that exists gives a partial derivative, not differentiability. The lecture frame figure puts x down-left. The real-power node teaches that the cube of x to the 2/3 equals x squared.
+    Lecture 6 gains records for handout 14.8.1 to 4, 11, 12, 14, 15 and 17 and a viewer on the second derivative test. A discrepancy note on Home Assignment 2022 exercise 8 is removed, because the key agrees with the verified value. Optional going-deeper blocks were added to lecture 4, 6 and 7 nodes. Several handout page citations and example labels were corrected.
+  nodes: [l4-coordinates-vectors, l5-higher-derivatives, l5-partial-derivatives, l7-double-integrals-rectangles, l3-real-powers, l6-lagrange, l6-worded-optimisation, l6-second-derivative-test]
+- date: "2026-10-12"
+  title: Lecture 4
+  text: |
+    The nine lecture 4 nodes now teach space geometry and functions of several variables from the boards, the notebook page, handout chapters 12 and 14.1, and sheet 2 exercises 1 and 2.
+    The quadric and level-set nodes include the quadric viewer. Sheet 2 exercise 1 reads the contour step as 10 m, because one unlabeled curve sits between the labels 200 and 220. Exercise 2 names the five surfaces and their level sets.
+    A few source formulas are taught in corrected form. The one-sheet equation is \(z^{2} = x^{2} + y^{2} - 1\), with the separate condition \(x^{2} + y^{2} \ge 1\). The cut \(y = 0\) uses the points \((x, 0, z)\). The point-to-plane distance keeps the absolute value. The paraboloid \(z = x^{2} + y^{2}\) opens along the vertical \(z\)-axis.
+  nodes: [l4-coordinates-vectors, l4-dot-cross-product, l4-lines-planes, l4-cylindrical-spherical, l4-functions-several-variables, l4-graphs-planes, l4-quadrics, l4-cross-sections, l4-level-sets]
+- date: "2026-10-12"
+  title: Lecture 5 notes and practice
+  text: |
+    Lecture 5 now has the limit via norms, partials, Clairaut, the tangent plane, the directional derivative, steepest ascent, both chain rules, and the Hessian matrix with D. The min/max/saddle test stays in lecture 6.
+    Handout set 14.5 and sheet 2 exercises 3 to 6 have worked solutions. Items 14.5.17 and 14.5.21 have no printed answer. The printed answer of 14.5.1 is 9 sqrt(5)/5, the slope per unit distance. The dot product with the vector (2, 1) is 9.
+    The tangent-plane and gradient viewers are on those nodes. Past-paper tangent, chain-rule, and steepest-descent exercises already prepared for the older finals sit on the same nodes.
+    Two lecture-note formulas are taught in corrected form. The x-partial step is (x, y) plus epsilon times (1, 0). The path (t squared, t to the fourth) covers only the half parabola x >= 0. Sheet 2 exercise 3.4 is the function f(x, y) = sqrt(1 - x^2 - y^2).
+  nodes: [l5-limits-continuity, l5-partial-derivatives, l5-higher-derivatives, l5-differentiability, l5-tangent-plane, l5-directional-derivative, l5-steepest-ascent, l5-chain-rule-path, l5-chain-rule-general, l5-hessian]
+- date: "2026-10-12"
+  title: Lecture 6 critical points and optimisation
+  text: |
+    The seven lecture 6 nodes are written at full depth and marked reviewed: critical points, the second derivative test, the D = 0 case settled by sections, parameter families, global extrema on closed regions, worded optimisation and Lagrange multipliers. Each node has the handout statement with its source, a worked example, a guided example, traps, a basic-to-exam ladder, about ten cards and sheet items. The critical-point viewer sits on the critical-point and parameter-family nodes, and the constraint viewer sits on the Lagrange node. Handout exercises 14.7.1 to 14.7.19 and 14.8.5 to 14.8.10, 14.8.13 and 14.8.16, sheet 2 exercises 7 to 11, the 2022 home assignment and the critical-point and optimisation questions of the finals, retake and mocks keep their identifiers and provenance labels. The lecture has not taken place, so every formal statement follows the handout and is marked provisional until the lecture 6 notes arrive.
+
+    The Hessian test in the lecture 5 notes is written with f_xx >= 0 or <= 0 and without D > 0 on the minimum and maximum lines. The nodes teach D > 0 first, then the sign of f_xx, and a trap shows f_xx alone calling the saddle of x^2 - y^2 a minimum. Two Lagrange constraints sit in a going-deeper block. The long modelling problems of sheet 2 stay with their own ticket. The hidden stand-in node for the Hessian test is kept as a test fixture and does not appear in the course.
+  nodes: [l6-critical-points, l6-second-derivative-test, l6-degenerate-case, l6-parameter-families, l6-global-extrema, l6-worded-optimisation, l6-lagrange]
+- date: "2026-10-12"
+  title: Lecture 7 double integrals
+  text: |
+    Double integrals over rectangles and general regions, the order of integration, average value, volumes and polar integrals now have handout statements, worked and guided examples, traps, cards, sheet items and a three-tier exercise ladder. Those six nodes are reviewed. The formal wording is the handout's, and it is provisional until lecture 7 notes exist.
+
+    Sheet 3 exercise 1.14, with integrand x minus the square root of y, evaluates to -pi/4. The 2022 final average of sin(x + y) on the triangle x + 2y = 2 is 2 sin 1 - sin 2. The handwritten key line reads 2 - 2 sin 2, and the exercise records that discrepancy. Example 15.1.3 prints an intermediate antiderivative that drops a minus. Example 15.2.2 prints a primitive that fails to evaluate to 8 pi/3 - 32/9. The nodes teach the consistent antiderivatives. Both printed final values are right: 1/3, and 8 pi/3 - 32/9.
+  nodes: [l7-double-integrals-rectangles, l7-general-regions, l7-order-of-integration, l7-average-value, l7-volumes, l7-polar-integrals]
+- date: "2026-10-12"
+  title: Lecture 3 techniques, improper integrals, area and densities
+  text: |
+    Trigonometric powers and substitutions, partial fractions, improper integrals, area between curves, probability densities and numerical integration are written at full depth and marked reviewed. The handout supplies the statements for powers, substitutions, partial fractions, area, densities and the trapezoid and Simpson rules. Improper integrals are written as limits, and each example says whether the integral converges or diverges. A density example on the half-line normalises the constant, then computes E(X), then P(X > 2). Partial fractions stay short, and the exam weight remains not-examined. Error bounds, the Gaussian constant and the defective-chips story sit in going-deeper blocks.
+
+    Lecture 3 writes a density as an integral from 0 to infinity equal to 1, with the sign condition absent, and it sends every improper cutoff to plus infinity. The nodes teach the corrected statements. Handout example 8.6.4 prints the fourth derivative of e to the minus x squared with leading power 2. The leading power is 4, and the bound 12 on [0, 1] still holds.
+  nodes: [l3-trig-integrals, l3-partial-fractions, l3-improper-integrals, l3-area-between-curves, l3-probability-densities, l3-numerical-integration]
+- date: "2026-10-12"
+  title: Lecture 2 derivative tools and curve sketching
+  text: |
+    Filled the lecture 2 nodes on inverse derivatives, implicit differentiation, L'Hopital, asymptotes, monotonicity, concavity and the full curve-sketching procedure. Formal statements follow the lecture notes and the handout. The inflection rule is the sign-change form. The cube identity for a real two-thirds power is taught as (x^{2/3})^3 = x^2, with a trap for the wrong version. Sheet 1 exercise 5 is on the curve-sketching node. Orthogonal trajectories and the fifty-exercise L'Hopital drill sit in going-deeper blocks.
+  nodes: [l2-inverse-functions, l2-implicit-differentiation, l2-lhopital, l2-asymptotes, l2-monotonicity-extrema, l2-concavity, l2-curve-sketching]
+- date: "2026-10-12"
+  title: Older finals, mocks and the home assignment
+  text: |
+    The 2021 final, the 2022 final, the January 2023 retake, Mock 2022, Mock exam 1 and Mock exam 2 are available as mocks in the structure each sheet was printed with.
+
+    Questions shared by the 2022 final and Mock exam 2 use one exercise record. Mock exam 2 omits the probability exercise and the Jacobian part of exercise 3. Green, arc length, potentials and probability questions stay on the papers and are tagged out of the current course.
+
+    The 2022 average-value line and the dropped minus on the mock steepest-descent sheet are stated in the solutions, with the verified value. The 2022 home assignment sits on the lecture 6 nodes: the Hessian derivation, the polynomials, the box, the families, the distance and the modelling problems.
+  nodes: [l4-quadrics, l5-steepest-ascent, l5-tangent-plane, l5-chain-rule-path, l5-chain-rule-general, l6-critical-points, l6-second-derivative-test, l6-degenerate-case, l6-parameter-families, l6-worded-optimisation, l6-global-extrema, l6-lagrange, l7-average-value, l7-polar-integrals, l8-change-of-variables, l8-volumes-between-surfaces, l8-mass-centre]
+- date: "2026-10-12"
+  title: Lecture 3, Taylor and integration basics
+  text: |
+    Real powers, Taylor polynomials, Taylor composition, Riemann sums, the fundamental theorem, substitution, and integration by parts are written out at full depth and marked reviewed. Each node has the lecture's formal statement, a worked example, a guided example, traps, a basic-to-exam ladder, cards, and sheet items. Harvested exercises and cards kept their identifiers.
+    The quarter-circle substitution is taught with value pi/4. The antiderivative of cos(2x)/2 is sin(2x)/4. A trap differentiates the version with sin(2x)/2, which fails, and notes that both versions evaluate to pi/4 on [0, pi/2] because sin(2x) vanishes at the endpoints. The lecture page writes pi/4. The inventory line that said pi/y was a misreading of that 4.
+    Taylor composition substitutes u = cos x - 1 into ln(1 + u). The order-2 polynomial is -x^2/2. Putting y = x^2 into sqrt(1 + y) gives 1 + x^2/2 - x^4/8 plus a small term of order 4.
+    Traps on integration by parts differentiate x ln x + x and -x ln x - x. Neither derivative is the integrand. The antiderivative of ln x is x ln x - x. The antiderivative of -ln x is -x ln x + x.
+    The Taylor and Riemann viewers from the one-variable visuals work are not registered in this tree, so these nodes do not carry a visual block.
+  nodes: [l3-real-powers, l3-taylor, l3-taylor-composition, l3-riemann-sums, l3-fundamental-theorem, l3-substitution, l3-integration-by-parts]
+- date: "2026-10-12"
+  title: Lecture 1 nodes
+  text: |
+    The nine lecture 1 nodes are written at full depth. Each method has a worked example, and each node has a guided example, a three-tier exercise ladder, and about ten cards.
+
+    Epsilon-delta definitions, the geometric proof of sin x / x, the construction of e, and hyperbolic functions sit in going-deeper blocks. L'Hopital practice and the intermediate value theorem exercises stay on lecture 2. The intermediate value theorem is stated once on the continuity node.
+
+    Lecture 1 notes write the reciprocal derivative with -u in the numerator. The correct formula is -u'/u^2. The real-power line writes f(x) = p x^{p-1}. The derivative is f'(x) = p x^{p-1}. The functions-and-graphs booklet, PDF page 15, draws a right shift by 2 of (1, 1) at (3, 1) and labels that point (1, 3). The shifted point is (3, 1).
+  nodes: [l1-trigonometry, l1-exp-log, l1-functions, l1-transformations, l1-limits, l1-limit-techniques, l1-continuity, l1-derivative, l1-derivative-rules]
+- date: "2026-10-12"
+  title: Lecture 8 content
+  text: |
+    Lecture 8 now has the change-of-variables theorem, triple integrals, cylindrical and spherical volume elements, volumes between surfaces, and the mass formulas from before Example 15.3.1. The probability node stays optional and in draft, because the handout's probability section is one-variable and the multiple-integral material comes from the 2022 final.
+    Assigned handout sets 15.5, 15.6 items 1 to 6, 10 and 11, and 15.7 are on the nodes, together with the matching sheet 3 exercises and the 2023 retake's linear substitution and paraboloid-cone volume. The 2024 and 2025 exam exercises were already on the nodes.
+    Example 15.5.3 prints 1/16 after the z-integral of xyz on the cube. The factor is 1/4, and the average is 1. The node teaches the factor 1/4.
+  nodes: [l8-change-of-variables, l8-triple-integrals, l8-cylindrical-spherical-integrals, l8-volumes-between-surfaces, l8-mass-centre, l8-probability]
+- date: "2026-10-12"
+  title: Lecture 2 optimisation, Newton and the theorems
+  text: |
+    One-variable optimisation, Newton's method, the intermediate value theorem, the mean value theorem, related rates and linear approximation now have course statements, worked and guided examples, traps, cards, sheet items and a three-tier exercise ladder. Those six nodes are reviewed.
+
+    Optimisation evaluates the function at critical values and at the endpoints, and a word problem writes the quantity before any derivative. Newton's method keeps exact fractions and ends with an error sentence. The cube root of 9, started at 2, has first iterate 25/12 and reads 2.08 to two decimal places. The two-car related rate is 460 over the square root of 13 kilometres per hour, and the distance is increasing.
+  nodes: [l2-optimisation, l2-newton, l2-ivt, l2-mvt, l2-related-rates, l2-linear-approximation]
+- date: "2026-10-09"
+  title: Midterm questions, cards and curve write-ups
+  text: |
+    The multiple-choice questions and cards from the midterm revision app are on the lecture 1 to 3 nodes, in the course notation. Four level-set questions were left off those nodes. Level sets of a function of two variables belong with lecture 4.
+    Question 58 was dropped. The stem depends on a graph that a concept question cannot carry.
+    Question 5 was fixed. The original was tick-all with three correct identities. Rewritten so one option lists those three, and the others mix in the false rule that exp(a+b) equals exp(a)+exp(b). Question 7 was fixed. The option that shifted sin x by pi describes the same curve as -sin x, so two options were correct. That option is now a shift by pi/2. Question 49 was fixed. The keyed option said the third iterate was exact to machine precision. The error is about 10^{-12}. Question 34 was fixed. The original wrote n! and named the Gamma function without saying n is a non-negative integer. Question 60 was fixed. The original checklist put intercepts before the derivative and inflection before asymptotes. The exam marking order is domain, derivative, sign chart, asymptotes, intercepts, inflection if asked, conclusion. Question 63 was fixed. The original said closed region and the whole boundary. The one-variable statement uses a closed interval and its endpoints. l2-curve-sketching.curve-02 was fixed. The source places the positive derivative on the closed interval beginning at x = 1. The derivative is undefined at x = 1, so it is positive on the open interval x > 1. l2-curve-sketching.drill-07 was fixed. The source said squaring removes a leftover sign after shifting by pi. In fact, tan(x + pi) equals tan(x) exactly. l2-curve-sketching.drill-09 was fixed. The source referred to x^3 changing sign. Inflection is established because its second derivative changes sign.
+    The twelve curve discussions are exam exercises on the curve-sketching node, each re-derived, and the twelve drills are short exercises marked as a whole. The eight-step write-up order and the ten-item checklist are on that node.
+  nodes: [l1-continuity, l1-derivative, l1-derivative-rules, l1-exp-log, l1-limit-techniques, l1-limits, l1-transformations, l1-trigonometry, l2-asymptotes, l2-concavity, l2-curve-sketching, l2-inverse-functions, l2-ivt, l2-lhopital, l2-linear-approximation, l2-monotonicity-extrema, l2-newton, l2-optimisation, l3-area-between-curves, l3-fundamental-theorem, l3-improper-integrals, l3-integration-by-parts, l3-partial-fractions, l3-probability-densities, l3-substitution, l3-taylor, l3-taylor-composition, l3-trig-integrals]
+- date: "2026-10-09"
+  title: Midterm checkpoints
+  text: |
+    The past midterms from 2021, 2022, 2024, 2025 and 2026, Midterm mock 1, and two practice papers are optional 90-minute checkpoints.
+
+    The 2026 paper uses its official typeset key. The 2022 paper and Midterm mock 1 use their keys. Where a key disagrees with the verified value, the exercise stays and the solution states the discrepancy. The 2021 and 2024 solutions were written for this site. The two extra papers are written for practice. Exercise 1.v of the 2022 paper is not in the key. Its solution was written for this site.
+
+    The 2021 paper and Midterm mock 1 print no point values. Their point splits are there so a checkpoint can be self-marked. A checkpoint never gates the course.
+  nodes: [l1-derivative, l1-limits, l2-curve-sketching, l2-lhopital, l2-newton, l2-optimisation, l3-area-between-curves, l3-fundamental-theorem, l3-improper-integrals, l3-integration-by-parts, l3-probability-densities, l3-substitution, l3-taylor, l3-taylor-composition, l3-trig-integrals, l4-cross-sections, l4-level-sets, l4-quadrics, l5-limits-continuity]
+- date: "2026-10-09"
+  title: Finals 2024 and 2025
+  text: |
+    The December 2024 and December 2025 finals are available as timed mocks in the six-block format. Each question is attached to the lecture 4 to 8 node that teaches it, with a solution written for this site and a verification record. The stand-in mock from the mock engine has been removed.
+  nodes: [l4-level-sets, l5-tangent-plane, l5-chain-rule-path, l6-second-derivative-test, l6-degenerate-case, l6-worded-optimisation, l7-double-integrals-rectangles, l7-general-regions, l7-polar-integrals, l8-change-of-variables, l8-volumes-between-surfaces]
+- date: "2026-10-09"
+  title: Integral exercise bank
+  text: |
+    The 140 exercises from the integrals revision page now sit on the lecture 3 nodes. Statements, solutions and hints were rewritten for this site. SymPy recomputed every checkable result and agreed with the stored answer, so no value was changed. Nine exercises whose result is divergence are marked not machine-checkable, because the verifier cannot compare infinite values. No two exercises asked for the same integrand on the same interval. Twenty exercises keep the mock or sheet citation they came with, in the number field, and every solution is labelled written for this site.
+  nodes: [l3-area-between-curves, l3-fundamental-theorem, l3-improper-integrals, l3-integration-by-parts, l3-partial-fractions, l3-probability-densities, l3-riemann-sums, l3-substitution, l3-trig-integrals]
+- date: "2026-10-09"
+  title: Stand-in mock and sheet items
+  text: |
+    A stand-in final mock lists two exercises from a hidden node, with paper metadata and rubric items the mock page can run.
+
+    Sheet items were added on the derivative node and the concavity node. The critical points node has one as well.
+  nodes: [l1-derivative, l2-concavity, l6-critical-points]
+- date: "2026-10-09"
+  title: Course skeleton
+  text: |
+    Every node of lectures 1 to 8 now exists as a draft that lists its prerequisites and sources and carries an exam weight, so the whole course can be browsed before the content is written. Lecture 4 starts with the space geometry it relies on. The placement of nodes in lectures 6 to 8 is provisional until those lectures take place.
+
+    The coverage map now lists every kept handout section, the assigned handout exercises, every item of the lecture notes and the lecture 4 boards, every exercise of the sheets and every past-paper question, each mapped to a node or excluded with a reason. The stand-in Hessian sample is no longer part of the course.
+  nodes: [l1-trigonometry, l1-exp-log, l1-functions, l1-transformations, l1-limits, l1-limit-techniques, l1-continuity, l1-derivative, l1-derivative-rules, l2-inverse-functions, l2-implicit-differentiation, l2-lhopital, l2-asymptotes, l2-monotonicity-extrema, l2-concavity, l2-curve-sketching, l2-optimisation, l2-newton, l2-ivt, l2-mvt, l2-related-rates, l2-linear-approximation, l3-real-powers, l3-taylor, l3-taylor-composition, l3-riemann-sums, l3-fundamental-theorem, l3-substitution, l3-integration-by-parts, l3-trig-integrals, l3-partial-fractions, l3-improper-integrals, l3-area-between-curves, l3-probability-densities, l3-numerical-integration, l4-coordinates-vectors, l4-dot-cross-product, l4-lines-planes, l4-cylindrical-spherical, l4-functions-several-variables, l4-graphs-planes, l4-quadrics, l4-cross-sections, l4-level-sets, l5-limits-continuity, l5-partial-derivatives, l5-higher-derivatives, l5-differentiability, l5-tangent-plane, l5-directional-derivative, l5-steepest-ascent, l5-chain-rule-path, l5-chain-rule-general, l5-hessian, l6-critical-points, l6-second-derivative-test, l6-degenerate-case, l6-parameter-families, l6-global-extrema, l6-worded-optimisation, l6-lagrange, l7-double-integrals-rectangles, l7-general-regions, l7-order-of-integration, l7-average-value, l7-volumes, l7-polar-integrals, l8-change-of-variables, l8-triple-integrals, l8-cylindrical-spherical-integrals, l8-volumes-between-surfaces, l8-mass-centre, l8-probability]

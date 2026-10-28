@@ -1,0 +1,318 @@
+/*
+ * Moments for finishing things (ticket 33). Sizes match the event: a Tick for one step, a CompletionMark for a
+ * done node or a cleared queue. Everything moves on transform and opacity with the spring tokens from
+ * styles.css and no overshoot. Reduced motion collapses every animation here through the global rule in
+ * styles.css, so the end state shows at once. Translucent surfaces get solid fallbacks for reduced
+ * transparency and higher contrast. Colours come from the existing theme tokens only.
+ */
+
+/* One step: a small tick that draws itself */
+
+.tick {
+  display: inline-block;
+  width: 1.1em;
+  height: 1.1em;
+  margin-right: 0.4em;
+  vertical-align: -0.2em;
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.tick path {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 0;
+  animation: tick-draw 250ms var(--spring-ease) backwards;
+}
+
+@keyframes tick-draw {
+  from {
+    stroke-dashoffset: 1;
+  }
+}
+
+.saved-note .tick {
+  margin-right: 0.45em;
+}
+
+/* A larger moment: disc, check, one ring */
+
+.completion-mark {
+  --mark-size: 56px;
+  position: relative;
+  display: inline-block;
+  flex: none;
+  width: var(--mark-size);
+  height: var(--mark-size);
+}
+
+.completion-mark-small {
+  --mark-size: 36px;
+}
+
+.completion-disc,
+.completion-ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+}
+
+.completion-disc {
+  background: var(--accent-soft);
+  animation: mark-disc var(--spring-duration) var(--spring-ease) backwards;
+}
+
+.completion-ring {
+  border: 2px solid var(--accent);
+  opacity: 0;
+  animation: mark-ring calc(var(--spring-duration) * 2) var(--spring-ease) 80ms backwards;
+}
+
+.completion-check {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 2.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.completion-check path {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 0;
+  animation: tick-draw calc(var(--spring-duration) * 0.9) var(--spring-ease) calc(var(--spring-duration) * 0.5) backwards;
+}
+
+@keyframes mark-disc {
+  from {
+    opacity: 0;
+    transform: scale(0.85);
+  }
+}
+
+@keyframes mark-ring {
+  from {
+    opacity: 0.5;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(1.6);
+  }
+}
+
+/* The node-done toast */
+
+.moment-toast-wrap {
+  position: fixed;
+  right: 16px;
+  bottom: max(16px, env(safe-area-inset-bottom));
+  left: 16px;
+  z-index: 40;
+  display: flex;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.moment-toast {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  width: 100%;
+  max-width: 28rem;
+  padding: 0.85rem 1rem;
+  border: 1px solid var(--border);
+  border-top-color: rgba(255, 255, 255, 0.55);
+  border-radius: 16px;
+  background: color-mix(in srgb, var(--panel) 78%, transparent);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  backdrop-filter: blur(20px) saturate(180%);
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.08),
+    0 12px 40px rgba(0, 0, 0, 0.18);
+  color: var(--text);
+  pointer-events: auto;
+}
+
+[data-theme='dark'] .moment-toast {
+  border-top-color: rgba(255, 255, 255, 0.18);
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.4),
+    0 12px 40px rgba(0, 0, 0, 0.5);
+}
+
+.moment-text {
+  flex: 1;
+  min-width: 0;
+}
+
+.moment-heading {
+  margin: 0;
+  font-weight: 600;
+  letter-spacing: var(--track-heading);
+  overflow-wrap: anywhere;
+}
+
+.moment-body {
+  margin: 0.15rem 0 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.moment-dismiss {
+  flex: none;
+}
+
+@media (max-width: 30rem) {
+  .moment-toast {
+    flex-wrap: wrap;
+  }
+
+  .moment-text {
+    flex-basis: calc(100% - 36px - 0.9rem);
+  }
+
+  .moment-dismiss {
+    margin-left: auto;
+  }
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  .moment-toast {
+    background: var(--panel);
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+}
+
+@media (prefers-contrast: more) {
+  .moment-toast {
+    border-color: var(--border);
+    background: var(--panel);
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+}
+
+/* The mastery badge */
+
+.mastery-badge {
+  position: relative;
+}
+
+.badge-swap {
+  display: inline-grid;
+  overflow: hidden;
+}
+
+.badge-label {
+  grid-area: 1 / 1;
+}
+
+.badge-ring {
+  position: absolute;
+  inset: -1px;
+  border: 1px solid var(--green-text);
+  border-radius: 8px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* The cleared queue */
+
+.queue-cleared {
+  display: grid;
+  justify-items: start;
+  gap: 0.6rem;
+  margin: 1.2rem 0 1.6rem;
+  animation: settle var(--spring-duration) var(--spring-ease) backwards;
+}
+
+.queue-cleared h2 {
+  margin: 0.4rem 0 0;
+}
+
+.queue-cleared p {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
+.queue-cleared .quiet {
+  color: var(--muted);
+}
+
+.queue-cleared-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.8rem 1.2rem;
+  margin-top: 0.8rem;
+}
+
+/* The mock result */
+
+.mock-result {
+  animation: settle var(--spring-duration) var(--spring-ease) backwards;
+}
+
+@keyframes settle {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}
+
+.mock-best {
+  margin: 0.8rem 0 0;
+}
+
+.personal-best .tick {
+  width: 1em;
+  height: 1em;
+  margin-right: 0.35em;
+  vertical-align: -0.15em;
+  stroke: currentColor;
+}
+
+.mock-compare {
+  margin: 0.8rem 0 0;
+}
+
+.mock-block-changes {
+  display: grid;
+  gap: 0.4rem;
+  margin: 1rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.mock-block-changes li {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  gap: 0.2rem 1rem;
+  align-items: baseline;
+}
+
+.mock-block-title {
+  overflow-wrap: anywhere;
+}
+
+.mock-block-score,
+.mock-change {
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.mock-change {
+  min-width: 4.5rem;
+  text-align: right;
+}
+
+.mock-change-up {
+  color: var(--green-text);
+}

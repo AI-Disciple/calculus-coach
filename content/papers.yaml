@@ -1,0 +1,1644 @@
+- id: final-2024
+  kind: mock
+  presentation: current-format
+  title: Final 6 December 2024
+  year: 2024
+  durationMinutes: 120
+  totalPoints: 20
+  allowedMaterial: One sheet of handwritten notes. No electronic devices.
+  source: Final 6 December 2024
+  blocks:
+    - id: level-sets
+      title: Level sets and tangent plane
+      points: 2
+      minutes: 15
+      exercises: [l4-level-sets.final-2024-q1a, l5-tangent-plane.final-2024-q1b]
+      rubric:
+        - text: The z-level sets are stated, including the vertical line through the origin.
+          points: 1
+          exercise: l4-level-sets.final-2024-q1a
+        - text: The tangent plane at the given point is stated.
+          points: 1
+          exercise: l5-tangent-plane.final-2024-q1b
+    - id: chain-rule
+      title: Chain rule along a path
+      points: 1
+      minutes: 7
+      exercises: [l5-chain-rule-path.final-2024-q2]
+      rubric:
+        - text: The chain-rule relation for a descent at rate 1 is stated.
+          points: 1
+          exercise: l5-chain-rule-path.final-2024-q2
+    - id: critical-points
+      title: Critical points
+      points: 4
+      minutes: 20
+      exercises: [l6-second-derivative-test.final-2024-q3a, l6-degenerate-case.final-2024-q3b]
+      rubric:
+        - text: The critical points of f are found and classified.
+          points: 2
+          exercise: l6-second-derivative-test.final-2024-q3a
+        - text: The critical points of h are found, and the degenerate point is classified on a section.
+          points: 2
+          exercise: l6-degenerate-case.final-2024-q3b
+    - id: double-integrals
+      title: Double integrals
+      points: 7
+      minutes: 38
+      exercises:
+        - l7-double-integrals-rectangles.final-2024-q4a
+        - l7-general-regions.final-2024-q4b
+        - l7-polar-integrals.final-2024-q4c
+        - l8-change-of-variables.final-2024-q4d
+      rubric:
+        - text: The integral over the rectangle is evaluated.
+          points: 1
+          exercise: l7-double-integrals-rectangles.final-2024-q4a
+        - text: The integral over the triangle is evaluated.
+          points: 2
+          exercise: l7-general-regions.final-2024-q4b
+        - text: The integral over the disk is evaluated.
+          points: 2
+          exercise: l7-polar-integrals.final-2024-q4c
+        - text: The hinted substitution is applied and the integral is evaluated.
+          points: 2
+          exercise: l8-change-of-variables.final-2024-q4d
+    - id: constrained-optimisation
+      title: Constrained optimisation
+      points: 3
+      minutes: 20
+      exercises: [l6-worded-optimisation.final-2024-q5]
+      rubric:
+        - text: The best speed and height are found, and the result is identified as a minimum.
+          points: 3
+          exercise: l6-worded-optimisation.final-2024-q5
+    - id: volume
+      title: Volume between two surfaces
+      points: 3
+      minutes: 20
+      exercises: [l8-volumes-between-surfaces.final-2024-q6]
+      rubric:
+        - text: The solid is described, set up, and the integral is evaluated.
+          points: 3
+          exercise: l8-volumes-between-surfaces.final-2024-q6
+- id: final-2025
+  kind: mock
+  presentation: current-format
+  title: Final 12 December 2025
+  year: 2025
+  durationMinutes: 120
+  totalPoints: 20
+  allowedMaterial: One sheet of handwritten notes. No electronic devices.
+  source: Final 12 December 2025
+  blocks:
+    - id: level-sets
+      title: Level sets and tangent plane
+      points: 2
+      minutes: 15
+      exercises: [l4-level-sets.final-2025-q1a, l5-tangent-plane.final-2025-q1b]
+      rubric:
+        - text: The z-level sets are stated as circles.
+          points: 1
+          exercise: l4-level-sets.final-2025-q1a
+        - text: The tangent plane at the given point is stated.
+          points: 1
+          exercise: l5-tangent-plane.final-2025-q1b
+    - id: chain-rule
+      title: Chain rule along a path
+      points: 1
+      minutes: 7
+      exercises: [l5-chain-rule-path.final-2025-q2]
+      rubric:
+        - text: The slope along the curve is computed, and the common domain is checked.
+          points: 1
+          exercise: l5-chain-rule-path.final-2025-q2
+    - id: critical-points
+      title: Critical points
+      points: 4
+      minutes: 20
+      exercises: [l6-second-derivative-test.final-2025-q3a, l6-second-derivative-test.final-2025-q3b]
+      rubric:
+        - text: The critical points of f are found and classified.
+          points: 2
+          exercise: l6-second-derivative-test.final-2025-q3a
+        - text: The critical points of h are found and classified.
+          points: 2
+          exercise: l6-second-derivative-test.final-2025-q3b
+    - id: double-integrals
+      title: Double integrals
+      points: 6
+      minutes: 35
+      exercises:
+        - l7-double-integrals-rectangles.final-2025-q4a
+        - l7-general-regions.final-2025-q4b
+        - l7-polar-integrals.final-2025-q4c
+        - l8-change-of-variables.final-2025-q4d
+      rubric:
+        - text: The integral over the rectangle is evaluated.
+          points: 1
+          exercise: l7-double-integrals-rectangles.final-2025-q4a
+        - text: The integral over the triangle is evaluated.
+          points: 1
+          exercise: l7-general-regions.final-2025-q4b
+        - text: The integral over the sector is evaluated.
+          points: 2
+          exercise: l7-polar-integrals.final-2025-q4c
+        - text: The region and its image are described, and the integral is evaluated.
+          points: 2
+          exercise: l8-change-of-variables.final-2025-q4d
+    - id: constrained-optimisation
+      title: Constrained optimisation
+      points: 4
+      minutes: 23
+      exercises: [l6-worded-optimisation.final-2025-q5]
+      rubric:
+        - text: The budget region is used, the interior is checked, and the boundaries are compared.
+          points: 4
+          exercise: l6-worded-optimisation.final-2025-q5
+    - id: volume
+      title: Volume between two surfaces
+      points: 3
+      minutes: 20
+      exercises: [l8-volumes-between-surfaces.final-2025-q6]
+      rubric:
+        - text: The cut, the shadow and the three integral setups are stated.
+          points: 3
+          exercise: l8-volumes-between-surfaces.final-2025-q6
+- id: midterm-mock-1
+  kind: checkpoint
+  presentation: as-printed
+  title: Midterm mock 1
+  year: 2023
+  durationMinutes: 90
+  totalPoints: 22
+  allowedMaterial: None stated on the paper.
+  source: Midterm mock 1 with its official key. The paper prints no point values. The split below is for self-marking.
+  blocks:
+    - id: sketch
+      title: Curve sketching
+      points: 6
+      minutes: 25
+      exercises:
+        - l2-curve-sketching.midterm-mock-1-ex1.1
+        - l2-curve-sketching.midterm-mock-1-ex1.2
+        - l2-curve-sketching.midterm-mock-1-ex1.5
+        - l2-curve-sketching.midterm-mock-1-ex1.6
+      rubric:
+        - text: Domain of \(\tan^2(x)\).
+          points: 0.5
+          exercise: l2-curve-sketching.midterm-mock-1-ex1.1
+        - text: Derivative and sign chart of \(\tan^2(x)\).
+          points: 0.5
+          exercise: l2-curve-sketching.midterm-mock-1-ex1.1
+        - text: Asymptotes, intercepts, and sketch of \(\tan^2(x)\).
+          points: 0.5
+          exercise: l2-curve-sketching.midterm-mock-1-ex1.1
+        - text: Domain of \(\frac{x^2}{x^2+9}\).
+          points: 0.5
+          exercise: l2-curve-sketching.midterm-mock-1-ex1.2
+        - text: Derivative and sign chart of \(\frac{x^2}{x^2+9}\).
+          points: 0.5
+          exercise: l2-curve-sketching.midterm-mock-1-ex1.2
+        - text: Asymptotes, intercepts, and sketch of \(\frac{x^2}{x^2+9}\).
+          points: 0.5
+          exercise: l2-curve-sketching.midterm-mock-1-ex1.2
+        - text: Domain of \(x^3-3x^2-9x+5\).
+          points: 0.5
+          exercise: l2-curve-sketching.midterm-mock-1-ex1.5
+        - text: Derivative and sign chart of \(x^3-3x^2-9x+5\).
+          points: 0.5
+          exercise: l2-curve-sketching.midterm-mock-1-ex1.5
+        - text: Asymptotes, intercepts, and sketch of \(x^3-3x^2-9x+5\).
+          points: 0.5
+          exercise: l2-curve-sketching.midterm-mock-1-ex1.5
+        - text: Domain of \((1-x^2)^{1/4}\).
+          points: 0.5
+          exercise: l2-curve-sketching.midterm-mock-1-ex1.6
+        - text: Derivative and sign chart of \((1-x^2)^{1/4}\).
+          points: 0.5
+          exercise: l2-curve-sketching.midterm-mock-1-ex1.6
+        - text: Asymptotes, intercepts, and sketch of \((1-x^2)^{1/4}\).
+          points: 0.5
+          exercise: l2-curve-sketching.midterm-mock-1-ex1.6
+    - id: tangent
+      title: Tangent line
+      points: 2
+      minutes: 8
+      exercises:
+        - l1-derivative.midterm-mock-1-ex2
+      rubric:
+        - text: Value and derivative at \(x=1\).
+          points: 1
+          exercise: l1-derivative.midterm-mock-1-ex2
+        - text: Equation of the tangent line.
+          points: 1
+          exercise: l1-derivative.midterm-mock-1-ex2
+    - id: newton
+      title: Newton's method
+      points: 3
+      minutes: 12
+      exercises:
+        - l2-newton.midterm-mock-1-ex3
+      rubric:
+        - text: Newton iterates \(x_1\), \(x_2\), \(x_3\).
+          points: 2
+          exercise: l2-newton.midterm-mock-1-ex3
+        - text: Closeness to \(7^{1/5}\).
+          points: 1
+          exercise: l2-newton.midterm-mock-1-ex3
+    - id: taylor
+      title: Taylor polynomials of order 2
+      points: 4
+      minutes: 16
+      exercises:
+        - l3-taylor.midterm-mock-1-ex4.1
+        - l3-taylor-composition.midterm-mock-1-ex4.2
+        - l3-taylor-composition.midterm-mock-1-ex4.4
+        - l3-taylor.midterm-mock-1-ex4.5
+      rubric:
+        - text: Order-2 Taylor of \(\frac{1}{1-x}\).
+          points: 1
+          exercise: l3-taylor.midterm-mock-1-ex4.1
+        - text: Order-2 Taylor of \(e^{\sin x}\).
+          points: 1
+          exercise: l3-taylor-composition.midterm-mock-1-ex4.2
+        - text: Order-2 Taylor of \(\ln(1+x^2)\).
+          points: 1
+          exercise: l3-taylor-composition.midterm-mock-1-ex4.4
+        - text: Order-2 Taylor of \((1+x)^{1/3}\).
+          points: 1
+          exercise: l3-taylor.midterm-mock-1-ex4.5
+    - id: box
+      title: USPS box
+      points: 3
+      minutes: 12
+      exercises:
+        - l2-optimisation.midterm-mock-1-ex5
+      rubric:
+        - text: Constraint and volume as a function of the side.
+          points: 1
+          exercise: l2-optimisation.midterm-mock-1-ex5
+        - text: Critical point.
+          points: 1
+          exercise: l2-optimisation.midterm-mock-1-ex5
+        - text: Dimensions \(18\times 18\times 36\).
+          points: 1
+          exercise: l2-optimisation.midterm-mock-1-ex5
+    - id: integrals
+      title: Integrals
+      points: 4
+      minutes: 17
+      exercises:
+        - l3-fundamental-theorem.midterm-mock-1-ex6.1
+        - l3-integration-by-parts.midterm-mock-1-ex6.2
+        - l3-substitution.midterm-mock-1-ex6.3
+        - l3-improper-integrals.midterm-mock-1-ex6.4
+      rubric:
+        - text: Definite integral of \(t^5+t^4-t^2/2+1\).
+          points: 1
+          exercise: l3-fundamental-theorem.midterm-mock-1-ex6.1
+        - text: Integral of \(t(1+t)^{1/3}\) by parts.
+          points: 1
+          exercise: l3-integration-by-parts.midterm-mock-1-ex6.2
+        - text: Integral of \(\tan t\) with \(y=\cos t\).
+          points: 1
+          exercise: l3-substitution.midterm-mock-1-ex6.3
+        - text: Improper integral of \(\frac{1}{1+x^2}\).
+          points: 1
+          exercise: l3-improper-integrals.midterm-mock-1-ex6.4
+- id: midterm-2021
+  kind: checkpoint
+  presentation: as-printed
+  title: Midterm 2021
+  year: 2021
+  durationMinutes: 90
+  totalPoints: 18
+  allowedMaterial: No documents. No electronic devices.
+  source: Past midterm, 8 October 2021. Solutions written for this site. The paper prints no point values. Each marked part counts as 1 point so the checkpoint can be self-marked.
+  blocks:
+    - id: ex1
+      title: Topographic map
+      points: 2
+      minutes: 12
+      exercises:
+        - l4-level-sets.midterm-2021-ex1a
+        - l4-level-sets.midterm-2021-ex1b
+      rubric:
+        - text: The contour step is read from the printed 200 and 220 labels and the unlabeled curve between them.
+          points: 1
+          exercise: l4-level-sets.midterm-2021-ex1a
+        - text: Tops, the saddle, and the bottom of the range are placed on the 100 m grid with heights from the contour step.
+          points: 1
+          exercise: l4-level-sets.midterm-2021-ex1b
+    - id: ex2
+      title: The cone
+      points: 6
+      minutes: 25
+      exercises:
+        - l4-cross-sections.midterm-2021-ex2.1
+        - l4-level-sets.midterm-2021-ex2.2
+        - l4-quadrics.midterm-2021-ex2.3
+        - l4-cross-sections.midterm-2021-ex2.4
+        - l4-cross-sections.midterm-2021-ex2.5
+        - l4-cross-sections.midterm-2021-ex2.6
+      rubric:
+        - text: Cut by x = 0 is z^2 = y^2, two lines in Oyz.
+          points: 1
+          exercise: l4-cross-sections.midterm-2021-ex2.1
+        - text: Level set z = c is the circle x^2 + y^2 = c^2. The map is concentric circles.
+          points: 1
+          exercise: l4-level-sets.midterm-2021-ex2.2
+        - text: The surface is a double cone along Oz with vertex at the origin.
+          points: 1
+          exercise: l4-quadrics.midterm-2021-ex2.3
+        - text: Cut by x = 1 is the hyperbola z^2 - y^2 = 1 with asymptotes z = \pm y.
+          points: 1
+          exercise: l4-cross-sections.midterm-2021-ex2.4
+        - text: Cut by z = y + 1 projects in Oxy as the parabola x^2 = 2y + 1.
+          points: 1
+          exercise: l4-cross-sections.midterm-2021-ex2.5
+        - text: Cut by z = 2y + 1 is a hyperbola. Asymptotes x = \pm\sqrt{3}(y + 2/3).
+          points: 1
+          exercise: l4-cross-sections.midterm-2021-ex2.6
+    - id: ex3
+      title: The curve x^4 + y^4 = 1
+      points: 3
+      minutes: 15
+      exercises:
+        - l2-curve-sketching.midterm-2021-ex3.1
+        - l2-curve-sketching.midterm-2021-ex3.2
+        - l2-curve-sketching.midterm-2021-ex3.3
+      rubric:
+        - text: The points with x = y and with y = 0 are computed.
+          points: 1
+          exercise: l2-curve-sketching.midterm-2021-ex3.1
+        - text: Axis, origin, and diagonal symmetries are named, and the rounded square is sketched.
+          points: 1
+          exercise: l2-curve-sketching.midterm-2021-ex3.2
+        - text: The parameterization is checked and theta is placed in (0, pi/2).
+          points: 1
+          exercise: l2-curve-sketching.midterm-2021-ex3.3
+    - id: ex4
+      title: The quotient (x^2 - y^2)/(x^2 + y^2)
+      points: 3
+      minutes: 18
+      exercises:
+        - l4-cross-sections.midterm-2021-ex4.1
+        - l4-level-sets.midterm-2021-ex4.2
+        - l5-limits-continuity.midterm-2021-ex4.3
+      rubric:
+        - text: The vertical cut is z = cos(2 theta), independent of r. The cut at -theta has the same height.
+          points: 1
+          exercise: l4-cross-sections.midterm-2021-ex4.1
+        - text: Level sets are lines through the origin, drawn in space at the corresponding height.
+          points: 1
+          exercise: l4-level-sets.midterm-2021-ex4.2
+        - text: Continuity at the origin is decided from directional limits.
+          points: 1
+          exercise: l5-limits-continuity.midterm-2021-ex4.3
+    - id: ex5
+      title: Product exponential density
+      points: 4
+      minutes: 20
+      exercises:
+        - l3-probability-densities.midterm-2021-ex5.1
+        - l3-probability-densities.midterm-2021-ex5.2
+        - l3-probability-densities.midterm-2021-ex5.3
+        - l5-limits-continuity.midterm-2021-ex5.4
+      rubric:
+        - text: ln(g) = -x - y on the open first quadrant, with parallel level lines x + y = constant.
+          points: 1
+          exercise: l3-probability-densities.midterm-2021-ex5.1
+        - text: The contour map of ln(g) is drawn, with symmetry across y = x.
+          points: 1
+          exercise: l3-probability-densities.midterm-2021-ex5.2
+        - text: The graph of g is sketched for x > 0, y > 0.
+          points: 1
+          exercise: l3-probability-densities.midterm-2021-ex5.3
+        - text: The limit of g at (ln(3/2), ln 2) is 1/3.
+          points: 1
+          exercise: l5-limits-continuity.midterm-2021-ex5.4
+- id: midterm-2022
+  kind: checkpoint
+  presentation: as-printed
+  title: Midterm 2022
+  year: 2022
+  durationMinutes: 90
+  totalPoints: 20
+  allowedMaterial: Handwritten notes only.
+  source: Midterm 2022, 7 October. Official handwritten key. Exercise 1.v is not in the key. Its solution was written for this site.
+  blocks:
+    - id: ex1
+      title: Upper semicircle
+      points: 5
+      minutes: 22
+      exercises:
+        - l2-curve-sketching.midterm-2022-ex1i
+        - l2-curve-sketching.midterm-2022-ex1ii
+        - l1-limits.midterm-2022-ex1iii
+        - l2-curve-sketching.midterm-2022-ex1iv
+        - l3-trig-integrals.midterm-2022-ex1v
+      rubric:
+        - text: Domain \([-1,1]\) and range \([0,1]\).
+          points: 1
+          exercise: l2-curve-sketching.midterm-2022-ex1i
+        - text: Derivative \(f'(x)=-x/\sqrt{1-x^2}\).
+          points: 1
+          exercise: l2-curve-sketching.midterm-2022-ex1ii
+        - text: Limits of \(f'\) are \(+\infty\) as \(x\to -1^+\) and \(-\infty\) as \(x\to 1^-\).
+          points: 1
+          exercise: l1-limits.midterm-2022-ex1iii
+        - text: Sketch with maximum at \((0,1)\), endpoint minima, vertical end tangents, and concavity.
+          points: 1
+          exercise: l2-curve-sketching.midterm-2022-ex1iv
+        - text: Integral equals \(\pi/2\), by a trigonometric substitution.
+          points: 1
+          exercise: l3-trig-integrals.midterm-2022-ex1v
+    - id: ex2
+      title: Quotient with a logarithm
+      points: 5
+      minutes: 23
+      exercises:
+        - l2-curve-sketching.midterm-2022-ex2i
+        - l2-curve-sketching.midterm-2022-ex2ii
+        - l2-lhopital.midterm-2022-ex2iii
+        - l3-taylor-composition.midterm-2022-ex2iv
+        - l2-curve-sketching.midterm-2022-ex2v
+        - l2-curve-sketching.midterm-2022-ex2vi
+      rubric:
+        - text: Domain \((0,1)\cup(1,+\infty)\).
+          points: 0.5
+          exercise: l2-curve-sketching.midterm-2022-ex2i
+        - text: Derivative by the quotient rule.
+          points: 1
+          exercise: l2-curve-sketching.midterm-2022-ex2ii
+        - text: Limits of \(f\) at \(0^+\) and at \(1\), and of \(f'\) at \(0^+\).
+          points: 1
+          exercise: l2-lhopital.midterm-2022-ex2iii
+        - text: Limit of \(f'\) at \(1\) by order-2 Taylor expansions.
+          points: 1
+          exercise: l3-taylor-composition.midterm-2022-ex2iv
+        - text: Sign of \(g\), then sign of \(f'\).
+          points: 1
+          exercise: l2-curve-sketching.midterm-2022-ex2v
+        - text: Plot using the domain, the limits, and the sign of \(f'\).
+          points: 0.5
+          exercise: l2-curve-sketching.midterm-2022-ex2vi
+    - id: ex3
+      title: Newton, fifth root of 2
+      points: 2
+      minutes: 9
+      exercises:
+        - l2-newton.midterm-2022-ex3
+      rubric:
+        - text: Second iterate from \(x_0=1\), using the binomial hint.
+          points: 1
+          exercise: l2-newton.midterm-2022-ex3
+        - text: Sketch of the iterates, and how close \(x_2\) is to the root.
+          points: 1
+          exercise: l2-newton.midterm-2022-ex3
+    - id: ex4
+      title: Two integrals
+      points: 3
+      minutes: 14
+      exercises:
+        - l3-integration-by-parts.midterm-2022-ex4i
+        - l3-substitution.midterm-2022-ex4ii
+      rubric:
+        - text: Integral of \(\ln(x)/\sqrt{x}\) on \([\varepsilon,1]\) by parts, and the limit as \(\varepsilon\to 0\).
+          points: 2
+          exercise: l3-integration-by-parts.midterm-2022-ex4i
+        - text: Integral of \(\tan x\) on \([0,\pi/4]\) with \(y=\cos x\).
+          points: 1
+          exercise: l3-substitution.midterm-2022-ex4ii
+    - id: ex5
+      title: Box of maximum volume
+      points: 3
+      minutes: 13
+      exercises:
+        - l2-optimisation.midterm-2022-ex5
+      rubric:
+        - text: Express \(ab\) from the surface and the perimeter, then \(V(c)\).
+          points: 1
+          exercise: l2-optimisation.midterm-2022-ex5
+        - text: Critical points of \(V\).
+          points: 1
+          exercise: l2-optimisation.midterm-2022-ex5
+        - text: The volume is maximum at \(c=10/3\).
+          points: 1
+          exercise: l2-optimisation.midterm-2022-ex5
+    - id: ex6
+      title: Level sets of a cone
+      points: 2
+      minutes: 9
+      exercises:
+        - l4-level-sets.midterm-2022-ex6i
+        - l4-level-sets.midterm-2022-ex6ii
+        - l4-quadrics.midterm-2022-ex6iii
+      rubric:
+        - text: Level set \(x^2+y^2=z^2\) for \(z\ge 0\).
+          points: 1
+          exercise: l4-level-sets.midterm-2022-ex6i
+        - text: Plot of the level sets for \(z=0\), \(z=1\) and \(z=2\).
+          points: 0.5
+          exercise: l4-level-sets.midterm-2022-ex6ii
+        - text: The surface is the upper cone.
+          points: 0.5
+          exercise: l4-quadrics.midterm-2022-ex6iii
+- id: midterm-2024
+  kind: checkpoint
+  presentation: as-printed
+  title: Midterm 2024
+  year: 2024
+  durationMinutes: 90
+  totalPoints: 20
+  allowedMaterial: No document nor calculator accepted except a two pages handwritten cheat sheet.
+  source: Photo of the printed Midterm 2024 paper, 10 October. No official key.
+  blocks:
+    - id: exercise-1
+      title: Exercise 1. Curve sketching
+      points: 6
+      minutes: 30
+      exercises:
+        - l2-curve-sketching.midterm-2024-ex1.1
+        - l2-curve-sketching.midterm-2024-ex1.2
+        - l2-curve-sketching.midterm-2024-ex1.5
+      rubric:
+        - text: Domain, derivative, sign and extrema of \(x^{1/4}\ln x\).
+          points: 1
+          exercise: l2-curve-sketching.midterm-2024-ex1.1
+        - text: Asymptotes, intercepts and sketch of \(x^{1/4}\ln x\).
+          points: 1
+          exercise: l2-curve-sketching.midterm-2024-ex1.1
+        - text: Domain, derivative, sign and extrema of \(\sqrt{x^2+3x+1}\).
+          points: 1
+          exercise: l2-curve-sketching.midterm-2024-ex1.2
+        - text: Asymptotes, intercepts and sketch of \(\sqrt{x^2+3x+1}\).
+          points: 1
+          exercise: l2-curve-sketching.midterm-2024-ex1.2
+        - text: Domain, derivative, sign and extrema of \(x-3\sqrt{x}+1\).
+          points: 1
+          exercise: l2-curve-sketching.midterm-2024-ex1.5
+        - text: Asymptotes, intercepts and sketch of \(x-3\sqrt{x}+1\).
+          points: 1
+          exercise: l2-curve-sketching.midterm-2024-ex1.5
+    - id: exercise-2
+      title: Exercise 2. Limits
+      points: 2
+      minutes: 10
+      exercises:
+        - l3-taylor.midterm-2024-ex2.1
+        - l3-taylor.midterm-2024-ex2.2
+      rubric:
+        - text: Right-hand limit of \(\sqrt{x}/\tan x\) as \(x \to 0\).
+          points: 1
+          exercise: l3-taylor.midterm-2024-ex2.1
+        - text: Two-sided limit of \((\cos x-1)/(\sin x-\tan x)\) as \(x \to 0\).
+          points: 1
+          exercise: l3-taylor.midterm-2024-ex2.2
+    - id: exercise-3
+      title: Exercise 3. Stock price
+      points: 5
+      minutes: 20
+      exercises:
+        - l2-optimisation.midterm-2024-ex3
+      rubric:
+        - text: \(P\) written as a function of \(p_a\).
+          points: 1
+          exercise: l2-optimisation.midterm-2024-ex3
+        - text: Derivative and the two critical points.
+          points: 2
+          exercise: l2-optimisation.midterm-2024-ex3
+        - text: The larger root is identified as the maximum on \(p_a \ge 0\).
+          points: 1
+          exercise: l2-optimisation.midterm-2024-ex3
+        - text: Maximum sale price \(5.4\) to one decimal place.
+          points: 1
+          exercise: l2-optimisation.midterm-2024-ex3
+    - id: exercise-4
+      title: Exercise 4. Integrals
+      points: 7
+      minutes: 30
+      exercises:
+        - l3-fundamental-theorem.midterm-2024-ex4.1
+        - l3-substitution.midterm-2024-ex4.2
+        - l3-integration-by-parts.midterm-2024-ex4.3
+        - l3-area-between-curves.midterm-2024-ex4.4
+        - l3-substitution.midterm-2024-ex4.5
+        - l3-substitution.midterm-2024-ex4.6
+        - l3-fundamental-theorem.midterm-2024-ex4.7
+      rubric:
+        - text: \(\int_1^2 (t^2+1)/t \, dt\).
+          points: 1
+          exercise: l3-fundamental-theorem.midterm-2024-ex4.1
+        - text: \(\int_{-1}^1 (t^2+1)^{1/3} t \, dt\).
+          points: 1
+          exercise: l3-substitution.midterm-2024-ex4.2
+        - text: \(\int_0^1 t^2 \sin t \, dt\).
+          points: 1
+          exercise: l3-integration-by-parts.midterm-2024-ex4.3
+        - text: Area above \(y=x^2\) and below \(x=y^2\).
+          points: 1
+          exercise: l3-area-between-curves.midterm-2024-ex4.4
+        - text: \(\int_0^1 dt/\sqrt{t(1-t)}\).
+          points: 1
+          exercise: l3-substitution.midterm-2024-ex4.5
+        - text: \(\int_0^\infty \sqrt{t}\, e^{-\sqrt{t}} \, dt\).
+          points: 1
+          exercise: l3-substitution.midterm-2024-ex4.6
+        - text: \(\int_{-1}^1 (4x-1)/(2x^2-x+1) \, dx\).
+          points: 1
+          exercise: l3-fundamental-theorem.midterm-2024-ex4.7
+- id: midterm-2025
+  kind: checkpoint
+  presentation: as-printed
+  title: Midterm 2025
+  year: 2025
+  durationMinutes: 90
+  totalPoints: 19
+  allowedMaterial: Two pages of handwritten notes. No calculator.
+  source: Official handwritten key
+  blocks:
+    - id: curve-sketching
+      title: Exercise 1
+      points: 6
+      minutes: 25
+      exercises:
+        - l2-curve-sketching.midterm-2025-ex1.1
+        - l2-curve-sketching.midterm-2025-ex1.2
+        - l2-curve-sketching.midterm-2025-ex1.3
+      rubric:
+        - text: Domain, derivative, features and sketch of \(\sqrt{x+1}/x\).
+          points: 2
+          exercise: l2-curve-sketching.midterm-2025-ex1.1
+        - text: Domain, derivative, features and sketch of \(x^4-4x^2+1\).
+          points: 2
+          exercise: l2-curve-sketching.midterm-2025-ex1.2
+        - text: Domain, derivative, features and sketch of \(\sqrt{x^2-1}\).
+          points: 2
+          exercise: l2-curve-sketching.midterm-2025-ex1.3
+    - id: newton
+      title: Exercise 2
+      points: 3
+      minutes: 15
+      exercises:
+        - l2-newton.midterm-2025-ex2
+      rubric:
+        - text: Newton setup on \(x^{11}-5\) from \(x_0=1\).
+          points: 1
+          exercise: l2-newton.midterm-2025-ex2
+        - text: At least the first iterate and a further step.
+          points: 1
+          exercise: l2-newton.midterm-2025-ex2
+        - text: Two-decimal approximation 1.16.
+          points: 1
+          exercise: l2-newton.midterm-2025-ex2
+    - id: taylor
+      title: Exercise 3
+      points: 2
+      minutes: 10
+      exercises:
+        - l3-taylor-composition.midterm-2025-ex3
+      rubric:
+        - text: The substitution \(u=\cos x-1\).
+          points: 1
+          exercise: l3-taylor-composition.midterm-2025-ex3
+        - text: The polynomial \(-\frac{x^2}{2}\).
+          points: 1
+          exercise: l3-taylor-composition.midterm-2025-ex3
+    - id: optimisation
+      title: Exercise 4
+      points: 3
+      minutes: 15
+      exercises:
+        - l2-optimisation.midterm-2025-ex4
+      rubric:
+        - text: Model \(H=N-T^3\), \(C=\frac13(2T+N)\), \(T+N\le 2\).
+          points: 1
+          exercise: l2-optimisation.midterm-2025-ex4
+        - text: Interior candidate and the edge \(T+N=2\).
+          points: 1
+          exercise: l2-optimisation.midterm-2025-ex4
+        - text: Maximum at \(T=\sqrt{2}/3\) on \(T+N=2\), proportion \(\sqrt{2}/6\).
+          points: 1
+          exercise: l2-optimisation.midterm-2025-ex4
+    - id: integrals
+      title: Exercise 5
+      points: 5
+      minutes: 25
+      exercises:
+        - l3-trig-integrals.midterm-2025-ex5.1
+        - l3-integration-by-parts.midterm-2025-ex5.2
+        - l3-area-between-curves.midterm-2025-ex5.3
+        - l3-substitution.midterm-2025-ex5.4
+        - l3-integration-by-parts.midterm-2025-ex5.5
+      rubric:
+        - text: Value \(\pi/6-\sqrt{3}/8\).
+          points: 1
+          exercise: l3-trig-integrals.midterm-2025-ex5.1
+        - text: Value \(\pi/4-\frac12\ln 2\).
+          points: 1
+          exercise: l3-integration-by-parts.midterm-2025-ex5.2
+        - text: First-quadrant area \(\pi/2\).
+          points: 1
+          exercise: l3-area-between-curves.midterm-2025-ex5.3
+        - text: The improper integral does not exist.
+          points: 1
+          exercise: l3-substitution.midterm-2025-ex5.4
+        - text: Two integrations by parts and decay like \(1/x\) toward \(-\mathrm{Ci}(\pi/2)\).
+          points: 1
+          exercise: l3-integration-by-parts.midterm-2025-ex5.5
+- id: midterm-2026
+  kind: checkpoint
+  presentation: as-printed
+  title: Midterm 2026
+  year: 2026
+  durationMinutes: 90
+  totalPoints: 20
+  allowedMaterial: Two-page handwritten A4 cheat sheet. No other document and no calculator.
+  source: Official typeset key, 1 October 2026
+  blocks:
+    - id: sketch
+      title: Domain and curve sketching
+      points: 6
+      minutes: 27
+      exercises:
+        - l2-curve-sketching.midterm-2026-ex1.1
+        - l2-curve-sketching.midterm-2026-ex1.2
+      rubric:
+        - text: Domain, derivative and monotonicity of the first function.
+          points: 1
+          exercise: l2-curve-sketching.midterm-2026-ex1.1
+        - text: Limits, asymptotes, intercepts, extrema and inflexion of the first function.
+          points: 1
+          exercise: l2-curve-sketching.midterm-2026-ex1.1
+        - text: Sketch of the first function.
+          points: 1
+          exercise: l2-curve-sketching.midterm-2026-ex1.1
+        - text: Domain, division and asymptotes of the second function.
+          points: 1
+          exercise: l2-curve-sketching.midterm-2026-ex1.2
+        - text: Derivative, extrema, intercepts and inflexion of the second function.
+          points: 1
+          exercise: l2-curve-sketching.midterm-2026-ex1.2
+        - text: Sketch of the second function.
+          points: 1
+          exercise: l2-curve-sketching.midterm-2026-ex1.2
+    - id: newton
+      title: Newton's method
+      points: 3
+      minutes: 14
+      exercises:
+        - l2-newton.midterm-2026-ex2
+      rubric:
+        - text: Newton recurrence for \(x^3-9=0\).
+          points: 1
+          exercise: l2-newton.midterm-2026-ex2
+        - text: The first iterate \(x_1=25/12\).
+          points: 1
+          exercise: l2-newton.midterm-2026-ex2
+        - text: The error bound giving two decimal places.
+          points: 1
+          exercise: l2-newton.midterm-2026-ex2
+    - id: plane
+      title: Plane drag
+      points: 3
+      minutes: 13
+      exercises:
+        - l2-optimisation.midterm-2026-ex3
+      rubric:
+        - text: The relation \(p=v+1/(V_s-v)\).
+          points: 1
+          exercise: l2-optimisation.midterm-2026-ex3
+        - text: Velocity is strictly increasing and tends to \(V_s\).
+          points: 1
+          exercise: l2-optimisation.midterm-2026-ex3
+        - text: No finite power attains \(V_s\).
+          points: 1
+          exercise: l2-optimisation.midterm-2026-ex3
+    - id: shares
+      title: Two shares
+      points: 3
+      minutes: 13
+      exercises:
+        - l2-optimisation.midterm-2026-ex4
+      rubric:
+        - text: The total loss \(L(x)=-x^2+18x+20\).
+          points: 1
+          exercise: l2-optimisation.midterm-2026-ex4
+        - text: The interior critical point is a maximum.
+          points: 1
+          exercise: l2-optimisation.midterm-2026-ex4
+        - text: The minimum is \(20\) at \(x=0\).
+          points: 1
+          exercise: l2-optimisation.midterm-2026-ex4
+    - id: integrals
+      title: Integrals
+      points: 5
+      minutes: 23
+      exercises:
+        - l3-fundamental-theorem.midterm-2026-ex5.1
+        - l3-integration-by-parts.midterm-2026-ex5.2
+        - l3-area-between-curves.midterm-2026-ex5.3
+        - l3-substitution.midterm-2026-ex5.4
+        - l3-substitution.midterm-2026-ex5.5
+      rubric:
+        - text: The antiderivative on \([0,1]\) equals \(0\).
+          points: 1
+          exercise: l3-fundamental-theorem.midterm-2026-ex5.1
+        - text: Integration by parts gives \(1/4\).
+          points: 1
+          exercise: l3-integration-by-parts.midterm-2026-ex5.2
+        - text: The area equals \(\pi^2/8-1\).
+          points: 1
+          exercise: l3-area-between-curves.midterm-2026-ex5.3
+        - text: The hyperbolic substitution gives \(\ln(1+\sqrt{2})\).
+          points: 1
+          exercise: l3-substitution.midterm-2026-ex5.4
+        - text: The substitution \(t=\sin x\) gives \(1/2\).
+          points: 1
+          exercise: l3-substitution.midterm-2026-ex5.5
+- id: midterm-predicted-a
+  kind: checkpoint
+  presentation: as-printed
+  title: Predicted paper A, written for practice
+  year: 2026
+  durationMinutes: 90
+  totalPoints: 20
+  allowedMaterial: Two pages of handwritten notes. No calculator.
+  source: Written for practice.
+  blocks:
+    - id: ex1
+      title: Curve sketches
+      points: 6
+      minutes: 25
+      exercises:
+        - l2-curve-sketching.midterm-predicted-a-ex1.1
+        - l2-curve-sketching.midterm-predicted-a-ex1.2
+        - l2-curve-sketching.midterm-predicted-a-ex1.3
+      rubric:
+        - text: Domain, derivative, max at (2, 1/2), vertical tangent at x = 1, horizontal asymptote y = 0, inflection in the domain.
+          points: 2
+          exercise: l2-curve-sketching.midterm-predicted-a-ex1.1
+        - text: Even W-shape, critical values, inflections, roots \pm\sqrt{3}.
+          points: 2
+          exercise: l2-curve-sketching.midterm-predicted-a-ex1.2
+        - text: Min at 0, max at x = 2, inflections, asymptote y = 0 as x \to +\infty.
+          points: 2
+          exercise: l2-curve-sketching.midterm-predicted-a-ex1.3
+    - id: ex2
+      title: Newton
+      points: 3
+      minutes: 12
+      exercises:
+        - l2-newton.midterm-predicted-a-ex2
+      rubric:
+        - text: The Newton step is written and x1 = 13/6 is computed.
+          points: 1
+          exercise: l2-newton.midterm-predicted-a-ex2
+        - text: Later iterates are computed.
+          points: 1
+          exercise: l2-newton.midterm-predicted-a-ex2
+        - text: The cube root of 10 to two decimal places is 2.15.
+          points: 1
+          exercise: l2-newton.midterm-predicted-a-ex2
+    - id: ex3
+      title: Taylor
+      points: 2
+      minutes: 10
+      exercises:
+        - l3-taylor-composition.midterm-predicted-a-ex3
+      rubric:
+        - text: ln(1 + u) is composed with u = sin x and collected to order 3.
+          points: 2
+          exercise: l3-taylor-composition.midterm-predicted-a-ex3
+    - id: ex4
+      title: Cylindrical can
+      points: 3
+      minutes: 15
+      exercises:
+        - l2-optimisation.midterm-predicted-a-ex4
+      rubric:
+        - text: Surface area is written under the volume constraint.
+          points: 1
+          exercise: l2-optimisation.midterm-predicted-a-ex4
+        - text: The critical radius (500/\pi)^{1/3} is found and classified as a minimum.
+          points: 1
+          exercise: l2-optimisation.midterm-predicted-a-ex4
+        - text: The height is 2r and the minimal area is 300 (2\pi)^{1/3}.
+          points: 1
+          exercise: l2-optimisation.midterm-predicted-a-ex4
+    - id: ex5
+      title: Integrals
+      points: 6
+      minutes: 28
+      exercises:
+        - l3-integration-by-parts.midterm-predicted-a-ex5.1
+        - l3-trig-integrals.midterm-predicted-a-ex5.2
+        - l3-substitution.midterm-predicted-a-ex5.3
+        - l3-improper-integrals.midterm-predicted-a-ex5.4
+        - l3-area-between-curves.midterm-predicted-a-ex5.5
+      rubric:
+        - text: Integration by parts gives 1.
+          points: 1
+          exercise: l3-integration-by-parts.midterm-predicted-a-ex5.1
+        - text: The sin^2 identity gives \pi/4.
+          points: 1
+          exercise: l3-trig-integrals.midterm-predicted-a-ex5.2
+        - text: The substitution u = ln x gives 1/2.
+          points: 1
+          exercise: l3-substitution.midterm-predicted-a-ex5.3
+        - text: The improper integral converges to 1.
+          points: 1
+          exercise: l3-improper-integrals.midterm-predicted-a-ex5.4
+        - text: The area between y = x^2 and y = 2x is 4/3.
+          points: 2
+          exercise: l3-area-between-curves.midterm-predicted-a-ex5.5
+- id: midterm-predicted-b
+  kind: checkpoint
+  presentation: as-printed
+  title: Predicted paper B, written for practice
+  year: 2026
+  durationMinutes: 90
+  totalPoints: 20
+  allowedMaterial: Two pages of handwritten notes. No calculator.
+  source: Written for practice.
+  blocks:
+    - id: ex1
+      title: Curve sketches
+      points: 6
+      minutes: 25
+      exercises:
+        - l2-curve-sketching.midterm-predicted-b-ex1.1
+        - l2-curve-sketching.midterm-predicted-b-ex1.2
+        - l2-curve-sketching.midterm-predicted-b-ex1.3
+      rubric:
+        - text: Domain as a union, vertical asymptotes x = \pm 1, roots \pm\sqrt{2}, no extremum.
+          points: 2
+          exercise: l2-curve-sketching.midterm-predicted-b-ex1.1
+        - text: Odd function, max 1/2 at x = 1, min -1/2 at x = -1, inflections, asymptote y = 0.
+          points: 2
+          exercise: l2-curve-sketching.midterm-predicted-b-ex1.2
+        - text: Domain [0, +\infty), min -2 at x = 1, vertical tangent at the origin, root at x = 3.
+          points: 2
+          exercise: l2-curve-sketching.midterm-predicted-b-ex1.3
+    - id: ex2
+      title: Taylor limits
+      points: 2
+      minutes: 10
+      exercises:
+        - l3-taylor.midterm-predicted-b-ex2.1
+        - l3-taylor.midterm-predicted-b-ex2.2
+      rubric:
+        - text: The first limit is 1/2.
+          points: 1
+          exercise: l3-taylor.midterm-predicted-b-ex2.1
+        - text: The second limit is 1/3.
+          points: 1
+          exercise: l3-taylor.midterm-predicted-b-ex2.2
+    - id: ex3
+      title: Wire cut into a square and a circle
+      points: 5
+      minutes: 18
+      exercises:
+        - l2-optimisation.midterm-predicted-b-ex3
+      rubric:
+        - text: The area function on [0, 100] is written.
+          points: 1
+          exercise: l2-optimisation.midterm-predicted-b-ex3
+        - text: The interior critical point is a minimum, at square length 400/(\pi + 4).
+          points: 2
+          exercise: l2-optimisation.midterm-predicted-b-ex3
+        - text: The maximum is the all-circle endpoint, area 2500/\pi.
+          points: 2
+          exercise: l2-optimisation.midterm-predicted-b-ex3
+    - id: ex4
+      title: Integrals
+      points: 7
+      minutes: 37
+      exercises:
+        - l3-fundamental-theorem.midterm-predicted-b-ex4.1
+        - l3-substitution.midterm-predicted-b-ex4.2
+        - l3-integration-by-parts.midterm-predicted-b-ex4.3
+        - l3-substitution.midterm-predicted-b-ex4.4
+        - l3-improper-integrals.midterm-predicted-b-ex4.5
+        - l3-trig-integrals.midterm-predicted-b-ex4.6
+        - l3-substitution.midterm-predicted-b-ex4.7
+      rubric:
+        - text: The first integral is 3/2 - ln 2.
+          points: 1
+          exercise: l3-fundamental-theorem.midterm-predicted-b-ex4.1
+        - text: The second integral is (ln 2)/2.
+          points: 1
+          exercise: l3-substitution.midterm-predicted-b-ex4.2
+        - text: Integration by parts gives \pi.
+          points: 1
+          exercise: l3-integration-by-parts.midterm-predicted-b-ex4.3
+        - text: The substitution u = 1 + x^3 gives (2/9)(2\sqrt{2} - 1).
+          points: 1
+          exercise: l3-substitution.midterm-predicted-b-ex4.4
+        - text: The improper integral converges to 1/2.
+          points: 1
+          exercise: l3-improper-integrals.midterm-predicted-b-ex4.5
+        - text: The arcsine integral is \pi/6.
+          points: 1
+          exercise: l3-trig-integrals.midterm-predicted-b-ex4.6
+        - text: The last integral is 2 ln 2.
+          points: 1
+          exercise: l3-substitution.midterm-predicted-b-ex4.7
+
+- id: final-2021
+  kind: mock
+  presentation: as-printed
+  title: Final 10 December 2021
+  year: 2021
+  durationMinutes: 180
+  totalPoints: 22
+  allowedMaterial: Nothing accepted except handwritten notes.
+  source: Final exam Analysis MDSBA, 10 December 2021, 9:00 to 12:00.
+  blocks:
+    - id: ex1
+      title: Steepest decrease
+      points: 1
+      minutes: 8
+      exercises: [l5-steepest-ascent.final-2021-q1]
+      rubric:
+        - text: The unit vector of steepest decrease and the rate are stated.
+          points: 1
+          exercise: l5-steepest-ascent.final-2021-q1
+    - id: ex2
+      title: Tangent plane
+      points: 1
+      minutes: 8
+      exercises: [l5-tangent-plane.final-2021-q2]
+      rubric:
+        - text: The tangent plane at (1, 1, 2) is stated.
+          points: 1
+          exercise: l5-tangent-plane.final-2021-q2
+    - id: ex3
+      title: Critical points
+      points: 1
+      minutes: 8
+      exercises: [l6-critical-points.final-2021-q3]
+      rubric:
+        - text: All four critical points are listed.
+          points: 1
+          exercise: l6-critical-points.final-2021-q3
+    - id: ex4
+      title: Green on the unit circle
+      points: 1
+      minutes: 8
+      exercises: [outside-current-course.final-2021-q4]
+      rubric:
+        - text: The circulation equals \(3\pi/2\).
+          points: 1
+          exercise: outside-current-course.final-2021-q4
+    - id: ex5
+      title: Area of the astroid
+      points: 2
+      minutes: 16
+      exercises: [outside-current-course.final-2021-q5]
+      rubric:
+        - text: The astroid is sketched and its area is \(3\pi/8\).
+          points: 2
+          exercise: outside-current-course.final-2021-q5
+    - id: ex6
+      title: Potential and line integrals
+      points: 3
+      minutes: 25
+      exercises:
+        - outside-current-course.final-2021-q6-1
+        - outside-current-course.final-2021-q6-2
+        - outside-current-course.final-2021-q6-3
+      rubric:
+        - text: A potential for the field is given.
+          points: 1
+          exercise: outside-current-course.final-2021-q6-1
+        - text: The line integral along the exponential path is computed.
+          points: 1
+          exercise: outside-current-course.final-2021-q6-2
+        - text: The line integral on the unit circle is 0.
+          points: 1
+          exercise: outside-current-course.final-2021-q6-3
+    - id: ex7
+      title: Curve on a cone
+      points: 5
+      minutes: 41
+      exercises:
+        - l4-quadrics.final-2021-q7-1
+        - outside-current-course.final-2021-q7-2
+        - outside-current-course.final-2021-q7-3
+        - outside-current-course.final-2021-q7-4
+      rubric:
+        - text: \(z(t) = at\), with a sketch of the cone and the curve.
+          points: 2
+          exercise: l4-quadrics.final-2021-q7-1
+        - text: The length from A to B is computed.
+          points: 1
+          exercise: outside-current-course.final-2021-q7-2
+        - text: The value of \(a\) that minimises the length is discussed.
+          points: 1
+          exercise: outside-current-course.final-2021-q7-3
+        - text: The mountain-path question is answered.
+          points: 1
+          exercise: outside-current-course.final-2021-q7-4
+    - id: ex8
+      title: Volume inside \(z^2 + x^4 + y^4 = 1\)
+      points: 4
+      minutes: 33
+      exercises:
+        - l8-volumes-between-surfaces.final-2021-q8
+        - l8-change-of-variables.final-2021-q8-3
+      rubric:
+        - text: The volume is set up on \(D\) and reduced by symmetry.
+          points: 2
+          exercise: l8-volumes-between-surfaces.final-2021-q8
+        - text: The change of variables writes the volume as a product of two integrals.
+          points: 2
+          exercise: l8-change-of-variables.final-2021-q8-3
+    - id: ex9
+      title: Escape from gravity
+      points: 2
+      minutes: 16
+      exercises: [outside-current-course.final-2021-q9]
+      rubric:
+        - text: The work along the vertical path is computed, and path independence is addressed.
+          points: 2
+          exercise: outside-current-course.final-2021-q9
+    - id: ex10
+      title: Gamma likelihood
+      points: 2
+      minutes: 17
+      exercises: [outside-current-course.final-2021-q10]
+      rubric:
+        - text: The critical-point equations of \(\ln g\) are stated, with the digamma equation for \(\alpha\).
+          points: 2
+          exercise: outside-current-course.final-2021-q10
+
+- id: final-2022
+  kind: mock
+  presentation: as-printed
+  title: Final 2 December 2022
+  year: 2022
+  durationMinutes: 180
+  totalPoints: 18
+  allowedMaterial: Nothing accepted except one sheet of handwritten notes.
+  source: Exam Analysis, 2 December 2022, 9:00 to 12:00.
+  blocks:
+    - id: ex1
+      title: Steepest decrease
+      points: 1
+      minutes: 10
+      exercises: [l5-steepest-ascent.final-2022-q1]
+      rubric:
+        - text: The unit vector of steepest decrease and the rate are stated.
+          points: 1
+          exercise: l5-steepest-ascent.final-2022-q1
+    - id: ex2
+      title: Tangent plane
+      points: 1
+      minutes: 10
+      exercises: [l5-tangent-plane.final-2022-q2]
+      rubric:
+        - text: The tangent plane at the given point is stated.
+          points: 1
+          exercise: l5-tangent-plane.final-2022-q2
+    - id: ex3
+      title: Chain rule and tangent plane
+      points: 2
+      minutes: 20
+      exercises:
+        - l5-chain-rule-path.final-2022-q3a
+        - l5-tangent-plane.final-2022-q3b
+        - l5-chain-rule-general.final-2022-q3c
+      rubric:
+        - text: \(\varphi'(t)\) is computed by the chain rule.
+          points: 0.5
+          exercise: l5-chain-rule-path.final-2022-q3a
+        - text: The tangent plane to \(z = f\) at \((2, 1)\) is stated.
+          points: 0.5
+          exercise: l5-tangent-plane.final-2022-q3b
+        - text: The Jacobian of \(N\) and the gradient of \(\psi\) are computed.
+          points: 1
+          exercise: l5-chain-rule-general.final-2022-q3c
+    - id: ex4
+      title: Critical points of the cubic
+      points: 2
+      minutes: 20
+      exercises: [l6-second-derivative-test.final-2022-q4]
+      rubric:
+        - text: The three critical points are found and classified, with the section \(f(0, y)\) where \(D = 0\).
+          points: 2
+          exercise: l6-second-derivative-test.final-2022-q4
+    - id: ex5
+      title: Circle of critical points
+      points: 3
+      minutes: 30
+      exercises:
+        - l6-critical-points.final-2022-q5a
+        - l6-second-derivative-test.final-2022-q5b
+        - l6-degenerate-case.final-2022-q5c
+        - l6-degenerate-case.final-2022-q5d
+      rubric:
+        - text: The origin and the unit circle are found.
+          points: 1
+          exercise: l6-critical-points.final-2022-q5a
+        - text: \(D\) is computed at each critical point.
+          points: 0.5
+          exercise: l6-second-derivative-test.final-2022-q5b
+        - text: The sections \(g\) and \(h\) are described.
+          points: 0.5
+          exercise: l6-degenerate-case.final-2022-q5c
+        - text: Each critical point is classified.
+          points: 1
+          exercise: l6-degenerate-case.final-2022-q5d
+    - id: ex6
+      title: Average value
+      points: 2
+      minutes: 20
+      exercises: [l7-average-value.final-2022-q6]
+      rubric:
+        - text: The average on the triangle is \(2\sin 1 - \sin 2\).
+          points: 2
+          exercise: l7-average-value.final-2022-q6
+    - id: ex7
+      title: Exponential probability
+      points: 5
+      minutes: 50
+      exercises:
+        - outside-current-course.final-2022-q7a
+        - outside-current-course.final-2022-q7b
+        - outside-current-course.final-2022-q7c
+      rubric:
+        - text: \(P(X > a, Y > b)\) is computed.
+          points: 1
+          exercise: outside-current-course.final-2022-q7a
+        - text: \(P(aX + bY < t)\) and the density of \(aX + bY\) are computed.
+          points: 2
+          exercise: outside-current-course.final-2022-q7b
+        - text: The expectation of \(\sqrt{X + Y}\) is computed.
+          points: 2
+          exercise: outside-current-course.final-2022-q7c
+    - id: ex8
+      title: Volume in a cylinder
+      points: 2
+      minutes: 20
+      exercises: [l8-volumes-between-surfaces.final-2022-q8]
+      rubric:
+        - text: The volume and the limit of \(V/R\) are computed.
+          points: 2
+          exercise: l8-volumes-between-surfaces.final-2022-q8
+
+- id: retake-2023
+  kind: mock
+  presentation: as-printed
+  title: Retake January 2023
+  year: 2023
+  durationMinutes: 120
+  totalPoints: 20
+  allowedMaterial: Closed-book exam. No electronic devices.
+  source: Retake Analysis, January 2023, two hours.
+  blocks:
+    - id: ex1
+      title: Tangent planes parallel to a given plane
+      points: 3
+      minutes: 18
+      exercises:
+        - l5-tangent-plane.retake-2023-q1a
+        - l5-tangent-plane.retake-2023-q1b
+      rubric:
+        - text: The tangent plane at a general point of the surface is stated.
+          points: 2
+          exercise: l5-tangent-plane.retake-2023-q1a
+        - text: The points where that plane is parallel to \(x + y + z = 0\) are found.
+          points: 1
+          exercise: l5-tangent-plane.retake-2023-q1b
+    - id: ex2
+      title: Critical points of \(x^3 + xy + y^2\)
+      points: 2
+      minutes: 12
+      exercises: [l6-second-derivative-test.retake-2023-q2]
+      rubric:
+        - text: The critical points are found and classified.
+          points: 2
+          exercise: l6-second-derivative-test.retake-2023-q2
+    - id: ex3
+      title: A degenerate critical point
+      points: 3
+      minutes: 18
+      exercises: [l6-degenerate-case.retake-2023-q3]
+      rubric:
+        - text: The critical points are classified with the section \(f(x, 0)\).
+          points: 3
+          exercise: l6-degenerate-case.retake-2023-q3
+    - id: ex4
+      title: Polar integral
+      points: 3
+      minutes: 18
+      exercises: [l7-polar-integrals.retake-2023-q4]
+      rubric:
+        - text: The integral of \(\sqrt{x^2 + y^2}\) on the quarter disk is computed.
+          points: 3
+          exercise: l7-polar-integrals.retake-2023-q4
+    - id: ex5
+      title: Substitution on a triangle
+      points: 3
+      minutes: 18
+      exercises: [l8-change-of-variables.retake-2023-q5]
+      rubric:
+        - text: The integral of \((x + y)e^{x - y}\) is computed.
+          points: 3
+          exercise: l8-change-of-variables.retake-2023-q5
+    - id: ex6
+      title: Largest box in \(x^4 + y^4 + z^2 \le 1\)
+      points: 3
+      minutes: 18
+      exercises: [l6-lagrange.retake-2023-q6]
+      rubric:
+        - text: The dimensions of the largest box are found.
+          points: 3
+          exercise: l6-lagrange.retake-2023-q6
+    - id: ex7
+      title: Volume between a paraboloid and a cone
+      points: 3
+      minutes: 18
+      exercises: [l8-volumes-between-surfaces.retake-2023-q7]
+      rubric:
+        - text: The cross section in the \(xz\)-plane is described and the volume is computed.
+          points: 3
+          exercise: l8-volumes-between-surfaces.retake-2023-q7
+
+- id: mock-2022
+  kind: mock
+  presentation: as-printed
+  title: Mock exam 2022
+  year: 2022
+  durationMinutes: 180
+  totalPoints: 20
+  allowedMaterial: The sheet does not say.
+  source: Mock exam sheet. No clock is printed. Timed for three hours, the length of the 2021 and 2022 finals.
+  blocks:
+    - id: ex1
+      title: Steepest decrease
+      points: 1
+      minutes: 9
+      exercises: [l5-steepest-ascent.final-2021-q1]
+      rubric:
+        - text: The unit vector of steepest decrease and the rate are stated.
+          points: 1
+          exercise: l5-steepest-ascent.final-2021-q1
+    - id: ex2
+      title: Height along a curve
+      points: 1
+      minutes: 9
+      exercises: [l5-chain-rule-path.mock-2022-q2]
+      rubric:
+        - text: \(z(t)\) and \(z'(t)\) are computed, with the domain of \(z\).
+          points: 1
+          exercise: l5-chain-rule-path.mock-2022-q2
+    - id: ex3
+      title: Tangent plane
+      points: 1
+      minutes: 9
+      exercises: [l5-tangent-plane.final-2021-q2]
+      rubric:
+        - text: The tangent plane at (1, 1, 2) is stated.
+          points: 1
+          exercise: l5-tangent-plane.final-2021-q2
+    - id: ex4
+      title: Critical points and their kind
+      points: 2
+      minutes: 18
+      exercises: [l6-second-derivative-test.mock-2022-q4]
+      rubric:
+        - text: The critical points of \(f = 2x^3 + xy^2 + 5x^2 + y^2\) are classified.
+          points: 2
+          exercise: l6-second-derivative-test.mock-2022-q4
+    - id: ex5
+      title: Meeting outcome
+      points: 4
+      minutes: 36
+      exercises: [l6-worded-optimisation.mock-2022-q5]
+      rubric:
+        - text: The best outcome under \(ns = 100\) and \(n \le 100\) is found.
+          points: 2
+          exercise: l6-worded-optimisation.mock-2022-q5
+        - text: The best outcome under \(ns \le 100\) is found.
+          points: 2
+          exercise: l6-worded-optimisation.mock-2022-q5
+    - id: ex6
+      title: Lifetimes
+      points: 5
+      minutes: 45
+      exercises: [outside-current-course.mock-2022-q6]
+      rubric:
+        - text: The probabilities, the density of the sum, its expectation and the maximising \(\lambda\) are computed.
+          points: 5
+          exercise: outside-current-course.mock-2022-q6
+    - id: ex7
+      title: Integral on a triangle
+      points: 1
+      minutes: 9
+      exercises: [l8-change-of-variables.mock-2022-q7]
+      rubric:
+        - text: The integral of \(y/(x^2 + y^2)\) on \(0 < x < y < e\) is computed.
+          points: 1
+          exercise: l8-change-of-variables.mock-2022-q7
+    - id: ex8
+      title: Sphere and cone
+      points: 1
+      minutes: 9
+      exercises: [l8-volumes-between-surfaces.mock-2022-q8]
+      rubric:
+        - text: The volume above the \(xy\)-plane, inside the sphere and the cone, is computed.
+          points: 1
+          exercise: l8-volumes-between-surfaces.mock-2022-q8
+    - id: ex9
+      title: Volume inside \(z^2 + x^4 + y^4 = 1\)
+      points: 4
+      minutes: 36
+      exercises: [l8-volumes-between-surfaces.mock-2022-q9]
+      rubric:
+        - text: The volume is set up, reduced by symmetry, and written with the two substitutions.
+          points: 4
+          exercise: l8-volumes-between-surfaces.mock-2022-q9
+
+- id: mock-exam-1
+  kind: mock
+  presentation: as-printed
+  title: Mock exam 1
+  year: 2022
+  durationMinutes: 120
+  totalPoints: 7
+  allowedMaterial: The sheet does not say.
+  source: Mock exam 1. The sheet prints no clock and no marks. Each exercise is marked out of 1, and the paper is timed for two hours.
+  blocks:
+    - id: ex1
+      title: Tangent planes
+      points: 1
+      minutes: 15
+      exercises:
+        - l5-tangent-plane.mock-exam-1-q1a
+        - l5-tangent-plane.mock-exam-1-q1b
+      rubric:
+        - text: The tangent plane at a general point is stated.
+          points: 0.5
+          exercise: l5-tangent-plane.mock-exam-1-q1a
+        - text: The points where the plane is parallel to \(x + y + z = 0\) are found.
+          points: 0.5
+          exercise: l5-tangent-plane.mock-exam-1-q1b
+    - id: ex2
+      title: Two classifications
+      points: 1
+      minutes: 20
+      exercises: [l6-degenerate-case.mock-exam-1-q2]
+      rubric:
+        - text: The critical points of both functions are classified.
+          points: 1
+          exercise: l6-degenerate-case.mock-exam-1-q2
+    - id: ex3
+      title: Integral on a disk
+      points: 1
+      minutes: 15
+      exercises: [l7-polar-integrals.mock-exam-1-q3]
+      rubric:
+        - text: The integral of \(\sqrt{x^2 + y^2}\) on the disk is computed.
+          points: 1
+          exercise: l7-polar-integrals.mock-exam-1-q3
+    - id: ex4
+      title: Substitution on a triangle
+      points: 1
+      minutes: 15
+      exercises: [l8-change-of-variables.mock-exam-1-q4]
+      rubric:
+        - text: The integral is computed with \(u = x + y\) and \(v = x - y\).
+          points: 1
+          exercise: l8-change-of-variables.mock-exam-1-q4
+    - id: ex5
+      title: Integral on the first quadrant
+      points: 1
+      minutes: 15
+      exercises: [l8-change-of-variables.mock-exam-1-q5]
+      rubric:
+        - text: The integral over \(x > 0\), \(y > 0\) is computed.
+          points: 1
+          exercise: l8-change-of-variables.mock-exam-1-q5
+    - id: ex6
+      title: Largest box
+      points: 1
+      minutes: 15
+      exercises: [l6-lagrange.mock-exam-1-q6]
+      rubric:
+        - text: The dimensions of the largest box are found.
+          points: 1
+          exercise: l6-lagrange.mock-exam-1-q6
+    - id: ex7
+      title: Volume and mass
+      points: 1
+      minutes: 25
+      exercises:
+        - l8-volumes-between-surfaces.mock-exam-1-q7
+        - l8-mass-centre.mock-exam-1-q7c
+      rubric:
+        - text: The cross section is described and the volume is computed.
+          points: 0.5
+          exercise: l8-volumes-between-surfaces.mock-exam-1-q7
+        - text: The mass with density \(1/z^2\) is computed.
+          points: 0.5
+          exercise: l8-mass-centre.mock-exam-1-q7c
+
+- id: mock-exam-2
+  kind: mock
+  presentation: as-printed
+  title: Mock exam 2
+  year: 2022
+  durationMinutes: 180
+  totalPoints: 13
+  allowedMaterial: The sheet does not say.
+  source: Mock exam 2 reprints the 2022 final without the probability exercise. The sheet prints no clock and no marks. The time is the three hours of that final, and the marks are those of the questions it keeps.
+  blocks:
+    - id: ex1
+      title: Steepest decrease
+      points: 1
+      minutes: 15
+      exercises: [l5-steepest-ascent.final-2022-q1]
+      rubric:
+        - text: The unit vector of steepest decrease and the rate are stated.
+          points: 1
+          exercise: l5-steepest-ascent.final-2022-q1
+    - id: ex2
+      title: Tangent plane
+      points: 1
+      minutes: 15
+      exercises: [l5-tangent-plane.final-2022-q2]
+      rubric:
+        - text: The tangent plane at the given point is stated.
+          points: 1
+          exercise: l5-tangent-plane.final-2022-q2
+    - id: ex3
+      title: Chain rule along a line
+      points: 2
+      minutes: 25
+      exercises:
+        - l5-chain-rule-path.final-2022-q3a
+        - l5-chain-rule-path.mock-exam-2-q3-equal
+        - l5-tangent-plane.final-2022-q3b
+      rubric:
+        - text: \(\varphi'(t)\) is computed by the chain rule.
+          points: 1
+          exercise: l5-chain-rule-path.final-2022-q3a
+        - text: The behaviour of \(f\) along the line when \(a = b\) is stated.
+          points: 0.5
+          exercise: l5-chain-rule-path.mock-exam-2-q3-equal
+        - text: The tangent plane at \((2, 1)\) is stated.
+          points: 0.5
+          exercise: l5-tangent-plane.final-2022-q3b
+    - id: ex4
+      title: Critical points of the cubic
+      points: 2
+      minutes: 20
+      exercises: [l6-second-derivative-test.final-2022-q4]
+      rubric:
+        - text: The critical points are found and classified.
+          points: 2
+          exercise: l6-second-derivative-test.final-2022-q4
+    - id: ex5
+      title: Circle of critical points
+      points: 3
+      minutes: 30
+      exercises:
+        - l6-critical-points.final-2022-q5a
+        - l6-second-derivative-test.final-2022-q5b
+        - l6-degenerate-case.final-2022-q5c
+        - l6-degenerate-case.final-2022-q5d
+      rubric:
+        - text: The origin and the unit circle are found.
+          points: 1
+          exercise: l6-critical-points.final-2022-q5a
+        - text: \(D\) is computed at each critical point.
+          points: 0.5
+          exercise: l6-second-derivative-test.final-2022-q5b
+        - text: The sections \(g\) and \(h\) are described.
+          points: 0.5
+          exercise: l6-degenerate-case.final-2022-q5c
+        - text: Each critical point is classified.
+          points: 1
+          exercise: l6-degenerate-case.final-2022-q5d
+    - id: ex6
+      title: Average value
+      points: 2
+      minutes: 25
+      exercises: [l7-average-value.final-2022-q6]
+      rubric:
+        - text: The average on the triangle is \(2\sin 1 - \sin 2\).
+          points: 2
+          exercise: l7-average-value.final-2022-q6
+    - id: ex7
+      title: Volume in a cylinder
+      points: 2
+      minutes: 50
+      exercises: [l8-volumes-between-surfaces.final-2022-q8]
+      rubric:
+        - text: The volume and the limit of \(V/R\) are computed.
+          points: 2
+          exercise: l8-volumes-between-surfaces.final-2022-q8

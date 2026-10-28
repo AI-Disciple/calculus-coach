@@ -1,0 +1,4 @@
+{
+  "intervalsDays": [1, 3, 7, 16],
+  "postponeDays": 1
+}

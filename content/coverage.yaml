@@ -1,0 +1,1214 @@
+# Coverage map: every kept source item, mapped to the nodes that teach it or excluded with a reason.
+sources:
+  - source: handout
+    items:
+      - { id: "1.1", label: Lines, section: "1.1", nodes: [l1-functions] }
+      - { id: "1.2", label: Distance Between Two Points; Circles, section: "1.2", nodes: [l1-functions] }
+      - { id: "1.3", label: Functions, section: "1.3", nodes: [l1-functions] }
+      - { id: "1.4", label: Shifts and Dilations, section: "1.4", nodes: [l1-transformations] }
+      - { id: "2.1", label: The slope of a function, section: "2.1", nodes: [l1-derivative] }
+      - { id: "2.2", label: An example, section: "2.2", nodes: [l1-derivative] }
+      - { id: "2.3", label: Limits, section: "2.3", nodes: [l1-limits] }
+      - { id: "2.4", label: The Derivative Function, section: "2.4", nodes: [l1-derivative] }
+      - { id: "2.5", label: Adjectives For Functions, section: "2.5", nodes: [l1-continuity] }
+      - { id: "3.1", label: The Power Rule, section: "3.1", nodes: [l1-derivative-rules] }
+      - { id: "3.2", label: Linearity of the Derivative, section: "3.2", nodes: [l1-derivative-rules] }
+      - { id: "3.3", label: The Product Rule, section: "3.3", nodes: [l1-derivative-rules] }
+      - { id: "3.4", label: The Quotient Rule, section: "3.4", nodes: [l1-derivative-rules] }
+      - { id: "3.5", label: The Chain Rule, section: "3.5", nodes: [l1-derivative-rules] }
+      - { id: "4.1", label: Trigonometric Functions, section: "4.1", nodes: [l1-trigonometry] }
+      - { id: "4.2", label: The Derivative of sin x, section: "4.2", nodes: [l1-derivative-rules] }
+      - { id: "4.3", label: A hard limit, section: "4.3", nodes: [l1-limit-techniques] }
+      - { id: "4.4", label: "The Derivative of sin x, continued", section: "4.4", nodes: [l1-derivative-rules] }
+      - { id: "4.5", label: Derivatives of the Trigonometric Functions, section: "4.5", nodes: [l1-derivative-rules] }
+      - { id: "4.6", label: Exponential and Logarithmic functions, section: "4.6", nodes: [l1-exp-log] }
+      - { id: "4.7", label: Derivatives of the exponential and logarithmic functions, section: "4.7", nodes: [l1-derivative-rules] }
+      - { id: "4.8", label: Implicit Differentiation, section: "4.8", nodes: [l2-implicit-differentiation] }
+      - { id: "4.9", label: Inverse Trigonometric Functions, section: "4.9", nodes: [l2-inverse-functions] }
+      - { id: "4.10", label: Limits revisited, section: "4.10", nodes: [l1-limit-techniques, l2-lhopital] }
+      - { id: "4.11", label: Hyperbolic Functions, section: "4.11", nodes: [l1-exp-log] }
+      - { id: "5.1", label: Maxima and Minima, section: "5.1", nodes: [l2-monotonicity-extrema] }
+      - { id: "5.2", label: The first derivative test, section: "5.2", nodes: [l2-monotonicity-extrema] }
+      - { id: "5.3", label: The second derivative test, section: "5.3", nodes: [l2-concavity] }
+      - { id: "5.4", label: Concavity and inflection points, section: "5.4", nodes: [l2-concavity] }
+      - { id: "5.5", label: Asymptotes and Other Things to Look For, section: "5.5", nodes: [l2-asymptotes, l2-curve-sketching] }
+      - { id: "ex-4.8.1", label: "Exercise 4.8.1: y^2 = 1 + x^2, find y'", section: "4.8", page: 92, nodes: [l2-implicit-differentiation] }
+      - { id: "ex-4.8.2", label: "Exercise 4.8.2: x^2 + xy + y^2 = 7, find y'", section: "4.8", page: 92, nodes: [l2-implicit-differentiation] }
+      - { id: "ex-4.8.8", label: "Exercise 4.8.8: 1/x + 1/y = 7, find y'", section: "4.8", page: 93, nodes: [l2-implicit-differentiation] }
+      - { id: "ex-4.8.18", label: "Exercise 4.8.18: orthogonal trajectories of x^2 - y^2 = 5 and 4x^2 + 9y^2 = 72", section: "4.8", page: 94, nodes: [l2-implicit-differentiation] }
+      - { id: "ex-4.8.19", label: "Exercise 4.8.19: circles x^2 + y^2 = r^2 orthogonal to y = mx", section: "4.8", page: 94, nodes: [l2-implicit-differentiation] }
+      - { id: "ex-4.8.20", label: "Exercise 4.8.20: y^2 - x^2 = k orthogonal to yx = c", section: "4.8", page: 94, nodes: [l2-implicit-differentiation] }
+      - { id: "ex-4.8.21", label: "Exercise 4.8.21: family y = mx + b orthogonal to y = -x/m + c", section: "4.8", page: 94, nodes: [l2-implicit-differentiation] }
+      - { id: "ex-4.9.5", label: "Exercise 4.9.5: derivative of arcsin(x^2)", section: "4.9", page: 96, nodes: [l2-inverse-functions] }
+      - { id: "ex-4.9.6", label: "Exercise 4.9.6: derivative of arctan(e^x)", section: "4.9", page: 96, nodes: [l2-inverse-functions] }
+      - { id: "ex-4.10.1", label: "Exercise 4.10.1: lim (cos x - 1)/sin x as x to 0", section: "4.10", page: 100, nodes: [l2-lhopital] }
+      - { id: "ex-4.10.3", label: "Exercise 4.10.3: lim (sqrt(x^2+x) - sqrt(x^2-x)) as x to infinity", section: "4.10", page: 100, nodes: [l2-lhopital] }
+      - { id: "ex-4.10.39", label: "Exercise 4.10.39: lim (3x^2+x+2)/(x-4) as x to 0 (L'Hopital does not apply)", section: "4.10", page: 101, nodes: [l2-lhopital] }
+      - { id: "ex-4.10-drill", label: "Exercises 4.10.1 to 4.10.50 L'Hopital drill (going-deeper on the node)", section: "4.10", page: 100, nodes: [l2-lhopital] }
+      - { id: "ex-5.2.1", label: "Exercise 5.2.1: y = x^2 - x, local min at x = 1/2", section: "5.2", page: 111, nodes: [l2-monotonicity-extrema] }
+      - { id: "ex-5.2.3", label: "Exercise 5.2.3: y = x^3 - 9x^2 + 24x, max at 2 and min at 4", section: "5.2", page: 111, nodes: [l2-monotonicity-extrema] }
+      - { id: "ex-5.4.1", label: "Exercise 5.4.1: y = x^2 - x, concave up everywhere", section: "5.4", page: 114, nodes: [l2-concavity] }
+      - { id: "ex-5.4.3", label: "Exercise 5.4.3: y = x^3 - 9x^2 + 24x, inflection at x = 3", section: "5.4", page: 114, nodes: [l2-concavity] }
+      - { id: "6.1", label: Optimization, section: "6.1", nodes: [l2-optimisation] }
+      - { id: "6.2", label: Related Rates, section: "6.2", nodes: [l2-related-rates] }
+      - { id: "6.3", label: "Newton's Method", section: "6.3", nodes: [l2-newton] }
+      - { id: "6.4", label: Linear Approximations, section: "6.4", nodes: [l2-linear-approximation] }
+      - { id: "6.5", label: The Mean Value Theorem, section: "6.5", nodes: [l2-mvt] }
+      - { id: "7.1", label: Two examples, section: "7.1", nodes: [l3-riemann-sums] }
+      - { id: "7.2", label: The Fundamental Theorem of Calculus, section: "7.2", nodes: [l3-fundamental-theorem] }
+      - { id: "7.3", label: Some Properties of Integrals, section: "7.3", nodes: [l3-fundamental-theorem] }
+      - { id: "8.1", label: Substitution, section: "8.1", nodes: [l3-substitution] }
+      - { id: "8.2", label: Powers of sine and cosine, section: "8.2", nodes: [l3-trig-integrals] }
+      - { id: "8.3", label: Trigonometric Substitutions, section: "8.3", nodes: [l3-trig-integrals] }
+      - { id: "8.4", label: Integration by Parts, section: "8.4", nodes: [l3-integration-by-parts] }
+      - { id: "8.5", label: Rational Functions, section: "8.5", nodes: [l3-partial-fractions] }
+      - { id: "8.6", label: Numerical Integration, section: "8.6", nodes: [l3-numerical-integration] }
+      - { id: "8.7", label: Additional exercises, section: "8.7", nodes: [l3-substitution, l3-integration-by-parts, l3-trig-integrals, l3-partial-fractions] }
+      - { id: "9.1", label: Area between curves, section: "9.1", nodes: [l3-area-between-curves] }
+      - { id: "9.8", label: Probability, section: "9.8", nodes: [l3-probability-densities, l8-probability] }
+      - { id: "10.1", label: Polar Coordinates, section: "10.1", nodes: [l7-polar-integrals] }
+      - { id: "10.4", label: Parametric Equations, section: "10.4", nodes: [l5-chain-rule-path] }
+      - { id: "12.1", label: The Coordinate System, section: "12.1", nodes: [l4-coordinates-vectors] }
+      - { id: "12.2", label: Vectors, section: "12.2", nodes: [l4-coordinates-vectors] }
+      - { id: "12.3", label: The Dot Product, section: "12.3", nodes: [l4-dot-cross-product] }
+      - { id: "12.4", label: The Cross Product, section: "12.4", nodes: [l4-dot-cross-product] }
+      - { id: "12.5", label: Lines and Planes, section: "12.5", nodes: [l4-lines-planes] }
+      - { id: "12.6", label: Other Coordinate Systems, section: "12.6", nodes: [l4-cylindrical-spherical] }
+      - { id: "14.1", label: Functions of Several Variables, section: "14.1", nodes: [l4-functions-several-variables, l4-graphs-planes, l4-cross-sections, l4-level-sets] }
+      - { id: "14.2", label: Limits and Continuity, section: "14.2", nodes: [l5-limits-continuity] }
+      - { id: "14.3", label: Partial Differentiation, section: "14.3", nodes: [l5-partial-derivatives, l5-differentiability, l5-tangent-plane] }
+      - { id: "14.4", label: The Chain Rule, section: "14.4", nodes: [l5-chain-rule-path, l5-chain-rule-general] }
+      - { id: "14.5", label: Directional Derivatives, section: "14.5", nodes: [l5-tangent-plane, l5-directional-derivative, l5-steepest-ascent] }
+      - { id: "14.6", label: Higher order derivatives, section: "14.6", nodes: [l5-higher-derivatives, l5-hessian] }
+      - { id: "14.7", label: Maxima and minima, section: "14.7", nodes: [l6-critical-points, l6-second-derivative-test, l6-degenerate-case, l6-parameter-families, l6-global-extrema, l6-worded-optimisation] }
+      - { id: "14.8", label: Lagrange Multipliers, section: "14.8", nodes: [l6-lagrange] }
+      - { id: "15.1", label: Volume and Average Height, section: "15.1", nodes: [l7-double-integrals-rectangles, l7-general-regions, l7-order-of-integration, l7-average-value, l7-volumes] }
+      - { id: "15.2", label: Double Integrals in Cylindrical Coordinates, section: "15.2", nodes: [l7-polar-integrals] }
+      - { id: "15.3", label: Moment and Center of Mass (only the part before Example 15.3.1 is core), section: "15.3", nodes: [l8-mass-centre] }
+      - { id: "15.4", label: Surface area, section: "15.4", excluded: The professor says to skip this section. }
+      - { id: "15.5", label: Triple Integrals, section: "15.5", nodes: [l8-triple-integrals, l8-volumes-between-surfaces] }
+      - { id: "15.6", label: Cylindrical and Spherical Coordinates, section: "15.6", nodes: [l8-cylindrical-spherical-integrals, l8-volumes-between-surfaces] }
+      - { id: "15.7", label: Change of Variables, section: "15.7", nodes: [l8-change-of-variables] }
+      - { id: A, label: Selected Answers, section: A, excluded: Answers to the handout exercises. Exercise nodes use them as solutions. }
+      - { id: B, label: Useful Formulas, section: B, nodes: [l1-derivative-rules, l3-fundamental-theorem, l1-trigonometry] }
+      - { id: "ex-14.5.1", label: "Exercise 14.5.1: directional derivative of f=x^2+xy+y^2 along v=<2,1> at (1,1)", page: 370, nodes: [l5-directional-derivative] }
+      - { id: "ex-14.5.2", label: "Exercise 14.5.2: directional derivative of f=sin(xy) along v=<-1,1> at (3,1)", page: 370, nodes: [l5-directional-derivative] }
+      - { id: "ex-14.5.3", label: "Exercise 14.5.3: directional derivative of f=e^x cos y, 30 degrees, at (1, pi/4)", page: 370, nodes: [l5-directional-derivative] }
+      - { id: "ex-14.5.4", label: "Exercise 14.5.4: rate of T=x^2+y^2 at (1,5) in a 30-degree direction", page: 370, nodes: [l5-directional-derivative] }
+      - { id: "ex-14.5.5", label: "Exercise 14.5.5: rate of density 1/sqrt(x^2+y^2+1) at (2,1), angle pi/3", page: 370, nodes: [l5-directional-derivative] }
+      - { id: "ex-14.5.6", label: "Exercise 14.5.6: rate of potential ln sqrt(x^2+y^2) at (3,4), toward origin and perpendicular", page: 370, nodes: [l5-directional-derivative] }
+      - { id: "ex-14.5.7", label: "Exercise 14.5.7: vertical plane through (2,1,8) on z=x^2+4y^2 with slope 0", page: 370, nodes: [l5-directional-derivative, l5-tangent-plane] }
+      - { id: "ex-14.5.8", label: "Exercise 14.5.8: vertical plane through (3,2,2) on 36z=4x^2+9y^2 with slope 0", page: 370, nodes: [l5-directional-derivative, l5-tangent-plane] }
+      - { id: "ex-14.5.9", label: "Exercise 14.5.9: steepest decrease of T=xy+sin(yz) at (1,1,1), and that rate", page: 370, nodes: [l5-steepest-ascent] }
+      - { id: "ex-14.5.10", label: "Exercise 14.5.10: direction from (1,1,1) that keeps T=xyz constant", page: 371, nodes: [l5-steepest-ascent] }
+      - { id: "ex-14.5.11", label: "Exercise 14.5.11: tangent plane to x^2-3y^2+z^2=7 at (1,1,3)", page: 371, nodes: [l5-tangent-plane] }
+      - { id: "ex-14.5.12", label: "Exercise 14.5.12: tangent plane to xyz=6 at (1,2,3)", page: 371, nodes: [l5-tangent-plane] }
+      - { id: "ex-14.5.13", label: "Exercise 14.5.13: normal line to x^2+2y^2+4z^2=26 at (2,-3,-1)", page: 371, nodes: [l5-tangent-plane] }
+      - { id: "ex-14.5.14", label: "Exercise 14.5.14: normal line to x^2+y^2+9z^2=56 at (4,2,-2)", page: 371, nodes: [l5-tangent-plane] }
+      - { id: "ex-14.5.15", label: "Exercise 14.5.15: normal line to x^2+5y^2-z^2=0 at (4,2,6)", page: 371, nodes: [l5-tangent-plane] }
+      - { id: "ex-14.5.16", label: "Exercise 14.5.16: directions where D_u f of x^2+sin(xy) equals 1 at (1,0)", page: 371, nodes: [l5-directional-derivative] }
+      - { id: "ex-14.5.17", label: "Exercise 14.5.17: show r(t)=<ln t, t ln t, t> is tangent to the surface at (0,0,1)", page: 371, nodes: [l5-tangent-plane] }
+      - { id: "ex-14.5.18", label: "Exercise 14.5.18: bug on T=100-x^2-3y^3: coolest path at (2,1), level path at (1,3)", page: 371, nodes: [l5-steepest-ascent] }
+      - { id: "ex-14.5.19", label: "Exercise 14.5.19: water-run direction on hill f=100-4x^2-2y above (2,1)", page: 371, nodes: [l5-steepest-ascent] }
+      - { id: "ex-14.5.20", label: "Exercise 14.5.20: gradient of g=y-x^2 at (-1,3), with level curve g=2", page: 371, nodes: [l5-steepest-ascent] }
+      - { id: "ex-14.5.21", label: "Exercise 14.5.21: prove gradient product, quotient, and power rules", page: 371, nodes: [l5-directional-derivative] }
+      - { id: "ex-14.7.1", label: "Exercise 14.7.1: local max/min of f=x^2+4y^2-2x+8y-1", page: 376, nodes: [l6-critical-points, l6-second-derivative-test] }
+      - { id: "ex-14.7.2", label: "Exercise 14.7.2: local max/min of f=x^2-y^2+6x-10y+2", page: 376, nodes: [l6-critical-points, l6-second-derivative-test] }
+      - { id: "ex-14.7.3", label: "Exercise 14.7.3: local max/min of f=xy", page: 376, nodes: [l6-critical-points, l6-second-derivative-test] }
+      - { id: "ex-14.7.4", label: "Exercise 14.7.4: local max/min of f=9+4x-y-2x^2-3y^2", page: 376, nodes: [l6-critical-points, l6-second-derivative-test] }
+      - { id: "ex-14.7.5", label: "Exercise 14.7.5: local max/min of f=x^2+4xy+y^2-6y+1", page: 377, nodes: [l6-critical-points, l6-second-derivative-test] }
+      - { id: "ex-14.7.6", label: "Exercise 14.7.6: local max/min of f=x^2-xy+2y^2-5x+6y-9", page: 377, nodes: [l6-critical-points, l6-second-derivative-test] }
+      - { id: "ex-14.7.7", label: "Exercise 14.7.7: absolute max/min of f=x^2+3y-3xy on y=x, y=0, x=2", page: 377, nodes: [l6-global-extrema] }
+      - { id: "ex-14.7.8", label: "Exercise 14.7.8: shape of a 1/2 m^3 six-sided box minimizing surface area", page: 377, nodes: [l6-worded-optimisation] }
+      - { id: "ex-14.7.9", label: "Exercise 14.7.9: largest rectangular-box volume with length plus girth at most 130 in", page: 377, nodes: [l6-worded-optimisation] }
+      - { id: "ex-14.7.10", label: "Exercise 14.7.10: cheapest box of given volume if the bottom costs twice the rest", page: 377, nodes: [l6-worded-optimisation] }
+      - { id: "ex-14.7.11", label: "Exercise 14.7.11: shortest distance from the origin to the plane x+y+z=10", page: 377, nodes: [l6-worded-optimisation] }
+      - { id: "ex-14.7.12", label: "Exercise 14.7.12: shortest distance from (x0,y0,z0) to plane ax+by+cz=d", page: 377, nodes: [l6-worded-optimisation] }
+      - { id: "ex-14.7.13", label: "Exercise 14.7.13: bend a 2 m sheet into an isosceles-trapezoid trough of max volume", page: 377, nodes: [l6-worded-optimisation] }
+      - { id: "ex-14.7.14", label: "Exercise 14.7.14: point (x,y) minimizing summed squared distances to (1,4), (5,2), (3,-2)", page: 378, nodes: [l6-worded-optimisation] }
+      - { id: "ex-14.7.15", label: "Exercise 14.7.15: classify critical points of f=x^2+y^2+kxy as k varies", page: 378, nodes: [l6-parameter-families] }
+      - { id: "ex-14.7.16", label: "Exercise 14.7.16: shortest distance from (0,b) to the parabola y=x^2", page: 378, nodes: [l6-worded-optimisation] }
+      - { id: "ex-14.7.17", label: "Exercise 14.7.17: shortest distance from (0,0,b) to the paraboloid z=x^2+y^2", page: 378, nodes: [l6-worded-optimisation] }
+      - { id: "ex-14.7.18", label: "Exercise 14.7.18: critical point of f=x^3-3x^2 y+y^3: discriminant fails, classify it", page: 378, nodes: [l6-degenerate-case] }
+      - { id: "ex-14.7.19", label: "Exercise 14.7.19: largest axis-aligned box in the ellipsoid 2x^2+72y^2+18z^2=288", page: 378, nodes: [l6-worded-optimisation] }
+      - { id: "ex-14.8.1", label: "Exercise 14.8.1: shape of a 1/2 m^3 box minimizing surface area", page: 382, nodes: [l6-lagrange, l6-worded-optimisation] }
+      - { id: "ex-14.8.2", label: "Exercise 14.8.2: largest box volume with length plus girth at most 130 in", page: 382, nodes: [l6-lagrange, l6-worded-optimisation] }
+      - { id: "ex-14.8.3", label: "Exercise 14.8.3: cheapest box of given volume if the bottom costs twice the rest", page: 382, nodes: [l6-lagrange, l6-worded-optimisation] }
+      - { id: "ex-14.8.4", label: "Exercise 14.8.4: shortest distance from (x0,y0,z0) to the plane ax+by+cz=d by Lagrange", page: 382, nodes: [l6-lagrange, l6-worded-optimisation] }
+      - { id: "ex-14.8.5", label: "Exercise 14.8.5: points on xy-z^2+1=0 closest to the origin", page: 382, nodes: [l6-lagrange] }
+      - { id: "ex-14.8.6", label: "Exercise 14.8.6: aquarium whose bottom costs half the sides, cheapest shape", page: 382, nodes: [l6-lagrange] }
+      - { id: "ex-14.8.7", label: "Exercise 14.8.7: closest and farthest points of the ellipse where x-y+z=2 meets x^2+y^2=4", page: 382, nodes: [l6-lagrange] }
+      - { id: "ex-14.8.8", label: "Exercise 14.8.8: three positive numbers with sum 48 and largest product", page: 382, nodes: [l6-lagrange] }
+      - { id: "ex-14.8.9", label: "Exercise 14.8.9: maximise x y^2 z^2 on the plane x+y+z=5 in the first octant", page: 382, nodes: [l6-lagrange] }
+      - { id: "ex-14.8.10", label: "Exercise 14.8.10: points on x^2-yz=5 closest to the origin", page: 383, nodes: [l6-lagrange] }
+      - { id: "ex-14.8.11", label: "Exercise 14.8.11: standard and deluxe item prices maximising profit", page: 383, nodes: [l6-worded-optimisation] }
+      - { id: "ex-14.8.12", label: "Exercise 14.8.12: trough from sheet metal with 2x+y=27, maximal area", page: 383, nodes: [l6-worded-optimisation] }
+      - { id: "ex-14.8.13", label: "Exercise 14.8.13: max and min of 6x+3y+2z on 4x^2+2y^2+z^2=70", page: 383, nodes: [l6-lagrange] }
+      - { id: "ex-14.8.14", label: "Exercise 14.8.14: max and min of e^(xy) on x^3+y^3=16", page: 383, nodes: [l6-lagrange] }
+      - { id: "ex-14.8.15", label: "Exercise 14.8.15: max and min of xy+sqrt(9-x^2-y^2) on the disc x^2+y^2<=9", page: 383, nodes: [l6-lagrange, l6-global-extrema] }
+      - { id: "ex-14.8.16", label: "Exercise 14.8.16: three real numbers with sum 9 and smallest sum of squares", page: 383, nodes: [l6-lagrange] }
+      - { id: "ex-14.8.17", label: "Exercise 14.8.17: closed box of largest volume inscribed in the unit sphere", page: 383, nodes: [l6-lagrange, l6-worded-optimisation] }
+      - { id: "ex-15.1.1", label: "Exercise 15.1.1: compute int_0^2 int_0^4 (1+x) dy dx", page: 393, nodes: [l7-double-integrals-rectangles] }
+      - { id: "ex-15.1.2", label: "Exercise 15.1.2: compute int_{-1}^1 int_0^2 (x+y) dy dx", page: 393, nodes: [l7-double-integrals-rectangles] }
+      - { id: "ex-15.1.3", label: "Exercise 15.1.3: compute int_1^2 int_0^y xy dx dy", page: 393, nodes: [l7-general-regions] }
+      - { id: "ex-15.1.4", label: "Exercise 15.1.4: compute int_0^1 int_{y^2/2}^{sqrt(y)} dx dy", page: 393, nodes: [l7-general-regions] }
+      - { id: "ex-15.1.5", label: "Exercise 15.1.5: compute int_1^2 int_1^x (x^2/y^2) dy dx", page: 393, nodes: [l7-general-regions] }
+      - { id: "ex-15.1.6", label: "Exercise 15.1.6: compute int_0^1 int_0^{x^2} y e^x dy dx", page: 393, nodes: [l7-general-regions] }
+      - { id: "ex-15.1.7", label: "Exercise 15.1.7: compute int_0^{sqrt(pi/2)} int_0^{x^2} x cos y dy dx", page: 393, nodes: [l7-general-regions] }
+      - { id: "ex-15.1.8", label: "Exercise 15.1.8: compute int_0^{pi/2} int_0^{cos theta} r^2(cos theta-r) dr dtheta", page: 393, nodes: [l7-polar-integrals] }
+      - { id: "ex-15.1.9", label: "Exercise 15.1.9: compute int_0^1 int_{sqrt(y)}^1 sqrt(x^3+1) dx dy", page: 393, nodes: [l7-order-of-integration] }
+      - { id: "ex-15.1.10", label: "Exercise 15.1.10: compute int_0^1 int_{y^2}^1 y sin(x^2) dx dy", page: 393, nodes: [l7-order-of-integration] }
+      - { id: "ex-15.1.11", label: "Exercise 15.1.11: compute int_0^1 int_{x^2}^1 x sqrt(1+y^2) dy dx", page: 393, nodes: [l7-order-of-integration] }
+      - { id: "ex-15.1.12", label: "Exercise 15.1.12: compute int_0^1 int_0^y 2/sqrt(1-x^2) dx dy", page: 393, nodes: [l7-general-regions] }
+      - { id: "ex-15.1.13", label: "Exercise 15.1.13: compute int_0^1 int_{3y}^3 e^{x^2} dx dy", page: 393, nodes: [l7-order-of-integration] }
+      - { id: "ex-15.1.14", label: "Exercise 15.1.14: compute int_{-1}^1 int_0^{1-x^2} (x^2-sqrt(y)) dy dx", page: 393, nodes: [l7-general-regions] }
+      - { id: "ex-15.1.15", label: "Exercise 15.1.15: compute int_0^{sqrt(2)/2} int_{-sqrt(1-2x^2)}^{sqrt(1-2x^2)} x dy dx", page: 393, nodes: [l7-general-regions] }
+      - { id: "ex-15.1.16", label: "Exercise 15.1.16: evaluate double int x^2 dA in QI bounded by xy=16, y=x, y=0, x=8", page: 393, nodes: [l7-general-regions] }
+      - { id: "ex-15.1.17", label: "Exercise 15.1.17: volume under z=1-y above -1<=x<=1, 0<=y<=1-x^2", page: 393, nodes: [l7-volumes] }
+      - { id: "ex-15.1.18", label: "Exercise 15.1.18: volume bounded by z=x^2+y^2 and z=4", page: 393, nodes: [l7-volumes] }
+      - { id: "ex-15.1.19", label: "Exercise 15.1.19: first-octant volume bounded by y^2=4-x and y=2z", page: 393, nodes: [l7-volumes] }
+      - { id: "ex-15.1.20", label: "Exercise 15.1.20: first-octant volume: y^2=4x, 2x+y=4, z=y, y=0", page: 393, nodes: [l7-volumes] }
+      - { id: "ex-15.1.21", label: "Exercise 15.1.21: first-octant volume: x+y+z=9, 2x+3y=18, x+3y=9", page: 394, nodes: [l7-volumes] }
+      - { id: "ex-15.1.22", label: "Exercise 15.1.22: first-octant volume inside x^2+y^2=a^2 under z=x+y", page: 394, nodes: [l7-volumes] }
+      - { id: "ex-15.1.23", label: "Exercise 15.1.23: volume bounded by 4x^2+y^2=4z and z=2", page: 394, nodes: [l7-volumes] }
+      - { id: "ex-15.1.24", label: "Exercise 15.1.24: volume bounded by z=x^2+y^2 and z=y", page: 394, nodes: [l7-volumes] }
+      - { id: "ex-15.1.25", label: "Exercise 15.1.25: volume under z=xy above triangle (1,1,0), (4,1,0), (1,2,0)", page: 394, nodes: [l7-volumes] }
+      - { id: "ex-15.1.26", label: "Exercise 15.1.26: volume enclosed by y=x^2, y=4, z=x^2, z=0", page: 394, nodes: [l7-volumes] }
+      - { id: "ex-15.1.27", label: "Exercise 15.1.27: volume of a 40 m circular pool, depth 2 m south to 7 m north", page: 394, nodes: [l7-volumes] }
+      - { id: "ex-15.1.28", label: "Exercise 15.1.28: average of e^y sqrt(x)+e^y on the rectangle [0,4] x [0,1]", page: 394, nodes: [l7-average-value] }
+      - { id: "ex-15.1.29", label: "Exercise 15.1.29: estimate Colorado's average temperature from the map, several grids", page: 394, nodes: [l7-average-value] }
+      - { id: "ex-15.1.30", label: "Exercise 15.1.30: volume of three radius-1 cylinders meeting at right angles", page: 394, nodes: [l7-volumes] }
+      - { id: "ex-15.1.31", label: "Exercise 15.1.31: prove g_xy=g_yx=f if g is the integral of integrable f", page: 394, nodes: [l7-double-integrals-rectangles, l5-higher-derivatives] }
+      - { id: "ex-15.1.32", label: "Exercise 15.1.32: reverse the order of integration in the given double integrals", page: 394, nodes: [l7-order-of-integration] }
+      - { id: "ex-15.1.33", label: "Exercise 15.1.33: compare Fubini's Theorem with Clairaut's Theorem", page: 395, nodes: [l7-double-integrals-rectangles, l5-higher-derivatives] }
+      - { id: "ex-15.2.1", label: "Exercise 15.2.1: volume above xy-plane, under r^2=2z, inside r=2", page: 398, nodes: [l7-polar-integrals] }
+      - { id: "ex-15.2.2", label: "Exercise 15.2.2: volume inside both r=1 and r^2+z^2=4", page: 398, nodes: [l7-polar-integrals] }
+      - { id: "ex-15.2.3", label: "Exercise 15.2.3: volume below z=sqrt(1-r^2) and above the top half of z=r", page: 398, nodes: [l7-polar-integrals] }
+      - { id: "ex-15.2.4", label: "Exercise 15.2.4: volume below z=r, above xy-plane, inside r=cos theta", page: 398, nodes: [l7-polar-integrals] }
+      - { id: "ex-15.2.5", label: "Exercise 15.2.5: volume below z=r, above xy-plane, inside r=1+cos theta", page: 398, nodes: [l7-polar-integrals] }
+      - { id: "ex-15.2.6", label: "Exercise 15.2.6: volume between x^2+y^2=z^2 and x^2+y^2=z", page: 398, nodes: [l7-polar-integrals] }
+      - { id: "ex-15.2.12", label: "Exercise 15.2.12: convert int_{-3}^3 int_0^{sqrt(9-x^2)} sin(x^2+y^2) dy dx to polar", page: 398, nodes: [l7-polar-integrals] }
+      - { id: "ex-15.2.13", label: "Exercise 15.2.13: convert int_0^a int_{-sqrt(a^2-x^2)}^0 x^2 y dy dx to polar", page: 398, nodes: [l7-polar-integrals] }
+      - { id: "ex-15.2.14", label: "Exercise 15.2.14: volume under z=y^2+x+2 above x^2+y^2<=4", page: 399, nodes: [l7-polar-integrals] }
+      - { id: "ex-15.2.15", label: "Exercise 15.2.15: volume between z=x^2 y^3 and z=1 above x^2+y^2<=1", page: 399, nodes: [l7-polar-integrals] }
+      - { id: "ex-15.2.16", label: "Exercise 15.2.16: volume inside both x^2+y^2=1 and x^2+z^2=1", page: 399, nodes: [l7-polar-integrals] }
+      - { id: "ex-15.2.18", label: "Exercise 15.2.18: describe r=1+4 sin(5 theta), area between inner and outer leaves, effect of a", page: 399, nodes: [l7-polar-integrals] }
+      - { id: "ex-15.2.19", label: "Exercise 15.2.19: improper double int_D 1/sqrt(x^2+y^2) dA on the unit disk, with (r^2)^lambda", page: 399, nodes: [l7-polar-integrals] }
+      - { id: "ex-15.5.1", label: "Exercise 15.5.1: evaluate int_0^1 int_0^x int_0^{x+y} (2x+y-1) dz dy dx", page: 407, nodes: [l8-triple-integrals] }
+      - { id: "ex-15.5.2", label: "Exercise 15.5.2: evaluate int_0^2 int_{-1}^{x^2} int_1^y xyz dz dy dx", page: 407, nodes: [l8-triple-integrals] }
+      - { id: "ex-15.5.3", label: "Exercise 15.5.3: evaluate int_0^1 int_0^x int_0^{ln y} e^{x+y+z} dz dy dx", page: 407, nodes: [l8-triple-integrals] }
+      - { id: "ex-15.5.4", label: "Exercise 15.5.4: evaluate int_0^{pi/2} int_0^{sin theta} int_0^{r cos theta} r^2 dz dr dtheta", page: 407, nodes: [l8-triple-integrals, l8-cylindrical-spherical-integrals] }
+      - { id: "ex-15.5.5", label: "Exercise 15.5.5: evaluate int_0^pi int_0^{sin theta} int_0^{r sin theta} r cos^2 theta dz dr dtheta", page: 407, nodes: [l8-triple-integrals, l8-cylindrical-spherical-integrals] }
+      - { id: "ex-15.5.6", label: "Exercise 15.5.6: evaluate int_0^1 int_0^{y^2} int_0^{x+y} x dz dx dy", page: 407, nodes: [l8-triple-integrals] }
+      - { id: "ex-15.5.7", label: "Exercise 15.5.7: evaluate int_1^2 int_y^{y^2} int_0^{ln(y+z)} e^x dx dz dy", page: 407, nodes: [l8-triple-integrals] }
+      - { id: "ex-15.5.8", label: "Exercise 15.5.8: compute int_0^pi int_0^{pi/2} int_0^1 (z sin x + z cos y) dz dy dx", page: 407, nodes: [l8-triple-integrals] }
+      - { id: "ex-15.5.9", label: "Exercise 15.5.9: describe the volume (algebra and geometry) for each previous integral", page: 407, nodes: [l8-triple-integrals, l8-volumes-between-surfaces] }
+      - { id: "ex-15.5.10", label: "Exercise 15.5.10: compute triple int (x+y+z) dV on the unit ball in the first octant", page: 407, nodes: [l8-triple-integrals] }
+      - { id: "ex-15.5.11", label: "Exercise 15.5.11: mass of an edge-2 cube, density equal to squared distance from a corner", page: 407, nodes: [l8-mass-centre] }
+      - { id: "ex-15.5.12", label: "Exercise 15.5.12: mass of an edge-2 cube, density equal to squared distance from an edge", page: 407, nodes: [l8-mass-centre] }
+      - { id: "ex-15.5.13", label: "Exercise 15.5.13: center of mass of the upper hemisphere of x^2+y^2+z^2=4, density z", page: 407, nodes: [l8-mass-centre] }
+      - { id: "ex-15.5.14", label: "Exercise 15.5.14: center of mass of the pyramid with those five corners, density x^2+y^2", page: 407, nodes: [l8-mass-centre] }
+      - { id: "ex-15.5.15", label: "Exercise 15.5.15: verify moments M_xy, M_xz, M_yz of example 15.5.4", page: 407, nodes: [l8-mass-centre] }
+      - { id: "ex-15.5.16", label: "Exercise 15.5.16: region E maximizing triple int_E (1-x^2-y^2-z^2) dV", page: 407, nodes: [l8-triple-integrals] }
+      - { id: "ex-15.6.1", label: "Exercise 15.6.1: evaluate the given triple integral of (x^2+y^2)^{3/2}/(x^2+y^2+z^2)", page: 410, nodes: [l8-cylindrical-spherical-integrals] }
+      - { id: "ex-15.6.2", label: "Exercise 15.6.2: evaluate the given triple integral of sqrt(x^2+y^2+z^2) over that region", page: 410, nodes: [l8-cylindrical-spherical-integrals] }
+      - { id: "ex-15.6.3", label: "Exercise 15.6.3: evaluate triple int x^2 dV inside x^2+y^2=1, 0<=z<=5", page: 410, nodes: [l8-cylindrical-spherical-integrals] }
+      - { id: "ex-15.6.4", label: "Exercise 15.6.4: evaluate triple int xy dV inside x^2+y^2=1, 0<=z<=5", page: 410, nodes: [l8-cylindrical-spherical-integrals] }
+      - { id: "ex-15.6.5", label: "Exercise 15.6.5: evaluate triple int z dV above xy-plane, inside x^2+y^2-2x=0, under the sphere of radius 2", page: 410, nodes: [l8-cylindrical-spherical-integrals] }
+      - { id: "ex-15.6.6", label: "Exercise 15.6.6: evaluate triple int yz dV in QI, inside x^2+y^2-2x=0, under the sphere of radius 2", page: 410, nodes: [l8-cylindrical-spherical-integrals] }
+      - { id: "ex-15.6.10", label: "Exercise 15.6.10: mass of a cone height h, base a, density proportional to distance from the base", page: 410, nodes: [l8-mass-centre, l8-cylindrical-spherical-integrals] }
+      - { id: "ex-15.6.11", label: "Exercise 15.6.11: mass of a cone height h, base a, density proportional to distance from the axis", page: 410, nodes: [l8-mass-centre, l8-cylindrical-spherical-integrals] }
+      - { id: "ex-15.7.1", label: "Exercise 15.7.1: finish example 15.7.1 in polar coordinates", page: 417, nodes: [l8-change-of-variables] }
+      - { id: "ex-15.7.2", label: "Exercise 15.7.2: double int xy dA on the square (0,0),(1,1),(2,0),(1,-1), also via (u+v)/2, (u-v)/2", page: 417, nodes: [l8-change-of-variables] }
+      - { id: "ex-15.7.3", label: "Exercise 15.7.3: double int (x^2+y^2) dA on the square (-1,0),(0,1),(1,0),(0,-1), two ways", page: 417, nodes: [l8-change-of-variables] }
+      - { id: "ex-15.7.4", label: "Exercise 15.7.4: double int (x+y)e^{x-y} dA on triangle (0,0),(-1,1),(1,1), two ways", page: 417, nodes: [l8-change-of-variables] }
+      - { id: "ex-15.7.5", label: "Exercise 15.7.5: double int y(x-y) dA on parallelogram (0,0),(3,3),(7,3),(4,0), via x=u+v, y=u", page: 417, nodes: [l8-change-of-variables] }
+      - { id: "ex-15.7.6", label: "Exercise 15.7.6: double int sqrt(x^2+y^2) dA on triangle (0,0),(4,4),(4,0), via x=u, y=uv", page: 417, nodes: [l8-change-of-variables] }
+      - { id: "ex-15.7.7", label: "Exercise 15.7.7: double int y sin(xy) dA on xy=1, xy=4, y=1, y=4, via x=u/v, y=v", page: 417, nodes: [l8-change-of-variables] }
+      - { id: "ex-15.7.8", label: "Exercise 15.7.8: double int sin(9x^2+4y^2) dA in QI inside the ellipse 9x^2+4y^2=1", page: 417, nodes: [l8-change-of-variables] }
+      - { id: "ex-15.7.9", label: "Exercise 15.7.9: Jacobian of spherical substitution x=rho sin phi cos theta, and cyclic", page: 417, nodes: [l8-change-of-variables, l8-cylindrical-spherical-integrals] }
+      - { id: "ex-15.7.10", label: "Exercise 15.7.10: volume of ellipsoid x^2/a^2+y^2/b^2+z^2/c^2=1 via x=au, y=bv, z=cw", page: 418, nodes: [l8-change-of-variables] }
+  - source: lecture-notes-1
+    items:
+      - { id: "item-01", label: "Unit circle r=1, sin vertical, cos horizontal, 2pi circumference", page: 1, nodes: [l1-trigonometry] }
+      - { id: "item-02", label: "Need-to-know: sin/cos at 0, pi, pi/2, -pi/2", page: 1, nodes: [l1-trigonometry] }
+      - { id: "item-03", label: tan(alpha) = sin(alpha)/cos(alpha), page: 1, nodes: [l1-trigonometry] }
+      - { id: "item-04", label: "Radians: circle with a vertical orange chord, unlabeled", page: 1, nodes: [l1-trigonometry] }
+      - { id: "item-05", label: "Graph of sin on [0, 2pi] with ticks pi/2, pi, 3pi/2, 2pi", page: 1, nodes: [l1-trigonometry] }
+      - { id: "item-06", label: "Odd function: f(-x) = -f(x); sin is odd", page: 1, nodes: [l1-transformations] }
+      - { id: "item-07", label: "ln(x) = log_e(x), ln(e) = 1, log_a(a) = 1", page: 1, nodes: [l1-exp-log] }
+      - { id: "item-08", label: "Change of base: log_a(x) = ln(x)/ln(a)", page: 1, nodes: [l1-exp-log] }
+      - { id: "item-09", label: "Reminder: log(1) = 0", page: 1, nodes: [l1-exp-log] }
+      - { id: "item-10", label: lim f(g(x)) = f(lim g(x)) if f is continuous, page: 2, nodes: [l1-limits, l1-continuity] }
+      - { id: "item-11", label: f has limit L at x0 if f(x) approaches L as x approaches x0, page: 2, nodes: [l1-limits] }
+      - { id: "item-12", label: f continuous at x0 if that L equals f(x0), page: 2, nodes: [l1-continuity] }
+      - { id: "item-13", label: "Jump at x0: lim f = L != f(x0), hence discontinuous", page: 2, nodes: [l1-continuity] }
+      - { id: "item-14", label: "lim (f+g) = lim f + lim g, unless +inf + (-inf), then N.A.", page: 2, nodes: [l1-limits] }
+      - { id: "item-15", label: "lim_{x->0+} x ln(x) = 0 and lim_{x->+inf} x^r e^{-x} = 0", page: 2, nodes: [l1-limit-techniques] }
+      - { id: "item-16", label: "f: R -> R differentiable at x0 if lim (f(x)-f(x0))/(x-x0) exists", page: 2, nodes: [l1-derivative] }
+      - { id: "item-17", label: "Derivative written f'(x0), overdot f(x0), or df/dx (x0). Steepness of f", page: 2, nodes: [l1-derivative] }
+      - { id: "item-18", label: "f'(x0) = tan(alpha), alpha the angle of the curve with the x-axis", page: 2, nodes: [l1-derivative] }
+      - { id: "item-19", label: "Tangent: t(x) = f'(x0)(x-x0) + f(x0), with t(x0)=f(x0), t'(x0)=f'(x0)", page: 2, nodes: [l1-derivative] }
+      - { id: "item-20", label: "(x^n)' = n x^{n-1} for n in N", page: 3, nodes: [l1-derivative-rules] }
+      - { id: "item-21", label: "Real power: f(x)=x^p (p real, x>0), derivative written without a prime", page: 3, nodes: [l1-derivative-rules] }
+      - { id: "item-22", label: "sin' = cos, cos' = -sin", page: 3, nodes: [l1-derivative-rules] }
+      - { id: "item-23", label: "(e^x)' = e^x, (ln x)' = 1/x, (1/u)' = -u'/u^2", page: 3, nodes: [l1-derivative-rules] }
+      - { id: "item-24", label: "Sum: (f+g)' = f'+g'. Product: (fg)' = f'g + f g'", page: 3, nodes: [l1-derivative-rules] }
+      - { id: "item-25", label: "Chain: (f(g(x)))' = f'(g(x)) * g'(x)", page: 3, nodes: [l1-derivative-rules] }
+      - { id: "item-26", label: "Quotient: d/dx [f/g] = (g f' - f g') / (g(x))^2", page: 3, nodes: [l1-derivative-rules] }
+  - source: lecture-notes-2
+    items:
+      - { id: "item-01", label: "Inverse of f(x)=x^2=y: f^{-1}: y -> +-sqrt(y), two branches", page: 1, nodes: [l2-inverse-functions] }
+      - { id: "item-02", label: "Says f^{-1} is well defined for x>=0 (meant y>=0)", page: 1, nodes: [l2-inverse-functions] }
+      - { id: "item-03", label: "(f^{-1})'(y) = 1 / f'(f^{-1}(y)), from the chain rule", page: 1, nodes: [l2-inverse-functions] }
+      - { id: "item-04", label: "Sketch: f'=0, sign of f', zeros of f, intercepts, then asymptotes", page: 1, nodes: [l2-curve-sketching] }
+      - { id: "item-05", label: "Asymptote at +inf: linear t with lim_{x->inf} f(x)/t(x) = 1", page: 1, nodes: [l2-asymptotes] }
+      - { id: "item-06", label: "Vertical asymptote at finite x0 if lim_{x->x0} f = inf", page: 1, nodes: [l2-asymptotes] }
+      - { id: "item-07", label: Curve rising beside a vertical line at x0, page: 1, nodes: [l2-asymptotes] }
+      - { id: "item-08", label: "L'Hopital 0/0: f,g differentiable at a, g'(a)!=0, then lim f/g = lim f'/g'", page: 2, nodes: [l2-lhopital] }
+      - { id: "item-09", label: "lim_{x->0} sin(x)/x (stated, not evaluated)", page: 2, nodes: [l2-lhopital, l1-limit-techniques] }
+      - { id: "item-10", label: "Critical point: f'(x)=0, hence a horizontal tangent", page: 2, nodes: [l2-monotonicity-extrema] }
+      - { id: "item-11", label: "At a crit. point: f''>0 local min (convex), f''<0 local max (concave)", page: 2, nodes: [l2-concavity] }
+      - { id: "item-12", label: "Inflection if f''=0, listed as a third case at a crit. point", page: 2, nodes: [l2-concavity] }
+      - { id: "item-13", label: "Newton to approximate a root x*: tangent at x_k, next iterate its root", page: 2, nodes: [l2-newton] }
+      - { id: "item-14", label: "Boxed Newton: if f'(x_k)!=0 then x_{k+1} = x_k - f(x_k)/f'(x_k)", page: 2, nodes: [l2-newton] }
+      - { id: "item-15", label: "Quadratic error |x_{k+1}-x*| <= C |x_k-x*|^2, and lim x_k = x*", page: 2, nodes: [l2-newton] }
+      - { id: "item-16", label: "Newton tangents from x0 toward a root x*", page: 2, nodes: [l2-newton] }
+      - { id: "item-17", label: "Tangent line written y(a) = f(x_k) + f'(x_k)(x-x_k)", page: 2, nodes: [l2-newton] }
+      - { id: "item-18", label: "IVT: if f is continuous, f takes all values between f(a) and f(b) on [a,b]", page: 3, nodes: [l2-ivt] }
+  - source: lecture-notes-3
+    items:
+      - { id: "item-01", label: "Ex 8: f(x)=(x-1)^2 (x+3)^{2/3}, they take D(f)=R", page: 1, nodes: [l2-curve-sketching, l3-real-powers] }
+      - { id: "item-02", label: "(x^{1/3})^3 = x, to justify real cube roots", page: 1, nodes: [l3-real-powers] }
+      - { id: "item-03", label: "Real power: x^alpha = e^{alpha ln x} for alpha real (needs x>0)", page: 1, nodes: [l3-real-powers] }
+      - { id: "item-04", label: "f'(x) = lim_{delta x->0} [f(x+delta x)-f(x)] / delta x", page: 1, nodes: [l1-derivative] }
+      - { id: "item-05", label: "Increment delta x on the graph, slope marked f'(x)", page: 1, nodes: [l1-derivative] }
+      - { id: "item-06", label: "First-order Taylor: f(x+delta x)=f(x)+delta x f'(x) + (delta x)*(small)", page: 1, nodes: [l3-taylor] }
+      - { id: "item-07", label: "Order-n Taylor: sum_{k=0}^n (delta x)^k / k! * f^{(k)}(x) + small*(delta x)^n", page: 1, nodes: [l3-taylor] }
+      - { id: "item-08", label: "Taylor of g(y)=sqrt(1+y): g'=1/(2 sqrt(1+y)), g''=-(1/4)(1+y)^{-3/2}", page: 2, nodes: [l3-taylor] }
+      - { id: "item-09", label: "sqrt(1+y) = 1 + y/2 - y^2/8 + y^2*small", page: 2, nodes: [l3-taylor] }
+      - { id: "item-10", label: "Then f(x)=1 + x^2/2 - x^4/8 + x^4*small (y=x^2, not labeled)", page: 2, nodes: [l3-taylor-composition] }
+      - { id: "item-11", label: "int_a^b f(x) dx is the area under the curve above the x-axis on [a,b]", page: 3, nodes: [l3-riemann-sums] }
+      - { id: "item-12", label: "Riemann sum: lim (b-a)/n Sigma_{j=0}^{n-1} f(a + (b-a)j/n)", page: 3, nodes: [l3-riemann-sums] }
+      - { id: "item-13", label: "Partition rectangles from a to b, height f(a+(b-a)i/n)", page: 3, nodes: [l3-riemann-sums] }
+      - { id: "item-14", label: "Antiderivative: (int f)' = f. Example: ln is an antiderivative of 1/x", page: 3, nodes: [l3-fundamental-theorem] }
+      - { id: "item-15", label: "FTC: f continuous on [a,b], F'=f, then int_a^b f = F(b)-F(a)", page: 3, nodes: [l3-fundamental-theorem] }
+      - { id: "item-16", label: "int_{-1}^1 sin x dx = [-cos x]_{-1}^1 = 0", page: 3, nodes: [l3-fundamental-theorem] }
+      - { id: "item-17", label: "Parts: int f g' = [f g]_a^b - int f' g, from (fg)' = f'g + f g'", page: 3, nodes: [l3-integration-by-parts] }
+      - { id: "item-18", label: "Density on [0,inf): int_0^inf f=1, E(x)=int_0^inf x f(x) dx, P(X>2)=int_2^inf f", page: 4, nodes: [l3-probability-densities] }
+      - { id: "item-19", label: "Improper integral: replace inf by L, then take lim_{L->inf}", page: 4, nodes: [l3-improper-integrals] }
+      - { id: "item-20", label: "Substitution: int_a^b f(phi(x)) phi'(x) dx = int_{phi(a)}^{phi(b)} f(y) dy", page: 4, nodes: [l3-substitution] }
+      - { id: "item-21", label: "int_0^1 sqrt(1-y^2) dy via y=sin x equals pi/4", page: 4, nodes: [l3-substitution, l3-trig-integrals] }
+      - { id: "item-22", label: Blank page, page: 5, excluded: This page of the lecture notes is blank. }
+  - source: lecture-notes-5
+    items:
+      - { id: "item-01", label: "f: R^n -> R has limit L at x0 if ||x-x0||->0 implies |f(x)-L|->0", page: 1, nodes: [l5-limits-continuity] }
+      - { id: "item-02", label: Continuity at x0 if also L = f(x0), page: 1, nodes: [l5-limits-continuity] }
+      - { id: "item-03", label: Several paths in the plane approaching x0, page: 1, nodes: [l5-limits-continuity] }
+      - { id: "item-04", label: "Graph of f over (x1,x2), value f(x0) marked", page: 1, nodes: [l4-graphs-planes, l5-limits-continuity] }
+      - { id: "item-05", label: "Partial in x: lim_{eps->0} [f(x+eps,y)-f(x,y)]/eps, written df/dx or d_x f or f_x", page: 1, nodes: [l5-partial-derivatives] }
+      - { id: "item-06", label: "Partial in y: lim_{eps->0} [f(x,y+eps)-f(x,y)]/eps, written df/dy or d_y f or f_y", page: 1, nodes: [l5-partial-derivatives] }
+      - { id: "item-07", label: "df/dx is slope in the x direction, df/dy slope in the y direction", page: 2, nodes: [l5-partial-derivatives] }
+      - { id: "item-08", label: "Tangent plane: Z = f(x0,y0) + (x-x0) df/dx(x0,y0) + (y-y0) df/dy(x0,y0)", page: 2, nodes: [l5-tangent-plane] }
+      - { id: "item-09", label: "Tangent plane to a surface, labeled in blue", page: 2, nodes: [l5-tangent-plane] }
+      - { id: "item-10", label: "Directional df(x,y ; u) = lim_{eps->0} [f((x,y)+eps u) - f(x,y)] / eps, u=(a,b)", page: 2, nodes: [l5-directional-derivative] }
+      - { id: "item-11", label: "df(x,y ; u) = a * df/dx + b * df/dy", page: 2, nodes: [l5-directional-derivative] }
+      - { id: "item-12", label: "Gradient grad f(x,y) = (d_x f(x,y), d_y f(x,y)) as a column", page: 2, nodes: [l5-directional-derivative] }
+      - { id: "item-13", label: "df(x,y ; u) = grad f(x,y) * u, scalar product in R^2", page: 2, nodes: [l5-directional-derivative] }
+      - { id: "item-14", label: "Directional derivative as a slope in the (d_x f, d_y f) plane", page: 2, nodes: [l5-directional-derivative] }
+      - { id: "item-15", label: "A map R -> R^n parametrizes a curve. Same image, different speed", page: 3, nodes: [l5-chain-rule-path] }
+      - { id: "item-16", label: "Line x=t+1, y=t i.e. x=y+1. Parabola x=t, y=t^2, with M(1)=(1,1)", page: 3, nodes: [l5-chain-rule-path] }
+      - { id: "item-17", label: "Warning: t -> (t^2, t^4) traces the same parabola with different speed", page: 3, nodes: [l5-chain-rule-path] }
+      - { id: "item-18", label: "Chain rule: h(t)=f(M(t)), then h'(t) = grad f(M(t)) * dM/dt", page: 3, nodes: [l5-chain-rule-path] }
+      - { id: "item-19", label: "Clairaut: d(df)/dy(dx) = d(df)/dx(dy) if f is twice differentiable", page: 4, nodes: [l5-higher-derivatives] }
+      - { id: "item-20", label: "f(x,y)=x^2+xy, f_x=2x+y, f_xy=1, f_y=x, f_yx=1", page: 4, nodes: [l5-higher-derivatives] }
+      - { id: "item-21", label: "Hessian H_f = [[d^2f/dx^2, d^2f/dx dy], [d^2f/dx dy, d^2f/dy^2]]. Crit. point: grad f=0", page: 4, nodes: [l5-hessian, l6-critical-points] }
+      - { id: "item-22", label: "D=det H_f. Test: f_xx>=0 min, f_xx<=0 max, D<0 saddle, D=0 unknown", page: 4, nodes: [l6-second-derivative-test, l6-degenerate-case] }
+  - source: lecture-notes-6
+    items:
+      - { id: "item-01", label: "Tangent plane to an implicit surface f(x,y,z)=0: a curve on the surface gives grad f . (x',y',z') = 0", page: 1, nodes: [l5-tangent-plane] }
+      - { id: "item-02", label: "Tangent plane (x-x0) f_x + (y-y0) f_y + (z-z0) f_z = 0, grad f is the normal", page: 1, nodes: [l5-tangent-plane] }
+      - { id: "item-03", label: "Tangent plane to x^2+y^2+z^2=4 at (1,1,sqrt2) is x+y+sqrt2 z=4", page: 2, nodes: [l5-tangent-plane] }
+      - { id: "item-04", label: "f=x^2+y^2+kxy: D=4-k^2, D=0 at k=+-2, f=(x+y)^2 gives a line of minima", page: 2, nodes: [l6-parameter-families, l6-degenerate-case] }
+      - { id: "item-05", label: "f=48x+96y-x^2-2xy-9y^2: critical point (21,3), D=32, f_xx<0, maximum", page: 3, nodes: [l6-global-extrema, l6-second-derivative-test] }
+      - { id: "item-06", label: "Optimisation on a rectangle: if the critical point fails the test, the extremum lies on one of the four sides", page: 3, nodes: [l6-global-extrema] }
+      - { id: "item-07", label: "Quadratic with one maximum outside the region has its maximum on the side nearest to it", page: 3, nodes: [l6-global-extrema] }
+      - { id: "item-08", label: "Max f subject to x+y+z=1 by substituting z=1-x-y", page: 4, nodes: [l6-worded-optimisation, l6-lagrange] }
+      - { id: "item-09", label: "Box of volume 1/2 with minimal surface area 2(xy+yz+xz)", page: 4, nodes: [l6-lagrange] }
+      - { id: "item-10", label: "Euler-Lagrange theorem with N constraints and linearly independent gradients", page: 4, nodes: [l6-lagrange] }
+      - { id: "item-11", label: "Single constraint: grad f = lambda grad G", page: 5, nodes: [l6-lagrange] }
+  - source: lecture-4-board-1
+    items:
+      - { id: "item-01", label: "Chapter 2: Functions of several variables", nodes: [l4-functions-several-variables] }
+      - { id: "item-02", label: "Graph of f: R^2 -> R", nodes: [l4-graphs-planes] }
+      - { id: "item-03", label: "(x,y) maps to f(x,y)", nodes: [l4-functions-several-variables] }
+      - { id: "item-04", label: "Graph is all x, y, z with z = f(x,y)", nodes: [l4-graphs-planes] }
+      - { id: "item-05", label: "Point (x,y) lifted vertically to height f(x,y)", nodes: [l4-graphs-planes] }
+      - { id: "item-06", label: "Ex: f(x,y) = x^2 + y^2", nodes: [l4-quadrics, l4-graphs-planes] }
+      - { id: "item-07", label: "Circular paraboloid bowl, axes z and y", nodes: [l4-quadrics] }
+  - source: lecture-4-board-2
+    items:
+      - { id: "item-01", label: "z = f(x,y) = 0: the graph is the plane (xy)", nodes: [l4-graphs-planes] }
+      - { id: "item-02", label: Planes, nodes: [l4-graphs-planes] }
+      - { id: "item-03", label: "z = f(x,y) = ax + by + C", nodes: [l4-graphs-planes] }
+      - { id: "item-04", label: "Parallelogram plane, intercept C on the z-axis", nodes: [l4-graphs-planes] }
+  - source: lecture-4-board-3
+    items:
+      - { id: "item-01", label: Hyperboloid of two sheets, nodes: [l4-quadrics] }
+      - { id: "item-02", label: z^2 = x^2 + y^2 + 1, nodes: [l4-quadrics] }
+      - { id: "item-03", label: "z = +- sqrt(x^2 + y^2 + 1)", nodes: [l4-quadrics] }
+      - { id: "item-04", label: "Upper nappe, z-axis up, dashed rim", nodes: [l4-quadrics] }
+      - { id: "item-05", label: "Lower nappe, y-axis to the right", nodes: [l4-quadrics] }
+      - { id: "item-06", label: Hyperboloid of one sheet, nodes: [l4-quadrics] }
+      - { id: "item-07", label: "0 <= z^2 = x^2 + y^2 - 1", nodes: [l4-quadrics] }
+      - { id: "item-08", label: "Need x^2 + y^2 >= 1", nodes: [l4-quadrics, l4-functions-several-variables] }
+      - { id: "item-09", label: x^2 + y^2 = 1 is a circle, nodes: [l4-quadrics] }
+      - { id: "item-10", label: "Unit circle in the xy-plane, axes y and a third", nodes: [l4-quadrics] }
+      - { id: "item-11", label: "One-sheet hyperboloid with a throat circle", nodes: [l4-quadrics] }
+  - source: lecture-4-board-4
+    items:
+      - { id: "item-01", label: Level sets (contours) and cross sections, nodes: [l4-level-sets, l4-cross-sections] }
+      - { id: "item-02", label: "Cross section of z=f by z=g is {(x,y): g=f}", nodes: [l4-cross-sections] }
+      - { id: "item-03", label: Bowl with traces x=0 (red) and y=0, nodes: [l4-cross-sections] }
+      - { id: "item-04", label: "x=0: cut by the vertical plane (Oyz)", nodes: [l4-cross-sections] }
+      - { id: "item-05", label: "y=0: cut by the vertical plane (Oxz)", nodes: [l4-cross-sections] }
+  - source: lecture-4-notebook
+    items:
+      - { id: "item-01", label: "Header FINAL 2, graph of a function in 2 variables", nodes: [l4-graphs-planes] }
+      - { id: "item-02", label: "Let f: R^2 -> R, (x,y) -> f(x,y)", nodes: [l4-functions-several-variables] }
+      - { id: "item-03", label: "Graph is all x, y, z s.t. z = f(x,y)", nodes: [l4-graphs-planes] }
+      - { id: "item-04", label: "Oxyz frame, point dropped to the xy-plane", nodes: [l4-coordinates-vectors, l4-graphs-planes] }
+      - { id: "item-05", label: "f(x,y) = x^2 + y^2", nodes: [l4-quadrics] }
+      - { id: "item-06", label: Paraboloid with colored traces x=0 and y=0, nodes: [l4-quadrics, l4-cross-sections] }
+      - { id: "item-07", label: Let y vary on the slice x=0; let x vary on y=0, nodes: [l4-cross-sections] }
+      - { id: "item-08", label: "In 1D a graph is a line, in 2D a surface", nodes: [l4-graphs-planes] }
+      - { id: "item-09", label: "If z = f(x,y) = 0, the graph is the plane (xy)", nodes: [l4-graphs-planes] }
+      - { id: "item-10", label: "Plane z = ax + by + C, height C on the z-axis", nodes: [l4-graphs-planes] }
+      - { id: "item-11", label: "When x=y=0, f(0,0)=C on the z-axis", nodes: [l4-graphs-planes] }
+      - { id: "item-12", label: "Quadrics: surfaces defined by a 2nd-order polynomial", nodes: [l4-quadrics] }
+      - { id: "item-13", label: Paraboloid z = x^2 + y^2, nodes: [l4-quadrics] }
+      - { id: "item-14", label: "Sphere z = +- sqrt(1 - x^2 - y^2)", nodes: [l4-quadrics] }
+      - { id: "item-15", label: "Cone z = +- sqrt(x^2 + y^2)", nodes: [l4-quadrics] }
+      - { id: "item-16", label: "Two-sheet hyperboloid z = +- sqrt(x^2 + y^2 + 1)", nodes: [l4-quadrics] }
+      - { id: "item-17", label: Cone through the origin in Oxyz, nodes: [l4-quadrics] }
+      - { id: "item-18", label: "Two-sheet hyperboloid, two nappes", nodes: [l4-quadrics] }
+      - { id: "item-19", label: "Hyperbolic paraboloid z = x^2 - y^2", nodes: [l4-quadrics] }
+      - { id: "item-20", label: "Saddle, one branch drawn red, x^2 circled", nodes: [l4-quadrics] }
+      - { id: "item-21", label: "One-sheet hyperboloid z^2 = x^2 + y^2 - 1", nodes: [l4-quadrics] }
+      - { id: "item-22", label: "Radius >= 1, thus outside the throat", nodes: [l4-quadrics] }
+      - { id: "item-23", label: "One-sheet hyperboloid, throat marked", nodes: [l4-quadrics] }
+      - { id: "item-24", label: "Exercise 2: name five surfaces (sheet 2)", nodes: [l4-quadrics] }
+      - { id: "item-25", label: z = x^2 + y^2 is a paraboloid, nodes: [l4-quadrics] }
+      - { id: "item-26", label: "x^2 + y^2 + z^2 = 1, implicit sphere", nodes: [l4-quadrics] }
+      - { id: "item-27", label: "z^2 = -1 + x^2 + y^2 called 2-sheet", nodes: [l4-quadrics] }
+      - { id: "item-28", label: "z^2 = -(1 + x^2 + y^2) called 1-sheet", nodes: [l4-quadrics] }
+      - { id: "item-29", label: "z = x^2 - y^2, hyperbolic paraboloid", nodes: [l4-quadrics] }
+      - { id: "item-30", label: Cross section of z=f by another z=g, nodes: [l4-cross-sections] }
+      - { id: "item-31", label: "The set of (x,y) with g(x,y) = f(x,y)", nodes: [l4-cross-sections] }
+      - { id: "item-32", label: "x=0 cuts by (O,y,z); y=0 by (O,x,z)", nodes: [l4-cross-sections] }
+      - { id: "item-33", label: "Bowl cut by a red vertical plane, axes z, x, y", nodes: [l4-cross-sections] }
+      - { id: "item-34", label: "Leftover fragment = f_1 / (2y), from lecture 3", excluded: This leftover fragment belongs to lecture 3. }
+  - source: class-1-corrections
+    items:
+      - { id: "item-01", label: "Ex 6.1: f(x)=x^5+x^3, f'(x)=5x^4+3x^2", page: 1, nodes: [l1-derivative-rules] }
+      - { id: "item-02", label: "Ex 6.2: f(t)=cos(t^2), chain rule, f'(t)=-sin(t^2)*2t", page: 1, nodes: [l1-derivative-rules] }
+      - { id: "item-03", label: "Ex 6.4 started: f(x)=sin(x)/cos(x)", page: 1, nodes: [l1-derivative-rules] }
+      - { id: "item-04", label: "Quotient (u/v)' = (u' v - u v') / v^2", page: 1, nodes: [l1-derivative-rules] }
+      - { id: "item-05", label: "Then f'(x)=(cos^2 x + sin^2 x)/cos^2 x = 1/cos^2 x", page: 2, nodes: [l1-derivative-rules] }
+      - { id: "item-06", label: "Quotient as product: u/v = u * v^{-1}", page: 2, nodes: [l1-derivative-rules] }
+      - { id: "item-07", label: "(v^{-1})' = -(v)^{-2} * v' by the chain rule", page: 2, nodes: [l1-derivative-rules] }
+      - { id: "item-08", label: Proof of the quotient rule is unfinished. Ex 6.3 never appears, page: 2, nodes: [l1-derivative-rules] }
+  - source: sheet-0
+    items:
+      - { id: ex1.1, label: "Exercise 1.1: all theta with sin(theta) = -1, radians", page: 1, nodes: [l1-trigonometry] }
+      - { id: ex1.2, label: "Exercise 1.2: all theta with cos(2 theta) = 1/2, radians", page: 1, nodes: [l1-trigonometry] }
+      - { id: ex1.3, label: "Exercise 1.3: verify cos^2(t)/(1-sin(t)) = 1+sin(t)", page: 1, nodes: [l1-trigonometry] }
+      - { id: ex1.4, label: "Exercise 1.4: sketch y=sin(3x) and y=sin(-x)", page: 1, nodes: [l1-trigonometry] }
+      - { id: ex1.5, label: "Exercise 1.5: solve 2 sin(t)-1-sin^2(t)=0 on [0, 2 pi]", page: 1, nodes: [l1-trigonometry] }
+      - { id: ex2.1, label: "Exercise 2.1: expand e^{a+b}", page: 1, nodes: [l1-exp-log] }
+      - { id: ex2.2, label: "Exercise 2.2: reduce (e^a)^b", page: 1, nodes: [l1-exp-log] }
+      - { id: ex2.3, label: "Exercise 2.3: expand log_10 of (x+45)^7 (x-2)", page: 1, nodes: [l1-exp-log] }
+      - { id: ex2.4, label: "Exercise 2.4: solve 2^{x^2} = 8 for x", page: 1, nodes: [l1-exp-log] }
+      - { id: ex3.1, label: "Exercise 3.1: lim_{x->0} sqrt(x)", page: 1, nodes: [l1-limits] }
+      - { id: ex3.2, label: "Exercise 3.2: lim_{x->0+} 1/x", page: 1, nodes: [l1-limits] }
+      - { id: ex3.3, label: "Exercise 3.3: lim_{x->inf} 1/x", page: 1, nodes: [l1-limits] }
+      - { id: ex3.4, label: "Exercise 3.4: lim_{x->inf} e^{1/x}", page: 1, nodes: [l1-limits] }
+      - { id: ex3.5, label: "Exercise 3.5: lim_{x->0} sin(1/x)", page: 1, nodes: [l1-limits] }
+      - { id: ex3.6, label: "Exercise 3.6: lim_{x->0} x sin(1/x)", page: 1, nodes: [l1-limits] }
+      - { id: ex3.7, label: "Exercise 3.7: lim_{x->inf} (sqrt(x+1)+sqrt(x-1))/x", page: 1, nodes: [l1-limit-techniques] }
+      - { id: ex3.8, label: "Exercise 3.8: assume lim_{x->0+} x ln(x); sub x=t^2", page: 1, nodes: [l1-limit-techniques] }
+      - { id: ex3.9, label: "Exercise 3.9: lim_{x->+inf} x^r e^{-x}, r>0; hint t=e^{-x}", page: 1, nodes: [l1-limit-techniques] }
+  - source: sheet-1
+    items:
+      - { id: ex1.1, label: "Exercise 1.1: x -> x^n for n=2 and n=3", page: 1, nodes: [l1-functions] }
+      - { id: ex1.2, label: "Exercise 1.2: f(x)=1/x", page: 1, nodes: [l1-functions] }
+      - { id: ex1.3, label: "Exercise 1.3: f(x)=e^x", page: 1, nodes: [l1-functions, l1-exp-log] }
+      - { id: ex1.4, label: "Exercise 1.4: f(x)=sqrt(x)", page: 1, nodes: [l1-functions] }
+      - { id: ex1.5, label: "Exercise 1.5: x -> sin(x) and x -> cos(x)", page: 1, nodes: [l1-functions, l1-trigonometry] }
+      - { id: ex1.6, label: "Exercise 1.6: f(x)=tan(x)", page: 1, nodes: [l1-functions, l1-trigonometry] }
+      - { id: ex1.7, label: "Exercise 1.7: f(x)=x^2-1", page: 1, nodes: [l1-functions] }
+      - { id: ex1.8, label: "Exercise 1.8: f(x)=1/(1-x^2)", page: 1, nodes: [l1-functions] }
+      - { id: ex2, label: "Exercise 2: sketch derivatives of two given graphs, mark non-existence", page: 1, nodes: [l1-derivative] }
+      - { id: ex3.1, label: "Exercise 3.1: f(x)=x^5+x^3", page: 1, nodes: [l1-derivative-rules] }
+      - { id: ex3.2, label: "Exercise 3.2: f(t)=cos(t^2)", page: 1, nodes: [l1-derivative-rules] }
+      - { id: ex3.3, label: "Exercise 3.3: f(x)=x^2-(1/x)", page: 1, nodes: [l1-derivative-rules] }
+      - { id: ex3.4, label: "Exercise 3.4: f(x)=sqrt(x^2+1)", page: 1, nodes: [l1-derivative-rules] }
+      - { id: ex3.4dup, label: "Exercise 3.4 (second item): f(x)=tan(x)", page: 1, nodes: [l1-derivative-rules, l1-trigonometry] }
+      - { id: ex3.5, label: "Exercise 3.5: f(x)=ln(sin(x))", page: 1, nodes: [l1-derivative-rules] }
+      - { id: ex3.6, label: "Exercise 3.6: f(x)=2/sqrt(2x+1)", page: 1, nodes: [l1-derivative-rules] }
+      - { id: ex3.7, label: "Exercise 3.7: g(t)=(2t-1)/(t+2)", page: 1, nodes: [l1-derivative-rules] }
+      - { id: ex4.1, label: "Exercise 4.1: tangent to 5-x-3x^2 at x=2", page: 1, nodes: [l1-derivative] }
+      - { id: ex4.2, label: "Exercise 4.2: choose a so x^2+ax-3 has horizontal tangent at x=4", page: 1, nodes: [l1-derivative] }
+      - { id: ex5.1, label: "Exercise 5.1: f(x)=x^5-5x^4+5x^3", page: 2, nodes: [l2-curve-sketching, l2-asymptotes, l2-monotonicity-extrema] }
+      - { id: ex5.2, label: "Exercise 5.2: f(x)=(x-1)^2 (x+3)^{2/3}", page: 2, nodes: [l2-curve-sketching, l2-asymptotes, l2-monotonicity-extrema, l3-real-powers] }
+      - { id: ex5.3, label: "Exercise 5.3: f(x)=x e^x", page: 2, nodes: [l2-curve-sketching, l2-asymptotes, l2-monotonicity-extrema] }
+      - { id: ex5.4, label: "Exercise 5.4: f(x)=e^{-x} cos(x)", page: 2, nodes: [l2-curve-sketching, l2-asymptotes, l2-monotonicity-extrema] }
+      - { id: ex5.5, label: "Exercise 5.5: f(x)=(x+1) sqrt(5x^2+35)", page: 2, nodes: [l2-curve-sketching, l2-asymptotes, l2-monotonicity-extrema] }
+      - { id: ex5.6, label: "Exercise 5.6: f(x)=sinh(x):=(e^x-e^{-x})/2", page: 2, nodes: [l2-curve-sketching, l2-asymptotes, l2-monotonicity-extrema, l1-exp-log] }
+      - { id: ex5.7, label: "Exercise 5.7: f(x)=1/(1-x^2)", page: 2, nodes: [l2-curve-sketching, l2-asymptotes, l2-monotonicity-extrema] }
+      - { id: ex5.8, label: "Exercise 5.8: f(x)=arctan(x)", page: 2, nodes: [l2-curve-sketching, l2-asymptotes, l2-monotonicity-extrema, l2-inverse-functions] }
+      - { id: ex6, label: "Exercise 6: IVT root of x^3+3x^2+x-2 on (0,1), uniqueness, one decimal", page: 2, nodes: [l2-ivt] }
+      - { id: ex7.1, label: "Exercise 7.1: Taylor order 2 of sin(x) about x=0", page: 2, nodes: [l3-taylor] }
+      - { id: ex7.2, label: "Exercise 7.2: Taylor order 2 of sqrt(1+x) about x=0", page: 2, nodes: [l3-taylor] }
+      - { id: ex7.3, label: "Exercise 7.3: Taylor order 2 of ln(1+x) about x=0", page: 2, nodes: [l3-taylor] }
+      - { id: ex7.4, label: "Exercise 7.4: Taylor order 2 of e^x about x=0", page: 2, nodes: [l3-taylor] }
+      - { id: ex7.5, label: "Exercise 7.5: Taylor order 2 of x^9+10x+1 about x=0", page: 2, nodes: [l3-taylor] }
+      - { id: ex8.1, label: "Exercise 8.1: price-demand profit, fixed 3000, marginal 2", page: 2, nodes: [l2-optimisation] }
+      - { id: ex8.2, label: "Exercise 8.2: post-office box, length plus girth 108, square ends", page: 2, nodes: [l2-optimisation] }
+      - { id: ex8.3, label: "Exercise 8.3: speed and acceleration from f(t)=-49 t^2/10 + 5t + 10", page: 2, nodes: [l2-optimisation, l1-derivative] }
+  - source: sheet-2
+    items:
+      - { id: ex1a, label: "Exercise 1a: height difference between consecutive contour levels", page: 1, nodes: [l4-level-sets] }
+      - { id: ex1b, label: "Exercise 1b: sketch 3D mountain: tops, valleys, bottom", page: 1, nodes: [l4-level-sets] }
+      - { id: ex2.1, label: "Exercise 2.1: paraboloid z = x^2 + y^2", page: 1, nodes: [l4-quadrics, l4-level-sets] }
+      - { id: ex2.2, label: "Exercise 2.2: sphere x^2 + y^2 + z^2 = 1", page: 1, nodes: [l4-quadrics, l4-level-sets] }
+      - { id: ex2.3, label: "Exercise 2.3: hyperboloid z^2 = 1 + x^2 + y^2", page: 1, nodes: [l4-quadrics, l4-level-sets] }
+      - { id: ex2.4, label: "Exercise 2.4: hyperboloid z^2 = -1 + x^2 + y^2", page: 1, nodes: [l4-quadrics, l4-level-sets] }
+      - { id: ex2.5, label: "Exercise 2.5: saddle z = x^2 - y^2", page: 1, nodes: [l4-quadrics, l4-level-sets] }
+      - { id: ex3.1, label: "Exercise 3.1: f = sin(xy) + 3xy", page: 1, nodes: [l5-partial-derivatives] }
+      - { id: ex3.2, label: "Exercise 3.2: f = e^{x+y}", page: 1, nodes: [l5-partial-derivatives] }
+      - { id: ex3.3, label: "Exercise 3.3: f = log(x-y), also give domain", page: 1, nodes: [l5-partial-derivatives, l4-functions-several-variables] }
+      - { id: ex3.4, label: "Exercise 3.4: printed f(x) = sqrt(1 - x^2 - y^2)", page: 1, nodes: [l5-partial-derivatives, l4-functions-several-variables] }
+      - { id: ex4.1, label: "Exercise 4.1: plane to x^2+y^2+z^2=4 at (1,1,sqrt(2))", page: 1, nodes: [l5-tangent-plane] }
+      - { id: ex4.2, label: "Exercise 4.2: plane to f=sin(xy) at (pi, 1/2, 1)", page: 1, nodes: [l5-tangent-plane] }
+      - { id: ex4.3, label: "Exercise 4.3: every tangent plane to cone z=sqrt(x^2+y^2) through origin", page: 1, nodes: [l5-tangent-plane] }
+      - { id: ex5.1, label: "Exercise 5.1: f = x^2 + xy + y^2", page: 2, nodes: [l5-directional-derivative, l5-steepest-ascent] }
+      - { id: ex5.2, label: "Exercise 5.2: f = e^{xy}", page: 2, nodes: [l5-directional-derivative, l5-steepest-ascent] }
+      - { id: ex5.4, label: "Exercise 5.4: f = arctan(y/x). no item 3", page: 2, nodes: [l5-directional-derivative, l5-steepest-ascent] }
+      - { id: ex5.5, label: "Exercise 5.5: f = ln(xy + yz + zx)", page: 2, nodes: [l5-directional-derivative, l5-steepest-ascent] }
+      - { id: ex6.1, label: "Exercise 6.1: f=x^2+y^2, x=t, y=t^2", page: 2, nodes: [l5-chain-rule-path] }
+      - { id: ex6.2, label: "Exercise 6.2: f=sqrt(x^2+y^2), x=t, y=t^2", page: 2, nodes: [l5-chain-rule-path] }
+      - { id: ex6.3, label: "Exercise 6.3: f=xy, x=1-sqrt(t), y=1+sqrt(t)", page: 2, nodes: [l5-chain-rule-path] }
+      - { id: ex6.4, label: "Exercise 6.4: f=x/y, x=t^{1/3}, y=e^t", page: 2, nodes: [l5-chain-rule-path] }
+      - { id: ex7.1, label: "Exercise 7.1: f = x^2 + 4y^2 - 2x + 8y - 1", page: 2, nodes: [l6-critical-points, l6-second-derivative-test] }
+      - { id: ex7.2, label: "Exercise 7.2: f = x^2 - y^2 + 6x - 10y + 2", page: 2, nodes: [l6-critical-points, l6-second-derivative-test] }
+      - { id: ex7.3, label: "Exercise 7.3: f = xy", page: 2, nodes: [l6-critical-points, l6-second-derivative-test] }
+      - { id: ex7.4, label: "Exercise 7.4: f = 9 + 4x - y - 2x^2 - 3y^2", page: 2, nodes: [l6-critical-points, l6-second-derivative-test] }
+      - { id: ex7.5, label: "Exercise 7.5: f = x^2 + 4xy + y^2 - 6y + 1", page: 2, nodes: [l6-critical-points, l6-second-derivative-test] }
+      - { id: ex7.6, label: "Exercise 7.6: x^2 - xy + 2y^2 - 5x + 6y - 9", page: 2, nodes: [l6-critical-points, l6-second-derivative-test] }
+      - { id: ex8, label: "Exercise 8: classify critical points of x^2+y^2+kxy vs k", page: 2, nodes: [l6-parameter-families] }
+      - { id: ex9.1, label: "Exercise 9.1: show (0,0) is the only critical point", page: 2, nodes: [l6-degenerate-case, l6-critical-points] }
+      - { id: ex9.2, label: "Exercise 9.2: show the discriminant test is inconclusive", page: 2, nodes: [l6-degenerate-case] }
+      - { id: ex9.3, label: "Exercise 9.3: cross-sections y = kx for various k", page: 2, nodes: [l6-degenerate-case, l4-cross-sections] }
+      - { id: ex9.4, label: "Exercise 9.4: what kind of critical point is (0,0)", page: 2, nodes: [l6-degenerate-case] }
+      - { id: ex10, label: "Exercise 10: Pro-T golf profit z=48x+96y-x^2-2xy-9y^2, caps 50 and 25", page: 2, nodes: [l6-worded-optimisation, l6-global-extrema] }
+      - { id: ex11, label: "Exercise 11: Cobb-Douglas watches, budget 20000, contour plot", page: 3, nodes: [l6-worded-optimisation, l6-global-extrema, l6-lagrange] }
+      - { id: ex12, label: "Exercise 12: mammal time budget, milk, offspring survival", page: 3, nodes: [l6-worded-optimisation] }
+      - { id: ex13a, label: "Exercise 13a: closed box volume 1/2, minimise surface", page: 3, nodes: [l6-worded-optimisation, l6-lagrange] }
+      - { id: ex13b, label: "Exercise 13b: max-volume box inside x^4 + y^4 + z^2 <= 1", page: 3, nodes: [l6-worded-optimisation, l6-lagrange] }
+      - { id: ex14, label: "Exercise 14: plane fuel F(V,H) with lift constraint", page: 3, nodes: [l6-worded-optimisation, l6-global-extrema] }
+      - { id: ex15, label: "Exercise 15: three stocks, loss L=2x^2-4xy+y^3+z^2, max net", page: 3, nodes: [l6-worded-optimisation, l6-global-extrema] }
+      - { id: ex16, label: "Exercise 16: three positive numbers sum 27, minimise sum of squares", page: 3, nodes: [l6-lagrange, l6-worded-optimisation] }
+      - { id: ex17, label: "Exercise 17: points on xyz=1 closest to origin", page: 4, nodes: [l6-lagrange] }
+      - { id: ex18, label: "Exercise 18: aircraft fuel, Pareto in (L,D), utility U", page: 4, nodes: [l6-worded-optimisation] }
+      - { id: ex19, label: "Exercise 19: four-phase cycling trial, power, lactate, min time", page: 4, nodes: [l6-worded-optimisation] }
+  - source: sheet-3
+    items:
+      - { id: ex1.1, label: "Exercise 1.1: int_0^2 int_0^4 (1+x) dy dx", page: 1, nodes: [l7-double-integrals-rectangles] }
+      - { id: ex1.2, label: "Exercise 1.2: int_{-1}^1 int_0^2 (y+x) dy dx", page: 1, nodes: [l7-double-integrals-rectangles] }
+      - { id: ex1.3, label: "Exercise 1.3: int_1^2 int_0^y xy dx dy", page: 1, nodes: [l7-general-regions] }
+      - { id: ex1.4, label: "Exercise 1.4: int_0^1 int_{y^2/2}^{sqrt(y)} 1 dx dy", page: 1, nodes: [l7-general-regions] }
+      - { id: ex1.5, label: "Exercise 1.5: int_1^2 int_1^x (x^2/y^2) dy dx", page: 1, nodes: [l7-general-regions] }
+      - { id: ex1.6, label: "Exercise 1.6: int_0^{pi/2} int_0^{cos theta} r^2 (cos theta - r) dr dtheta", page: 1, nodes: [l7-polar-integrals] }
+      - { id: ex1.7, label: "Exercise 1.7: int_0^{sqrt(pi/2)} int_0^{x^2} x cos(y) dy dx, then sub u=x^2", page: 1, nodes: [l7-general-regions] }
+      - { id: ex1.8, label: "Exercise 1.8: int_0^1 int_0^{x^2} (y/e^x) dy dx", page: 1, nodes: [l7-general-regions] }
+      - { id: ex1.9, label: "Exercise 1.9: int_0^1 int_{sqrt(y)}^1 sqrt(x^3+1) dx dy", page: 1, nodes: [l7-order-of-integration] }
+      - { id: ex1.10, label: "Exercise 1.10: int_0^1 int_{y^2}^1 y sin(x^2) dx dy", page: 1, nodes: [l7-order-of-integration] }
+      - { id: ex1.11, label: "Exercise 1.11: int_0^1 int_0^y 2/sqrt(1-x^2) dx dy", page: 1, nodes: [l7-general-regions] }
+      - { id: ex1.12, label: "Exercise 1.12: int_0^1 int_{x^2}^1 x sqrt(y^2+1) dy dx", page: 1, nodes: [l7-order-of-integration] }
+      - { id: ex1.13, label: "Exercise 1.13: int_0^1 int_{3y}^3 e^{x^2} dx dy", page: 1, nodes: [l7-order-of-integration] }
+      - { id: ex1.14, label: "Exercise 1.14: int_{-1}^1 int_0^{1-x^2} (x - sqrt(y)) dy dx", page: 1, nodes: [l7-general-regions] }
+      - { id: ex1.15, label: "Exercise 1.15: int_0^{1/sqrt(2)} int_{-sqrt(1-2x^2)}^{sqrt(1-2x^2)} x dy dx", page: 1, nodes: [l7-general-regions] }
+      - { id: ex2.1, label: "Exercise 2.1: avg of x e^y + e^y on [0,4] x [0,1]", page: 1, nodes: [l7-average-value] }
+      - { id: ex2.2, label: "Exercise 2.2: avg of xyz on cube (0,0,0) to (2,2,2)", page: 1, nodes: [l7-average-value, l8-triple-integrals] }
+      - { id: ex3.1, label: "Exercise 3.1: volume between z = x^2+y^2 and z = 4", page: 1, nodes: [l7-volumes] }
+      - { id: ex3.2, label: "Exercise 3.2: int_D x^2 dA, D: xy=16, y=x, y=0, x=8", page: 1, nodes: [l7-general-regions] }
+      - { id: ex3.3, label: "Exercise 3.3: volume below z=1-y over -1<=x<=1, 0<=y<=1-x^2", page: 1, nodes: [l7-volumes] }
+      - { id: ex3.4, label: "Exercise 3.4: first-octant volume, x+y+z=9, 2x+3y=18, x+3y=9", page: 1, nodes: [l7-volumes] }
+      - { id: ex3.5, label: "Exercise 3.5: volume under z=xy above triangle (1,1,0),(4,1,0),(1,2,0)", page: 1, nodes: [l7-volumes] }
+      - { id: ex3.6, label: "Exercise 3.6: volume between x^2+y^2=z^2 and x^2+y^2=z", page: 1, nodes: [l7-volumes, l7-polar-integrals] }
+      - { id: ex4.1, label: "Exercise 4.1: int xy dA, square (0,0),(1,1),(2,0),(1,-1); also u,v", page: 2, nodes: [l8-change-of-variables] }
+      - { id: ex4.2, label: "Exercise 4.2: int (x^2+y^2) dA, square (-1,0),(0,1),(1,0),(0,-1); also u,v", page: 2, nodes: [l8-change-of-variables] }
+      - { id: ex4.3, label: "Exercise 4.3: int y(x-y) dA, parallelogram (0,0),(3,3),(7,3),(4,0); u=x-y, v=y", page: 2, nodes: [l8-change-of-variables] }
+      - { id: ex4.4, label: "Exercise 4.4: int sqrt(x^2+y^2) dA, triangle (0,0),(4,4),(4,0); x=u, y=uv", page: 2, nodes: [l8-change-of-variables] }
+      - { id: ex4.5, label: "Exercise 4.5: int y sin(xy) dA, xy=1,4 and y=1,4; x=u/v, y=v", page: 2, nodes: [l8-change-of-variables] }
+      - { id: ex5.1, label: "Exercise 5.1: int x^2 dV, cylinder x^2+y^2=1, 0<=z<=5", page: 2, nodes: [l8-cylindrical-spherical-integrals] }
+      - { id: ex5.2, label: "Exercise 5.2: int z dV, above xy-plane, inside x^2+y^2=2x, ball radius 2", page: 2, nodes: [l8-cylindrical-spherical-integrals] }
+      - { id: ex5.3, label: "Exercise 5.3: int (x^2+y^2)^a dV, a=1 and a=1/2, ball radius 2", page: 2, nodes: [l8-cylindrical-spherical-integrals] }
+  - source: functions-and-graphs
+    items:
+      - { id: s1, label: Functions, page: 4, nodes: [l1-functions] }
+      - { id: s1.1, label: "What is a function?", page: 4, nodes: [l1-functions] }
+      - { id: s1.1.1, label: Definition of a function, page: 4, nodes: [l1-functions] }
+      - { id: s1.1.2, label: The Vertical Line Test, page: 5, nodes: [l1-functions] }
+      - { id: s1.1.3, label: Domain of a function, page: 5, nodes: [l1-functions] }
+      - { id: s1.1.4, label: Range of a function, page: 5, nodes: [l1-functions] }
+      - { id: s1.2, label: Specifying or restricting the domain of a function, page: 9, nodes: [l1-functions] }
+      - { id: s1.3, label: The absolute value function, page: 10, nodes: [l1-transformations] }
+      - { id: s1.4, label: Exercises, page: 11, nodes: [l1-functions, l1-transformations] }
+      - { id: s2, label: More about functions, page: 14, nodes: [l1-transformations] }
+      - { id: s2.1, label: Modifying functions by shifting, page: 14, nodes: [l1-transformations] }
+      - { id: s2.1.1, label: Vertical shift, page: 14, nodes: [l1-transformations] }
+      - { id: s2.1.2, label: Horizontal shift, page: 14, nodes: [l1-transformations] }
+      - { id: s2.2, label: Modifying functions by stretching, page: 15, nodes: [l1-transformations] }
+      - { id: s2.3, label: Modifying functions by reflections, page: 16, nodes: [l1-transformations] }
+      - { id: s2.3.1, label: "Reflection in the x-axis", page: 16, nodes: [l1-transformations] }
+      - { id: s2.3.2, label: "Reflection in the y-axis", page: 16, nodes: [l1-transformations] }
+      - { id: s2.4, label: Other effects, page: 17, nodes: [l1-transformations] }
+      - { id: s2.5, label: Combining effects, page: 17, nodes: [l1-transformations] }
+      - { id: s2.6, label: Graphing by addition of ordinates, page: 19, nodes: [l1-transformations] }
+      - { id: s2.7, label: Using graphs to solve equations, page: 20, nodes: [l1-functions] }
+      - { id: s2.8, label: Exercises, page: 22, nodes: [l1-transformations] }
+      - { id: s2.9, label: Even and odd functions, page: 24, nodes: [l1-transformations] }
+      - { id: s2.10, label: Increasing and decreasing functions, page: 26, nodes: [l2-monotonicity-extrema] }
+      - { id: s2.11, label: Exercises, page: 27, nodes: [l1-transformations, l2-monotonicity-extrema] }
+      - { id: "exercises-1.4", label: "Exercises 1.4: domain, range, graphs, absolute value, composition", page: 11, nodes: [l1-functions, l1-transformations] }
+      - { id: "exercises-2.8", label: "Exercises 2.8: shift, stretch, reflect, add ordinates, solve by graph", page: 22, nodes: [l1-transformations] }
+      - { id: "exercises-2.11", label: "Exercises 2.11: even/odd, increasing/decreasing, graph reading", page: 27, nodes: [l1-transformations, l2-monotonicity-extrema] }
+  - source: final-2021
+    items:
+      - { id: q1, label: "1: steepest ascent/descent, unit vector of steepest decrease of f=4+x^2-3y^2 at (1,1), and rate", page: 1, nodes: [l5-steepest-ascent] }
+      - { id: q2, label: "2: B1 level sets + tangent plane, tangent plane to x^2+y^2-6y-z^2+xy+7=0 at (1,1,2)", page: 1, nodes: [l4-level-sets, l5-tangent-plane] }
+      - { id: q3, label: "3: B3 critical points, find all critical points of f=2x^3+xy^2+5x^2+y^2, no classification asked", page: 1, nodes: [l6-critical-points] }
+      - { id: q4, label: "4: Green's / line integrals, Green's theorem on unit circle for int (-y^3 dx + x^3 dy)", page: 1, excluded: "Green's theorem is outside the current course." }
+      - { id: q5, label: "5: Green's / line integrals, area of astroid (cos^3 t, sin^3 t), t in [0,2pi]. Sketch", page: 1, excluded: "Green's theorem is outside the current course." }
+      - { id: q6.1, label: "6.1: potentials, find f with grad f = F for F=(xy^2+2y, x^2y+2x+2)", page: 1, excluded: Potentials are outside the current course. }
+      - { id: q6.2, label: "6.2: line integrals, line integral of F along r(t)=(e^t, 1+t), t in [0,2pi]", page: 1, excluded: Line integrals are outside the current course. }
+      - { id: q6.3, label: "6.3: line integrals, line integral of F on the unit circle", page: 1, excluded: Line integrals are outside the current course. }
+      - { id: q7.1, label: "7.1: other: curve on a cone, z(t) so C lies on S. Sketch S and C", page: 1, nodes: [l4-quadrics] }
+      - { id: q7.2, label: "7.2: arc length, length of C from A=(1,0,0) to B=(0,0,1). sinh hint", page: 1, excluded: Arc length is outside the current course. }
+      - { id: q7.3, label: "7.3: arc length, value of a minimising LAB, and the resulting curve C", page: 1, excluded: Arc length is outside the current course. }
+      - { id: q7.4, label: "7.4: other: variational / mountain path, does LAB+max(z')^2 have a min? Mountain interpretation", page: 1, excluded: Variational path problems are outside the current course. }
+      - { id: q8.1, label: "8.1: B6 volume / triple integral, set up V over D={x^4+y^4<=1}. Sketch S and D", page: 2, nodes: [l8-volumes-between-surfaces, l8-triple-integrals] }
+      - { id: q8.2, label: "8.2: B6 volume / triple integral, reduce V to the first-quadrant piece D+", page: 2, nodes: [l8-volumes-between-surfaces, l8-triple-integrals] }
+      - { id: q8.3, label: "8.3: change of variables (Jacobian), phi(r,theta)=(r sqrt(cos theta), r sqrt(sin theta)). Product of integrals", page: 2, nodes: [l8-change-of-variables] }
+      - { id: q9.1, label: "9.1: line integrals, W along the vertical path x=y=0, z=R0+t", page: 2, excluded: Line integrals are outside the current course. }
+      - { id: q9.2, label: "9.2: potentials, grad(1/r). Can another path give smaller work?", page: 2, excluded: Potentials are outside the current course. }
+      - { id: q10, label: "10: other: MLE critical points, gamma densities. Critical-point equations of ln g(alpha,beta) via digamma", page: 2, excluded: Gamma likelihood is outside the current course. }
+  - source: final-2022
+    items:
+      - { id: q1, label: "1: steepest ascent/descent, unit vector of steepest decrease of f=(x^2-y+1)/(1+y^2-x) at (1,1), and rate", page: 1, nodes: [l5-steepest-ascent] }
+      - { id: q2, label: "2: B1 level sets + tangent plane, tangent plane to z^2+x^4+y^4=1 at (1/2, 1/2, sqrt(14)/4)", page: 2, nodes: [l4-level-sets, l5-tangent-plane] }
+      - { id: q3a, label: "3a: B2 chain rule along a path, phi(t)=f(at,bt). phi'(t) by the first chain rule", page: 3, nodes: [l5-chain-rule-path] }
+      - { id: q3b, label: "3b: B1 level sets + tangent plane, tangent plane to z=f(x,y) at (2,1)", page: 3, nodes: [l5-tangent-plane] }
+      - { id: q3c, label: "3c: change of variables (Jacobian), N(t,s)=(t+s,t-s). Jacobian of N, then grad psi by second chain rule", page: 3, nodes: [l8-change-of-variables, l5-chain-rule-general] }
+      - { id: q4, label: "4: B3 critical points (incl. D=0), critical points of f=2x^3+xy^2+5x^2+2y^3/3 and kinds. If D=0 use f(0,y)", page: 4, nodes: [l6-critical-points, l6-second-derivative-test, l6-degenerate-case] }
+      - { id: q5a, label: "5a: B3 critical points, all critical points of f=(x^2+y^2-1)^2. Draw them", page: 6, nodes: [l6-critical-points, l6-second-derivative-test] }
+      - { id: q5b, label: "5b: B3 critical points (incl. D=0), compute D at each critical point", page: 6, nodes: [l6-critical-points, l6-second-derivative-test, l6-degenerate-case] }
+      - { id: q5c, label: "5c: B3 critical points (incl. D=0), plot g(x)=f(x,0) and h(x)=f(0,x) on [-sqrt(2),sqrt(2)]", page: 6, nodes: [l6-critical-points, l6-second-derivative-test, l6-degenerate-case, l4-cross-sections] }
+      - { id: q5d, label: "5d: B3 critical points (incl. D=0), kind of each critical point, with explanation", page: 6, nodes: [l6-critical-points, l6-second-derivative-test, l6-degenerate-case] }
+      - { id: q6, label: "6: average value, average of sin(x+y) on first-quadrant D bounded by x+2y=2", page: 8, nodes: [l7-average-value] }
+      - { id: q7a, label: "7a: probability with double integrals, P(X>a and Y>b) for independent exponentials", page: 9, excluded: Probability is outside the current course. }
+      - { id: q7b, label: "7b: probability with double integrals, P(aX+bY<t) via u=ax+by, v=y. Density of aX+bY", page: 9, excluded: Probability is outside the current course. }
+      - { id: q7c, label: "7c: probability with double integrals, if b>a, E[sqrt(X+Y)] via u=ax+by, v=sqrt(x+y)", page: 11, excluded: Probability is outside the current course. }
+      - { id: q8, label: "8: B6 volume / triple integral, volume in cylinder x^2+y^2<R^2 between hyperboloid z^2=x^2+y^2+1 and cone z^2=x^2+y^2. lim R->inf V/R", page: 16, nodes: [l8-volumes-between-surfaces, l8-triple-integrals] }
+  - source: retake-2023
+    items:
+      - { id: q1a, label: "1a: B1 level sets + tangent plane, tangent-plane equation at a general point (x*,y*,z*) on z^2+2x^2+y^2=1", page: 1, nodes: [l4-level-sets, l5-tangent-plane] }
+      - { id: q1b, label: "1b: B1 level sets + tangent plane, points where that plane is parallel to x+y+z=0", page: 1, nodes: [l4-level-sets, l5-tangent-plane] }
+      - { id: q2, label: "2: B3 critical points, critical points of f=x^3+xy+y^2 and their kinds", page: 1, nodes: [l6-critical-points, l6-second-derivative-test] }
+      - { id: q3, label: "3: B3 critical points (incl. D=0), critical points of f=x^3+xy^2+y^3. Use f(x,0) to classify", page: 1, nodes: [l6-critical-points, l6-second-derivative-test, l6-degenerate-case] }
+      - { id: q4, label: "4: B4 double integrals (polar disk/sector), int sqrt(x^2+y^2) on first-quadrant D bounded by x^2+y^2=2", page: 1, nodes: [l7-polar-integrals] }
+      - { id: q5, label: "5: B4 double integrals (triangle / substitution), int (x+y)e^{x-y} on first-quadrant D bounded by x+y=2. cosh/sinh hint", page: 1, nodes: [l7-general-regions, l8-change-of-variables] }
+      - { id: q6, label: "6: Lagrange multipliers, largest box of size 2a,2b,2c inside x^4+y^4+z^2<=1", page: 1, nodes: [l6-lagrange] }
+      - { id: q7a, label: "7a: B6 volume / triple integral, sketch the xz-plane cross section of the solid", page: 1, nodes: [l8-volumes-between-surfaces, l8-triple-integrals, l4-cross-sections] }
+      - { id: q7b, label: "7b: B6 volume / triple integral, compute V above xy-plane between z=1-x^2-y^2 and cone z^2=x^2+y^2", page: 1, nodes: [l8-volumes-between-surfaces, l8-triple-integrals] }
+  - source: final-2024
+    items:
+      - { id: q1a, label: "1a: B1 level sets + tangent plane, z-level sets of z(x^2+y^2)=x^2", page: 1, nodes: [l4-level-sets] }
+      - { id: q1b, label: "1b: B1 level sets + tangent plane, tangent plane to z(x^2+y^2)-x^3=0 at (1,1,1/2)", page: 1, nodes: [l5-tangent-plane] }
+      - { id: q2, label: "2: B2 chain rule along a path, DE for (x(t),y(t)) so that z=f(x,y) has z'(t)=-1", page: 1, nodes: [l5-chain-rule-path] }
+      - { id: q3a, label: "3a: B3 critical points, f=x^2+xy-y^2+5x", page: 1, nodes: [l6-critical-points, l6-second-derivative-test] }
+      - { id: q3b, label: "3b: B3 critical points (incl. D=0), h=x^3-x^2 y^2+2y^2", page: 1, nodes: [l6-critical-points, l6-second-derivative-test, l6-degenerate-case] }
+      - { id: q4a, label: "4a: B4 double integrals (rectangle), int_0^1 int_1^2 (x/y) dy dx", page: 1, nodes: [l7-double-integrals-rectangles] }
+      - { id: q4b, label: "4b: B4 double integrals (triangle), int sqrt(x+y) in first quadrant, bounded by x+y=1", page: 1, nodes: [l7-general-regions] }
+      - { id: q4c, label: "4c: B4 double integrals (polar disk/sector), int x^2 on the disk x^2+y^2=2", page: 1, nodes: [l7-polar-integrals] }
+      - { id: q4d, label: "4d: B4 double integrals (substitution), int 1/x^2 on 0<=y<=x between x^2+4y^2=1/3 and =1. Then x'=x, y'=2y", page: 1, nodes: [l8-change-of-variables] }
+      - { id: q5, label: "5: B5 worded constrained opt with boundary, plane fuel F(V,H) with lift constraint. Best V,H in terms of M,S,L. Min vs max", page: 1, nodes: [l6-worded-optimisation, l6-global-extrema] }
+      - { id: q6, label: "6: B6 volume / triple integral, int_V xz dV, V above xy-plane, inside sphere x^2+y^2+z^2=1, below cone z^2=x^2+y^2. Sketch V", page: 1, nodes: [l8-volumes-between-surfaces, l8-triple-integrals, l4-cross-sections] }
+  - source: final-2025
+    items:
+      - { id: q1a, label: "1a: B1 level sets + tangent plane, z-level sets of 2zx=y^2+x^2", page: 1, nodes: [l4-level-sets] }
+      - { id: q1b, label: "1b: B1 level sets + tangent plane, tangent plane of that surface at (1,1,1)", page: 1, nodes: [l5-tangent-plane] }
+      - { id: q2, label: "2: B2 chain rule along a path, C: x^2+y^3=1. Slope of z=sqrt(1-x^2-y^2) along C", page: 1, nodes: [l5-chain-rule-path] }
+      - { id: q3a, label: "3a: B3 critical points, f=x+xy^2-x^2", page: 1, nodes: [l6-critical-points, l6-second-derivative-test] }
+      - { id: q3b, label: "3b: B3 critical points, h=x^3-x^2 y+xy+y^2/2", page: 1, nodes: [l6-critical-points, l6-second-derivative-test] }
+      - { id: q4a, label: "4a: B4 double integrals (rectangle), int_0^1 int_1^2 sqrt(x y^2) dy dx", page: 1, nodes: [l7-double-integrals-rectangles] }
+      - { id: q4b, label: "4b: B4 double integrals (triangle), int x in first quadrant, bounded by x+y=1", page: 1, nodes: [l7-general-regions] }
+      - { id: q4c, label: "4c: B4 double integrals (polar disk/sector), int (y/x) on x^2+y^2=2 with 0<=y<=x", page: 1, nodes: [l7-polar-integrals] }
+      - { id: q4d, label: "4d: B4 double integrals (substitution), int x e^{x^2+y} on D: x^2+y=1 and y=0, via u=x^2+y, v=y. Sketch D and image", page: 1, nodes: [l8-change-of-variables] }
+      - { id: q5, label: "5: B5 worded constrained opt with boundary, portfolio x,y,z>=0 in stocks A,B,C. Growth 300%,200%,100%. Loss L=2x^2-4xy+y^3+z^2. Max net income", page: 1, nodes: [l6-worded-optimisation, l6-global-extrema] }
+      - { id: q6, label: "6: B6 volume / triple integral, set up three integrals for int_V x dV. First octant, below z=1-x-y and z=x^2+y^2. Sketch y=0 cut and shadow D", page: 2, nodes: [l8-volumes-between-surfaces, l8-triple-integrals, l4-cross-sections] }
+  - source: mock-2022
+    items:
+      - { id: q1, label: "1: steepest ascent/descent, same as Final 2021 Ex1: steepest decrease of f=4+x^2-3y^2 at (1,1)", page: 1, nodes: [l5-steepest-ascent] }
+      - { id: q2.1, label: "2.1: B2 chain rule along a path, z(t)>0 so the point lies on z^2+x^4+y^4=1. Domain of z", page: 1, nodes: [l5-chain-rule-path] }
+      - { id: q2.2, label: "2.2: B2 chain rule along a path, compute z'(t) along x=t^{1/4}, y=sqrt(t)", page: 1, nodes: [l5-chain-rule-path] }
+      - { id: q3, label: "3: B1 level sets + tangent plane, same as Final 2021 Ex2: tangent plane at (1,1,2)", page: 1, nodes: [l4-level-sets, l5-tangent-plane] }
+      - { id: q4, label: "4: B3 critical points, critical points of f=2x^3+xy^2+5x^2+y^2 and their kinds", page: 1, nodes: [l6-critical-points, l6-second-derivative-test] }
+      - { id: q5.1, label: "5.1: B5 worded constrained opt with boundary, best meeting outcome under ns=100 and n<=100", page: 1, nodes: [l6-worded-optimisation, l6-global-extrema] }
+      - { id: q5.2, label: "5.2: B5 worded constrained opt with boundary, best outcome under ns<=100", page: 1, nodes: [l6-worded-optimisation, l6-global-extrema] }
+      - { id: q6.1, label: "6.1: probability with double integrals, P(X>100 and Y>100) in terms of lambda", page: 1, excluded: Probability is outside the current course. }
+      - { id: q6.2, label: "6.2: probability with double integrals, P(X+Y>150)", page: 1, excluded: Probability is outside the current course. }
+      - { id: q6.3, label: "6.3: probability with double integrals, P(XY>802)", page: 1, excluded: Probability is outside the current course. }
+      - { id: q6.4, label: "6.4: probability with double integrals, P(X+Y in [a,b]) as int_a^b g(t) dt", page: 1, excluded: Probability is outside the current course. }
+      - { id: q6.5, label: "6.5: probability with double integrals, density of Z=X+Y from the previous integral", page: 2, excluded: Probability is outside the current course. }
+      - { id: q6.6, label: "6.6: probability with double integrals, expectation of Z", page: 2, excluded: Probability is outside the current course. }
+      - { id: q6.7, label: "6.7: other: MLE critical points, lambda maximising the density given data 74 and 87", page: 2, excluded: Probability is outside the current course. }
+      - { id: q7, label: "7: B4 double integrals (substitution), int_D y/(x^2+y^2) dA, D={0<x<y<e}. arctan hint", page: 2, nodes: [l8-change-of-variables] }
+      - { id: q8, label: "8: B6 volume / triple integral, volume above xy-plane bounded by sphere x^2+y^2+z^2=1 and cone z^2=x^2+y^2", page: 2, nodes: [l8-volumes-between-surfaces, l8-triple-integrals] }
+      - { id: q9.1, label: "9.1: B6 volume / triple integral, ranges of x,y,z. Set up V enclosed by S for z^2+x^4+y^4=1", page: 2, nodes: [l8-volumes-between-surfaces, l8-triple-integrals] }
+      - { id: q9.2, label: "9.2: B6 volume / triple integral, reduce to D+ in the first quadrant", page: 2, nodes: [l8-volumes-between-surfaces, l8-triple-integrals] }
+      - { id: q9.3, label: "9.3: change of variables (Jacobian), same phi(r,theta) as 2021 Ex8.3. Product of integrals", page: 2, nodes: [l8-change-of-variables] }
+      - { id: q9.4, label: "9.4: change of variables (Jacobian), r-integral via r=sqrt(sin theta)", page: 2, nodes: [l8-change-of-variables] }
+      - { id: q9.5, label: "9.5: change of variables (Jacobian), theta-integral as int_0^1 dt/sqrt(1-t^4) via t=sqrt(sin theta)", page: 2, nodes: [l8-change-of-variables] }
+  - source: mock-exam-1
+    items:
+      - { id: q1a, label: "1a: B1 level sets + tangent plane, tangent-plane equation at a general point of z^4+2x^2+y^2=1", page: 1, nodes: [l4-level-sets, l5-tangent-plane] }
+      - { id: q1b, label: "1b: B1 level sets + tangent plane, points where the plane is parallel to x+y+z=0. Gradients collinear", page: 1, nodes: [l4-level-sets, l5-tangent-plane] }
+      - { id: q2, label: "2: B3 critical points (incl. D=0), critical points and kinds of f=x^2+xy^2+y^2 and g=x^3+xy^2+y^3. If stuck, y=0 slice", page: 1, nodes: [l6-critical-points, l6-second-derivative-test, l6-degenerate-case] }
+      - { id: q3, label: "3: B4 double integrals (polar disk/sector), int sqrt(x^2+y^2) on the disk x^2+y^2=2", page: 1, nodes: [l7-polar-integrals] }
+      - { id: q4, label: "4: B4 double integrals (substitution), int (x+y)e^{x-y} on first-quadrant D bounded by x+y=2, via u=x+y, v=x-y", page: 1, nodes: [l8-change-of-variables] }
+      - { id: q5, label: "5: change of variables (Jacobian), int ab/(1+(x-y)^2) e^{-(ax+by)} on R+ x R+, via u=ax+by, v=x-y", page: 1, nodes: [l8-change-of-variables] }
+      - { id: q6, label: "6: Lagrange multipliers, largest box 2a,2b,2c inside x^2+y^4+z^6<=1", page: 1, nodes: [l6-lagrange] }
+      - { id: q7a, label: "7a: B6 volume / triple integral, sketch the xz-plane cross section", page: 1, nodes: [l8-volumes-between-surfaces, l8-triple-integrals, l4-cross-sections] }
+      - { id: q7b, label: "7b: B6 volume / triple integral, compute V between paraboloid z=x^2+y^2 and cone z^2=x^2+y^2", page: 1, nodes: [l8-volumes-between-surfaces, l8-triple-integrals] }
+      - { id: q7c, label: "7c: other: mass via triple integral, mass in V with density 1/z^2", page: 1, nodes: [l8-mass-centre] }
+  - source: mock-exam-2
+    items:
+      - { id: q1, label: "1: steepest ascent/descent, same as Final 2022 Ex1: steepest decrease of f=(x^2-y+1)/(1+y^2-x) at (1,1)", page: 1, nodes: [l5-steepest-ascent] }
+      - { id: q2, label: "2: B1 level sets + tangent plane, same as Final 2022 Ex2: tangent plane to z^2+x^4+y^4=1 at (1/2,1/2,sqrt(14)/4)", page: 1, nodes: [l4-level-sets, l5-tangent-plane] }
+      - { id: q3.1, label: "3.1: B2 chain rule along a path, phi'(t) by chain rule. Extra: behaviour of f along M when a=b", page: 1, nodes: [l5-chain-rule-path] }
+      - { id: q3.2, label: "3.2: B1 level sets + tangent plane, tangent plane to z=f(x,y) at (2,1)", page: 1, nodes: [l5-tangent-plane] }
+      - { id: q4, label: "4: B3 critical points (incl. D=0), same f as Final 2022 Ex4. Hint: y=0 slice if undecided", page: 1, nodes: [l6-critical-points, l6-second-derivative-test, l6-degenerate-case] }
+      - { id: q5.1, label: "5.1: B3 critical points, all critical points of f=(x^2+y^2-1)^2. Draw them", page: 1, nodes: [l6-critical-points, l6-second-derivative-test] }
+      - { id: q5.2, label: "5.2: B3 critical points (incl. D=0), compute D at each", page: 1, nodes: [l6-critical-points, l6-second-derivative-test, l6-degenerate-case] }
+      - { id: q5.3, label: "5.3: B3 critical points (incl. D=0), plot g=f(x,0) and h=f(0,x) on [-sqrt(2),sqrt(2)]", page: 1, nodes: [l6-critical-points, l6-second-derivative-test, l6-degenerate-case, l4-cross-sections] }
+      - { id: q5.4, label: "5.4: B3 critical points (incl. D=0), decide the kinds", page: 1, nodes: [l6-critical-points, l6-second-derivative-test, l6-degenerate-case] }
+      - { id: q6, label: "6: average value, same as Final 2022 Ex6: average of sin(x+y) on first-quadrant D, x+2y=2", page: 1, nodes: [l7-average-value] }
+      - { id: q7, label: "7: B6 volume / triple integral, same as Final 2022 Ex8: cylinder, hyperboloid vs cone, lim V/R", page: 1, nodes: [l8-volumes-between-surfaces, l8-triple-integrals] }
+  - source: home-assignment-2022
+    items:
+      - { id: q1, label: "1: steepest ascent/descent, directional derivative of f=x^2+y^2. Steepest and horizontal directions, and their relation", page: 1, nodes: [l5-steepest-ascent, l5-directional-derivative] }
+      - { id: q2.1, label: "2.1: 1D topics, second-order Taylor of phi about t=0", page: 1, nodes: [l6-second-derivative-test, l3-taylor] }
+      - { id: q2.2, label: "2.2: B2 chain rule along a path, phi'(t) by first chain rule. Conclude phi'(0)=0 at a max/min", page: 1, nodes: [l6-second-derivative-test, l5-chain-rule-path] }
+      - { id: q2.3, label: "2.3: B3 critical points, for any unit u, get grad f=0. Definition of a critical point", page: 1, nodes: [l6-critical-points] }
+      - { id: q2.4, label: "2.4: B2 chain rule along a path, phi''(t) by chain rule. Sign of phi''(0) at a max/min", page: 1, nodes: [l6-second-derivative-test, l5-chain-rule-path, l5-hessian] }
+      - { id: q2.5, label: "2.5: other: derive discriminant test, second-order expansion in fxx, fxy, fyy", page: 1, nodes: [l6-second-derivative-test, l5-hessian] }
+      - { id: q2.6, label: "2.6: other: derive discriminant test, complete the square. Define D=fxx fyy - fxy^2", page: 1, nodes: [l6-second-derivative-test] }
+      - { id: q2.7, label: "2.7: B3 critical points, D>0 and fxx>0: max or min?", page: 1, nodes: [l6-second-derivative-test] }
+      - { id: q2.8, label: "2.8: B3 critical points, D>0 and fxx<0: max or min?", page: 1, nodes: [l6-second-derivative-test] }
+      - { id: q2.9, label: "2.9: B3 critical points, D<0: opposite signs of phi''. Saddle", page: 1, nodes: [l6-second-derivative-test] }
+      - { id: q2.10, label: "2.10: B3 critical points (incl. D=0), D=0 and fxx>0: inconclusive?", page: 1, nodes: [l6-degenerate-case] }
+      - { id: q3.1, label: "3.1: B3 critical points, f=x^2+4y^2-2x+8y-1", page: 2, nodes: [l6-critical-points, l6-second-derivative-test] }
+      - { id: q3.2, label: "3.2: B3 critical points, f=xy", page: 2, nodes: [l6-critical-points, l6-second-derivative-test] }
+      - { id: q3.3, label: "3.3: B3 critical points, f=x^2+4xy+y^2-6y+1", page: 2, nodes: [l6-critical-points, l6-second-derivative-test] }
+      - { id: q3.4, label: "3.4: B3 critical points, f=x^2-xy+2y^2-5x+6y-9", page: 2, nodes: [l6-critical-points, l6-second-derivative-test] }
+      - { id: q4, label: "4: Lagrange multipliers, six-sided box of volume 1/2. Shape minimising surface area", page: 2, nodes: [l6-lagrange, l6-worded-optimisation] }
+      - { id: q5, label: "5: B3 critical points, f=x^2+y^2+k xy. Classify critical points as k varies", page: 2, nodes: [l6-parameter-families] }
+      - { id: q6.1, label: "6.1: B3 critical points, show (0,0) is the only critical point of f=x^3-3x^2 y+y^3", page: 2, nodes: [l6-degenerate-case, l6-critical-points] }
+      - { id: q6.2, label: "6.2: B3 critical points (incl. D=0), sign of D", page: 2, nodes: [l6-degenerate-case] }
+      - { id: q6.3, label: "6.3: B3 critical points (incl. D=0), cross-sections y=kx for various k", page: 2, nodes: [l6-degenerate-case, l4-cross-sections] }
+      - { id: q6.4, label: "6.4: B3 critical points (incl. D=0), kind of (0,0)", page: 2, nodes: [l6-degenerate-case] }
+      - { id: q7, label: "7: Lagrange multipliers, shortest distance from (0,0,b) to z=x^2+y^2", page: 2, nodes: [l6-lagrange, l6-worded-optimisation] }
+      - { id: q8, label: "8: other: unconstrained worded critical points, aircraft: minimise fuel e^{L+D-10} while maximising L and D^2/10, via A-B. Critical points and kinds", page: 2, nodes: [l6-worded-optimisation, l6-critical-points, l6-second-derivative-test] }
+      - { id: q9.1, label: "9.1: B3 critical points, critical points of P, kinds, and the unconstrained max", page: 2, nodes: [l6-critical-points, l6-second-derivative-test, l6-worded-optimisation] }
+      - { id: q9.2, label: "9.2: B5 worded constrained opt with boundary, max of P under 0<k<=Kmax, 0<w<=Wmax, vs a,b,p", page: 2, nodes: [l6-worded-optimisation, l6-global-extrema] }
+  - source: midterm-mock-1
+    items:
+      - { id: ex1.1, label: "1.1: curve sketching (trig), domain and sketch of tan^2(x); extrema, asymptotes, intercepts", page: 1, nodes: [l2-curve-sketching, l2-asymptotes, l2-monotonicity-extrema, l1-trigonometry] }
+      - { id: ex1.2, label: "1.2: curve sketching (rational), domain and sketch of x^2/(x^2+9); extrema, asymptotes, intercepts", page: 1, nodes: [l2-curve-sketching, l2-asymptotes, l2-monotonicity-extrema] }
+      - { id: ex1.5, label: "1.5: curve sketching (polynomial), domain and sketch of x^3-3x^2-9x+5; extrema, intercepts", page: 1, nodes: [l2-curve-sketching, l2-asymptotes, l2-monotonicity-extrema] }
+      - { id: ex1.6, label: "1.6: curve sketching (radical), domain and sketch of (1-x^2)^{1/4}; extrema, intercepts", page: 1, nodes: [l2-curve-sketching, l2-asymptotes, l2-monotonicity-extrema] }
+      - { id: ex2, label: "2: other (tangent line), tangent line to sqrt(2-x^2) at x=1", page: 1, nodes: [l1-derivative] }
+      - { id: ex3, label: "3: Newton's method for a root, fifth root of 7 from x0=1.5; compute x3 and closeness", page: 1, nodes: [l2-newton] }
+      - { id: ex4.1, label: "4.1: Taylor polynomial or limit via Taylor, order-2 Taylor of 1/(1-x) about 0", page: 1, nodes: [l3-taylor] }
+      - { id: ex4.2, label: "4.2: Taylor polynomial or limit via Taylor, order-2 Taylor of e^{sin(x)} about 0", page: 1, nodes: [l3-taylor-composition] }
+      - { id: ex4.4, label: "4.4: Taylor polynomial or limit via Taylor, order-2 Taylor of ln(1+x^2) about 0", page: 1, nodes: [l3-taylor-composition] }
+      - { id: ex4.5, label: "4.5: Taylor polynomial or limit via Taylor, order-2 Taylor of (1+x)^{1/3} about 0", page: 1, nodes: [l3-taylor] }
+      - { id: ex5, label: "5: 1D worded optimisation, largest USPS box with square ends; length plus girth at most 108 in", page: 1, nodes: [l2-optimisation] }
+      - { id: ex6.1, label: "6.1: integral set, definite integral of t^5+t^4-t^2/2+1 on [1,2]", page: 1, nodes: [l3-fundamental-theorem] }
+      - { id: ex6.2, label: "6.2: integral set (by parts), integral of t(1+1)^{1/3} on [0,1] by parts (print likely means 1+t)", page: 1, nodes: [l3-integration-by-parts] }
+      - { id: ex6.3, label: "6.3: integral set (substitution), integral of tan(t) on [0,1] with y=cos(t)", page: 1, nodes: [l3-substitution] }
+      - { id: ex6.4, label: "6.4: integral set (improper), integral of dx/(1+x^2) from -inf to +inf", page: 1, nodes: [l3-improper-integrals] }
+  - source: midterm-2021
+    items:
+      - { id: ex1a, label: "1a: contour or cross sections, height step between consecutive contour levels on a 100 m grid map", page: 1, nodes: [l4-level-sets] }
+      - { id: ex1b, label: "1b: contour or cross sections, sketch 3D mountain from the map: tops, valleys, bottom", page: 1, nodes: [l4-level-sets] }
+      - { id: ex2.1, label: "2.1: contour or cross sections, cut of cone z^2=x^2+y^2 by plane x=0; equation and sketch", page: 1, nodes: [l4-cross-sections, l4-level-sets, l4-quadrics] }
+      - { id: ex2.2, label: "2.2: contour or cross sections, generic level set of the cone and its topographic map", page: 1, nodes: [l4-level-sets, l4-quadrics] }
+      - { id: ex2.3, label: "2.3: contour or cross sections, sketch the 3D graph of z^2=x^2+y^2", page: 1, nodes: [l4-quadrics] }
+      - { id: ex2.4, label: "2.4: contour or cross sections, cut by x=1; sketch in the cut plane and give asymptotes", page: 1, nodes: [l4-cross-sections, l4-level-sets] }
+      - { id: ex2.5, label: "2.5: contour or cross sections, cut by z=y+1; sketch in the Oxy plane", page: 1, nodes: [l4-cross-sections, l4-level-sets] }
+      - { id: ex2.6, label: "2.6: contour or cross sections, cut by z=2y+1: curve type and asymptotes", page: 1, nodes: [l4-cross-sections, l4-level-sets] }
+      - { id: ex3.1, label: "3.1: other (implicit plane curve), points on x^4+y^4=1 with x=y, and with y=0", page: 1, nodes: [l2-curve-sketching] }
+      - { id: ex3.2, label: "3.2: other (implicit plane curve), symmetries of x^4+y^4=1 and a sketch", page: 1, nodes: [l2-curve-sketching, l1-transformations] }
+      - { id: ex3.3, label: "3.3: other (implicit plane curve), check x=sqrt(cos theta), y=sqrt(sin theta) on the first-quadrant arc; theta interval", page: 1, nodes: [l2-curve-sketching, l4-cylindrical-spherical] }
+      - { id: ex4.1, label: "4.1: contour or cross sections, vertical cut of z=(x^2-y^2)/(x^2+y^2) along angle theta; r-dependence; compare -theta", page: 2, nodes: [l4-cross-sections, l4-level-sets] }
+      - { id: ex4.2, label: "4.2: contour or cross sections, deduce level sets of (x^2-y^2)/(x^2+y^2) and sketch in 3D", page: 2, nodes: [l4-level-sets, l4-graphs-planes] }
+      - { id: ex4.3, label: "4.3: other (multivariable continuity), is (x^2-y^2)/(x^2+y^2) continuous at (0,0)?", page: 2, nodes: [l5-limits-continuity] }
+      - { id: ex5.1, label: "5.1: probability density, ln(g) for product exponential density g=f(x)f(y); level sets and shared feature", page: 2, nodes: [l3-probability-densities, l4-level-sets] }
+      - { id: ex5.2, label: "5.2: probability density, topographic map of ln(g) on its domain; note any symmetry", page: 2, nodes: [l3-probability-densities, l4-level-sets] }
+      - { id: ex5.3, label: "5.3: probability density, sketch the 3D graph of g(x,y)=e^{-x}e^{-y} for x,y>0", page: 2, nodes: [l3-probability-densities, l4-graphs-planes] }
+      - { id: ex5.4, label: "5.4: limits (standard limits), limit of g(x,y) as (x,y) -> (ln 1.5, ln 2)", page: 2, nodes: [l5-limits-continuity] }
+  - source: midterm-2022
+    items:
+      - { id: ex1i, label: "1.i: curve sketching (radical), domain and range of sqrt(1-x^2)", page: 1, nodes: [l2-curve-sketching, l2-asymptotes, l2-monotonicity-extrema, l1-functions] }
+      - { id: ex1ii, label: "1.ii: curve sketching (radical), derivative of sqrt(1-x^2)", page: 1, nodes: [l2-curve-sketching, l2-asymptotes, l2-monotonicity-extrema, l1-derivative-rules] }
+      - { id: ex1iii, label: "1.iii: limits (standard limits), limits of f'(x) as x -> -1+ and x -> 1-", page: 1, nodes: [l1-limits, l2-curve-sketching, l2-asymptotes, l2-monotonicity-extrema] }
+      - { id: ex1iv, label: "1.iv: curve sketching (radical), plot with extrema, end tangents, convexity and concavity", page: 1, nodes: [l2-curve-sketching, l2-asymptotes, l2-monotonicity-extrema, l2-concavity] }
+      - { id: ex1v, label: "1.v: integral set (substitution), integral of sqrt(1-x^2) on [-1,1] by trigonometric substitution", page: 1, nodes: [l3-trig-integrals] }
+      - { id: ex2i, label: "2.i: curve sketching (rational/log), domain of (x-1)/ln(x)", page: 1, nodes: [l2-curve-sketching, l2-asymptotes, l2-monotonicity-extrema, l1-functions] }
+      - { id: ex2ii, label: "2.ii: curve sketching (rational/log), derivative of (x-1)/ln(x)", page: 1, nodes: [l2-curve-sketching, l2-asymptotes, l2-monotonicity-extrema, l1-derivative-rules] }
+      - { id: ex2iii, label: "2.iii: limits (L'Hopital, standard limits), limits of f at 0+, at 1, and of f' at 0+", page: 1, nodes: [l2-lhopital, l1-limits] }
+      - { id: ex2iv, label: "2.iv: Taylor polynomial or limit via Taylor, limit of f' at 1 via order-2 Taylor of ln(1+x) and 1/(1+x)", page: 1, nodes: [l3-taylor-composition] }
+      - { id: ex2v, label: "2.v: curve sketching (rational/log), sign of g=ln(x)-1+1/x, then sign of f'", page: 1, nodes: [l2-curve-sketching, l2-asymptotes, l2-monotonicity-extrema] }
+      - { id: ex2vi, label: "2.vi: curve sketching (rational/log), plot f using domain, limits, and sign of f'", page: 1, nodes: [l2-curve-sketching, l2-asymptotes, l2-monotonicity-extrema] }
+      - { id: ex3, label: "3: Newton's method for a root, fifth root of 2 from x0=1; x2, sketch iterates, closeness (binomial hint)", page: 1, nodes: [l2-newton] }
+      - { id: ex4i, label: "4.i: integral set (by parts, improper), integral of ln(x)/sqrt(x) on [eps,1]; behaviour as eps -> 0", page: 1, nodes: [l3-integration-by-parts, l3-improper-integrals] }
+      - { id: ex4ii, label: "4.ii: integral set (substitution), integral of tan(x) on [0, pi/4] with y=cos(x)", page: 1, nodes: [l3-substitution] }
+      - { id: ex5, label: "5: 1D worded optimisation, max volume of box a>=b>=c>=0 with a+b+c=20 and surface 200", page: 1, nodes: [l2-optimisation] }
+      - { id: ex6i, label: "6.i: contour or cross sections, z-level sets of sqrt(x^2+y^2); which z are allowed", page: 1, nodes: [l4-level-sets, l4-quadrics] }
+      - { id: ex6ii, label: "6.ii: contour or cross sections, plot level sets for z=0, 1, 2", page: 1, nodes: [l4-level-sets] }
+      - { id: ex6iii, label: "6.iii: contour or cross sections, name of the surface z=sqrt(x^2+y^2)", page: 1, nodes: [l4-quadrics] }
+  - source: midterm-2024
+    items:
+      - { id: ex1.1, label: "1.1: curve sketching (radical/log), domain and sketch of x^{1/4} ln(x); extrema, asymptotes, intercepts", page: 1, nodes: [l2-curve-sketching, l2-asymptotes, l2-monotonicity-extrema] }
+      - { id: ex1.2, label: "1.2: curve sketching (radical), domain and sketch of sqrt(x^2+3x+1); extrema, asymptotes, intercepts", page: 1, nodes: [l2-curve-sketching, l2-asymptotes, l2-monotonicity-extrema] }
+      - { id: ex1.5, label: "1.5: curve sketching (radical), domain and sketch of x-3sqrt(x)+1; extrema, intercepts", page: 1, nodes: [l2-curve-sketching, l2-asymptotes, l2-monotonicity-extrema] }
+      - { id: ex2.1, label: "2.1: Taylor polynomial or limit via Taylor, lim_{x->0} sqrt(x)/tan(x) by Taylor or L'Hopital", page: 1, nodes: [l3-taylor, l2-lhopital] }
+      - { id: ex2.2, label: "2.2: Taylor polynomial or limit via Taylor, lim_{x->0} (cos(x)-1)/(sin(x)-tan(x)) by Taylor or L'Hopital", page: 1, nodes: [l3-taylor, l2-lhopital] }
+      - { id: ex3, label: "3: 1D worded optimisation, max sale price P=p_a+p_s with p_s=-1/10[(p_a-5)^3+(p_a-10)^2], one decimal", page: 1, nodes: [l2-optimisation] }
+      - { id: ex4.1, label: "4.1: integral set, integral of (t^2+1)/t on [1,2]", page: 1, nodes: [l3-fundamental-theorem] }
+      - { id: ex4.2, label: "4.2: integral set (substitution), integral of (t^2+1)^{1/3} t on [-1,1] with s=t^2", page: 1, nodes: [l3-substitution] }
+      - { id: ex4.3, label: "4.3: integral set (by parts), integral of t^2 sin(t) on [0,1]", page: 1, nodes: [l3-integration-by-parts] }
+      - { id: ex4.4, label: "4.4: integral set (area between curves), area above y=x^2 and below x=y^2", page: 1, nodes: [l3-area-between-curves] }
+      - { id: ex4.5, label: "4.5: integral set (substitution), integral of 1/sqrt(t(1-t)) on [0,1] with t=(1+sin(x))/2", page: 1, nodes: [l3-substitution] }
+      - { id: ex4.6, label: "4.6: integral set (substitution, improper), integral of sqrt(t) e^{-sqrt(t)} on [0, inf) with s=sqrt(t)", page: 1, nodes: [l3-substitution, l3-improper-integrals] }
+      - { id: ex4.7, label: "4.7: integral set, integral of (4x-1)/(2x^2-x+1) on [-1,1]", page: 1, nodes: [l3-fundamental-theorem] }
+  - source: midterm-2025
+    items:
+      - { id: ex1.1, label: "1.1: curve sketching (radical), domain and sketch of sqrt(x+1)/x; extrema, inflection, asymptotes, intercepts", page: 1, nodes: [l2-curve-sketching, l2-asymptotes, l2-monotonicity-extrema, l2-concavity] }
+      - { id: ex1.2, label: "1.2: curve sketching (polynomial), domain and sketch of x^4-4x^2+1; extrema, inflection, intercepts", page: 1, nodes: [l2-curve-sketching, l2-asymptotes, l2-monotonicity-extrema, l2-concavity] }
+      - { id: ex1.3, label: "1.3: curve sketching (radical), domain and sketch of sqrt(x^2-1); extrema, asymptotes, intercepts", page: 1, nodes: [l2-curve-sketching, l2-asymptotes, l2-monotonicity-extrema] }
+      - { id: ex2, label: "2: Newton's method for a root, eleventh root of 5 from x0=1, to two decimal places", page: 1, nodes: [l2-newton] }
+      - { id: ex3, label: "3: Taylor polynomial or limit via Taylor, polynomial approximation of ln(cos(x)) near 0 via ln(1+u)", page: 1, nodes: [l3-taylor-composition] }
+      - { id: ex4, label: "4: 1D worded optimisation, max 2T+H-C for tasty vs needed food, daily total 2 kg", page: 1, nodes: [l2-optimisation] }
+      - { id: ex5.1, label: "5.1: integral set, integral of sqrt(1-t^2) on [1/2, 1]", page: 1, nodes: [l3-trig-integrals, l3-fundamental-theorem] }
+      - { id: ex5.2, label: "5.2: integral set (by parts), integral of arctan(t) on [0,1] by parts with f'=1", page: 1, nodes: [l3-integration-by-parts] }
+      - { id: ex5.3, label: "5.3: integral set (area between curves), first-quadrant area between y=x-1/(x^2+1) and y=x", page: 1, nodes: [l3-area-between-curves] }
+      - { id: ex5.4, label: "5.4: integral set (substitution, improper), integral of 1/(x ln(x)) on [0,1] with t=ln(x)", page: 1, nodes: [l3-substitution, l3-improper-integrals] }
+      - { id: ex5.5, label: "5.5: integral set (by parts), asymptotics of int_{pi/2}^x cos(t)/t dt for large x, by parts twice; decay rate", page: 1, nodes: [l3-integration-by-parts, l3-improper-integrals] }
+  - source: midterm-2026-key
+    items:
+      - { id: ex1.1, label: "1.1: curve sketching (radical), domain and sketch of x/sqrt(x^2-1); extrema, inflection, asymptotes, intercepts", page: 1, nodes: [l2-curve-sketching, l2-asymptotes, l2-monotonicity-extrema, l2-concavity] }
+      - { id: ex1.2, label: "1.2: curve sketching (rational), domain and sketch of (x^2+x-1)/(x-3); extrema, inflection, asymptotes, intercepts", page: 1, nodes: [l2-curve-sketching, l2-asymptotes, l2-monotonicity-extrema, l2-concavity] }
+      - { id: ex2, label: "2: Newton's method for a root, cube root of 9 from x0=2, to two decimal places", page: 2, nodes: [l2-newton] }
+      - { id: ex3, label: "3: 1D worded optimisation, plane speed v=p-d with d=1/(Vs-v); max velocity and required power", page: 3, nodes: [l2-optimisation] }
+      - { id: ex4, label: "4: 1D worded optimisation, split 10 into two shares; minimise L=x^2+xy + 2y+xy", page: 4, nodes: [l2-optimisation] }
+      - { id: ex5.1, label: "5.1: integral set, integral of t^2+sqrt(t)-1 on [0,1]", page: 4, nodes: [l3-fundamental-theorem] }
+      - { id: ex5.2, label: "5.2: integral set (by parts, improper), integral of t (ln t)^2 on [0,1] by parts", page: 4, nodes: [l3-integration-by-parts, l3-improper-integrals] }
+      - { id: ex5.3, label: "5.3: integral set (area between curves), area between y=sin(x) and y=x on [0, pi/2]", page: 4, nodes: [l3-area-between-curves] }
+      - { id: ex5.4, label: "5.4: integral set (substitution), integral of 1/sqrt(1+x^2) on [0,1] with x=sinh(t)", page: 4, nodes: [l3-substitution, l1-exp-log] }
+      - { id: ex5.5, label: "5.5: integral set (substitution), integral of cos(x)sin(x) on [0, pi/2] with t=sin(x)", page: 4, nodes: [l3-substitution] }
+  - source: midterm-app
+    items:
+      - { id: q-112, label: "Level set of sqrt(x^2+y^2), which heights are allowed", excluded: "Level sets of a function of two variables belong with lecture 4." }
+      - { id: q-113, label: "Which surface is z = sqrt(x^2+y^2)", excluded: "Level sets of a function of two variables belong with lecture 4." }
+      - { id: q-114, label: "Level sets of z = x^2+y^2 compared with the cone", excluded: "Level sets of a function of two variables belong with lecture 4." }
+      - { id: q-115, label: "Level sets of f(x,y) = x^2-y^2", excluded: "Level sets of a function of two variables belong with lecture 4." }
+      - { id: q-001, label: "Find every \\(\\theta\\) with \\(\\sin\\theta = -1\\).", nodes: [l1-trigonometry] }
+      - { id: q-002, label: "Find every \\(\\theta\\) with \\(\\cos(2\\theta) = \\frac{1}{2}\\).", nodes: [l1-trigonometry] }
+      - { id: q-003, label: "Solve \\(2\\sin t - 1 - \\sin^{2} t = 0\\) on \\([0, 2\\pi]\\).", nodes: [l1-trigonometry] }
+      - { id: q-004, label: "Expand \\(\\log_{10}\\bigl((x + 45)^{7}(x - 2)\\bigr)\\).", nodes: [l1-exp-log] }
+      - { id: q-005, label: "Solve \\(2^{x^{2}} = 8\\) for \\(x\\).", nodes: [l1-exp-log] }
+      - { id: q-006, label: "Which identities hold, where defined?", nodes: [l1-exp-log] }
+      - { id: q-007, label: "Compared with \\(y = \\sin x\\), what changes for \\(y = \\sin(3x)\\)?", nodes: [l1-transformations] }
+      - { id: q-008, label: "What is the graph of \\(y = \\sin(-x)\\)?", nodes: [l1-transformations] }
+      - { id: q-009, label: "Evaluate \\(\\lim_{x \\to 0} x\\sin\\frac{1}{x}\\).", nodes: [l1-limits] }
+      - { id: q-010, label: "Evaluate \\(\\lim_{x \\to 0} \\sin\\frac{1}{x}\\).", nodes: [l1-limits] }
+      - { id: q-011, label: "Evaluate \\(\\lim_{x \\to \\infty} \\frac{\\sqrt{x + 1} + \\sqrt{x - 1}}{x}\\).", nodes: [l1-limit-techniques] }
+      - { id: q-012, label: "Using the substitution \\(x = t^{2}\\), find \\(\\lim_{x \\to 0^{+}} x\\ln x\\).", nodes: [l1-limit-techniques] }
+      - { id: q-013, label: "For \\(r > 0\\), evaluate \\(\\lim_{x \\to +\\infty} x^{r} e^{-x}\\).", nodes: [l1-limit-techniques] }
+      - { id: q-014, label: "Evaluate \\(\\lim_{x \\to \\infty} e^{1/x}\\).", nodes: [l1-limit-techniques] }
+      - { id: q-015, label: "Evaluate \\(\\lim_{x \\to 1} \\frac{x - 1}{\\ln x}\\).", nodes: [l1-limit-techniques] }
+      - { id: q-016, label: "Evaluate \\(\\lim_{x \\to 0^{+}} \\frac{x - 1}{\\ln x}\\).", nodes: [l1-limit-techniques] }
+      - { id: q-017, label: "Is \\(f(x) = \\frac{1}{x}\\) continuous at \\(x = 0\\), and what is \\(\\lim_{x \\to 0^{+}} \\frac{1}{x}\\)?", nodes: [l1-continuity] }
+      - { id: q-018, label: "Evaluate \\(\\lim_{x \\to 0^{+}} \\sqrt{x}\\).", nodes: [l1-continuity] }
+      - { id: q-019, label: "What is the domain of \\(f(x) = \\sqrt{x^{2} - 1}\\)?", nodes: [l2-asymptotes] }
+      - { id: q-020, label: "What is the domain of \\(f(x) = \\frac{\\sqrt{1 + x}}{x}\\)?", nodes: [l2-asymptotes] }
+      - { id: q-021, label: "What is the domain of \\(f(x) = x^{1/4} \\ln x\\)?", nodes: [l2-asymptotes] }
+      - { id: q-022, label: "What is the domain of \\(f(x) = \\sqrt{x^{2} + 3x + 1}\\)?", nodes: [l2-asymptotes] }
+      - { id: q-023, label: "What is the domain of \\(f(x) = \\frac{1}{1 - x^{2}}\\)?", nodes: [l2-asymptotes] }
+      - { id: q-024, label: "What is the domain of \\(f(x) = \\tan^{2} x\\)?", nodes: [l2-asymptotes] }
+      - { id: q-025, label: "What is the horizontal asymptote of \\(f(x) = \\frac{x^{2}}{x^{2} + 9}\\)?", nodes: [l2-asymptotes] }
+      - { id: q-026, label: "For \\(f(x) = \\frac{x^{2}}{x^{2} + 9}\\), what is true at \\(x = 0\\)?", nodes: [l2-monotonicity-extrema] }
+      - { id: q-027, label: "What are the local extrema of \\(f(x) = x^{3} - 3x^{2} - 9x + 5\\)?", nodes: [l2-monotonicity-extrema] }
+      - { id: q-028, label: "What are the critical points of \\(f(x) = x^{4} - 4x^{2} + 1\\)?", nodes: [l2-monotonicity-extrema] }
+      - { id: q-029, label: "What is the behaviour of \\(f(x) = (1 - x^{2})^{1/4}\\) at the endpoints \\(x = \\pm 1\\)?", nodes: [l2-monotonicity-extrema] }
+      - { id: q-030, label: "Where is the inflection point of \\(f(x) = x^{3} - 3x^{2} - 9x + 5\\)?", nodes: [l2-concavity] }
+      - { id: q-031, label: "Where are the inflection points of \\(f(x) = x^{4} - 4x^{2} + 1\\)?", nodes: [l2-concavity] }
+      - { id: q-032, label: "For \\(f(x) = x e^{x}\\), identify the minimum and the asymptotic behaviour.", nodes: [l2-curve-sketching] }
+      - { id: q-033, label: "Differentiate \\(f(x) = \\ln(\\sin x)\\).", nodes: [l1-derivative-rules] }
+      - { id: q-034, label: "Differentiate \\(f(t) = \\cos(t^{2})\\).", nodes: [l1-derivative-rules] }
+      - { id: q-035, label: "Differentiate \\(f(x) = x^{2} - \\frac{1}{x}\\).", nodes: [l1-derivative-rules] }
+      - { id: q-036, label: "Differentiate \\(f(x) = \\sqrt{x^{2} + 1}\\).", nodes: [l1-derivative-rules] }
+      - { id: q-037, label: "Differentiate \\(f(x) = \\tan x\\).", nodes: [l1-derivative-rules] }
+      - { id: q-038, label: "Differentiate \\(f(x) = \\frac{2}{\\sqrt{2x + 1}}\\).", nodes: [l1-derivative-rules] }
+      - { id: q-039, label: "Differentiate \\(g(t) = \\frac{2t - 1}{t + 2}\\).", nodes: [l1-derivative-rules] }
+      - { id: q-040, label: "Find \\(a\\) so that \\(f(x) = x^{2} + ax - 3\\) has a horizontal tangent at \\(x = 4\\).", nodes: [l1-derivative-rules] }
+      - { id: q-041, label: "Differentiate \\(\\sinh x = \\frac{e^{x} - e^{-x}}{2}\\).", nodes: [l1-derivative-rules] }
+      - { id: q-042, label: "For \\(f(x) = \\sqrt{1 - x^{2}}\\), what are \\(\\lim_{x \\to -1^{+}} f'(x)\\) and \\(\\lim_{x \\to 1^{-}} f'(x)\\)?", nodes: [l1-derivative-rules] }
+      - { id: q-043, label: "Evaluate \\(\\lim_{x \\to 0^{+}} \\frac{\\sqrt{x}}{\\tan x}\\).", nodes: [l1-limit-techniques] }
+      - { id: q-044, label: "Differentiate \\(f(x) = \\arctan x\\).", nodes: [l2-inverse-functions] }
+      - { id: q-045, label: "Why does \\(f(x) = x^{3} + 3x^{2} + x - 2\\) have exactly one root between \\(0\\) and \\(1\\)?", nodes: [l2-ivt] }
+      - { id: q-046, label: "To approximate the \\(n\\)-th root of \\(a\\) by Newton's method, which function should you apply it to?", nodes: [l2-newton] }
+      - { id: q-047, label: "Write the Newton iteration for a function \\(f\\).", nodes: [l2-newton] }
+      - { id: q-048, label: "Newton's method is used to approximate the fifth root of \\(2\\), starting at \\(x_{0} = 1\\). Compute \\(x_{1}\\).", nodes: [l2-newton] }
+      - { id: q-049, label: "Newton's method is used to approximate the eleventh root of \\(5\\), starting at \\(x_{0} = 1\\). Compute \\(x_{1}\\", nodes: [l2-newton] }
+      - { id: q-050, label: "For \\(f(x) = x^{3} + x - 1\\) starting at \\(x_{0} = 1\\), compute \\(x_{1}\\) and \\(x_{2}\\).", nodes: [l2-newton] }
+      - { id: q-051, label: "Newton's method is used to approximate the fifth root of \\(7\\) from \\(x_{0} = 1.5\\). Roughly how accurate is t", nodes: [l2-newton] }
+      - { id: q-052, label: "Newton's method is applied to \\(f\\) and the current iterate sits at a point where \\(f'(x_{k}) = 0\\). What happ", nodes: [l2-newton] }
+      - { id: q-053, label: "Find the equation of the tangent to \\(f(x) = 5 - x - 3x^{2}\\) at \\(x = 2\\).", nodes: [l2-linear-approximation] }
+      - { id: q-054, label: "Find the Taylor polynomial of order \\(2\\) for \\(f(x) = \\frac{1}{1 - x}\\) about \\(0\\).", nodes: [l3-taylor] }
+      - { id: q-055, label: "Find the Taylor polynomial of order \\(2\\) for \\(f(x) = (1 + x)^{1/3}\\) about \\(0\\).", nodes: [l3-taylor] }
+      - { id: q-056, label: "Find the Taylor polynomial of order \\(2\\) for \\(f(x) = \\sqrt{1 + x}\\) about \\(0\\).", nodes: [l3-taylor] }
+      - { id: q-057, label: "Find the Taylor polynomial of order \\(2\\) for \\(f(x) = x^{9} + 10x + 1\\) about \\(0\\).", nodes: [l3-taylor] }
+      - { id: q-058, label: "Find the Taylor polynomial of order \\(2\\) for \\(f(x) = \\sin x\\) about \\(0\\).", nodes: [l3-taylor] }
+      - { id: q-059, label: "Find the Taylor polynomial of order \\(2\\) for \\(f(x) = e^{\\sin x}\\) about \\(0\\).", nodes: [l3-taylor-composition] }
+      - { id: q-060, label: "Find the Taylor polynomial of order \\(2\\) for \\(f(x) = \\ln(1 + x^{2})\\) about \\(0\\).", nodes: [l3-taylor-composition] }
+      - { id: q-061, label: "Approximate \\(\\ln(\\cos x)\\) by a polynomial for \\(x\\) near \\(0\\).", nodes: [l3-taylor-composition] }
+      - { id: q-062, label: "Evaluate \\(\\lim_{x \\to 1} \\frac{\\ln x - \\frac{x - 1}{x}}{(\\ln x)^{2}}\\).", nodes: [l3-taylor-composition] }
+      - { id: q-063, label: "Evaluate \\(\\lim_{x \\to 0} \\frac{\\cos x - 1}{\\sin x - \\tan x}\\).", nodes: [l3-taylor-composition] }
+      - { id: q-064, label: "A box has square front and back of side \\(x\\), and length \\(L\\). The post office requires that length plus gir", nodes: [l2-optimisation] }
+      - { id: q-065, label: "At a price of \\(10\\) dollars you sell nothing, and \\(500\\) more items for each dollar below \\(10\\). Fixed cost", nodes: [l2-optimisation] }
+      - { id: q-066, label: "A box with \\(0 \\leq c \\leq b \\leq a\\) has \\(a + b + c = 20\\) cm and total surface \\(2(ab + bc + ca) = 200\\,\\ma", nodes: [l2-optimisation] }
+      - { id: q-067, label: "Maximise \\(f = 2T + H - C\\) with \\(H = N - T^{3}\\) and \\(C = \\frac{2T + N}{3}\\), over \\(T, N \\geq 0\\) with \\(T", nodes: [l2-optimisation] }
+      - { id: q-068, label: "For \\(P = p_{a} - \\frac{1}{10}\\bigl[(p_{a} - 5)^{3} + (p_{a} - 10)^{2}\\bigr]\\), find the maximum \\(P\\) to one ", nodes: [l2-optimisation] }
+      - { id: q-069, label: "You find a single interior critical point of a continuous function on a closed bounded region. Is it the maxim", nodes: [l2-optimisation] }
+      - { id: q-070, label: "An object has position \\(f(t) = -\\frac{49}{10}t^{2} + 5t + 10\\). Give its speed and acceleration.", nodes: [l2-optimisation] }
+      - { id: q-071, label: "A rectangular field is fenced against a straight river, so only three sides need fencing. With \\(120\\) m of fe", nodes: [l2-optimisation] }
+      - { id: q-072, label: "An open-top box is made from a \\(12 \\times 12\\) sheet by cutting a square of side \\(x\\) from each corner and f", nodes: [l2-optimisation] }
+      - { id: q-073, label: "A rectangle sits with its base on the diameter of a semicircle of radius \\(r\\). What is its largest possible a", nodes: [l2-optimisation] }
+      - { id: q-074, label: "Minimise \\(f(x) = x + \\frac{1}{x}\\) for \\(x > 0\\).", nodes: [l2-optimisation] }
+      - { id: q-075, label: "A closed cylinder must hold a fixed volume. What shape minimises the total surface area?", nodes: [l2-optimisation] }
+      - { id: q-076, label: "A wire of length \\(L\\) is cut into two pieces, one bent into a square and one into a circle. What does the int", nodes: [l2-optimisation] }
+      - { id: q-077, label: "Two positive numbers have a fixed sum \\(S\\). What is their largest possible product?", nodes: [l2-optimisation] }
+      - { id: q-078, label: "Which point on the parabola \\(y = x^{2}\\) is closest to \\((0, 2)\\)?", nodes: [l2-optimisation] }
+      - { id: q-079, label: "Compute \\(\\int_{1}^{2} \\bigl(t^{5} + t^{4} - \\frac{t^{2}}{2} + 1\\bigr)\\, dt\\).", nodes: [l3-fundamental-theorem] }
+      - { id: q-080, label: "Compute \\(\\int_{-\\infty}^{\\infty} \\frac{1}{1 + x^{2}}\\, dx\\).", nodes: [l3-fundamental-theorem] }
+      - { id: q-081, label: "Compute \\(\\int_{0}^{1} \\frac{1}{\\sqrt{1 - x^{2}}}\\, dx\\).", nodes: [l3-fundamental-theorem] }
+      - { id: q-082, label: "Compute \\(\\int_{1}^{2} \\frac{t^{2} + 1}{t}\\, dt\\).", nodes: [l3-fundamental-theorem] }
+      - { id: q-083, label: "Compute \\(\\int_{-1}^{1} t(t^{2} + 1)^{1/3}\\, dt\\).", nodes: [l3-fundamental-theorem] }
+      - { id: q-084, label: "Compute \\(\\int_{0}^{1} \\tan t\\, dt\\) using \\(y = \\cos t\\).", nodes: [l3-substitution] }
+      - { id: q-085, label: "Compute \\(\\int_{0}^{\\pi/4} \\tan x\\, dx\\).", nodes: [l3-substitution] }
+      - { id: q-086, label: "Compute \\(\\int_{1}^{4} \\frac{1 - \\sqrt{t}}{\\sqrt{t}}\\, dt\\) using \\(x = \\sqrt{t}\\).", nodes: [l3-substitution] }
+      - { id: q-087, label: "Compute \\(\\int_{0}^{\\pi} \\frac{\\sin t}{1 + \\cos^{2} t}\\, dt\\) using \\(x = \\cos t\\).", nodes: [l3-substitution] }
+      - { id: q-088, label: "Compute \\(\\int_{-1}^{1} \\frac{4x - 1}{2x^{2} - x + 1}\\, dx\\).", nodes: [l3-substitution] }
+      - { id: q-089, label: "Compute \\(\\int_{0}^{\\infty} \\sqrt{t}\\, \\exp(-\\sqrt{t})\\, dt\\) using \\(s = \\sqrt{t}\\).", nodes: [l3-substitution] }
+      - { id: q-090, label: "Compute \\(\\int_{0}^{1} t(1 + t)^{1/3}\\, dt\\).", nodes: [l3-integration-by-parts] }
+      - { id: q-091, label: "Compute \\(\\int_{0}^{1} \\arctan t\\, dt\\) by parts.", nodes: [l3-integration-by-parts] }
+      - { id: q-092, label: "Compute \\(\\int_{0}^{1} t^{2} \\sin t\\, dt\\).", nodes: [l3-integration-by-parts] }
+      - { id: q-093, label: "Compute \\(\\int_{-1}^{1} \\sqrt{1 - t^{2}}\\, dt\\) using \\(t = \\sin\\theta\\).", nodes: [l3-trig-integrals] }
+      - { id: q-094, label: "Compute \\(\\int_{1/2}^{1} \\sqrt{1 - t^{2}}\\, dt\\).", nodes: [l3-trig-integrals] }
+      - { id: q-095, label: "Compute \\(\\int_{0}^{1/2} \\frac{1}{1 - x^{2}}\\, dx\\).", nodes: [l3-partial-fractions] }
+      - { id: q-096, label: "Give the antiderivative of \\(f(x) = x^{2}\\) that vanishes at \\(x = 0\\).", nodes: [l3-fundamental-theorem] }
+      - { id: q-097, label: "Does \\(f(x) = \\frac{1}{x}\\) have an antiderivative vanishing at \\(x = 0\\)?", nodes: [l3-fundamental-theorem] }
+      - { id: q-098, label: "Give the antiderivative of \\(f(x) = (x + 3)^{1/3}\\) that vanishes at \\(x = 0\\).", nodes: [l3-fundamental-theorem] }
+      - { id: q-099, label: "Give the antiderivative of \\(f(x) = \\tan(x)\\) that vanishes at \\(x = 0\\).", nodes: [l3-fundamental-theorem] }
+      - { id: q-100, label: "Area between the \\(x\\)-axis and \\(y = -\\ln(x)\\) for \\(0 < x < 1\\).", nodes: [l3-improper-integrals] }
+      - { id: q-101, label: "Area of the region \\(0 < y < \\frac{1}{x^{2}}\\), \\(1 < x < L\\). What happens as \\(L \\to \\infty\\)?", nodes: [l3-improper-integrals] }
+      - { id: q-102, label: "For which \\(x\\) is \\(f(x) = \\int_{0}^{\\infty} \\sin(t)\\, e^{-tx}\\, dt\\) defined, and what is its value?", nodes: [l3-improper-integrals] }
+      - { id: q-103, label: "Compute \\(\\int_{0}^{1} \\frac{\\ln(x)}{\\sqrt{x}}\\, dx\\) as the limit of the integral from \\(\\varepsilon\\) to 1.", nodes: [l3-improper-integrals] }
+      - { id: q-104, label: "Compute \\(\\int_{0}^{1} \\frac{1}{x\\ln(x)}\\, dx\\) by letting \\(t = \\ln(x)\\).", nodes: [l3-improper-integrals] }
+      - { id: q-105, label: "What does \\(f(x) = \\int_{\\pi/2}^{x} \\frac{\\cos(t)}{t}\\, dt\\) do for large \\(x\\), and how fast?", nodes: [l3-improper-integrals] }
+      - { id: q-106, label: "Area between the \\(x\\)-axis and \\(y = \\sqrt{x}\\) for \\(0 < x < 1\\).", nodes: [l3-area-between-curves] }
+      - { id: q-107, label: "Area of the region in the first quadrant lying below both \\(y = x\\) and \\(y = \\frac{1}{1 + x^{2}}\\).", nodes: [l3-area-between-curves] }
+      - { id: q-108, label: "Area between the curves \\(y = x^{2}\\) and \\(x = y^{2}\\) (first quadrant).", nodes: [l3-area-between-curves] }
+      - { id: q-109, label: "For \\(\\lambda > 0\\), is \\(f(x) = \\lambda e^{-\\lambda x}\\) on \\(x \\geq 0\\) a probability density, and what is \\", nodes: [l3-probability-densities] }
+      - { id: q-110, label: "For \\(\\lambda > 0\\), is \\(f(x) = \\lambda^{2} x e^{-\\lambda x}\\) on \\(x \\geq 0\\) a density, and what is \\(E(X)\\", nodes: [l3-probability-densities] }
+      - { id: q-111, label: "For \\(a > 0\\), is \\(f(x) = \\frac{1}{\\pi} \\cdot \\frac{a}{x^{2} + a^{2}}\\) a density on \\(\\mathbb{R}\\), and what", nodes: [l3-probability-densities] }
+      - { id: l1-transformations-card-81, label: "How does \\(\\sin(3x)\\) differ from \\(\\sin x\\)?", nodes: [l1-transformations] }
+      - { id: l1-derivative-card-18, label: "Equation of the tangent at \\(a\\)", nodes: [l1-derivative] }
+      - { id: l1-derivative-rules-card-0, label: "\\(\\frac{d}{dx} x^{n}\\)", nodes: [l1-derivative-rules] }
+      - { id: l1-derivative-rules-card-1, label: "\\(\\frac{d}{dx} \\sqrt{x}\\)", nodes: [l1-derivative-rules] }
+      - { id: l1-derivative-rules-card-2, label: "\\(\\frac{d}{dx} \\ln x\\)", nodes: [l1-derivative-rules] }
+      - { id: l1-derivative-rules-card-3, label: "\\(\\frac{d}{dx} \\exp x\\)", nodes: [l1-derivative-rules] }
+      - { id: l1-derivative-rules-card-4, label: "\\(\\frac{d}{dx}\\sin x\\), \\(\\frac{d}{dx}\\cos x\\)", nodes: [l1-derivative-rules] }
+      - { id: l1-derivative-rules-card-5, label: "\\(\\frac{d}{dx}\\tan x\\)", nodes: [l1-derivative-rules] }
+      - { id: l1-derivative-rules-card-9, label: "Chain rule", nodes: [l1-derivative-rules] }
+      - { id: l1-derivative-rules-card-10, label: "Product rule", nodes: [l1-derivative-rules] }
+      - { id: l1-derivative-rules-card-11, label: "Quotient rule", nodes: [l1-derivative-rules] }
+      - { id: l1-derivative-rules-card-12, label: "\\(\\frac{d}{dx} \\ln(u(x))\\)", nodes: [l1-derivative-rules] }
+      - { id: l1-derivative-rules-card-13, label: "\\(\\frac{d}{dx} \\sqrt{u(x)}\\)", nodes: [l1-derivative-rules] }
+      - { id: l1-derivative-rules-card-14, label: "\\(\\frac{d}{dx} \\ln(\\sin x)\\)", nodes: [l1-derivative-rules] }
+      - { id: l1-derivative-rules-card-15, label: "\\(\\frac{d}{dt} \\cos(t^{2})\\)", nodes: [l1-derivative-rules] }
+      - { id: l1-derivative-rules-card-16, label: "\\(\\frac{d}{dt} \\frac{2t - 1}{t + 2}\\)", nodes: [l1-derivative-rules] }
+      - { id: l1-derivative-rules-card-17, label: "\\(\\frac{d}{dx} \\frac{2}{\\sqrt{2x + 1}}\\)", nodes: [l1-derivative-rules] }
+      - { id: l1-trigonometry-card-71, label: "\\(\\sin^{2}\\theta + \\cos^{2}\\theta\\)", nodes: [l1-trigonometry] }
+      - { id: l1-trigonometry-card-72, label: "\\(\\cos(2\\theta)\\). The three forms.", nodes: [l1-trigonometry] }
+      - { id: l1-trigonometry-card-73, label: "\\(\\cos^{2}\\theta\\) and \\(\\sin^{2}\\theta\\) in terms of \\(\\cos 2\\theta\\)", nodes: [l1-trigonometry] }
+      - { id: l1-trigonometry-card-74, label: "\\(\\sin(2\\theta)\\)", nodes: [l1-trigonometry] }
+      - { id: l1-trigonometry-card-75, label: "Where is \\(\\sin\\theta = -1\\)?", nodes: [l1-trigonometry] }
+      - { id: l1-trigonometry-card-76, label: "Solving \\(\\cos(2\\theta) = \\frac{1}{2}\\)", nodes: [l1-trigonometry] }
+      - { id: l1-trigonometry-card-77, label: "\\(\\sin\\frac{\\pi}{6}\\), \\(\\sin\\frac{\\pi}{4}\\), \\(\\sin\\frac{\\pi}{3}\\)", nodes: [l1-trigonometry] }
+      - { id: l1-trigonometry-card-80, label: "Odd or even: \\(\\sin\\), \\(\\cos\\), \\(\\tan\\)", nodes: [l1-trigonometry] }
+      - { id: l1-trigonometry-card-82, label: "\\(\\frac{\\cos^{2} t}{1 - \\sin t}\\)", nodes: [l1-trigonometry] }
+      - { id: l1-exp-log-card-8, label: "\\(\\frac{d}{dx}\\sinh x\\), \\(\\frac{d}{dx}\\cosh x\\)", nodes: [l1-exp-log] }
+      - { id: l1-exp-log-card-78, label: "\\(\\exp(a + b)\\) and \\((\\exp a)^{b}\\)", nodes: [l1-exp-log] }
+      - { id: l1-exp-log-card-79, label: "\\(\\ln(ab)\\), \\(\\ln(a/b)\\), \\(\\ln(a^{n})\\)", nodes: [l1-exp-log] }
+      - { id: l2-inverse-functions-card-6, label: "\\(\\frac{d}{dx}\\arctan x\\)", nodes: [l2-inverse-functions] }
+      - { id: l2-inverse-functions-card-7, label: "\\(\\frac{d}{dx}\\arcsin x\\)", nodes: [l2-inverse-functions] }
+      - { id: l1-limit-techniques-card-49, label: "\\(\\lim_{x \\to 0} x\\sin(1/x)\\)", nodes: [l1-limit-techniques] }
+      - { id: l1-limit-techniques-card-50, label: "\\(\\lim_{x \\to 0^{+}} x\\ln x\\)", nodes: [l1-limit-techniques] }
+      - { id: l1-limit-techniques-card-51, label: "\\(\\lim_{x \\to \\infty} x^{r}\\exp(-x)\\), \\(r > 0\\)", nodes: [l1-limit-techniques] }
+      - { id: l1-limit-techniques-card-52, label: "\\(\\lim_{x \\to 1} \\frac{x - 1}{\\ln x}\\)", nodes: [l1-limit-techniques] }
+      - { id: l1-limit-techniques-card-53, label: "Order of growth, slowest to fastest, as \\(x \\to \\infty\\)", nodes: [l1-limit-techniques] }
+      - { id: l2-lhopital-card-54, label: "Taylor vs L'Hopital on a \\(0/0\\) limit", nodes: [l2-lhopital] }
+      - { id: l2-asymptotes-card-61, label: "How to find an oblique asymptote \\(y = ax + b\\)", nodes: [l2-asymptotes] }
+      - { id: l2-monotonicity-extrema-card-62, label: "What does \\(f' \\to \\pm\\infty\\) at an endpoint mean?", nodes: [l2-monotonicity-extrema] }
+      - { id: l2-curve-sketching-card-60, label: "Curve-sketching checklist", nodes: [l2-curve-sketching] }
+      - { id: l2-optimisation-card-63, label: "Optimisation on a closed interval", nodes: [l2-optimisation] }
+      - { id: l2-optimisation-card-64, label: "Word-problem recipe", nodes: [l2-optimisation] }
+      - { id: l2-newton-card-56, label: "Newton's iteration", nodes: [l2-newton] }
+      - { id: l2-newton-card-57, label: "Newton for the \\(n\\)-th root of \\(a\\)", nodes: [l2-newton] }
+      - { id: l2-newton-card-58, label: "How fast does Newton converge?", nodes: [l2-newton] }
+      - { id: l2-newton-card-59, label: "When does Newton break?", nodes: [l2-newton] }
+      - { id: l3-taylor-card-38, label: "\\(\\exp x\\) to order 2", nodes: [l3-taylor] }
+      - { id: l3-taylor-card-39, label: "\\(\\sin x\\) to order 3", nodes: [l3-taylor] }
+      - { id: l3-taylor-card-40, label: "\\(\\cos x\\) to order 2", nodes: [l3-taylor] }
+      - { id: l3-taylor-card-41, label: "\\(\\ln(1 + x)\\) to order 2", nodes: [l3-taylor] }
+      - { id: l3-taylor-card-42, label: "\\(\\frac{1}{1 - x}\\) to order 2", nodes: [l3-taylor] }
+      - { id: l3-taylor-card-43, label: "\\((1 + x)^{\\alpha}\\) to order 2", nodes: [l3-taylor] }
+      - { id: l3-taylor-card-44, label: "\\(\\sqrt{1 + x}\\) to order 2", nodes: [l3-taylor] }
+      - { id: l3-taylor-card-45, label: "\\((1 + x)^{1/3}\\) to order 2", nodes: [l3-taylor] }
+      - { id: l3-taylor-card-46, label: "\\(\\tan x\\) to order 3", nodes: [l3-taylor] }
+      - { id: l3-taylor-composition-card-47, label: "\\(\\ln(\\cos x)\\) near \\(0\\)", nodes: [l3-taylor-composition] }
+      - { id: l3-taylor-composition-card-48, label: "\\(\\exp(\\sin x)\\) to order 2", nodes: [l3-taylor-composition] }
+      - { id: l3-taylor-composition-card-55, label: "Why can truncating too early break a limit?", nodes: [l3-taylor-composition] }
+      - { id: l3-fundamental-theorem-card-19, label: "\\(\\int x^{n}\\, dx\\) for \\(n \\neq -1\\)", nodes: [l3-fundamental-theorem] }
+      - { id: l3-fundamental-theorem-card-20, label: "\\(\\int \\frac{1}{x}\\, dx\\)", nodes: [l3-fundamental-theorem] }
+      - { id: l3-fundamental-theorem-card-22, label: "\\(\\int \\frac{1}{1 + x^{2}}\\, dx\\)", nodes: [l3-fundamental-theorem] }
+      - { id: l3-fundamental-theorem-card-23, label: "\\(\\int \\frac{1}{\\sqrt{1 - x^{2}}}\\, dx\\)", nodes: [l3-fundamental-theorem] }
+      - { id: l3-fundamental-theorem-card-30, label: "\\(\\int_{-1}^{1} \\sqrt{1 - t^{2}}\\, dt\\)", nodes: [l3-fundamental-theorem] }
+      - { id: l3-fundamental-theorem-card-36, label: "\\(\\int_{-a}^{a}\\) of an odd function", nodes: [l3-fundamental-theorem] }
+      - { id: l3-substitution-card-21, label: "\\(\\int \\tan x\\, dx\\)", nodes: [l3-substitution] }
+      - { id: l3-substitution-card-26, label: "Spotting \\(\\int \\frac{u'}{u}\\, dx\\)", nodes: [l3-substitution] }
+      - { id: l3-substitution-card-33, label: "\\(\\int_{0}^{\\pi/4} \\tan x\\, dx\\)", nodes: [l3-substitution] }
+      - { id: l3-integration-by-parts-card-24, label: "Integration by parts", nodes: [l3-integration-by-parts] }
+      - { id: l3-integration-by-parts-card-25, label: "Trick for \\(\\int \\arctan t\\, dt\\) or \\(\\int \\ln t\\, dt\\)", nodes: [l3-integration-by-parts] }
+      - { id: l3-integration-by-parts-card-32, label: "\\(\\int_{0}^{1} \\arctan t\\, dt\\)", nodes: [l3-integration-by-parts] }
+      - { id: l3-trig-integrals-card-27, label: "Substitution for \\(\\sqrt{1 - x^{2}}\\)", nodes: [l3-trig-integrals] }
+      - { id: l3-trig-integrals-card-28, label: "\\(\\int \\cos^{2}\\theta\\, d\\theta\\)", nodes: [l3-trig-integrals] }
+      - { id: l3-trig-integrals-card-31, label: "\\(\\int_{1/2}^{1} \\sqrt{1 - t^{2}}\\, dt\\)", nodes: [l3-trig-integrals] }
+      - { id: l3-improper-integrals-card-29, label: "\\(\\int_{-\\infty}^{\\infty} \\frac{1}{1 + x^{2}}\\, dx\\)", nodes: [l3-improper-integrals] }
+      - { id: l3-improper-integrals-card-34, label: "\\(\\int_{0}^{\\infty} s^{n}\\exp(-s)\\, ds\\)", nodes: [l3-improper-integrals] }
+      - { id: l3-improper-integrals-card-35, label: "\\(\\int_{0}^{1} \\frac{1}{\\sqrt{t(1 - t)}}\\, dt\\)", nodes: [l3-improper-integrals] }
+      - { id: l3-improper-integrals-card-65, label: "Two kinds of improper integral", nodes: [l3-improper-integrals] }
+      - { id: l3-improper-integrals-card-66, label: "\\(\\int_{0}^{1} \\frac{\\ln x}{\\sqrt{x}}\\, dx\\) vs \\(\\int_{0}^{1} \\frac{1}{x\\ln x}\\, dx\\)", nodes: [l3-improper-integrals] }
+      - { id: l3-area-between-curves-card-37, label: "Area between two curves", nodes: [l3-area-between-curves] }
+      - { id: l3-probability-densities-card-67, label: "When is \\(f\\) a probability density?", nodes: [l3-probability-densities] }
+      - { id: l3-probability-densities-card-68, label: "\\(E(X)\\) for the density \\(f\\)", nodes: [l3-probability-densities] }
+      - { id: l3-probability-densities-card-69, label: "Exponential density \\(\\lambda\\exp(-\\lambda x)\\), \\(x \\geq 0\\)", nodes: [l3-probability-densities] }
+      - { id: l3-probability-densities-card-70, label: "Cauchy density \\(\\frac{a}{\\pi(x^{2} + a^{2})}\\)", nodes: [l3-probability-densities] }
+      - { id: q-drop-58, label: "Dropped question 58", excluded: "The stem depends on a graph that a concept question cannot carry." }
+  - source: curves-revision
+    items:
+      - { id: write-up-order, label: "Eight-step write-up order for a curve discussion", nodes: [l2-curve-sketching] }
+      - { id: checklist, label: "Ten-item checklist before a curve discussion", nodes: [l2-curve-sketching] }
+      - { id: curve-01, label: "Curve discussion 01", nodes: [l2-curve-sketching] }
+      - { id: drill-01, label: "Curve drill 01", nodes: [l2-curve-sketching] }
+      - { id: curve-02, label: "Curve discussion 02", nodes: [l2-curve-sketching] }
+      - { id: drill-02, label: "Curve drill 02", nodes: [l2-curve-sketching] }
+      - { id: curve-03, label: "Curve discussion 03", nodes: [l2-curve-sketching] }
+      - { id: drill-03, label: "Curve drill 03", nodes: [l2-curve-sketching] }
+      - { id: curve-04, label: "Curve discussion 04", nodes: [l2-curve-sketching] }
+      - { id: drill-04, label: "Curve drill 04", nodes: [l2-curve-sketching] }
+      - { id: curve-05, label: "Curve discussion 05", nodes: [l2-curve-sketching] }
+      - { id: drill-05, label: "Curve drill 05", nodes: [l2-curve-sketching] }
+      - { id: curve-06, label: "Curve discussion 06", nodes: [l2-curve-sketching] }
+      - { id: drill-06, label: "Curve drill 06", nodes: [l2-curve-sketching] }
+      - { id: curve-07, label: "Curve discussion 07", nodes: [l2-curve-sketching] }
+      - { id: drill-07, label: "Curve drill 07", nodes: [l2-curve-sketching] }
+      - { id: curve-08, label: "Curve discussion 08", nodes: [l2-curve-sketching] }
+      - { id: drill-08, label: "Curve drill 08", nodes: [l2-curve-sketching] }
+      - { id: curve-09, label: "Curve discussion 09", nodes: [l2-curve-sketching] }
+      - { id: drill-09, label: "Curve drill 09", nodes: [l2-curve-sketching] }
+      - { id: curve-10, label: "Curve discussion 10", nodes: [l2-curve-sketching] }
+      - { id: drill-10, label: "Curve drill 10", nodes: [l2-curve-sketching] }
+      - { id: curve-11, label: "Curve discussion 11", nodes: [l2-curve-sketching] }
+      - { id: drill-11, label: "Curve drill 11", nodes: [l2-curve-sketching] }
+      - { id: curve-12, label: "Curve discussion 12", nodes: [l2-curve-sketching] }
+      - { id: drill-12, label: "Curve drill 12", nodes: [l2-curve-sketching] }
+  - source: integrals-revision
+    items:
+      - { id: s16-1, label: "s16-1: Compute the area between the x-axis and y=sqrt(x) for 0< x<1.", nodes: [l3-area-between-curves] }
+      - { id: s16-2, label: "s16-2: Compute the area between the x-axis and y=-ln x for 0< x<1.", nodes: [l3-area-between-curves] }
+      - { id: s16-3, label: "s16-3: Compute the area A(L) of (x,y): 1< x< L, 0< y<1/x^2, for L>1. What happens when L to infinity?", nodes: [l3-area-between-curves] }
+      - { id: j1, label: "j1: Area between y=x and y=x^2 for 0<= x<=1.", nodes: [l3-area-between-curves] }
+      - { id: j2, label: "j2: Area of the region enclosed by y=x^2 and y=2-x^2.", nodes: [l3-area-between-curves] }
+      - { id: j3, label: "j3: Area between the curve y=x^3-x and the x-axis for -1<= x<=1.", nodes: [l3-area-between-curves] }
+      - { id: j4, label: "j4: Average value of sin x on [0,pi].", nodes: [l3-area-between-curves] }
+      - { id: j5, label: "j5: Area between y=e^x, y=e^-x and the line x=1.", nodes: [l3-area-between-curves] }
+      - { id: j6, label: "j6: Is the area of x>=1, 0<= y<=(1)/x finite?", nodes: [l3-area-between-curves] }
+      - { id: j7, label: "j7: Area between the x-axis and y=ln x for (1)/e<= x<= e.", nodes: [l3-area-between-curves] }
+      - { id: m6-1, label: "m6-1: Compute integral_1^2 (t^5+t^4-(t^2)/(2)+1)dt.", nodes: [l3-fundamental-theorem] }
+      - { id: s15-1, label: "s15-1: Find the antiderivative of f(x)=x^2 that vanishes at x=0.", nodes: [l3-fundamental-theorem] }
+      - { id: s15-2, label: "s15-2: Find the antiderivative of f(x)= 1x that vanishes at x=0.", nodes: [l3-fundamental-theorem] }
+      - { id: s15-3, label: "s15-3: Find the antiderivative of g(x)=(x+3)^1/3 that vanishes at x=0.", nodes: [l3-fundamental-theorem] }
+      - { id: s15-4, label: "s15-4: Find the antiderivative of f(x)=tan x that vanishes at x=0 (on ]- 2, 2[).", nodes: [l3-fundamental-theorem] }
+      - { id: s19, label: "s19: Let f(x)=integral_0^infinity sin(t) e^-tx dt. For which x is f(x) well defined? Compute f(x) there.", nodes: [l3-fundamental-theorem] }
+      - { id: b1, label: "b1: integral_0^2(3x^2-4x+1) dx", nodes: [l3-fundamental-theorem] }
+      - { id: b2, label: "b2: integral_1^4(sqrt(x)+ 1sqrt(x))dx", nodes: [l3-fundamental-theorem] }
+      - { id: b3, label: "b3: integral_1^e(x+(1)/x)dx", nodes: [l3-fundamental-theorem] }
+      - { id: b4, label: "b4: integral_0^pi(sin x+cos x) dx", nodes: [l3-fundamental-theorem] }
+      - { id: b5, label: "b5: integral_0^1e^2xdx", nodes: [l3-fundamental-theorem] }
+      - { id: b6, label: "b6: Find an antiderivative of f(x)=x^4-(3)/(x^2)+2 on (0,infinity).", nodes: [l3-fundamental-theorem] }
+      - { id: b7, label: "b7: Find an antiderivative of f(x)=(1)/(2x+1) on (- 12,infinity).", nodes: [l3-fundamental-theorem] }
+      - { id: b8, label: "b8: integral_0^1(dx)/((1+x)^2)", nodes: [l3-fundamental-theorem] }
+      - { id: b9, label: "b9: Find the antiderivative of f(x)=cos(3x)+e^-x vanishing at 0.", nodes: [l3-fundamental-theorem] }
+      - { id: b10, label: "b10: integral_0^pi/4(dx)/(cos^2x)", nodes: [l3-fundamental-theorem] }
+      - { id: b11, label: "b11: integral_1^8(dx)/( [3]x)", nodes: [l3-fundamental-theorem] }
+      - { id: b12, label: "b12: integral_0^1 2^x dx", nodes: [l3-fundamental-theorem] }
+      - { id: h1, label: "h1: integral_-2^2(x^5-3x^3+x) dx", nodes: [l3-fundamental-theorem] }
+      - { id: h2, label: "h2: integral_-pi^pix^2sin x dx", nodes: [l3-fundamental-theorem] }
+      - { id: h3, label: "h3: integral_-1^2|x| dx", nodes: [l3-fundamental-theorem] }
+      - { id: h4, label: "h4: integral_0^3|x-1| dx", nodes: [l3-fundamental-theorem] }
+      - { id: h5, label: "h5: integral_-1^1(x^3cos x+x^2)dx", nodes: [l3-fundamental-theorem] }
+      - { id: h6, label: "h6: integral_0^2pi|sin x| dx", nodes: [l3-fundamental-theorem] }
+      - { id: h7, label: "h7: Let f(x)=x^2 on [0,1] and f(x)=2-x on [1,2]. Compute integral_0^2f(x) dx.", nodes: [l3-fundamental-theorem] }
+      - { id: h8, label: "h8: integral_0^10pisin^2x dx", nodes: [l3-fundamental-theorem] }
+      - { id: h9, label: "h9: integral_-1^1e^|x|dx", nodes: [l3-fundamental-theorem] }
+      - { id: l1, label: "l1: Let F(x)=integral_0^xe^-t^2dt. Compute F'(1).", nodes: [l3-fundamental-theorem] }
+      - { id: l2, label: "l2: Let G(x)=integral_1^x^2ln t dt. Compute G'(e).", nodes: [l3-fundamental-theorem] }
+      - { id: l3, label: "l3: Let H(x)=integral_x^2x(dt)/(t) for x>0. Compute H'(5).", nodes: [l3-fundamental-theorem] }
+      - { id: l4, label: "l4: For x>0, compute g(x)=integral_0^infinitycos(t) e^-xt dt.", nodes: [l3-fundamental-theorem] }
+      - { id: l5, label: "l5: For x>0, compute integral_0^infinity e^-xt dt as a function of x. (What happens for x<=0?)", nodes: [l3-fundamental-theorem] }
+      - { id: m6-4, label: "m6-4: Does integral_-infinity^+infinity(dx)/(1+x^2) converge? If so, compute it.", nodes: [l3-improper-integrals] }
+      - { id: s18-4, label: "s18-4: Does integral_0^1 dxsqrt(1-x^2) converge? If so, compute it.", nodes: [l3-improper-integrals] }
+      - { id: i1, label: "i1: integral_1^infinity(dx)/(x^3)", nodes: [l3-improper-integrals] }
+      - { id: i2, label: "i2: integral_1^infinity(dx)/(sqrt(x))", nodes: [l3-improper-integrals] }
+      - { id: i3, label: "i3: integral_0^1(dx)/(sqrt(x))", nodes: [l3-improper-integrals] }
+      - { id: i4, label: "i4: integral_0^1(dx)/(x^2)", nodes: [l3-improper-integrals] }
+      - { id: i5, label: "i5: integral_0^infinitye^-2xdx", nodes: [l3-improper-integrals] }
+      - { id: i6, label: "i6: integral_0^infinityxe^-xdx", nodes: [l3-improper-integrals] }
+      - { id: i7, label: "i7: integral_0^1ln x dx", nodes: [l3-improper-integrals] }
+      - { id: i8, label: "i8: integral_-1^1(dx)/(x^2)", nodes: [l3-improper-integrals] }
+      - { id: i9, label: "i9: integral_2^infinity(dx)/(x(ln x)^2)", nodes: [l3-improper-integrals] }
+      - { id: i10, label: "i10: integral_1^infinity(dx)/(x(x+1))", nodes: [l3-improper-integrals] }
+      - { id: i11, label: "i11: integral_-infinity^infinityx dx", nodes: [l3-improper-integrals] }
+      - { id: i12, label: "i12: Nature of integral_1^infinity(sin^2x)/(x^2)dx (no computation required).", nodes: [l3-improper-integrals] }
+      - { id: i13, label: "i13: Nature of integral_1^infinity 1+e^-xxdx.", nodes: [l3-improper-integrals] }
+      - { id: i14, label: "i14: Nature of integral_1^infinity dxsqrt(x^3+1).", nodes: [l3-improper-integrals] }
+      - { id: i15, label: "i15: Nature of integral_0^1(dx)/(sin x).", nodes: [l3-improper-integrals] }
+      - { id: i16, label: "i16: integral_0^infinityx^2e^-xdx", nodes: [l3-improper-integrals] }
+      - { id: i17, label: "i17: integral_2^infinity(dx)/(xln x)", nodes: [l3-improper-integrals] }
+      - { id: i18, label: "i18: integral_0^infinity(dx)/(sqrt(x) (1+x))", nodes: [l3-improper-integrals] }
+      - { id: m6-2, label: "m6-2: Compute integral_0^1 t (1+t)^1/3 dt by integrating by parts. (The mock prints (1+1)^1/3, an evident typo for (1+t)^1/3.)", nodes: [l3-integration-by-parts] }
+      - { id: d1, label: "d1: integral_0^1xe^xdx", nodes: [l3-integration-by-parts] }
+      - { id: d2, label: "d2: integral_0^pi xsin x dx", nodes: [l3-integration-by-parts] }
+      - { id: d3, label: "d3: integral_1^eln x dx", nodes: [l3-integration-by-parts] }
+      - { id: d4, label: "d4: integral_1^exln x dx", nodes: [l3-integration-by-parts] }
+      - { id: d5, label: "d5: integral_0^1x^2e^xdx", nodes: [l3-integration-by-parts] }
+      - { id: d6, label: "d6: integral_0^1arctan x dx", nodes: [l3-integration-by-parts] }
+      - { id: d7, label: "d7: integral_0^pi/2e^xcos x dx", nodes: [l3-integration-by-parts] }
+      - { id: d8, label: "d8: integral_1^e(ln x)^2dx", nodes: [l3-integration-by-parts] }
+      - { id: d9, label: "d9: Antiderivative of xcos x.", nodes: [l3-integration-by-parts] }
+      - { id: d10, label: "d10: integral_0^1arcsin x dx", nodes: [l3-integration-by-parts] }
+      - { id: d11, label: "d11: integral_0^pi e^xsin x dx", nodes: [l3-integration-by-parts] }
+      - { id: d12, label: "d12: integral_0^1x^3e^x^2dx", nodes: [l3-integration-by-parts] }
+      - { id: f1, label: "f1: integral_2^3(dx)/(x^2-1)", nodes: [l3-partial-fractions] }
+      - { id: f2, label: "f2: integral_0^1(dx)/(x^2+2x+2)", nodes: [l3-partial-fractions] }
+      - { id: f3, label: "f3: integral_0^1(2x+3)/(x^2+3x+2)dx", nodes: [l3-partial-fractions] }
+      - { id: f4, label: "f4: integral_0^1(x)/((x+1)(x+2))dx", nodes: [l3-partial-fractions] }
+      - { id: f5, label: "f5: integral_0^1(x^2)/(x^2+1)dx", nodes: [l3-partial-fractions] }
+      - { id: f6, label: "f6: integral_0^1(dx)/(x^2+4)", nodes: [l3-partial-fractions] }
+      - { id: f7, label: "f7: integral_2^3(x^3)/(x-1)dx", nodes: [l3-partial-fractions] }
+      - { id: f8, label: "f8: integral_1^2(dx)/(x^2(x+1))", nodes: [l3-partial-fractions] }
+      - { id: f9, label: "f9: integral_0^1(x+3)/(x^2+1)dx", nodes: [l3-partial-fractions] }
+      - { id: s17-1a, label: "s17-1a: Let >0, f(x)= e^- x for x>=0 (and 0 for x<0). Check that f is a probability density and compute E(X) as a function of . Type λ as lambda .", nodes: [l3-probability-densities] }
+      - { id: s17-1b, label: "s17-1b: Same exponential density f(x)= e^- x, x>=0. Compute P(X>2). Type λ as lambda .", nodes: [l3-probability-densities] }
+      - { id: s17-2, label: "s17-2: Let f(x)= ^2xe^- x for x>=0. Is f a density? Compute E(X). Type λ as lambda .", nodes: [l3-probability-densities] }
+      - { id: s17-3, label: "s17-3: Let a>0 and f(x)= 1pi (a)/(x^2+a^2) on R. It is a density (check it!). Does the integral defining E(X)=integral_-infinity^infinityxf(x) d...", nodes: [l3-probability-densities] }
+      - { id: k1, label: "k1: Find c such that f(x)=c x(1-x) on [0,1] (and 0 elsewhere) is a probability density.", nodes: [l3-probability-densities] }
+      - { id: k2, label: "k2: With f(x)=6x(1-x) on [0,1], compute E(X).", nodes: [l3-probability-densities] }
+      - { id: k3, label: "k3: With f(x)=6x(1-x) on [0,1], compute Var(X).", nodes: [l3-probability-densities] }
+      - { id: k4, label: "k4: X exponential with = 12. Compute P(1< X<3).", nodes: [l3-probability-densities] }
+      - { id: k5, label: "k5: X exponential with =2. Compute E(X^2).", nodes: [l3-probability-densities] }
+      - { id: k6, label: "k6: Find c such that f(x)=c e^-|x| on R is a density.", nodes: [l3-probability-densities] }
+      - { id: k7, label: "k7: f(x)= 1x^2 on [1,infinity) is a density. Does E(X) exist (does integral_1^infinity x f(x) dx converge)?", nodes: [l3-probability-densities] }
+      - { id: k8, label: "k8: X exponential with =1. Find its median m (P(X<= m)= 12).", nodes: [l3-probability-densities] }
+      - { id: k9, label: "k9: X has density 2x on [0,1]. Compute P(X<= 12).", nodes: [l3-probability-densities] }
+      - { id: k10, label: "k10: X has density xe^-x on [0,infinity) (the sheet's Ex. 17.2 with =1). Compute Var(X).", nodes: [l3-probability-densities] }
+      - { id: l6, label: "l6: _n to infinity(1)/n _k=1^n( kn)^2", nodes: [l3-riemann-sums] }
+      - { id: l7, label: "l7: _n to infinity _k=1^n(n)/(n^2+k^2)", nodes: [l3-riemann-sums] }
+      - { id: l8, label: "l8: _n to infinity(1)/n _k=1^nsin((kpi)/(n))", nodes: [l3-riemann-sums] }
+      - { id: m6-3, label: "m6-3: Compute integral_0^1 tan(t) dt using the substitution y=cos t.", nodes: [l3-substitution] }
+      - { id: s18-1, label: "s18-1: Compute integral_1^4(1-sqrt(t))/(sqrt(t)) dt letting x=sqrt(t).", nodes: [l3-substitution] }
+      - { id: s18-2, label: "s18-2: Compute integral_0^pi(sin t)/(1+cos^2t) dt letting x=cos t.", nodes: [l3-substitution] }
+      - { id: r1, label: "r1: Antiderivative of (2x)/(x^2+1).", nodes: [l3-substitution] }
+      - { id: r2, label: "r2: integral_0^1xe^x^2dx", nodes: [l3-substitution] }
+      - { id: r3, label: "r3: Antiderivative of cos x sin^4x.", nodes: [l3-substitution] }
+      - { id: r4, label: "r4: integral_1^e(ln x)/(x)dx", nodes: [l3-substitution] }
+      - { id: r5, label: "r5: Antiderivative of (x^2)/(x^3+1) on (-1,infinity).", nodes: [l3-substitution] }
+      - { id: r6, label: "r6: integral_0^1 xsqrt(1+x^2)dx", nodes: [l3-substitution] }
+      - { id: r7, label: "r7: Antiderivative of e^x1+e^2x.", nodes: [l3-substitution] }
+      - { id: r8, label: "r8: Antiderivative of (1)/(xln x) on (1,infinity).", nodes: [l3-substitution] }
+      - { id: r9, label: "r9: integral_0^pi/4(tan x)/(cos^2x)dx", nodes: [l3-substitution] }
+      - { id: r10, label: "r10: integral_0^1x^2(1+x^3)^4dx", nodes: [l3-substitution] }
+      - { id: r11, label: "r11: integral_0^pi/2sin x e^cos xdx", nodes: [l3-substitution] }
+      - { id: c1, label: "c1: integral_0^1x(1-x)^4dx", nodes: [l3-substitution] }
+      - { id: c2, label: "c2: integral_0^3xsqrt(x+1) dx", nodes: [l3-substitution] }
+      - { id: c3, label: "c3: integral_1^4 e^sqrt(x)sqrt(x)dx", nodes: [l3-substitution] }
+      - { id: c4, label: "c4: integral_0^pi/2(cos x)/(1+sin^2x)dx", nodes: [l3-substitution] }
+      - { id: c5, label: "c5: integral_1^e((1+ln x)^2)/(x)dx", nodes: [l3-substitution] }
+      - { id: c6, label: "c6: integral_0^ln2(e^x)/(1+e^x)dx", nodes: [l3-substitution] }
+      - { id: c7, label: "c7: integral_0^1(dx)/(1+sqrt(x))", nodes: [l3-substitution] }
+      - { id: c8, label: "c8: integral_2^3(x)/((x-1)^2)dx", nodes: [l3-substitution] }
+      - { id: c9, label: "c9: integral_0^ln3 dxe^x+e^-x", nodes: [l3-substitution] }
+      - { id: c10, label: "c10: integral_0^1(sqrt(x))/(1+x)dx", nodes: [l3-substitution] }
+      - { id: e1, label: "e1: integral_0^pisin^2x dx", nodes: [l3-trig-integrals] }
+      - { id: e2, label: "e2: integral_0^pi/2cos^2x dx", nodes: [l3-trig-integrals] }
+      - { id: e3, label: "e3: integral_0^pi/2sin^3x dx", nodes: [l3-trig-integrals] }
+      - { id: e4, label: "e4: integral_0^pi/2sin xcos x dx", nodes: [l3-trig-integrals] }
+      - { id: e5, label: "e5: integral_0^pi/4tan^2x dx", nodes: [l3-trig-integrals] }
+      - { id: e6, label: "e6: integral_0^pisin(2x)cos x dx", nodes: [l3-trig-integrals] }
+      - { id: e7, label: "e7: integral_0^pi/2sin^2xcos^2x dx", nodes: [l3-trig-integrals] }
+      - { id: e8, label: "e8: integral_0^picos^3x dx", nodes: [l3-trig-integrals] }
+      - { id: s18-3, label: "s18-3: Compute integral_-1^1sqrt(1-t^2) dt letting t=sin .", nodes: [l3-trig-integrals] }
+      - { id: g1, label: "g1: integral_0^1/2 dxsqrt(1-x^2)", nodes: [l3-trig-integrals] }
+      - { id: g2, label: "g2: integral_0^2sqrt(4-x^2) dx", nodes: [l3-trig-integrals] }
+      - { id: g3, label: "g3: integral_0^3(dx)/(9+x^2)", nodes: [l3-trig-integrals] }
+      - { id: g4, label: "g4: integral_0^1 dxsqrt(4-x^2)", nodes: [l3-trig-integrals] }
+      - { id: g5, label: "g5: integral_0^1 x^2sqrt(1-x^2)dx", nodes: [l3-trig-integrals] }
+      - { id: g6, label: "g6: integral_0^1(dx)/((1+x^2)^2)", nodes: [l3-trig-integrals] }
+skipped:
+  - { source: sheet-2-short, reason: "Exo3 repeats sheet 2. Its exercises 1 to 9 are sheet 2 exercises 1 to 9, and its 10 to 12 are sheet 2 exercises 13, 16 and 17." }
+  - { source: final-2021-answers, reason: "Key for Final 2021. Its questions are mapped under final-2021." }
+  - { source: mock-2022-solutions, reason: "Solutions to another edition of Mock 2022 with changed constants. Its questions follow the same templates as the questions mapped under mock-2022." }
+  - { source: home-assignment-2022-solutions, reason: "Key for Home assignment 2022. Its questions are mapped under home-assignment-2022." }
+  - { source: midterm-mock-1-key, reason: "Key for Midterm mock 1. Its questions are mapped under midterm-mock-1." }
+  - { source: midterm-2022-key, reason: "Key for Midterm 2022. Its questions are mapped under midterm-2022." }
+  - { source: midterm-2025-key, reason: "Key for Midterm 2025. Its questions are mapped under midterm-2025." }
+  - { source: syllabus, reason: Course outline. Its lecture plan is the lecture list. }
+  - { source: final-study-guide, reason: Reading advice. Its assigned practice sets are mapped under the handout. }

@@ -1,0 +1,17 @@
+# Filler phrases the content check rejects in site text (content files and app UI).
+# Matching ignores case. The full writing rules live in docs/writing-style.md.
+- it is worth noting
+- it's worth noting
+- it is important to note
+- it's important to note
+- it should be noted
+- needless to say
+- it goes without saying
+- at the end of the day
+- let's dive in
+- dive into
+- delve
+- in a nutshell
+- as we can see
+- basically
+- in conclusion

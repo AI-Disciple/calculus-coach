@@ -1,0 +1,3348 @@
+/*
+ * Design tokens
+ *
+ * Accent: --accent is for progress and main actions only. --accent-text is the label on a filled accent
+ * surface, --accent-hover is the hovered or pressed fill, and --accent-soft is the track behind a progress
+ * fill. Links, badges, focus rings and the red, blue, green and yellow tokens keep their own colours.
+ * Surfaces: --canvas is the page, a slightly toned colour. --panel is the raised card that sits on it, lighter
+ * in the light theme and a step above the canvas in the dark theme. --panel-soft is a quieter surface for
+ * nested areas and companion boxes. Cards carry a thin --border so they read as cards.
+ * Headings: --heading is the colour of titles. It is stronger than --text, which stays for body copy.
+ * Kinds: --kind-definition, --kind-theorem, --kind-method, --kind-trap, --kind-tip, --kind-key-points,
+ * --kind-example, --kind-guided and --kind-deeper colour the edge and the label of each block kind. Each passes contrast on a faint tint of itself.
+ * Levels: --level-basic, --level-standard and --level-exam are the dots on the exercise level tabs.
+ * Finish: --finish fills the button that ends a topic, a colour no other control uses.
+ * Buttons: .button is the outline style. Adding .button-main makes it the filled main button.
+ * A screen shows at most one main button.
+ * Tracking: --track-title for page titles, --track-heading for block headings, --track-label for small
+ * uppercase labels. Body text keeps the default of 0.
+ * Motion: --fade is for colour and opacity changes. --spring-duration and --spring-ease reveal without
+ * bounce. --spring-bounce-duration and --spring-bounce-ease keep a little bounce for gesture-driven motion.
+ * --press-scale is the size of a pressed control. src/ui/motion.ts holds the same springs for scripts,
+ * and tests/design-tokens.test.ts checks that the two files agree and that the colours pass contrast.
+ * Reduced motion: every duration collapses to a short fade, only opacity and colour animate, and presses
+ * do not scale. Higher contrast: borders turn solid and muted text moves further from the canvas.
+ */
+
+/* Theme tokens */
+
+:root,
+[data-theme='light'] {
+  color-scheme: light;
+  --canvas: #f2f5fa;
+  --panel: #ffffff;
+  --panel-soft: #f8fafc;
+  --text: #334155;
+  --heading: #0f172a;
+  --muted: #5a6679;
+  --border: #d5dde9;
+  --hover: rgba(51, 65, 85, 0.06);
+  --code-bg: rgba(51, 65, 85, 0.06);
+  --accent: #3d479b;
+  --accent-hover: #323b87;
+  --accent-text: #ffffff;
+  --accent-soft: #e6e9f7;
+  --badge-bg: #fbf3db;
+  --badge-text: #956400;
+  --badge-border: rgba(149, 100, 0, 0.2);
+  --red-bg: #fdebec;
+  --red-text: #9f2f2d;
+  --blue-bg: #e1f3fe;
+  --blue-text: #1f6c9f;
+  --green-bg: #edf3ec;
+  --green-text: #346538;
+  --kind-definition: #1d5fa8;
+  --kind-theorem: #3d479b;
+  --kind-method: #23704a;
+  --kind-trap: #9a5b00;
+  --kind-tip: #4f6a0f;
+  --kind-key-points: #a2346c;
+  --kind-example: #0b6b66;
+  --kind-guided: #6d3fb0;
+  --kind-deeper: #556277;
+  --level-basic: #2f5f9e;
+  --level-standard: #956400;
+  --level-exam: #9f2f2d;
+  --finish: #b4532a;
+  --readable: 44rem;
+  --sans: 'Geist', 'SF Pro Text', 'Helvetica Neue', 'Segoe UI', system-ui, sans-serif;
+  --serif: 'Newsreader', 'Iowan Old Style', 'Palatino Linotype', Georgia, serif;
+  --mono: 'Geist Mono', 'SF Mono', ui-monospace, 'Segoe UI Mono', monospace;
+}
+
+[data-theme='dark'] {
+  color-scheme: dark;
+  --canvas: #151b2e;
+  --panel: #1e2740;
+  --panel-soft: #19213a;
+  --text: #dfe5f0;
+  --heading: #f4f6fb;
+  --muted: #9ca8be;
+  --border: rgba(148, 163, 184, 0.2);
+  --hover: rgba(148, 163, 184, 0.1);
+  --code-bg: rgba(148, 163, 184, 0.1);
+  --accent: #a3acf0;
+  --accent-hover: #b4bcf5;
+  --accent-text: #14172e;
+  --accent-soft: #2a3260;
+  --badge-bg: #3b3524;
+  --badge-text: #e4d2a2;
+  --badge-border: rgba(228, 210, 162, 0.24);
+  --red-bg: #3b2733;
+  --red-text: #f0b7b4;
+  --blue-bg: #1f3248;
+  --blue-text: #a3cdee;
+  --green-bg: #1f3330;
+  --green-text: #aad2ae;
+  --kind-definition: #8fc2f2;
+  --kind-theorem: #a3acf0;
+  --kind-method: #8fd4a8;
+  --kind-trap: #f0c27a;
+  --kind-tip: #c5dd7a;
+  --kind-key-points: #f3a6cb;
+  --kind-example: #84d6cf;
+  --kind-guided: #c4a6f2;
+  --kind-deeper: #a9b4c8;
+  --level-basic: #a7c7ec;
+  --level-standard: #e4d2a2;
+  --level-exam: #f0b7b4;
+  --finish: #f5b38a;
+}
+
+/* Tracking and motion tokens, the same in both themes */
+
+:root {
+  --track-title: -0.02em;
+  --track-heading: -0.01em;
+  --track-label: 0;
+
+  --fade: 200ms ease;
+  --press-scale: 0.98;
+
+  /* Critically damped spring (damping ratio 1, response 0.33 s), for reveals and presses. */
+  --spring-duration: 350ms;
+  --spring-ease: cubic-bezier(0.2, 0.05, 0.15, 1);
+
+  /* Damping ratio 0.8, response 0.4 s, for motion that carries a flick or a drag. */
+  --spring-bounce-duration: 400ms;
+  --spring-bounce-ease: cubic-bezier(0.45, 0.7, 0.15, 1);
+}
+
+@supports (transition-timing-function: linear(0, 1)) {
+  :root {
+    --spring-ease: linear(
+      0, 0.053, 0.168, 0.303, 0.433, 0.549, 0.648, 0.728, 0.792, 0.843, 0.882, 0.912, 0.935, 0.952, 0.964,
+      0.974, 0.981, 0.986, 1
+    );
+    --spring-bounce-ease: linear(
+      0, 0.051, 0.17, 0.315, 0.462, 0.597, 0.711, 0.803, 0.874, 0.926, 0.963, 0.987, 1.002, 1.011, 1.014,
+      1.015, 1.014, 1.012, 1
+    );
+  }
+}
+
+/* Accessibility preferences */
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --fade: 140ms ease;
+    --press-scale: 1;
+    --spring-duration: 140ms;
+    --spring-ease: ease-out;
+    --spring-bounce-duration: 140ms;
+    --spring-bounce-ease: ease-out;
+  }
+
+  /* Only opacity and colour may animate, and only briefly. Movement and scaling change at once. */
+  *,
+  *::before,
+  *::after {
+    transition-property:
+      opacity, color, background-color, border-color, outline-color, text-decoration-color, fill, stroke !important;
+    transition-duration: 140ms !important;
+    transition-delay: 0s !important;
+    animation-duration: 0.01ms !important;
+    animation-delay: 0s !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* The focus ring is already a solid 2px line, so it stays as it is. */
+@media (prefers-contrast: more) {
+  :root,
+  [data-theme='light'] {
+    --muted: #3f4a5c;
+    --text: #1e293b;
+    --border: #64748b;
+    --hover: rgba(51, 65, 85, 0.12);
+    --code-bg: rgba(51, 65, 85, 0.1);
+    --panel: #ffffff;
+    --panel-soft: #f1f5f9;
+    --badge-border: #956400;
+  }
+
+  [data-theme='dark'] {
+    --muted: #c3cde0;
+    --text: #f1f4fa;
+    --border: #94a3b8;
+    --hover: rgba(148, 163, 184, 0.18);
+    --code-bg: rgba(148, 163, 184, 0.16);
+    --panel: #232d4a;
+    --panel-soft: #1b2440;
+    --badge-border: #e4d2a2;
+  }
+}
+
+/* Page */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  min-height: 100%;
+  background: var(--canvas);
+  color: var(--text);
+  transition: background-color var(--fade), color var(--fade);
+}
+
+body {
+  margin: 0;
+  min-height: 100%;
+  background: var(--canvas);
+  color: var(--text);
+  font-family: var(--sans);
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  transition: background-color var(--fade), color var(--fade);
+}
+
+h1,
+h2,
+h3,
+.site-name,
+.lecture-subtitle,
+.block-heading {
+  color: var(--heading);
+  font-family: var(--serif);
+  font-weight: 500;
+  letter-spacing: var(--track-heading);
+  line-height: 1.15;
+}
+
+h1 {
+  letter-spacing: var(--track-title);
+}
+
+h1,
+h2,
+h3,
+p {
+  overflow-wrap: break-word;
+}
+
+a {
+  color: inherit;
+  text-decoration-line: underline;
+  text-decoration-thickness: 1px;
+  text-decoration-color: var(--muted);
+  text-underline-offset: 0.18em;
+  transition: color var(--fade), text-decoration-color var(--fade);
+}
+
+a:hover {
+  text-decoration-color: var(--text);
+}
+
+:focus {
+  outline: none;
+}
+
+:focus-visible {
+  outline: 2px solid var(--text);
+  outline-offset: 3px;
+}
+
+::selection {
+  background: var(--badge-bg);
+  color: var(--text);
+}
+
+.wrap {
+  max-width: 64rem;
+  margin-inline: auto;
+  padding-inline: 1.75rem;
+}
+
+/* The top bar on narrow windows, and the site name, search and theme toggle */
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background: var(--canvas);
+  border-bottom: 1px solid var(--border);
+  transition: background-color var(--fade), border-color var(--fade);
+}
+
+.search-form {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.search-form .button {
+  margin-top: 0;
+}
+
+.search-form input {
+  flex: 1;
+  min-width: 0;
+  padding: 0.45rem 0.65rem;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: transparent;
+  color: var(--text);
+  font: inherit;
+}
+
+.site-name {
+  min-width: 0;
+  font-size: 1.25rem;
+  line-height: 1.2;
+}
+
+.theme-toggle {
+  flex: none;
+  width: 2.25rem;
+  height: 2.25rem;
+  display: inline-grid;
+  place-items: center;
+  padding: 0;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: transparent;
+  color: var(--text);
+  cursor: pointer;
+  transition:
+    background-color var(--fade),
+    color var(--fade),
+    border-color var(--fade),
+    transform var(--spring-duration) var(--spring-ease);
+}
+
+.theme-toggle:hover {
+  background: var(--hover);
+}
+
+.theme-toggle svg {
+  width: 1.05rem;
+  height: 1.05rem;
+  display: block;
+}
+
+/* Home */
+
+.main {
+  padding-top: 3.25rem;
+  padding-bottom: 6rem;
+}
+
+.main-home {
+  padding-top: 1.6rem;
+  padding-bottom: 2rem;
+}
+
+.main-home + .site-footer {
+  margin-top: 1.25rem;
+}
+
+.home {
+  display: grid;
+  gap: 1.4rem;
+}
+
+.home .eyebrow {
+  margin-bottom: 0.65rem;
+}
+
+.home .form-error {
+  margin: 0;
+}
+
+/* A link can wear the button style, as the main button on Home does. */
+a.button {
+  display: inline-block;
+  text-decoration: none;
+}
+
+/* Today */
+
+.today-body {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem 2rem;
+  min-height: 3.1rem;
+}
+
+.today-headline {
+  min-height: 2.4rem;
+  margin: 0;
+  font-family: var(--serif);
+  font-size: 2.1rem;
+  font-weight: 500;
+  letter-spacing: var(--track-title);
+  line-height: 1.15;
+}
+
+.today-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6rem;
+  min-height: 2.75rem;
+}
+
+.today-actions .button {
+  margin-top: 0;
+  padding: 0.6rem 1.2rem;
+  font-size: 1rem;
+}
+
+/* Progress: exam readiness and foundations */
+
+.readiness-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.2rem 1.5rem;
+}
+
+.readiness-title {
+  margin: 0;
+  font-size: 1.45rem;
+}
+
+.readiness-total {
+  min-height: 1.7rem;
+  margin: 0;
+  font-family: var(--serif);
+  font-size: 1.3rem;
+  letter-spacing: var(--track-heading);
+  line-height: 1.3;
+}
+
+.readiness-caption {
+  min-height: 1.35rem;
+  margin: 0.2rem 0 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.5;
+  transition: color var(--fade);
+}
+
+.readiness-topics {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.7rem 3rem;
+  margin: 0.8rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.meter-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.2rem 1rem;
+  font-size: 0.97rem;
+  line-height: 1.4;
+}
+
+.meter-title {
+  font-weight: 500;
+}
+
+.meter-value {
+  min-height: 1.35rem;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+  white-space: nowrap;
+  transition: color var(--fade);
+}
+
+.meter {
+  height: 0.4rem;
+  margin-top: 0.35rem;
+  overflow: hidden;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  transition: background-color var(--fade);
+}
+
+.meter-quiet {
+  height: 0.25rem;
+}
+
+/* The fill is full width and scaled from the left, so it moves on the compositor. */
+.meter-fill {
+  height: 100%;
+  background: var(--accent);
+  transform: scaleX(var(--fill, 0));
+  transform-origin: left center;
+  animation: meter-grow var(--spring-duration) var(--spring-ease) backwards;
+  transition:
+    transform var(--spring-duration) var(--spring-ease),
+    opacity var(--fade),
+    background-color var(--fade);
+}
+
+.meter-fill[data-filled='false'] {
+  opacity: 0;
+}
+
+@keyframes meter-grow {
+  from {
+    transform: scaleX(0);
+  }
+}
+
+.meter-hint {
+  min-height: 1.1rem;
+  margin: 0.2rem 0 0;
+  color: var(--muted);
+  font-size: 0.82rem;
+  line-height: 1.4;
+  transition: color var(--fade);
+}
+
+.foundations {
+  margin-top: 1.1rem;
+  padding-top: 0.9rem;
+  border-top: 1px solid var(--border);
+  transition: border-color var(--fade);
+}
+
+.foundations .meter-head {
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+.foundations .meter-title {
+  font-weight: 400;
+}
+
+/* Sections: one large tile per place to go */
+
+.section-tiles {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.7rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Three tiles to a row. A last row of two shares the row, so five tiles leave no empty slot. */
+@media (min-width: 901px) {
+  .section-tiles {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+  }
+
+  .section-tiles > li {
+    grid-column: span 2;
+  }
+
+  .section-tiles > li:nth-last-child(2):nth-child(3n + 1),
+  .section-tiles > li:last-child:nth-child(3n + 2) {
+    grid-column: span 3;
+  }
+}
+
+.section-tile {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  min-height: 4rem;
+  padding: 0.7rem 1.1rem;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  color: inherit;
+  text-decoration: none;
+  transition:
+    background-color var(--fade),
+    border-color var(--fade),
+    transform var(--spring-duration) var(--spring-ease);
+}
+
+.section-tile:hover {
+  border-color: var(--muted);
+  background: var(--hover);
+}
+
+/* A press answers at once and settles back on the spring. */
+.section-tile:active {
+  transform: scale(var(--press-scale));
+  transition-duration: 100ms;
+  transition-timing-function: ease-out;
+}
+
+.tile-text {
+  display: grid;
+  min-width: 0;
+}
+
+.tile-title {
+  font-family: var(--serif);
+  font-size: 1.3rem;
+  font-weight: 500;
+  letter-spacing: var(--track-heading);
+  line-height: 1.25;
+}
+
+.tile-status {
+  min-height: 1.35rem;
+  color: var(--muted);
+  font-size: 0.92rem;
+  line-height: 1.45;
+  transition: color var(--fade);
+}
+
+/* The chevron is decoration. It nudges right on hover, and only when motion is welcome. */
+.tile-chevron {
+  flex: none;
+  width: 1.05rem;
+  height: 1.05rem;
+  color: var(--muted);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .tile-chevron {
+    transition: transform var(--spring-duration) var(--spring-ease);
+  }
+
+  .section-tile:hover .tile-chevron {
+    transform: translateX(0.2rem);
+  }
+}
+
+/* The count of due reviews next to Review */
+
+.due-pill {
+  display: inline-block;
+  min-width: 1.4rem;
+  margin-left: 0.4rem;
+  padding: 0 0.4rem;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-size: 0.75rem;
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+  line-height: 1.25rem;
+  text-align: center;
+  text-decoration: none;
+  vertical-align: 0.05em;
+}
+
+/* Lectures page and lecture page */
+
+.lectures-page h1,
+.lecture-page h1 {
+  margin: 0;
+  font-size: 2.45rem;
+}
+
+.lecture-cards {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+  margin: 1.75rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.lecture-card {
+  position: relative;
+  min-width: 0;
+  padding: 0.95rem 1.15rem 0.8rem;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  transition:
+    background-color var(--fade),
+    border-color var(--fade),
+    transform var(--spring-duration) var(--spring-ease);
+}
+
+.lecture-card:hover {
+  border-color: var(--muted);
+  background: var(--hover);
+}
+
+.lecture-card:has(.lecture-card-link:active) {
+  transform: scale(var(--press-scale));
+  transition-duration: 100ms;
+  transition-timing-function: ease-out;
+}
+
+/* The link covers the whole card, so the bar and its count stay outside the link text. */
+.lecture-card-link {
+  display: grid;
+  color: inherit;
+  text-decoration: none;
+}
+
+.lecture-card-link::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+}
+
+.lecture-card:has(.lecture-card-link:focus-visible) {
+  outline: 2px solid var(--text);
+  outline-offset: 3px;
+}
+
+.lecture-card-link:focus-visible {
+  outline: none;
+}
+
+.lecture-card-number {
+  color: var(--muted);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: var(--track-label);
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+
+.lecture-card-title {
+  margin-bottom: 0.35rem;
+  font-family: var(--serif);
+  font-size: 1.2rem;
+  font-weight: 500;
+  letter-spacing: var(--track-heading);
+  line-height: 1.25;
+}
+
+.crumbs {
+  margin: 0 0 1rem;
+  font-size: 0.92rem;
+}
+
+.lecture-page {
+  max-width: var(--readable);
+}
+
+.lecture-pager {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem 2rem;
+  margin-top: 2.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border);
+}
+
+.pager-link {
+  display: grid;
+  align-content: start;
+  text-decoration: none;
+}
+
+.pager-next {
+  grid-column: 2;
+  text-align: right;
+}
+
+.pager-label {
+  color: var(--muted);
+  font-size: 0.82rem;
+}
+
+.pager-title {
+  text-decoration: underline;
+  text-decoration-color: var(--muted);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
+}
+
+.pager-link:hover .pager-title {
+  text-decoration-color: var(--text);
+}
+
+.lecture-subtitle {
+  margin: 0.45rem 0 0;
+  color: var(--muted);
+  font-size: 1.28rem;
+  line-height: 1.35;
+  transition: color var(--fade);
+}
+
+/* Higher contrast: tiles and cards keep the solid border token. Bar tracks and the count pill get an outline. */
+@media (prefers-contrast: more) {
+  .meter {
+    outline: 1px solid var(--border);
+  }
+
+  .due-pill {
+    border-color: var(--accent);
+  }
+}
+
+@media (max-width: 900px) {
+  .section-tiles {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  /* A lone last tile takes the whole row. */
+  .section-tiles > li:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 760px) {
+  .readiness-topics,
+  .lecture-cards {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .lecture-pager {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .pager-next {
+    grid-column: 1;
+    text-align: left;
+  }
+}
+
+@media (max-width: 640px) {
+  .today-headline {
+    font-size: 1.75rem;
+  }
+}
+
+@media (max-width: 560px) {
+  .section-tiles {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.empty,
+.notice {
+  margin: 1.35rem 0 0;
+  color: var(--text);
+}
+
+.empty {
+  color: var(--muted);
+  transition: color var(--fade);
+}
+
+.node-list,
+.steps {
+  margin: 1.5rem 0 0;
+  padding: 0;
+}
+
+.node-list {
+  list-style: none;
+}
+
+.node-list li {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.7rem;
+  padding: 0.85rem 0;
+  border-top: 1px solid var(--border);
+}
+
+/* Node */
+
+.eyebrow,
+.block-label {
+  margin: 0;
+  color: var(--muted);
+  font-family: var(--sans);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: var(--track-label);
+  line-height: 1.4;
+  text-transform: uppercase;
+  transition: color var(--fade);
+}
+
+.eyebrow {
+  margin-bottom: 0.8rem;
+}
+
+
+
+.node-header h1 {
+  margin: 0;
+  font-size: 2.2rem;
+}
+
+.node-tags {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.node-header .breadcrumb {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0 0.5rem;
+  margin: 0 0 0.6rem;
+  color: var(--muted);
+  font-size: 0.85rem;
+  line-height: 1.4;
+}
+
+.breadcrumb a {
+  color: var(--muted);
+}
+
+.breadcrumb a:hover {
+  color: var(--text);
+}
+
+.breadcrumb-title {
+  color: var(--muted);
+}
+
+.node-header .node-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem 0.6rem;
+  margin-top: 0.8rem;
+}
+
+.node-facts {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.88rem;
+}
+
+.node-fact + .node-fact::before {
+  content: '·';
+  margin-inline: 0.5rem;
+}
+
+.node-tags:not(:empty) + .node-facts:not(:empty)::before {
+  content: '·';
+  margin-inline-end: 0.5rem;
+}
+
+.node-sources {
+  margin-top: 0.3rem;
+}
+
+.node-sources > summary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.2rem 0;
+  color: var(--muted);
+  font-size: 0.88rem;
+  cursor: pointer;
+  list-style: none;
+  transition: color var(--fade);
+}
+
+.node-sources > summary::-webkit-details-marker {
+  display: none;
+}
+
+.node-sources > summary::before {
+  content: '';
+  width: 0.4rem;
+  height: 0.4rem;
+  border-right: 1.5px solid currentColor;
+  border-bottom: 1.5px solid currentColor;
+  transform: rotate(-45deg);
+  transition: transform var(--spring-duration) var(--spring-ease);
+}
+
+.node-sources[open] > summary::before {
+  transform: rotate(45deg);
+}
+
+.node-sources > summary:hover {
+  color: var(--text);
+}
+
+.node-sources-body {
+  margin-top: 0.5rem;
+  padding: 0.4rem 1.25rem 1.25rem;
+  border: 1px solid var(--border);
+  border-radius: 0.75rem;
+  background: var(--panel);
+}
+
+.node-note {
+  margin: 0.7rem 0 0;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.badge {
+  display: inline-block;
+  padding: 0.14rem 0.42rem;
+  border: 1px solid var(--badge-border);
+  border-radius: 8px;
+  background: var(--badge-bg);
+  color: var(--badge-text);
+  font-family: var(--sans);
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: var(--track-label);
+  line-height: 1.4;
+  text-transform: uppercase;
+  transition: background-color var(--fade), color var(--fade), border-color var(--fade);
+}
+
+.badge-status-reviewed,
+.badge-official-key,
+.badge-mastery-done {
+  border-color: transparent;
+  background: var(--green-bg);
+  color: var(--green-text);
+}
+
+.badge-weight-high {
+  border-color: transparent;
+  background: var(--red-bg);
+  color: var(--red-text);
+}
+
+.badge-out-of-scope {
+  border-color: transparent;
+  background: var(--badge-bg);
+  color: var(--badge-text);
+}
+
+.badge-weight-medium,
+.badge-handout-answer,
+.badge-mastery-in-progress {
+  border-color: transparent;
+  background: var(--blue-bg);
+  color: var(--blue-text);
+}
+
+.badge-weight-low,
+.badge-weight-not-examined,
+.badge-written-for-site,
+.badge-tier-basic,
+.badge-tier-standard,
+.badge-tier-exam {
+  border-color: var(--border);
+  background: transparent;
+  color: var(--muted);
+}
+
+.badge-tier-exam {
+  color: var(--text);
+}
+
+.notation {
+  margin-top: 1.8rem;
+  padding: 1rem 1.25rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--panel);
+}
+
+.notation .block-label {
+  margin-bottom: 0.4rem;
+}
+
+.node-sources-body {
+  display: grid;
+  gap: 0.8rem;
+  padding-top: 0.9rem;
+  font-size: 0.8rem;
+}
+
+.node-sources-body dt {
+  margin-bottom: 0.3rem;
+}
+
+.node-sources-body dd {
+  margin: 0.2rem 0 0;
+}
+
+.block {
+  margin-top: 2.5rem;
+  scroll-margin-top: 5.5rem;
+}
+
+.exercise-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 0.6rem;
+}
+
+.copy-for-ai .saved-note,
+.copy-for-ai .form-error {
+  margin-top: 0.45rem;
+}
+
+.block-label {
+  margin-bottom: 0.85rem;
+}
+
+.block-heading {
+  margin: 0 0 0.7rem;
+  font-size: 1.4rem;
+  line-height: 1.25;
+}
+
+.block details {
+  margin-top: 1.2rem;
+  padding-top: 0.85rem;
+  border-top: 1px solid var(--border);
+}
+
+.block summary {
+  cursor: pointer;
+  width: fit-content;
+  max-width: 100%;
+}
+
+.block details .prose {
+  margin-top: 0.9rem;
+}
+
+/* Boxed block identity. Each rule sets --kind once and the recipe below uses it. */
+
+.block-formal-statement {
+  --kind: var(--kind-theorem);
+}
+
+.block-formal-statement.block-kind-definition {
+  --kind: var(--kind-definition);
+}
+
+.block-formal-statement.block-kind-theorem {
+  --kind: var(--kind-theorem);
+}
+
+.block-formal-statement.block-kind-method {
+  --kind: var(--kind-method);
+}
+
+.block-trap {
+  --kind: var(--kind-trap);
+}
+
+.block-tip {
+  --kind: var(--kind-tip);
+}
+
+.block-key-points {
+  --kind: var(--kind-key-points);
+}
+
+.block-worked-example {
+  --kind: var(--kind-example);
+}
+
+.block-guided-example {
+  --kind: var(--kind-guided);
+}
+
+.block-going-deeper {
+  --kind: var(--kind-deeper);
+}
+
+/* Running blocks have no box: a statement and an example keep a thin bar in their colour. */
+.block-formal-statement,
+.block-worked-example {
+  margin-top: 1.5rem;
+  padding: 0.15rem 0 0.15rem 1.25rem;
+  border-inline-start: 3px solid var(--kind);
+}
+
+/* Boxed blocks have a coloured edge, a tinted panel and an icon. */
+.block-trap,
+.block-tip,
+.block-key-points,
+.block-guided-example,
+.block-going-deeper,
+.block-concept-question {
+  margin-top: 2rem;
+  padding: 1.1rem 1.35rem;
+  border: 1px solid color-mix(in srgb, var(--kind) 25%, var(--border));
+  border-inline-start: 4px solid var(--kind);
+  border-radius: 0.75rem;
+  background: color-mix(in srgb, var(--kind) 7%, var(--panel));
+}
+
+.block-formal-statement > .block-label,
+.block-trap > .block-label,
+.block-tip > .block-label,
+.block-key-points > .block-label,
+.block-worked-example > .block-label,
+.block-guided-example > .block-label,
+.block-going-deeper > .block-label {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 0.7rem;
+  color: var(--kind);
+  font-size: 0.8rem;
+}
+
+.block-formal-statement .block-icon,
+.block-trap .block-icon,
+.block-tip .block-icon,
+.block-key-points .block-icon,
+.block-worked-example .block-icon,
+.block-guided-example .block-icon,
+.block-going-deeper .block-icon {
+  flex: none;
+  display: inline-grid;
+  place-items: center;
+  width: 1.6rem;
+  height: 1.6rem;
+  border-radius: 0.45rem;
+  background: color-mix(in srgb, var(--kind) 14%, transparent);
+  font-size: 0.95rem;
+  line-height: 1;
+  text-transform: none;
+}
+
+.block-formal-statement .block-heading,
+.block-trap .block-heading,
+.block-tip .block-heading,
+.block-key-points .block-heading,
+.block-worked-example .block-heading,
+.block-guided-example .block-heading,
+.block-going-deeper .block-heading {
+  margin: 0 0 0.6rem;
+  color: var(--heading);
+  font-size: 1.4rem;
+  letter-spacing: var(--track-heading);
+  line-height: 1.2;
+}
+
+.block-worked-example .sub-label {
+  margin-top: 1.1rem;
+  padding-top: 0.9rem;
+  border-top: 1px solid var(--border);
+}
+
+.block-going-deeper details {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: 0;
+}
+
+.block-guided-example .steps {
+  margin-top: 0.8rem;
+}
+
+.block-plain-explanation {
+  margin-top: 1.2rem;
+}
+
+.block-plain-explanation > .block-label {
+  margin-bottom: 0.3rem;
+  color: var(--muted);
+  font-size: 0.75rem;
+}
+
+.sub-label {
+  margin: 1.3rem 0 0.5rem;
+  color: var(--muted);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+}
+
+.statement-source {
+  margin: 1rem 0 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.source-link,
+.source-text {
+  color: var(--text);
+}
+
+.button {
+  margin-top: 1.2rem;
+  padding: 0.45rem 0.95rem;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: transparent;
+  color: var(--text);
+  font: inherit;
+  font-size: 0.92rem;
+  cursor: pointer;
+  transition:
+    background-color var(--fade),
+    border-color var(--fade),
+    transform var(--spring-duration) var(--spring-ease);
+}
+
+.button:hover {
+  background: var(--hover);
+}
+
+/* A press answers at once and settles back on the spring. */
+.button:active,
+.option:active,
+.theme-toggle:active {
+  transform: scale(var(--press-scale));
+  transition-duration: 100ms;
+  transition-timing-function: ease-out;
+}
+
+.button:disabled {
+  cursor: default;
+  opacity: 0.55;
+}
+
+.button[aria-pressed='true'] {
+  border-color: var(--muted);
+  background: var(--hover);
+}
+
+/* The filled main button. Compose it with .button, and use one per screen. */
+.button-main {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: var(--accent-text);
+  font-weight: 500;
+}
+
+.button-main:hover,
+.button-main:active {
+  border-color: var(--accent-hover);
+  background: var(--accent-hover);
+}
+
+.button-main:disabled {
+  border-color: var(--accent);
+  background: var(--accent);
+}
+
+.options {
+  display: grid;
+  gap: 0.6rem;
+  margin: 1.2rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.option {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.4rem 1rem;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: transparent;
+  color: var(--text);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition: background-color var(--fade), border-color var(--fade), transform var(--spring-duration) var(--spring-ease);
+}
+
+.option:hover {
+  background: var(--hover);
+}
+
+.option[aria-pressed='true'] {
+  border-color: var(--muted);
+}
+
+.explanation,
+.solution {
+  margin-top: 1.3rem;
+  padding-top: 1.1rem;
+  border-top: 1px solid var(--border);
+}
+
+.solution > .badge {
+  margin-bottom: 0.9rem;
+}
+
+.discrepancy {
+  margin-top: 1.4rem;
+  padding-left: 1rem;
+  border-left: 2px solid var(--red-text);
+}
+
+.discrepancy .sub-label {
+  margin-top: 0;
+  color: var(--red-text);
+}
+
+.exercise-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 0.9rem;
+  margin-bottom: 0.9rem;
+}
+
+/* Exercise surface: the strongest box on the page. Its edge and tint carry the tier colour. */
+
+.block-tier-basic {
+  --tier: var(--level-basic);
+}
+
+.block-tier-standard {
+  --tier: var(--level-standard);
+}
+
+.block-tier-exam {
+  --tier: var(--level-exam);
+}
+
+.block.block-exercise {
+  margin-top: 2.25rem;
+  padding: 1.35rem 1.5rem 1.5rem;
+  border: 1px solid color-mix(in srgb, var(--tier, var(--accent)) 40%, var(--border));
+  border-inline-start: 6px solid var(--tier, var(--accent));
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--tier, var(--accent)) 9%, var(--panel));
+  box-shadow: 0 6px 24px -12px color-mix(in srgb, var(--tier, var(--accent)) 60%, transparent);
+  transition: background-color var(--fade), border-color var(--fade);
+}
+
+.block-exercise > .block-label {
+  color: var(--tier, var(--accent));
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.block-exercise .exercise-meta {
+  margin-bottom: 0.5rem;
+}
+
+.paper-cue {
+  margin: 0 0 1rem;
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+/* The tier ladder: steps up to the exercise's tier are filled, the current one is emphasised. */
+
+.tier-ladder {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.2rem 0.9rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tier-step {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--muted);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: var(--track-label);
+  line-height: 1.4;
+  text-transform: uppercase;
+  transition: color var(--fade);
+}
+
+.tier-step::before {
+  content: '';
+  width: 0.55rem;
+  height: 0.55rem;
+  border: 1.5px solid var(--muted);
+  border-radius: 50%;
+  transition: background-color var(--fade), border-color var(--fade);
+}
+
+.tier-step-filled::before {
+  border-color: var(--text);
+  background: var(--text);
+}
+
+.tier-step[aria-current='step'] {
+  color: var(--text);
+  font-weight: 700;
+}
+
+.exercise-done {
+  display: inline-grid;
+  place-items: center;
+  width: 1.4rem;
+  height: 1.4rem;
+  margin-left: auto;
+  border-radius: 50%;
+  background: var(--green-bg);
+  color: var(--green-text);
+  font-size: 0.8rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+/* A node as sections: the progress rail, one section at a time, and Back and Next */
+
+.section-rail {
+  margin-top: 2.2rem;
+  scroll-margin-top: 5.5rem;
+}
+
+.section-rail ol {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin: 0;
+  padding: 0 0 0.35rem;
+  list-style: none;
+}
+
+.section-rail li {
+  flex: none;
+  max-width: 100%;
+}
+
+.rail-step {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  max-width: 17rem;
+  padding: 0.5rem 0.85rem 0.5rem 0.6rem;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.35;
+  text-decoration: none;
+  transition: background-color var(--fade), border-color var(--fade), color var(--fade);
+}
+
+.rail-step:hover {
+  background: var(--hover);
+  color: var(--text);
+}
+
+.rail-step[aria-current='step'] {
+  border-color: var(--border);
+  background: var(--panel);
+  color: var(--text);
+}
+
+.rail-marker {
+  flex: none;
+  display: inline-grid;
+  place-items: center;
+  width: 1.35rem;
+  height: 1.35rem;
+  border: 1.5px solid var(--muted);
+  border-radius: 50%;
+  font-size: 0.72rem;
+  font-weight: 700;
+  line-height: 1;
+  transition: background-color var(--fade), border-color var(--fade), color var(--fade);
+}
+
+.rail-step[aria-current='step'] .rail-marker {
+  border-color: var(--accent);
+}
+
+.rail-step-done .rail-marker {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: var(--accent-text);
+}
+
+.rail-text {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.rail-kind {
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+}
+
+/* Only the incoming section animates, and the clip keeps the slide from widening the page. */
+.node-section-clip {
+  margin-inline: -0.5rem;
+  padding-inline: 0.5rem;
+  overflow-x: clip;
+}
+
+.node-section {
+  padding-top: 1.6rem;
+}
+
+
+.node-section-header .eyebrow {
+  margin-bottom: 0.5rem;
+}
+
+.node-section h2 {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  margin: 0;
+  font-size: 1.9rem;
+}
+
+.node-section h2:focus-visible {
+  outline: none;
+}
+
+.section-intro {
+  margin: 1rem 0 0;
+  color: var(--muted);
+}
+
+.node-section-body > .block:first-child:not(.block-exercise):not(.block-formal-statement):not(.block-trap):not(.block-tip):not(.block-key-points):not(.block-worked-example):not(.block-guided-example):not(.block-going-deeper):not(.block-plain-explanation) {
+  margin-top: 1.4rem;
+  padding-top: 0;
+  border-top: 0;
+}
+
+/* Your turn sits apart from the reading: an accent label with a rule after it. */
+.your-turn {
+  margin-top: 3rem;
+}
+
+.your-turn > h3 {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin: 0;
+  color: var(--accent);
+  font-size: 1.3rem;
+}
+
+.your-turn > h3::before {
+  content: '';
+  flex: 1 0 auto;
+  order: 2;
+  height: 2px;
+  background: color-mix(in srgb, var(--accent) 50%, transparent);
+}
+
+.your-turn > .block:first-of-type:not(.block-exercise) {
+  margin-top: 1rem;
+}
+
+.your-turn > .block-exercise:first-of-type {
+  margin-top: 1rem;
+}
+
+.section-nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-top: 3rem;
+  padding-top: 1.4rem;
+  border-top: 1px solid var(--border);
+}
+
+.section-nav .button {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.1rem;
+  max-width: 100%;
+  margin-top: 0;
+  padding: 0.65rem 1.1rem;
+  text-align: left;
+}
+
+.section-nav .section-next {
+  display: inline-block;
+  margin-left: auto;
+  font-size: 1rem;
+  text-align: right;
+}
+
+.section-nav-label {
+  font-weight: 500;
+}
+
+.section-nav-caption {
+  color: var(--muted);
+  font-size: 0.8rem;
+  line-height: 1.35;
+}
+
+/* Exercise level tabs */
+
+.level-tabs {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.level-tab {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+  min-width: 0;
+  padding: 0.8rem 0.95rem;
+  border: 1px solid var(--border);
+  border-radius: 0.75rem;
+  background: var(--panel);
+  color: var(--text);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition: background-color var(--fade), border-color var(--fade), box-shadow var(--fade);
+}
+
+.level-tab:hover:not(:disabled):not([aria-selected='true']) {
+  background: var(--hover);
+}
+
+.level-tab[aria-selected='true'] {
+  border-color: var(--accent);
+  background: color-mix(in srgb, var(--accent-soft) 60%, var(--panel));
+  box-shadow: inset 0 0 0 1px var(--accent);
+}
+
+.level-tab:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.level-dot {
+  flex: none;
+  width: 0.65rem;
+  height: 0.65rem;
+  margin-top: 0.4rem;
+  border-radius: 50%;
+}
+
+.level-tab-basic .level-dot {
+  background: var(--level-basic);
+}
+
+.level-tab-standard .level-dot {
+  background: var(--level-standard);
+}
+
+.level-tab-exam .level-dot {
+  background: var(--level-exam);
+}
+
+.level-text {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-width: 0;
+  gap: 0.1rem;
+}
+
+.level-name {
+  color: var(--heading);
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.level-purpose {
+  color: var(--muted);
+  font-size: 0.82rem;
+  line-height: 1.4;
+}
+
+.level-count {
+  flex: none;
+  min-width: 1.5rem;
+  padding: 0.05rem 0.5rem;
+  border-radius: 999px;
+  background: var(--code-bg);
+  color: var(--text);
+  font-size: 0.8rem;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.5;
+  text-align: center;
+}
+
+.level-panel {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.level-panel[hidden] {
+  display: none;
+}
+
+.level-panel > .block.block-exercise {
+  margin-top: 0;
+}
+
+/* The finish button on a topic's last section: its own colour, so it reads as the end of the topic. */
+.section-nav .button-finish {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.1rem;
+  border-color: var(--finish);
+  background: var(--finish);
+  color: var(--canvas);
+  text-decoration: none;
+}
+
+.section-nav .button-finish:hover {
+  border-color: color-mix(in srgb, var(--finish) 85%, var(--text));
+  background: color-mix(in srgb, var(--finish) 85%, var(--text));
+}
+
+.finish-label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+}
+
+.finish-title {
+  font-family: var(--serif);
+  font-size: 1.15rem;
+}
+
+@media (max-width: 40rem) {
+  .level-tabs {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .node-section h2 {
+    font-size: 1.55rem;
+  }
+
+  .section-nav {
+    flex-direction: column-reverse;
+  }
+
+  .section-nav .section-next {
+    display: block;
+    margin-left: 0;
+    text-align: center;
+  }
+
+  .section-nav .button-finish {
+    display: flex;
+    align-items: center;
+  }
+
+  .section-nav .section-back {
+    align-items: center;
+    text-align: center;
+  }
+
+  .block.block-exercise {
+    padding: 1.1rem 1rem 1.2rem;
+  }
+}
+
+.past-exam {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.optional {
+  margin-left: 0.4rem;
+  color: var(--muted);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+}
+
+.steps {
+  padding-left: 1.35rem;
+  list-style: decimal;
+}
+
+.steps li {
+  margin: 0.55rem 0;
+  padding-left: 0.25rem;
+}
+
+.mark-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-top: 0.75rem;
+}
+
+.mark-actions .button {
+  margin-top: 0;
+}
+
+.mark-fields {
+  display: grid;
+  gap: 0.75rem;
+  margin-top: 0.85rem;
+}
+
+.field {
+  display: grid;
+  gap: 0.35rem;
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+.field-heading {
+  display: flex;
+  align-items: baseline;
+  gap: 0.45rem;
+}
+
+.field input,
+.field select,
+.field textarea {
+  width: 100%;
+  max-width: 28rem;
+  padding: 0.45rem 0.65rem;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: transparent;
+  color: var(--text);
+  font: inherit;
+  font-size: 1rem;
+}
+
+.form-error {
+  margin: 0.8rem 0 0;
+  color: var(--red-text);
+}
+
+.saved-note {
+  margin: 0.8rem 0 0;
+  color: var(--muted);
+}
+
+.history {
+  margin-top: 1.1rem;
+  font-size: 0.85rem;
+}
+
+.history > summary {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.3rem 0.6rem;
+  color: var(--muted);
+  cursor: pointer;
+  list-style: none;
+}
+
+.history > summary::-webkit-details-marker {
+  display: none;
+}
+
+/* The same chevron as the Sources list: right when closed, down when open. */
+.history > summary::before {
+  content: '';
+  width: 0.4rem;
+  height: 0.4rem;
+  border-right: 1.5px solid currentColor;
+  border-bottom: 1.5px solid currentColor;
+  transform: rotate(-45deg);
+  transition: transform var(--spring-duration) var(--spring-ease);
+}
+
+.history[open] > summary::before {
+  transform: rotate(45deg);
+}
+
+.attempt-list,
+.attempt-lines {
+  margin: 0.5rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.attempt-list > li + li {
+  margin-top: 0.5rem;
+}
+
+.attempt-when {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6rem;
+  margin: 0;
+  color: var(--muted);
+}
+
+.attempt-lines {
+  margin-top: 0.15rem;
+  color: var(--muted);
+}
+
+/* One small square per step: right, wrong, skipped or partly right. */
+.result-marks {
+  display: inline-flex;
+  gap: 0.2rem;
+}
+
+.result-mark {
+  display: inline-grid;
+  place-items: center;
+  width: 1.15rem;
+  height: 1.15rem;
+  border-radius: 4px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.result-mark-right {
+  background: var(--green-bg);
+  color: var(--green-text);
+}
+
+.result-mark-wrong {
+  background: var(--red-bg);
+  color: var(--red-text);
+}
+
+.result-mark-skipped {
+  background: var(--badge-bg);
+  color: var(--muted);
+}
+
+.result-mark-partly-right {
+  background: var(--blue-bg);
+  color: var(--blue-text);
+}
+
+.review h1,
+.dashboard h1,
+.search-page h1 {
+  margin: 0;
+  font-size: 2.45rem;
+}
+
+.review-count {
+  margin: 0.8rem 0 0;
+  color: var(--muted);
+}
+
+.review-from {
+  margin: 0.2rem 0 0.9rem;
+}
+
+.transfer {
+  margin-top: 3rem;
+  padding-top: 1.7rem;
+  border-top: 1px solid var(--border);
+}
+
+.transfer-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  align-items: center;
+}
+
+.transfer-actions .button {
+  margin-top: 1.2rem;
+}
+
+.file-button {
+  display: inline-block;
+}
+
+.file-button input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+.steps ::marker,
+.prose ::marker {
+  color: var(--muted);
+}
+
+.visual-note {
+  margin: 0;
+  color: var(--muted);
+  transition: color var(--fade);
+}
+
+/* Markdown and formulas */
+
+.prose {
+  line-height: 1.65;
+}
+
+.prose > :first-child {
+  margin-top: 0;
+}
+
+.prose > :last-child {
+  margin-bottom: 0;
+}
+
+.prose p,
+.prose ul,
+.prose ol,
+.prose blockquote,
+.prose pre,
+.prose table {
+  margin: 0.9em 0;
+}
+
+.prose ul,
+.prose ol {
+  padding-left: 1.35rem;
+}
+
+/* A subheading written as ### inside a block's text. It sits below the block heading. */
+.prose h4 {
+  margin: 1.5em 0 0.4em;
+  color: var(--heading);
+  font-size: 1.05rem;
+  font-weight: 600;
+  letter-spacing: var(--track-heading);
+  line-height: 1.3;
+}
+
+.prose blockquote {
+  margin-left: 0;
+  padding-left: 1rem;
+  border-left: 1px solid var(--border);
+  color: var(--muted);
+  font-family: var(--serif);
+  font-size: 1.08rem;
+  line-height: 1.45;
+}
+
+.prose :not(pre) > code {
+  padding: 0.08em 0.32em;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  background: var(--code-bg);
+  font-family: var(--mono);
+  font-size: 0.92em;
+}
+
+.prose pre {
+  overflow-x: auto;
+  padding: 1rem 1.1rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--code-bg);
+}
+
+.prose pre code {
+  font-family: var(--mono);
+  font-size: 0.9em;
+}
+
+.prose img {
+  max-width: 100%;
+  height: auto;
+}
+
+.prose table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.prose th,
+.prose td {
+  padding: 0.4rem 0.65rem;
+  border: 1px solid var(--border);
+  text-align: left;
+}
+
+.prose .katex {
+  font-size: 1.08em;
+}
+
+.prose .katex-display {
+  margin: 1.5em 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.prose .katex-display > .katex {
+  font-size: 1.21em;
+}
+
+[data-theme='dark'] .katex,
+[data-theme='dark'] .katex-display {
+  color: inherit;
+}
+
+@media (max-width: 640px) {
+  .wrap {
+    padding-inline: 1.25rem;
+  }
+
+  .node-header h1,
+  .lectures-page h1,
+  .lecture-page h1,
+  .review h1,
+  .dashboard h1,
+  .search-page h1 {
+    font-size: 1.9rem;
+  }
+
+  .lecture-subtitle {
+    font-size: 1.12rem;
+  }
+}
+
+/* Site footer and coverage pages */
+
+.site-footer {
+  margin-top: 3.5rem;
+  padding: 1.75rem 0 2.5rem;
+  border-top: 1px solid var(--border);
+}
+
+.footer-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem 1.75rem;
+  font-size: 0.95rem;
+}
+
+.dashboard-group {
+  margin-top: 2.5rem;
+  max-width: var(--readable);
+}
+
+.dashboard-group h2 {
+  margin: 0;
+  font-size: 1.4rem;
+}
+
+.dashboard-list,
+.dashboard-exercises,
+.search-results {
+  margin: 1rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.dashboard-list > li,
+.search-results > li {
+  padding: 0.85rem 0;
+  border-top: 1px solid var(--border);
+}
+
+.dashboard-list p,
+.search-results p {
+  margin: 0;
+}
+
+.dashboard-count {
+  margin-left: 0.7rem;
+  color: var(--muted);
+}
+
+.dashboard-section-title {
+  margin: 0;
+  font-size: 1.75rem;
+}
+
+.dashboard-patterns {
+  margin-top: 3rem;
+  max-width: var(--readable);
+}
+
+.dashboard-patterns > .dashboard-group {
+  margin-top: 1.5rem;
+}
+
+.dashboard-wins h3 {
+  margin: 0;
+  font-family: var(--sans);
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.wins-part {
+  margin-top: 1.5rem;
+}
+
+.wins-line {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.2rem 1rem;
+  flex-wrap: wrap;
+  margin: 0.5rem 0 0;
+}
+
+.wins-value {
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.wins-tiers,
+.wins-nodes,
+.wins-mocks {
+  margin: 0.75rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.wins-tiers > li {
+  margin-top: 0.85rem;
+}
+
+.wins-tiers .wins-line {
+  margin-top: 0;
+}
+
+.wins-nodes > li,
+.wins-mocks > li {
+  padding: 0.4rem 0;
+  overflow-wrap: anywhere;
+}
+
+.wins-more {
+  margin: 0.25rem 0 0;
+  color: var(--muted);
+}
+
+.dashboard-trend {
+  margin-top: 0.2rem;
+  color: var(--muted);
+  font-size: 0.92rem;
+  overflow-wrap: anywhere;
+}
+
+.dashboard-trend-down {
+  color: var(--green-text);
+}
+
+.dashboard-beaten {
+  margin-left: 0.7rem;
+  vertical-align: 0.1em;
+}
+
+.dashboard-exercises {
+  margin-top: 0.45rem;
+  padding-left: 1.15rem;
+  list-style: disc;
+}
+
+.search-results .badge {
+  margin-left: 0.7rem;
+}
+
+.search-where {
+  margin-top: 0.35rem;
+  color: var(--muted);
+}
+
+.coverage-page h1,
+.changes-page h1,
+.adding-content-page h1 {
+  margin: 0;
+  font-size: 2.45rem;
+}
+
+.coverage-summary {
+  margin: 0.85rem 0 0;
+  color: var(--muted);
+  max-width: var(--readable);
+}
+
+.coverage-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1.75rem;
+}
+
+.coverage-tab {
+  padding: 0.45rem 0.85rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: transparent;
+  color: var(--text);
+  font-family: var(--sans);
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background-color var(--fade), border-color var(--fade);
+}
+
+.coverage-tab[aria-selected='true'] {
+  background: var(--hover);
+  border-color: var(--muted);
+}
+
+.coverage-group {
+  margin-top: 2.25rem;
+  max-width: var(--readable);
+}
+
+.coverage-group h2 {
+  margin: 0;
+  font-size: 1.55rem;
+}
+
+.coverage-group-meta {
+  margin: 0.35rem 0 0;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.coverage-item-list {
+  margin: 1rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.coverage-item-list li {
+  padding: 0.65rem 0;
+  border-top: 1px solid var(--border);
+}
+
+.coverage-item-line {
+  margin: 0;
+}
+
+.coverage-excluded {
+  color: var(--muted);
+}
+
+.coverage-skipped {
+  margin-top: 2.5rem;
+  max-width: var(--readable);
+}
+
+.coverage-skipped h2 {
+  margin: 0;
+  font-size: 1.35rem;
+}
+
+.coverage-skipped ul {
+  margin: 0.85rem 0 0;
+  padding-left: 1.25rem;
+}
+
+.coverage-node-section {
+  margin-top: 2rem;
+  max-width: var(--readable);
+}
+
+.coverage-node-section h2 {
+  margin: 0;
+  font-size: 1.45rem;
+}
+
+.coverage-node-items {
+  margin: 0.65rem 0 0;
+  padding-left: 1.25rem;
+}
+
+.change-log {
+  margin: 1.5rem 0 0;
+  padding: 0;
+  list-style: none;
+  max-width: var(--readable);
+}
+
+.change-entry {
+  padding: 1.5rem 0;
+  border-top: 1px solid var(--border);
+}
+
+.change-entry:first-child {
+  border-top: none;
+  padding-top: 0;
+}
+
+.change-meta {
+  margin: 0 0 0.65rem;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.change-title {
+  color: var(--text);
+}
+
+.change-nodes,
+.change-nodes-details {
+  margin: 0.85rem 0 0;
+}
+
+.change-nodes {
+  padding-left: 1.25rem;
+}
+
+.adding-content-page .prose {
+  margin-top: 1.25rem;
+  max-width: var(--readable);
+}
+
+/* Formula sheet and mocks */
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.formula-sheet-page h1,
+.formula-sheet-print h1,
+.mocks-page h1,
+.mock-session h1 {
+  margin: 0;
+  font-size: 2.45rem;
+}
+
+/* The builder is work in progress. The notice sits right under the heading. */
+.wip-notice {
+  max-width: var(--readable);
+  margin: 0.85rem 0 0;
+  padding: 0.65rem 0.9rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--accent-soft);
+  line-height: 1.5;
+  transition:
+    background-color var(--fade),
+    border-color var(--fade);
+}
+
+.formula-sheet-intro {
+  margin: 0.85rem 0 0;
+  max-width: var(--readable);
+}
+
+.sheet-size {
+  margin: 1.25rem 0 0;
+  max-width: var(--readable);
+}
+
+.formula-sheet-lecture {
+  margin-top: 2.25rem;
+}
+
+.formula-sheet-lecture h2 {
+  margin: 0;
+  font-size: 1.7rem;
+}
+
+.formula-sheet-topic {
+  margin-top: 1.5rem;
+}
+
+.formula-sheet-items {
+  list-style: none;
+  margin: 0.75rem 0 0;
+  padding: 0;
+}
+
+.formula-sheet-item {
+  margin-top: 1.25rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--border);
+}
+
+.formula-sheet-item:first-child {
+  border-top: none;
+  padding-top: 0;
+}
+
+.formula-sheet-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem 1rem;
+  align-items: center;
+  margin-top: 0.85rem;
+}
+
+.formula-sheet-actions .button {
+  margin-top: 0;
+}
+
+.formula-sheet-edit {
+  display: block;
+  width: 100%;
+  max-width: var(--readable);
+  margin-top: 0.5rem;
+  padding: 0.65rem 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--canvas);
+  color: var(--text);
+  font-family: var(--sans);
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.formula-sheet-print-list {
+  margin: 1.5rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.formula-sheet-print-item {
+  margin-top: 1.25rem;
+}
+
+.formula-sheet-print-text {
+  font-family: var(--serif);
+}
+
+.paper-list {
+  list-style: none;
+  margin: 1rem 0 0;
+  padding: 0;
+}
+
+.paper-list-item {
+  margin-top: 1rem;
+}
+
+.paper-meta {
+  margin: 0.35rem 0 0;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.mocks-page h2 {
+  margin: 2.5rem 0 0;
+  font-size: 1.7rem;
+}
+
+.mock-meta {
+  margin: 1.25rem 0 0;
+  max-width: var(--readable);
+}
+
+.mock-meta div {
+  margin-top: 0.65rem;
+}
+
+.mock-meta dt {
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.mock-meta dd {
+  margin: 0.15rem 0 0;
+}
+
+.mock-block,
+.mock-block-budget,
+.mock-marking-block {
+  margin-top: 1.75rem;
+  max-width: var(--readable);
+}
+
+.mock-exercises {
+  margin: 0.75rem 0 0;
+  padding-left: 1.25rem;
+}
+
+.mock-rubric-item {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+}
+
+.mock-score {
+  margin: 1rem 0 0;
+  font-family: var(--serif);
+  font-size: 1.5rem;
+}
+
+@media print {
+  .site-header,
+  .site-footer,
+  .no-print {
+    display: none !important;
+  }
+
+  .formula-sheet-print-text,
+  .formula-sheet-print-text .prose {
+    font-family: var(--serif);
+  }
+}
+
+/* Interactive course visuals */
+
+.visual-block {
+  margin-top: 1rem;
+}
+
+.visual-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.85rem 1rem;
+  align-items: end;
+}
+
+.visual-controls .field {
+  flex: 1 1 9rem;
+}
+
+.visual-controls .field input[type='range'] {
+  width: 100%;
+}
+
+.visual-readout {
+  margin: 1rem 0 0;
+  padding: 0.75rem 0.9rem;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--text);
+  background: var(--canvas);
+}
+
+.visual-plot-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.visual-figure {
+  position: relative;
+  min-width: 0;
+  min-height: 420px;
+  margin-top: 1rem;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--canvas);
+}
+
+.visual-plot-grid .visual-figure {
+  margin-top: 0;
+}
+
+@media (max-width: 900px) {
+  .visual-plot-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.visual-checks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.25rem;
+  margin-top: 1rem;
+}
+
+.check {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+.visual-readout-list {
+  display: grid;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.visual-readout-list .visual-readout {
+  margin: 0;
+}
+
+.visual-controls + .visual-note,
+.visual-checks + .visual-note {
+  margin-top: 0.75rem;
+}
+
+.visual-table {
+  margin-top: 1rem;
+  overflow-x: auto;
+}
+
+.visual-table table {
+  border-collapse: collapse;
+  font-size: 0.92rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.visual-table th,
+.visual-table td {
+  padding: 0.35rem 0.9rem 0.35rem 0;
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+  white-space: nowrap;
+}
+
+.visual-table th {
+  color: var(--muted);
+  font-weight: 500;
+}
+
+/* Concept question feedback. Colour is paired with an icon and screen-reader text. */
+
+.option-right,
+.option-right:hover,
+.option-reveal,
+.option-reveal:hover {
+  border-color: var(--green-text);
+  background: var(--green-bg);
+}
+
+.option-wrong,
+.option-wrong:hover {
+  border-color: var(--red-text);
+  background: var(--red-bg);
+}
+
+.option-feedback {
+  font-weight: 600;
+}
+
+.option-right .option-feedback,
+.option-reveal .option-feedback {
+  color: var(--green-text);
+}
+
+.option-wrong .option-feedback {
+  color: var(--red-text);
+}
+
+.streak {
+  margin: 0 0 0.6rem;
+  color: var(--green-text);
+  font-weight: 500;
+}
+
+/* Topic page: one centred column. Reading runs on the page, and a box marks a stop where the reader acts or takes care. */
+
+.node {
+  max-width: 52rem;
+  margin-inline: auto;
+}
+
+.node-header h1 .topic-number {
+  margin-inline-end: 0.35rem;
+  color: var(--muted);
+  font-weight: 400;
+}
+
+.node-draft-note {
+  margin: 0.6rem 0 0;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.node-builds-on {
+  margin: 0.7rem 0 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.node-header .badge[title] {
+  cursor: help;
+}
+
+/* The number and icon are drawn by CSS, so the heading text stays the section title. */
+.node-section h2::before {
+  flex: none;
+}
+
+.section-heading-numbered::before {
+  content: attr(data-number);
+  color: var(--accent);
+}
+
+.section-heading-practise::before,
+.section-heading-sheet::before {
+  display: inline-grid;
+  place-items: center;
+  width: 2.4rem;
+  height: 2.4rem;
+  border-radius: 0.6rem;
+  background: color-mix(in srgb, var(--accent) 22%, transparent);
+  font-size: 1.25rem;
+  line-height: 1;
+}
+
+.section-heading-practise::before {
+  content: '✍️';
+}
+
+.section-heading-sheet::before {
+  content: '📄';
+}
+
+.notation {
+  margin-top: 1.6rem;
+  font-size: 0.95em;
+}
+
+.statement-group {
+  margin-top: 2.5rem;
+}
+
+.statement-group > .block-formal-statement {
+  margin-top: 0;
+}
+
+.block-concept-question {
+  --kind: var(--accent);
+}
+
+.block-concept-question > .block-label {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 0.7rem;
+  color: var(--kind);
+  font-size: 0.8rem;
+}
+
+/* A displayed formula never scrolls. Prose shrinks one that is too wide. */
+.node .prose .katex-display {
+  overflow: visible;
+}
+
+/* Zoom buttons sit in the top right corner of a flat figure. */
+.figure-zoom {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  display: flex;
+  gap: 0.3rem;
+}
+
+.figure-zoom button {
+  display: inline-grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--panel);
+  color: var(--text);
+  font: inherit;
+  font-size: 1.05rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.figure-zoom button:hover {
+  background: var(--hover);
+}
+
+/* Exercise bank */
+
+.bank-page {
+  max-width: 62rem;
+}
+
+.bank-filters {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1.4fr);
+  gap: 1rem 1.25rem;
+  margin-top: 1.75rem;
+  padding: 1rem 1.15rem 1.1rem;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--panel);
+}
+
+.bank-field {
+  display: grid;
+  gap: 0.3rem;
+  min-width: 0;
+}
+
+.bank-field-label {
+  padding: 0;
+  color: var(--muted);
+  font-family: var(--sans);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+}
+
+.bank-field input,
+.bank-field select {
+  width: 100%;
+  padding: 0.45rem 0.65rem;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: transparent;
+  color: var(--text);
+  font: inherit;
+  font-size: 1rem;
+}
+
+.bank-levels {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.bank-levels .bank-field-label {
+  flex-basis: 100%;
+}
+
+.bank-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.3rem 0.7rem;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  color: var(--text);
+  font-size: 0.92rem;
+  cursor: pointer;
+  transition: background-color var(--fade), border-color var(--fade);
+}
+
+.bank-chip:hover {
+  background: var(--hover);
+}
+
+.bank-chip:has(input:checked) {
+  border-color: var(--accent);
+  background: color-mix(in srgb, var(--accent-soft) 60%, var(--panel));
+}
+
+.bank-chip:has(input:focus-visible),
+.bank-check:has(input:focus-visible) {
+  outline: 2px solid var(--text);
+  outline-offset: 2px;
+}
+
+.bank-chip input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.bank-chip .level-dot {
+  width: 0.55rem;
+  height: 0.55rem;
+  margin-top: 0;
+}
+
+.bank-chip-basic .level-dot,
+.bank-tier-basic .level-dot {
+  background: var(--level-basic);
+}
+
+.bank-chip-standard .level-dot,
+.bank-tier-standard .level-dot {
+  background: var(--level-standard);
+}
+
+.bank-chip-exam .level-dot,
+.bank-tier-exam .level-dot {
+  background: var(--level-exam);
+}
+
+.bank-chip-count {
+  color: var(--muted);
+  font-size: 0.82rem;
+}
+
+.bank-toggles {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 1.25rem;
+}
+
+.bank-toggles .button {
+  margin-top: 0;
+  margin-left: auto;
+}
+
+.bank-check {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.95rem;
+  cursor: pointer;
+}
+
+.bank-count {
+  margin: 1.25rem 0 0;
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+.bank-lecture {
+  margin-top: 2rem;
+}
+
+.bank-lecture-title {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.2rem 0.75rem;
+  margin: 0;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--border);
+  font-size: 1.35rem;
+}
+
+.bank-lecture-number {
+  color: var(--muted);
+  font-family: var(--sans);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+}
+
+.bank-nodes,
+.bank-exercises {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.bank-node {
+  border-bottom: 1px solid var(--border);
+}
+
+.bank-node-summary {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.2rem 0.5rem;
+  padding: 0.8rem 0.25rem;
+  cursor: pointer;
+}
+
+.bank-node-summary:hover .bank-node-title {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
+}
+
+.bank-node-title {
+  color: var(--heading);
+  font-weight: 600;
+}
+
+.bank-node-count {
+  margin-left: auto;
+  color: var(--muted);
+  font-size: 0.88rem;
+}
+
+.bank-node-link,
+.bank-exercise-link {
+  margin: 0 0 0.6rem 0.25rem;
+  font-size: 0.92rem;
+}
+
+.bank-exercises {
+  display: grid;
+  gap: 0.6rem;
+  margin-bottom: 1rem;
+}
+
+.bank-exercise {
+  min-width: 0;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--panel);
+}
+
+.bank-exercise-head {
+  display: grid;
+  gap: 0.35rem;
+  width: 100%;
+  padding: 0.7rem 0.95rem;
+  border: 0;
+  border-radius: inherit;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition: background-color var(--fade);
+}
+
+.bank-exercise-head:hover {
+  background: var(--hover);
+}
+
+.bank-exercise-head:focus-visible {
+  outline: 2px solid var(--text);
+  outline-offset: -2px;
+}
+
+.bank-exercise-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem 0.8rem;
+}
+
+.bank-tier {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--heading);
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.bank-tier .level-dot {
+  width: 0.55rem;
+  height: 0.55rem;
+  margin-top: 0;
+}
+
+.bank-origin {
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+/* Two lines of the statement are enough to recognise the exercise. */
+.bank-preview {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  max-height: 3.4em;
+  color: var(--text);
+  font-size: 0.95rem;
+}
+
+.bank-preview .prose > * {
+  margin: 0;
+}
+
+.bank-preview .katex-display {
+  display: inline;
+  margin: 0;
+}
+
+/* An open exercise is the exercise card itself, so the row drops its own frame. */
+.bank-exercise.is-open {
+  border-color: transparent;
+  background: transparent;
+}
+
+.bank-exercise.is-open > .bank-exercise-head {
+  padding-block: 0.3rem;
+}
+
+.bank-exercise .block.block-exercise {
+  margin-top: 0.25rem;
+}
+
+.bank-chevron {
+  flex: none;
+  width: 1rem;
+  height: 1rem;
+  margin-left: auto;
+  color: var(--muted);
+  transition: transform var(--spring-duration) var(--spring-ease);
+}
+
+.bank-exercise-head[aria-expanded='true'] .bank-chevron {
+  transform: rotate(90deg);
+}
+
+.bank-node-summary {
+  list-style: none;
+}
+
+.bank-node-summary::-webkit-details-marker {
+  display: none;
+}
+
+.bank-node-summary::before {
+  content: '';
+  flex: none;
+  width: 0.45rem;
+  height: 0.45rem;
+  margin: 0.4rem 0.35rem 0 0.1rem;
+  border-right: 2px solid var(--muted);
+  border-bottom: 2px solid var(--muted);
+  transform: rotate(-45deg);
+  transition: transform var(--spring-duration) var(--spring-ease);
+}
+
+details[open] > .bank-node-summary::before {
+  transform: rotate(45deg);
+}
+
+@media (max-width: 760px) {
+  .bank-filters {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.bank-exercise-meta .exercise-done {
+  margin-left: 0;
+}

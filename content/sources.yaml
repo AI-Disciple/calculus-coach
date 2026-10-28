@@ -1,0 +1,154 @@
+# Source registry: every unique piece of the student's course material that content may cite.
+# Node and block references use { source: <id>, page: <page>, section: <section> }. See docs/content-format.md.
+#
+# pageNumbering says what a cited page means:
+#   pdf      the 1-based page of the PDF file
+#   printed  the page number printed in the book; printedPages converts it (PDF page = printed page - offset)
+#   none     a single image, cited without a page
+# sections (printed sources only) gives the PDF page where each section starts, so a section reference opens there.
+
+- id: handout
+  title: Handout
+  kind: handout
+  pageNumbering: printed
+  printedPages:
+    - { from: 5, to: 11, offset: 0 }
+    - { from: 13, to: 105, offset: 0 }
+    - { from: 107, to: 117, offset: 0 }
+    - { from: 119, to: 195, offset: 0 }
+    - { from: 223, to: 232, offset: 27 }
+    - { from: 241, to: 244, offset: 35 }
+    - { from: 250, to: 252, offset: 40 }
+    - { from: 299, to: 328, offset: 86 }
+    - { from: 349, to: 383, offset: 106 }
+    - { from: 385, to: 418, offset: 106 }
+    - { from: 481, to: 509, offset: 168 }
+    - { from: 511, to: 515, offset: 168 }
+  sections:
+    "1.1": 16
+    "1.2": 21
+    "1.3": 22
+    "1.4": 27
+    "2.1": 31
+    "2.2": 36
+    "2.3": 38
+    "2.4": 48
+    "2.5": 53
+    "3.1": 57
+    "3.2": 60
+    "3.3": 62
+    "3.4": 64
+    "3.5": 67
+    "4.1": 73
+    "4.2": 76
+    "4.3": 77
+    "4.4": 80
+    "4.5": 81
+    "4.6": 82
+    "4.7": 84
+    "4.8": 89
+    "4.9": 94
+    "4.10": 97
+    "4.11": 102
+    "5.1": 107
+    "5.2": 111
+    "5.3": 112
+    "5.4": 113
+    "5.5": 115
+    "6.1": 119
+    "6.2": 131
+    "6.3": 139
+    "6.4": 143
+    "6.5": 145
+    "7.1": 149
+    "7.2": 153
+    "7.3": 160
+    "8.1": 166
+    "8.2": 171
+    "8.3": 173
+    "8.4": 176
+    "8.5": 180
+    "8.6": 184
+    "8.7": 189
+    "9.1": 191
+    "9.8": 196
+    "10.1": 206
+    "10.4": 210
+    "12.1": 213
+    "12.2": 216
+    "12.3": 221
+    "12.4": 227
+    "12.5": 231
+    "12.6": 237
+    "14.1": 243
+    "14.2": 247
+    "14.3": 251
+    "14.4": 258
+    "14.5": 260
+    "14.6": 265
+    "14.7": 267
+    "14.8": 272
+    "15.1": 279
+    "15.2": 289
+    "15.3": 293
+    "15.4": 296
+    "15.5": 298
+    "15.6": 301
+    "15.7": 305
+    A: 313
+    B: 339
+
+# Lecture notes (GoodNotes exports) and lecture 4 board photos
+- { id: lecture-notes-1, title: Lecture 1 notes, kind: lecture-notes, pageNumbering: pdf }
+- { id: lecture-notes-2, title: Lecture 2 notes, kind: lecture-notes, pageNumbering: pdf }
+- { id: lecture-notes-3, title: Lecture 3 notes, kind: lecture-notes, pageNumbering: pdf }
+- { id: lecture-notes-5, title: Lecture 5 notes, kind: lecture-notes, pageNumbering: pdf }
+- { id: lecture-notes-6, title: Lecture 6 notes, kind: lecture-notes, pageNumbering: pdf }
+- { id: lecture-4-board-1, title: Lecture 4 board 1, kind: board-photo, pageNumbering: none }
+- { id: lecture-4-board-2, title: Lecture 4 board 2, kind: board-photo, pageNumbering: none }
+- { id: lecture-4-board-3, title: Lecture 4 board 3, kind: board-photo, pageNumbering: none }
+- { id: lecture-4-board-4, title: Lecture 4 board 4, kind: board-photo, pageNumbering: none }
+- { id: lecture-4-notebook, title: Lecture 4 notebook page, kind: board-photo, pageNumbering: none }
+
+# Exercise sheets. Exo3 repeats exercises 1 to 9 of sheet 2, and Exo4 is identical to sheet 3.
+- { id: sheet-0, title: Exercise sheet 0 (Exo0), kind: exercise-sheet, pageNumbering: pdf }
+- { id: sheet-1, title: Exercise sheet 1 (Exo1), kind: exercise-sheet, pageNumbering: pdf }
+- { id: sheet-2, title: Exercise sheet 2, kind: exercise-sheet, pageNumbering: pdf }
+- { id: sheet-2-short, title: "Exercise sheet 2, short version (Exo3)", kind: exercise-sheet, pageNumbering: pdf }
+- { id: sheet-3, title: "Exercise sheet 3, multiple integration", kind: exercise-sheet, pageNumbering: pdf }
+- { id: class-1-corrections, title: Class 1 exercise corrections, kind: exercise-sheet, pageNumbering: pdf }
+- { id: functions-and-graphs, title: Functions and graphs booklet, kind: course-document, pageNumbering: pdf }
+
+# Finals, mocks and the home assignment
+- { id: final-2021, title: Final 2021, kind: past-paper, pageNumbering: pdf }
+- { id: final-2021-answers, title: Final 2021 answers, kind: past-paper, pageNumbering: pdf }
+- { id: final-2022, title: Final 2022 with solutions, kind: past-paper, pageNumbering: pdf }
+- { id: retake-2023, title: Retake January 2023, kind: past-paper, pageNumbering: pdf }
+- { id: final-2024, title: Final 2024, kind: past-paper, pageNumbering: pdf }
+- { id: final-2025, title: Final 2025, kind: past-paper, pageNumbering: pdf }
+- { id: mock-2022, title: Mock exam 2022, kind: past-paper, pageNumbering: pdf }
+- { id: mock-2022-solutions, title: Mock exam 2022 solutions (other edition), kind: past-paper, pageNumbering: pdf }
+- { id: mock-exam-1, title: Mock exam 1, kind: past-paper, pageNumbering: pdf }
+- { id: mock-exam-2, title: Mock exam 2, kind: past-paper, pageNumbering: pdf }
+- { id: home-assignment-2022, title: Home assignment 2022, kind: past-paper, pageNumbering: pdf }
+- { id: home-assignment-2022-solutions, title: Home assignment 2022 solutions, kind: past-paper, pageNumbering: pdf }
+
+# Midterms
+- { id: midterm-mock-1, title: Midterm mock 1, kind: past-paper, pageNumbering: pdf }
+- { id: midterm-mock-1-key, title: Midterm mock 1 key, kind: past-paper, pageNumbering: pdf }
+- { id: midterm-2021, title: Midterm 2021, kind: past-paper, pageNumbering: pdf }
+- { id: midterm-2022, title: Midterm 2022, kind: past-paper, pageNumbering: pdf }
+- { id: midterm-2022-key, title: Midterm 2022 key, kind: past-paper, pageNumbering: pdf }
+- { id: midterm-2024, title: Midterm 2024, kind: past-paper, pageNumbering: pdf }
+- { id: midterm-2025, title: Midterm 2025, kind: past-paper, pageNumbering: pdf }
+- { id: midterm-2025-key, title: Midterm 2025 key, kind: past-paper, pageNumbering: pdf }
+- { id: midterm-2026-key, title: Midterm 2026 with official answers, kind: past-paper, pageNumbering: pdf }
+
+# Course documents
+- { id: syllabus, title: Syllabus, kind: course-document, pageNumbering: pdf }
+- { id: final-study-guide, title: Final exam study guide, kind: course-document, pageNumbering: none }
+
+# Revision pages. Questions and cards attach to lectures 1 to 3. The written papers inside the midterm app are a later checkpoint import.
+- { id: midterm-app, title: Midterm revision app, kind: course-document, pageNumbering: none }
+- { id: curves-revision, title: Curve discussion revision page, kind: course-document, pageNumbering: none }
+- { id: integrals-revision, title: Integrals revision page, kind: course-document, pageNumbering: none }
