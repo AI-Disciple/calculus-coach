@@ -1,52 +1,46 @@
 import { afterAll, describe, expect, it } from 'vitest';
-import { existsSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import http from 'node:http';
 import type { AddressInfo } from 'node:net';
 import os from 'node:os';
 import path from 'node:path';
 import { createApi } from '../server/api.ts';
+import { memoryStore, type ProgressStore } from '../server/progress-store.ts';
 import { conceptQuestionId } from '../src/content/questionId.ts';
 import type { CourseCatalog } from '../src/progress/course.ts';
 import {
   marksByStep,
   parseDayList,
   parseIntervalFile,
+  ProgressError,
   reviewsInCourse,
   type IntervalConfig,
+  type Progress,
 } from '../src/progress/progress.ts';
 
 const START = '2026-03-01T10:00:00.000Z';
 const INTERVALS: IntervalConfig = { intervalsDays: [2, 5, 11], postponeDays: 4 };
 
-const tempDirs: string[] = [];
 const servers: http.Server[] = [];
 afterAll(() => {
   servers.forEach((server) => server.close());
-  tempDirs.forEach((dir) => rmSync(dir, { recursive: true, force: true }));
 });
-
-function tempDir(): string {
-  const dir = mkdtempSync(path.join(os.tmpdir(), 'progress-'));
-  tempDirs.push(dir);
-  return dir;
-}
 
 async function boot(options?: {
   intervals?: IntervalConfig;
-  beforeProgressReplace?: () => void;
   course?: CourseCatalog;
+  initial?: Progress;
+  /** Wraps the in-memory store, e.g. to make a load or save fail. */
+  wrap?: (store: ReturnType<typeof memoryStore>) => ProgressStore;
 }) {
-  const dir = tempDir();
-  const progressFile = path.join(dir, 'progress.json');
+  const store = memoryStore(options?.initial);
   let now = new Date(START);
   const server = http.createServer(
     createApi({
-      sourcesConfig: path.join(dir, 'sources.local.json'),
-      progressFile,
+      sourcesConfig: path.join(os.tmpdir(), 'progress-test-sources.local.json'),
+      progressStore: options?.wrap ? options.wrap(store) : store,
       course: options?.course,
       now: () => now,
       intervals: options?.intervals ?? INTERVALS,
-      beforeProgressReplace: options?.beforeProgressReplace,
     }),
   );
   servers.push(server);
@@ -54,7 +48,7 @@ async function boot(options?: {
   const base = `http://127.0.0.1:${(server.address() as AddressInfo).port}`;
   return {
     base,
-    progressFile,
+    store,
     setNow(iso: string) {
       now = new Date(iso);
     },
@@ -130,17 +124,17 @@ const missedSteps = {
   ],
 };
 
-describe('progress file', () => {
-  it('starts empty and creates no file', async () => {
-    const { base, progressFile } = await boot();
-    expect(existsSync(progressFile)).toBe(false);
+describe('progress store', () => {
+  it('starts empty and saves nothing', async () => {
+    const { base, store } = await boot();
+    expect(store.saves).toBe(0);
     expect((await get(base, '/api/progress')).body).toEqual({ attempts: [], reviews: [] });
     expect((await get(base, '/api/review')).body).toEqual({ due: [] });
-    expect(existsSync(progressFile)).toBe(false);
+    expect(store.saves).toBe(0);
   });
 
   it('records a step attempt with its mistake type and note', async () => {
-    const { base, progressFile } = await boot();
+    const { base, store } = await boot();
     const saved = await post(base, '/api/attempts', missedSteps);
     expect(saved.status).toBe(200);
     expect(saved.body.attempt).toMatchObject({
@@ -161,29 +155,29 @@ describe('progress file', () => {
 
     const history = await get(base, '/api/attempts?exerciseId=l6-hessian-test-sample.basic-bowl');
     expect(history.body.attempts).toEqual([saved.body.attempt]);
-    expect(JSON.parse(readFileSync(progressFile, 'utf8')).attempts).toEqual([saved.body.attempt]);
+    expect(store.current().attempts).toEqual([saved.body.attempt]);
   });
 
-  it('refuses a wrong step with no mistake type and leaves the file uncreated', async () => {
-    const { base, progressFile } = await boot();
+  it('refuses a wrong step with no mistake type and saves nothing', async () => {
+    const { base, store } = await boot();
     const saved = await post(base, '/api/attempts', {
       exerciseId: 'l6-hessian-test-sample.basic-bowl',
       tier: 'basic',
       steps: [{ result: 'wrong' }],
     });
     expect(saved.status).toBe(400);
-    expect(existsSync(progressFile)).toBe(false);
+    expect(store.saves).toBe(0);
   });
 
   it('refuses a mistake type on a right step', async () => {
-    const { base, progressFile } = await boot();
+    const { base, store } = await boot();
     const saved = await post(base, '/api/attempts', {
       exerciseId: 'node.exercise',
       tier: 'basic',
       steps: [{ result: 'right', mistakeType: 'misread-question' }],
     });
     expect(saved.status).toBe(400);
-    expect(existsSync(progressFile)).toBe(false);
+    expect(store.saves).toBe(0);
   });
 
   it('records a short drill as one result', async () => {
@@ -348,16 +342,20 @@ describe('review queue', () => {
 });
 
 describe('keeping and moving progress', () => {
-  it('leaves the previous file in place when a write stops before the replace', async () => {
-    let stop = false;
-    const { base, progressFile } = await boot({
-      beforeProgressReplace() {
-        if (stop) throw new Error('stopped');
-      },
+  it('leaves the previous progress in place when a save fails', async () => {
+    let fail = false;
+    const { base, store } = await boot({
+      wrap: (inner) => ({
+        load: () => inner.load(),
+        save: async (progress) => {
+          if (fail) throw new Error('stopped');
+          await inner.save(progress);
+        },
+      }),
     });
     const saved = await post(base, '/api/attempts', missedSteps);
     expect(saved.status).toBe(200);
-    stop = true;
+    fail = true;
     const failed = await post(base, '/api/attempts', {
       exerciseId: 'node.exercise-b',
       tier: 'basic',
@@ -365,9 +363,10 @@ describe('keeping and moving progress', () => {
       mistakeType: 'did-not-know-how-to-start',
     });
     expect(failed.status).toBe(500);
-    const onDisk = JSON.parse(readFileSync(progressFile, 'utf8'));
-    expect(onDisk.attempts).toEqual([saved.body.attempt]);
-    expect((await get(base, '/api/progress')).body).toEqual(onDisk);
+    expect(failed.body.error).toBe('The progress could not be saved.');
+    const stored = store.current();
+    expect(stored.attempts).toEqual([saved.body.attempt]);
+    expect((await get(base, '/api/progress')).body).toEqual(stored);
   });
 
   it('imports a progress file and exports it back', async () => {
@@ -405,13 +404,22 @@ describe('keeping and moving progress', () => {
     expect((await get(base, '/api/progress')).body.attempts).toEqual([saved.body.attempt]);
   });
 
-  it('does not replace a progress file that cannot be read', async () => {
-    const { base, progressFile } = await boot();
-    writeFileSync(progressFile, '{');
+  it('gives the status of a store that cannot be read and saves nothing', async () => {
+    const { base, store } = await boot({
+      wrap: () => ({
+        load: async () => {
+          throw new ProgressError('The progress could not be read.', 500);
+        },
+        save: async () => {
+          throw new Error('should not save');
+        },
+      }),
+    });
     expect((await get(base, '/api/progress')).status).toBe(500);
     const saved = await post(base, '/api/attempts', missedSteps);
     expect(saved.status).toBe(500);
-    expect(readFileSync(progressFile, 'utf8')).toBe('{');
+    expect(saved.body.error).toBe('The progress could not be read.');
+    expect(store.saves).toBe(0);
   });
 
   it('imports a progress file that contains a sheet draft', async () => {
@@ -496,15 +504,15 @@ describe('keeping and moving progress', () => {
 });
 
 describe('formula sheet draft', () => {
-  it('returns an empty draft before any save and creates no file', async () => {
-    const { base, progressFile } = await boot();
-    expect(existsSync(progressFile)).toBe(false);
+  it('returns an empty draft before any save and saves nothing', async () => {
+    const { base, store } = await boot();
+    expect(store.saves).toBe(0);
     expect((await get(base, '/api/sheet')).body).toEqual({ excluded: [], order: [], edits: {} });
-    expect(existsSync(progressFile)).toBe(false);
+    expect(store.saves).toBe(0);
   });
 
   it('saves a sheet draft and reads it back from the API and the progress file', async () => {
-    const { base, progressFile } = await boot();
+    const { base, store } = await boot();
     const draft = {
       excluded: ['l1-derivative.chain-rule'],
       order: ['l1-derivative.product-rule', 'l1-derivative.chain-rule'],
@@ -518,32 +526,32 @@ describe('formula sheet draft', () => {
       edits: { 'l1-derivative.product-rule': "(uv)' = u'v + uv'" },
     });
     expect((await get(base, '/api/sheet')).body).toEqual(saved.body);
-    const onDisk = JSON.parse(readFileSync(progressFile, 'utf8'));
+    const onDisk = store.current();
     expect(onDisk.sheet).toEqual(saved.body);
     expect(onDisk.attempts).toEqual([]);
     expect(onDisk.reviews).toEqual([]);
   });
 
   it('keeps a sheet draft when a later attempt is saved', async () => {
-    const { base, progressFile } = await boot();
+    const { base, store } = await boot();
     const draft = { excluded: [], order: ['node.sheet-item'], edits: { 'node.sheet-item': 'Reminder text.' } };
     await post(base, '/api/sheet', draft);
     await post(base, '/api/attempts', missedSteps);
     expect((await get(base, '/api/sheet')).body).toEqual(draft);
-    expect(JSON.parse(readFileSync(progressFile, 'utf8')).sheet).toEqual(draft);
+    expect(store.current().sheet).toEqual(draft);
   });
 
-  it('refuses a sheet body with a bad identifier and creates no file', async () => {
-    const { base, progressFile } = await boot();
+  it('refuses a sheet body with a bad identifier and saves nothing', async () => {
+    const { base, store } = await boot();
     const saved = await post(base, '/api/sheet', { excluded: ['Not Valid'], order: [], edits: {} });
     expect(saved.status).toBe(400);
-    expect(existsSync(progressFile)).toBe(false);
+    expect(store.saves).toBe(0);
   });
 });
 
 describe('mock paper results', () => {
   it('records attempts, a paper result, review scheduling and an existing sheet draft', async () => {
-    const { base, progressFile, setNow } = await boot();
+    const { base, store, setNow } = await boot();
     const sheet = { excluded: [], order: ['node.formula'], edits: { 'node.formula': 'Saved before the mock.' } };
     await post(base, '/api/sheet', sheet);
 
@@ -599,7 +607,7 @@ describe('mock paper results', () => {
       'stand-in-final.level-curve',
     ]);
 
-    const onDisk = JSON.parse(readFileSync(progressFile, 'utf8'));
+    const onDisk = store.current();
     expect(onDisk.sheet).toEqual(sheet);
     expect(onDisk.paperResults).toEqual([saved.body.paperResult]);
     expect(onDisk.attempts).toEqual(saved.body.attempts);
@@ -614,11 +622,11 @@ describe('paper blocks', () => {
   ];
 
   it('stores the block scores on a saved paper result', async () => {
-    const { base, progressFile } = await boot();
+    const { base, store } = await boot();
     const saved = await post(base, '/api/papers/stand-in-final/result', { earned: 4.5, total: 5, attempts, blocks });
     expect(saved.status).toBe(200);
     expect(saved.body.paperResult.blocks).toEqual(blocks);
-    expect(JSON.parse(readFileSync(progressFile, 'utf8')).paperResults[0].blocks).toEqual(blocks);
+    expect(store.current().paperResults![0].blocks).toEqual(blocks);
   });
 
   it('leaves blocks out when none are supplied', async () => {
@@ -628,7 +636,7 @@ describe('paper blocks', () => {
   });
 
   it('refuses invalid block scores', async () => {
-    const { base, progressFile } = await boot();
+    const { base, store } = await boot();
     const bad = [
       [{ blockId: 'Not Valid', title: 'x', earned: 1, total: 2 }],
       [{ blockId: 'a', title: '', earned: 1, total: 2 }],
@@ -646,7 +654,7 @@ describe('paper blocks', () => {
       const result = await post(base, '/api/papers/stand-in-final/result', { earned: 1, total: 2, attempts, blocks: value });
       expect(result.status).toBe(400);
     }
-    expect(existsSync(progressFile)).toBe(false);
+    expect(store.saves).toBe(0);
   });
 
   it('keeps blocks through export and import', async () => {
@@ -664,16 +672,16 @@ describe('concept questions', () => {
   const question = 'node.q-0001';
 
   it('saves a first pick with its question, time and result', async () => {
-    const { base, progressFile, setNow } = await boot();
+    const { base, store, setNow } = await boot();
     await post(base, `/api/questions/${question}/pick`, { right: true });
     setNow('2026-03-02T10:00:00.000Z');
     await post(base, `/api/questions/${question}/pick`, { right: false });
-    const onDisk = JSON.parse(readFileSync(progressFile, 'utf8'));
+    const onDisk = store.current();
     expect(onDisk.conceptPicks).toMatchObject([
       { at: START, questionId: question, right: true },
       { at: '2026-03-02T10:00:00.000Z', questionId: question, right: false },
     ]);
-    expect(onDisk.conceptPicks[0].id).not.toBe(onDisk.conceptPicks[1].id);
+    expect(onDisk.conceptPicks![0].id).not.toBe(onDisk.conceptPicks![1].id);
   });
 
   it('keeps a right first pick out of the queue', async () => {
@@ -714,11 +722,11 @@ describe('concept questions', () => {
   });
 
   it('refuses a pick it cannot read and a bad question identifier', async () => {
-    const { base, progressFile } = await boot();
+    const { base, store } = await boot();
     expect((await post(base, `/api/questions/${question}/pick`, { right: 'yes' })).status).toBe(400);
     expect((await post(base, `/api/questions/${question}/pick`, { right: true, extra: 1 })).status).toBe(400);
     expect((await post(base, '/api/questions/Bad Id/pick', { right: true })).status).toBe(400);
-    expect(existsSync(progressFile)).toBe(false);
+    expect(store.saves).toBe(0);
   });
 
   it('keeps picks through export and import, and still loads a file without them', async () => {
@@ -754,9 +762,7 @@ describe('files saved while the course had recall cards', () => {
   };
 
   async function bootWithOldFile() {
-    const booted = await boot();
-    writeFileSync(booted.progressFile, JSON.stringify(oldFile));
-    return booted;
+    return boot({ initial: oldFile as Progress });
   }
 
   it('loads, with the card review and rating log as they were', async () => {
@@ -768,10 +774,10 @@ describe('files saved while the course had recall cards', () => {
   });
 
   it('keeps the card data verbatim when the file is rewritten', async () => {
-    const { base, progressFile } = await bootWithOldFile();
+    const { base, store } = await bootWithOldFile();
     await post(base, '/api/attempts', missedSteps);
     await post(base, '/api/questions/node.q-0002/pick', { right: true });
-    const onDisk = JSON.parse(readFileSync(progressFile, 'utf8'));
+    const onDisk = store.current();
     expect(onDisk.cardRatings).toEqual(oldFile.cardRatings);
     expect(onDisk.reviews).toContainEqual(oldFile.reviews[0]);
     expect(onDisk.attempts).toHaveLength(1);

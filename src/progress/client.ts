@@ -1,3 +1,4 @@
+import { authHeaders } from './auth.ts';
 import type { Dashboard, MasteryReport } from './dashboard.ts';
 import type {
   Attempt,
@@ -13,7 +14,11 @@ export type Result<T> = { ok: true; value: T } | { ok: false; error: string };
 
 async function request<T>(url: string, init?: RequestInit): Promise<Result<T>> {
   try {
-    const response = await fetch(url, { cache: 'no-store', ...init });
+    const response = await fetch(url, {
+      cache: 'no-store',
+      ...init,
+      headers: { ...authHeaders(), ...(init?.headers as Record<string, string> | undefined) },
+    });
     const payload: unknown = await response.json().catch(() => null);
     if (!response.ok) {
       const error =

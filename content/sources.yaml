@@ -10,6 +10,7 @@
 - id: handout
   title: Handout
   kind: handout
+  url: https://centralesupelec.edunao.com/pluginfile.php/614160/mod_resource/content/2/handout-selected.pdf
   pageNumbering: printed
   printedPages:
     - { from: 5, to: 11, offset: 0 }

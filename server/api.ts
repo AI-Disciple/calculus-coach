@@ -26,19 +26,19 @@ import {
   type PaperResult,
   type Progress,
 } from '../src/progress/progress.ts';
-import { loadProgress, writeJsonAtomic } from './progress-file.ts';
+import { ConflictError, anonymousStore, bearerToken, supabaseStore, type ProgressStore, type SupabaseConfig } from './progress-store.ts';
 
 export type ApiOptions = {
   /** Path of the per-machine source-link config, a JSON object mapping source identifiers to local file paths. */
   sourcesConfig: string;
-  /** Path of the one progress file. Absent only in tests that never touch progress. */
-  progressFile?: string;
+  /** Progress lives in Supabase, one row per account, and every progress request must carry a sign-in token. */
+  supabase?: SupabaseConfig;
+  /** One fixed store for everyone, with no sign-in. Tests and the smoke run only. Ignored when `supabase` is set. */
+  progressStore?: ProgressStore;
   /** Course map used to place mistakes and derive mastery. Absent only in tests that never ask for either. */
   course?: CourseCatalog;
   now?: () => Date;
   intervals?: IntervalConfig;
-  /** Runs after the temporary file is written and before it replaces the progress file. Tests use it to stop a write. */
-  beforeProgressReplace?: () => void;
 };
 
 const CONTENT_TYPES: Record<string, string> = {
@@ -58,7 +58,17 @@ export function createApi(options: ApiOptions) {
   const clock = () => (options.now ?? (() => new Date()))().toISOString();
   let chain = Promise.resolve();
   const exclusive = <T>(task: () => Promise<T>): Promise<T> => {
-    const run = chain.then(task, task);
+    // Another device may save between this task's load and save. The task then loads again, up to three more times.
+    const attempt = async (): Promise<T> => {
+      for (let tries = 0; ; tries++) {
+        try {
+          return await task();
+        } catch (error) {
+          if (!(error instanceof ConflictError) || tries >= 3) throw error;
+        }
+      }
+    };
+    const run = chain.then(attempt, attempt);
     chain = run.then(
       () => undefined,
       () => undefined,
@@ -70,28 +80,36 @@ export function createApi(options: ApiOptions) {
     const url = new URL(req.url ?? '/', 'http://localhost');
     if (isProgressRoute(url.pathname)) {
       try {
-        if (!options.progressFile || !intervals) {
+        if ((!options.progressStore && !options.supabase) || !intervals) {
           return sendJson(res, 404, { error: `no route for ${req.method} ${url.pathname}` });
         }
-        const file = options.progressFile;
+        let store: ProgressStore;
+        if (options.supabase) {
+          const token = bearerToken(req.headers.authorization);
+          store = token ? supabaseStore(options.supabase, token) : anonymousStore();
+        } else {
+          store = options.progressStore!;
+        }
         await handleProgress(req, res, url, {
-          file,
+          store,
           intervals,
           course: options.course,
           now: clock,
           exclusive,
-          beforeReplace: options.beforeProgressReplace,
         });
       } catch (error) {
         if (res.headersSent) return;
         if (error instanceof ProgressError) return sendJson(res, error.status, { error: error.message });
-        return sendJson(res, 500, { error: 'The progress file could not be saved.' });
+        return sendJson(res, 500, { error: 'The progress could not be saved.' });
       }
       return;
     }
 
     if (req.method !== 'GET') return sendJson(res, 404, { error: `no route for ${req.method} ${url.pathname}` });
     if (url.pathname === '/api/health') return sendJson(res, 200, { ok: true });
+    if (url.pathname === '/api/auth-config') {
+      return sendJson(res, 200, options.supabase ? { mode: 'supabase', ...options.supabase } : { mode: 'file' });
+    }
     if (url.pathname === '/api/sources') return sendJson(res, 200, { available: await availableSources(options) });
     const source = /^\/api\/sources\/([^/]+)$/.exec(url.pathname);
     if (source) return sendSource(res, options, decodeURIComponent(source[1]));
@@ -100,21 +118,20 @@ export function createApi(options: ApiOptions) {
 }
 
 type ProgressContext = {
-  file: string;
+  store: ProgressStore;
   intervals: IntervalConfig;
   course?: CourseCatalog;
   now: () => string;
   exclusive: <T>(task: () => Promise<T>) => Promise<T>;
-  beforeReplace?: () => void;
 };
 
 async function handleProgress(req: IncomingMessage, res: ServerResponse, url: URL, ctx: ProgressContext) {
   if (url.pathname === '/api/progress' && req.method === 'GET') {
-    return sendJson(res, 200, await loadProgress(ctx.file));
+    return sendJson(res, 200, await ctx.store.load());
   }
   if (url.pathname === '/api/progress' && req.method === 'POST') {
     const progress = parseProgress(await readJson(req));
-    await ctx.exclusive(() => writeJsonAtomic(ctx.file, progress, ctx.beforeReplace));
+    await ctx.exclusive(() => ctx.store.save(progress));
     return sendJson(res, 200, progress);
   }
   if (url.pathname === '/api/attempts' && req.method === 'GET') {
@@ -122,17 +139,17 @@ async function handleProgress(req: IncomingMessage, res: ServerResponse, url: UR
     if (!exerciseId || !isStableId(exerciseId)) {
       throw new ProgressError('The exercise identifier is not valid.', 400);
     }
-    const progress = await loadProgress(ctx.file);
+    const progress = await ctx.store.load();
     return sendJson(res, 200, { attempts: progress.attempts.filter((attempt) => attempt.exerciseId === exerciseId) });
   }
   if (url.pathname === '/api/attempts' && req.method === 'POST') {
     const input = parseAttemptInput(await readJson(req));
     const saved = await ctx.exclusive(async () => {
       const at = ctx.now();
-      const current = await loadProgress(ctx.file);
+      const current = await ctx.store.load();
       const attempt = buildAttempt(input, at);
       const next = withAttempt(current, attempt, ctx.intervals);
-      await writeJsonAtomic(ctx.file, keepDone(next.progress, ctx), ctx.beforeReplace);
+      await ctx.store.save(keepDone(next.progress, ctx));
       return { attempt, review: next.review };
     });
     return sendJson(res, 200, saved);
@@ -140,34 +157,34 @@ async function handleProgress(req: IncomingMessage, res: ServerResponse, url: UR
   if (url.pathname === '/api/sections' && req.method === 'POST') {
     const input = parseSectionMarksInput(await readJson(req));
     const sectionsDone = await ctx.exclusive(async () => {
-      const next = keepDone(withSectionsDone(await loadProgress(ctx.file), input.nodeId, input.sectionIds), ctx);
-      await writeJsonAtomic(ctx.file, next, ctx.beforeReplace);
+      const next = keepDone(withSectionsDone(await ctx.store.load(), input.nodeId, input.sectionIds), ctx);
+      await ctx.store.save(next);
       return next.sectionsDone?.[input.nodeId] ?? [];
     });
     return sendJson(res, 200, { nodeId: input.nodeId, sectionsDone });
   }
   if (url.pathname === '/api/review' && req.method === 'GET') {
-    const progress = await loadProgress(ctx.file);
+    const progress = await ctx.store.load();
     return sendJson(res, 200, { due: dueReviews(progress.reviews, ctx.now()) });
   }
   if (url.pathname === '/api/dashboard' && req.method === 'GET') {
     if (!ctx.course) return sendJson(res, 404, { error: `no route for GET ${url.pathname}` });
-    return sendJson(res, 200, dashboardFromProgress(await loadProgress(ctx.file), ctx.course));
+    return sendJson(res, 200, dashboardFromProgress(await ctx.store.load(), ctx.course));
   }
   if (url.pathname === '/api/mastery' && req.method === 'GET') {
     if (!ctx.course) return sendJson(res, 404, { error: `no route for GET ${url.pathname}` });
-    return sendJson(res, 200, masteryFromProgress(await loadProgress(ctx.file), ctx.course));
+    return sendJson(res, 200, masteryFromProgress(await ctx.store.load(), ctx.course));
   }
   if (url.pathname === '/api/sheet' && req.method === 'GET') {
-    const progress = await loadProgress(ctx.file);
+    const progress = await ctx.store.load();
     const sheet = progress.sheet ?? { excluded: [], order: [], edits: {} };
     return sendJson(res, 200, sheet);
   }
   if (url.pathname === '/api/sheet' && req.method === 'POST') {
     const sheet = parseSheetDraft(await readJson(req));
     await ctx.exclusive(async () => {
-      const current = await loadProgress(ctx.file);
-      await writeJsonAtomic(ctx.file, { ...current, sheet }, ctx.beforeReplace);
+      const current = await ctx.store.load();
+      await ctx.store.save({ ...current, sheet });
     });
     return sendJson(res, 200, sheet);
   }
@@ -176,8 +193,8 @@ async function handleProgress(req: IncomingMessage, res: ServerResponse, url: UR
   if (postpone && req.method === 'POST') {
     const id = decodeId(postpone[1]);
     const saved = await ctx.exclusive(async () => {
-      const next = withPostpone(await loadProgress(ctx.file), id, ctx.now(), ctx.intervals);
-      await writeJsonAtomic(ctx.file, next.progress, ctx.beforeReplace);
+      const next = withPostpone(await ctx.store.load(), id, ctx.now(), ctx.intervals);
+      await ctx.store.save(next.progress);
       return next.review;
     });
     return sendJson(res, 200, { review: saved });
@@ -189,7 +206,7 @@ async function handleProgress(req: IncomingMessage, res: ServerResponse, url: UR
     const input = parsePaperResultInput(await readJson(req));
     const saved = await ctx.exclusive(async () => {
       const at = ctx.now();
-      let progress = await loadProgress(ctx.file);
+      let progress = await ctx.store.load();
       const attempts: Attempt[] = [];
       const reviews: (ReturnType<typeof withAttempt>['review'])[] = [];
       for (const attemptInput of input.attempts) {
@@ -209,7 +226,7 @@ async function handleProgress(req: IncomingMessage, res: ServerResponse, url: UR
       };
       const paperResults = [...(progress.paperResults ?? []), paperResultRecord];
       progress = { ...progress, paperResults };
-      await writeJsonAtomic(ctx.file, keepDone(progress, ctx), ctx.beforeReplace);
+      await ctx.store.save(keepDone(progress, ctx));
       return { paperResult: paperResultRecord, attempts, reviews };
     });
     return sendJson(res, 200, saved);
@@ -221,8 +238,8 @@ async function handleProgress(req: IncomingMessage, res: ServerResponse, url: UR
     const right = parseConceptPickInput(await readJson(req));
     const saved = await ctx.exclusive(async () => {
       const entry: ConceptPick = { id: randomUUID(), at: ctx.now(), questionId, right };
-      const next = withConceptPick(await loadProgress(ctx.file), entry, ctx.intervals);
-      await writeJsonAtomic(ctx.file, next.progress, ctx.beforeReplace);
+      const next = withConceptPick(await ctx.store.load(), entry, ctx.intervals);
+      await ctx.store.save(next.progress);
       return next.review;
     });
     return sendJson(res, 200, { review: saved });

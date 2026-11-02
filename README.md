@@ -23,7 +23,7 @@ Open <http://localhost:5178/>. The sidebar links every page.
 - **Lectures** lists the eight lectures. Each lecture holds topics. Open a topic and work through it one screen at a time with Back and Next: Learn (statements, explanations, visuals), Practise (examples, traps, concept questions, exercises) and For the sheet (items you may want on your formula sheet).
 - **Exercises** is the exercise bank. Filter by lecture, tier or source and open any exercise.
 - **Mark yourself.** Solutions are revealed, never graded for you. Reveal a solution, then mark the exercise right or wrong. Concept questions record your first pick.
-- **Review** holds missed exercises and concept questions. They come back after 1, 3, 7 and 16 days, and you can postpone an item by a day. The page can export and import your progress file.
+- **Review** holds missed exercises and concept questions. They come back after 1, 3, 7 and 16 days, and you can postpone an item by a day. The page can export and import your progress as a JSON file.
 - **Formula sheet** builds a one-sheet summary from the items flagged inside topics. Include, exclude, edit and reorder them, then print.
 - **Mocks** runs timed mock papers assembled from the exercise bank. A saved result can be compared with earlier ones block by block.
 - **Progress** shows mastery per lecture and topic, trends and how ready you are.
@@ -69,18 +69,25 @@ Copy-Item sources.local.example.json sources.local.json
 
 Then edit the paths in `sources.local.json` if your files live elsewhere. The file maps each identifier in `content/sources.yaml` to a local file. Without it, the app still runs and shows references as plain text. Set `SOURCES_CONFIG` to read the config from another path.
 
-## Progress
+## Progress and accounts
 
-Attempts, the first picks of concept questions and the review queue are stored in one JSON file. The default path is `data/progress.json`. Set `PROGRESS_FILE` to keep it somewhere else, for example a synced cloud folder:
+Progress is saved in Supabase, one row per account. Attempts, the first picks of concept questions, the review queue and the formula sheet draft all live in that row. There is no local progress file.
 
-```powershell
-$env:PROGRESS_FILE = "C:\path\to\progress.json"
-npm start
-```
+Set up once:
+
+1. Create a project at <https://supabase.com>, then run `supabase/migrations/0001_progress.sql` in its SQL editor. It creates the `progress` table with row level security, so each account only reaches its own row.
+2. Sign-in is email and password. In the Supabase dashboard, open Authentication, Sign In / Providers, Email, and turn off "Confirm email", so a new account works right away without any email being sent.
+3. Copy `.env.example` to `.env` and fill in the project URL and the anon public key (Project settings, API). The server reads `.env` on start, so `npm start` is all you type. `.env` is git-ignored.
+
+The app offers a sign-in dialog; it works without signing in, but nothing is saved. Every progress request carries the signed-in account's token, and the server holds no service key. The anon key is public by design. Never put the service role key here. Without the two variables the server refuses to start.
+
+Each save names the version it read. If you use two devices and one saves in between, the server reads again and retries, so no save is lost.
+
+Moving old progress over: sign in, then use the review page's import with your old `progress.json`.
 
 Besides attempts and the review queue, the file can hold an optional addition. A saved mock paper result may carry `blocks`, the points earned per exam block, so a later result can be compared block by block. Older files without it still load. Files from the time the course had recall cards may still hold `cardRatings` and card reviews. They are ignored.
 
-A fresh start with no file has empty progress. The review page can export and import that file.
+A new account starts with empty progress. The review page can export and import progress as a JSON file.
 
 Missed exercises and missed concept questions come back on an expanding interval. The default intervals are 1, 3, 7 and 16 days, and postpone is 1 day. Copy `review.config.example.json` to `review.config.json` to change them. `REVIEW_INTERVALS` (a comma-separated list of day counts) and `REVIEW_POSTPONE_DAYS` override that file for one run. `REVIEW_CONFIG` points at a config file somewhere else.
 

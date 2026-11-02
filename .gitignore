@@ -21,6 +21,7 @@ tests/smoke/fixtures/progress.json.*.tmp
 # Local environment
 .env
 .env.*
+!.env.example
 .vscode/
 .DS_Store
 Thumbs.db

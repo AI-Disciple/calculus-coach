@@ -13,8 +13,15 @@ import {
   type IntervalConfig,
 } from '../src/progress/progress.ts';
 import { createApi } from './api.ts';
+import { memoryStore, warmUpSupabase } from './progress-store.ts';
 
 const root = path.resolve(import.meta.dirname, '..');
+// Settings such as SUPABASE_URL come from .env in the project folder. Variables already set in the shell win.
+try {
+  process.loadEnvFile(path.join(root, '.env'));
+} catch (error) {
+  if ((error as NodeJS.ErrnoException).code !== 'ENOENT') throw error;
+}
 const port = Number(process.env.PORT ?? 5178);
 
 const vite = await createViteServer({
@@ -23,9 +30,21 @@ const vite = await createViteServer({
   appType: 'spa',
 });
 const { bundle } = await checkContentBundle(path.join(root, 'content'), { verify: false });
+const supabase =
+  process.env.SUPABASE_URL && process.env.SUPABASE_ANON_KEY
+    ? { url: process.env.SUPABASE_URL, anonKey: process.env.SUPABASE_ANON_KEY }
+    : undefined;
+// Only the smoke tests run without an account: they get progress in memory, gone when the server stops.
+const progressStore = process.env.SMOKE_MEMORY_PROGRESS ? memoryStore() : undefined;
+if (!supabase && !progressStore) {
+  console.error('Set SUPABASE_URL and SUPABASE_ANON_KEY first. Progress is saved in Supabase; see the README.');
+  process.exit(1);
+}
+if (supabase) warmUpSupabase(supabase);
 const api = createApi({
+  supabase,
+  progressStore,
   sourcesConfig: process.env.SOURCES_CONFIG ?? path.join(root, 'sources.local.json'),
-  progressFile: path.resolve(process.env.PROGRESS_FILE ?? path.join(root, 'data', 'progress.json')),
   course: catalogFromBundle(bundle),
   intervals: await loadIntervals(root),
 });

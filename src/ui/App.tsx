@@ -1,3 +1,5 @@
+import { useSyncExternalStore } from "react";
+import { getAuthState, signOut, subscribeAuth } from "../progress/auth.ts";
 import { Link, Navigate, Route, Routes, useLocation } from "react-router-dom";
 import { AddingContentPage } from "./AddingContentPage.tsx";
 import { ChangesPage } from "./ChangesPage.tsx";
@@ -21,6 +23,7 @@ import { Sidebar } from "./Sidebar.tsx";
 
 export function App() {
   const location = useLocation();
+  const auth = useSyncExternalStore(subscribeAuth, getAuthState);
   const barePrint = location.pathname === "/formula-sheet/print";
 
   const main = (
@@ -69,6 +72,11 @@ export function App() {
             <Link to="/coverage">Coverage</Link>
             <Link to="/changes">What changed</Link>
             <Link to="/adding-content">Adding new content</Link>
+            {auth.status === "signed-in" ? (
+              <button type="button" className="link-button" onClick={() => void signOut()}>
+                Sign out ({auth.email})
+              </button>
+            ) : null}
           </nav>
         </footer>
       </div>

@@ -155,6 +155,8 @@ Numbers in these kinds must be plain numbers such as `1.5`. Unlike the one-varia
 - `pageNumbering: printed`: a cited page is the page number printed in the book. `printedPages` lists ranges of printed pages with their offset, and the PDF page is the printed page minus the offset. The handout uses this, because sections removed after section 9.1 make the PDF fall behind the book. `sections` gives the PDF page where each section starts.
 - `pageNumbering: none`: a single image, cited without a page.
 
+An entry may carry a `url`. Its links then open that address instead of a local file. The handout uses this, pointing at the course site, so only people with course access can open it.
+
 A source reference is `{ source: <id>, page: <page>, section: <section> }`, with `page` and `section` optional. Node front matter lists the node's sources, and every formal statement carries one. A page may be a range such as `"373-374"`, which links to its first page. When a reference has a page, the link opens that page; otherwise a handout section opens where the section starts.
 
 Source files stay where they are and are never copied into the project. Each machine may map registry identifiers to local files in `sources.local.json` at the project root (git-ignored). The file is a JSON object from identifier to path, and relative paths start at the folder of the config file. `sources.local.example.json` shows the shape with the paths on the owner's machine. Without the config, references display as text.

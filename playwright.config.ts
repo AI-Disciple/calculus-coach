@@ -1,11 +1,7 @@
-import path from 'node:path';
 import { defineConfig } from '@playwright/test';
 
-// SMOKE_PORT and SMOKE_PROGRESS_FILE let a second checkout run the suite at the same time as this one.
+// SMOKE_PORT lets a second checkout run the suite at the same time as this one. Smoke progress lives in server memory.
 const port = Number(process.env.SMOKE_PORT ?? 5199);
-const progressFile = path.resolve(
-  process.env.SMOKE_PROGRESS_FILE ?? path.join(import.meta.dirname, 'tests', 'smoke', 'fixtures', 'progress.json'),
-);
 
 export default defineConfig({
   testDir: 'tests/smoke',
@@ -24,7 +20,7 @@ export default defineConfig({
       PORT: String(port),
       NO_OPEN: '1',
       SOURCES_CONFIG: 'tests/smoke/fixtures/sources.json',
-      PROGRESS_FILE: progressFile,
+      SMOKE_MEMORY_PROGRESS: '1',
       REVIEW_INTERVALS: '0,3,7',
       REVIEW_POSTPONE_DAYS: '1',
     },

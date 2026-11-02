@@ -30,9 +30,11 @@ export function SourceLink({ source }: { source: SourceRef }) {
   const linked = useLinkedSources();
   const entry = bundle.sources.find((s) => s.id === source.source);
   const label = sourceLabel(entry, source);
-  if (!entry || !linked.has(entry.id)) return <span className="source-text">{label}</span>;
+  if (!entry || (!entry.url && !linked.has(entry.id))) return <span className="source-text">{label}</span>;
   const { pdfPage } = locateSource(entry, source);
-  const href = `/api/sources/${encodeURIComponent(entry.id)}${pdfPage ? `#page=${pdfPage}` : ''}`;
+  const page = pdfPage ? `#page=${pdfPage}` : '';
+  // A source with a url (the handout) links to the course site, so only people with course access can open it.
+  const href = entry.url ? `${entry.url}${page}` : `/api/sources/${encodeURIComponent(entry.id)}${page}`;
   return (
     <a className="source-link" href={href} target="_blank" rel="noreferrer">
       {label}

@@ -124,6 +124,7 @@ const sourceEntry = z.discriminatedUnion('pageNumbering', [
     title: z.string().min(1),
     kind: z.enum(sourceKinds),
     pageNumbering: z.literal('printed'),
+    url: z.url().optional(),
     printedPages: z
       .array(z.strictObject({ from: z.number().int(), to: z.number().int(), offset: z.number().int() }))
       .min(1),
@@ -134,6 +135,7 @@ const sourceEntry = z.discriminatedUnion('pageNumbering', [
     title: z.string().min(1),
     kind: z.enum(sourceKinds),
     pageNumbering: z.enum(['pdf', 'none']),
+    url: z.url().optional(),
   }),
 ]);
 

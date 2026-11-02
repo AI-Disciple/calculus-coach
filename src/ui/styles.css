@@ -3346,3 +3346,96 @@ details[open] > .bank-node-summary::before {
 .bank-exercise-meta .exercise-done {
   margin-left: 0;
 }
+
+/* Sign-in dialog and the pill that reopens it, shown only when accounts are on. */
+.auth-dialog {
+  width: min(24rem, calc(100vw - 2rem));
+  margin: auto;
+  overflow: visible;
+  padding: 1.75rem;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: var(--panel);
+  color: var(--text);
+  box-shadow: 0 24px 60px rgba(15, 23, 42, 0.28);
+}
+.auth-dialog::backdrop {
+  background: rgba(15, 23, 42, 0.45);
+  backdrop-filter: blur(3px);
+}
+.auth-dialog h2 {
+  margin: 0 0 0.35rem;
+  color: var(--heading);
+}
+.auth-lead {
+  margin: 0 0 1.1rem;
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+.auth-close {
+  position: absolute;
+  top: 0.6rem;
+  right: 0.7rem;
+  width: 2rem;
+  height: 2rem;
+  border: 0;
+  border-radius: 6px;
+  background: none;
+  color: var(--muted);
+  font-size: 1.3rem;
+  cursor: pointer;
+}
+.auth-close:hover {
+  background: var(--hover);
+}
+.auth-form {
+  display: grid;
+  gap: 0.9rem;
+}
+.auth-form label {
+  display: grid;
+  gap: 0.3rem;
+  font-size: 0.9rem;
+}
+.auth-form input {
+  padding: 0.5rem 0.65rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--panel-soft);
+  color: var(--text);
+  font: inherit;
+}
+.auth-form input:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+.auth-form .button {
+  margin-top: 0;
+}
+.auth-pill {
+  position: fixed;
+  right: 1rem;
+  bottom: 1rem;
+  z-index: 20;
+  padding: 0.55rem 1rem;
+  border: 1px solid var(--accent);
+  border-radius: 999px;
+  background: var(--accent);
+  color: var(--accent-text);
+  font: inherit;
+  font-size: 0.9rem;
+  box-shadow: 0 6px 20px rgba(15, 23, 42, 0.25);
+  cursor: pointer;
+}
+.auth-pill:hover {
+  background: var(--accent-hover);
+}
+.link-button {
+  background: none;
+  border: 0;
+  padding: 0;
+  font: inherit;
+  color: inherit;
+  text-decoration: underline;
+  cursor: pointer;
+}
