@@ -304,7 +304,7 @@ export function CurveSketchViewer({ params }: { params: VisualParams }) {
 
   const figure = result.analysis ? curveSketchFigure(theme, input.curve.f, result.analysis, layers, xmin, xmax) : null;
   const lines = result.analysis
-    ? LAYERS.filter((layer) => layers.has(layer.id)).flatMap((layer) => layerLines(result.analysis!, layer.id))
+    ? LAYERS.filter((layer) => layers.has(layer.id)).flatMap((layer) => layerLines(result.analysis!, layer.id, [xmin, xmax]))
     : [];
 
   return (

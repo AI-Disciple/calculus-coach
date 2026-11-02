@@ -879,7 +879,38 @@ export const LAYERS: { id: LayerId; label: string }[] = [
 ];
 
 /** The sentences a layer adds to the readout, one string per sentence. */
-export function layerLines(a: CurveAnalysis, layer: LayerId): string[] {
+export function layerLines(full: CurveAnalysis, layer: LayerId, view?: [number, number]): string[] {
+  // The analysis reaches far beyond the view; list only what the reader can see.
+  const seen = (x: number) => !view || (x >= view[0] && x <= view[1]);
+  const clipPieces = (pieces: SignPiece[]) =>
+    view
+      ? pieces
+          .filter((p) => p.hi >= view[0] && p.lo <= view[1])
+          .map((p) => ({ ...p, lo: Math.max(p.lo, view[0]), hi: Math.min(p.hi, view[1]) }))
+      : pieces;
+  const a: CurveAnalysis = {
+    ...full,
+    roots: full.roots.filter(seen),
+    verticalAsymptotes: full.verticalAsymptotes.filter((p) => seen(p.x)),
+    holes: full.holes.filter((p) => seen(p.x)),
+    extrema: full.extrema.filter((p) => seen(p.x)),
+    flatPoints: full.flatPoints.filter((p) => seen(p.x)),
+    verticalTangents: full.verticalTangents.filter((p) => seen(p.x)),
+    inflections: full.inflections.filter((p) => seen(p.x)),
+    notInflections: full.notInflections.filter((p) => seen(p.x)),
+    slopeSigns: clipPieces(full.slopeSigns),
+    curvatureSigns: clipPieces(full.curvatureSigns),
+    domain: view
+      ? full.domain
+          .filter((i) => i.hi >= view[0] && i.lo <= view[1])
+          .map((i) => ({
+            lo: Math.max(i.lo, view[0]),
+            hi: Math.min(i.hi, view[1]),
+            loClosed: i.lo < view[0] ? true : i.loClosed,
+            hiClosed: i.hi > view[1] ? true : i.hiClosed,
+          }))
+      : full.domain,
+  };
   switch (layer) {
     case 'domain':
       return [`${domainText(a.domain)}.`];
