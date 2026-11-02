@@ -1,6 +1,6 @@
 import { useSyncExternalStore } from "react";
 import { getAuthState, signOut, subscribeAuth } from "../progress/auth.ts";
-import { Link, Navigate, Route, Routes, useLocation } from "react-router-dom";
+import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 import { AddingContentPage } from "./AddingContentPage.tsx";
 import { ChangesPage } from "./ChangesPage.tsx";
 import { CoveragePage } from "./CoveragePage.tsx";
@@ -69,9 +69,6 @@ export function App() {
         {main}
         <footer className="site-footer">
           <nav className="wrap footer-nav" aria-label="Site">
-            <Link to="/coverage">Coverage</Link>
-            <Link to="/changes">What changed</Link>
-            <Link to="/adding-content">Adding new content</Link>
             {auth.status === "signed-in" ? (
               <button type="button" className="link-button" onClick={() => void signOut()}>
                 Sign out ({auth.email})

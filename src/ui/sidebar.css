@@ -35,6 +35,8 @@
   position: sticky;
   top: 0;
   align-self: start;
+  /* A descendant of the scrolling list that escapes its clip would stretch the page below the sidebar. */
+  overflow: hidden;
   display: flex;
   flex-direction: column;
   height: 100vh;
