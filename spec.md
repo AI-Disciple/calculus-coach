@@ -2,7 +2,6 @@
 
 Status: ready-for-agent
 
-Companion file: `source-inventory.md` in this folder (where every source material lives, what it contains, known errors in it, and exam findings). Read it before writing any content.
 
 ## Problem Statement
 
@@ -287,7 +286,7 @@ Excluded entirely (crossed out by the student): sequences and series, vector fun
 - **Seams**: confirmed by the student on 2026-10-09: the two seams above plus a thin UI smoke layer.
 - **Sample node**: approved as a sample on 2026-10-09 and saved as `sample-node.md`. It is inspiration for tone and look, not a text to follow word for word. Bulk-content tickets are blocked by the ticket that builds the node page (shown with the sample as stand-in content), so the app can display what the content needs before volume is written.
 - **Ticket model suggestions**: the student asked that each ticket suggest which type of model should do it. Rule of thumb: a strong reasoning model for solutions, worked examples and anything with mathematics where a sign error would hurt; a faster model for flashcards, formatting, scaffolding and plumbing; vision-capable reading for handwritten transcription.
-- **Known errors in sources** (full list in `source-inventory.md`): the student's Hessian test lacks D > 0; his (1/u)' is missing a prime; his inflection rule equates f'' = 0 with inflection; his sqrt(1 - y^2) example ends in the wrong constant. Official keys: 2025 midterm key has three errors, the 2022 final average-value line is wrong, the mock steepest-descent solution drops a minus sign, the Mock 2022 solutions are a different edition from the questions.
+- **Known errors in sources**: the student's Hessian test lacks D > 0; his (1/u)' is missing a prime; his inflection rule equates f'' = 0 with inflection; his sqrt(1 - y^2) example ends in the wrong constant. Official keys: 2025 midterm key has three errors, the 2022 final average-value line is wrong, the mock steepest-descent solution drops a minus sign, the Mock 2022 solutions are a different edition from the questions.
 - **Duplicates**: many past exam files are byte-identical copies. The source inventory lists them. Content should reference each unique paper once.
 - **Tracker convention**: `setup-matt-pocock-skills` has not been run for this project. Specs and tickets use the local-markdown convention under `.scratch/<feature>/`, with one file per ticket under `issues/`.
 - **Pending information**: graded midterm copy (for later tuning), notes for lectures 6, 7 and 8 (as they take place), board photos or notes for any further lecture.

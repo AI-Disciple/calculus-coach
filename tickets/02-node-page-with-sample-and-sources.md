@@ -8,7 +8,7 @@
 
 **Suggested model:** Claude Sonnet 5.5 xhigh (UI work with a demanding look). Use the `minimalist-ui` skill.
 
-**Read first:** `spec.md` (node and content model, sources and traceability stories 80 and 81, glossary), `sample-node.md` (feel only, not a template), `source-inventory.md` section 1 for the handout page offsets.
+**Read first:** `spec.md` (node and content model, sources and traceability stories 80 and 81, glossary), `sample-node.md` (feel only, not a template), `content/sources.yaml` for the handout page offsets.
 
 ## Acceptance criteria
 
