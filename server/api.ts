@@ -1,32 +1,10 @@
 import { createReadStream, promises as fs } from 'node:fs';
 import type { IncomingMessage, ServerResponse } from 'node:http';
 import path from 'node:path';
-import { randomUUID } from 'node:crypto';
 import type { CourseCatalog } from '../src/progress/course.ts';
-import { dashboardFromProgress, masteryFromProgress, withDoneNodes } from '../src/progress/dashboard.ts';
-import {
-  ProgressError,
-  assertIntervalConfig,
-  dueReviews,
-  isStableId,
-  parseAttemptInput,
-  parseConceptPickInput,
-  parseProgress,
-  parseSectionMarksInput,
-  parseSheetDraft,
-  parsePaperResultInput,
-  withAttempt,
-  withConceptPick,
-  withPostpone,
-  withSectionsDone,
-  type Attempt,
-  type AttemptInput,
-  type ConceptPick,
-  type IntervalConfig,
-  type PaperResult,
-  type Progress,
-} from '../src/progress/progress.ts';
-import { ConflictError, anonymousStore, bearerToken, supabaseStore, type ProgressStore, type SupabaseConfig } from './progress-store.ts';
+import { ProgressError, assertIntervalConfig, type IntervalConfig } from '../src/progress/progress.ts';
+import { handleProgressRoute, isProgressRoute, makeExclusive, type ProgressStore, type RouteContext } from '../src/progress/routes.ts';
+import { anonymousStore, bearerToken, supabaseStore, type SupabaseConfig } from './progress-store.ts';
 
 export type ApiOptions = {
   /** Path of the per-machine source-link config, a JSON object mapping source identifiers to local file paths. */
@@ -56,25 +34,7 @@ export function createApi(options: ApiOptions) {
   const intervals = options.intervals;
   if (intervals) assertIntervalConfig(intervals);
   const clock = () => (options.now ?? (() => new Date()))().toISOString();
-  let chain = Promise.resolve();
-  const exclusive = <T>(task: () => Promise<T>): Promise<T> => {
-    // Another device may save between this task's load and save. The task then loads again, up to three more times.
-    const attempt = async (): Promise<T> => {
-      for (let tries = 0; ; tries++) {
-        try {
-          return await task();
-        } catch (error) {
-          if (!(error instanceof ConflictError) || tries >= 3) throw error;
-        }
-      }
-    };
-    const run = chain.then(attempt, attempt);
-    chain = run.then(
-      () => undefined,
-      () => undefined,
-    );
-    return run;
-  };
+  const exclusive = makeExclusive();
 
   return async (req: IncomingMessage, res: ServerResponse) => {
     const url = new URL(req.url ?? '/', 'http://localhost');
@@ -117,180 +77,8 @@ export function createApi(options: ApiOptions) {
   };
 }
 
-type ProgressContext = {
-  store: ProgressStore;
-  intervals: IntervalConfig;
-  course?: CourseCatalog;
-  now: () => string;
-  exclusive: <T>(task: () => Promise<T>) => Promise<T>;
-};
-
-async function handleProgress(req: IncomingMessage, res: ServerResponse, url: URL, ctx: ProgressContext) {
-  if (url.pathname === '/api/progress' && req.method === 'GET') {
-    return sendJson(res, 200, await ctx.store.load());
-  }
-  if (url.pathname === '/api/progress' && req.method === 'POST') {
-    const progress = parseProgress(await readJson(req));
-    await ctx.exclusive(() => ctx.store.save(progress));
-    return sendJson(res, 200, progress);
-  }
-  if (url.pathname === '/api/attempts' && req.method === 'GET') {
-    const exerciseId = url.searchParams.get('exerciseId');
-    if (!exerciseId || !isStableId(exerciseId)) {
-      throw new ProgressError('The exercise identifier is not valid.', 400);
-    }
-    const progress = await ctx.store.load();
-    return sendJson(res, 200, { attempts: progress.attempts.filter((attempt) => attempt.exerciseId === exerciseId) });
-  }
-  if (url.pathname === '/api/attempts' && req.method === 'POST') {
-    const input = parseAttemptInput(await readJson(req));
-    const saved = await ctx.exclusive(async () => {
-      const at = ctx.now();
-      const current = await ctx.store.load();
-      const attempt = buildAttempt(input, at);
-      const next = withAttempt(current, attempt, ctx.intervals);
-      await ctx.store.save(keepDone(next.progress, ctx));
-      return { attempt, review: next.review };
-    });
-    return sendJson(res, 200, saved);
-  }
-  if (url.pathname === '/api/sections' && req.method === 'POST') {
-    const input = parseSectionMarksInput(await readJson(req));
-    const sectionsDone = await ctx.exclusive(async () => {
-      const next = keepDone(withSectionsDone(await ctx.store.load(), input.nodeId, input.sectionIds), ctx);
-      await ctx.store.save(next);
-      return next.sectionsDone?.[input.nodeId] ?? [];
-    });
-    return sendJson(res, 200, { nodeId: input.nodeId, sectionsDone });
-  }
-  if (url.pathname === '/api/review' && req.method === 'GET') {
-    const progress = await ctx.store.load();
-    return sendJson(res, 200, { due: dueReviews(progress.reviews, ctx.now()) });
-  }
-  if (url.pathname === '/api/dashboard' && req.method === 'GET') {
-    if (!ctx.course) return sendJson(res, 404, { error: `no route for GET ${url.pathname}` });
-    return sendJson(res, 200, dashboardFromProgress(await ctx.store.load(), ctx.course));
-  }
-  if (url.pathname === '/api/mastery' && req.method === 'GET') {
-    if (!ctx.course) return sendJson(res, 404, { error: `no route for GET ${url.pathname}` });
-    return sendJson(res, 200, masteryFromProgress(await ctx.store.load(), ctx.course));
-  }
-  if (url.pathname === '/api/sheet' && req.method === 'GET') {
-    const progress = await ctx.store.load();
-    const sheet = progress.sheet ?? { excluded: [], order: [], edits: {} };
-    return sendJson(res, 200, sheet);
-  }
-  if (url.pathname === '/api/sheet' && req.method === 'POST') {
-    const sheet = parseSheetDraft(await readJson(req));
-    await ctx.exclusive(async () => {
-      const current = await ctx.store.load();
-      await ctx.store.save({ ...current, sheet });
-    });
-    return sendJson(res, 200, sheet);
-  }
-
-  const postpone = /^\/api\/reviews\/([^/]+)\/postpone$/.exec(url.pathname);
-  if (postpone && req.method === 'POST') {
-    const id = decodeId(postpone[1]);
-    const saved = await ctx.exclusive(async () => {
-      const next = withPostpone(await ctx.store.load(), id, ctx.now(), ctx.intervals);
-      await ctx.store.save(next.progress);
-      return next.review;
-    });
-    return sendJson(res, 200, { review: saved });
-  }
-
-  const paperResult = /^\/api\/papers\/([^/]+)\/result$/.exec(url.pathname);
-  if (paperResult && req.method === 'POST') {
-    const paperId = decodeId(paperResult[1]);
-    const input = parsePaperResultInput(await readJson(req));
-    const saved = await ctx.exclusive(async () => {
-      const at = ctx.now();
-      let progress = await ctx.store.load();
-      const attempts: Attempt[] = [];
-      const reviews: (ReturnType<typeof withAttempt>['review'])[] = [];
-      for (const attemptInput of input.attempts) {
-        const attempt = buildAttempt(attemptInput, at);
-        const next = withAttempt(progress, attempt, ctx.intervals);
-        progress = next.progress;
-        attempts.push(attempt);
-        reviews.push(next.review);
-      }
-      const paperResultRecord: PaperResult = {
-        id: randomUUID(),
-        at,
-        paperId,
-        earned: input.earned,
-        total: input.total,
-        ...(input.blocks ? { blocks: input.blocks } : {}),
-      };
-      const paperResults = [...(progress.paperResults ?? []), paperResultRecord];
-      progress = { ...progress, paperResults };
-      await ctx.store.save(keepDone(progress, ctx));
-      return { paperResult: paperResultRecord, attempts, reviews };
-    });
-    return sendJson(res, 200, saved);
-  }
-
-  const pick = /^\/api\/questions\/([^/]+)\/pick$/.exec(url.pathname);
-  if (pick && req.method === 'POST') {
-    const questionId = decodeId(pick[1]);
-    const right = parseConceptPickInput(await readJson(req));
-    const saved = await ctx.exclusive(async () => {
-      const entry: ConceptPick = { id: randomUUID(), at: ctx.now(), questionId, right };
-      const next = withConceptPick(await ctx.store.load(), entry, ctx.intervals);
-      await ctx.store.save(next.progress);
-      return next.review;
-    });
-    return sendJson(res, 200, { review: saved });
-  }
-
-  sendJson(res, 404, { error: `no route for ${req.method} ${url.pathname}` });
-}
-
-/** Records the nodes that are Done now, so they stay Done. Without a course there is nothing to record. */
-function keepDone(progress: Progress, ctx: ProgressContext): Progress {
-  return ctx.course ? withDoneNodes(progress, ctx.course) : progress;
-}
-
-function isProgressRoute(pathname: string): boolean {
-  return (
-    pathname === '/api/progress' ||
-    pathname === '/api/attempts' ||
-    pathname === '/api/review' ||
-    pathname === '/api/dashboard' ||
-    pathname === '/api/mastery' ||
-    pathname === '/api/sheet' ||
-    pathname === '/api/sections' ||
-    pathname.startsWith('/api/reviews/') ||
-    pathname.startsWith('/api/questions/') ||
-    pathname.startsWith('/api/papers/')
-  );
-}
-
-function buildAttempt(input: AttemptInput, at: string): Attempt {
-  return 'steps' in input
-    ? { id: randomUUID(), at, exerciseId: input.exerciseId, tier: input.tier, steps: input.steps }
-    : {
-        id: randomUUID(),
-        at,
-        exerciseId: input.exerciseId,
-        tier: input.tier,
-        result: input.result,
-        ...(input.mistakeType ? { mistakeType: input.mistakeType } : {}),
-        ...(input.note ? { note: input.note } : {}),
-      };
-}
-
-function decodeId(raw: string): string {
-  try {
-    const id = decodeURIComponent(raw);
-    if (!isStableId(id)) throw new ProgressError('The identifier is not valid.', 400);
-    return id;
-  } catch (error) {
-    if (error instanceof ProgressError) throw error;
-    throw new ProgressError('The identifier is not valid.', 400);
-  }
+async function handleProgress(req: IncomingMessage, res: ServerResponse, url: URL, ctx: RouteContext) {
+  sendJson(res, 200, await handleProgressRoute(req.method ?? 'GET', url, () => readJson(req), ctx));
 }
 
 async function readJson(req: IncomingMessage): Promise<unknown> {

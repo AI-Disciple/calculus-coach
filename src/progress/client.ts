@@ -1,4 +1,4 @@
-import { authHeaders } from './auth.ts';
+import { HOSTED, authHeaders } from './auth.ts';
 import type { Dashboard, MasteryReport } from './dashboard.ts';
 import type {
   Attempt,
@@ -12,7 +12,17 @@ import type {
 
 export type Result<T> = { ok: true; value: T } | { ok: false; error: string };
 
+async function hostedRequest<T>(url: string, init?: RequestInit): Promise<Result<T>> {
+  try {
+    const { browserProgressRequest } = await import('./browser-api.ts');
+    return { ok: true, value: (await browserProgressRequest(url, init)) as T };
+  } catch (error) {
+    return { ok: false, error: error instanceof Error ? error.message : 'The request failed.' };
+  }
+}
+
 async function request<T>(url: string, init?: RequestInit): Promise<Result<T>> {
+  if (HOSTED) return hostedRequest<T>(url, init);
   try {
     const response = await fetch(url, {
       cache: 'no-store',

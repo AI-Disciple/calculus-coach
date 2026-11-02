@@ -8,6 +8,9 @@ export type AuthState =
   | { status: 'signed-out' }
   | { status: 'signed-in'; email: string };
 
+/** True in the build for the hosted site, which has no server and talks to Supabase from the browser. */
+export const HOSTED = Boolean(import.meta.env.VITE_SUPABASE_URL);
+
 let client: SupabaseClient | null = null;
 let session: Session | null = null;
 let state: AuthState = { status: 'loading' };
@@ -28,11 +31,15 @@ function setSession(next: Session | null) {
 export function startAuth(): Promise<void> {
   started ??= (async () => {
     let config: AuthConfig = { mode: 'file' };
-    try {
-      const response = await fetch('/api/auth-config', { cache: 'no-store' });
-      if (response.ok) config = (await response.json()) as AuthConfig;
-    } catch {
-      // The server did not answer; the app falls back to the local file mode and shows its usual errors.
+    if (HOSTED) {
+      config = { mode: 'supabase', url: import.meta.env.VITE_SUPABASE_URL, anonKey: import.meta.env.VITE_SUPABASE_ANON_KEY };
+    } else {
+      try {
+        const response = await fetch('/api/auth-config', { cache: 'no-store' });
+        if (response.ok) config = (await response.json()) as AuthConfig;
+      } catch {
+        // The server did not answer; the app falls back to the local file mode and shows its usual errors.
+      }
     }
     if (config.mode !== 'supabase') return set({ status: 'none' });
     client = createClient(config.url, config.anonKey);
@@ -41,6 +48,10 @@ export function startAuth(): Promise<void> {
     setSession(data.session);
   })();
   return started;
+}
+
+export function supabaseClient(): SupabaseClient | null {
+  return client;
 }
 
 export function getAuthState(): AuthState {

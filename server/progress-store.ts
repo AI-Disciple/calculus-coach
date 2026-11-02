@@ -1,12 +1,9 @@
 import http from 'node:http';
 import https from 'node:https';
 import { ProgressError, parseProgress, type Progress } from '../src/progress/progress.ts';
+import { ConflictError, type ProgressStore } from '../src/progress/routes.ts';
 
-/** Where one learner's progress lives. The api reads and replaces the whole object, whatever sits behind it. */
-export type ProgressStore = {
-  load(): Promise<Progress>;
-  save(progress: Progress): Promise<void>;
-};
+export { ConflictError, type ProgressStore };
 
 export type SupabaseConfig = { url: string; anonKey: string };
 
@@ -50,13 +47,6 @@ function httpRequest(url: string, init: { method?: string; headers?: Record<stri
 /** Opens the connection to Supabase ahead of the first request, so the first page does not wait for it. */
 export function warmUpSupabase(config: SupabaseConfig): void {
   void httpRequest(`${config.url.replace(/\/+$/, '')}/rest/v1/`, { headers: { apikey: config.anonKey } }).catch(() => undefined);
-}
-
-/** Another device saved between this request's load and save. The api loads again and retries. */
-export class ConflictError extends ProgressError {
-  constructor() {
-    super('The progress changed on another device. Try again.', 409);
-  }
 }
 
 const EMPTY = (): Progress => ({ attempts: [], reviews: [] });

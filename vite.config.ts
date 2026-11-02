@@ -33,6 +33,8 @@ function contentBundle(): Plugin {
 }
 
 export default defineConfig({
+  // The hosted site lives under /<repository>/, so its build sets BASE_PATH. Locally the site is at the root.
+  base: process.env.BASE_PATH ?? '/',
   plugins: [react(), contentBundle()],
   test: { include: ['tests/**/*.test.ts'], testTimeout: 60_000 },
 });

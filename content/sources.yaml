@@ -112,11 +112,11 @@
 - { id: lecture-4-notebook, title: Lecture 4 notebook page, kind: board-photo, pageNumbering: none }
 
 # Exercise sheets. Exo3 repeats exercises 1 to 9 of sheet 2, and Exo4 is identical to sheet 3.
-- { id: sheet-0, title: Exercise sheet 0 (Exo0), kind: exercise-sheet, pageNumbering: pdf }
+- { id: sheet-0, title: Exercise sheet 0 (Exo0), kind: exercise-sheet, url: https://centralesupelec.edunao.com/pluginfile.php/614185/mod_resource/content/2/Calculus1d.pdf, pageNumbering: pdf }
 - { id: sheet-1, title: Exercise sheet 1 (Exo1), kind: exercise-sheet, pageNumbering: pdf }
-- { id: sheet-2, title: Exercise sheet 2, kind: exercise-sheet, pageNumbering: pdf }
+- { id: sheet-2, title: Exercise sheet 2, kind: exercise-sheet, url: https://centralesupelec.edunao.com/pluginfile.php/614190/mod_resource/content/2/Exo2.pdf, pageNumbering: pdf }
 - { id: sheet-2-short, title: "Exercise sheet 2, short version (Exo3)", kind: exercise-sheet, pageNumbering: pdf }
-- { id: sheet-3, title: "Exercise sheet 3, multiple integration", kind: exercise-sheet, pageNumbering: pdf }
+- { id: sheet-3, title: "Exercise sheet 3, multiple integration", kind: exercise-sheet, url: https://centralesupelec.edunao.com/pluginfile.php/614191/mod_resource/content/1/Exo4.pdf, pageNumbering: pdf }
 - { id: class-1-corrections, title: Class 1 exercise corrections, kind: exercise-sheet, pageNumbering: pdf }
 - { id: functions-and-graphs, title: Functions and graphs booklet, kind: course-document, pageNumbering: pdf }
 

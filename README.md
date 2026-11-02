@@ -112,3 +112,15 @@ Progress data (`data/`, `progress*.json`), the per-machine source-link config (`
 ## Sharing your own copy
 
 Before pushing a fork, run `git ls-files` and check that no personal progress, paths or notes are tracked. The tracked example configs (`sources.local.example.json`, `review.config.example.json`) contain placeholders only.
+
+## Hosted site (GitHub Pages)
+
+The same app can run as static files with no server. The browser then runs the progress logic itself and saves to the signed-in account's Supabase row. Pushes to `main` deploy it through `.github/workflows/pages.yml`.
+
+Set up once in the GitHub repository:
+
+1. Settings, Pages, Source: GitHub Actions.
+2. Settings, Secrets and variables, Actions, Variables: add `SUPABASE_URL` and `SUPABASE_ANON_KEY` (the same values as in `.env`). The anon key is public by design; never add the service role key.
+3. In Supabase, Authentication, URL Configuration: set the Site URL to the Pages address.
+
+The site is at `https://<user>.github.io/<repository>/`. To build it locally, set `VITE_SUPABASE_URL`, `VITE_SUPABASE_ANON_KEY` and `BASE_PATH=/<repository>/`, then run `npm run build`. Sources with a `url` in `content/sources.yaml` link to the course site; all other sources show as plain text.
