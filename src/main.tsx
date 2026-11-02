@@ -16,7 +16,7 @@ const rootElement = document.getElementById('root');
 if (!rootElement) throw new Error('Root element missing');
 
 // The hosted site is static files, so a reload on a deep link has no server to answer it. Its routes live after the #.
-const Router = HOSTED ? HashRouter : BrowserRouter;
+const Router = HOSTED || import.meta.env.BASE_URL !== '/' ? HashRouter : BrowserRouter;
 
 createRoot(rootElement).render(
   <Router>

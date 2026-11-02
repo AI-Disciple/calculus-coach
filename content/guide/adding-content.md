@@ -14,7 +14,7 @@ Then register each new file once:
 
 1. Add an entry to `content/sources.yaml` with a stable identifier, a title, a kind and its page numbering. Use `lecture-notes-6` for lecture 6 notes and `lecture-6-board-1` for board photos, following the existing entries.
 2. Add the identifier and the file's path to `sources.local.example.json` and to your own `sources.local.json`.
-3. Before registering a past paper, check whether it is a byte-identical copy of one already registered (`Get-FileHash`). A duplicate is listed in `source-inventory.md` and gets no second entry.
+3. Before registering a past paper, check whether it is a byte-identical copy of one already registered (`Get-FileHash`). A duplicate gets no second entry.
 
 The step is done when `npm run content` reports no unknown source and the new source opens from a topic in the app.
 
@@ -34,7 +34,7 @@ For each transcribed item, find the topic that teaches it: search `content/nodes
 
 Lectures 6 to 8 were placed before those lectures took place. When the lecture teaches a topic's material in a different lecture or order, move the topic file to the right `lecture-N` folder and change `lecture` and `order`. Keep its `id`, because progress is keyed by it. Then remove the sentence about provisional placement from the topic's `examWeightNote`.
 
-A formula that is wrong in the notes is taught in its correct form, with a trap that shows the wrong version failing. Topic text never mentions whose notes had the slip. The slip is recorded in `source-inventory.md` and in the change log entry.
+A formula that is wrong in the notes is taught in its correct form, with a trap that shows the wrong version failing. Topic text never mentions whose notes had the slip. The slip is recorded in the change log entry.
 
 The step is done when every transcribed item sits in one of the three groups and each group's edits are made.
 
@@ -93,6 +93,6 @@ When you have the graded midterm copy:
 1. Register it as a source (step 1) and transcribe it (step 2), including the marks per question and the examiner's comments.
 2. Compare it with the official key, `midterm-2026-key`, question by question, and list where points were lost with the mistake type from the fixed list in `CONTEXT.md`.
 3. Map each lost point to the lecture 1 to 3 topic that teaches the skill. Raise that topic's depth: add guided examples, traps for the exact slip and exercises at the basic and standard tiers.
-4. Record the findings in `source-inventory.md` section 6 (weak spots), map the paper's questions in the coverage map, and add a change log entry that names the topics you deepened.
+4. Map the paper's questions in the coverage map, and add a change log entry that names the topics you deepened.
 
 The graded copy tunes depth and emphasis only. It never locks, reorders or hides a topic.
