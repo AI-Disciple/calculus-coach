@@ -91,7 +91,23 @@ export function supabaseStore(config: SupabaseConfig, token: string): ProgressSt
 type Snapshot = { progress: Progress; version: number | null };
 const CACHE_MS = 20_000;
 const cache = new Map<string, { snapshot: Snapshot; at: number }>();
+const MAX_CACHED = 50;
 const inFlight = new Map<string, Promise<Snapshot>>();
+
+/** Stores a snapshot and drops every expired entry, then the oldest ones past the cap, so the map cannot grow for ever. */
+function remember(token: string, snapshot: Snapshot): void {
+  const now = Date.now();
+  cache.delete(token);
+  for (const [key, entry] of cache) {
+    if (now - entry.at >= CACHE_MS) cache.delete(key);
+  }
+  cache.set(token, { snapshot, at: now });
+  while (cache.size > MAX_CACHED) {
+    const oldest = cache.keys().next().value;
+    if (oldest === undefined) break;
+    cache.delete(oldest);
+  }
+}
 
 /**
  * Remembers each account's progress for a few seconds. A page asks for it several times at once, and every ask would
@@ -111,7 +127,7 @@ function cached(token: string, inner: RawStore): ProgressStore {
         inFlight.set(token, pending);
       }
       const snapshot = await pending;
-      cache.set(token, { snapshot, at: Date.now() });
+      remember(token, snapshot);
       inner.adopt(snapshot.version);
       return structuredClone(snapshot.progress);
     },
@@ -122,7 +138,7 @@ function cached(token: string, inner: RawStore): ProgressStore {
         cache.delete(token);
         throw error;
       }
-      cache.set(token, { snapshot: { progress: structuredClone(progress), version: inner.version() }, at: Date.now() });
+      remember(token, { progress: structuredClone(progress), version: inner.version() });
     },
   };
 }
