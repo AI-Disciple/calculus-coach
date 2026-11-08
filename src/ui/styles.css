@@ -2216,6 +2216,12 @@ a.button {
   font-size: 1.21em;
 }
 
+/* Prose picks one layout of a hard-wrapped expression: data-layout is flat or rows. */
+.formula-reflow[data-layout='flat'] > :last-child,
+.formula-reflow[data-layout='rows'] > :first-child {
+  display: none;
+}
+
 [data-theme='dark'] .katex,
 [data-theme='dark'] .katex-display {
   color: inherit;

@@ -25,11 +25,30 @@ function mathRule(state: StateInline, silent: boolean): boolean {
 
 const md = new MarkdownIt({ html: false, linkify: true, typographer: false });
 md.inline.ruler.before('escape', 'math', mathRule);
-md.renderer.rules.math = (tokens, index) =>
-  katex.renderToString(tokens[index].content, {
-    displayMode: Boolean(tokens[index].meta?.display),
-    throwOnError: false,
-  });
+const ALIGNED = /^\\begin\{aligned\}([\s\S]*)\\end\{aligned\}$/;
+
+/**
+ * A single expression that was hard-wrapped into aligned rows (the first row has no `&`) as one line,
+ * or null for anything else. Real derivations (`a &= b \\ &= c`) are never flattened.
+ */
+export function flattenWrappedAligned(math: string): string | null {
+  const body = ALIGNED.exec(math)?.[1];
+  if (body === undefined || body.includes('\\begin') || body.includes('\\\\[')) return null;
+  const rows = body.split('\\\\').map((row) => row.trim()).filter(Boolean);
+  if (rows.length < 2 || rows[0].includes('&')) return null;
+  if (rows.slice(1).some((row) => (row.match(/&/g) ?? []).length !== 1)) return null;
+  return rows.map((row) => row.replace('&', ' ').trim()).join(' ');
+}
+
+md.renderer.rules.math = (tokens, index) => {
+  const display = Boolean(tokens[index].meta?.display);
+  const content: string = tokens[index].content;
+  const render = (math: string) => katex.renderToString(math, { displayMode: display, throwOnError: false });
+  const flat = display ? flattenWrappedAligned(content) : null;
+  if (flat === null) return render(content);
+  // Both layouts are in the page. Prose shows the one-line layout when it fits, the rows otherwise.
+  return `<div class="formula-reflow" data-layout="flat">${render(flat)}${render(content)}</div>`;
+};
 // A heading inside block text is a subheading. It renders as h4, below the section title and block headings.
 // A whole document, such as the adding-content guide, keeps its heading levels.
 md.core.ruler.push('subheadings', (state) => {
