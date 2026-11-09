@@ -53,10 +53,22 @@ const BLOCK_ICON: Partial<Record<Block['type'], string>> = {
 };
 
 const PROVENANCE = {
-  'official-key': 'Official key',
-  'handout-answer': 'Handout answer with worked solution',
+  'official-key': 'From the exercise sheets',
+  'handout-answer': 'From the handout',
   'written-for-site': 'Written for this site',
 } as const;
+
+/** Past-paper exercises are labelled by the kind of paper, not by the sheet-key provenance. */
+function sourceLabel(exercise: Exercise): string | undefined {
+  const paper = exercise.pastExam?.paper;
+  if (paper) {
+    if (/mock/i.test(paper)) return 'From a mock exam';
+    if (/final/i.test(paper)) return 'From an official final exam';
+    if (/midterm/i.test(paper)) return 'From an official midterm';
+    if (/retake/i.test(paper)) return 'From an official retake exam';
+  }
+  return exercise.provenance ? PROVENANCE[exercise.provenance] : undefined;
+}
 
 const VisualBlock = lazy(() => import('./visuals/VisualBlock.tsx'));
 const VISUAL_KINDS = new Set([
@@ -329,6 +341,9 @@ export function ExerciseView({
     <>
       <div className="exercise-meta">
         <TierLadder tier={exercise.tier} />
+        {sourceLabel(exercise) ? (
+          <span className={`badge badge-${exercise.provenance ?? 'official-key'}`}>{sourceLabel(exercise)}</span>
+        ) : null}
         {markedRight ? (
           <span className="exercise-done" role="img" aria-label="Marked right">
             ✓
@@ -359,9 +374,6 @@ export function ExerciseView({
       </div>
       {open ? (
         <div className="solution">
-          {exercise.provenance ? (
-            <span className={`badge badge-${exercise.provenance}`}>{PROVENANCE[exercise.provenance]}</span>
-          ) : null}
           <Prose text={exercise.solution} />
           <MarkingForm
             exercise={exercise}

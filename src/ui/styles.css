@@ -1436,7 +1436,6 @@ a.button {
   border-inline-start: 6px solid var(--tier, var(--accent));
   border-radius: 12px;
   background: color-mix(in srgb, var(--tier, var(--accent)) 9%, var(--panel));
-  box-shadow: 0 6px 24px -12px color-mix(in srgb, var(--tier, var(--accent)) 60%, transparent);
   transition: background-color var(--fade), border-color var(--fade);
 }
 
