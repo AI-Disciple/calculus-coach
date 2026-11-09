@@ -18,6 +18,7 @@ examWeight: medium
 examWeightNote: The chain rule carries 5% of the two recent finals.
 notation: |
   The curly partial \(\frac{\partial f}{\partial x}\) is the same symbol as \(f_x\), \(\frac{df}{dx}\) and \(d_x f\).
+taught: lecture
 status: reviewed
 ---
 

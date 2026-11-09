@@ -9,8 +9,10 @@ sources:
   - { source: sheet-3, page: 1 }
   - { source: final-2024, page: 1 }
   - { source: final-2025, page: 1 }
+  - { source: lecture-notes-7, page: 1 }
 examWeight: high
-examWeightNote: "Double integrals carry 32.5% of the two recent finals. The formal wording is the handout's and stays provisional until the lecture 7 notes arrive, and placement in this lecture is provisional until the lecture has taken place."
+examWeightNote: "Double integrals carry 32.5% of the two recent finals. The formal wording is the handout's. Lecture 7 covered this topic."
+taught: lecture
 status: reviewed
 notation: |
   \(dA\) is the area element with no order. \(dx\,dy\) and \(dy\,dx\) name the two iterated orders. The handout does not use a curly partial in this section. Where a partial appears (exercise 31), \(f_x\), \(\frac{df}{dx}\) and \(\frac{\partial f}{\partial x}\) are the same thing.
@@ -99,6 +101,20 @@ text: |
 ::: plain-explanation
 text: |
   On a rectangle, the limits are constants, so the range of each variable does not depend on the other variable. The inner integral treats the outer variable as a constant. When \(f\) is reasonably nice, the order \(dx\,dy\) and the order \(dy\,dx\) both equal the double integral, provided each variable keeps its own limits.
+:::
+
+::: formal-statement
+kind: theorem
+title: Properties of the double integral
+source:
+  source: lecture-notes-7
+  page: 1
+text: |
+  Let \(f\) and \(g\) be continuous on \(D\), and let \(a\) be a number.
+
+  - If \(D=D_1\cup D_2\) and the regions \(D_1\) and \(D_2\) do not overlap, then \(\iint_D f=\iint_{D_1}f+\iint_{D_2}f\).
+  - The integral is linear: \(\iint_D (af+g)=a\iint_D f+\iint_D g\).
+  - For \(f=1\), the double integral \(\iint_D 1\,dA\) is the area of \(D\).
 :::
 
 ::: worked-example

@@ -26,6 +26,7 @@ order: 3                       # position within the lecture
 title: The Hessian test
 prerequisites: [l5-partial-derivatives]   # required; use [] when there are none
 optional: true                           # optional; marks a node outside the core course
+taught: lecture                          # optional; lecture = covered in the lecture, handout = read from the handout only (also set optional: true)
 hidden: true                             # optional; a test fixture kept out of the course and the coverage map
 sources:
   - source: lecture-notes-5    # registered source identifier

@@ -1,4 +1,16 @@
 # What changed: one entry per content update, newest first. See content/guide/adding-content.md, step 6.
+- date: "2026-11-09"
+  title: Lecture 7 notes and labels for lectures 5 to 7
+  text: |
+    Added the lecture 7 notes. Double integrals over rectangles now state additivity over a union of regions and linearity. The general regions topic gains the triangle with intercepts a and b, and a second route for sheet 3 exercise 1.11 that swaps the order first. The average value topic gains the average over the region between y = x^2 and y = sqrt(x).
+    Lecture 5, 6 and 7 topics now show where they come from. The professor's messages decide: handout chapter 14 except 14.8 was reviewed after lecture 5, 14.8 after lecture 6, and 15.1 after lecture 7. Those topics show Covered in the lecture. Polar integrals (handout 15.2) show From the handout (optional), because the message names only 15.1. Lecture 8 has not taken place and has no labels yet.
+  nodes: [l5-chain-rule-general, l5-chain-rule-path, l5-differentiability, l5-directional-derivative, l5-hessian, l5-higher-derivatives, l5-limits-continuity, l5-partial-derivatives, l5-steepest-ascent, l5-tangent-plane, l6-critical-points, l6-degenerate-case, l6-global-extrema, l6-lagrange, l6-parameter-families, l6-second-derivative-test, l6-worded-optimisation, l7-average-value, l7-double-integrals-rectangles, l7-general-regions, l7-order-of-integration, l7-polar-integrals, l7-volumes]
+- date: "2026-11-09"
+  title: Lecture 4 labels and a classmate's notes
+  text: |
+    Topics now carry a label for where they come from. The six lecture 4 topics on functions, graphs, planes, quadrics, cross sections and level sets show Covered in the lecture. The three topics on the dot and cross product, lines and planes in space, and cylindrical and spherical coordinates show From the handout (optional), because lecture 4 reviewed only handout 12.1 and 14.1. Nothing was removed.
+    A classmate's partial notes for lecture 4 are added as a source. They agree with the app apart from one missing fact, the general equation of a circle, which the level sets topic now states.
+  nodes: [l4-coordinates-vectors, l4-functions-several-variables, l4-graphs-planes, l4-quadrics, l4-cross-sections, l4-level-sets, l4-dot-cross-product, l4-lines-planes, l4-cylindrical-spherical]
 - date: "2026-10-24"
   title: Lecture 6 notes
   text: |

@@ -10,9 +10,11 @@ sources:
     page: 392
   - source: sheet-3
     page: 1
+  - { source: lecture-notes-7, page: 3 }
 examWeight: medium
 examWeightNote: |
-  On the finals, changing the order appears as splitting a shadow into two regions. It is never its own exam question. The formal wording is the handout's and stays provisional until the lecture 7 notes arrive, and placement in this lecture is provisional until the lecture has taken place.
+  On the finals, changing the order appears as splitting a shadow into two regions. It is never its own exam question. The formal wording is the handout's. Lecture 7 covered this topic.
+taught: lecture
 status: reviewed
 notation: |
   Reversing the order rewrites the same region with the other variable on the outside. The integrand is unchanged. \(dA\) does not record an order.

@@ -9,6 +9,7 @@ sources:
   - { source: handout, section: "14.6", page: 372 }
   - { source: lecture-notes-5, page: 4 }
 examWeight: medium
+taught: lecture
 status: reviewed
 notation: |
   \(\frac{df}{dx}\), \(d_x f\), \(f_x\) and the handout symbol \(\frac{\partial f}{\partial x}\) are the same partial derivative. The mixed partial \(\frac{d}{dy}\bigl(\frac{df}{dx}\bigr)\) is written \(f_{xy}\) and \(\frac{\partial^2 f}{\partial y\,\partial x}\).

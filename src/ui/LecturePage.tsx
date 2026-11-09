@@ -4,6 +4,7 @@ import bundle from 'virtual:content-bundle';
 import { fetchMastery } from '../progress/client.ts';
 import type { Mastery } from '../progress/dashboard.ts';
 import { NotFound } from './NotFound.tsx';
+import { OriginBadge } from './OriginBadge.tsx';
 
 /** A node that is not started has no badge. Only these two states show one. */
 const MASTERY_BADGE: Partial<Record<Mastery, string>> = {
@@ -66,7 +67,7 @@ export function LecturePage() {
                 <Link to={`/node/${node.id}`}>{node.title}</Link>
                 {badge ? <span className={`badge badge-mastery-${state}`}>{badge}</span> : null}
                 {node.status === 'draft' ? <span className="badge">Draft</span> : null}
-                {node.optional ? <span className="badge">Optional</span> : null}
+                <OriginBadge node={node} />
               </li>
             );
           })}

@@ -10,6 +10,7 @@ sources:
   - { source: handout, section: "14.3", page: 363 }
 examWeight: low
 examWeightNote: Never examined on the finals.
+taught: lecture
 status: reviewed
 notation: |
   \(f_x\), \(\frac{df}{dx}\), \(d_x f\) and \(\frac{\partial f}{\partial x}\) are the same symbol, the partial derivative of \(f\) in \(x\). The symbols \(f_y\), \(\frac{df}{dy}\), \(d_y f\) and \(\frac{\partial f}{\partial y}\) are the same symbol for the partial derivative in \(y\).

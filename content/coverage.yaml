@@ -408,6 +408,39 @@ sources:
       - { id: "item-32", label: "x=0 cuts by (O,y,z); y=0 by (O,x,z)", nodes: [l4-cross-sections] }
       - { id: "item-33", label: "Bowl cut by a red vertical plane, axes z, x, y", nodes: [l4-cross-sections] }
       - { id: "item-34", label: "Leftover fragment = f_1 / (2y), from lecture 3", excluded: This leftover fragment belongs to lecture 3. }
+  - source: lecture-notes-4
+    items:
+      - { id: "item-01", label: "Graph of f: R^2 -> R is the set of (x,y,z) with z = f(x,y)", page: 1, nodes: [l4-functions-several-variables, l4-graphs-planes] }
+      - { id: "item-02", label: "Ex: f(x,y) = x^2 + y^2, a bowl", page: 1, nodes: [l4-quadrics, l4-graphs-planes] }
+      - { id: "item-03", label: "z = f(x,y) = 0: the graph is the plane (x,y)", page: 1, nodes: [l4-graphs-planes] }
+      - { id: "item-04", label: "Plane z = ax + by + c, c on the z-axis", page: 1, nodes: [l4-graphs-planes] }
+      - { id: "item-05", label: "Quadrics: surfaces of a 2nd-order polynomial, six cases", page: 1, nodes: [l4-quadrics] }
+      - { id: "item-06", label: "Paraboloid, sphere, cone", page: 1, nodes: [l4-quadrics] }
+      - { id: "item-07", label: "Hyperboloid of two sheets z^2 = x^2 + y^2 + 1", page: 1, nodes: [l4-quadrics] }
+      - { id: "item-08", label: "Hyperboloid of one sheet, needs x^2 + y^2 >= 1, circle at the waist", page: 1, nodes: [l4-quadrics, l4-functions-several-variables] }
+      - { id: "item-09", label: "Hyperbolic paraboloid z = x^2 - y^2", page: 1, nodes: [l4-quadrics] }
+      - { id: "item-10", label: "Cross section of z = f by z = g is {(x,y): g = f}", page: 1, nodes: [l4-cross-sections] }
+      - { id: "item-11", label: "Cross sections by x = 0 (plane Oyz) and y = 0 (plane Oxz)", page: 2, nodes: [l4-cross-sections] }
+      - { id: "item-12", label: "The z-level set of f, bowl with a horizontal slice", page: 2, nodes: [l4-level-sets] }
+      - { id: "item-13", label: "1-level set of x^2 + y^2 is the circle of radius 1", page: 2, nodes: [l4-level-sets] }
+      - { id: "item-14", label: "Circle of radius r and centre (a,b): (x-a)^2 + (y-b)^2 = r^2", page: 2, nodes: [l4-level-sets] }
+      - { id: "item-15", label: "z < 0: the level set is empty", page: 2, nodes: [l4-level-sets] }
+      - { id: "item-16", label: "z >= 0: circle of radius sqrt(z) centred at the origin", page: 2, nodes: [l4-level-sets] }
+  - source: lecture-notes-7
+    items:
+      - { id: "item-01", label: "Double integral as the limit of sums over small squares, the volume under z = f(x,y) above D", page: 1, nodes: [l7-double-integrals-rectangles, l7-volumes] }
+      - { id: "item-02", label: "For f = 1 the volume is the area of D", page: 1, nodes: [l7-double-integrals-rectangles, l7-volumes] }
+      - { id: "item-03", label: "Additivity over a disjoint union D1 and D2", page: 1, nodes: [l7-double-integrals-rectangles] }
+      - { id: "item-04", label: "Linearity of the double integral", page: 1, nodes: [l7-double-integrals-rectangles] }
+      - { id: "item-05", label: "Fubini on a rectangle [a,b] x [c,d], both orders", page: 2, nodes: [l7-double-integrals-rectangles] }
+      - { id: "item-06", label: "Ex 1.1: int_0^2 int_0^4 (1+x) dy dx = 16 in both orders", page: 2, nodes: [l7-double-integrals-rectangles] }
+      - { id: "item-07", label: "Triangular domain, vertical and horizontal strips, y/b + x/a = 1", page: 3, nodes: [l7-general-regions] }
+      - { id: "item-08", label: "Ex 1.11: int_0^1 int_0^y 2/sqrt(1-x^2) dx dy by reordering", page: 3, nodes: [l7-order-of-integration] }
+      - { id: "item-09", label: "Reordered integral equals pi - 2 by the substitution t = 1 - x^2", page: 3, nodes: [l7-order-of-integration] }
+      - { id: "item-10", label: "General domains g(x) <= y <= h(x) and k(y) <= x <= l(y)", page: 4, nodes: [l7-general-regions] }
+      - { id: "item-11", label: "Average of x e^y + y over x >= y^2 and y >= x^2 is (1/Area) times the integral", page: 4, nodes: [l7-average-value] }
+      - { id: "item-12", label: "The region is 0 <= x <= 1, x^2 <= y <= sqrt(x)", page: 4, nodes: [l7-general-regions, l7-average-value] }
+      - { id: "item-13", label: "Inner and outer integration of the average example, I = 12 - 4e + (1-e)/2 + 3/20", page: 5, nodes: [l7-average-value] }
   - source: class-1-corrections
     items:
       - { id: "item-01", label: "Ex 6.1: f(x)=x^5+x^3, f'(x)=5x^4+3x^2", page: 1, nodes: [l1-derivative-rules] }

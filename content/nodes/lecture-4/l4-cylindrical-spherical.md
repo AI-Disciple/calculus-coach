@@ -7,9 +7,11 @@ prerequisites: [l4-coordinates-vectors, l1-trigonometry]
 sources:
   - { source: handout, section: "12.6", page: 323 }
 examWeight: medium
-examWeightNote: These coordinates set up the cylindrical and spherical integrals of lecture 8, which appear on every recent final.
+examWeightNote: These coordinates set up the cylindrical and spherical integrals of lecture 8, which appear on every recent final. Lecture 4 skipped this paragraph, and the professor said to read it before it is used.
 notation: |
   Cylindrical coordinates are written \((r, \theta, z)\). The coordinates \(r\) and \(\theta\) are polar coordinates in the \(xy\)-plane. The coordinate \(z\) is the signed height. Spherical coordinates are written \((\rho, \theta, \phi)\). The coordinate \(\rho\) is the signed distance from the origin. The angle \(\theta\) is the same angle as in cylindrical coordinates. The angle \(\phi\) is measured from the positive \(z\)-axis. Some texts swap \(\phi\) and \(\theta\).
+optional: true
+taught: handout
 status: reviewed
 ---
 

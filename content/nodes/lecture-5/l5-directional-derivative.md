@@ -10,6 +10,7 @@ sources:
   - { source: lecture-notes-5, page: 2 }
   - { source: sheet-2, page: 2 }
 examWeight: medium
+taught: lecture
 status: reviewed
 notation: |
   \(f_x\), \(\frac{df}{dx}\), \(d_x f\) and the handout form \(\frac{\partial f}{\partial x}\) are the same symbol, the partial derivative of \(f\) in \(x\). The symbols \(f_y\), \(\frac{df}{dy}\), \(d_y f\) and \(\frac{\partial f}{\partial y}\) are the same symbol for the partial derivative in \(y\). The lecture writes the directional derivative as \(df(x,y;\vec{u})\). The handout's curly partial and \(D_{\mathbf{u}} f\) match these symbols: the curly partial matches \(f_x\), and \(D_{\mathbf{u}} f\) matches \(df(x,y;\vec{u})\). The handout's \(D_{\mathbf{u}} f\) uses a unit vector.

@@ -17,8 +17,10 @@ sources:
     page: 8
   - source: mock-exam-2
     page: 1
+  - { source: lecture-notes-7, page: 4 }
 examWeight: medium
-examWeightNote: The 2022 final asks for an average on a triangle. The formal wording is the handout's and stays provisional until the lecture 7 notes arrive, and placement in this lecture is provisional until the lecture has taken place.
+examWeightNote: The 2022 final asks for an average on a triangle. The formal wording is the handout's. Lecture 7 covered this topic.
+taught: lecture
 status: reviewed
 notation: |
   The average value is the double integral divided by the area of the base. The handout says average height for the same quantity.
@@ -349,6 +351,55 @@ verification:
   checks:
     - expr: integrate(exp(y)*sqrt(x + exp(y)), (x, 0, 4), (y, 0, 1))/4
       expected: '(exp(2) + 8*exp(1) + 16)/15 * sqrt(exp(1) + 4) - 5*sqrt(5)/3 - exp(Rational(5, 2))/15 + Rational(1, 15)'
+:::
+
+::: exercise
+id: l7-average-value.curved-region
+number: "lecture 7 example"
+tier: standard
+topics: [average-value, double-integrals]
+statement: |
+  Find the average value of \(f(x,y)=xe^{y}+y\) over the region \(x\ge y^{2}\) and \(y\ge x^{2}\).
+solution: |
+  First describe the region. From \(x\ge y^{2}\ge x^{4}\) and \(x\ge 0\) it follows that \(x^{3}\le 1\), so \(0\le x\le 1\). The condition \(y\ge x^{2}\) also gives \(y\ge 0\). Thus
+  \[
+  D=\{0\le x\le 1,\ x^{2}\le y\le\sqrt{x}\}.
+  \]
+  The area of \(D\) is
+  \[
+  \int_0^1\bigl(\sqrt{x}-x^{2}\bigr)dx=\tfrac{2}{3}-\tfrac{1}{3}=\tfrac{1}{3}.
+  \]
+  The inner integral is
+  \[
+  \begin{aligned}
+  \int_{x^{2}}^{\sqrt{x}}\bigl(xe^{y}+y\bigr)dy
+  &=x\bigl(e^{\sqrt{x}}-e^{x^{2}}\bigr)\\
+  &\qquad+\tfrac{1}{2}\bigl(x-x^{4}\bigr).
+  \end{aligned}
+  \]
+  Now integrate in \(x\) over \([0,1]\), one term at a time.
+
+  - With \(t=\sqrt{x}\), so \(x=t^{2}\) and \(dx=2t\,dt\), the first term is \(\int_0^1 xe^{\sqrt{x}}dx=2\int_0^1 t^{3}e^{t}dt\). Integration by parts gives \(\int_0^1 t^{3}e^{t}dt=6-2e\), so the first term equals \(12-4e\).
+  - The second term is \(\int_0^1 xe^{x^{2}}dx=\tfrac{e-1}{2}\).
+  - The third term is \(\tfrac{1}{2}\bigl(\tfrac{1}{2}-\tfrac{1}{5}\bigr)=\tfrac{3}{20}\).
+
+  The double integral is
+  \[
+  I=12-4e-\tfrac{e-1}{2}+\tfrac{3}{20}=\tfrac{253}{20}-\tfrac{9e}{2}.
+  \]
+  Divide by the area \(\tfrac{1}{3}\). The average value is
+  \[
+  3I=\tfrac{759}{20}-\tfrac{27e}{2}\approx 1.253.
+  \]
+provenance: written-for-site
+steps:
+  - The region is \(0\le x\le 1\), \(x^{2}\le y\le\sqrt{x}\), with area \(\tfrac{1}{3}\).
+  - The double integral of \(f\) equals \(\tfrac{253}{20}-\tfrac{9e}{2}\).
+  - Dividing by the area gives \(\tfrac{759}{20}-\tfrac{27e}{2}\).
+verification:
+  checks:
+    - expr: integrate(integrate(x*exp(y)+y, (y, x**2, sqrt(x))), (x, 0, 1)) / integrate(sqrt(x) - x**2, (x, 0, 1))
+      expected: 759/20 - 27*exp(1)/2
 :::
 
 ::: exercise

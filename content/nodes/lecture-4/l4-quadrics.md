@@ -8,6 +8,7 @@ sources:
   - { source: lecture-4-board-1 }
   - { source: lecture-4-board-3 }
   - { source: lecture-4-notebook }
+  - { source: lecture-notes-4, page: 1 }
   - { source: sheet-2, page: 1 }
   - { source: midterm-2021, page: 1 }
   - { source: midterm-2022, page: 1 }
@@ -16,6 +17,7 @@ examWeight: medium
 examWeightNote: Recognising the surfaces is needed for the level-set and volume blocks.
 notation: |
   \(Oz\) is the vertical axis through the origin.
+taught: lecture
 status: reviewed
 ---
 

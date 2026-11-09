@@ -11,6 +11,7 @@ sources:
   - { source: home-assignment-2022, page: 2 }
   - { source: lecture-notes-6, page: 2 }
 examWeight: medium
+taught: lecture
 status: reviewed
 notation: |
   \(f_x\), \(H_f\) and \(D\) are the course names. \(f_x\) and \(\partial f/\partial x\) are the same partial. In a family such as \(f = x^2 + y^2 + kxy\), the number \(k\) stays constant while the partials are computed.

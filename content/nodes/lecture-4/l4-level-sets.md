@@ -7,6 +7,7 @@ prerequisites: [l4-cross-sections]
 sources:
   - { source: handout, section: "14.1", page: 349 }
   - { source: lecture-4-board-4 }
+  - { source: lecture-notes-4, page: 2 }
   - { source: sheet-2, page: 1 }
   - { source: final-2024, page: 1 }
   - { source: final-2025, page: 1 }
@@ -16,6 +17,7 @@ examWeight: medium
 examWeightNote: Level sets carry 5% of the two recent finals.
 notation: |
   The handout calls \(f(x, y) = k\) a level curve, and a drawing of several level curves a topographic map. The lecture title is level sets (contours).
+taught: lecture
 status: reviewed
 ---
 
@@ -143,6 +145,8 @@ text: |
 
   - For \(k = 0\) the radius is 0, and the level curve is the origin.
   - For \(k < 0\) the sum of two squares cannot equal \(k\). The level curve is empty.
+
+  A circle with centre \((a, b)\) and radius \(r\) has the equation \((x - a)^{2} + (y - b)^{2} = r^{2}\). Here \(a = b = 0\) and \(r = \sqrt{k}\).
 
   Curves for different heights \(k \ge 0\) are **concentric**.
 :::

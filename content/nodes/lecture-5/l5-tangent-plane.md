@@ -27,6 +27,7 @@ examWeight: medium
 examWeightNote: The tangent plane carries 5% of the two recent finals.
 notation: |
   \(f_x\), \(\frac{df}{dx}\), \(d_x f\) and \(\frac{\partial f}{\partial x}\) are four names for the partial derivative of \(f\) with respect to \(x\). The same four patterns name the partial derivative with respect to \(y\).
+taught: lecture
 status: reviewed
 ---
 

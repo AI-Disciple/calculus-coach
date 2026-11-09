@@ -103,6 +103,8 @@
 - { id: lecture-notes-1, title: Lecture 1 notes, kind: lecture-notes, pageNumbering: pdf }
 - { id: lecture-notes-2, title: Lecture 2 notes, kind: lecture-notes, pageNumbering: pdf }
 - { id: lecture-notes-3, title: Lecture 3 notes, kind: lecture-notes, pageNumbering: pdf }
+- { id: lecture-notes-4, title: "Lecture 4 notes (partial, a classmate's)", kind: lecture-notes, pageNumbering: pdf }
+- { id: lecture-notes-7, title: Lecture 7 notes, kind: lecture-notes, pageNumbering: pdf }
 - { id: lecture-notes-5, title: Lecture 5 notes, kind: lecture-notes, pageNumbering: pdf }
 - { id: lecture-notes-6, title: Lecture 6 notes, kind: lecture-notes, pageNumbering: pdf }
 - { id: lecture-4-board-1, title: Lecture 4 board 1, kind: board-photo, pageNumbering: none }

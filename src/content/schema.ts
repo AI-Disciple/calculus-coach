@@ -106,6 +106,8 @@ export const nodeFrontMatter = z.strictObject({
   status: z.enum(['draft', 'reviewed']),
   notation: markdown.optional(),
   optional: z.literal(true).optional(),
+  /** Where the topic comes from: taught in the lecture, or read from the handout only. */
+  taught: z.enum(['lecture', 'handout']).optional(),
   hidden: z.literal(true).optional(),
 });
 

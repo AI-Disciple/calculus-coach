@@ -14,6 +14,7 @@ sources:
   - { source: mock-exam-2, page: 1 }
 examWeight: high
 examWeightNote: Critical points carry 20% of the two recent finals. Placement in this lecture is provisional until the lecture has taken place. The formal statements follow the handout until the lecture 6 notes arrive.
+taught: lecture
 status: reviewed
 notation: |
   \(f_x\) is the partial derivative of \(f\) with respect to \(x\), and \(f_y\) is the partial derivative with respect to \(y\). The symbols \(f_x\) and \(\partial f/\partial x\) are the same partial. The gradient is \(\nabla f = (f_x, f_y)\). The Hessian matrix is

@@ -14,7 +14,9 @@ sources:
   - { source: mock-exam-1, page: 1 }
 examWeight: high
 examWeightNote: |
-  Double integrals are 32.5% of the two recent finals, and every recent final has a polar integral. The formal wording is the handout's and stays provisional until the lecture 7 notes arrive, and placement in this lecture is provisional until the lecture has taken place.
+  Double integrals are 32.5% of the two recent finals, and every recent final has a polar integral. The formal wording is the handout's. Lecture 7 covered only handout 15.1, so polar coordinates are background reading until the lecture that teaches them.
+optional: true
+taught: handout
 status: reviewed
 notation: |
   The handout calls these coordinates cylindrical coordinates. In the plane, the course calls them polar coordinates. A point satisfies \(x = r\cos\theta\) and \(y = r\sin\theta\), and the area element is \(dA = r\,dr\,d\theta\).

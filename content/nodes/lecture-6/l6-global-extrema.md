@@ -14,6 +14,7 @@ sources:
   - { source: lecture-notes-6, page: 3 }
 examWeight: high
 examWeightNote: Constrained or worded optimisation carries 17.5% of the two recent finals.
+taught: lecture
 status: reviewed
 notation: |
   \(f_x\), \(H_f\) and \(D\) are the course names. \(f_x\) and \(\partial f/\partial x\) are the same partial. On a boundary edge the restriction of \(f\) is an ordinary function of one variable.

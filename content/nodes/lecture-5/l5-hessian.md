@@ -11,6 +11,7 @@ examWeight: high
 examWeightNote: The Hessian classifies the critical points of lecture 6, which carry 20% of the two recent finals.
 notation: |
   The curly partial \(\frac{\partial f}{\partial x}\) is the same symbol as \(f_x\), \(\frac{df}{dx}\) and \(d_x f\). The second partials are \(\frac{d^2 f}{dx^2}\), \(\frac{d^2 f}{dx\,dy}\) and \(\frac{d^2 f}{dy^2}\).
+taught: lecture
 status: reviewed
 ---
 

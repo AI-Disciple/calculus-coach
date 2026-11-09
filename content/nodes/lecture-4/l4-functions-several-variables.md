@@ -9,10 +9,12 @@ sources:
   - { source: lecture-4-board-1 }
   - { source: lecture-4-board-3 }
   - { source: lecture-4-notebook }
+  - { source: lecture-notes-4, page: 1 }
   - { source: sheet-2, page: 1 }
 examWeight: low
 notation: |
   \(D(f)\) is the domain of \(f\), the set of inputs that make sense for the formula. The handout describes that set in words and does not use the letter \(D\).
+taught: lecture
 status: reviewed
 ---
 

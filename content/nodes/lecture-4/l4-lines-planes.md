@@ -7,9 +7,11 @@ prerequisites: [l4-dot-cross-product]
 sources:
   - { source: handout, section: "12.5", page: 317 }
 examWeight: low
-examWeightNote: Supporting geometry. Tangent planes reuse the plane equation.
+examWeightNote: Supporting geometry. Tangent planes reuse the plane equation. Lecture 4 did not cover this paragraph, so it is background reading.
 notation: |
   A point is \((x, y, z)\). Its position vector is \(\langle x, y, z \rangle\). The vector from a point \(Q\) to a point \(P\) is \(\overrightarrow{QP}\). A normal to a plane is \(\mathbf{n}\). A direction vector of a line is \(\mathbf{A}\). The parameter on a line is the real number \(t\).
+optional: true
+taught: handout
 status: reviewed
 ---
 

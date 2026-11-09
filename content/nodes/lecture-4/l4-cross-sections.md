@@ -8,12 +8,14 @@ sources:
   - { source: handout, section: "14.1", page: 349 }
   - { source: lecture-4-board-4 }
   - { source: lecture-4-notebook }
+  - { source: lecture-notes-4, page: 1 }
   - { source: sheet-2, page: 2 }
   - { source: midterm-2021, page: 1 }
 examWeight: medium
 examWeightNote: The volume block always asks for a sketch of a cut by a coordinate plane.
 notation: |
   \(Oyz\) is the plane \(x = 0\), also called the \(yz\)-plane. \(Oxz\) is the plane \(y = 0\), also called the \(xz\)-plane. The board writes the function as \(f\). The notebook page writes the same function as \(F\).
+taught: lecture
 status: reviewed
 ---
 

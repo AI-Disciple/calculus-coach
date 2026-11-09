@@ -7,8 +7,10 @@ prerequisites: [l7-general-regions, l4-quadrics]
 sources:
   - { source: handout, section: "15.1", page: 385 }
   - { source: sheet-3, page: 1 }
+  - { source: lecture-notes-7, page: 1 }
 examWeight: high
-examWeightNote: "Double integrals carry 32.5% of the two recent finals, and the volume block another 15%. The formal wording is the handout's and stays provisional until the lecture 7 notes arrive, and placement in this lecture is provisional until the lecture has taken place."
+examWeightNote: "Double integrals carry 32.5% of the two recent finals, and the volume block another 15%. The formal wording is the handout's. Lecture 7 covered this topic."
+taught: lecture
 status: reviewed
 notation: |
   The volume under \(z = f(x, y)\) and above a region \(D\) in the \(xy\)-plane is \(\iint_D f(x, y)\,dA\). Between \(z = g(x, y)\) and \(z = h(x, y)\), integrate \(h - g\). The handout writes this integral as the limit of boxes of volume \(f(x, y)\,\Delta x\,\Delta y\).

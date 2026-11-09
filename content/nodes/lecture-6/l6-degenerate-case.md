@@ -18,6 +18,7 @@ sources:
   - { source: mock-exam-2, page: 1 }
 examWeight: high
 examWeightNote: Every recent final asks for one D = 0 case. Placement in this lecture is provisional until the lecture has taken place. The formal statements follow the handout until the lecture 6 notes arrive.
+taught: lecture
 status: reviewed
 notation: |
   \(f_x\), \(H_f\) and \(D\) are the course names. \(f_x\) and \(\partial f/\partial x\) are the same partial. The discriminant is \(D = \det H_f = f_{xx} f_{yy} - (f_{xy})^2\).

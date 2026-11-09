@@ -12,6 +12,7 @@ sources:
   - { source: sheet-2, page: 1 }
 examWeight: medium
 examWeightNote: Never a question on its own, but every multivariable block uses partials.
+taught: lecture
 status: reviewed
 notation: |
   \(\frac{df}{dx}\), \(d_x f\) and \(f_x\) are names for the partial derivative of \(f\) with respect to \(x\). The handout holds the other variable constant and writes that same derivative as \(\frac{\partial f}{\partial x}\). The names \(\frac{df}{dy}\), \(d_y f\) and \(f_y\) match \(\frac{\partial f}{\partial y}\).

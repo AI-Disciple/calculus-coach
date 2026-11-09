@@ -10,9 +10,11 @@ sources:
   - { source: lecture-4-board-1 }
   - { source: lecture-4-board-2 }
   - { source: lecture-4-notebook }
+  - { source: lecture-notes-4, page: 1 }
 examWeight: low
 notation: |
   The frame for a graph has \(z\) up, \(y\) to the right, and \(x\) down-left. A plane that is a graph is \(z = ax + by + C\), with capital \(C\).
+taught: lecture
 status: reviewed
 ---
 

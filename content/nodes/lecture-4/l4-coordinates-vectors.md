@@ -12,6 +12,7 @@ examWeight: low
 examWeightNote: Supporting geometry for the multivariable lectures.
 notation: |
   Angle brackets \(\langle v_1, v_2, v_3\rangle\) are the components of a vector. Round parentheses \((x, y, z)\) are a point.
+taught: lecture
 status: reviewed
 ---
 

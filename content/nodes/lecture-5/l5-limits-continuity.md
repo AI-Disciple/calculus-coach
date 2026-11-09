@@ -11,6 +11,7 @@ sources:
   - { source: midterm-2021, page: 1 }
 examWeight: low
 examWeightNote: Never examined on the finals.
+taught: lecture
 status: reviewed
 notation: |
   \(f_x\), \(\frac{df}{dx}\), \(d_x f\) and \(\frac{\partial f}{\partial x}\) are the same symbol, the partial derivative of \(f\) in \(x\). The limit in this node uses the distance \(\|x-x_0\|\). On the handout that distance is the square root \(\sqrt{(x-a)^2+(y-b)^2}\).

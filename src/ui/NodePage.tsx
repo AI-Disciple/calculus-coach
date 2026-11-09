@@ -21,6 +21,7 @@ import { MasteryBadge } from './moments.tsx';
 import { NodeProgressProvider, useNodeProgress } from './nodeProgress.tsx';
 import { estimatedMinutes, exerciseCount } from './nodeTime.ts';
 import { Prose } from './prose.tsx';
+import { OriginBadge } from './OriginBadge.tsx';
 import { SourceLink } from './SourceLink.tsx';
 import { StreakProvider } from './streak.tsx';
 
@@ -228,7 +229,7 @@ function NodeView({ lecture, node }: { lecture: Lecture; node: CourseNode }) {
             >
               {EXAM_WEIGHT[node.examWeight]}
             </span>
-            {node.optional ? <span className="badge">Optional</span> : null}
+            <OriginBadge node={node} />
           </div>
           <p className="node-facts">
             <span className="node-fact">about {minutes} min</span>

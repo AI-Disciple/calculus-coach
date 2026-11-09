@@ -15,6 +15,7 @@ sources:
   - { source: mock-exam-2, page: 1 }
   - { source: home-assignment-2022, page: 1 }
 examWeight: medium
+taught: lecture
 status: reviewed
 notation: |
   \(f_x\), \(\frac{df}{dx}\), \(d_x f\) and the handout form \(\frac{\partial f}{\partial x}\) are the same symbol, the partial derivative of \(f\) in \(x\). The symbols \(f_y\), \(\frac{df}{dy}\), \(d_y f\) and \(\frac{\partial f}{\partial y}\) are the same symbol for the partial derivative in \(y\). The lecture writes the gradient as the column with entries \(d_x f\) and \(d_y f\). The handout writes that gradient as the row \(\langle f_x, f_y\rangle\). The symbol \(D_{\mathbf{u}} f\) is the handout's name for the directional derivative along a unit vector, and it matches \(df(x,y;\vec{u})\) when \(\vec{u}\) is that unit vector.

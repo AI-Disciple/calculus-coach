@@ -19,9 +19,11 @@ sources:
     page: 1
   - source: retake-2023
     page: 1
+  - { source: lecture-notes-7, page: 4 }
 examWeight: high
 examWeightNote: |
-  Double integrals carry 32.5% of the two recent finals. The formal wording is the handout's and stays provisional until the lecture 7 notes arrive, and placement in this lecture is provisional until the lecture has taken place.
+  Double integrals carry 32.5% of the two recent finals. The formal wording is the handout's. Lecture 7 covered this topic.
+taught: lecture
 status: reviewed
 notation: |
   On a region that is not a rectangle, the inner limit is a function of the outer variable. \(dA\) still names the area element. \(dy\,dx\) and \(dx\,dy\) are the two orders.
@@ -127,6 +129,33 @@ params:
   preset: triangle
   order: dy-dx
   intercept: 1
+:::
+
+::: worked-example
+title: A triangle with intercepts a and b
+problem: |
+  Let \(D\) be the triangle with vertices \((0,0)\), \((a,0)\) and \((0,b)\), where \(a,b>0\). Describe \(D\) in both orders and give its area.
+solution: |
+  The slanted side is the line through \((a,0)\) and \((0,b)\). Its equation is \(\dfrac{x}{a}+\dfrac{y}{b}=1\), so \(y=b-\dfrac{b}{a}x\).
+
+  - Integrating \(y\) first, a vertical strip at \(x\) runs from \(y=0\) up to the slanted side. Hence
+    \[
+    D=\Bigl\{0\le x\le a,\ 0\le y\le b-\tfrac{b}{a}x\Bigr\}.
+    \]
+  - Integrating \(x\) first, a horizontal strip at \(y\) runs from \(x=0\) to the slanted side, where \(x=a-\dfrac{a}{b}y\). Hence
+    \[
+    D=\Bigl\{0\le y\le b,\ 0\le x\le a-\tfrac{a}{b}y\Bigr\}.
+    \]
+
+  The area is the integral of \(1\). In the first order,
+  \[
+  \begin{aligned}
+  \int_0^a\Bigl(b-\tfrac{b}{a}x\Bigr)dx
+  &=\Bigl[bx-\tfrac{b}{2a}x^{2}\Bigr]_0^a\\
+  &=ab-\tfrac{ab}{2}=\tfrac{ab}{2}.
+  \end{aligned}
+  \]
+  The second order gives the same value \(\dfrac{ab}{2}\).
 :::
 
 ::: concept-question
@@ -407,6 +436,17 @@ solution: |
   \end{aligned}
   \]
   The value of the integral is \(\pi - 2\).
+
+  A second route swaps the order first. The region \(0\le x\le y\le 1\) is also \(0\le x\le 1,\ x\le y\le 1\). The inner integral in \(y\) is constant in \(y\), so
+  \[
+  \begin{aligned}
+  \int_0^1\int_x^1\frac{2}{\sqrt{1-x^{2}}}\,dy\,dx
+  &=\int_0^1\frac{2(1-x)}{\sqrt{1-x^{2}}}\,dx\\
+  &=2\arcsin 1-\int_0^1\frac{2x}{\sqrt{1-x^{2}}}\,dx\\
+  &=\pi-2.
+  \end{aligned}
+  \]
+  The last integral equals \(2\) by the substitution \(w=1-x^{2}\), as above.
 provenance: handout-answer
 steps:
   - The inner integral equals \(2\arcsin y\).

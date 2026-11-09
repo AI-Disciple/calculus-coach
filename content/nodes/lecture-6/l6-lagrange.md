@@ -13,6 +13,7 @@ sources:
   - { source: lecture-notes-6, page: 4 }
   - { source: lecture-notes-6, page: 5 }
 examWeight: medium
+taught: lecture
 status: reviewed
 notation: |
   \(f_x\) and \(\partial f/\partial x\) are the same partial. The gradient is \(\nabla f = (f_x, f_y)\) in two variables and \(\nabla f = (f_x, f_y, f_z)\) in three. One constraint \(g = c\) uses one multiplier \(\lambda\).

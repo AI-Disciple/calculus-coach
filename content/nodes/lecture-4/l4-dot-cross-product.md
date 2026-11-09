@@ -8,9 +8,11 @@ sources:
   - { source: handout, section: "12.3", page: 307 }
   - { source: handout, section: "12.4", page: 313 }
 examWeight: low
-examWeightNote: Supporting geometry for the multivariable lectures.
+examWeightNote: Supporting geometry for the multivariable lectures. Lecture 4 did not cover this paragraph, so it is background reading.
 notation: |
   The dot product is written \(\mathbf{A}\cdot\mathbf{B}\). The cross product is written \(\mathbf{A}\times\mathbf{B}\). Length uses absolute value bars, as in \(\lvert\mathbf{A}\rvert\).
+optional: true
+taught: handout
 status: reviewed
 ---
 

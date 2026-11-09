@@ -15,6 +15,7 @@ sources:
   - { source: mock-2022, page: 1 }
 examWeight: high
 examWeightNote: Constrained or worded optimisation carries 17.5% of the two recent finals. Placement in this lecture is provisional until the lecture has taken place. The formal statements follow the handout until the lecture 6 notes arrive.
+taught: lecture
 status: reviewed
 notation: |
   \(f_x\) and \(\partial f/\partial x\) are the same partial. \(H_f\) is the Hessian, and \(D = \det H_f = f_{xx} f_{yy} - (f_{xy})^2\).
