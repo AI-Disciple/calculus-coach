@@ -285,22 +285,22 @@ tier: standard
 topics:
   - cross-sections
 statement: |
-  Let \(f(x, y) = x^{2} + y^{2}\) and \(g(x, y) = 2x\). Give the equation in \(x\) and \(y\) of the intersection of the graphs \(z = f(x, y)\) and \(z = g(x, y)\). Give \(z\) on that intersection.
+  Let \(f(x, y) = x^{2} + y^{2} - 3\) and \(g(x, y) = 2y\). Give the equation in \(x\) and \(y\) of the intersection of the graphs \(z = f(x, y)\) and \(z = g(x, y)\). Give \(z\) on that intersection.
 solution: |
-  The heights agree when \(x^{2} + y^{2} = 2x\). Rewrite the left side by completing the square:
+  The heights agree when \(x^{2} + y^{2} - 3 = 2y\). Move \(2y\) to the left side and complete the square in \(y\):
   \[
-  x^{2} + y^{2} - 2x = (x - 1)^{2} + y^{2} - 1.
+  x^{2} + y^{2} - 2y - 3 = x^{2} + (y - 1)^{2} - 4.
   \]
-  The intersection is the set where \((x - 1)^{2} + y^{2} = 1\). On that set, \(z = 2x\). The equation in \(x\) and \(y\) is a circle of radius \(1\) with center \((1, 0)\).
+  The intersection is the set where \(x^{2} + (y - 1)^{2} = 4\). On that set, \(z = 2y\). The equation in \(x\) and \(y\) is a circle of radius \(2\) with center \((0, 1)\).
 provenance: written-for-site
 steps:
   - Equate the heights and complete the square.
-  - Record the common height z = 2x.
+  - Record the common height z = 2y.
 verification:
   checks:
-    - expr: expand((x**2 + y**2 - 2*x) - ((x - 1)**2 + y**2 - 1))
+    - expr: expand((x**2 + y**2 - 3 - 2*y) - (x**2 + (y - 1)**2 - 4))
       expected: "0"
-    - expr: "(2**2 + 0**2 - 2*2, (2 - 1)**2 + 0**2 - 1)"
+    - expr: "(2**2 + 1**2 - 3 - 2*1, 2**2 + (1 - 1)**2 - 4)"
       expected: "(0, 0)"
 :::
 
@@ -498,16 +498,16 @@ id: l4-cross-sections.ex-traces-and-diagonal-cuts
 tier: standard
 topics: [cross-sections]
 statement: |
-  Let \(f(x, y) = \sqrt{x} + \sqrt{y}\) and \(g(x, y) = xy\).
+  Let \(f(x, y) = x^{2} + 2y\) and \(g(x, y) = xy\).
 
   1. Give the cuts of the graph of \(f\) by the planes \(x = 0\) and \(y = 0\), with the plane each lies in, and the cut by the vertical plane \(y = x\).
   2. Give the same three cuts for the graph of \(g\). What do the cuts by \(x = 0\) and \(y = 0\) tell you about \(g\), and what do they miss?
 solution: |
   **The graph of \(f\).**
 
-  - On \(x = 0\), the points have the form \((0, y, z)\) with \(z = f(0, y) = \sqrt{y}\), for \(y \ge 0\). The cut is the curve \(z = \sqrt{y}\) in the plane \(Oyz\).
-  - On \(y = 0\), the points have the form \((x, 0, z)\) with \(z = f(x, 0) = \sqrt{x}\), for \(x \ge 0\). The cut is the curve \(z = \sqrt{x}\) in the plane \(Oxz\).
-  - On \(y = x\), the points have the form \((t, t, z)\) with \(z = f(t, t) = 2\sqrt{t}\), for \(t \ge 0\). The cut is the curve \(z = 2\sqrt{t}\) over the line \(y = x\) in the \(xy\)-plane.
+  - On \(x = 0\), the points have the form \((0, y, z)\) with \(z = f(0, y) = 2y\). The cut is the line \(z = 2y\) in the plane \(Oyz\).
+  - On \(y = 0\), the points have the form \((x, 0, z)\) with \(z = f(x, 0) = x^{2}\). The cut is the parabola \(z = x^{2}\) in the plane \(Oxz\).
+  - On \(y = x\), the points have the form \((t, t, z)\) with \(z = f(t, t) = t^{2} + 2t\). The cut is the parabola \(z = t^{2} + 2t\) over the line \(y = x\) in the \(xy\)-plane.
 
   **The graph of \(g\).**
 
@@ -520,19 +520,19 @@ solution: |
 provenance: written-for-site
 steps:
   - |
-    Cuts of \(f\): \(z = \sqrt{y}\) in \(Oyz\), \(z = \sqrt{x}\) in \(Oxz\), and \(z = 2\sqrt{t}\) over \(y = x\).
+    Cuts of \(f\): \(z = 2y\) in \(Oyz\), \(z = x^{2}\) in \(Oxz\), and \(z = t^{2} + 2t\) over \(y = x\).
   - |
     Cuts of \(g\): the line \(z = 0\) twice, and the parabolas \(z = t^{2}\) and \(z = -t^{2}\) over \(y = \pm x\).
   - |
     Coordinate cuts do not determine the surface.
 verification:
   checks:
-    - expr: "(sqrt(x) + sqrt(y)).subs(x, 0)"
-      expected: "sqrt(y)"
-    - expr: "(sqrt(x) + sqrt(y)).subs(y, 0)"
-      expected: "sqrt(x)"
-    - expr: "(sqrt(x) + sqrt(y)).subs(y, x)"
-      expected: "2*sqrt(x)"
+    - expr: "(x**2 + 2*y).subs(x, 0)"
+      expected: "2*y"
+    - expr: "(x**2 + 2*y).subs(y, 0)"
+      expected: "x**2"
+    - expr: "(x**2 + 2*y).subs(y, x)"
+      expected: "x**2 + 2*x"
     - expr: "(x*y).subs(x, 0)"
       expected: "0"
     - expr: "(x*y).subs(y, 0)"

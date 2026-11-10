@@ -59,7 +59,7 @@ export async function checkContentBundle(contentDir: string, options: CheckOptio
   checkExerciseRecords(nodes, problems);
   checkVisualParams(nodes, problems);
   checkSectionMarkers(nodes, problems);
-  const warnings = conceptQuestionWarnings(nodes);
+  const warnings = [...conceptQuestionWarnings(nodes), ...exerciseCopyWarnings(nodes)];
   await checkStyle(contentDir, options.uiDir, problems);
   if (options.verify ?? true) await checkVerificationRecords(nodes, problems);
 
@@ -308,6 +308,41 @@ function conceptQuestionWarnings(nodes: CourseNode[]): Warning[] {
         : [],
     ),
   );
+}
+
+/** The formulas in a text that carry data: a point, a function, a surface. Generic notation without a digit and short conditions such as `r > 0` are skipped. */
+function dataFormulas(text: string): Set<string> {
+  const spans = [...text.matchAll(/\\\((.+?)\\\)|\\\[([\s\S]+?)\\\]/g)].map((m) => (m[1] ?? m[2]).replace(/\s+/g, ''));
+  const isInequality = (s: string) => /<|>|\\le|\\ge|\\lt|\\gt/.test(s) && s.length <= 25;
+  return new Set(spans.filter((s) => s.length >= 8 && /\d/.test(s) && !isInequality(s)));
+}
+
+/** An exercise that reuses the formulas of a worked or guided example in its node is a copy, not practice. */
+function exerciseCopyWarnings(nodes: CourseNode[]): Warning[] {
+  const warnings: Warning[] = [];
+  for (const node of nodes) {
+    const examples = node.blocks.flatMap((b) =>
+      b.type === 'worked-example' || b.type === 'guided-example' ? [{ title: b.title ?? 'untitled', data: dataFormulas(b.problem) }] : [],
+    );
+    for (const b of node.blocks) {
+      // Exercises taken from a key or the handout cannot be varied, so only the ones written for the site are held to this.
+      if (b.type !== 'exercise' || b.provenance !== 'written-for-site') continue;
+      const own = dataFormulas(b.statement);
+      if (own.size === 0) continue;
+      for (const example of examples) {
+        const shared = [...own].filter((s) => example.data.has(s));
+        if (shared.length > 0 && shared.length * 2 >= own.size) {
+          warnings.push({
+            file: node.file,
+            id: b.id,
+            message: `exercise repeats the formulas of the example "${example.title}" (${shared.join(' ; ')}). Change the numbers, function or surface so it is new practice.`,
+          });
+          break;
+        }
+      }
+    }
+  }
+  return warnings;
 }
 
 async function checkVerificationRecords(nodes: CourseNode[], problems: Problem[]) {

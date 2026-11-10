@@ -129,32 +129,32 @@ id: l4-graphs-planes.ex-paraboloid-basic
 tier: basic
 topics: [graph, paraboloid]
 statement: |
-  Let \(f(x,y) = x^{2} + y^{2}\). Compute \(f(1,2)\) and \(f(0,0)\). Does the point \((1,1,0)\) lie on the graph? Identify the surface, the axis it opens along, and the direction of each coordinate axis.
+  Let \(f(x,y) = x^{2} + y^{2} + 1\). Compute \(f(2,1)\) and \(f(0,0)\). Does the point \((1,1,2)\) lie on the graph? Identify the surface, the axis it opens along, and the direction of each coordinate axis.
 solution: |
   \[
   \begin{aligned}
-  f(1,2)&=1^{2}+2^{2}=5,\\
-  f(0,0)&=0,\\
-  f(1,1)&=1^{2}+1^{2}=2.
+  f(2,1)&=2^{2}+1^{2}+1=6,\\
+  f(0,0)&=0+0+1=1,\\
+  f(1,1)&=1^{2}+1^{2}+1=3.
   \end{aligned}
   \]
-  So \(f(1,2) = 5\), and the point \((1,2,5)\) lies on the graph. The graph meets the origin, because \(f(0,0) = 0\). The point on the graph above \((1,1)\) is \((1,1,2)\). The point \((1,1,0)\) has height \(0\), so it does not lie on the graph.
+  So \(f(2,1) = 6\), and the point \((2,1,6)\) lies on the graph. The graph passes through \((0,0,1)\), because \(f(0,0) = 1\). The point on the graph above \((1,1)\) is \((1,1,3)\). The point \((1,1,2)\) has height \(2\), so it does not lie on the graph.
 
-  The graph is a circular paraboloid opening along the vertical \(z\)-axis. The frame has \(z\) up, \(y\) to the right, and \(x\) down-left.
+  The graph is a circular paraboloid with its lowest point at \((0,0,1)\), opening along the vertical \(z\)-axis. The frame has \(z\) up, \(y\) to the right, and \(x\) down-left.
 provenance: written-for-site
 steps:
-  - Value \(f(1,2) = 5\).
-  - Value \(f(0,0) = 0\).
-  - Height at \((1,1)\) equal to \(2\), so \((1,1,0)\) is off the graph.
+  - Value \(f(2,1) = 6\).
+  - Value \(f(0,0) = 1\).
+  - Height at \((1,1)\) equal to \(3\), so \((1,1,2)\) is off the graph.
   - Surface named, opening along \(z\), with the frame stated.
 verification:
   checks:
-    - expr: '(x**2 + y**2).subs({x: 1, y: 2})'
-      expected: "5"
-    - expr: '(x**2 + y**2).subs({x: 0, y: 0})'
-      expected: "0"
-    - expr: '(x**2 + y**2).subs({x: 1, y: 1})'
-      expected: "2"
+    - expr: '(x**2 + y**2 + 1).subs({x: 2, y: 1})'
+      expected: "6"
+    - expr: '(x**2 + y**2 + 1).subs({x: 0, y: 0})'
+      expected: "1"
+    - expr: '(x**2 + y**2 + 1).subs({x: 1, y: 1})'
+      expected: "3"
 :::
 
 ::: section

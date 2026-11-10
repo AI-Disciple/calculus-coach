@@ -44,6 +44,7 @@ New exercises go into their topic file and nowhere else. The Exercise bank page 
 
 - Notation follows the professor's notes first: df/dx, f_x and f'. Show the curly-d form wherever a source uses it, and name the equivalence once per topic in its `notation` field.
 - All text follows `docs/writing-style.md`: no em dashes, no forced lists of three, no "not X but Y" polish, no filler, full sentences with one claim per clause.
+- An exercise never repeats a worked or guided example of its node. Use different numbers, a different function or surface, or a different setup. `npm run content` warns when it finds a copy.
 - Every exercise has a provenance label and a verification record, as `docs/content-format.md` describes. Where the verified value disagrees with an official key, keep the exercise, state the discrepancy and show the verified value.
 
 ## 4a. Preview the sections

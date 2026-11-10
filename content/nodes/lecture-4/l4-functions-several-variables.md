@@ -171,37 +171,39 @@ id: l4-functions-several-variables.ex-sqrt-basic
 tier: basic
 topics: [domain]
 statement: |
-  Let \(f(x,y) = \sqrt{x} + \sqrt{y}\). Write \(D(f)\). Compute \(f(4,9)\) and \(f(0,0)\). Decide whether \((-1,0)\) lies in \(D(f)\).
+  Let \(f(x,y) = \sqrt{x - 1} + \sqrt{y}\). Write \(D(f)\). Compute \(f(2,4)\) and \(f(1,0)\). Decide whether \((0,4)\) lies in \(D(f)\).
 solution: |
-  The square root \(\sqrt{x}\) is real when \(x \ge 0\), and \(\sqrt{y}\) is real when \(y \ge 0\). Both are required, so \(D(f) = \{(x,y) : x \ge 0,\ y \ge 0\}\).
-  At \((4,9)\) the value is
+  The square root \(\sqrt{x - 1}\) is real when \(x \ge 1\), and \(\sqrt{y}\) is real when \(y \ge 0\). Both are required, so \(D(f) = \{(x,y) : x \ge 1,\ y \ge 0\}\).
+  At \((2,4)\) the value is
   \[
   \begin{aligned}
-  f(4,9)&=\sqrt{4} + \sqrt{9},\\
-  &=2 + 3 = 5.
+  f(2,4)&=\sqrt{2 - 1} + \sqrt{4},\
+  &=1 + 2 = 3.
   \end{aligned}
   \]
-  At \((0,0)\) the value is
+  At \((1,0)\) the value is
   \[
   \begin{aligned}
-  f(0,0)&=\sqrt{0} + \sqrt{0},\\
+  f(1,0)&=\sqrt{1 - 1} + \sqrt{0},\
   &=0.
   \end{aligned}
   \]
-  So \(f(0,0) = 0\), and the origin lies in \(D(f)\).
-  At \((-1,0)\) the first coordinate is negative. No real number has square \(-1\), so \(\sqrt{x}\) is not defined as a real value there. The point \((-1,0)\) lies outside \(D(f)\).
+  So \(f(1,0) = 0\), and \((1,0)\) lies in \(D(f)\).
+  At \((0,4)\) the quantity under the first root is \(0 - 1 = -1\). No real number has square \(-1\), so \(\sqrt{x - 1}\) is not defined as a real value there. The point \((0,4)\) lies outside \(D(f)\), even though its coordinates are nonnegative.
 provenance: written-for-site
 steps:
-  - Domain written with both coordinates nonnegative.
-  - Value \(f(4,9) = 5\).
-  - Value \(f(0,0) = 0\).
-  - Point \((-1,0)\) excluded because \(\sqrt{x}\) is not real for \(x < 0\).
+  - Domain written with \(x \ge 1\) and \(y \ge 0\).
+  - Value \(f(2,4) = 3\).
+  - Value \(f(1,0) = 0\).
+  - Point \((0,4)\) excluded because \(\sqrt{x - 1}\) is not real for \(x < 1\).
 verification:
   checks:
-    - expr: 'sqrt(4)+sqrt(9)'
-      expected: "5"
-    - expr: 'sqrt(0)+sqrt(0)'
+    - expr: 'sqrt(2 - 1)+sqrt(4)'
+      expected: "3"
+    - expr: 'sqrt(1 - 1)+sqrt(0)'
       expected: "0"
+    - expr: '0 - 1'
+      expected: "-1"
 :::
 
 ::: section
@@ -321,32 +323,38 @@ id: l4-functions-several-variables.ex-hemisphere-standard
 tier: standard
 topics: [domain, hemisphere]
 statement: |
-  Let \(f(x,y) = \sqrt{4 - x^{2} - y^{2}}\). Write \(D(f)\). Compute \(f(0,0)\) and \(f(2,0)\). Decide whether \((3,0)\) lies in \(D(f)\).
+  Let \(f(x,y) = \sqrt{9 - x^{2} - y^{2}}\). Write \(D(f)\). Compute \(f(0,0)\) and \(f(0,3)\). Decide whether \((2,2)\) and \((3,1)\) lie in \(D(f)\).
 solution: |
-  The radicand \(4 - x^{2} - y^{2}\) is nonnegative when \(x^{2} + y^{2} \le 4\). So \(D(f) = \{(x,y) : x^{2} + y^{2} \le 4\}\).
-  At \((0,0)\) the radicand is \(4\). The square root equals \(2\). So \(f(0,0) = 2\).
-  At \((2,0)\) the radicand is \(4 - 4 - 0 = 0\). So \(f(2,0) = 0\), and \((2,0)\) lies in \(D(f)\).
+  The radicand \(9 - x^{2} - y^{2}\) is nonnegative when \(x^{2} + y^{2} \le 9\). So \(D(f) = \{(x,y) : x^{2} + y^{2} \le 9\}\).
+  At \((0,0)\) the radicand is \(9\). The square root equals \(3\). So \(f(0,0) = 3\).
+  At \((0,3)\) the radicand is \(9 - 0 - 9 = 0\). So \(f(0,3) = 0\), and \((0,3)\) lies in \(D(f)\).
   \[
   \begin{aligned}
-  f(2,0)&=\sqrt{4 - 2^{2} - 0^{2}},\\
+  f(0,3)&=\sqrt{9 - 0^{2} - 3^{2}},\
   &=\sqrt{0}=0.
   \end{aligned}
   \]
-  At \((3,0)\) the radicand is \(4 - 9 = -5\). A negative radicand has no real square root, so \((3,0)\) lies outside \(D(f)\).
+  At \((2,2)\) the radicand is \(9 - 4 - 4 = 1\), which is nonnegative, so \((2,2)\) lies in \(D(f)\). Here \(f(2,2) = 1\).
+  At \((3,1)\) the radicand is \(9 - 9 - 1 = -1\). A negative radicand has no real square root, so \((3,1)\) lies outside \(D(f)\).
 provenance: written-for-site
 steps:
-  - Domain written as the closed disk \(x^{2} + y^{2} \le 4\).
-  - Value \(f(0,0) = 2\).
-  - Value \(f(2,0) = 0\).
-  - Point \((3,0)\) excluded because the radicand is \(-5\).
+  - Domain written as the closed disk \(x^{2} + y^{2} \le 9\).
+  - Value \(f(0,0) = 3\).
+  - Value \(f(0,3) = 0\).
+  - Point \((2,2)\) included, with radicand \(1\).
+  - Point \((3,1)\) excluded because the radicand is \(-1\).
 verification:
   checks:
-    - expr: 'sqrt(4 - 0**2 - 0**2)'
-      expected: "2"
-    - expr: 'sqrt(4 - 2**2 - 0**2)'
+    - expr: 'sqrt(9 - 0**2 - 0**2)'
+      expected: "3"
+    - expr: 'sqrt(9 - 0**2 - 3**2)'
       expected: "0"
-    - expr: '4 - 3**2 - 0**2'
-      expected: "-5"
+    - expr: '9 - 2**2 - 2**2'
+      expected: "1"
+    - expr: 'sqrt(9 - 2**2 - 2**2)'
+      expected: "1"
+    - expr: '9 - 3**2 - 1**2'
+      expected: "-1"
 :::
 
 ::: exercise

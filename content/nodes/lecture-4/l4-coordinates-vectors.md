@@ -139,24 +139,24 @@ id: l4-coordinates-vectors.ex-distance
 tier: basic
 topics: [distance]
 statement: |
-  Find the distance between \(P_1 = (1, -2, 4)\) and \(P_2 = (-2, 1, 3)\).
+  Find the distance between \(P_1 = (3, 1, -2)\) and \(P_2 = (1, -5, 1)\).
 solution: |
-  The points are \(P_1 = (1, -2, 4)\) and \(P_2 = (-2, 1, 3)\). The coordinate differences \(1 - (-2)\), \(-2 - 1\) and \(4 - 3\) equal \(3\), \(-3\) and \(1\). The distance is
+  The points are \(P_1 = (3, 1, -2)\) and \(P_2 = (1, -5, 1)\). The coordinate differences \(3 - 1\), \(1 - (-5)\) and \(-2 - 1\) equal \(2\), \(6\) and \(-3\). The distance is
   \[
   \begin{aligned}
-  &\sqrt{3^2 + (-3)^2 + 1^2}\\
-  &=\sqrt{19}.
+  &\sqrt{2^2 + 6^2 + (-3)^2}\
+  &=\sqrt{49}=7.
   \end{aligned}
   \]
 provenance: written-for-site
 steps:
   - Coordinate differences of the two points.
   - Sum of squares under the square root.
-  - Distance \(\sqrt{19}\).
+  - Distance \(7\).
 verification:
   checks:
-    - expr: 'sqrt((1-(-2))**2 + ((-2)-1)**2 + (4-3)**2)'
-      expected: 'sqrt(19)'
+    - expr: 'sqrt((3-1)**2 + (1-(-5))**2 + ((-2)-1)**2)'
+      expected: '7'
 :::
 
 ::: section
@@ -419,32 +419,32 @@ id: l4-coordinates-vectors.ex-displacement
 tier: standard
 topics: [vectors, displacement]
 statement: |
-  Let \(P = (1, -2, 4)\) and \(Q = (-2, 1, 3)\). Find \(\overrightarrow{PQ}\) and the magnitude \(\lvert\overrightarrow{PQ}\rvert\).
+  Let \(P = (2, -1, 5)\) and \(Q = (5, 3, -7)\). Find \(\overrightarrow{PQ}\) and the magnitude \(\lvert\overrightarrow{PQ}\rvert\).
 solution: |
-  The tail is \(P = (1, -2, 4)\) and the head is \(Q = (-2, 1, 3)\). The displacement is
+  The tail is \(P = (2, -1, 5)\) and the head is \(Q = (5, 3, -7)\). The displacement is
   \[
   \begin{aligned}
-  \overrightarrow{PQ}&=\langle -2 - 1, 1 - (-2), 3 - 4\rangle,\\
-  &=\langle -3, 3, -1\rangle.
+  \overrightarrow{PQ}&=\langle 5 - 2, 3 - (-1), -7 - 5\rangle,\
+  &=\langle 3, 4, -12\rangle.
   \end{aligned}
   \]
   The magnitude is
   \[
   \begin{aligned}
-  \lvert\overrightarrow{PQ}\rvert&=\sqrt{(-3)^2 + 3^2 + (-1)^2},\\
-  &=\sqrt{19}.
+  \lvert\overrightarrow{PQ}\rvert&=\sqrt{3^2 + 4^2 + (-12)^2},\
+  &=\sqrt{169}=13.
   \end{aligned}
   \]
 provenance: written-for-site
 steps:
   - Components of \(\overrightarrow{PQ}\).
-  - Magnitude \(\sqrt{19}\).
+  - Magnitude \(13\).
 verification:
   checks:
-    - expr: '(-2 - 1, 1 - (-2), 3 - 4)'
-      expected: '(-3, 3, -1)'
-    - expr: 'sqrt((-3)**2 + 3**2 + (-1)**2)'
-      expected: 'sqrt(19)'
+    - expr: '(5 - 2, 3 - (-1), -7 - 5)'
+      expected: '(3, 4, -12)'
+    - expr: 'sqrt(3**2 + 4**2 + (-12)**2)'
+      expected: '13'
 :::
 
 ::: exercise
@@ -452,7 +452,7 @@ id: l4-coordinates-vectors.ex-head-sphere
 tier: exam
 topics: [vectors, sphere]
 statement: |
-  The vector \(\langle 1, 2, 3\rangle\) has its tail at \((4, 5, 6)\). Find the head \(H\). The sphere centred at \(H\) passes through \(P = (1, -2, 4)\). Find the squared radius and the equation of the sphere.
+  The vector \(\langle 1, 2, 3\rangle\) has its tail at \((4, 5, 6)\). Find the head \(H\). The sphere centred at \(H\) passes through \(P = (8, 3, 9)\). Find the squared radius and the equation of the sphere.
 solution: |
   The vector \(\langle 1, 2, 3\rangle\) has its tail at \((4, 5, 6)\). The head is
   \[
@@ -461,27 +461,27 @@ solution: |
   &=(5, 7, 9).
   \end{aligned}
   \]
-  The sphere is centred at \(H\) and passes through \(P = (1, -2, 4)\). The squared radius is
+  The sphere is centred at \(H\) and passes through \(P = (8, 3, 9)\). The squared radius is
   \[
   \begin{aligned}
-  r^2&=(1 - 5)^2 + (-2 - 7)^2 + (4 - 9)^2,\\
-  &=16 + 81 + 25 = 122.
+  r^2&=(8 - 5)^2 + (3 - 7)^2 + (9 - 9)^2,\\
+  &=9 + 16 + 0 = 25.
   \end{aligned}
   \]
-  The equation is \((x - 5)^2 + (y - 7)^2 + (z - 9)^2 = 122\).
+  The equation is \((x - 5)^2 + (y - 7)^2 + (z - 9)^2 = 25\).
 provenance: written-for-site
 steps:
   - Head \(H = (5, 7, 9)\).
-  - Squared radius \(122\).
+  - Squared radius \(25\).
   - Sphere equation with centre \(H\).
 verification:
   checks:
     - expr: '(4 + 1, 5 + 2, 6 + 3)'
       expected: '(5, 7, 9)'
-    - expr: '(1 - 5)**2 + (-2 - 7)**2 + (4 - 9)**2'
-      expected: '122'
-    - expr: '((x - 5)**2 + (y - 7)**2 + (z - 9)**2).subs({x: 1, y: -2, z: 4})'
-      expected: '122'
+    - expr: '(8 - 5)**2 + (3 - 7)**2 + (9 - 9)**2'
+      expected: '25'
+    - expr: '((x - 5)**2 + (y - 7)**2 + (z - 9)**2).subs({x: 8, y: 3, z: 9})'
+      expected: '25'
 :::
 
 ::: sheet-item

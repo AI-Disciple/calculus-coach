@@ -559,61 +559,61 @@ id: l4-lines-planes.ex-line-plane-intersection
 tier: standard
 topics: [lines, planes]
 statement: |
-  Let \(L\) be the line through \(A = (2, 4, 5)\) and \(B = (6, 1, -3)\).
+  Let \(L\) be the line through \(A = (2, 1, 3)\) and \(B = (4, 0, 7)\).
 
   1. Write parametric equations of \(L\) with base point \(A\).
-  2. Find the point where \(L\) meets the plane \(2x - y + z = 2\).
+  2. Find the point where \(L\) meets the plane \(x + 2y - z = 5\).
   3. Find the equation of the plane that contains \(L\) and the origin.
 solution: |
-  **Parametric equations.** The direction is \(\overrightarrow{AB} = \langle 6 - 2, 1 - 4, -3 - 5\rangle = \langle 4, -3, -8\rangle\). With base point \(A\), the line is
+  **Parametric equations.** The direction is \(\overrightarrow{AB} = \langle 4 - 2, 0 - 1, 7 - 3\rangle = \langle 2, -1, 4\rangle\). With base point \(A\), the line is
   \[
   \begin{aligned}
-  x&=2+4t,\\
-  y&=4-3t,\\
-  z&=5-8t.
+  x&=2+2t,\\
+  y&=1-t,\\
+  z&=3+4t.
   \end{aligned}
   \]
 
-  **Intersection with the plane.** Substitute the line into \(2x - y + z\):
+  **Intersection with the plane.** Substitute the line into \(x + 2y - z\):
   \[
   \begin{aligned}
-  &2(2 + 4t) - (4 - 3t) + (5 - 8t)\\
-  &= 4 + 8t - 4 + 3t + 5 - 8t\\
-  &= 5 + 3t.
+  &(2 + 2t) + 2(1 - t) - (3 + 4t)\\
+  &= 2 + 2t + 2 - 2t - 3 - 4t\\
+  &= 1 - 4t.
   \end{aligned}
   \]
-  The equation \(5 + 3t = 2\) gives \(t = -1\). The point is \((2 - 4, 4 + 3, 5 + 8) = (-2, 7, 13)\). Check: \(2\cdot(-2) - 7 + 13 = 2\).
+  The equation \(1 - 4t = 5\) gives \(t = -1\). The point is \((2 - 2, 1 + 1, 3 - 4) = (0, 2, -1)\). Check: \(0 + 2\cdot 2 - (-1) = 5\).
 
-  **Plane through the line and the origin.** The plane contains the vector \(\overrightarrow{OA} = \langle 2, 4, 5\rangle\) and the direction \(\langle 4, -3, -8\rangle\). Their cross product is a normal:
+  **Plane through the line and the origin.** The plane contains the vector \(\overrightarrow{OA} = \langle 2, 1, 3\rangle\) and the direction \(\langle 2, -1, 4\rangle\). Their cross product is a normal:
   \[
   \begin{aligned}
-  \mathbf{i}\text{ component}&=4\cdot(-8)-5\cdot(-3)\\
-  &=-17,\\
-  \mathbf{j}\text{ component}&=-\bigl(2\cdot(-8)-5\cdot 4\bigr)\\
-  &=36,\\
-  \mathbf{k}\text{ component}&=2\cdot(-3)-4\cdot 4\\
-  &=-22.
+  \mathbf{i}\text{ component}&=1\cdot 4-3\cdot(-1)\\
+  &=7,\\
+  \mathbf{j}\text{ component}&=-\bigl(2\cdot 4-3\cdot 2\bigr)\\
+  &=-2,\\
+  \mathbf{k}\text{ component}&=2\cdot(-1)-1\cdot 2\\
+  &=-4.
   \end{aligned}
   \]
-  Multiplying by \(-1\) gives the normal \(\langle 17, -36, 22\rangle\). The plane passes through the origin, so its equation is \(17x - 36y + 22z = 0\). Check with \(B\): \(17\cdot 6 - 36\cdot 1 + 22\cdot(-3) = 102 - 36 - 66 = 0\).
+  The normal is \(\langle 7, -2, -4\rangle\). The plane passes through the origin, so its equation is \(7x - 2y - 4z = 0\). Check with \(B\): \(7\cdot 4 - 2\cdot 0 - 4\cdot 7 = 28 - 0 - 28 = 0\).
 provenance: written-for-site
 steps:
   - |
-    Direction \(\langle 4, -3, -8\rangle\) and the parametric equations.
+    Direction \(\langle 2, -1, 4\rangle\) and the parametric equations.
   - |
-    Parameter \(t = -1\) and the point \((-2, 7, 13)\).
+    Parameter \(t = -1\) and the point \((0, 2, -1)\).
   - |
-    Normal \(\langle 17, -36, 22\rangle\) and the plane \(17x - 36y + 22z = 0\).
+    Normal \(\langle 7, -2, -4\rangle\) and the plane \(7x - 2y - 4z = 0\).
 verification:
   checks:
-    - expr: "(6 - 2, 1 - 4, -3 - 5)"
-      expected: "(4, -3, -8)"
-    - expr: "(2*(2 + 4*t) - (4 - 3*t) + (5 - 8*t)).subs(t, -1)"
-      expected: "2"
-    - expr: "(2 + 4*(-1), 4 - 3*(-1), 5 - 8*(-1))"
-      expected: "(-2, 7, 13)"
-    - expr: "(4*(-8) - 5*(-3), -(2*(-8) - 5*4), 2*(-3) - 4*4)"
-      expected: "(-17, 36, -22)"
-    - expr: "(17*6 - 36*1 + 22*(-3), 17*2 - 36*4 + 22*5)"
+    - expr: "(4 - 2, 0 - 1, 7 - 3)"
+      expected: "(2, -1, 4)"
+    - expr: "((2 + 2*t) + 2*(1 - t) - (3 + 4*t)).subs(t, -1)"
+      expected: "5"
+    - expr: "(2 + 2*(-1), 1 - (-1), 3 + 4*(-1))"
+      expected: "(0, 2, -1)"
+    - expr: "(1*4 - 3*(-1), -(2*4 - 3*2), 2*(-1) - 1*2)"
+      expected: "(7, -2, -4)"
+    - expr: "(7*4 - 2*0 - 4*7, 7*2 - 2*1 - 4*3)"
       expected: "(0, 0)"
 :::

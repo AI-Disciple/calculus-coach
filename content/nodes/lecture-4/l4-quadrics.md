@@ -410,21 +410,21 @@ tier: basic
 topics:
   - quadrics
 statement: |
-  The hyperboloid of one sheet is \(z^{2} = x^{2} + y^{2} - 1\). Give the equation of its waist at \(z = 0\). The hyperboloid of two sheets is \(z^{2} = x^{2} + y^{2} + 1\). Give \(z\) when \(x = 0\) and \(y = 0\).
+  The hyperboloid of one sheet is \(z^{2} = x^{2} + y^{2} - 4\). Give the equation of its waist at \(z = 0\). The hyperboloid of two sheets is \(z^{2} = x^{2} + y^{2} + 4\). Give \(z\) when \(x = 0\) and \(y = 0\).
 solution: |
-  On the one-sheet surface, substitute \(z = 0\) into \(z^{2} = x^{2} + y^{2} - 1\). The left side equals \(0\). The equation becomes \(x^{2} + y^{2} = 1\). The waist is the circle \(x^{2} + y^{2} = 1\) in the plane \(z = 0\).
-  On the two-sheet surface, substitute \(x = 0\) and \(y = 0\) into \(z^{2} = x^{2} + y^{2} + 1\). The right side equals \(1\). The equation becomes \(z^{2} = 1\). The heights are \(z = 1\) and \(z = -1\).
+  On the one-sheet surface, substitute \(z = 0\) into \(z^{2} = x^{2} + y^{2} - 4\). The left side equals \(0\). The equation becomes \(x^{2} + y^{2} = 4\). The waist is the circle \(x^{2} + y^{2} = 4\) in the plane \(z = 0\).
+  On the two-sheet surface, substitute \(x = 0\) and \(y = 0\) into \(z^{2} = x^{2} + y^{2} + 4\). The right side equals \(4\). The equation becomes \(z^{2} = 4\). The heights are \(z = 2\) and \(z = -2\).
 provenance: written-for-site
 steps:
-  - The waist is the circle \(x^{2} + y^{2} = 1\) in the plane \(z = 0\).
-  - When \(x = 0\) and \(y = 0\) on \(z^{2} = x^{2} + y^{2} + 1\), the heights are \(z = 1\) and \(z = -1\).
+  - The waist is the circle \(x^{2} + y^{2} = 4\) in the plane \(z = 0\).
+  - When \(x = 0\) and \(y = 0\) on \(z^{2} = x^{2} + y^{2} + 4\), the heights are \(z = 2\) and \(z = -2\).
 verification:
   checks:
-    - expr: "expand((x**2 + y**2 - z**2 - 1).subs(z, 0) - (x**2 + y**2 - 1))"
+    - expr: "expand((x**2 + y**2 - z**2 - 4).subs(z, 0) - (x**2 + y**2 - 4))"
       expected: "0"
-    - expr: "expand((x**2 + y**2 + 1).subs({x: 0, y: 0}))"
-      expected: "1"
-    - expr: "((1)**2 - 1, ((-1)**2) - 1)"
+    - expr: "expand((x**2 + y**2 + 4).subs({x: 0, y: 0}))"
+      expected: "4"
+    - expr: "((2)**2 - 4, ((-2)**2) - 4)"
       expected: "(0, 0)"
 :::
 

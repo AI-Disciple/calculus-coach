@@ -202,43 +202,43 @@ id: l4-cylindrical-spherical.ex-rect-to-cyl
 tier: basic
 topics: [cylindrical-coordinates]
 statement: |
-  Find cylindrical coordinates \((r, \theta, z)\) of the rectangular point \((1, \sqrt{3}, 3)\), with \(r > 0\) and \(0 \le \theta < 2\pi\). Convert those coordinates back to \(x\) and \(y\).
+  Find cylindrical coordinates \((r, \theta, z)\) of the rectangular point \((2, 2, -1)\), with \(r > 0\) and \(0 \le \theta < 2\pi\). Convert those coordinates back to \(x\) and \(y\).
 solution: |
   The squared radius is
   \[
-  r^2 = 1^2 + (\sqrt{3})^2 = 4,
+  r^2 = 2^2 + 2^2 = 8,
   \]
-  so the positive radius is \(r = 2\). The coordinates \(x = 1\) and \(y = \sqrt{3}\) are both positive. Then
+  so the positive radius is \(r = 2\sqrt{2}\). The coordinates \(x = 2\) and \(y = 2\) are both positive. Then
   \[
-  \tan\theta = y/x = \sqrt{3},
+  \tan\theta = y/x = 1,
   \]
-  so \(\theta = \pi/3\). The height is \(z = 3\). The cylindrical coordinates are \((2, \pi/3, 3)\). Converting back,
+  so \(\theta = \pi/4\). The height is \(z = -1\). The cylindrical coordinates are \((2\sqrt{2}, \pi/4, -1)\). Converting back,
   \[
   \begin{aligned}
-  x&=2\cos(\pi/3)=1,\\
-  y&=2\sin(\pi/3)=\sqrt{3}.
+  x&=2\sqrt{2}\cos(\pi/4)=2\sqrt{2}\cdot\frac{\sqrt{2}}{2}=2,\
+  y&=2\sqrt{2}\sin(\pi/4)=2\sqrt{2}\cdot\frac{\sqrt{2}}{2}=2.
   \end{aligned}
   \]
 provenance: written-for-site
 steps:
   - |
-    The squared radius is \(r^2 = 4\), so \(r = 2\).
+    The squared radius is \(r^2 = 8\), so \(r = 2\sqrt{2}\).
   - |
-    The angle is \(\theta = \pi/3\), from the first quadrant and \(\tan\theta = \sqrt{3}\).
+    The angle is \(\theta = \pi/4\), from the first quadrant and \(\tan\theta = 1\).
   - |
-    The height is \(z = 3\).
+    The height is \(z = -1\).
   - |
-    Converting back gives \(x = 1\) and \(y = \sqrt{3}\).
+    Converting back gives \(x = 2\) and \(y = 2\).
 verification:
   checks:
-    - expr: "sqrt(1**2 + sqrt(3)**2)"
+    - expr: "sqrt(2**2 + 2**2)"
+      expected: "2*sqrt(2)"
+    - expr: "atan2(2, 2)"
+      expected: "pi/4"
+    - expr: "2*sqrt(2)*cos(pi/4)"
       expected: "2"
-    - expr: "atan2(sqrt(3), 1)"
-      expected: "pi/3"
-    - expr: "2*cos(pi/3)"
-      expected: "1"
-    - expr: "2*sin(pi/3)"
-      expected: "sqrt(3)"
+    - expr: "2*sqrt(2)*sin(pi/4)"
+      expected: "2"
 :::
 
 ::: section
@@ -476,59 +476,59 @@ id: l4-cylindrical-spherical.ex-rect-to-sph
 tier: standard
 topics: [spherical-coordinates]
 statement: |
-  Find spherical coordinates \((\rho, \theta, \phi)\) of the rectangular point \((1, \sqrt{3}, 3)\), with \(\rho > 0\), \(0 \le \theta < 2\pi\), and \(0 \le \phi \le \pi\). Convert those coordinates back to \((x, y, z)\).
+  Find spherical coordinates \((\rho, \theta, \phi)\) of the rectangular point \((\sqrt{3}, 1, 2)\), with \(\rho > 0\), \(0 \le \theta < 2\pi\), and \(0 \le \phi \le \pi\). Convert those coordinates back to \((x, y, z)\).
 solution: |
   The squared distance from the origin is
   \[
-  \rho^2 = 1^2 + (\sqrt{3})^2 + 3^2 = 13,
+  \rho^2 = (\sqrt{3})^2 + 1^2 + 2^2 = 8,
   \]
-  so \(\rho = \sqrt{13}\). The angle \(\theta\) is the cylindrical angle \(\pi/3\). The cylindrical radius is \(r = 2\) and the height is \(z = 3\), so
+  so \(\rho = 2\sqrt{2}\). The point \((\sqrt{3}, 1)\) lies in the first quadrant and \(\tan\theta = 1/\sqrt{3}\), so \(\theta = \pi/6\). The cylindrical radius is \(r = \sqrt{3 + 1} = 2\) and the height is \(z = 2\), so
   \[
-  \tan\phi = r/z = 2/3.
+  \tan\phi = r/z = 1.
   \]
-  The height \(z\) is positive, so \(0 < \phi < \pi/2\). Therefore \(\phi = \arctan(2/3)\). Then
+  The height \(z\) is positive, so \(0 < \phi < \pi/2\). Therefore \(\phi = \pi/4\). Then
   \[
   \begin{aligned}
-  \cos\phi &= z/\rho = 3/\sqrt{13},\\
-  \sin\phi &= r/\rho = 2/\sqrt{13}.
+  \cos\phi &= z/\rho = \frac{2}{2\sqrt{2}}=\frac{\sqrt{2}}{2},\
+  \sin\phi &= r/\rho = \frac{2}{2\sqrt{2}}=\frac{\sqrt{2}}{2}.
   \end{aligned}
   \]
-  Converting back,
+  Converting back, \(\rho\sin\phi = 2\sqrt{2}\cdot\frac{\sqrt{2}}{2} = 2\), so
   \[
   \begin{aligned}
-  x&=\sqrt{13}\cdot\frac{2}{\sqrt{13}}\\
-  &\qquad\cdot\cos(\pi/3)=1,\\
-  y&=\sqrt{13}\cdot\frac{2}{\sqrt{13}}\\
-  &\qquad\cdot\sin(\pi/3)=\sqrt{3},\\
-  z&=\sqrt{13}\cdot\frac{3}{\sqrt{13}}=3.
+  x&=2\cos(\pi/6)=\sqrt{3},\
+  y&=2\sin(\pi/6)=1,\
+  z&=2\sqrt{2}\cos(\pi/4)=2.
   \end{aligned}
   \]
 provenance: written-for-site
 steps:
   - |
-    The distance is \(\rho = \sqrt{13}\).
+    The distance is \(\rho = 2\sqrt{2}\).
   - |
-    The angle \(\theta\) is \(\pi/3\).
+    The angle \(\theta\) is \(\pi/6\).
   - |
-    The angle \(\phi\) is \(\arctan(2/3)\), with \(\cos\phi = 3/\sqrt{13}\).
+    The angle \(\phi\) is \(\pi/4\), from \(\tan\phi = r/z = 1\).
   - |
-    Converting back recovers \(x = 1\), \(y = \sqrt{3}\), and \(z = 3\).
+    Converting back recovers \(x = \sqrt{3}\), \(y = 1\), and \(z = 2\).
 verification:
   checks:
-    - expr: "sqrt(1**2 + sqrt(3)**2 + 3**2)"
-      expected: "sqrt(13)"
-    - expr: "atan2(sqrt(3), 1)"
-      expected: "pi/3"
-    - expr: "cos(atan(Rational(2, 3)))"
-      expected: "3/sqrt(13)"
-    - expr: "sin(atan(Rational(2, 3)))"
-      expected: "2/sqrt(13)"
-    - expr: "sqrt(13)*sin(atan(Rational(2, 3)))*cos(pi/3)"
-      expected: "1"
-    - expr: "sqrt(13)*sin(atan(Rational(2, 3)))*sin(pi/3)"
+    - expr: "sqrt(sqrt(3)**2 + 1**2 + 2**2)"
+      expected: "2*sqrt(2)"
+    - expr: "atan2(1, sqrt(3))"
+      expected: "pi/6"
+    - expr: "atan(2/2)"
+      expected: "pi/4"
+    - expr: "cos(pi/4)"
+      expected: "2/(2*sqrt(2))"
+    - expr: "sin(pi/4)"
+      expected: "2/(2*sqrt(2))"
+    - expr: "2*sqrt(2)*sin(pi/4)*cos(pi/6)"
       expected: "sqrt(3)"
-    - expr: "sqrt(13)*cos(atan(Rational(2, 3)))"
-      expected: "3"
+    - expr: "2*sqrt(2)*sin(pi/4)*sin(pi/6)"
+      expected: "1"
+    - expr: "2*sqrt(2)*cos(pi/4)"
+      expected: "2"
 :::
 
 ::: exercise
@@ -536,38 +536,38 @@ id: l4-cylindrical-spherical.ex-cylinder
 tier: exam
 topics: [cylindrical-coordinates, spherical-coordinates]
 statement: |
-  Write the cylinder \(x^2 + y^2 = 4\) in cylindrical coordinates and in spherical coordinates. Include both signs in each description.
+  Write the cylinder \(x^2 + y^2 = 9\) in cylindrical coordinates and in spherical coordinates. Include both signs in each description.
 solution: |
-  In cylindrical coordinates, \(x^2 + y^2 = r^2\), so the equation is \(r^2 = 4\). The solutions are \(r = 2\) and \(r = -2\).
+  In cylindrical coordinates, \(x^2 + y^2 = r^2\), so the equation is \(r^2 = 9\). The solutions are \(r = 3\) and \(r = -3\).
 
-  - For \(r = 2\), \(x^2 + y^2 = 4\cos^2\theta + 4\sin^2\theta = 4\).
-  - For \(r = -2\), \(x = -2\cos\theta\) and \(y = -2\sin\theta\), so \(x^2 + y^2 = 4\cos^2\theta + 4\sin^2\theta = 4\).
+  - For \(r = 3\), \(x^2 + y^2 = 9\cos^2\theta + 9\sin^2\theta = 9\).
+  - For \(r = -3\), \(x = -3\cos\theta\) and \(y = -3\sin\theta\), so \(x^2 + y^2 = 9\cos^2\theta + 9\sin^2\theta = 9\).
 
-  In spherical coordinates, \(x^2 + y^2 = \rho^2\sin^2\phi\), so the equation is \(\rho^2\sin^2\phi = 4\). Equivalently, \(\rho\sin\phi = 2\) or \(\rho\sin\phi = -2\). If \(\sin\phi \neq 0\), then \(\rho = 2/\sin\phi\) or \(\rho = -2/\sin\phi\). If \(\sin\phi = 0\), then \(x^2 + y^2 = 0\). Points on the cylinder satisfy \(x^2 + y^2 = 4\).
+  In spherical coordinates, \(x^2 + y^2 = \rho^2\sin^2\phi\), so the equation is \(\rho^2\sin^2\phi = 9\). Equivalently, \(\rho\sin\phi = 3\) or \(\rho\sin\phi = -3\). If \(\sin\phi = 0\), then \(x^2 + y^2 = 0\), which is not \(9\), so no point of the cylinder has \(\sin\phi = 0\). Therefore \(\sin\phi \neq 0\), and \(\rho = 3/\sin\phi\) or \(\rho = -3/\sin\phi\).
 provenance: written-for-site
 steps:
   - |
-    In cylindrical coordinates the equation is \(r^2 = 4\), so \(r = 2\) or \(r = -2\).
+    In cylindrical coordinates the equation is \(r^2 = 9\), so \(r = 3\) or \(r = -3\).
   - |
-    Both signs satisfy \(x^2 + y^2 = 4\).
+    Both signs satisfy \(x^2 + y^2 = 9\).
   - |
-    In spherical coordinates the equation is \(\rho^2\sin^2\phi = 4\), so \(\rho\sin\phi = 2\) or \(\rho\sin\phi = -2\).
+    In spherical coordinates the equation is \(\rho^2\sin^2\phi = 9\), so \(\rho\sin\phi = 3\) or \(\rho\sin\phi = -3\).
   - |
-    When \(\sin\phi \neq 0\), \(\rho = 2/\sin\phi\) or \(\rho = -2/\sin\phi\).
+    Since \(\sin\phi \neq 0\) on the cylinder, \(\rho = 3/\sin\phi\) or \(\rho = -3/\sin\phi\).
 verification:
   checks:
     - expr: "(r*cos(theta))**2 + (r*sin(theta))**2"
       expected: "r**2"
-    - expr: "(2*cos(theta))**2 + (2*sin(theta))**2"
-      expected: "4"
-    - expr: "((-2)*cos(theta))**2 + ((-2)*sin(theta))**2"
-      expected: "4"
+    - expr: "(3*cos(theta))**2 + (3*sin(theta))**2"
+      expected: "9"
+    - expr: "((-3)*cos(theta))**2 + ((-3)*sin(theta))**2"
+      expected: "9"
     - expr: "(rho*sin(phi)*cos(theta))**2 + (rho*sin(phi)*sin(theta))**2"
       expected: "rho**2 * sin(phi)**2"
-    - expr: "(2/sin(phi))**2 * sin(phi)**2"
-      expected: "4"
-    - expr: "((-2)/sin(phi))**2 * sin(phi)**2"
-      expected: "4"
+    - expr: "(3/sin(phi))**2 * sin(phi)**2"
+      expected: "9"
+    - expr: "((-3)/sin(phi))**2 * sin(phi)**2"
+      expected: "9"
 :::
 
 ::: sheet-item

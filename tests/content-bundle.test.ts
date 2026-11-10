@@ -223,6 +223,30 @@ describe('a content bundle with mistakes', () => {
     expect(good.warnings).toEqual([]);
   });
 
+  it('warns about an exercise that repeats the formulas of an example in its node', async () => {
+    const example = [
+      '::: worked-example',
+      'problem: |',
+      String.raw`  Convert \((1, \sqrt{3}, 3)\) with \(r > 0\).`,
+      'solution: Done.',
+      ':::',
+      '',
+    ].join('\n');
+    const exerciseWith = (point: string) =>
+      exercise('a.one', verified).replace(
+        'statement: Compute the limit of x squared at 2.',
+        String.raw`statement: |
+  Convert \(${point}\) with \(r > 0\).`,
+      );
+    const copy = await checkContentBundle(bundleWith({ 'a.md': node('a', example + exerciseWith(String.raw`(1, \sqrt{3}, 3)`)) }), { verify: false });
+    expect(copy.problems).toEqual([]);
+    expect(copy.warnings.map((w) => `${w.file} ${w.id} ${w.message}`)).toEqual([
+      expect.stringMatching(/a\.md a\.one .*repeats the formulas of the example "untitled"/),
+    ]);
+    const fresh = await checkContentBundle(bundleWith({ 'a.md': node('a', example + exerciseWith('(2, 2, 5)')) }), { verify: false });
+    expect(fresh.warnings).toEqual([]);
+  });
+
   it('reports a verification record that SymPy does not confirm, with the exercise identifier', async () => {
     const wrong = verified.replace('expected: "4"', 'expected: "5"');
     const problems = await problemsOf({ 'a.md': node('a', exercise('a.wrong', wrong) + exercise('a.right', verified)) });

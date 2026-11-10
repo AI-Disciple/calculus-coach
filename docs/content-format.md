@@ -199,6 +199,8 @@ discrepancy: |                 # optional, when the official key disagrees with 
 
 The provenance labels mean: `official-key` when a key exists, `handout-answer` when the handout gives only a final result and the working was added, `written-for-site` otherwise.
 
+An exercise must be new practice. Give it different numbers, a different function or surface, or a different configuration from every worked and guided example in its node. It may teach the same skill and follow the same method. It must not repeat an example's data, and it must not merely combine two examples. If a section needs an exercise and the only data at hand is the example's, change the data first, vary the setup second, and write a different kind of exercise last. The content check warns when an exercise repeats the formulas of an example (a point, function or surface, not short conditions such as `r > 0`).
+
 ## Verification records
 
 Every exercise must carry a `verification` field, in one of two forms.
@@ -243,5 +245,7 @@ Each paper has:
 - A node with `section` markers that has blocks before the first marker, a section that would be empty in Learn (only sheet items and standard or exam exercises), or two markers with the same title.
 - Exercises without a provenance label.
 - Exercises without a verification record or a not-machine-checkable mark.
+
+The check also prints warnings, which do not fail it: a concept question with no correct option, and an exercise that repeats the formulas of a worked or guided example in its node.
 - Verification checks that SymPy does not confirm or cannot parse.
 - Style violations in site text, both in `content/` and in the app interface under `src/`: em dashes and the phrases in `content/style/banned-phrases.yaml`. See `docs/writing-style.md`.

@@ -192,17 +192,19 @@ tier: basic
 topics:
   - level-sets
 statement: |
-  Let \(f(x, y) = x^{2} + y^{2}\). Give the equation of the level curve of height \(k = 4\), and give its radius.
+  Let \(f(x, y) = x^{2} + y^{2} + 1\). Give the equation of the level curve of height \(k = 10\), and give its radius.
 solution: |
-  The level curve of height 4 is the set of \((x, y)\) with \(x^{2} + y^{2} = 4\). This is a circle centred at the origin. The radius is \(\sqrt{4}\). That value equals 2.
+  The level curve of height 10 is the set of \((x, y)\) with \(x^{2} + y^{2} + 1 = 10\), which is \(x^{2} + y^{2} = 9\). This is a circle centred at the origin. The radius is \(\sqrt{9}\). That value equals 3.
 provenance: written-for-site
 steps:
-  - Write the level equation \(x^{2} + y^{2} = 4\).
-  - The radius is \(\sqrt{4} = 2\).
+  - Write the level equation \(x^{2} + y^{2} = 9\).
+  - The radius is \(\sqrt{9} = 3\).
 verification:
   checks:
-    - expr: sqrt(4)
-      expected: "2"
+    - expr: 10 - 1
+      expected: "9"
+    - expr: sqrt(9)
+      expected: "3"
 :::
 
 ::: section
