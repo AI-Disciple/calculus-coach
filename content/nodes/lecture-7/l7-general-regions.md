@@ -776,7 +776,7 @@ id: l7-general-regions.ex-parabolic-base
 tier: standard
 topics: [double-integrals, average-value]
 statement: |
-  Let \(D\) be the region \(0 \le x \le 1\), \(0 \le y \le x^2\), and let \(z = x + 2y^2\).
+  Let \(D\) be the region \(0 \le x \le 1\), \(x^2 \le y \le 1\), and let \(z = y + x^2\).
 
   a. Find the volume under the surface above \(D\), in the order \(dy\,dx\).
 
@@ -787,61 +787,58 @@ solution: |
   a. Hold \(x\) constant. The inner integral is
   \[
   \begin{aligned}
-  &\int_0^{x^2} (x + 2y^2)\, dy\\
-  &=\Bigl[xy + \tfrac{2}{3}y^3\Bigr]_0^{x^2}\\
-  &=x^3 + \tfrac{2}{3}x^6.
+  &\int_{x^2}^1 (y + x^2)\, dy\\
+  &=\Bigl[\tfrac{y^2}{2} + x^2 y\Bigr]_{x^2}^1\\
+  &=\Bigl(\tfrac{1}{2} + x^2\Bigr) - \Bigl(\tfrac{x^4}{2} + x^4\Bigr)\\
+  &=\tfrac{1}{2} + x^2 - \tfrac{3}{2}x^4.
   \end{aligned}
   \]
   The outer integral is
   \[
   \begin{aligned}
-  &\int_0^1 \Bigl(x^3 + \tfrac{2}{3}x^6\Bigr)\, dx\\
-  &=\tfrac{1}{4} + \tfrac{2}{21}\\
-  &=\tfrac{21}{84} + \tfrac{8}{84} = \tfrac{29}{84}.
+  &\int_0^1 \Bigl(\tfrac{1}{2} + x^2 - \tfrac{3}{2}x^4\Bigr)\, dx\\
+  &=\tfrac{1}{2} + \tfrac{1}{3} - \tfrac{3}{10}\\
+  &=\tfrac{15}{30} + \tfrac{10}{30} - \tfrac{9}{30} = \tfrac{8}{15}.
   \end{aligned}
   \]
-  The volume is \(\tfrac{29}{84}\).
+  The volume is \(\tfrac{8}{15}\).
 
-  b. The area of \(D\) is an ordinary integral, \(\int_0^1 x^2\, dx = \tfrac{1}{3}\). The average height is the volume divided by the area:
+  b. The area of \(D\) is an ordinary integral, \(\int_0^1 (1 - x^2)\, dx = \tfrac{2}{3}\). The average height is the volume divided by the area:
   \[
-  \frac{29/84}{1/3} = \frac{29}{28}.
+  \frac{8/15}{2/3} = \frac{4}{5}.
   \]
 
-  c. The largest value of \(y\) on \(D\) is \(1\). For a fixed \(y\) between \(0\) and \(1\), the curve \(y = x^2\) is the curve \(x = \sqrt{y}\), and the slice runs from that curve to the line \(x = 1\). The reversed integral is
+  c. The largest value of \(y\) on \(D\) is \(1\). For a fixed \(y\) between \(0\) and \(1\), the curve \(y = x^2\) is the curve \(x = \sqrt{y}\), and the slice runs from the line \(x = 0\) to that curve. The reversed integral is
   \[
-  \int_0^1 \int_{\sqrt{y}}^1 (x + 2y^2)\, dx\, dy.
+  \int_0^1 \int_0^{\sqrt{y}} (y + x^2)\, dx\, dy.
   \]
   The inner integral is
   \[
-  \Bigl[\tfrac{x^2}{2} + 2y^2 x\Bigr]_{\sqrt{y}}^1 = \tfrac{1}{2} + 2y^2 - \tfrac{y}{2} - 2y^{5/2}.
+  \Bigl[yx + \tfrac{x^3}{3}\Bigr]_0^{\sqrt{y}} = y^{3/2} + \tfrac{1}{3}y^{3/2} = \tfrac{4}{3}y^{3/2}.
   \]
   The outer integral is
   \[
-  \begin{aligned}
-  &\Bigl[\tfrac{y}{2} + \tfrac{2}{3}y^3 - \tfrac{y^2}{4} - \tfrac{4}{7}y^{7/2}\Bigr]_0^1\\
-  &=\tfrac{1}{2} + \tfrac{2}{3} - \tfrac{1}{4} - \tfrac{4}{7}\\
-  &=\tfrac{29}{84}.
-  \end{aligned}
+  \int_0^1 \tfrac{4}{3}y^{3/2}\, dy = \tfrac{4}{3}\cdot\tfrac{2}{5} = \tfrac{8}{15}.
   \]
-  Both orders give \(\tfrac{29}{84}\).
+  Both orders give \(\tfrac{8}{15}\).
 provenance: written-for-site
 steps:
-  - The volume in the order dy dx equals 29/84.
-  - The area of D is 1/3 and the average height is 29/28.
-  - The reversed limits are y from 0 to 1 and x from sqrt(y) to 1.
-  - The reversed integral also equals 29/84.
+  - The volume in the order dy dx equals 8/15.
+  - The area of D is 2/3 and the average height is 4/5.
+  - The reversed limits are y from 0 to 1 and x from 0 to sqrt(y).
+  - The reversed integral also equals 8/15.
 verification:
   checks:
-    - expr: integrate(x + 2*y**2, (y, 0, x**2))
-      expected: "x**3 + Rational(2, 3)*x**6"
-    - expr: integrate(x + 2*y**2, (y, 0, x**2), (x, 0, 1))
-      expected: "Rational(29, 84)"
-    - expr: integrate(1, (y, 0, x**2), (x, 0, 1))
-      expected: "Rational(1, 3)"
-    - expr: integrate(x + 2*y**2, (y, 0, x**2), (x, 0, 1))/integrate(1, (y, 0, x**2), (x, 0, 1))
-      expected: "Rational(29, 28)"
-    - expr: integrate(x + 2*y**2, (x, sqrt(y), 1))
-      expected: "Rational(1, 2) + 2*y**2 - y/2 - 2*y**Rational(5, 2)"
-    - expr: integrate(x + 2*y**2, (x, sqrt(y), 1), (y, 0, 1))
-      expected: "Rational(29, 84)"
+    - expr: integrate(y + x**2, (y, x**2, 1))
+      expected: "Rational(1, 2) + x**2 - Rational(3, 2)*x**4"
+    - expr: integrate(y + x**2, (y, x**2, 1), (x, 0, 1))
+      expected: "Rational(8, 15)"
+    - expr: integrate(1, (y, x**2, 1), (x, 0, 1))
+      expected: "Rational(2, 3)"
+    - expr: integrate(y + x**2, (y, x**2, 1), (x, 0, 1))/integrate(1, (y, x**2, 1), (x, 0, 1))
+      expected: "Rational(4, 5)"
+    - expr: integrate(y + x**2, (x, 0, sqrt(y)))
+      expected: "Rational(4, 3)*y**Rational(3, 2)"
+    - expr: integrate(y + x**2, (x, 0, sqrt(y)), (y, 0, 1))
+      expected: "Rational(8, 15)"
 :::

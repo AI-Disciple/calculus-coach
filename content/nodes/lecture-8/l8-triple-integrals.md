@@ -535,32 +535,32 @@ id: l8-triple-integrals.ex-tetrahedron-moment
 tier: standard
 topics: [triple-integrals]
 statement: |
-  A tetrahedron has corners \((0,0,0)\), \((0,3,0)\), \((2,3,0)\) and \((2,3,5)\). Compute \(\iiint z\, dV\) over the tetrahedron, and find the average value of \(z\) on it.
+  A tetrahedron has corners \((0,0,0)\), \((0,2,0)\), \((3,2,0)\) and \((3,2,6)\). Compute \(\iiint z\, dV\) over the tetrahedron, and find the average value of \(z\) on it.
 solution: |
-  The base lies in the plane \(z = 0\). For \(x\) from \(0\) to \(2\), \(y\) runs from the line \(y = 3x/2\) up to \(y = 3\). The top face passes through \((0,0,0)\) and \((2,3,5)\), and its height does not depend on \(y\). That plane is \(z = 5x/2\). So \(z\) runs from \(0\) to \(5x/2\).
+  The base lies in the plane \(z = 0\). For \(x\) from \(0\) to \(3\), \(y\) runs from the line \(y = 2x/3\) up to \(y = 2\). The top face passes through \((0,0,0)\) and \((3,2,6)\), and its height does not depend on \(y\). That plane is \(z = 2x\). So \(z\) runs from \(0\) to \(2x\).
 
-  The inner integral is \(\int_0^{5x/2} z\, dz = \dfrac{25x^{2}}{8}\). The integral in \(y\) multiplies by the length \(3 - \dfrac{3x}{2}\):
+  The inner integral is \(\int_0^{2x} z\, dz = 2x^{2}\). The integral in \(y\) multiplies by the length \(2 - \dfrac{2x}{3}\):
   \[
-  \frac{25x^{2}}{8}\left(3 - \frac{3x}{2}\right) = \frac{25}{8}\left(3x^{2} - \frac{3x^{3}}{2}\right).
+  2x^{2}\left(2 - \frac{2x}{3}\right) = 4x^{2} - \frac{4x^{3}}{3}.
   \]
-  The integral in \(x\) from \(0\) to \(2\) is
+  The integral in \(x\) from \(0\) to \(3\) is
   \[
-  \frac{25}{8}\left(8 - \frac32\cdot 4\right) = \frac{25}{8}\cdot 2 = \frac{25}{4}.
+  \left[\frac{4x^{3}}{3} - \frac{x^{4}}{3}\right]_0^3 = 36 - 27 = 9.
   \]
-  The volume of the tetrahedron is \(5\), because \(\int_0^2 \int_{3x/2}^3 \frac{5x}{2}\, dy\, dx = 5\). The average of \(z\) is \(\dfrac{25/4}{5} = \dfrac54\).
+  The volume of the tetrahedron is \(6\), because \(\int_0^3 \int_{2x/3}^2 2x\, dy\, dx = 6\). The average of \(z\) is \(\dfrac{9}{6} = \dfrac32\).
 
-  The integral equals \(\dfrac{25}{4}\), and the average value of \(z\) is \(\dfrac54\).
+  The integral equals \(9\), and the average value of \(z\) is \(\dfrac32\).
 provenance: written-for-site
 steps:
-  - The solution gives the limits \(0 \le x \le 2\), \(3x/2 \le y \le 3\), \(0 \le z \le 5x/2\).
-  - The solution evaluates the integral of \(z\) and finds \(25/4\).
-  - The solution divides by the volume \(5\) to get the average \(5/4\).
+  - The solution gives the limits \(0 \le x \le 3\), \(2x/3 \le y \le 2\), \(0 \le z \le 2x\).
+  - The solution evaluates the integral of \(z\) and finds \(9\).
+  - The solution divides by the volume \(6\) to get the average \(3/2\).
 verification:
   checks:
-    - expr: "integrate(1, (z, 0, 5*x/2), (y, 3*x/2, 3), (x, 0, 2))"
-      expected: "5"
-    - expr: "integrate(z, (z, 0, 5*x/2), (y, 3*x/2, 3), (x, 0, 2))"
-      expected: "25/4"
-    - expr: "Rational(25, 4)/5"
-      expected: "5/4"
+    - expr: "integrate(1, (z, 0, 2*x), (y, 2*x/3, 2), (x, 0, 3))"
+      expected: "6"
+    - expr: "integrate(z, (z, 0, 2*x), (y, 2*x/3, 2), (x, 0, 3))"
+      expected: "9"
+    - expr: "Rational(9, 6)"
+      expected: "3/2"
 :::

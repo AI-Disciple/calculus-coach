@@ -378,19 +378,19 @@ id: l5-chain-rule-general.ex-sphere-second-derivative
 tier: exam
 topics: [chain-rule, implicit-differentiation]
 statement: |
-  Near the point \((1,1,\sqrt{2})\), the sphere \(x^2+y^2+z^2=4\) defines \(z=z(x,y)\) with \(z>0\).
+  Near the point \((1,1,1)\), the surface \(x^2+2y^2+z^2=4\) defines \(z=z(x,y)\) with \(z>0\).
 
   - a) Compute \(\frac{\partial z}{\partial x}\) and \(\frac{\partial z}{\partial y}\), and evaluate them at \((x,y)=(1,1)\).
   - b) Compute \(\frac{\partial^2 z}{\partial x^2}\) as a function of \(x\), \(y\) and \(z\), and evaluate it at \((1,1)\).
 solution: |
-  a) Let \(F(x,y,z)=x^2+y^2+z^2\). The sphere is the level \(F=4\), with \(F_x=2x\), \(F_y=2y\) and \(F_z=2z\). At the point \(F_z=2\sqrt{2}\neq 0\), so the implicit formulas apply:
+  a) Let \(F(x,y,z)=x^2+2y^2+z^2\). The surface is the level \(F=4\), with \(F_x=2x\), \(F_y=4y\) and \(F_z=2z\). At the point \(F_z=2\neq 0\), so the implicit formulas apply:
   \[
   \begin{aligned}
   \frac{\partial z}{\partial x}&=-\frac{F_x}{F_z}=-\frac{x}{z},\\
-  \frac{\partial z}{\partial y}&=-\frac{F_y}{F_z}=-\frac{y}{z}.
+  \frac{\partial z}{\partial y}&=-\frac{F_y}{F_z}=-\frac{2y}{z}.
   \end{aligned}
   \]
-  At \((1,1)\) the height is \(z=\sqrt{2}\), so both derivatives equal \(-\frac{1}{\sqrt{2}}=-\frac{\sqrt{2}}{2}\).
+  At \((1,1)\) the height is \(z=1\), so \(\frac{\partial z}{\partial x}=-1\) and \(\frac{\partial z}{\partial y}=-2\).
 
   b) Differentiate \(\frac{\partial z}{\partial x}=-\frac{x}{z}\) in \(x\), with \(y\) held fixed. The variable \(z\) depends on \(x\), so the quotient rule gives
   \[
@@ -400,34 +400,34 @@ solution: |
   &=-\frac{z^2+x^2}{z^3}.
   \end{aligned}
   \]
-  On the sphere \(z^2=4-x^2-y^2\), so \(z^2+x^2=4-y^2\) and
+  On the surface \(z^2=4-x^2-2y^2\), so \(z^2+x^2=4-2y^2\) and
   \[
-  \frac{\partial^2 z}{\partial x^2}=-\frac{4-y^2}{z^3}.
+  \frac{\partial^2 z}{\partial x^2}=-\frac{4-2y^2}{z^3}.
   \]
-  At \((1,1)\) the numerator is \(3\) and \(z^3=2\sqrt{2}\), so the value is \(-\frac{3}{2\sqrt{2}}=-\frac{3\sqrt{2}}{4}\).
+  At \((1,1)\) the numerator is \(2\) and \(z^3=1\), so the value is \(-2\).
 
-  Check with the explicit branch \(z=\sqrt{4-x^2-y^2}\): its second derivative in \(x\) at \((1,1)\) is the same number.
+  Check with the explicit branch \(z=\sqrt{4-x^2-2y^2}\): its second derivative in \(x\) at \((1,1)\) is the same number.
 provenance: written-for-site
 steps:
-  - The implicit formulas give z_x = -x/z and z_y = -y/z, both equal to -sqrt(2)/2 at (1,1).
+  - The implicit formulas give z_x = -x/z and z_y = -2y/z, equal to -1 and -2 at (1,1).
   - Differentiating -x/z in x with z depending on x gives -(z^2+x^2)/z^3.
-  - Substituting the constraint gives -(4-y^2)/z^3, which equals -3 sqrt(2)/4 at (1,1).
+  - Substituting the constraint gives -(4-2y^2)/z^3, which equals -2 at (1,1).
 verification:
   checks:
-    - expr: '-diff(x**2+y**2+z**2,x)/diff(x**2+y**2+z**2,z)'
+    - expr: '-diff(x**2+2*y**2+z**2,x)/diff(x**2+2*y**2+z**2,z)'
       expected: "-x/z"
-    - expr: '-diff(x**2+y**2+z**2,y)/diff(x**2+y**2+z**2,z)'
-      expected: "-y/z"
-    - expr: 'diff(sqrt(4-x**2-y**2),x).subs({x:1,y:1})'
-      expected: "-sqrt(2)/2"
-    - expr: 'diff(sqrt(4-x**2-y**2),y).subs({x:1,y:1})'
-      expected: "-sqrt(2)/2"
-    - expr: 'simplify(diff(sqrt(4-x**2-y**2),x,2) + (4-y**2)/sqrt(4-x**2-y**2)**3)'
+    - expr: '-diff(x**2+2*y**2+z**2,y)/diff(x**2+2*y**2+z**2,z)'
+      expected: "-2*y/z"
+    - expr: 'diff(sqrt(4-x**2-2*y**2),x).subs({x:1,y:1})'
+      expected: "-1"
+    - expr: 'diff(sqrt(4-x**2-2*y**2),y).subs({x:1,y:1})'
+      expected: "-2"
+    - expr: 'simplify(diff(sqrt(4-x**2-2*y**2),x,2) + (4-2*y**2)/sqrt(4-x**2-2*y**2)**3)'
       expected: "0"
-    - expr: 'diff(sqrt(4-x**2-y**2),x,2).subs({x:1,y:1})'
-      expected: "-3*sqrt(2)/4"
-    - expr: '(-(4-y**2)/z**3).subs({y:1,z:sqrt(2)})'
-      expected: "-3*sqrt(2)/4"
+    - expr: 'diff(sqrt(4-x**2-2*y**2),x,2).subs({x:1,y:1})'
+      expected: "-2"
+    - expr: '(-(4-2*y**2)/z**3).subs({y:1,z:1})'
+      expected: "-2"
 :::
 
 ::: exercise

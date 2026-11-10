@@ -567,33 +567,31 @@ id: l7-order-of-integration.ex-easy-order-cylinder
 tier: standard
 topics: [double-integrals]
 statement: |
-  Find the volume under \(z = \sqrt{1 - x^2}\) and above the triangle bounded by \(y = x\), \(x = 1\) and \(y = 0\). Write the volume as an iterated integral in each order and say which order you compute and why.
+  Find the volume under \(z = \sin(y^2)\) and above the triangle bounded by \(x = 0\), \(y = x\) and \(y = \sqrt{\pi}\). Write the volume as an iterated integral in each order and say which order you compute and why.
 solution: |
-  The triangle has vertices \((0, 0)\), \((1, 0)\) and \((1, 1)\). The two orders are
+  The triangle has vertices \((0, 0)\), \((0, \sqrt{\pi})\) and \((\sqrt{\pi}, \sqrt{\pi})\). The two orders are
   \[
   \begin{aligned}
-  &\int_0^1 \int_0^x \sqrt{1 - x^2}\, dy\, dx,\\
-  &\int_0^1 \int_y^1 \sqrt{1 - x^2}\, dx\, dy.
+  &\int_0^{\sqrt{\pi}} \int_x^{\sqrt{\pi}} \sin(y^2)\, dy\, dx,\\
+  &\int_0^{\sqrt{\pi}} \int_0^y \sin(y^2)\, dx\, dy.
   \end{aligned}
   \]
-  The second order needs an antiderivative of \(\sqrt{1 - x^2}\) in \(x\), which takes a trigonometric substitution. In the first order the integrand does not depend on \(y\), so the inner integral is multiplication by the length \(x\) of the slice. Compute the first order.
+  The first order needs an antiderivative of \(\sin(y^2)\) in \(y\), and that is not an elementary function. In the second order the integrand does not depend on \(x\), so the inner integral is multiplication by the length \(y\) of the slice. Compute the second order.
 
-  The integral is \(\int_0^1 x\sqrt{1 - x^2}\, dx\). Set \(u = 1 - x^2\), so \(du = -2x\, dx\) and \(x\, dx = -\tfrac{1}{2}\, du\). An antiderivative is \(-\tfrac{1}{3}(1 - x^2)^{3/2}\), and
+  The integral is \(\int_0^{\sqrt{\pi}} y\sin(y^2)\, dy\). Set \(u = y^2\), so \(du = 2y\, dy\) and \(y\, dy = \tfrac{1}{2}\, du\). An antiderivative is \(-\tfrac{1}{2}\cos(y^2)\), and
   \[
-  \Bigl[-\tfrac{1}{3}(1 - x^2)^{3/2}\Bigr]_0^1 = 0 - \Bigl(-\tfrac{1}{3}\Bigr) = \tfrac{1}{3}.
+  \Bigl[-\tfrac{1}{2}\cos(y^2)\Bigr]_0^{\sqrt{\pi}} = \tfrac{1}{2} + \tfrac{1}{2} = 1.
   \]
-  The volume is \(\tfrac{1}{3}\).
+  The volume is \(1\).
 provenance: written-for-site
 steps:
-  - Both orders are written, and the order dy dx is chosen because the integrand does not depend on y.
-  - The inner integral equals x sqrt(1 - x^2).
-  - The substitution u = 1 - x^2 gives the volume 1/3.
+  - Both orders are written, and the order dx dy is chosen because the integrand does not depend on x.
+  - The inner integral equals y sin(y^2).
+  - The substitution u = y^2 gives the volume 1.
 verification:
   checks:
-    - expr: integrate(sqrt(1 - x**2), (y, 0, x))
-      expected: "x*sqrt(1 - x**2)"
-    - expr: integrate(sqrt(1 - x**2), (y, 0, x), (x, 0, 1))
-      expected: "Rational(1, 3)"
-    - expr: integrate(sqrt(1 - x**2), (x, y, 1), (y, 0, 1))
-      expected: "Rational(1, 3)"
+    - expr: integrate(sin(y**2), (x, 0, y))
+      expected: "y*sin(y**2)"
+    - expr: integrate(sin(y**2), (x, 0, y), (y, 0, sqrt(pi)))
+      expected: "1"
 :::

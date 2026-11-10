@@ -617,14 +617,14 @@ statement: |
 solution: |
   a) The partial derivatives are
   \[
-  egin{aligned}
+  \begin{aligned}
   f_x&=48-2x-2y,\
   f_y&=96-2x-18y.
   \end{aligned}
   \]
   The first equation gives \(y = 24 - x\). Putting this in the second gives
   \[
-  egin{aligned}
+  \begin{aligned}
   96-2x-18(24-x)&=0,\
   16x-336&=0,
   \end{aligned}
@@ -637,7 +637,7 @@ solution: |
   - On \(x = 0\), \(f(0, y) = 96y - 9y^2\). The derivative vanishes at \(y = 16/3\), and the value there is \(256\).
   - On \(y = 0\), \(f(x, 0) = 48x - x^2\). The derivative vanishes at \(x = 24\), outside \([0, 10]\), so the values run from \(0\) to \(380\).
 
-  The largest value is \(4864/9 pprox 540.4\), at \((10, 38/9)\).
+  The largest value is \(4864/9 \approx 540.4\), at \((10, 38/9)\).
 provenance: written-for-site
 steps:
   - The critical point is \((21, 3)\), with \(D = 32\) and \(f_{xx} = -2\), so it is a maximum.

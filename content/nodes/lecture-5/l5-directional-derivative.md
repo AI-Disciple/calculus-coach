@@ -763,7 +763,7 @@ id: l5-directional-derivative.ex-slope-along-a-line
 tier: standard
 topics: [directional-derivative, chain-rule]
 statement: |
-  Let \(z=x^2+y^2\), \(P=(1,2)\) and \(\vec v=(3,4)\).
+  Let \(z=x^2+3y^2\), \(P=(1,1)\) and \(\vec v=(4,3)\).
 
   a) Compute \(h(t)=f(P+t\vec v)\) and \(h'(0)\).
 
@@ -771,44 +771,44 @@ statement: |
 
   c) Reparametrise the line by the distance \(s\) from \(P\), and confirm the slope from the new parametrisation.
 solution: |
-  a) The point on the line is \((1+3t,\,2+4t)\), so
+  a) The point on the line is \((1+4t,\,1+3t)\), so
   \[
   \begin{aligned}
-  h(t)&=(1+3t)^2+(2+4t)^2\\
-  &=5+22t+25t^2.
+  h(t)&=(1+4t)^2+3(1+3t)^2\\
+  &=4+26t+43t^2.
   \end{aligned}
   \]
-  Then \(h'(0)=22\). By the chain rule, \(h'(0)=\nabla f(P)\cdot\vec v=(2,4)\cdot(3,4)=22\).
+  Then \(h'(0)=26\). By the chain rule, \(h'(0)=\nabla f(P)\cdot\vec v=(2,6)\cdot(4,3)=26\).
 
-  b) The length of \(\vec v\) is \(5\), so the unit vector is \((\frac{3}{5},\frac{4}{5})\). The slope per unit distance is
+  b) The length of \(\vec v\) is \(5\), so the unit vector is \((\frac{4}{5},\frac{3}{5})\). The slope per unit distance is
   \[
-  (2,4)\cdot\left(\frac{3}{5},\frac{4}{5}\right)=\frac{6+16}{5}=\frac{22}{5}.
+  (2,6)\cdot\left(\frac{4}{5},\frac{3}{5}\right)=\frac{8+18}{5}=\frac{26}{5}.
   \]
 
-  c) A point at distance \(s\) from \(P\) along the line is \(P+s\left(\frac{3}{5},\frac{4}{5}\right)\). The height there is
+  c) A point at distance \(s\) from \(P\) along the line is \(P+s\left(\frac{4}{5},\frac{3}{5}\right)\). The height there is
   \[
   \begin{aligned}
-  g(s)&=\left(1+\tfrac{3s}{5}\right)^2\\
-  &\quad+\left(2+\tfrac{4s}{5}\right)^2\\
-  &=5+\tfrac{22}{5}s+s^2.
+  g(s)&=\left(1+\tfrac{4s}{5}\right)^2\\
+  &\quad+3\left(1+\tfrac{3s}{5}\right)^2\\
+  &=4+\tfrac{26}{5}s+\tfrac{43}{25}s^2.
   \end{aligned}
   \]
-  Then \(g'(0)=\frac{22}{5}\). The path \(t\mapsto P+t\vec v\) moves at speed \(5\), so \(h'(0)=5\,g'(0)=22\).
+  Then \(g'(0)=\frac{26}{5}\). The path \(t\mapsto P+t\vec v\) moves at speed \(5\), so \(h'(0)=5\,g'(0)=26\).
 provenance: written-for-site
 steps:
-  - The height along the line is 5 + 22t + 25t^2, so h'(0) = 22.
-  - The gradient (2,4) dotted with the unit vector (3/5,4/5) is 22/5.
-  - With the distance s as parameter, g(s) = 5 + 22s/5 + s^2 and g'(0) = 22/5.
+  - The height along the line is 4 + 26t + 43t^2, so h'(0) = 26.
+  - The gradient (2,6) dotted with the unit vector (4/5,3/5) is 26/5.
+  - With the distance s as parameter, g(s) = 4 + 26s/5 + 43s^2/25 and g'(0) = 26/5.
 verification:
   checks:
-    - expr: 'expand((1+3*t)**2+(2+4*t)**2)'
-      expected: "5+22*t+25*t**2"
-    - expr: 'diff((1+3*t)**2+(2+4*t)**2,t).subs(t,0)'
-      expected: "22"
-    - expr: 'diff((1+3*s/5)**2+(2+4*s/5)**2,s).subs(s,0)'
-      expected: "Rational(22,5)"
-    - expr: 'expand((1+3*s/5)**2+(2+4*s/5)**2)'
-      expected: "5+Rational(22,5)*s+s**2"
-    - expr: '(2*1*3 + 2*2*4)'
-      expected: "22"
+    - expr: 'expand((1+4*t)**2+3*(1+3*t)**2)'
+      expected: "4+26*t+43*t**2"
+    - expr: 'diff((1+4*t)**2+3*(1+3*t)**2,t).subs(t,0)'
+      expected: "26"
+    - expr: 'diff((1+4*s/5)**2+3*(1+3*s/5)**2,s).subs(s,0)'
+      expected: "Rational(26,5)"
+    - expr: 'expand((1+4*s/5)**2+3*(1+3*s/5)**2)'
+      expected: "4+Rational(26,5)*s+Rational(43,25)*s**2"
+    - expr: '(2*1*4 + 6*1*3)'
+      expected: "26"
 :::

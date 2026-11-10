@@ -242,22 +242,22 @@ id: l6-parameter-families.basic-k-one
 tier: basic
 topics: [critical-points, second-derivative-test]
 statement: |
-  Find and classify the critical points of \(f(x, y) = x^2 + y^2 + xy\).
+  Find and classify the critical points of \(f(x, y) = x^2 + 3y^2 + 2xy\).
 solution: |
-  The partial derivatives are \(f_x = 2x + y\) and \(f_y = x + 2y\). Twice the first minus the second, and twice the second minus the first, give
+  The partial derivatives are \(f_x = 2x + 2y\) and \(f_y = 2x + 6y\). The second minus the first, and three times the first minus the second, give
   \[
   \begin{aligned}
-  2f_x-f_y&=3x,\\
-  2f_y-f_x&=3y.
+  f_y-f_x&=4y,\\
+  3f_x-f_y&=4x.
   \end{aligned}
   \]
   Both vanish only at \(x = 0\) and \(y = 0\), so the only critical point is the origin.
 
-  The second derivatives are \(f_{xx} = 2\), \(f_{yy} = 2\) and \(f_{xy} = 1\), so \(D = 3\). Here \(D > 0\) and \(f_{xx} > 0\), so the origin is a local minimum. Its value is \(f(0, 0) = 0\).
+  The second derivatives are \(f_{xx} = 2\), \(f_{yy} = 6\) and \(f_{xy} = 2\), so \(D = 12 - 4 = 8\). Here \(D > 0\) and \(f_{xx} > 0\), so the origin is a local minimum. Its value is \(f(0, 0) = 0\).
 provenance: written-for-site
 steps:
-  - The partials \(f_x = 2x + y\) and \(f_y = x + 2y\) vanish only at the origin.
-  - \(D = 3 > 0\) and \(f_{xx} = 2 > 0\), so the origin is a local minimum.
+  - The partials \(f_x = 2x + 2y\) and \(f_y = 2x + 6y\) vanish only at the origin.
+  - \(D = 8 > 0\) and \(f_{xx} = 2 > 0\), so the origin is a local minimum.
 verification:
   checks:
     - expr: '2*(2*x + y) - (x + 2*y) - 3*x'

@@ -902,7 +902,7 @@ statement: |
   Consider the three functions
   \[
   \begin{aligned}
-  f(x, y) &= x^4 + y^4,\\
+  f(x, y) &= x^6 + y^4,\\
   g(x, y) &= x^4 - y^4,\\
   h(x, y) &= (x^2 - y^2)^2.
   \end{aligned}
@@ -917,7 +917,7 @@ solution: |
   a) The gradients are
   \[
   \begin{aligned}
-  \nabla f &= (4x^3, 4y^3),\\
+  \nabla f &= (6x^5, 4y^3),\\
   \nabla g &= (4x^3, -4y^3),\\
   \nabla h &= \bigl(4x(x^2 - y^2),\ 4y(y^2 - x^2)\bigr).
   \end{aligned}
@@ -925,7 +925,7 @@ solution: |
   All three vanish at the origin. The second derivatives are
   \[
   \begin{aligned}
-  f_{xx} &= 12x^2,\\
+  f_{xx} &= 30x^4,\\
   f_{yy} &= 12y^2,\\
   f_{xy} &= 0,\\
   g_{xx} &= 12x^2,\\
@@ -948,18 +948,18 @@ solution: |
 provenance: written-for-site
 steps:
   - Gradients, and all second derivatives equal to \(0\) at the origin, so \(D = 0\) for all three.
-  - \(f\) has a strict minimum, because \(x^4 + y^4 > 0\) away from the origin.
+  - \(f\) has a strict minimum, because \(x^6 + y^4 > 0\) away from the origin.
   - \(g\) changes sign along the axes, so the origin is neither a minimum nor a maximum.
   - \(h\) is a square, so it has a non-strict minimum, and its critical set is the two lines \(y = \pm x\).
 verification:
   checks:
-    - expr: 'Tuple(diff(x**4+y**4, x), diff(x**4+y**4, y))'
-      expected: 'Tuple(4*x**3, 4*y**3)'
+    - expr: 'Tuple(diff(x**6+y**4, x), diff(x**6+y**4, y))'
+      expected: 'Tuple(6*x**5, 4*y**3)'
     - expr: 'Tuple(diff(x**4-y**4, x), diff(x**4-y**4, y))'
       expected: 'Tuple(4*x**3, -4*y**3)'
     - expr: 'Tuple(diff((x**2-y**2)**2, x), diff((x**2-y**2)**2, y))'
       expected: 'Tuple(4*x*(x**2-y**2), 4*y*(y**2-x**2))'
-    - expr: '(diff(x**4+y**4, x, 2)*diff(x**4+y**4, y, 2) - diff(x**4+y**4, x, y)**2).subs({x: 0, y: 0})'
+    - expr: '(diff(x**6+y**4, x, 2)*diff(x**6+y**4, y, 2) - diff(x**6+y**4, x, y)**2).subs({x: 0, y: 0})'
       expected: '0'
     - expr: '(diff(x**4-y**4, x, 2)*diff(x**4-y**4, y, 2) - diff(x**4-y**4, x, y)**2).subs({x: 0, y: 0})'
       expected: '0'

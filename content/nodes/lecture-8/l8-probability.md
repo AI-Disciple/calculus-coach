@@ -452,7 +452,7 @@ statement: |
 
   (b) Compute \(E(XY)\).
 
-  (c) Let \(t > 0\). Compute \(P(aX + bY > t)\) with the substitution \(u = ax + by\), \(v = y\).
+  (c) Compute \(P(Y > X + 1)\).
 solution: |
   By independence the joint density is \(ab\,e^{-ax-by}\) on the first quadrant.
 
@@ -474,28 +474,29 @@ solution: |
   \end{aligned}
   \]
 
-  (c) The event is \(x \ge 0\), \(y \ge 0\) and \(ax + by > t\), the side of the line that does not contain the origin. With \(u = ax + by\) and \(v = y\), the inverse is \(x = (u - bv)/a\) and \(y = v\), with Jacobian factor \(\frac1a\). The conditions become \(u > t\) and \(0 \le v \le u/b\), and the integrand is \(ab\,e^{-u}\cdot\frac1a = b\,e^{-u}\). The inner integral in \(v\) equals \(u e^{-u}\), so
+  (c) The event is \(x \ge 0\) and \(y > x + 1\). The inner integral in \(y\) equals \(e^{-b(x+1)}\), so
   \[
   \begin{aligned}
-  P(aX + bY > t)&=\int_t^{\infty} u e^{-u}\, du,\\
-  &=(t+1)e^{-t}.
+  P(Y > X + 1)&=\int_0^{\infty}\int_{x+1}^{\infty} ab\,e^{-ax-by}\, dy\, dx,\
+  &=\int_0^{\infty} a e^{-ax} e^{-b(x+1)}\, dx,\
+  &=\frac{a\,e^{-b}}{a+b}.
   \end{aligned}
   \]
 
-  The answers are \(\dfrac{a}{a+b}\), \(\dfrac{1}{ab}\) and \((t+1)e^{-t}\).
+  The answers are \(\dfrac{a}{a+b}\), \(\dfrac{1}{ab}\) and \(\dfrac{a\,e^{-b}}{a+b}\).
 provenance: written-for-site
 steps:
   - The solution uses the product density and integrates \(y\) from \(x\) to \(\infty\) in (a).
   - The solution separates the integrals in (b).
-  - The solution applies the substitution in (c) and states \((t+1)e^{-t}\).
+  - The solution integrates \(y\) from \(x+1\) to \(\infty\) in (c) and states \(\dfrac{a\,e^{-b}}{a+b}\).
 verification:
   checks:
     - expr: "integrate(Symbol('a', positive=True)*Symbol('b', positive=True)*exp(-Symbol('a', positive=True)*x - Symbol('b', positive=True)*y), (y, x, oo), (x, 0, oo))"
       expected: "Symbol('a', positive=True)/(Symbol('a', positive=True) + Symbol('b', positive=True))"
     - expr: "integrate(x*y*Symbol('a', positive=True)*Symbol('b', positive=True)*exp(-Symbol('a', positive=True)*x - Symbol('b', positive=True)*y), (x, 0, oo), (y, 0, oo))"
       expected: "1/(Symbol('a', positive=True)*Symbol('b', positive=True))"
-    - expr: "integrate(b*exp(-u), (v, 0, u/b), (u, t, oo))"
-      expected: "(t + 1)*exp(-t)"
+    - expr: "integrate(Symbol('a', positive=True)*Symbol('b', positive=True)*exp(-Symbol('a', positive=True)*x - Symbol('b', positive=True)*y), (y, x + 1, oo), (x, 0, oo))"
+      expected: "Symbol('a', positive=True)*exp(-Symbol('b', positive=True))/(Symbol('a', positive=True) + Symbol('b', positive=True))"
 :::
 
 ::: exercise

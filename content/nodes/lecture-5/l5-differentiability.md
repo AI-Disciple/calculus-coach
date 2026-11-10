@@ -276,28 +276,30 @@ tier: standard
 topics:
   - differentiability
 statement: |
-  Find the remainder \(r(x, y)\) for \(f(x, y)=xy\) at \((1, 1)\).
+  Find the remainder \(r(x, y)\) for \(f(x, y)=xy^2\) at \((1, 1)\).
 solution: |
-  The value \(f(1, 1)\) is \(1\). The partials are \(f_x=y\) and \(f_y=x\), so \(f_x(1, 1)=1\) and \(f_y(1, 1)=1\). The increment of \(f\) is \(xy-1\). The tangent-plane increment is \((x-1)+(y-1)\). The remainder is
+  The value \(f(1, 1)\) is \(1\). The partials are \(f_x=y^2\) and \(f_y=2xy\), so \(f_x(1, 1)=1\) and \(f_y(1, 1)=2\). The increment of \(f\) is \(xy^2-1\). The tangent-plane increment is \((x-1)+2(y-1)\). The remainder is
   \[
   \begin{aligned}
-  r(x, y)&=xy-1-(x-1)-(y-1),\\
-  &=(x-1)(y-1).
+  r(x, y)&=xy^2-1-(x-1)-2(y-1),\\
+  &=(y-1)^2+2(x-1)(y-1)+(x-1)(y-1)^2.
   \end{aligned}
   \]
-  The form \(r=(y-1)\Delta x+0\cdot\Delta y\) has coefficients \(y-1\) and \(0\), and both approach \(0\) as \((x, y)\) approaches \((1, 1)\).
+  The form \(r=\bigl(2(y-1)+(y-1)^2\bigr)\Delta x+(y-1)\,\Delta y\) has coefficients \(2(y-1)+(y-1)^2\) and \(y-1\), and both approach \(0\) as \((x, y)\) approaches \((1, 1)\).
 provenance: written-for-site
 steps:
   - Evaluate \(f\), \(f_x\) and \(f_y\) at \((1, 1)\).
-  - Subtract \((x-1)+(y-1)\) from \(xy-1\).
+  - Subtract \((x-1)+2(y-1)\) from \(xy^2-1\).
 verification:
   checks:
-    - expr: (x*y - 1) - ((x - 1) + (y - 1)) - (x - 1)*(y - 1)
+    - expr: (x*y**2 - 1) - ((x - 1) + 2*(y - 1)) - ((y - 1)**2 + 2*(x - 1)*(y - 1) + (x - 1)*(y - 1)**2)
       expected: "0"
-    - expr: diff(x*y, x).subs(x, 1).subs(y, 1)
+    - expr: (x*y**2 - 1) - ((x - 1) + 2*(y - 1)) - ((2*(y - 1) + (y - 1)**2)*(x - 1) + (y - 1)*(y - 1))
+      expected: "0"
+    - expr: diff(x*y**2, x).subs(x, 1).subs(y, 1)
       expected: "1"
-    - expr: diff(x*y, y).subs(x, 1).subs(y, 1)
-      expected: "1"
+    - expr: diff(x*y**2, y).subs(x, 1).subs(y, 1)
+      expected: "2"
 :::
 
 ::: exercise

@@ -1034,43 +1034,43 @@ id: l6-lagrange.ex-lagrange-endpoint-trap
 tier: standard
 topics: [lagrange-multipliers, global-extrema]
 statement: |
-  Find the maximum and the minimum of \(f(x, y) = x^2 + y^2\) on the segment \(2x + 2y = 100\), \(x \ge 0\), \(y \ge 0\). Say which of them the equation \(\nabla f = \lambda \nabla g\) finds.
+  Find the maximum and the minimum of \(f(x, y) = x^2 + y^2\) on the segment \(x + 2y = 10\), \(x \ge 0\), \(y \ge 0\). Say which of them the equation \(\nabla f = \lambda \nabla g\) finds.
 solution: |
-  Let \(g(x, y) = 2x + 2y\). Then \(\nabla f = (2x, 2y)\) and \(\nabla g = (2, 2)\), so
+  Let \(g(x, y) = x + 2y\). Then \(\nabla f = (2x, 2y)\) and \(\nabla g = (1, 2)\), so
   \[
   \begin{aligned}
-  2x&=2\lambda,\\
+  2x&=\lambda,\\
   2y&=2\lambda,\\
-  2x + 2y&=100.
+  x + 2y&=10.
   \end{aligned}
   \]
-  The first two equations give \(x = y\). The constraint gives \(x = y = 25\), with \(\lambda = 25\). The value is \(f(25, 25) = 1250\).
+  The first two equations give \(y = 2x\). The constraint gives \(5x = 10\), so \(x = 2\), \(y = 4\) and \(\lambda = 4\). The value is \(f(2, 4) = 20\).
 
-  The constraint is the segment from \((0, 50)\) to \((50, 0)\). It is closed and bounded, so \(f\) has a maximum and a minimum on it, and each sits at the point found above or at an endpoint. The endpoints give \(f(0, 50) = 2500\) and \(f(50, 0) = 2500\).
+  The constraint is the segment from \((0, 5)\) to \((10, 0)\). It is closed and bounded, so \(f\) has a maximum and a minimum on it, and each sits at the point found above or at an endpoint. The endpoints give \(f(0, 5) = 25\) and \(f(10, 0) = 100\).
 
-  - The minimum is \(1250\) at \((25, 25)\).
-  - The maximum is \(2500\), attained at both endpoints.
+  - The minimum is \(20\) at \((2, 4)\).
+  - The maximum is \(100\), attained at the endpoint \((10, 0)\).
 
   The equation \(\nabla f = \lambda \nabla g\) finds only the minimum. The endpoints of the segment have to be evaluated separately to find the maximum.
 
   As a check,
   \[
-  f(x, 50 - x) = 2x^2 - 100x + 2500
+  f(x, (10 - x)/2) = \tfrac54 x^2 - 5x + 25
   \]
-  on \(0 \le x \le 50\). It has its lowest point at \(x = 25\), and it is largest at the ends of the interval.
+  on \(0 \le x \le 10\). It has its lowest point at \(x = 2\), and it is largest at the end \(x = 10\) of the interval.
 provenance: written-for-site
 steps:
-  - The system \(2x = 2\lambda\), \(2y = 2\lambda\) with \(2x + 2y = 100\) gives \((25, 25)\), with value \(1250\).
-  - The endpoints \((0, 50)\) and \((50, 0)\) both give \(2500\).
-  - The minimum is \(1250\) and the maximum is \(2500\), and the multiplier equation finds only the minimum.
+  - The system \(2x = \lambda\), \(2y = 2\lambda\) with \(x + 2y = 10\) gives \((2, 4)\), with value \(20\).
+  - The endpoints \((0, 5)\) and \((10, 0)\) give \(25\) and \(100\).
+  - The minimum is \(20\) and the maximum is \(100\), and the multiplier equation finds only the minimum.
 verification:
   checks:
-    - expr: 'expand((x**2+y**2).subs(y, 50-x))'
-      expected: '2*x**2-100*x+2500'
-    - expr: 'diff(2*x**2-100*x+2500, x).subs(x, 25)'
+    - expr: 'expand((x**2+y**2).subs(y, (10-x)/2))'
+      expected: '5*x**2/4-5*x+25'
+    - expr: 'diff(5*x**2/4-5*x+25, x).subs(x, 2)'
       expected: '0'
-    - expr: 'Tuple((x**2+y**2).subs({x: 25, y: 25}), (x**2+y**2).subs({x: 0, y: 50}), (x**2+y**2).subs({x: 50, y: 0}))'
-      expected: 'Tuple(1250, 2500, 2500)'
+    - expr: 'Tuple((x**2+y**2).subs({x: 2, y: 4}), (x**2+y**2).subs({x: 0, y: 5}), (x**2+y**2).subs({x: 10, y: 0}))'
+      expected: 'Tuple(20, 25, 100)'
 :::
 
 ::: exercise

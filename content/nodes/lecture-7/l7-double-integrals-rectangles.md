@@ -487,52 +487,53 @@ id: l7-double-integrals-rectangles.ex-rect-both-orders
 tier: standard
 topics: [double-integrals]
 statement: |
-  Let \(R = [0, 3] \times [0, 2]\). Compute
+  Let \(R = [0, 4] \times [0, 1]\). Compute
   \[
-  \iint_R \bigl(1 + (x - 1)^2 + 4y^2\bigr)\, dA
+  \iint_R \bigl(2 + (x - 2)^2 + 3y^2\bigr)\, dA
   \]
   first in the order \(dy\,dx\) and then in the order \(dx\,dy\), and check that the two values agree.
 solution: |
   In the order \(dy\,dx\), hold \(x\) constant. The inner integral is
   \[
   \begin{aligned}
-  &\int_0^2 \bigl(1 + (x - 1)^2 + 4y^2\bigr)\, dy\\
-  &=2 + 2(x - 1)^2 + \frac{32}{3}.
+  &\int_0^1 \bigl(2 + (x - 2)^2 + 3y^2\bigr)\, dy\\
+  &=2 + (x - 2)^2 + 1\\
+  &=3 + (x - 2)^2.
   \end{aligned}
   \]
-  The outer integral uses \(\int_0^3 (x - 1)^2\, dx = \bigl[\tfrac{(x - 1)^3}{3}\bigr]_0^3 = \tfrac{8}{3} + \tfrac{1}{3} = 3\), so
+  The outer integral uses \(\int_0^4 (x - 2)^2\, dx = \bigl[\tfrac{(x - 2)^3}{3}\bigr]_0^4 = \tfrac{8}{3} + \tfrac{8}{3} = \tfrac{16}{3}\), so
   \[
   \begin{aligned}
-  &\int_0^3 \Bigl(2 + 2(x - 1)^2 + \frac{32}{3}\Bigr)\, dx\\
-  &=6 + 2 \cdot 3 + 32\\
-  &=44.
+  &\int_0^4 \bigl(3 + (x - 2)^2\bigr)\, dx\\
+  &=12 + \frac{16}{3}\\
+  &=\frac{52}{3}.
   \end{aligned}
   \]
 
   In the order \(dx\,dy\), hold \(y\) constant. The inner integral is
   \[
   \begin{aligned}
-  &\int_0^3 \bigl(1 + (x - 1)^2 + 4y^2\bigr)\, dx\\
-  &=3 + 3 + 12y^2\\
-  &=6 + 12y^2.
+  &\int_0^4 \bigl(2 + (x - 2)^2 + 3y^2\bigr)\, dx\\
+  &=8 + \frac{16}{3} + 12y^2\\
+  &=\frac{40}{3} + 12y^2.
   \end{aligned}
   \]
-  The outer integral is \(\int_0^2 (6 + 12y^2)\, dy = \bigl[6y + 4y^3\bigr]_0^2 = 12 + 32 = 44\).
+  The outer integral is \(\int_0^1 \bigl(\tfrac{40}{3} + 12y^2\bigr)\, dy = \bigl[\tfrac{40}{3}y + 4y^3\bigr]_0^1 = \tfrac{40}{3} + 4 = \tfrac{52}{3}\).
 
-  Both orders give \(44\), which is what Fubini's theorem requires on a rectangle.
+  Both orders give \(\frac{52}{3}\), which is what Fubini's theorem requires on a rectangle.
 provenance: written-for-site
 steps:
-  - The inner integral in the order dy dx equals 2 + 2(x - 1)^2 + 32/3.
-  - The outer integral in the order dy dx equals 44.
-  - The order dx dy gives the inner integral 6 + 12y^2 and the same value 44.
+  - The inner integral in the order dy dx equals 3 + (x - 2)^2.
+  - The outer integral in the order dy dx equals 52/3.
+  - The order dx dy gives the inner integral 40/3 + 12y^2 and the same value 52/3.
 verification:
   checks:
-    - expr: integrate(1 + (x - 1)**2 + 4*y**2, (y, 0, 2), (x, 0, 3))
-      expected: "44"
-    - expr: integrate(1 + (x - 1)**2 + 4*y**2, (x, 0, 3), (y, 0, 2))
-      expected: "44"
-    - expr: integrate(1 + (x - 1)**2 + 4*y**2, (y, 0, 2))
-      expected: "2 + 2*(x - 1)**2 + Rational(32, 3)"
-    - expr: integrate(1 + (x - 1)**2 + 4*y**2, (x, 0, 3))
-      expected: "6 + 12*y**2"
+    - expr: integrate(2 + (x - 2)**2 + 3*y**2, (y, 0, 1), (x, 0, 4))
+      expected: "Rational(52, 3)"
+    - expr: integrate(2 + (x - 2)**2 + 3*y**2, (x, 0, 4), (y, 0, 1))
+      expected: "Rational(52, 3)"
+    - expr: integrate(2 + (x - 2)**2 + 3*y**2, (y, 0, 1))
+      expected: "3 + (x - 2)**2"
+    - expr: integrate(2 + (x - 2)**2 + 3*y**2, (x, 0, 4))
+      expected: "Rational(40, 3) + 12*y**2"
 :::

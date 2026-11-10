@@ -1240,48 +1240,52 @@ id: l6-worded-optimisation.ex-open-box-fixed-area
 tier: standard
 topics: [lagrange-multipliers, worded-optimisation]
 statement: |
-  An open rectangular box has a bottom and four sides and no top. The total area of the bottom and the four sides is \(48\). Find the dimensions that give the largest volume, and that volume.
+  An open rectangular box has a bottom and four sides and no top. A vertical divider, parallel to the two end walls and as wide and as high as the box, splits it into two compartments. The total area of the bottom, the four sides and the divider is \(72\). Find the dimensions that give the largest volume, and that volume.
 solution: |
-  Let the base edges be \(x > 0\) and \(y > 0\), and let the height be \(z > 0\). The volume is \(f = xyz\) and the area is \(g = xy + 2xz + 2yz = 48\). Then
+  Let the length of the base be \(x > 0\), its width \(y > 0\), and let the height be \(z > 0\). The two end walls and the divider are rectangles of size \(y\) by \(z\), and the two long sides have size \(x\) by \(z\). The volume is \(f = xyz\) and the area is \(g = xy + 2xz + 3yz = 72\). Then
   \[
   \begin{aligned}
   \nabla f&= (yz, xz, xy),\\
-  \nabla g&= (y + 2z, x + 2z, 2x + 2y).
+  \nabla g&= (y + 2z, x + 3z, 2x + 3y).
   \end{aligned}
   \]
   The conditions \(\nabla f = \lambda \nabla g\) read
   \[
   \begin{aligned}
   yz&= \lambda(y + 2z),\\
-  xz&= \lambda(x + 2z),\\
-  xy&= \lambda(2x + 2y).
+  xz&= \lambda(x + 3z),\\
+  xy&= \lambda(2x + 3y).
   \end{aligned}
   \]
-  Multiply the first by \(x\) and the second by \(y\). The left sides are both \(xyz\), so \(x(y + 2z) = y(x + 2z)\) after dividing by \(\lambda \neq 0\), which gives \(2xz = 2yz\). Since \(z > 0\), \(x = y\).
+  Multiply the first equation by \(x\), the second by \(y\) and the third by \(z\). All three left sides equal \(xyz\), which is positive, so \(\lambda \neq 0\) and the right sides are equal:
+  \[
+  \lambda(xy + 2xz) = \lambda(xy + 3yz) = \lambda(2xz + 3yz).
+  \]
+  Dividing by \(\lambda\) gives
+  - \(xy + 2xz = xy + 3yz\), so \(2xz = 3yz\) and, since \(z > 0\), \(2x = 3y\).
+  - \(xy + 3yz = 2xz + 3yz\), so \(xy = 2xz\) and, since \(x > 0\), \(y = 2z\).
 
-  With \(x = y\), the third equation is \(x^2 = 4\lambda x\), so \(\lambda = x/4\). The first equation becomes \(xz = \tfrac{x}{4}(x + 2z)\), so \(4z = x + 2z\) and \(z = x/2\).
+  Hence \(y = 2z\) and \(x = 3z\). The constraint becomes \(6z^2 + 6z^2 + 6z^2 = 18z^2 = 72\), so \(z = 2\), \(y = 4\) and \(x = 6\). The volume is \(48\).
 
-  The constraint becomes \(x^2 + 4x \cdot \tfrac{x}{2} = 3x^2 = 48\), so \(x = 4\), \(y = 4\) and \(z = 2\). The volume is \(32\).
+  This is the maximum. Put \(a = xy\), \(b = 2xz\) and \(c = 3yz\), so \(a + b + c = 72\) and \(abc = 6(xyz)^2\). By the inequality of arithmetic and geometric means, \(abc \le 24^3 = 13824\). Hence \((xyz)^2 \le 2304\) and \(xyz \le 48\), with equality when \(a = b = c = 24\), which is the point found.
 
-  This is the maximum. Put \(a = xy\), \(b = 2xz\) and \(c = 2yz\), so \(a + b + c = 48\) and \(abc = 4(xyz)^2\). By the inequality of arithmetic and geometric means, \(abc \le 16^3 = 4096\). Hence \((xyz)^2 \le 1024\) and \(xyz \le 32\), with equality when \(a = b = c = 16\), which is the point found.
-
-  The base is a square of side \(4\), the height is \(2\), and the largest volume is \(32\).
+  The box is \(6\) long, \(4\) wide and \(2\) high, and the largest volume is \(48\).
 provenance: written-for-site
 steps:
-  - Objective \(xyz\) and constraint \(xy + 2xz + 2yz = 48\).
-  - The multiplier equations give \(x = y\) and \(z = x/2\).
-  - The constraint gives \(x = y = 4\), \(z = 2\), and volume \(32\).
-  - The arithmetic-geometric mean inequality shows \(32\) is the global maximum.
+  - Objective \(xyz\) and constraint \(xy + 2xz + 3yz = 72\).
+  - The multiplier equations give \(2x = 3y\) and \(y = 2z\).
+  - The constraint gives \(x = 6\), \(y = 4\), \(z = 2\), and volume \(48\).
+  - The arithmetic-geometric mean inequality shows \(48\) is the global maximum.
 verification:
   checks:
-    - expr: '(x*y+2*x*z+2*y*z).subs({x: 4, y: 4, z: 2})'
+    - expr: '(x*y+2*x*z+3*y*z).subs({x: 6, y: 4, z: 2})'
+      expected: '72'
+    - expr: '(x*y*z).subs({x: 6, y: 4, z: 2})'
       expected: '48'
-    - expr: '(x*y*z).subs({x: 4, y: 4, z: 2})'
-      expected: '32'
-    - expr: 'Tuple(y*z-(y+2*z), x*z-(x+2*z), x*y-(2*x+2*y)).subs({x: 4, y: 4, z: 2})'
+    - expr: 'Tuple(y*z-(y+2*z), x*z-(x+3*z), x*y-(2*x+3*y)).subs({x: 6, y: 4, z: 2})'
       expected: 'Tuple(0, 0, 0)'
-    - expr: '(x*y)*(2*x*z)*(2*y*z) - 4*(x*y*z)**2'
+    - expr: '(x*y)*(2*x*z)*(3*y*z) - 6*(x*y*z)**2'
       expected: '0'
-    - expr: 'sqrt(16**3/4)'
-      expected: '32'
+    - expr: 'sqrt(24**3/6)'
+      expected: '48'
 :::
