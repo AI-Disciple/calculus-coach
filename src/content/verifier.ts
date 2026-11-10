@@ -5,7 +5,7 @@ export type VerificationRequest = { id: string; checks: { expr: string; expected
 export type VerificationResult = { id: string; check: number; ok: boolean; message: string };
 
 const SCRIPT = path.resolve(import.meta.dirname, '../../verifier/verify.py');
-const TIMEOUT_MS = 120_000;
+const TIMEOUT_MS = 900_000;
 
 /** PYTHON, when set, is the path of one executable and may contain spaces. */
 function pythonCommand(): string[] {
