@@ -18,7 +18,7 @@ These rules apply to every piece of text the app shows: node content, solutions,
 - Cleanup of existing text is typo and grammar only.
 - Conditions and cases go in bullet lists.
 - Methods and procedures go in numbered steps.
-- Every important formula gets its own displayed line. A calculation of more than one step becomes an aligned display, one step per line. One long expression that does not fit a phone may be wrapped by hand into aligned rows (first row without `&`, each later row with one `&`): the page shows it on one line wherever that fits and as the rows otherwise.
+- Every important formula gets its own displayed line. A calculation of more than one step becomes an aligned display, one step per line. One long expression that does not fit a phone may be wrapped by hand into aligned rows (first row without `&`, each later row with one `&`): the page shows it on one line wherever that fits and as the rows otherwise. When the first row has an `&` (`a &= b`), start each continuation row with `&\quad` and an operator (`&\quad + c`): the page merges those rows into the row above wherever that fits, and every row that starts a new step (`&= ...`) stays its own row.
 - Key terms are bold where they are introduced.
 - A subheading (`###`) comes whenever the subject changes inside a long block.
 

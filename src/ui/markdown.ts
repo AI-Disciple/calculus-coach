@@ -27,17 +27,41 @@ const md = new MarkdownIt({ html: false, linkify: true, typographer: false });
 md.inline.ruler.before('escape', 'math', mathRule);
 const ALIGNED = /^\\begin\{aligned\}([\s\S]*)\\end\{aligned\}$/;
 
+/** A row that continues the row above: after the `&` it starts with an indent (`\quad`) or a binary operator. */
+const CONTINUATION = /^(\\q?quad(?![a-zA-Z])|[+-]|\\(?:pm|mp|cdot|times)(?![a-zA-Z]))/;
+
+/** The text of a continuation row without its `&` and indent. A `\text` note keeps a gap before it. */
+function continuationText(row: string): string {
+  const rest = row.replace(/^&\s*/, '');
+  const stripped = rest.replace(/^(?:\\q?quad(?![a-zA-Z])\s*)+/, '');
+  return stripped.startsWith('\\text') && stripped !== rest ? `\\quad ${stripped}` : stripped;
+}
+
 /**
- * A single expression that was hard-wrapped into aligned rows (the first row has no `&`) as one line,
- * or null for anything else. Real derivations (`a &= b \\ &= c`) are never flattened.
+ * Hard-wrapped aligned rows laid out as wide as possible, or null when nothing is wrapped.
+ *
+ * - First row without `&`: the whole block is one expression, returned as one line.
+ * - First row with `&`: rows that continue the row above (`&\quad + ...`, `&+ ...`) are merged into it, and the rows
+ *   that start a new step (`&= ...`) stay rows. A derivation without continuation rows is never touched.
  */
 export function flattenWrappedAligned(math: string): string | null {
   const body = ALIGNED.exec(math)?.[1];
   if (body === undefined || body.includes('\\begin') || body.includes('\\\\[')) return null;
   const rows = body.split('\\\\').map((row) => row.trim()).filter(Boolean);
-  if (rows.length < 2 || rows[0].includes('&')) return null;
-  if (rows.slice(1).some((row) => (row.match(/&/g) ?? []).length !== 1)) return null;
-  return rows.map((row) => row.replace('&', ' ').trim()).join(' ');
+  if (rows.length < 2) return null;
+  const ampersands = (row: string) => (row.match(/&/g) ?? []).length;
+  if (!rows[0].includes('&')) {
+    if (rows.slice(1).some((row) => ampersands(row) !== 1)) return null;
+    return [rows[0], ...rows.slice(1).map((row) => (CONTINUATION.test(row.replace(/^&\s*/, '')) ? continuationText(row) : row.replace('&', ' ').trim()))].join(' ');
+  }
+  const merged: string[] = [];
+  for (const row of rows) {
+    const continues = merged.length > 0 && row.startsWith('&') && ampersands(row) === 1 && CONTINUATION.test(row.slice(1).trim());
+    if (continues) merged[merged.length - 1] += ` ${continuationText(row)}`;
+    else merged.push(row);
+  }
+  if (merged.length === rows.length) return null;
+  return `\\begin{aligned}${merged.join(' \\\\ ')}\\end{aligned}`;
 }
 
 md.renderer.rules.math = (tokens, index) => {
