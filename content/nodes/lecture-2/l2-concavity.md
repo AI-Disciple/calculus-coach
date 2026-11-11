@@ -473,3 +473,743 @@ verification:
     - expr: (x**4 - 4*x**3).subs(x, 2)
       expected: "-16"
 :::
+
+::: exercise
+id: l2-concavity.handout-5-3-9
+number: "5.3.9"
+tier: standard
+topics:
+  - concavity
+  - extrema
+statement: |
+  Find all local maximum and minimum points of \(y = 4x + \sqrt{1 - x}\) by the second derivative test, when possible.
+solution: |
+  The function is defined for \(x \le 1\). On \(x < 1\) the first derivative and the second derivative are
+  \[
+  \begin{aligned}
+  y'&=4 - \frac{1}{2\sqrt{1 - x}},\\
+  y''&=-\frac{1}{4(1 - x)^{3/2}}.
+  \end{aligned}
+  \]
+  The first derivative is zero when \(\sqrt{1 - x} = \dfrac{1}{8}\). Both sides are positive, so squaring gives \(1 - x = \dfrac{1}{64}\), and the only critical point in \(x < 1\) is
+  \[
+  x = \frac{63}{64}.
+  \]
+  There \((1 - x)^{3/2} = \bigl(\tfrac{1}{64}\bigr)^{3/2} = \tfrac{1}{512}\), so
+  \[
+  y''\bigl(\tfrac{63}{64}\bigr) = -\frac{512}{4} = -128 < 0.
+  \]
+  The second derivative test gives a local maximum at \(x = \dfrac{63}{64}\), with value
+  \[
+  y\bigl(\tfrac{63}{64}\bigr) = \frac{63}{16} + \frac{1}{8} = \frac{65}{16}.
+  \]
+  The point \(x = 1\) is the end of the domain, not an interior point, so the test does not apply there. Its value is \(y(1) = 4\), below \(\dfrac{65}{16}\).
+provenance: handout-answer
+steps:
+  - The domain is \(x \le 1\), and \(y' = 4 - 1/(2\sqrt{1 - x})\) vanishes at \(x = 63/64\).
+  - The second derivative is \(-1/(4(1 - x)^{3/2})\), which equals \(-128\) at \(x = 63/64\).
+  - The second derivative test gives a local maximum at \(x = 63/64\) with value \(65/16\).
+verification:
+  checks:
+    - expr: 'diff(4*x + sqrt(1 - x), x)'
+      expected: '4 - 1/(2*sqrt(1 - x))'
+    - expr: 'diff(4*x + sqrt(1 - x), x).subs(x, Rational(63, 64))'
+      expected: '0'
+    - expr: 'diff(4*x + sqrt(1 - x), x, 2)'
+      expected: '-1/(4*(1 - x)**Rational(3, 2))'
+    - expr: 'diff(4*x + sqrt(1 - x), x, 2).subs(x, Rational(63, 64))'
+      expected: '-128'
+    - expr: '(4*x + sqrt(1 - x)).subs(x, Rational(63, 64))'
+      expected: 'Rational(65, 16)'
+    - expr: '(4*x + sqrt(1 - x)).subs(x, 1)'
+      expected: '4'
+:::
+
+
+::: exercise
+id: l2-concavity.handout-5-3-10
+number: "5.3.10"
+tier: standard
+topics:
+  - concavity
+  - extrema
+statement: |
+  Find all local maximum and minimum points of \(y = \dfrac{x + 1}{\sqrt{5x^{2} + 35}}\) by the second derivative test, when possible.
+solution: |
+  The quantity \(5x^{2} + 35\) is positive for every \(x\), so the function is defined on the whole real line. The product rule, with the factor \((5x^{2} + 35)^{-1/2}\), gives
+  \[
+  \begin{aligned}
+  y'&=(5x^{2} + 35)^{-1/2} - (x + 1)\cdot 5x\,(5x^{2} + 35)^{-3/2}\\
+  &=\frac{5x^{2} + 35 - 5x^{2} - 5x}{(5x^{2} + 35)^{3/2}}\\
+  &=\frac{35 - 5x}{(5x^{2} + 35)^{3/2}}.
+  \end{aligned}
+  \]
+  The denominator is positive, so the only critical point is \(x = 7\).
+
+  Differentiate \(y' = (35 - 5x)(5x^{2} + 35)^{-3/2}\) with the product rule:
+  \[
+  y'' = -5(5x^{2} + 35)^{-3/2} - 15x(35 - 5x)(5x^{2} + 35)^{-5/2}.
+  \]
+  At \(x = 7\) the factor \(35 - 5x\) is zero, so the second term vanishes. Since \(5\cdot 49 + 35 = 280\),
+  \[
+  y''(7) = -\frac{5}{280^{3/2}} = -\frac{1}{112\sqrt{70}} < 0.
+  \]
+  The second derivative test gives a local maximum at \(x = 7\), with value
+  \[
+  y(7) = \frac{8}{\sqrt{280}} = \frac{4}{\sqrt{70}} = \frac{2\sqrt{70}}{35}.
+  \]
+provenance: handout-answer
+steps:
+  - The first derivative simplifies to \((35 - 5x)/(5x^{2} + 35)^{3/2}\), so the only critical point is \(x = 7\).
+  - At \(x = 7\) only the term from differentiating \(35 - 5x\) survives, and \(y''(7) = -1/(112\sqrt{70}) < 0\).
+  - The second derivative test gives a local maximum at \(x = 7\) with value \(2\sqrt{70}/35\).
+verification:
+  checks:
+    - expr: 'diff((x + 1)/sqrt(5*x**2 + 35), x)'
+      expected: '(35 - 5*x)/(5*x**2 + 35)**Rational(3, 2)'
+    - expr: 'diff((x + 1)/sqrt(5*x**2 + 35), x).subs(x, 7)'
+      expected: '0'
+    - expr: 'diff((x + 1)/sqrt(5*x**2 + 35), x, 2)'
+      expected: '-5/(5*x**2 + 35)**Rational(3, 2) - 15*x*(35 - 5*x)/(5*x**2 + 35)**Rational(5, 2)'
+    - expr: 'diff((x + 1)/sqrt(5*x**2 + 35), x, 2).subs(x, 7)'
+      expected: '-1/(112*sqrt(70))'
+    - expr: '((x + 1)/sqrt(5*x**2 + 35)).subs(x, 7)'
+      expected: '2*sqrt(70)/35'
+:::
+
+
+::: exercise
+id: l2-concavity.handout-5-3-11
+number: "5.3.11"
+tier: standard
+topics:
+  - concavity
+  - extrema
+statement: |
+  Find all local maximum and minimum points of \(y = x^{5} - x\) by the second derivative test, when possible.
+solution: |
+  The first derivative and the second derivative are
+  \[
+  \begin{aligned}
+  y'&=5x^{4} - 1,\\
+  y''&=20x^{3}.
+  \end{aligned}
+  \]
+  The first derivative is zero when \(x^{4} = \dfrac{1}{5}\), so the critical points are \(x = \pm 5^{-1/4}\).
+
+  - At \(x = 5^{-1/4}\), \(y'' = 20\cdot 5^{-3/4} > 0\), so there is a local minimum. The value is \(y = 5^{-5/4} - 5^{-1/4} = -\dfrac{4}{5}\cdot 5^{-1/4}\).
+  - At \(x = -5^{-1/4}\), \(y'' = -20\cdot 5^{-3/4} < 0\), so there is a local maximum. The value is \(y = \dfrac{4}{5}\cdot 5^{-1/4}\).
+provenance: handout-answer
+steps:
+  - The first derivative \(5x^{4} - 1\) vanishes at \(x = \pm 5^{-1/4}\).
+  - The second derivative \(20x^{3}\) is positive at \(5^{-1/4}\) and negative at \(-5^{-1/4}\).
+  - Local minimum at \(x = 5^{-1/4}\) and local maximum at \(x = -5^{-1/4}\).
+verification:
+  checks:
+    - expr: 'diff(x**5 - x, x)'
+      expected: '5*x**4 - 1'
+    - expr: 'diff(x**5 - x, x).subs(x, 5**(-Rational(1, 4)))'
+      expected: '0'
+    - expr: 'diff(x**5 - x, x).subs(x, -5**(-Rational(1, 4)))'
+      expected: '0'
+    - expr: 'diff(x**5 - x, x, 2).subs(x, 5**(-Rational(1, 4)))'
+      expected: '20*5**(-Rational(3, 4))'
+    - expr: 'sign(diff(x**5 - x, x, 2).subs(x, -5**(-Rational(1, 4))))'
+      expected: '-1'
+    - expr: '(x**5 - x).subs(x, 5**(-Rational(1, 4)))'
+      expected: '-Rational(4, 5)*5**(-Rational(1, 4))'
+    - expr: '(x**5 - x).subs(x, -5**(-Rational(1, 4)))'
+      expected: 'Rational(4, 5)*5**(-Rational(1, 4))'
+:::
+
+
+::: exercise
+id: l2-concavity.handout-5-3-12
+number: "5.3.12"
+tier: standard
+topics:
+  - concavity
+  - extrema
+statement: |
+  Find all local maximum and minimum points of \(y = 6x + \sin 3x\) by the second derivative test, when possible.
+solution: |
+  The first derivative is
+  \[
+  y' = 6 + 3\cos 3x.
+  \]
+  Since \(\cos 3x \ge -1\), we get \(y' \ge 6 - 3 = 3 > 0\) for every \(x\). The first derivative is never zero, and it exists everywhere, so the function has no critical point.
+
+  The second derivative test applies only at a point where \(y' = 0\), so there is nothing to test. The function is increasing on the whole real line and has no local maximum and no local minimum.
+provenance: handout-answer
+steps:
+  - The first derivative \(6 + 3\cos 3x\) is at least \(3\), so it is never zero.
+  - There is no critical point, so the test has nothing to classify.
+  - The function has no local extremum.
+verification:
+  checks:
+    - expr: 'diff(6*x + sin(3*x), x)'
+      expected: '6 + 3*cos(3*x)'
+    - expr: 'minimum(6 + 3*cos(3*x), x, Interval(0, 2*pi/3))'
+      expected: '3'
+    - expr: 'len(solveset(Eq(6 + 3*cos(3*x), 0), x, Reals))'
+      expected: '0'
+:::
+
+
+::: exercise
+id: l2-concavity.handout-5-3-13
+number: "5.3.13"
+tier: basic
+topics:
+  - concavity
+  - extrema
+statement: |
+  Find all local maximum and minimum points of \(y = x + \dfrac{1}{x}\) by the second derivative test, when possible.
+solution: |
+  The function is defined for \(x \ne 0\). The first derivative and the second derivative are
+  \[
+  \begin{aligned}
+  y'&=1 - \frac{1}{x^{2}},\\
+  y''&=\frac{2}{x^{3}}.
+  \end{aligned}
+  \]
+  The first derivative is zero when \(x^{2} = 1\), so the critical points are \(x = \pm 1\).
+
+  - At \(x = 1\), \(y'' = 2 > 0\), so there is a local minimum with value \(y(1) = 2\).
+  - At \(x = -1\), \(y'' = -2 < 0\), so there is a local maximum with value \(y(-1) = -2\).
+provenance: handout-answer
+steps:
+  - The first derivative \(1 - 1/x^{2}\) vanishes at \(x = \pm 1\).
+  - The second derivative \(2/x^{3}\) is \(2\) at \(1\) and \(-2\) at \(-1\).
+  - Local minimum at \(x = 1\) and local maximum at \(x = -1\).
+verification:
+  checks:
+    - expr: 'diff(x + 1/x, x)'
+      expected: '1 - 1/x**2'
+    - expr: 'diff(x + 1/x, x).subs(x, 1)'
+      expected: '0'
+    - expr: 'diff(x + 1/x, x).subs(x, -1)'
+      expected: '0'
+    - expr: 'diff(x + 1/x, x, 2)'
+      expected: '2/x**3'
+    - expr: 'diff(x + 1/x, x, 2).subs(x, 1)'
+      expected: '2'
+    - expr: 'diff(x + 1/x, x, 2).subs(x, -1)'
+      expected: '-2'
+    - expr: '(x + 1/x).subs(x, 1)'
+      expected: '2'
+    - expr: '(x + 1/x).subs(x, -1)'
+      expected: '-2'
+:::
+
+
+::: exercise
+id: l2-concavity.handout-5-3-14
+number: "5.3.14"
+tier: standard
+topics:
+  - concavity
+  - extrema
+statement: |
+  Find all local maximum and minimum points of \(y = x^{2} + \dfrac{1}{x}\) by the second derivative test, when possible.
+solution: |
+  The function is defined for \(x \ne 0\). The first derivative and the second derivative are
+  \[
+  \begin{aligned}
+  y'&=2x - \frac{1}{x^{2}} = \frac{2x^{3} - 1}{x^{2}},\\
+  y''&=2 + \frac{2}{x^{3}}.
+  \end{aligned}
+  \]
+  The first derivative is zero when \(2x^{3} = 1\), so the only critical point is
+  \[
+  x = 2^{-1/3}.
+  \]
+  There \(x^{3} = \dfrac{1}{2}\), so
+  \[
+  y'' = 2 + \frac{2}{1/2} = 6 > 0.
+  \]
+  The second derivative test gives a local minimum at \(x = 2^{-1/3}\). The value is
+  \[
+  y = 2^{-2/3} + 2^{1/3} = 3\cdot 2^{-2/3}.
+  \]
+provenance: handout-answer
+steps:
+  - The first derivative \((2x^{3} - 1)/x^{2}\) vanishes only at \(x = 2^{-1/3}\).
+  - At that point \(x^{3} = 1/2\), so \(y'' = 2 + 2/x^{3} = 6 > 0\).
+  - The second derivative test gives a local minimum at \(x = 2^{-1/3}\) with value \(3\cdot 2^{-2/3}\).
+verification:
+  checks:
+    - expr: 'diff(x**2 + 1/x, x)'
+      expected: '2*x - 1/x**2'
+    - expr: 'diff(x**2 + 1/x, x).subs(x, 2**(-Rational(1, 3)))'
+      expected: '0'
+    - expr: 'diff(x**2 + 1/x, x, 2)'
+      expected: '2 + 2/x**3'
+    - expr: 'diff(x**2 + 1/x, x, 2).subs(x, 2**(-Rational(1, 3)))'
+      expected: '6'
+    - expr: '(x**2 + 1/x).subs(x, 2**(-Rational(1, 3)))'
+      expected: '3*2**(-Rational(2, 3))'
+    - expr: 'len(solveset(Eq(2*x**3 - 1, 0), x, Reals))'
+      expected: '1'
+:::
+
+
+::: exercise
+id: l2-concavity.handout-5-3-17
+number: "5.3.17"
+tier: basic
+topics:
+  - concavity
+  - extrema
+statement: |
+  Find all local maximum and minimum points of \(y = \cos^{2}x - \sin^{2}x\) by the second derivative test, when possible.
+solution: |
+  By the double angle formula, \(y = \cos 2x\). The first derivative and the second derivative are
+  \[
+  \begin{aligned}
+  y'&=-2\sin 2x,\\
+  y''&=-4\cos 2x.
+  \end{aligned}
+  \]
+  The first derivative is zero when \(\sin 2x = 0\), that is, when \(2x = n\pi\). The critical points are \(x = \dfrac{n\pi}{2}\) for integer \(n\).
+
+  - At \(x = n\pi\), \(\cos 2x = 1\), so \(y'' = -4 < 0\). There is a local maximum with value \(y = 1\).
+  - At \(x = \dfrac{\pi}{2} + n\pi\), \(\cos 2x = -1\), so \(y'' = 4 > 0\). There is a local minimum with value \(y = -1\).
+provenance: handout-answer
+steps:
+  - Rewrite \(y = \cos 2x\), so \(y' = -2\sin 2x\) and \(y'' = -4\cos 2x\).
+  - The critical points are \(x = n\pi/2\).
+  - Local maxima at \(x = n\pi\) where \(y'' = -4\), and local minima at \(x = \pi/2 + n\pi\) where \(y'' = 4\).
+verification:
+  checks:
+    - expr: 'cos(x)**2 - sin(x)**2 - cos(2*x)'
+      expected: '0'
+    - expr: 'diff(cos(2*x), x)'
+      expected: '-2*sin(2*x)'
+    - expr: 'diff(cos(2*x), x, 2)'
+      expected: '-4*cos(2*x)'
+    - expr: 'diff(cos(2*x), x, 2).subs(x, 0)'
+      expected: '-4'
+    - expr: 'diff(cos(2*x), x, 2).subs(x, pi)'
+      expected: '-4'
+    - expr: 'diff(cos(2*x), x, 2).subs(x, pi/2)'
+      expected: '4'
+    - expr: 'diff(cos(2*x), x, 2).subs(x, 3*pi/2)'
+      expected: '4'
+    - expr: 'diff(cos(2*x), x).subs(x, pi/2)'
+      expected: '0'
+:::
+
+
+::: exercise
+id: l2-concavity.handout-5-3-18
+number: "5.3.18"
+tier: standard
+topics:
+  - concavity
+  - extrema
+statement: |
+  Find all local maximum and minimum points of \(y = \sin^{3}x\) by the second derivative test, when possible.
+solution: |
+  The first derivative and the second derivative are
+  \[
+  \begin{aligned}
+  y'&=3\sin^{2}x\cos x,\\
+  y''&=6\sin x\cos^{2}x - 3\sin^{3}x.
+  \end{aligned}
+  \]
+  The first derivative is zero when \(\sin x = 0\) or \(\cos x = 0\). The critical points are \(x = n\pi\) and \(x = \dfrac{\pi}{2} + n\pi\).
+
+  **At \(x = \dfrac{\pi}{2} + n\pi\).** Here \(\cos x = 0\), so \(y'' = -3\sin^{3}x\).
+
+  - For \(x = \dfrac{\pi}{2} + 2n\pi\), \(\sin x = 1\) and \(y'' = -3 < 0\). There is a local maximum with value \(1\).
+  - For \(x = \dfrac{3\pi}{2} + 2n\pi\), \(\sin x = -1\) and \(y'' = 3 > 0\). There is a local minimum with value \(-1\).
+
+  **At \(x = n\pi\).** Here \(\sin x = 0\), so \(y'' = 0\), and the second derivative test gives no information. Use the first derivative. The factor \(3\sin^{2}x\) is positive for \(x\) near \(n\pi\) with \(x \ne n\pi\), and \(\cos x\) is close to \(\cos n\pi = \pm 1\), so it keeps the same sign on both sides. So \(y'\) does not change sign, and \(x = n\pi\) is neither a local maximum nor a local minimum.
+provenance: handout-answer
+steps:
+  - The critical points are \(x = n\pi\) and \(x = \pi/2 + n\pi\).
+  - At \(x = \pi/2 + 2n\pi\) the second derivative is \(-3\), a local maximum, and at \(x = 3\pi/2 + 2n\pi\) it is \(3\), a local minimum.
+  - At \(x = n\pi\) the second derivative is \(0\), and the first derivative keeps its sign, so there is no extremum.
+verification:
+  checks:
+    - expr: 'diff(sin(x)**3, x)'
+      expected: '3*sin(x)**2*cos(x)'
+    - expr: 'diff(sin(x)**3, x, 2)'
+      expected: '6*sin(x)*cos(x)**2 - 3*sin(x)**3'
+    - expr: 'diff(sin(x)**3, x, 2).subs(x, pi/2)'
+      expected: '-3'
+    - expr: 'diff(sin(x)**3, x, 2).subs(x, 3*pi/2)'
+      expected: '3'
+    - expr: 'diff(sin(x)**3, x, 2).subs(x, 0)'
+      expected: '0'
+    - expr: 'diff(sin(x)**3, x, 2).subs(x, pi)'
+      expected: '0'
+    - expr: 'sign(diff(sin(x)**3, x).subs(x, -pi/4))'
+      expected: '1'
+    - expr: 'sign(diff(sin(x)**3, x).subs(x, pi/4))'
+      expected: '1'
+    - expr: 'sign(diff(sin(x)**3, x).subs(x, 3*pi/4))'
+      expected: '-1'
+    - expr: 'sign(diff(sin(x)**3, x).subs(x, 5*pi/4))'
+      expected: '-1'
+:::
+
+
+::: exercise
+id: l2-concavity.handout-5-4-2
+number: "5.4.2"
+tier: basic
+topics:
+  - concavity
+statement: |
+  Describe the concavity of \(y = 2 + 3x - x^{3}\).
+solution: |
+  The first derivative and the second derivative are
+  \[
+  \begin{aligned}
+  y'&=3 - 3x^{2},\\
+  y''&=-6x.
+  \end{aligned}
+  \]
+  The second derivative is zero at \(x = 0\).
+
+  - For \(x < 0\), \(y'' > 0\), so the graph is concave up.
+  - For \(x > 0\), \(y'' < 0\), so the graph is concave down.
+
+  The sign of \(y''\) changes at \(x = 0\), so the inflection point is \(x = 0\), at height \(y(0) = 2\).
+provenance: handout-answer
+steps:
+  - The second derivative is \(y'' = -6x\).
+  - The graph is concave up for \(x < 0\) and concave down for \(x > 0\).
+  - The inflection point is \((0, 2)\).
+verification:
+  checks:
+    - expr: 'diff(2 + 3*x - x**3, x, 2)'
+      expected: '-6*x'
+    - expr: 'diff(2 + 3*x - x**3, x, 2).subs(x, -1)'
+      expected: '6'
+    - expr: 'diff(2 + 3*x - x**3, x, 2).subs(x, 1)'
+      expected: '-6'
+    - expr: '(2 + 3*x - x**3).subs(x, 0)'
+      expected: '2'
+:::
+
+
+::: exercise
+id: l2-concavity.handout-5-4-4
+number: "5.4.4"
+tier: standard
+topics:
+  - concavity
+  - inflection
+statement: |
+  Describe the concavity of \(y = x^{4} - 2x^{2} + 3\).
+solution: |
+  The second derivative is
+  \[
+  y'' = 12x^{2} - 4 = 4(3x^{2} - 1).
+  \]
+  It is zero when \(x^{2} = \dfrac{1}{3}\), that is, at \(x = \pm\dfrac{1}{\sqrt{3}}\).
+
+  - For \(x < -\dfrac{1}{\sqrt{3}}\), \(y'' > 0\), so the graph is concave up.
+  - For \(-\dfrac{1}{\sqrt{3}} < x < \dfrac{1}{\sqrt{3}}\), \(y'' < 0\), so the graph is concave down.
+  - For \(x > \dfrac{1}{\sqrt{3}}\), \(y'' > 0\), so the graph is concave up.
+
+  The sign of \(y''\) changes at both points, so the inflection points are \(x = \pm\dfrac{1}{\sqrt{3}}\), at height \(y = \dfrac{22}{9}\).
+provenance: handout-answer
+steps:
+  - The second derivative \(4(3x^{2} - 1)\) vanishes at \(x = \pm 1/\sqrt{3}\).
+  - The graph is concave up, down, up on the three intervals.
+  - The inflection points are \(x = \pm 1/\sqrt{3}\), both at height \(22/9\).
+verification:
+  checks:
+    - expr: 'diff(x**4 - 2*x**2 + 3, x, 2)'
+      expected: '4*(3*x**2 - 1)'
+    - expr: 'diff(x**4 - 2*x**2 + 3, x, 2).subs(x, 1/sqrt(3))'
+      expected: '0'
+    - expr: 'diff(x**4 - 2*x**2 + 3, x, 2).subs(x, -1/sqrt(3))'
+      expected: '0'
+    - expr: 'diff(x**4 - 2*x**2 + 3, x, 2).subs(x, 0)'
+      expected: '-4'
+    - expr: 'diff(x**4 - 2*x**2 + 3, x, 2).subs(x, 1)'
+      expected: '8'
+    - expr: 'diff(x**4 - 2*x**2 + 3, x, 2).subs(x, -1)'
+      expected: '8'
+    - expr: '(x**4 - 2*x**2 + 3).subs(x, 1/sqrt(3))'
+      expected: 'Rational(22, 9)'
+:::
+
+
+::: exercise
+id: l2-concavity.handout-5-4-6
+number: "5.4.6"
+tier: standard
+topics:
+  - concavity
+  - inflection
+statement: |
+  Describe the concavity of \(y = \dfrac{x^{2} - 1}{x}\).
+solution: |
+  The function is defined for \(x \ne 0\). Rewrite it as \(y = x - \dfrac{1}{x}\). The first derivative and the second derivative are
+  \[
+  \begin{aligned}
+  y'&=1 + \frac{1}{x^{2}},\\
+  y''&=-\frac{2}{x^{3}}.
+  \end{aligned}
+  \]
+  The second derivative is never zero.
+
+  - For \(x < 0\), \(x^{3} < 0\), so \(y'' > 0\) and the graph is concave up on \((-\infty, 0)\).
+  - For \(x > 0\), \(x^{3} > 0\), so \(y'' < 0\) and the graph is concave down on \((0, \infty)\).
+
+  The sign of \(y''\) changes at \(x = 0\), but \(0\) is not in the domain, so the graph has no inflection point.
+provenance: handout-answer
+steps:
+  - Rewrite \(y = x - 1/x\) and differentiate twice to get \(y'' = -2/x^{3}\).
+  - The graph is concave up for \(x < 0\) and concave down for \(x > 0\).
+  - The sign change is at \(x = 0\), outside the domain, so there is no inflection point.
+verification:
+  checks:
+    - expr: '(x**2 - 1)/x - (x - 1/x)'
+      expected: '0'
+    - expr: 'diff((x**2 - 1)/x, x, 2)'
+      expected: '-2/x**3'
+    - expr: 'diff((x**2 - 1)/x, x, 2).subs(x, -1)'
+      expected: '2'
+    - expr: 'diff((x**2 - 1)/x, x, 2).subs(x, 1)'
+      expected: '-2'
+:::
+
+
+::: exercise
+id: l2-concavity.handout-5-4-7
+number: "5.4.7"
+tier: standard
+topics:
+  - concavity
+  - inflection
+statement: |
+  Describe the concavity of \(y = 3x^{2} - \dfrac{1}{x^{2}}\).
+solution: |
+  The function is defined for \(x \ne 0\). The first derivative and the second derivative are
+  \[
+  \begin{aligned}
+  y'&=6x + \frac{2}{x^{3}},\\
+  y''&=6 - \frac{6}{x^{4}} = \frac{6(x^{4} - 1)}{x^{4}}.
+  \end{aligned}
+  \]
+  The denominator is positive for \(x \ne 0\), so the sign of \(y''\) is the sign of \(x^{4} - 1\). This is zero at \(x = \pm 1\).
+
+  - For \(x < -1\), \(y'' > 0\), so the graph is concave up.
+  - For \(-1 < x < 0\), \(y'' < 0\), so the graph is concave down.
+  - For \(0 < x < 1\), \(y'' < 0\), so the graph is concave down.
+  - For \(x > 1\), \(y'' > 0\), so the graph is concave up.
+
+  The sign of \(y''\) changes at \(x = -1\) and at \(x = 1\), so these are inflection points, both at height \(y = 2\). The graph is concave down on both sides of \(x = 0\), and \(0\) is not in the domain, so there is no inflection point there.
+provenance: handout-answer
+steps:
+  - The second derivative is \(6(x^{4} - 1)/x^{4}\), zero at \(x = \pm 1\).
+  - The graph is concave up for \(x < -1\) and \(x > 1\), and concave down on \((-1, 0)\) and \((0, 1)\).
+  - The inflection points are \(x = \pm 1\), at height \(2\).
+verification:
+  checks:
+    - expr: 'diff(3*x**2 - 1/x**2, x, 2)'
+      expected: '6 - 6/x**4'
+    - expr: 'diff(3*x**2 - 1/x**2, x, 2).subs(x, 1)'
+      expected: '0'
+    - expr: 'diff(3*x**2 - 1/x**2, x, 2).subs(x, -1)'
+      expected: '0'
+    - expr: 'sign(diff(3*x**2 - 1/x**2, x, 2).subs(x, -2))'
+      expected: '1'
+    - expr: 'sign(diff(3*x**2 - 1/x**2, x, 2).subs(x, -Rational(1, 2)))'
+      expected: '-1'
+    - expr: 'sign(diff(3*x**2 - 1/x**2, x, 2).subs(x, Rational(1, 2)))'
+      expected: '-1'
+    - expr: 'sign(diff(3*x**2 - 1/x**2, x, 2).subs(x, 2))'
+      expected: '1'
+    - expr: '(3*x**2 - 1/x**2).subs(x, 1)'
+      expected: '2'
+:::
+
+
+::: exercise
+id: l2-concavity.handout-5-4-8
+number: "5.4.8"
+tier: standard
+topics:
+  - concavity
+  - inflection
+statement: |
+  Describe the concavity of \(y = \sin x + \cos x\).
+solution: |
+  The first derivative and the second derivative are
+  \[
+  \begin{aligned}
+  y'&=\cos x - \sin x,\\
+  y''&=-\sin x - \cos x = -(\sin x + \cos x).
+  \end{aligned}
+  \]
+  The addition formula gives
+  \[
+  \sin x + \cos x = \sqrt{2}\,\sin\!\left(x + \frac{\pi}{4}\right),
+  \]
+  so \(y'' = -\sqrt{2}\sin\bigl(x + \tfrac{\pi}{4}\bigr)\). The sign of \(y''\) is the opposite of the sign of \(\sin\bigl(x + \tfrac{\pi}{4}\bigr)\).
+
+  - The sine is positive when \(x + \dfrac{\pi}{4}\) lies in \((2n\pi, 2n\pi + \pi)\). Then \(y'' < 0\), and the graph is concave down on \(\left(2n\pi - \dfrac{\pi}{4},\ 2n\pi + \dfrac{3\pi}{4}\right)\).
+  - The sine is negative when \(x + \dfrac{\pi}{4}\) lies in \((2n\pi + \pi, 2n\pi + 2\pi)\). Then \(y'' > 0\), and the graph is concave up on \(\left(2n\pi + \dfrac{3\pi}{4},\ 2n\pi + \dfrac{7\pi}{4}\right)\).
+
+  In terms of \(n\), the concave down intervals are \(\left(\dfrac{(8n - 1)\pi}{4}, \dfrac{(8n + 3)\pi}{4}\right)\) and the concave up intervals are \(\left(\dfrac{(8n + 3)\pi}{4}, \dfrac{(8n + 7)\pi}{4}\right)\), for integer \(n\).
+
+  The sign of \(y''\) changes at every zero of \(\sin\bigl(x + \tfrac{\pi}{4}\bigr)\), so the inflection points are \(x = -\dfrac{\pi}{4} + k\pi\) for integer \(k\).
+provenance: handout-answer
+steps:
+  - The second derivative is \(y'' = -(\sin x + \cos x) = -\sqrt{2}\sin(x + \pi/4)\).
+  - The graph is concave down where \(\sin(x + \pi/4) > 0\) and concave up where it is negative.
+  - The intervals repeat with period \(2\pi\), and the inflection points are \(x = -\pi/4 + k\pi\).
+verification:
+  checks:
+    - expr: 'diff(sin(x) + cos(x), x, 2)'
+      expected: '-sin(x) - cos(x)'
+    - expr: 'expand_trig(sqrt(2)*sin(x + pi/4))'
+      expected: 'sin(x) + cos(x)'
+    - expr: 'diff(sin(x) + cos(x), x, 2).subs(x, -pi/4)'
+      expected: '0'
+    - expr: 'diff(sin(x) + cos(x), x, 2).subs(x, 3*pi/4)'
+      expected: '0'
+    - expr: 'diff(sin(x) + cos(x), x, 2).subs(x, 7*pi/4)'
+      expected: '0'
+    - expr: 'diff(sin(x) + cos(x), x, 2).subs(x, 0)'
+      expected: '-1'
+    - expr: 'diff(sin(x) + cos(x), x, 2).subs(x, pi)'
+      expected: '1'
+:::
+
+
+::: exercise
+id: l2-concavity.handout-5-4-18
+number: "5.4.18"
+tier: exam
+topics:
+  - concavity
+  - inflection
+statement: |
+  Describe the concavity of \(y = \sin^{3}x\). Find its inflection points.
+solution: |
+  The second derivative is
+  \[
+  \begin{aligned}
+  y''&=6\sin x\cos^{2}x - 3\sin^{3}x\\
+  &=3\sin x\,(2 - 2\sin^{2}x - \sin^{2}x)\\
+  &=3\sin x\,(2 - 3\sin^{2}x).
+  \end{aligned}
+  \]
+  Put \(s = \sin x\). Then \(y'' = 3s(2 - 3s^{2})\), which is zero when \(s = 0\) or \(s = \pm\sqrt{\tfrac{2}{3}}\). Let
+  \[
+  \alpha = \arcsin\sqrt{\tfrac{2}{3}} \approx 0.955.
+  \]
+  The zeros of \(y''\) in \([0, 2\pi]\) are \(0\), \(\alpha\), \(\pi - \alpha\), \(\pi\), \(\pi + \alpha\), \(2\pi - \alpha\) and \(2\pi\).
+
+  As a function of \(s\), the product \(3s(2 - 3s^{2})\) is
+
+  - positive for \(0 < s < \sqrt{\tfrac{2}{3}}\) and for \(s < -\sqrt{\tfrac{2}{3}}\),
+  - negative for \(s > \sqrt{\tfrac{2}{3}}\) and for \(-\sqrt{\tfrac{2}{3}} < s < 0\).
+
+  Following \(\sin x\) around one period gives the concavity:
+
+  - on \((0, \alpha)\), \(0 < s < \sqrt{\tfrac{2}{3}}\), concave up,
+  - on \((\alpha, \pi - \alpha)\), \(s > \sqrt{\tfrac{2}{3}}\), concave down,
+  - on \((\pi - \alpha, \pi)\), \(0 < s < \sqrt{\tfrac{2}{3}}\), concave up,
+  - on \((\pi, \pi + \alpha)\), \(-\sqrt{\tfrac{2}{3}} < s < 0\), concave down,
+  - on \((\pi + \alpha, 2\pi - \alpha)\), \(s < -\sqrt{\tfrac{2}{3}}\), concave up,
+  - on \((2\pi - \alpha, 2\pi)\), \(-\sqrt{\tfrac{2}{3}} < s < 0\), concave down.
+
+  The pattern repeats with period \(2\pi\). The sign of \(y''\) changes at each of the zeros, so each is an inflection point. In general they are
+  \[
+  x = n\pi, \qquad x = \alpha + n\pi, \qquad x = -\alpha + n\pi, \qquad n \in \mathbb{Z}.
+  \]
+provenance: handout-answer
+steps:
+  - Simplify \(y'' = 3\sin x\,(2 - 3\sin^{2}x)\).
+  - The zeros are \(\sin x = 0\) and \(\sin x = \pm\sqrt{2/3}\), that is, \(x = n\pi\) and \(x = \pm\alpha + n\pi\) with \(\alpha = \arcsin\sqrt{2/3}\).
+  - Read the sign of \(3s(2 - 3s^{2})\) along one period, which alternates up and down across the six intervals.
+  - Each zero is a sign change, so all are inflection points.
+verification:
+  checks:
+    - expr: 'diff(sin(x)**3, x, 2) - 3*sin(x)*(2 - 3*sin(x)**2)'
+      expected: '0'
+    - expr: 'sin(asin(sqrt(Rational(2, 3))))**2'
+      expected: 'Rational(2, 3)'
+    - expr: 'diff(sin(x)**3, x, 2).subs(x, 0)'
+      expected: '0'
+    - expr: 'diff(sin(x)**3, x, 2).subs(x, pi)'
+      expected: '0'
+    - expr: 'diff(sin(x)**3, x, 2).subs(x, asin(sqrt(Rational(2, 3))))'
+      expected: '0'
+    - expr: 'diff(sin(x)**3, x, 2).subs(x, pi - asin(sqrt(Rational(2, 3))))'
+      expected: '0'
+    - expr: 'diff(sin(x)**3, x, 2).subs(x, pi + asin(sqrt(Rational(2, 3))))'
+      expected: '0'
+    - expr: 'diff(sin(x)**3, x, 2).subs(x, 2*pi - asin(sqrt(Rational(2, 3))))'
+      expected: '0'
+    - expr: 'diff(sin(x)**3, x, 2).subs(x, pi/6)'
+      expected: 'Rational(15, 8)'
+    - expr: 'diff(sin(x)**3, x, 2).subs(x, pi/2)'
+      expected: '-3'
+    - expr: 'diff(sin(x)**3, x, 2).subs(x, 5*pi/6)'
+      expected: 'Rational(15, 8)'
+    - expr: 'diff(sin(x)**3, x, 2).subs(x, 7*pi/6)'
+      expected: '-Rational(15, 8)'
+    - expr: 'diff(sin(x)**3, x, 2).subs(x, 3*pi/2)'
+      expected: '3'
+    - expr: 'diff(sin(x)**3, x, 2).subs(x, 11*pi/6)'
+      expected: '-Rational(15, 8)'
+:::
+
+
+::: exercise
+id: l2-concavity.handout-5-4-20
+number: "5.4.20"
+tier: standard
+topics:
+  - concavity
+  - inflection
+statement: |
+  Describe the concavity of \(y = x^{3} + bx^{2} + cx + d\). You will need to consider different cases, depending on the values of the coefficients.
+solution: |
+  The first derivative and the second derivative are
+  \[
+  \begin{aligned}
+  y'&=3x^{2} + 2bx + c,\\
+  y''&=6x + 2b.
+  \end{aligned}
+  \]
+  The second derivative is zero at exactly one point,
+  \[
+  x_{0} = -\frac{b}{3}.
+  \]
+  It has the sign of \(x - x_{0}\), because \(y'' = 6(x - x_{0})\).
+
+  - For \(x < -\dfrac{b}{3}\), \(y'' < 0\), so the graph is concave down.
+  - For \(x > -\dfrac{b}{3}\), \(y'' > 0\), so the graph is concave up.
+
+  No case distinction is needed. The coefficients \(c\) and \(d\) do not appear in \(y''\), and \(b\) only moves the point where the concavity changes. The graph has exactly one inflection point, at \(x = -\dfrac{b}{3}\), whatever the values of \(b\), \(c\) and \(d\). Its height is
+  \[
+  y\bigl(-\tfrac{b}{3}\bigr) = \frac{2b^{3}}{27} - \frac{bc}{3} + d.
+  \]
+provenance: written-for-site
+steps:
+  - The second derivative is \(y'' = 6x + 2b = 6(x + b/3)\).
+  - The graph is concave down for \(x < -b/3\) and concave up for \(x > -b/3\).
+  - There is one inflection point at \(x = -b/3\) for all values of \(b\), \(c\) and \(d\).
+verification:
+  checks:
+    - expr: 'diff(x**3 + b*x**2 + c*x + d, x, 2)'
+      expected: '6*x + 2*b'
+    - expr: 'solve(6*x + 2*b, x)[0]'
+      expected: '-b/3'
+    - expr: '6*(x + b/3) - (6*x + 2*b)'
+      expected: '0'
+    - expr: '(x**3 + b*x**2 + c*x + d).subs(x, -b/3)'
+      expected: '2*b**3/27 - b*c/3 + d'
+:::

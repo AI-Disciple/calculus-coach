@@ -1371,3 +1371,1146 @@ verification:
     - expr: (-a**2 + 4*a - 3).subs(a, 2)
       expected: "1"
 :::
+
+::: exercise
+id: l2-optimisation.handout-6-1-1
+number: "6.1.1"
+tier: standard
+topics:
+  - optimisation
+  - extrema
+statement: |
+  Let \(f(x) = 1 + 4x - x^2\) for \(x \le 3\) and \(f(x) = \dfrac{x+5}{2}\) for \(x > 3\). Find the maximum and minimum values of \(f(x)\) for \(x\) in \([0, 4]\). Sketch the graph of \(f\) to check your answers.
+solution: |
+  Both pieces give \(4\) at \(x = 3\), because \(1 + 12 - 9 = 4\) and \(\frac{3+5}{2} = 4\). So \(f\) is continuous on \([0, 4]\), and the closed-interval method applies.
+
+  The derivative on each piece is
+  \[
+  \begin{aligned}
+  f'(x)&=4 - 2x \quad (0 \le x < 3),\\
+  f'(x)&=\tfrac{1}{2} \quad (3 < x \le 4).
+  \end{aligned}
+  \]
+  The first piece has \(f'(x) = 0\) at \(x = 2\), which lies in \([0, 3)\). The second piece has no zero of \(f'\). At \(x = 3\) the left slope is \(4 - 6 = -2\) and the right slope is \(\frac{1}{2}\). The slopes differ, so \(f'(3)\) is undefined and \(x = 3\) is a critical value.
+
+  The candidates are the critical values \(2\) and \(3\) and the endpoints \(0\) and \(4\):
+  \[
+  \begin{aligned}
+  f(0)&=1,\\
+  f(2)&=5,\\
+  f(3)&=4,\\
+  f(4)&=\tfrac{9}{2}.
+  \end{aligned}
+  \]
+  The graph rises from \((0, 1)\) to the peak \((2, 5)\), falls to a corner at \((3, 4)\), and then rises along a straight line to \((4, \frac{9}{2})\). This agrees with the values.
+
+  The maximum value is \(5\), at \(x = 2\), and the minimum value is \(1\), at \(x = 0\).
+provenance: handout-answer
+steps:
+  - Both pieces equal 4 at x = 3, so f is continuous on [0, 4].
+  - Critical values x = 2 (zero of f') and x = 3 (corner, f' undefined).
+  - Values f(0) = 1, f(2) = 5, f(3) = 4, f(4) = 9/2.
+  - Maximum 5 at x = 2, minimum 1 at x = 0.
+verification:
+  checks:
+    - expr: (1 + 4*x - x**2).subs(x, 3)
+      expected: 4
+    - expr: ((x + 5)/2).subs(x, 3)
+      expected: 4
+    - expr: diff(1 + 4*x - x**2, x).subs(x, 2)
+      expected: 0
+    - expr: diff(1 + 4*x - x**2, x).subs(x, 3)
+      expected: -2
+    - expr: diff((x + 5)/2, x)
+      expected: Rational(1, 2)
+    - expr: (1 + 4*x - x**2).subs(x, 2)
+      expected: 5
+    - expr: (1 + 4*x - x**2).subs(x, 0)
+      expected: 1
+    - expr: ((x + 5)/2).subs(x, 4)
+      expected: Rational(9, 2)
+    - expr: Max(1, 5, 4, Rational(9, 2))
+      expected: 5
+    - expr: Min(1, 5, 4, Rational(9, 2))
+      expected: 1
+:::
+
+
+::: exercise
+id: l2-optimisation.handout-6-1-4
+number: "6.1.4"
+tier: standard
+topics:
+  - optimisation
+statement: |
+  A box with a square base and no top is to hold a volume \(100\). Find the dimensions of the box that requires the least material for the five sides. Also find the ratio of the height to the side of the base.
+solution: |
+  Let the base have side \(w\) and let the height be \(h\), with \(w > 0\) and \(h > 0\). The material is the base \(w^2\) plus four sides of area \(wh\), so the quantity to minimise is
+  \[
+  A = w^2 + 4wh.
+  \]
+  The volume condition \(w^2 h = 100\) gives \(h = \dfrac{100}{w^2}\). In one variable,
+  \[
+  A(w) = w^2 + \frac{400}{w}, \qquad w > 0.
+  \]
+  The domain is open, so there are no endpoints.
+
+  The derivative is
+  \[
+  A'(w) = 2w - \frac{400}{w^2} = \frac{2w^3 - 400}{w^2}.
+  \]
+  It vanishes only when \(w^3 = 200\), that is \(w = 200^{1/3} = 2\cdot 5^{2/3}\), because \(8 \cdot 25 = 200\). The second derivative \(A''(w) = 2 + \dfrac{800}{w^3}\) is positive for \(w > 0\), so this single critical value is a local minimum, and therefore the global minimum.
+
+  The height is
+  \[
+  \begin{aligned}
+  h&=\frac{100}{w^2}=\frac{100}{4\cdot 5^{4/3}}\\
+  &=5^{2/3}.
+  \end{aligned}
+  \]
+  The box has a square base of side \(w = 2\cdot 5^{2/3} \approx 5.85\) and height \(h = 5^{2/3} \approx 2.92\). The ratio is \(\dfrac{h}{w} = \dfrac{1}{2}\).
+provenance: handout-answer
+steps:
+  - Area A = w^2 + 4wh with h = 100/w^2, so A(w) = w^2 + 400/w for w > 0.
+  - A'(w) = 0 gives w^3 = 200, w = 2 * 5^(2/3).
+  - A'' > 0, so the single critical value is the global minimum.
+  - Height h = 5^(2/3), ratio h/w = 1/2.
+verification:
+  checks:
+    - expr: diff(w**2 + 400/w, w).subs(w, 2*5**Rational(2, 3))
+      expected: 0
+    - expr: (2*5**Rational(2, 3))**3
+      expected: 200
+    - expr: sign(diff(w**2 + 400/w, w, 2).subs(w, 2*5**Rational(2, 3)))
+      expected: 1
+    - expr: 100/(2*5**Rational(2, 3))**2
+      expected: 5**Rational(2, 3)
+    - expr: 5**Rational(2, 3)/(2*5**Rational(2, 3))
+      expected: Rational(1, 2)
+    - expr: (w**2 + 4*w*(100/w**2)).subs(w, 2*5**Rational(2, 3)) - (w**2 + 400/w).subs(w, 2*5**Rational(2, 3))
+      expected: 0
+:::
+
+
+::: exercise
+id: l2-optimisation.handout-6-1-5
+number: "6.1.5"
+tier: standard
+topics:
+  - optimisation
+statement: |
+  A box with a square base is to hold a volume \(200\). The bottom and top are formed by folding in flaps from all four sides, so that the bottom and the top each consist of two layers of cardboard. Find the dimensions of the box that requires the least material. Also find the ratio of the height to the side of the base.
+solution: |
+  Let the base have side \(s\) and let the height be \(h\), with \(s > 0\). The bottom and the top each use two layers, so each counts \(2s^2\) of material. The four sides use \(sh\) each. The quantity to minimise is
+  \[
+  A = 2s^2 + 2s^2 + 4sh = 4s^2 + 4sh.
+  \]
+  The volume condition \(s^2 h = 200\) gives \(h = \dfrac{200}{s^2}\), so
+  \[
+  A(s) = 4s^2 + \frac{800}{s}, \qquad s > 0.
+  \]
+  The domain is open, so there are no endpoints.
+
+  The derivative is
+  \[
+  A'(s) = 8s - \frac{800}{s^2} = \frac{8s^3 - 800}{s^2}.
+  \]
+  It vanishes only when \(s^3 = 100\), that is \(s = 100^{1/3} \approx 4.64\). The second derivative \(A''(s) = 8 + \dfrac{1600}{s^3}\) is positive, so this single critical value is the global minimum.
+
+  Since \(200 = 2s^3\) at this value, the height is
+  \[
+  h = \frac{200}{s^2} = \frac{2s^3}{s^2} = 2s = 2\cdot 100^{1/3}.
+  \]
+  The box measures \(100^{1/3} \times 100^{1/3} \times 2\cdot 100^{1/3}\), about \(4.64 \times 4.64 \times 9.28\). The ratio of the height to the side of the base is \(\dfrac{h}{s} = 2\).
+provenance: handout-answer
+steps:
+  - Material A = 4s^2 + 4sh with h = 200/s^2, so A(s) = 4s^2 + 800/s for s > 0.
+  - A'(s) = 0 gives s^3 = 100, and A'' > 0.
+  - Height h = 2s = 2 * 100^(1/3), ratio h/s = 2.
+verification:
+  checks:
+    - expr: diff(4*s**2 + 800/s, s).subs(s, 100**Rational(1, 3))
+      expected: 0
+    - expr: sign(diff(4*s**2 + 800/s, s, 2).subs(s, 100**Rational(1, 3)))
+      expected: 1
+    - expr: 200/(100**Rational(1, 3))**2
+      expected: 2*100**Rational(1, 3)
+    - expr: (200/(100**Rational(1, 3))**2)/100**Rational(1, 3)
+      expected: 2
+    - expr: expand(4*s**2 + 4*s*(200/s**2)) - (4*s**2 + 800/s)
+      expected: 0
+:::
+
+
+::: exercise
+id: l2-optimisation.handout-6-1-7
+number: "6.1.7"
+tier: basic
+topics:
+  - optimisation
+statement: |
+  You have \(100\) feet of fence to make a rectangular play area alongside the wall of your house. The wall of the house bounds one side. What is the largest area possible, in square feet, for the play area?
+solution: |
+  Let the two sides perpendicular to the wall have length \(y\) and let the side parallel to the wall have length \(x\). Only three sides are fenced, so the constraint is \(x + 2y = 100\), that is \(x = 100 - 2y\). Both lengths are at least \(0\), so \(y\) lies in \([0, 50]\). The area is
+  \[
+  A(y) = (100 - 2y)y = 100y - 2y^2.
+  \]
+  The derivative is \(A'(y) = 100 - 4y\). It equals zero at \(y = 25\), which lies in \([0, 50]\). The candidate values are
+  \[
+  \begin{aligned}
+  A(0)&=0,\\
+  A(25)&=1250,\\
+  A(50)&=0.
+  \end{aligned}
+  \]
+  The largest possible area is \(1250\) square feet, with \(y = 25\) and \(x = 50\).
+provenance: handout-answer
+steps:
+  - Constraint x = 100 - 2y and area A(y) = 100y - 2y^2 on [0, 50].
+  - Critical value y = 25, with A(25) = 1250.
+  - Endpoint areas are 0, so the maximum is 1250 square feet.
+verification:
+  checks:
+    - expr: diff((100 - 2*y)*y, y)
+      expected: 100 - 4*y
+    - expr: diff((100 - 2*y)*y, y).subs(y, 25)
+      expected: 0
+    - expr: ((100 - 2*y)*y).subs(y, 25)
+      expected: 1250
+    - expr: ((100 - 2*y)*y).subs(y, 0)
+      expected: 0
+    - expr: ((100 - 2*y)*y).subs(y, 50)
+      expected: 0
+    - expr: (100 - 2*y).subs(y, 25)
+      expected: 50
+:::
+
+
+::: exercise
+id: l2-optimisation.handout-6-1-10
+number: "6.1.10"
+tier: standard
+topics:
+  - optimisation
+statement: |
+  Find the area of the largest rectangle that fits inside a semicircle of radius \(10\), with one side of the rectangle along the diameter of the semicircle.
+solution: |
+  Place the centre of the semicircle at the origin, so the arc is \(y = \sqrt{100 - x^2}\). Let the rectangle have its two lower corners at \((\pm x, 0)\) and its two upper corners on the arc at height \(\sqrt{100 - x^2}\), with \(x\) in \([0, 10]\). The area is
+  \[
+  A(x) = 2x\sqrt{100 - x^2}.
+  \]
+  The area is never negative, so \(A\) and \(A^2\) have the same maximum point. The square is a polynomial:
+  \[
+  A(x)^2 = 4x^2(100 - x^2) = 400x^2 - 4x^4.
+  \]
+  Its derivative is
+  \[
+  \frac{d}{dx}A^2 = 800x - 16x^3 = 16x(50 - x^2),
+  \]
+  which vanishes at \(x = 0\) and at \(x = \sqrt{50} = 5\sqrt{2} \approx 7.07\). Both lie in \([0, 10]\). The candidate values of \(A^2\) are
+  \[
+  \begin{aligned}
+  A(0)^2&=0,\\
+  A(5\sqrt{2})^2&=4\cdot 50\cdot 50=10000,\\
+  A(10)^2&=0.
+  \end{aligned}
+  \]
+  The largest rectangle has half-width \(5\sqrt{2}\) and height \(5\sqrt{2}\), and its area is \(\sqrt{10000} = 100\).
+provenance: handout-answer
+steps:
+  - Area A(x) = 2x sqrt(100 - x^2) on [0, 10].
+  - Maximise A^2 = 400x^2 - 4x^4, with critical value x = 5 sqrt(2).
+  - A^2 = 10000 there and 0 at the endpoints, so the largest area is 100.
+verification:
+  checks:
+    - expr: diff(400*x**2 - 4*x**4, x).subs(x, 5*sqrt(2))
+      expected: 0
+    - expr: expand(4*x**2*(100 - x**2))
+      expected: 400*x**2 - 4*x**4
+    - expr: (400*x**2 - 4*x**4).subs(x, 5*sqrt(2))
+      expected: 10000
+    - expr: (2*x*sqrt(100 - x**2)).subs(x, 5*sqrt(2))
+      expected: 100
+    - expr: sqrt(100 - (5*sqrt(2))**2)
+      expected: 5*sqrt(2)
+:::
+
+
+::: exercise
+id: l2-optimisation.handout-6-1-12
+number: "6.1.12"
+tier: standard
+topics:
+  - optimisation
+statement: |
+  For a cylinder with surface area \(50\), including the top and the bottom, find the ratio of the height to the base radius that maximises the volume.
+solution: |
+  Let the base radius be \(r\) and the height \(h\). The surface area is the two ends plus the side, so
+  \[
+  2\pi r^2 + 2\pi r h = 50, \qquad h = \frac{25 - \pi r^2}{\pi r}.
+  \]
+  The height is at least \(0\) exactly when \(r \le 5/\sqrt{\pi}\), so \(r\) lies in \([0, 5/\sqrt{\pi}]\). The volume is
+  \[
+  V(r) = \pi r^2 h = 25r - \pi r^3.
+  \]
+  The derivative is \(V'(r) = 25 - 3\pi r^2\). It vanishes at
+  \[
+  r = \frac{5}{\sqrt{3\pi}} \approx 1.63,
+  \]
+  which lies in \([0, 5/\sqrt{\pi}]\). At both endpoints \(V = r(25 - \pi r^2) = 0\), while \(V > 0\) at the critical value, so the critical value gives the maximum.
+
+  At this value \(\pi r^2 = \frac{25}{3}\). The ratio is
+  \[
+  \begin{aligned}
+  \frac{h}{r}&=\frac{25 - \pi r^2}{\pi r^2}\\
+  &=\frac{25 - 25/3}{25/3}=2.
+  \end{aligned}
+  \]
+  The volume is largest when the height equals the diameter, \(\dfrac{h}{r} = 2\).
+provenance: handout-answer
+steps:
+  - Surface condition gives h = (25 - pi r^2)/(pi r), so V(r) = 25r - pi r^3 on [0, 5/sqrt(pi)].
+  - V'(r) = 0 gives r = 5/sqrt(3 pi), and V = 0 at both endpoints.
+  - At this radius h/r = (25 - pi r^2)/(pi r^2) = 2.
+verification:
+  checks:
+    - expr: expand(pi*r**2*(25 - pi*r**2)/(pi*r)) - (25*r - pi*r**3)
+      expected: 0
+    - expr: diff(25*r - pi*r**3, r).subs(r, 5/sqrt(3*pi))
+      expected: 0
+    - expr: ((25 - pi*r**2)/(pi*r**2)).subs(r, 5/sqrt(3*pi))
+      expected: 2
+    - expr: (2*pi*r**2 + 2*pi*r*(2*r)).subs(r, 5/sqrt(3*pi))
+      expected: 50
+    - expr: (25*r - pi*r**3).subs(r, 5/sqrt(3*pi))
+      expected: 250/(3*sqrt(3*pi))
+    - expr: (25*r - pi*r**3).subs(r, 5/sqrt(pi))
+      expected: 0
+:::
+
+
+::: exercise
+id: l2-optimisation.handout-6-1-14
+number: "6.1.14"
+tier: standard
+topics:
+  - optimisation
+statement: |
+  You want to make cylindrical containers to hold \(1\) liter (\(1000\) cubic centimeters) using the least amount of construction material. The side is made from a rectangular piece of material, and this can be done with no material wasted. However, the top and bottom are cut from squares of side \(2r\), so that \(2(2r)^2 = 8r^2\) of material is needed, rather than the \(2\pi r^2\) that is the total area of the top and bottom. Find the dimensions of the container that uses the least amount of material, and find the ratio of the height to the radius for this container.
+solution: |
+  Let the radius be \(r > 0\) and the height \(h\). The side is a rectangle of area \(2\pi r h\), and the ends need \(8r^2\), so the material is
+  \[
+  M = 2\pi r h + 8r^2.
+  \]
+  The volume condition \(\pi r^2 h = 1000\) gives \(h = \dfrac{1000}{\pi r^2}\). Then \(2\pi r h = \dfrac{2000}{r}\), and
+  \[
+  M(r) = \frac{2000}{r} + 8r^2, \qquad r > 0.
+  \]
+  The domain is open, so there are no endpoints.
+
+  The derivative is
+  \[
+  M'(r) = -\frac{2000}{r^2} + 16r = \frac{16r^3 - 2000}{r^2}.
+  \]
+  It vanishes only when \(r^3 = 125\), that is \(r = 5\). The second derivative \(M''(r) = \dfrac{4000}{r^3} + 16\) is positive, so this single critical value is the global minimum.
+
+  The height is
+  \[
+  h = \frac{1000}{25\pi} = \frac{40}{\pi} \approx 12.7.
+  \]
+  The container has radius \(5\) cm and height \(\dfrac{40}{\pi}\) cm, and the ratio is \(\dfrac{h}{r} = \dfrac{8}{\pi}\). The material used is \(M(5) = 600\) cm\(^2\).
+provenance: handout-answer
+steps:
+  - Material M = 2 pi r h + 8 r^2 with h = 1000/(pi r^2), so M(r) = 2000/r + 8 r^2.
+  - M'(r) = 0 gives r^3 = 125, r = 5, and M'' > 0.
+  - Height h = 40/pi, ratio h/r = 8/pi.
+verification:
+  checks:
+    - expr: diff(2000/r + 8*r**2, r).subs(r, 5)
+      expected: 0
+    - expr: sign(diff(2000/r + 8*r**2, r, 2).subs(r, 5))
+      expected: 1
+    - expr: 1000/(pi*5**2)
+      expected: 40/pi
+    - expr: (1000/(pi*5**2))/5
+      expected: 8/pi
+    - expr: (2000/r + 8*r**2).subs(r, 5)
+      expected: 600
+    - expr: expand(2*pi*r*(1000/(pi*r**2)) + 8*r**2) - (2000/r + 8*r**2)
+      expected: 0
+:::
+
+
+::: exercise
+id: l2-optimisation.handout-6-1-16
+number: "6.1.16"
+tier: standard
+topics:
+  - optimisation
+statement: |
+  Given a right circular cone, you put an upside-down cone inside it so that its vertex is at the centre of the base of the larger cone and its base is parallel to the base of the larger cone. If you choose the upside-down cone to have the largest possible volume, what fraction of the volume of the larger cone does it occupy? Let \(H\) and \(R\) be the height and base radius of the larger cone, and let \(h\) and \(r\) be the height and base radius of the smaller cone. Hint: use similar triangles to get an equation relating \(h\) and \(r\).
+solution: |
+  Measure heights from the base of the larger cone. The smaller cone has its vertex at height \(0\) and its base, a circle of radius \(r\), at height \(h\), with \(h\) in \([0, H]\). The rim of that circle lies on the surface of the larger cone. At height \(h\) the larger cone has radius \(R\dfrac{H - h}{H}\), because its radius falls linearly from \(R\) at height \(0\) to \(0\) at height \(H\). This is the similar-triangles relation:
+  \[
+  r = R\,\frac{H - h}{H}.
+  \]
+  The volume of the smaller cone is
+  \[
+  V(h) = \frac{\pi r^2 h}{3} = \frac{\pi R^2}{3H^2}\,h(H - h)^2.
+  \]
+  The derivative of \(h(H - h)^2\) is
+  \[
+  \begin{aligned}
+  (H - h)^2 - 2h(H - h)&=(H - h)(H - 3h),
+  \end{aligned}
+  \]
+  so \(V'(h) = 0\) at \(h = H\) and at \(h = \dfrac{H}{3}\). Both lie in \([0, H]\). The volume is \(0\) at \(h = 0\) and at \(h = H\), so the maximum is at \(h = \dfrac{H}{3}\). There \(r = \dfrac{2R}{3}\) and
+  \[
+  \begin{aligned}
+  V\!\left(\tfrac{H}{3}\right)&=\frac{\pi R^2}{3H^2}\cdot\frac{H}{3}\cdot\frac{4H^2}{9}\\
+  &=\frac{4\pi R^2 H}{81}.
+  \end{aligned}
+  \]
+  The larger cone has volume \(\dfrac{\pi R^2 H}{3}\), so the fraction is
+  \[
+  \frac{4\pi R^2 H/81}{\pi R^2 H/3} = \frac{4}{27}.
+  \]
+provenance: handout-answer
+steps:
+  - Similar triangles give r = R(H - h)/H, so V(h) = pi R^2 h (H - h)^2 / (3 H^2) on [0, H].
+  - V'(h) = 0 at h = H/3, and V = 0 at both endpoints.
+  - V(H/3) = 4 pi R^2 H / 81, which is 4/27 of the larger cone.
+verification:
+  checks:
+    - expr: simplify(diff(h*(H - h)**2, h) - (H - h)*(H - 3*h))
+      expected: 0
+    - expr: diff(pi*R**2*h*(H - h)**2/(3*H**2), h).subs(h, H/3)
+      expected: 0
+    - expr: simplify((pi*R**2*h*(H - h)**2/(3*H**2)).subs(h, H/3))
+      expected: 4*pi*R**2*H/81
+    - expr: simplify((pi*R**2*h*(H - h)**2/(3*H**2)).subs(h, H/3)/(pi*R**2*H/3))
+      expected: Rational(4, 27)
+    - expr: (R*(H - h)/H).subs(h, H/3)
+      expected: 2*R/3
+:::
+
+
+::: exercise
+id: l2-optimisation.handout-6-1-18
+number: "6.1.18"
+tier: exam
+topics:
+  - optimisation
+statement: |
+  A container holding a fixed volume is being made in the shape of a cylinder with a hemispherical top. The hemispherical top has the same radius as the cylinder. Find the ratio of the height to the radius of the cylinder that minimises the cost of the container if
+
+  (a) the cost per unit area of the top is twice as great as the cost per unit area of the side, and the container is made with no bottom;
+
+  (b) the same as in (a), except that the container is made with a circular bottom, for which the cost per unit area is \(1.5\) times the cost per unit area of the side.
+solution: |
+  Let the radius be \(r > 0\), the height of the cylinder part \(h\), and the fixed volume \(V\). Let \(c\) be the cost per unit area of the side. The volume is the cylinder plus the hemisphere,
+  \[
+  V = \pi r^2 h + \tfrac{2}{3}\pi r^3, \qquad h = \frac{V}{\pi r^2} - \frac{2r}{3}.
+  \]
+  The side has area \(2\pi r h\), the hemispherical top has area \(2\pi r^2\), and the bottom disc has area \(\pi r^2\). Then
+  \[
+  2\pi r h = \frac{2V}{r} - \frac{4}{3}\pi r^2.
+  \]
+
+  (a) The top costs \(2c\) per unit area and there is no bottom, so
+  \[
+  \begin{aligned}
+  \frac{C}{c}&=2\pi r h + 2\cdot 2\pi r^2\\
+  &=\frac{2V}{r} + \frac{8}{3}\pi r^2.
+  \end{aligned}
+  \]
+  The derivative is
+  \[
+  \frac{d}{dr}\frac{C}{c} = -\frac{2V}{r^2} + \frac{16}{3}\pi r,
+  \]
+  and it vanishes only when \(r^3 = \dfrac{3V}{8\pi}\), that is \(V = \dfrac{8\pi r^3}{3}\). The second derivative \(\dfrac{4V}{r^3} + \dfrac{16\pi}{3}\) is positive, so the derivative increases and changes sign from negative to positive at this value. It is the global minimum. With \(V = \frac{8\pi r^3}{3}\),
+  \[
+  h = \frac{8r}{3} - \frac{2r}{3} = 2r.
+  \]
+  The ratio is \(\dfrac{h}{r} = 2\).
+
+  (b) The bottom costs \(1.5c\) per unit area, which adds \(\frac{3}{2}\pi r^2\). So
+  \[
+  \begin{aligned}
+  \frac{C}{c}&=\frac{2V}{r} + \frac{8}{3}\pi r^2 + \frac{3}{2}\pi r^2\\
+  &=\frac{2V}{r} + \frac{25}{6}\pi r^2.
+  \end{aligned}
+  \]
+  The derivative is \(-\dfrac{2V}{r^2} + \dfrac{25}{3}\pi r\), which vanishes only when \(r^3 = \dfrac{6V}{25\pi}\), that is \(V = \dfrac{25\pi r^3}{6}\). The second derivative is again positive, so this value is the global minimum. Then
+  \[
+  h = \frac{25r}{6} - \frac{4r}{6} = \frac{7r}{2}.
+  \]
+  The ratio is \(\dfrac{h}{r} = \dfrac{7}{2}\).
+provenance: handout-answer
+steps:
+  - Volume gives h = V/(pi r^2) - 2r/3, so 2 pi r h = 2V/r - (4/3) pi r^2.
+  - Part (a) cost C/c = 2V/r + (8/3) pi r^2, critical value V = 8 pi r^3 / 3, h = 2r.
+  - Part (b) cost C/c = 2V/r + (25/6) pi r^2, critical value V = 25 pi r^3 / 6, h = 7r/2.
+  - Ratios 2 and 7/2.
+verification:
+  checks:
+    - expr: expand(2*pi*r*(V/(pi*r**2) - 2*r/3) + 2*(2*pi*r**2)) - (2*V/r + 8*pi*r**2/3)
+      expected: 0
+    - expr: diff(2*V/r + 8*pi*r**2/3, r).subs(V, 8*pi*r**3/3)
+      expected: 0
+    - expr: ((V/(pi*r**2) - 2*r/3)/r).subs(V, 8*pi*r**3/3)
+      expected: 2
+    - expr: Rational(8, 3) + Rational(3, 2)
+      expected: Rational(25, 6)
+    - expr: diff(2*V/r + 25*pi*r**2/6, r).subs(V, 25*pi*r**3/6)
+      expected: 0
+    - expr: ((V/(pi*r**2) - 2*r/3)/r).subs(V, 25*pi*r**3/6)
+      expected: Rational(7, 2)
+:::
+
+
+::: exercise
+id: l2-optimisation.handout-6-1-19
+number: "6.1.19"
+tier: standard
+topics:
+  - optimisation
+statement: |
+  A piece of cardboard is \(1\) meter by \(\frac{1}{2}\) meter. A square is to be cut from each corner and the sides folded up to make an open-top box. What are the dimensions of the box with the maximum possible volume?
+solution: |
+  Let the side of each cut square be \(x\) metres. The box has height \(x\), length \(1 - 2x\) and width \(\frac{1}{2} - 2x\). Both lengths must be at least \(0\), so \(x\) lies in \([0, \frac{1}{4}]\). The volume is
+  \[
+  \begin{aligned}
+  V(x)&=x(1 - 2x)\left(\tfrac{1}{2} - 2x\right)\\
+  &=4x^3 - 3x^2 + \tfrac{1}{2}x.
+  \end{aligned}
+  \]
+  The derivative is
+  \[
+  V'(x) = 12x^2 - 6x + \tfrac{1}{2},
+  \]
+  and \(V'(x) = 0\) is the same as \(24x^2 - 12x + 1 = 0\). The quadratic formula gives
+  \[
+  x = \frac{12 \pm \sqrt{48}}{48} = \frac{1}{4} \pm \frac{\sqrt{3}}{12}.
+  \]
+  The root with the plus sign exceeds \(\frac{1}{4}\), so it is outside the interval. The other root,
+  \[
+  x = \frac{1}{4} - \frac{\sqrt{3}}{12} \approx 0.106,
+  \]
+  lies in \([0, \frac{1}{4}]\). The volume is \(0\) at both endpoints \(x = 0\) and \(x = \frac{1}{4}\) and positive in between, so this critical value gives the maximum, with
+  \[
+  V = \frac{\sqrt{3}}{72} \approx 0.024\ \text{m}^3.
+  \]
+  At \(x = \frac{1}{4} - \frac{\sqrt{3}}{12}\) the other two dimensions are
+  \[
+  \begin{aligned}
+  1 - 2x&=\frac{1}{2} + \frac{\sqrt{3}}{6},\\
+  \tfrac{1}{2} - 2x&=\frac{\sqrt{3}}{6}.
+  \end{aligned}
+  \]
+  The box measures \(\dfrac{\sqrt{3}}{6}\) by \(\left(\dfrac{\sqrt{3}}{6} + \dfrac{1}{2}\right)\) by \(\left(\dfrac{1}{4} - \dfrac{\sqrt{3}}{12}\right)\) metres, about \(0.289 \times 0.789 \times 0.106\).
+provenance: handout-answer
+steps:
+  - Cut square x gives V(x) = x(1 - 2x)(1/2 - 2x) on [0, 1/4].
+  - V'(x) = 12x^2 - 6x + 1/2 = 0 has roots 1/4 plus or minus sqrt(3)/12, and only the smaller root is in the interval.
+  - Dimensions sqrt(3)/6 by (sqrt(3)/6 + 1/2) by (1/4 - sqrt(3)/12) metres.
+verification:
+  checks:
+    - expr: expand(x*(1 - 2*x)*(Rational(1, 2) - 2*x))
+      expected: 4*x**3 - 3*x**2 + x/2
+    - expr: diff(4*x**3 - 3*x**2 + x/2, x)
+      expected: 12*x**2 - 6*x + Rational(1, 2)
+    - expr: sorted(solve(24*x**2 - 12*x + 1, x))
+      expected: "[Rational(1, 4) - sqrt(3)/12, Rational(1, 4) + sqrt(3)/12]"
+    - expr: (1 - 2*x).subs(x, Rational(1, 4) - sqrt(3)/12)
+      expected: Rational(1, 2) + sqrt(3)/6
+    - expr: (Rational(1, 2) - 2*x).subs(x, Rational(1, 4) - sqrt(3)/12)
+      expected: sqrt(3)/6
+    - expr: (x*(1 - 2*x)*(Rational(1, 2) - 2*x)).subs(x, Rational(1, 4) - sqrt(3)/12)
+      expected: sqrt(3)/72
+    - expr: (x*(1 - 2*x)*(Rational(1, 2) - 2*x)).subs(x, Rational(1, 4))
+      expected: 0
+    - expr: sign(sqrt(3)/12)
+      expected: 1
+:::
+
+
+::: exercise
+id: l2-optimisation.handout-6-1-20
+number: "6.1.20"
+tier: standard
+topics:
+  - optimisation
+statement: |
+  (a) A square piece of cardboard of side \(a\) is used to make an open-top box by cutting out a small square from each corner and bending up the sides. How large a square should be cut from each corner in order that the box have maximum volume?
+
+  (b) What if the piece of cardboard used to make the box is a rectangle of sides \(a\) and \(b\)?
+solution: |
+  (a) Let the cut square have side \(x\). The box has height \(x\) and a square base of side \(a - 2x\), so \(x\) lies in \([0, a/2]\) and
+  \[
+  V(x) = x(a - 2x)^2.
+  \]
+  The derivative is
+  \[
+  \begin{aligned}
+  V'(x)&=(a - 2x)^2 - 4x(a - 2x)\\
+  &=(a - 2x)(a - 6x).
+  \end{aligned}
+  \]
+  It vanishes at \(x = \frac{a}{2}\) and at \(x = \frac{a}{6}\). The volume is \(0\) at \(x = 0\) and at \(x = \frac{a}{2}\), and \(V\!\left(\frac{a}{6}\right) = \frac{2a^3}{27}\) is positive. The square to cut has side \(\dfrac{a}{6}\).
+
+  (b) Take \(a \ge b\), so the shorter side is \(b\). The box has height \(x\), length \(a - 2x\) and width \(b - 2x\), with \(x\) in \([0, \frac{b}{2}]\). The volume is
+  \[
+  V(x) = x(a - 2x)(b - 2x) = 4x^3 - 2(a + b)x^2 + abx.
+  \]
+  The derivative is
+  \[
+  V'(x) = 12x^2 - 4(a + b)x + ab.
+  \]
+  The quadratic formula gives the roots
+  \[
+  x_\pm = \frac{(a + b) \pm \sqrt{a^2 - ab + b^2}}{6},
+  \]
+  because the discriminant is \(16(a + b)^2 - 48ab = 16(a^2 - ab + b^2)\).
+
+  Only one root lies in the interval. The parabola \(V'\) opens upward, \(V'(0) = ab > 0\), and
+  \[
+  V'\!\left(\tfrac{b}{2}\right) = 3b^2 - 2(a + b)b + ab = b(b - a) \le 0.
+  \]
+  So \(V'\) is positive at the left end and is not positive at the right end, and the smaller root satisfies \(x_- \le \frac{b}{2} \le x_+\). Then \(V' > 0\) on \([0, x_-)\) and \(V' < 0\) just after \(x_-\), up to \(\frac{b}{2}\). The maximum is at \(x_-\):
+  \[
+  x = \frac{a + b - \sqrt{a^2 - ab + b^2}}{6}.
+  \]
+  For \(a = b\) this gives \(\frac{2a - a}{6} = \frac{a}{6}\), which agrees with (a).
+provenance: handout-answer
+steps:
+  - Part (a) V(x) = x(a - 2x)^2 has V' = (a - 2x)(a - 6x), so the cut is a/6.
+  - Part (b) V'(x) = 12x^2 - 4(a + b)x + ab with roots (a + b plus or minus sqrt(a^2 - ab + b^2))/6.
+  - V'(0) > 0 and V'(b/2) = b(b - a) is at most 0, so the smaller root is the maximum point.
+verification:
+  checks:
+    - expr: simplify(diff(x*(a - 2*x)**2, x) - (a - 2*x)*(a - 6*x))
+      expected: 0
+    - expr: simplify((x*(a - 2*x)**2).subs(x, a/6))
+      expected: 2*a**3/27
+    - expr: expand(x*(a - 2*x)*(b - 2*x))
+      expected: 4*x**3 - 2*(a + b)*x**2 + a*b*x
+    - expr: simplify(diff(x*(a - 2*x)*(b - 2*x), x).subs(x, (a + b - sqrt(a**2 - a*b + b**2))/6))
+      expected: 0
+    - expr: simplify(diff(x*(a - 2*x)*(b - 2*x), x).subs(x, b/2))
+      expected: b*(b - a)
+    - expr: expand(16*(a + b)**2 - 48*a*b - 16*(a**2 - a*b + b**2))
+      expected: 0
+    - expr: '((a + b - sqrt(a**2 - a*b + b**2))/6).subs({a: 3, b: 3})'
+      expected: Rational(1, 2)
+    - expr: '((a + b - sqrt(a**2 - a*b + b**2))/6).subs({a: 2, b: 1})'
+      expected: (3 - sqrt(3))/6
+:::
+
+
+::: exercise
+id: l2-optimisation.handout-6-1-21
+number: "6.1.21"
+tier: exam
+topics:
+  - optimisation
+  - extrema
+statement: |
+  A window consists of a rectangular piece of clear glass with a semicircular piece of coloured glass on top. The coloured glass transmits only \(\frac{1}{2}\) as much light per unit area as the clear glass. The distance from top to bottom, across both the rectangle and the semicircle, is \(2\) meters, and the window may be no more than \(1.5\) meters wide. Find the dimensions of the rectangular portion of the window that lets through the most light.
+solution: |
+  Let the rectangle have width \(w\) and height \(y\) metres. The semicircle sits on the top side of width \(w\), so its radius is \(\frac{w}{2}\). The total height is
+  \[
+  y + \frac{w}{2} = 2, \qquad y = 2 - \frac{w}{2}.
+  \]
+  The width satisfies \(0 \le w \le 1.5\), and then \(y \ge 1.25 > 0\).
+
+  Measure the light in units of one square metre of clear glass. The rectangle contributes its area \(wy\). The semicircle has area \(\frac{\pi}{2}\left(\frac{w}{2}\right)^2 = \frac{\pi w^2}{8}\), and it transmits half as much, so it contributes \(\frac{\pi w^2}{16}\). The light is
+  \[
+  \begin{aligned}
+  L(w)&=w\left(2 - \frac{w}{2}\right) + \frac{\pi w^2}{16}\\
+  &=2w - \frac{8 - \pi}{16}\,w^2.
+  \end{aligned}
+  \]
+  The derivative is
+  \[
+  L'(w) = 2 - \frac{8 - \pi}{8}\,w.
+  \]
+  It vanishes at \(w = \dfrac{16}{8 - \pi} \approx 3.29\), which lies outside \([0, 1.5]\). On the interval, \(L'\) decreases as \(w\) grows, and
+  \[
+  L'(1.5) = 2 - \frac{3(8 - \pi)}{16} > 2 - \frac{15}{16} > 0,
+  \]
+  because \(8 - \pi < 5\). So \(L' > 0\) on \([0, 1.5]\), and \(L\) is increasing. The candidates are the endpoints, and the larger value is at \(w = 1.5\).
+
+  The rectangular portion should be \(1.5\) m wide and \(y = 2 - 0.75 = 1.25\) m tall.
+provenance: handout-answer
+steps:
+  - Constraint y = 2 - w/2 with 0 <= w <= 1.5.
+  - Light L(w) = w y + pi w^2 / 16 = 2w - (8 - pi) w^2 / 16.
+  - The zero of L' is w = 16/(8 - pi), outside the interval, and L' > 0 on it, so the maximum is at the endpoint w = 1.5.
+  - Dimensions 1.5 m by 1.25 m.
+verification:
+  checks:
+    - expr: expand(w*(2 - w/2) + pi*w**2/16) - (2*w - (8 - pi)*w**2/16)
+      expected: 0
+    - expr: diff(2*w - (8 - pi)*w**2/16, w)
+      expected: 2 - (8 - pi)*w/8
+    - expr: solve(2 - (8 - pi)*w/8, w)
+      expected: "[16/(8 - pi)]"
+    - expr: floor((16/(8 - pi)).evalf()*100)
+      expected: 329
+    - expr: sign((2 - (8 - pi)*w/8).subs(w, Rational(3, 2)).evalf())
+      expected: 1
+    - expr: (2 - w/2).subs(w, Rational(3, 2))
+      expected: Rational(5, 4)
+:::
+
+
+::: exercise
+id: l2-optimisation.handout-6-1-23
+number: "6.1.23"
+tier: standard
+topics:
+  - optimisation
+statement: |
+  You are designing a poster to contain a fixed amount \(A\) of printing, measured in square centimetres, and have margins of \(a\) centimetres at the top and bottom and \(b\) centimetres at the sides. Find the ratio of the vertical dimension to the horizontal dimension of the printed area on the poster if you want to minimise the amount of posterboard needed.
+solution: |
+  Let the printed area have height \(u\) and width \(v\) centimetres, with \(uv = A\). The margins add \(2a\) to the height and \(2b\) to the width, so the poster measures \((u + 2a)\) by \((v + 2b)\). The condition gives \(v = \dfrac{A}{u}\) for \(u > 0\), and the posterboard area is
+  \[
+  \begin{aligned}
+  P(u)&=(u + 2a)\left(\frac{A}{u} + 2b\right)\\
+  &=A + 2bu + \frac{2aA}{u} + 4ab.
+  \end{aligned}
+  \]
+  The domain is open, so there are no endpoints. The derivative is
+  \[
+  P'(u) = 2b - \frac{2aA}{u^2}.
+  \]
+  It vanishes only when \(u^2 = \dfrac{aA}{b}\), so \(u = \sqrt{aA/b}\). The second derivative \(P''(u) = \dfrac{4aA}{u^3}\) is positive, so this single critical value is the global minimum.
+
+  The width is
+  \[
+  v = \frac{A}{u} = \sqrt{\frac{Ab}{a}}.
+  \]
+  The ratio of the vertical to the horizontal dimension of the printed area is
+  \[
+  \frac{u}{v} = \frac{u^2}{A} = \frac{a}{b}.
+  \]
+provenance: handout-answer
+steps:
+  - Poster area P(u) = (u + 2a)(A/u + 2b) with printed height u and width A/u.
+  - P'(u) = 0 gives u^2 = aA/b, and P'' > 0.
+  - Ratio u/v = u^2/A = a/b.
+verification:
+  checks:
+    - expr: expand((u + 2*a)*(A/u + 2*b)) - (A + 2*b*u + 2*a*A/u + 4*a*b)
+      expected: 0
+    - expr: simplify(diff((u + 2*a)*(A/u + 2*b), u).subs(u, sqrt(a*A/b)))
+      expected: 0
+    - expr: simplify(sqrt(a*A/b)**2/A)
+      expected: a/b
+    - expr: simplify(diff((u + 2*a)*(A/u + 2*b), u, 2) - 4*a*A/u**3)
+      expected: 0
+:::
+
+
+::: exercise
+id: l2-optimisation.handout-6-1-24
+number: "6.1.24"
+tier: standard
+topics:
+  - optimisation
+statement: |
+  The strength of a rectangular beam is proportional to the product of its width \(w\) times the square of its depth \(d\). Find the dimensions of the strongest beam that can be cut from a cylindrical log of radius \(r\). The cross-section of the beam is a rectangle \(w\) by \(d\) inscribed in the circular cross-section of the log.
+solution: |
+  The corners of the rectangle lie on the circle of radius \(r\), so the diagonal is the diameter \(2r\):
+  \[
+  w^2 + d^2 = 4r^2, \qquad d^2 = 4r^2 - w^2.
+  \]
+  The width lies in \([0, 2r]\). The strength is \(k\,w d^2\) for a constant \(k > 0\), and the constant does not change where the maximum is. In the variable \(w\),
+  \[
+  S(w) = k\,w\,(4r^2 - w^2).
+  \]
+  The derivative is
+  \[
+  S'(w) = k\,(4r^2 - 3w^2).
+  \]
+  It vanishes at \(w = \dfrac{2r}{\sqrt{3}}\) in the interval. The strength is \(0\) at both endpoints \(w = 0\) and \(w = 2r\) and positive inside, so this critical value gives the maximum.
+
+  The depth satisfies
+  \[
+  d^2 = 4r^2 - \frac{4r^2}{3} = \frac{8r^2}{3},
+  \]
+  so \(d = \dfrac{2\sqrt{2}\,r}{\sqrt{3}}\). The strongest beam has width \(\dfrac{2r}{\sqrt{3}}\) and depth \(\dfrac{2\sqrt{2}\,r}{\sqrt{3}}\), so the depth is \(\sqrt{2}\) times the width.
+provenance: handout-answer
+steps:
+  - Circle gives d^2 = 4 r^2 - w^2, so the strength is k w (4 r^2 - w^2) on [0, 2r].
+  - S'(w) = 0 gives w = 2r/sqrt(3), and S = 0 at both endpoints.
+  - Depth d = 2 sqrt(2) r / sqrt(3).
+verification:
+  checks:
+    - expr: diff(w*(4*r**2 - w**2), w)
+      expected: 4*r**2 - 3*w**2
+    - expr: simplify(diff(w*(4*r**2 - w**2), w).subs(w, 2*r/sqrt(3)))
+      expected: 0
+    - expr: simplify((4*r**2 - w**2).subs(w, 2*r/sqrt(3)))
+      expected: 8*r**2/3
+    - expr: simplify((2*sqrt(2)*r/sqrt(3))**2 - 8*r**2/3)
+      expected: 0
+    - expr: (w*(4*r**2 - w**2)).subs(w, 2*r)
+      expected: 0
+:::
+
+
+::: exercise
+id: l2-optimisation.handout-6-1-25
+number: "6.1.25"
+tier: standard
+topics:
+  - optimisation
+statement: |
+  What fraction of the volume of a sphere is taken up by the largest cylinder that can be fit inside the sphere?
+solution: |
+  Let the sphere have radius \(R\). The largest cylinder has the same axis and centre as the sphere, so take a cylinder of radius \(\rho\) and half-height \(z\). Its rim lies on the sphere, which gives
+  \[
+  \rho^2 + z^2 = R^2, \qquad \rho^2 = R^2 - z^2.
+  \]
+  The half-height lies in \([0, R]\). The volume of the cylinder is
+  \[
+  V(z) = \pi\rho^2 \cdot 2z = 2\pi z(R^2 - z^2).
+  \]
+  The derivative is
+  \[
+  V'(z) = 2\pi(R^2 - 3z^2),
+  \]
+  which vanishes at \(z = \dfrac{R}{\sqrt{3}}\) in the interval. The volume is \(0\) at both endpoints \(z = 0\) and \(z = R\), so the critical value gives the maximum:
+  \[
+  \begin{aligned}
+  V\!\left(\tfrac{R}{\sqrt{3}}\right)&=2\pi\cdot\frac{R}{\sqrt{3}}\cdot\frac{2R^2}{3}\\
+  &=\frac{4\pi R^3}{3\sqrt{3}}.
+  \end{aligned}
+  \]
+  The sphere has volume \(\dfrac{4\pi R^3}{3}\). The fraction is
+  \[
+  \frac{4\pi R^3/(3\sqrt{3})}{4\pi R^3/3} = \frac{1}{\sqrt{3}} \approx 0.577,
+  \]
+  so the largest cylinder takes up about \(58\%\) of the sphere.
+provenance: handout-answer
+steps:
+  - Rim on the sphere gives rho^2 = R^2 - z^2, so V(z) = 2 pi z (R^2 - z^2) on [0, R].
+  - V'(z) = 0 gives z = R/sqrt(3), and V = 0 at both endpoints.
+  - Maximum volume 4 pi R^3 / (3 sqrt(3)), fraction 1/sqrt(3).
+verification:
+  checks:
+    - expr: simplify(diff(2*pi*z*(R**2 - z**2), z).subs(z, R/sqrt(3)))
+      expected: 0
+    - expr: simplify((2*pi*z*(R**2 - z**2)).subs(z, R/sqrt(3)))
+      expected: 4*pi*R**3/(3*sqrt(3))
+    - expr: simplify((2*pi*z*(R**2 - z**2)).subs(z, R/sqrt(3))/(4*pi*R**3/3))
+      expected: 1/sqrt(3)
+    - expr: floor((1/sqrt(3)).evalf()*100)
+      expected: 57
+:::
+
+
+::: exercise
+id: l2-optimisation.handout-6-1-27
+number: "6.1.27"
+tier: standard
+topics:
+  - optimisation
+statement: |
+  Find the dimensions of the lightest cylindrical can containing \(0.25\) litre (\(250\) cm\(^3\)) if the top and bottom are made of a material that is twice as heavy per unit area as the material used for the side.
+solution: |
+  Let the radius be \(r > 0\) and the height \(h\), in centimetres. Let \(\rho\) be the weight per unit area of the side material. The side has area \(2\pi r h\), and the top and bottom have total area \(2\pi r^2\) at weight \(2\rho\). The weight is
+  \[
+  W = \rho\left(2\pi r h + 4\pi r^2\right).
+  \]
+  The volume condition \(\pi r^2 h = 250\) gives \(h = \dfrac{250}{\pi r^2}\), so \(2\pi r h = \dfrac{500}{r}\). The constant \(\rho\) does not move the minimum, and we minimise
+  \[
+  f(r) = \frac{500}{r} + 4\pi r^2, \qquad r > 0.
+  \]
+  The domain is open, so there are no endpoints. The derivative is
+  \[
+  f'(r) = -\frac{500}{r^2} + 8\pi r = \frac{8\pi r^3 - 500}{r^2}.
+  \]
+  It vanishes only when
+  \[
+  r^3 = \frac{125}{2\pi}, \qquad r = \frac{5}{(2\pi)^{1/3}} \approx 2.71.
+  \]
+  The second derivative \(f''(r) = \dfrac{1000}{r^3} + 8\pi\) is positive, so this single critical value is the global minimum.
+
+  Since \(\pi r^3 = \frac{125}{2}\), we have \(250 = 4\pi r^3\), and
+  \[
+  h = \frac{250}{\pi r^2} = \frac{4\pi r^3}{\pi r^2} = 4r \approx 10.8.
+  \]
+  The lightest can has radius \(\dfrac{5}{(2\pi)^{1/3}}\) cm, about \(2.7\) cm, and height \(4r\), about \(10.8\) cm.
+provenance: handout-answer
+steps:
+  - Weight proportional to 2 pi r h + 4 pi r^2 with h = 250/(pi r^2), so f(r) = 500/r + 4 pi r^2.
+  - f'(r) = 0 gives r^3 = 125/(2 pi), and f'' > 0.
+  - Height h = 4r, about 10.8 cm.
+verification:
+  checks:
+    - expr: simplify(diff(500/r + 4*pi*r**2, r).subs(r, 5/(2*pi)**Rational(1, 3)))
+      expected: 0
+    - expr: simplify((5/(2*pi)**Rational(1, 3))**3)
+      expected: 125/(2*pi)
+    - expr: simplify((250/(pi*r**2) - 4*r).subs(r, 5/(2*pi)**Rational(1, 3)))
+      expected: 0
+    - expr: floor(10*(5/(2*pi)**Rational(1, 3)).evalf())
+      expected: 27
+    - expr: floor(10*(4*5/(2*pi)**Rational(1, 3)).evalf())
+      expected: 108
+:::
+
+
+::: exercise
+id: l2-optimisation.handout-6-1-29
+number: "6.1.29"
+tier: exam
+topics:
+  - optimisation
+statement: |
+  A conical paper cup is to hold a fixed volume of water. Find the ratio of the height to the base radius of the cone that minimises the amount of paper needed to make the cup. Use the formula \(\pi r\sqrt{r^2 + h^2}\) for the area of the side of a cone, the lateral area.
+solution: |
+  Let the base radius be \(r > 0\), the height \(h\), and the fixed volume \(V\). The volume of the cone is \(\frac{1}{3}\pi r^2 h = V\), so \(h = \dfrac{3V}{\pi r^2}\). The paper is the lateral area
+  \[
+  A = \pi r\sqrt{r^2 + h^2}.
+  \]
+  The area is positive, so \(A\) and \(A^2\) have the same minimum point. The square has no root:
+  \[
+  \begin{aligned}
+  A^2&=\pi^2 r^2\left(r^2 + \frac{9V^2}{\pi^2 r^4}\right)\\
+  &=\pi^2 r^4 + \frac{9V^2}{r^2}.
+  \end{aligned}
+  \]
+  Call this function \(g(r)\), for \(r > 0\). The domain is open, so there are no endpoints. The derivative is
+  \[
+  g'(r) = 4\pi^2 r^3 - \frac{18V^2}{r^3} = \frac{4\pi^2 r^6 - 18V^2}{r^3}.
+  \]
+  It vanishes only when \(r^6 = \dfrac{9V^2}{2\pi^2}\). The second derivative \(g''(r) = 12\pi^2 r^2 + \dfrac{54V^2}{r^4}\) is positive, so this single critical value is the global minimum.
+
+  At this value \(\dfrac{9V^2}{\pi^2} = 2r^6\), so
+  \[
+  h^2 = \frac{9V^2}{\pi^2 r^4} = \frac{2r^6}{r^4} = 2r^2.
+  \]
+  The ratio is \(\dfrac{h}{r} = \sqrt{2}\).
+provenance: handout-answer
+steps:
+  - h = 3V/(pi r^2), and minimising the lateral area A is the same as minimising A^2 = pi^2 r^4 + 9V^2/r^2.
+  - Derivative zero gives r^6 = 9V^2/(2 pi^2), and the second derivative is positive.
+  - Then h^2 = 2r^2, so h/r = sqrt(2).
+verification:
+  checks:
+    - expr: expand(pi**2*r**2*(r**2 + (3*V/(pi*r**2))**2)) - (pi**2*r**4 + 9*V**2/r**2)
+      expected: 0
+    - expr: diff(pi**2*r**4 + 9*V**2/r**2, r).subs(V, sqrt(2)*pi*r**3/3)
+      expected: 0
+    - expr: ((3*V/(pi*r**2))/r).subs(V, sqrt(2)*pi*r**3/3)
+      expected: sqrt(2)
+    - expr: (9*V**2/(2*pi**2)).subs(V, sqrt(2)*pi*r**3/3)
+      expected: r**6
+:::
+
+
+::: exercise
+id: l2-optimisation.handout-6-1-32
+number: "6.1.32"
+tier: standard
+topics:
+  - optimisation
+statement: |
+  Find the fraction of the area of a triangle that is occupied by the largest rectangle that can be drawn in the triangle, with one of its sides along a side of the triangle. Show that this fraction does not depend on the dimensions of the given triangle.
+solution: |
+  Let the side of the triangle that carries the rectangle have length \(b\), and let \(H\) be the height of the triangle above that side. The triangle has area \(\dfrac{bH}{2}\).
+
+  Let the rectangle have height \(y\), with \(y\) in \([0, H]\), and width \(w\). The part of the triangle above the rectangle is a smaller triangle of height \(H - y\), similar to the whole one. Similar triangles give
+  \[
+  \frac{w}{b} = \frac{H - y}{H}, \qquad w = \frac{b(H - y)}{H}.
+  \]
+  The area of the rectangle is
+  \[
+  A(y) = \frac{b}{H}\,y(H - y).
+  \]
+  The derivative is
+  \[
+  A'(y) = \frac{b}{H}(H - 2y),
+  \]
+  which vanishes at \(y = \dfrac{H}{2}\). The area is \(0\) at both endpoints \(y = 0\) and \(y = H\), so the critical value gives the maximum:
+  \[
+  A\!\left(\tfrac{H}{2}\right) = \frac{b}{H}\cdot\frac{H}{2}\cdot\frac{H}{2} = \frac{bH}{4}.
+  \]
+  The fraction is
+  \[
+  \frac{bH/4}{bH/2} = \frac{1}{2}.
+  \]
+  The letters \(b\) and \(H\) cancel, so the largest rectangle fills one half of the triangle for every triangle.
+provenance: handout-answer
+steps:
+  - Similar triangles give w = b(H - y)/H, so A(y) = (b/H) y (H - y) on [0, H].
+  - A'(y) = 0 gives y = H/2, and A = 0 at both endpoints.
+  - A(H/2) = bH/4, which is 1/2 of the triangle area bH/2, whatever b and H are.
+verification:
+  checks:
+    - expr: diff(b*y*(H - y)/H, y).subs(y, H/2)
+      expected: 0
+    - expr: simplify((b*y*(H - y)/H).subs(y, H/2))
+      expected: b*H/4
+    - expr: simplify((b*y*(H - y)/H).subs(y, H/2)/(b*H/2))
+      expected: Rational(1, 2)
+    - expr: (b*y*(H - y)/H).subs(y, 0)
+      expected: 0
+:::
+
+
+::: exercise
+id: l2-optimisation.handout-6-1-33
+number: "6.1.33"
+tier: standard
+topics:
+  - optimisation
+statement: |
+  If you set the price of an item at \(\$10\), you cannot sell it, but you can sell \(500\) items for each dollar below \(\$10\) that you set the price. The fixed costs total \(\$3000\), and the marginal cost is \(\$2\) per item. How is the answer affected if the cost per item for \(n\) items, instead of being simply \(\$2\), decreases below \(\$2\) in proportion to \(n\), by \(1\) cent for each \(25\) items produced, because of economy of scale and volume discounts?
+solution: |
+  Let the price be \(p\) dollars, with \(0 \le p \le 10\). The number of items sold is
+  \[
+  n = 500(10 - p).
+  \]
+  The cost per item falls by \(0.01\) for each \(25\) items, so for \(n\) items it is
+  \[
+  2 - \frac{0.01}{25}\,n = 2 - \frac{n}{2500}.
+  \]
+  Substituting \(n = 500(10 - p)\) gives \(2 - \dfrac{10 - p}{5} = \dfrac{p}{5}\) dollars per item. The profit is revenue minus the fixed cost and the item costs:
+  \[
+  \begin{aligned}
+  P(p)&=500(10 - p)\left(p - \frac{p}{5}\right) - 3000\\
+  &=400p(10 - p) - 3000\\
+  &=-400p^2 + 4000p - 3000.
+  \end{aligned}
+  \]
+  The derivative is \(P'(p) = -800p + 4000\), which vanishes at \(p = 5\) in \([0, 10]\). The candidate values are
+  \[
+  \begin{aligned}
+  P(0)&=-3000,\\
+  P(5)&=7000,\\
+  P(10)&=-3000.
+  \end{aligned}
+  \]
+  The most profit is \(7000\) dollars, at the price \(\$5\), when \(n = 2500\) items are sold and each costs \(\$1\) to make. With the constant cost of \(\$2\) the maximum is \(5000\) dollars at the price \(\$6\), so the volume discount raises the maximum profit by \(2000\) dollars and lowers the best price by \(\$1\).
+provenance: handout-answer
+steps:
+  - Items sold n = 500(10 - p), and the cost per item is 2 - n/2500 = p/5.
+  - Profit P(p) = 400p(10 - p) - 3000 on [0, 10].
+  - Critical value p = 5 gives 7000, compared with 5000 at p = 6 under the constant cost.
+verification:
+  checks:
+    - expr: simplify(2 - 500*(10 - p)/2500 - p/5)
+      expected: 0
+    - expr: expand(500*(10 - p)*(p - p/5) - 3000)
+      expected: -400*p**2 + 4000*p - 3000
+    - expr: diff(-400*p**2 + 4000*p - 3000, p).subs(p, 5)
+      expected: 0
+    - expr: (-400*p**2 + 4000*p - 3000).subs(p, 5)
+      expected: 7000
+    - expr: (-400*p**2 + 4000*p - 3000).subs(p, 0)
+      expected: -3000
+    - expr: (-400*p**2 + 4000*p - 3000).subs(p, 10)
+      expected: -3000
+    - expr: (500*(10 - p)).subs(p, 5)
+      expected: 2500
+    - expr: diff(500*(10 - p)*(p - 2) - 3000, p).subs(p, 6)
+      expected: 0
+    - expr: (500*(10 - p)*(p - 2) - 3000).subs(p, 6)
+      expected: 5000
+:::
+
+
+::: exercise
+id: l2-optimisation.sheet-1-12
+number: "sheet 1 exercise 12"
+tier: standard
+topics:
+  - optimisation
+statement: |
+  Marketing tells you that if you set the price of an item at \(\$10\) then you will be unable to sell it, but that you can sell \(500\) items for each dollar below \(\$10\) that you set the price. Suppose your fixed costs total \(\$3000\), and your marginal cost is \(\$2\) per item. What is the most profit you can make?
+solution: |
+  Let the price be \(p\) dollars, with \(0 \le p \le 10\). Each dollar below \(10\) sells \(500\) items, so the number sold is
+  \[
+  n = 500(10 - p).
+  \]
+  The profit is revenue minus the fixed cost and the item costs:
+  \[
+  \begin{aligned}
+  P(p)&=pn - 3000 - 2n\\
+  &=500(10 - p)(p - 2) - 3000\\
+  &=-500p^2 + 6000p - 13000.
+  \end{aligned}
+  \]
+  The derivative is \(P'(p) = -1000p + 6000\), which vanishes at \(p = 6\) in \([0, 10]\). The candidate values are
+  \[
+  \begin{aligned}
+  P(0)&=-13000,\\
+  P(6)&=5000,\\
+  P(10)&=-3000.
+  \end{aligned}
+  \]
+  The most profit is \(5000\) dollars, at the price \(\$6\), when \(n = 500\cdot 4 = 2000\) items are sold.
+provenance: written-for-site
+steps:
+  - Items sold n = 500(10 - p) and profit P(p) = -500p^2 + 6000p - 13000 on [0, 10].
+  - Critical value p = 6, compared with the endpoint values -13000 and -3000.
+  - Maximum profit 5000 dollars at price 6, with 2000 items sold.
+verification:
+  checks:
+    - expr: expand(500*(10 - p)*(p - 2) - 3000)
+      expected: -500*p**2 + 6000*p - 13000
+    - expr: diff(-500*p**2 + 6000*p - 13000, p).subs(p, 6)
+      expected: 0
+    - expr: (-500*p**2 + 6000*p - 13000).subs(p, 6)
+      expected: 5000
+    - expr: (-500*p**2 + 6000*p - 13000).subs(p, 0)
+      expected: -13000
+    - expr: (-500*p**2 + 6000*p - 13000).subs(p, 10)
+      expected: -3000
+    - expr: (500*(10 - p)).subs(p, 6)
+      expected: 2000
+:::
+
+
+::: exercise
+id: l2-optimisation.sheet-1-14
+number: "sheet 1 exercise 14"
+tier: basic
+topics:
+  - optimisation
+statement: |
+  Suppose the position of an object at time \(t\) is given by \(f(t) = -\dfrac{49t^2}{10} + 5t + 10\). Find a function giving the speed of the object at time \(t\). The acceleration of an object is the rate at which its speed is changing, which means it is given by the derivative of the speed function. Find the acceleration of the object at time \(t\).
+solution: |
+  The speed is the derivative of the position:
+  \[
+  \begin{aligned}
+  v(t)&=f'(t)\\
+  &=-\frac{49}{10}\cdot 2t + 5\\
+  &=-\frac{49}{5}t + 5.
+  \end{aligned}
+  \]
+  Here the speed is signed. It is positive while the object moves toward larger values of \(f\) and negative afterwards. It starts at \(v(0) = 5\) and decreases linearly.
+
+  The acceleration is the derivative of the speed:
+  \[
+  a(t) = v'(t) = -\frac{49}{5}.
+  \]
+  The acceleration is the constant \(-\dfrac{49}{5} = -9.8\).
+provenance: written-for-site
+steps:
+  - Speed v(t) = f'(t) = -49t/5 + 5.
+  - Acceleration a(t) = v'(t) = -49/5, a constant.
+verification:
+  checks:
+    - expr: diff(-49*t**2/10 + 5*t + 10, t)
+      expected: -49*t/5 + 5
+    - expr: diff(-49*t**2/10 + 5*t + 10, t, 2)
+      expected: -Rational(49, 5)
+    - expr: diff(-49*t**2/10 + 5*t + 10, t).subs(t, 0)
+      expected: 5
+:::

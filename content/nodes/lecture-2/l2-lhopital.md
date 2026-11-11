@@ -637,3 +637,629 @@ verification:
     - expr: limit(x**2/exp(x), x, oo)
       expected: "0"
 :::
+
+::: exercise
+id: l2-lhopital.handout-4-10-6
+number: "4.10.6"
+tier: standard
+topics:
+  - limits
+  - lhopital
+statement: |
+  Compute \(\lim_{x \to \infty} \dfrac{e^x + e^{-x}}{e^x - e^{-x}}\).
+solution: |
+  As \(x \to \infty\), the numerator and the denominator both tend to \(\infty\), so the form is \(\infty/\infty\).
+
+  Try the rule. The derivatives of the numerator and the denominator are \(e^x - e^{-x}\) and \(e^x + e^{-x}\). The ratio of the derivatives is
+  \[
+  \frac{e^x - e^{-x}}{e^x + e^{-x}},
+  \]
+  which is the reciprocal of the original quotient and again an \(\infty/\infty\) form. A second differentiation returns the original quotient. The rule runs in a circle and gives no value.
+
+  Divide the numerator and the denominator by \(e^x\). For every real \(x\),
+  \[
+  \frac{e^x + e^{-x}}{e^x - e^{-x}} = \frac{1 + e^{-2x}}{1 - e^{-2x}}.
+  \]
+  As \(x \to \infty\), \(e^{-2x} \to 0\). The numerator tends to \(1\), and the denominator tends to \(1\). Therefore
+  \[
+  \lim_{x \to \infty} \frac{e^x + e^{-x}}{e^x - e^{-x}} = 1.
+  \]
+provenance: handout-answer
+steps:
+  - The form is \(\infty/\infty\), and the ratio of derivatives is the reciprocal of the original quotient.
+  - Divide the numerator and the denominator by \(e^x\) to get \(\frac{1 + e^{-2x}}{1 - e^{-2x}}\).
+  - The limit equals \(1\).
+verification:
+  checks:
+    - expr: 'limit((exp(x) + exp(-x))/(exp(x) - exp(-x)), x, oo)'
+      expected: '1'
+    - expr: 'simplify(diff(exp(x) + exp(-x), x)/diff(exp(x) - exp(-x), x) - (exp(x) - exp(-x))/(exp(x) + exp(-x)))'
+      expected: '0'
+    - expr: 'simplify((exp(x) + exp(-x))/(exp(x) - exp(-x)) - (1 + exp(-2*x))/(1 - exp(-2*x)))'
+      expected: '0'
+    - expr: 'limit((1 + exp(-2*x))/(1 - exp(-2*x)), x, oo)'
+      expected: '1'
+:::
+
+
+::: exercise
+id: l2-lhopital.handout-4-10-7
+number: "4.10.7"
+tier: basic
+topics:
+  - limits
+  - lhopital
+statement: |
+  Compute \(\lim_{x \to 0} \dfrac{\sqrt{9 + x} - 3}{x}\).
+solution: |
+  Let \(f(x) = \sqrt{9 + x} - 3\) and \(g(x) = x\). Both are differentiable at \(0\), and \(f(0) = 0\) and \(g(0) = 0\), so the form is \(0/0\). The derivative \(g'(x) = 1\) gives \(g'(0) = 1\), which is not \(0\). The point statement applies.
+
+  The derivative of \(f\) is \(f'(x) = \frac{1}{2\sqrt{9 + x}}\). The ratio of the derivatives is
+  \[
+  \frac{f'(x)}{g'(x)} = \frac{1}{2\sqrt{9 + x}},
+  \]
+  and its limit at \(0\) is \(\frac{1}{2 \cdot 3} = \frac{1}{6}\). Therefore
+  \[
+  \lim_{x \to 0} \frac{\sqrt{9 + x} - 3}{x} = \frac{1}{6}.
+  \]
+provenance: handout-answer
+steps:
+  - The form \(0/0\), with \(g'(0) = 1\).
+  - The ratio of derivatives \(\frac{1}{2\sqrt{9 + x}}\).
+  - The limit equals \(\frac{1}{6}\).
+verification:
+  checks:
+    - expr: 'limit((sqrt(9 + x) - 3)/x, x, 0)'
+      expected: '1/6'
+    - expr: 'diff(sqrt(9 + x) - 3, x)'
+      expected: '1/(2*sqrt(9 + x))'
+    - expr: 'limit(1/(2*sqrt(9 + x)), x, 0)'
+      expected: '1/6'
+:::
+
+
+::: exercise
+id: l2-lhopital.handout-4-10-8
+number: "4.10.8"
+tier: standard
+topics:
+  - limits
+  - lhopital
+statement: |
+  Compute \(\lim_{t \to 1^+} \dfrac{\frac{1}{t} - 1}{t^2 - 2t + 1}\).
+solution: |
+  Let \(f(t) = \frac{1}{t} - 1\) and \(g(t) = t^2 - 2t + 1 = (t - 1)^2\). Both tend to \(0\) as \(t \to 1\), so the form is \(0/0\). The derivative \(g'(t) = 2(t - 1)\) gives \(g'(1) = 0\), so the point statement does not apply. The rule for \(0/0\) forms still does.
+
+  The derivative of \(f\) is \(f'(t) = -\frac{1}{t^2}\). The ratio of the derivatives is
+  \[
+  \frac{f'(t)}{g'(t)} = -\frac{1}{2t^2 (t - 1)}.
+  \]
+  As \(t \to 1^+\), the numerator \(-1\) is fixed, and \(2t^2 (t - 1)\) tends to \(0\) through positive values. So the ratio tends to \(-\infty\). The ratio of the derivatives has the limit \(-\infty\), and the rule gives
+  \[
+  \lim_{t \to 1^+} \frac{\frac{1}{t} - 1}{t^2 - 2t + 1} = -\infty.
+  \]
+
+  A check by algebra: for \(t \neq 0, 1\), \(\frac{1}{t} - 1 = \frac{1 - t}{t}\), so the quotient equals \(-\frac{1}{t(t - 1)}\). As \(t \to 1^+\), the denominator \(t(t - 1)\) tends to \(0\) through positive values, and the quotient tends to \(-\infty\).
+provenance: handout-answer
+steps:
+  - The form \(0/0\), with \(g'(1) = 0\), so use the rule for \(0/0\) forms.
+  - The ratio of derivatives \(-\frac{1}{2t^2 (t - 1)}\) tends to \(-\infty\) as \(t \to 1^+\).
+  - The limit equals \(-\infty\).
+verification:
+  checks:
+    - expr: 'sign(limit((1/t - 1)/(t**2 - 2*t + 1), t, 1, dir="+"))'
+      expected: '-1'
+    - expr: 'limit((t**2 - 2*t + 1)/(1/t - 1), t, 1, dir="+")'
+      expected: '0'
+    - expr: 'limit(((1/t - 1)/(t**2 - 2*t + 1))*(t - 1), t, 1, dir="+")'
+      expected: '-1'
+    - expr: 'simplify(diff(1/t - 1, t)/diff(t**2 - 2*t + 1, t) + 1/(2*t**2*(t - 1)))'
+      expected: '0'
+    - expr: 'simplify((1/t - 1)/(t**2 - 2*t + 1) + 1/(t*(t - 1)))'
+      expected: '0'
+:::
+
+
+::: exercise
+id: l2-lhopital.handout-4-10-9
+number: "4.10.9"
+tier: standard
+topics:
+  - limits
+  - lhopital
+statement: |
+  Compute \(\lim_{x \to 2} \dfrac{2 - \sqrt{x + 2}}{4 - x^2}\).
+solution: |
+  Let \(f(x) = 2 - \sqrt{x + 2}\) and \(g(x) = 4 - x^2\). Both are differentiable at \(2\), and \(f(2) = 0\) and \(g(2) = 0\), so the form is \(0/0\). The derivative \(g'(x) = -2x\) gives \(g'(2) = -4\), which is not \(0\). The point statement applies.
+
+  The derivative of \(f\) is \(f'(x) = -\frac{1}{2\sqrt{x + 2}}\). The ratio of the derivatives is
+  \[
+  \begin{aligned}
+  \frac{f'(x)}{g'(x)}&=\frac{-\frac{1}{2\sqrt{x + 2}}}{-2x}\\
+  &=\frac{1}{4x\sqrt{x + 2}}.
+  \end{aligned}
+  \]
+  At \(x = 2\), this equals \(\frac{1}{4 \cdot 2 \cdot 2} = \frac{1}{16}\). Therefore
+  \[
+  \lim_{x \to 2} \frac{2 - \sqrt{x + 2}}{4 - x^2} = \frac{1}{16}.
+  \]
+provenance: handout-answer
+steps:
+  - The form \(0/0\), with \(g'(2) = -4\).
+  - The ratio of derivatives \(\frac{1}{4x\sqrt{x + 2}}\).
+  - The limit equals \(\frac{1}{16}\).
+verification:
+  checks:
+    - expr: 'limit((2 - sqrt(x + 2))/(4 - x**2), x, 2)'
+      expected: '1/16'
+    - expr: 'diff(4 - x**2, x).subs(x, 2)'
+      expected: '-4'
+    - expr: 'simplify(diff(2 - sqrt(x + 2), x)/diff(4 - x**2, x) - 1/(4*x*sqrt(x + 2)))'
+      expected: '0'
+    - expr: 'limit(1/(4*x*sqrt(x + 2)), x, 2)'
+      expected: '1/16'
+:::
+
+
+::: exercise
+id: l2-lhopital.handout-4-10-12
+number: "4.10.12"
+tier: standard
+topics:
+  - limits
+  - lhopital
+statement: |
+  Compute \(\lim_{x \to 1} \dfrac{\sqrt{x} - 1}{\sqrt[3]{x} - 1}\).
+solution: |
+  Let \(f(x) = x^{1/2} - 1\) and \(g(x) = x^{1/3} - 1\). Both are differentiable at \(1\), and \(f(1) = 0\) and \(g(1) = 0\), so the form is \(0/0\).
+
+  The derivatives are
+  \[
+  \begin{aligned}
+  f'(x)&=\tfrac{1}{2} x^{-1/2},\\
+  g'(x)&=\tfrac{1}{3} x^{-2/3}.
+  \end{aligned}
+  \]
+  The value \(g'(1) = \frac{1}{3}\) is not \(0\), so the point statement applies. The ratio of the derivatives at \(1\) is
+  \[
+  \frac{f'(1)}{g'(1)} = \frac{1/2}{1/3} = \frac{3}{2}.
+  \]
+  Therefore
+  \[
+  \lim_{x \to 1} \frac{\sqrt{x} - 1}{\sqrt[3]{x} - 1} = \frac{3}{2}.
+  \]
+provenance: handout-answer
+steps:
+  - The form \(0/0\), with \(g'(1) = \frac{1}{3}\).
+  - The derivatives at \(1\) are \(\frac{1}{2}\) and \(\frac{1}{3}\).
+  - The limit equals \(\frac{3}{2}\).
+verification:
+  checks:
+    - expr: 'limit((sqrt(x) - 1)/(x**Rational(1, 3) - 1), x, 1)'
+      expected: '3/2'
+    - expr: 'diff(sqrt(x), x).subs(x, 1)'
+      expected: '1/2'
+    - expr: 'diff(x**Rational(1, 3), x).subs(x, 1)'
+      expected: '1/3'
+:::
+
+
+::: exercise
+id: l2-lhopital.handout-4-10-13
+number: "4.10.13"
+tier: standard
+topics:
+  - limits
+  - lhopital
+statement: |
+  Compute \(\lim_{x \to 0} \dfrac{(1 - x)^{1/4} - 1}{x}\).
+solution: |
+  Let \(f(x) = (1 - x)^{1/4} - 1\) and \(g(x) = x\). Both are differentiable at \(0\), and \(f(0) = 0\) and \(g(0) = 0\), so the form is \(0/0\). The derivative \(g'(x) = 1\) is never \(0\), so the point statement applies.
+
+  The chain rule gives
+  \[
+  f'(x) = \tfrac{1}{4}(1 - x)^{-3/4} \cdot (-1) = -\tfrac{1}{4}(1 - x)^{-3/4}.
+  \]
+  The ratio of the derivatives at \(0\) is \(f'(0)/g'(0) = -\frac{1}{4}\). Therefore
+  \[
+  \lim_{x \to 0} \frac{(1 - x)^{1/4} - 1}{x} = -\frac{1}{4}.
+  \]
+  The quotient is the difference quotient of \((1 - x)^{1/4}\) at \(0\), so the limit is the derivative of that function at \(0\).
+provenance: handout-answer
+steps:
+  - The form \(0/0\), with \(g'(x) = 1\).
+  - The derivative \(f'(0) = -\frac{1}{4}\).
+  - The limit equals \(-\frac{1}{4}\).
+verification:
+  checks:
+    - expr: 'limit(((1 - x)**Rational(1, 4) - 1)/x, x, 0)'
+      expected: '-1/4'
+    - expr: 'diff((1 - x)**Rational(1, 4), x).subs(x, 0)'
+      expected: '-1/4'
+:::
+
+
+::: exercise
+id: l2-lhopital.handout-4-10-14
+number: "4.10.14"
+tier: standard
+topics:
+  - limits
+  - lhopital
+statement: |
+  Compute \(\lim_{t \to 0} \left( t + \dfrac{1}{t} \right)\left( (4 - t)^{3/2} - 8 \right)\).
+solution: |
+  As \(t \to 0\), the first factor is unbounded and the second tends to \(0\), so the product is not a quotient yet. For \(t \neq 0\), \(t + \frac{1}{t} = \frac{t^2 + 1}{t}\), so
+  \[
+  \left( t + \frac{1}{t} \right)\left( (4 - t)^{3/2} - 8 \right) = (t^2 + 1) \cdot \frac{(4 - t)^{3/2} - 8}{t}.
+  \]
+
+  Let \(f(t) = (4 - t)^{3/2} - 8\) and \(g(t) = t\). Both are differentiable at \(0\), and \(f(0) = 0\) and \(g(0) = 0\), so the quotient \(f/g\) is a \(0/0\) form. The derivative \(g'(t) = 1\) is not \(0\), so the point statement applies. The derivative of \(f\) is
+  \[
+  f'(t) = \tfrac{3}{2}(4 - t)^{1/2} \cdot (-1) = -\tfrac{3}{2}\sqrt{4 - t},
+  \]
+  and \(f'(0) = -\frac{3}{2} \cdot 2 = -3\). So \(\lim_{t \to 0} \frac{f(t)}{g(t)} = -3\).
+
+  The factor \(t^2 + 1\) tends to \(1\), so
+  \[
+  \lim_{t \to 0} \left( t + \frac{1}{t} \right)\left( (4 - t)^{3/2} - 8 \right) = 1 \cdot (-3) = -3.
+  \]
+provenance: handout-answer
+steps:
+  - Write \(t + \frac{1}{t} = \frac{t^2 + 1}{t}\) so that the product becomes \((t^2 + 1)\) times a \(0/0\) quotient.
+  - The ratio of derivatives of \(\frac{(4 - t)^{3/2} - 8}{t}\) at \(0\) is \(-3\).
+  - The limit equals \(1 \cdot (-3) = -3\).
+verification:
+  checks:
+    - expr: 'limit((t + 1/t)*((4 - t)**Rational(3, 2) - 8), t, 0)'
+      expected: '-3'
+    - expr: 'simplify((t + 1/t)*((4 - t)**Rational(3, 2) - 8) - (t**2 + 1)*((4 - t)**Rational(3, 2) - 8)/t)'
+      expected: '0'
+    - expr: 'diff((4 - t)**Rational(3, 2), t).subs(t, 0)'
+      expected: '-3'
+    - expr: 'limit(((4 - t)**Rational(3, 2) - 8)/t, t, 0)'
+      expected: '-3'
+:::
+
+
+::: exercise
+id: l2-lhopital.handout-4-10-17
+number: "4.10.17"
+tier: exam
+topics:
+  - limits
+  - lhopital
+statement: |
+  Compute \(\lim_{u \to 1} \dfrac{(u - 1)^3}{\frac{1}{u} - u^2 + 3u - 3}\).
+solution: |
+  Let \(f(u) = (u - 1)^3\) and \(g(u) = \frac{1}{u} - u^2 + 3u - 3\). Both are differentiable at \(1\), and \(f(1) = 0\) and \(g(1) = 1 - 1 + 3 - 3 = 0\), so the form is \(0/0\).
+
+  **By algebra.** Put the denominator over \(u\). For \(u \neq 0\),
+  \[
+  \begin{aligned}
+  g(u)&=\frac{1 - u^3 + 3u^2 - 3u}{u}\\
+  &=\frac{(1 - u)^3}{u}.
+  \end{aligned}
+  \]
+  Since \((u - 1)^3 = -(1 - u)^3\), for \(u \neq 0, 1\) the quotient simplifies to
+  \[
+  \frac{(u - 1)^3}{g(u)} = \frac{-(1 - u)^3 \cdot u}{(1 - u)^3} = -u.
+  \]
+  As \(u \to 1\), the quotient tends to \(-1\).
+
+  **By the rule.** The first derivatives are
+  \[
+  \begin{aligned}
+  f'(u)&=3(u - 1)^2,\\
+  g'(u)&=-\frac{1}{u^2} - 2u + 3.
+  \end{aligned}
+  \]
+  Both vanish at \(1\), so \(g'(1) = 0\), the point statement does not apply, and the ratio is again a \(0/0\) form. The second derivatives are
+  \[
+  \begin{aligned}
+  f''(u)&=6(u - 1),\\
+  g''(u)&=\frac{2}{u^3} - 2.
+  \end{aligned}
+  \]
+  Both vanish at \(1\) again. The third derivatives are
+  \[
+  \begin{aligned}
+  f'''(u)&=6,\\
+  g'''(u)&=-\frac{6}{u^4}.
+  \end{aligned}
+  \]
+  Their ratio at \(1\) is \(\frac{6}{-6} = -1\). The limit of the ratio exists, so each earlier ratio has the same limit, and
+  \[
+  \lim_{u \to 1} \frac{(u - 1)^3}{\frac{1}{u} - u^2 + 3u - 3} = -1.
+  \]
+provenance: handout-answer
+steps:
+  - The denominator equals \(\frac{(1 - u)^3}{u}\), so the quotient equals \(-u\) for \(u \neq 0, 1\).
+  - With the rule, the first and second ratios of derivatives are \(0/0\) forms.
+  - The third ratio is \(\frac{6}{-6}\), so the limit equals \(-1\).
+verification:
+  checks:
+    - expr: 'limit((u - 1)**3/(1/u - u**2 + 3*u - 3), u, 1)'
+      expected: '-1'
+    - expr: 'simplify(1/u - u**2 + 3*u - 3 - (1 - u)**3/u)'
+      expected: '0'
+    - expr: 'simplify((u - 1)**3/(1/u - u**2 + 3*u - 3) + u)'
+      expected: '0'
+    - expr: 'diff(1/u - u**2 + 3*u - 3, u).subs(u, 1)'
+      expected: '0'
+    - expr: 'diff(1/u - u**2 + 3*u - 3, u, 2).subs(u, 1)'
+      expected: '0'
+    - expr: 'diff((u - 1)**3, u, 3)/diff(1/u - u**2 + 3*u - 3, u, 3).subs(u, 1)'
+      expected: '-1'
+:::
+
+
+::: exercise
+id: l2-lhopital.handout-4-10-25
+number: "4.10.25"
+tier: basic
+topics:
+  - limits
+  - lhopital
+statement: |
+  Compute \(\lim_{x \to \pi/2} \dfrac{\cos x}{\frac{\pi}{2} - x}\).
+solution: |
+  Let \(f(x) = \cos x\) and \(g(x) = \frac{\pi}{2} - x\). Both are differentiable at \(\frac{\pi}{2}\), and \(f(\frac{\pi}{2}) = 0\) and \(g(\frac{\pi}{2}) = 0\), so the form is \(0/0\). The derivative \(g'(x) = -1\) is never \(0\), so the point statement applies.
+
+  The derivative of \(f\) is \(f'(x) = -\sin x\). The ratio of the derivatives is
+  \[
+  \frac{f'(x)}{g'(x)} = \frac{-\sin x}{-1} = \sin x,
+  \]
+  and its limit at \(\frac{\pi}{2}\) is \(\sin\frac{\pi}{2} = 1\). Therefore
+  \[
+  \lim_{x \to \pi/2} \frac{\cos x}{\frac{\pi}{2} - x} = 1.
+  \]
+provenance: handout-answer
+steps:
+  - The form \(0/0\), with \(g'(x) = -1\).
+  - The ratio of derivatives \(\sin x\).
+  - The limit equals \(1\).
+verification:
+  checks:
+    - expr: 'limit(cos(x)/(pi/2 - x), x, pi/2)'
+      expected: '1'
+    - expr: 'simplify(diff(cos(x), x)/diff(pi/2 - x, x) - sin(x))'
+      expected: '0'
+:::
+
+
+::: exercise
+id: l2-lhopital.handout-4-10-27
+number: "4.10.27"
+tier: standard
+topics:
+  - limits
+  - lhopital
+statement: |
+  Compute \(\lim_{x \to 0} \dfrac{x^2}{e^x - x - 1}\).
+solution: |
+  Let \(f(x) = x^2\) and \(g(x) = e^x - x - 1\). Both are differentiable at \(0\), and \(f(0) = 0\) and \(g(0) = 1 - 0 - 1 = 0\), so the form is \(0/0\). The derivative \(g'(x) = e^x - 1\) gives \(g'(0) = 0\), so the point statement does not apply. The rule for \(0/0\) forms still does.
+
+  The ratio of the derivatives is
+  \[
+  \frac{f'(x)}{g'(x)} = \frac{2x}{e^x - 1},
+  \]
+  again a \(0/0\) form. Now the denominator \(e^x - 1\) has derivative \(e^x\), which equals \(1\) at \(0\), so the point statement applies to this new quotient. The ratio of its derivatives is
+  \[
+  \frac{2}{e^x},
+  \]
+  which tends to \(2\) at \(0\). So \(\lim_{x \to 0} \frac{2x}{e^x - 1} = 2\), and the original limit has the same value:
+  \[
+  \lim_{x \to 0} \frac{x^2}{e^x - x - 1} = 2.
+  \]
+provenance: handout-answer
+steps:
+  - The form \(0/0\), with \(g'(0) = 0\), so use the rule for \(0/0\) forms.
+  - The ratio of derivatives \(\frac{2x}{e^x - 1}\) is again \(0/0\), and its own ratio of derivatives is \(\frac{2}{e^x}\).
+  - The limit equals \(2\).
+verification:
+  checks:
+    - expr: 'limit(x**2/(exp(x) - x - 1), x, 0)'
+      expected: '2'
+    - expr: 'diff(exp(x) - x - 1, x).subs(x, 0)'
+      expected: '0'
+    - expr: 'limit(2*x/(exp(x) - 1), x, 0)'
+      expected: '2'
+    - expr: 'limit(2/exp(x), x, 0)'
+      expected: '2'
+:::
+
+
+::: exercise
+id: l2-lhopital.handout-4-10-30
+number: "4.10.30"
+tier: standard
+topics:
+  - limits
+  - lhopital
+statement: |
+  Compute \(\lim_{x \to 1} \dfrac{x \ln x}{x^2 - 1}\).
+solution: |
+  Let \(f(x) = x \ln x\) and \(g(x) = x^2 - 1\). Both are differentiable at \(1\), and \(f(1) = 0\) and \(g(1) = 0\), so the form is \(0/0\). The derivative \(g'(x) = 2x\) gives \(g'(1) = 2\), which is not \(0\). The point statement applies.
+
+  The product rule gives
+  \[
+  f'(x) = \ln x + x \cdot \frac{1}{x} = \ln x + 1,
+  \]
+  so \(f'(1) = 1\). The ratio of the derivatives at \(1\) is \(\frac{1}{2}\). Therefore
+  \[
+  \lim_{x \to 1} \frac{x \ln x}{x^2 - 1} = \frac{1}{2}.
+  \]
+provenance: handout-answer
+steps:
+  - The form \(0/0\), with \(g'(1) = 2\).
+  - The derivative \(f'(x) = \ln x + 1\) gives \(f'(1) = 1\).
+  - The limit equals \(\frac{1}{2}\).
+verification:
+  checks:
+    - expr: 'limit(x*log(x)/(x**2 - 1), x, 1)'
+      expected: '1/2'
+    - expr: 'diff(x*log(x), x)'
+      expected: 'log(x) + 1'
+    - expr: 'diff(x*log(x), x).subs(x, 1)/diff(x**2 - 1, x).subs(x, 1)'
+      expected: '1/2'
+:::
+
+
+::: exercise
+id: l2-lhopital.handout-4-10-31
+number: "4.10.31"
+tier: basic
+topics:
+  - limits
+  - lhopital
+statement: |
+  Compute \(\lim_{x \to 0} \dfrac{\sin(2x)}{\ln(x + 1)}\).
+solution: |
+  Let \(f(x) = \sin(2x)\) and \(g(x) = \ln(x + 1)\). Both are differentiable at \(0\), and \(f(0) = 0\) and \(g(0) = \ln 1 = 0\), so the form is \(0/0\). The derivative \(g'(x) = \frac{1}{x + 1}\) gives \(g'(0) = 1\), which is not \(0\). The point statement applies.
+
+  The chain rule gives \(f'(x) = 2\cos(2x)\), so \(f'(0) = 2\). The ratio of the derivatives at \(0\) is \(\frac{2}{1} = 2\). Therefore
+  \[
+  \lim_{x \to 0} \frac{\sin(2x)}{\ln(x + 1)} = 2.
+  \]
+provenance: handout-answer
+steps:
+  - The form \(0/0\), with \(g'(0) = 1\).
+  - The derivative \(f'(0) = 2\).
+  - The limit equals \(2\).
+verification:
+  checks:
+    - expr: 'limit(sin(2*x)/log(x + 1), x, 0)'
+      expected: '2'
+    - expr: 'diff(log(x + 1), x).subs(x, 0)'
+      expected: '1'
+    - expr: 'diff(sin(2*x), x).subs(x, 0)'
+      expected: '2'
+:::
+
+
+::: exercise
+id: l2-lhopital.handout-4-10-33
+number: "4.10.33"
+tier: basic
+topics:
+  - limits
+  - lhopital
+statement: |
+  Compute \(\lim_{x \to 1^+} \dfrac{\sqrt{x}}{x - 1}\).
+solution: |
+  Check the form first. As \(x \to 1^+\), the numerator \(\sqrt{x}\) tends to \(1\), not to \(0\), and the denominator tends to \(0\). The form is neither \(0/0\) nor \(\infty/\infty\), so L'Hopital's rule does not apply.
+
+  Read the quotient directly. For \(x > 1\), the denominator \(x - 1\) is positive and tends to \(0\). A numerator near \(1\) divided by a small positive number is large and positive, so
+  \[
+  \lim_{x \to 1^+} \frac{\sqrt{x}}{x - 1} = \infty.
+  \]
+
+  Differentiating anyway would give
+  \[
+  \lim_{x \to 1^+} \frac{\frac{1}{2\sqrt{x}}}{1} = \frac{1}{2},
+  \]
+  which is not the limit of the original quotient.
+provenance: handout-answer
+steps:
+  - The numerator tends to \(1\), so the form is not \(0/0\) and the rule does not apply.
+  - The denominator tends to \(0\) through positive values, so the quotient is large and positive.
+  - The limit equals \(\infty\).
+verification:
+  checks:
+    - expr: 'sign(limit(sqrt(x)/(x - 1), x, 1, dir="+"))'
+      expected: '1'
+    - expr: 'limit((x - 1)/sqrt(x), x, 1, dir="+")'
+      expected: '0'
+    - expr: 'limit(sqrt(x), x, 1)'
+      expected: '1'
+    - expr: 'limit(diff(sqrt(x), x)/diff(x - 1, x), x, 1)'
+      expected: '1/2'
+:::
+
+
+::: exercise
+id: l2-lhopital.handout-4-10-40
+number: "4.10.40"
+tier: standard
+topics:
+  - limits
+  - lhopital
+statement: |
+  Compute \(\lim_{x \to 0} \dfrac{\sqrt{x + 1} - 1}{\sqrt{x + 4} - 2}\).
+solution: |
+  Let \(f(x) = \sqrt{x + 1} - 1\) and \(g(x) = \sqrt{x + 4} - 2\). Both are differentiable at \(0\), and \(f(0) = 0\) and \(g(0) = 0\), so the form is \(0/0\).
+
+  The derivatives are
+  \[
+  \begin{aligned}
+  f'(x)&=\frac{1}{2\sqrt{x + 1}},\\
+  g'(x)&=\frac{1}{2\sqrt{x + 4}}.
+  \end{aligned}
+  \]
+  The value \(g'(0) = \frac{1}{4}\) is not \(0\), so the point statement applies. Also \(f'(0) = \frac{1}{2}\). The ratio of the derivatives at \(0\) is
+  \[
+  \frac{f'(0)}{g'(0)} = \frac{1/2}{1/4} = 2.
+  \]
+  Therefore
+  \[
+  \lim_{x \to 0} \frac{\sqrt{x + 1} - 1}{\sqrt{x + 4} - 2} = 2.
+  \]
+provenance: handout-answer
+steps:
+  - The form \(0/0\), with \(g'(0) = \frac{1}{4}\).
+  - The derivatives at \(0\) are \(\frac{1}{2}\) and \(\frac{1}{4}\).
+  - The limit equals \(2\).
+verification:
+  checks:
+    - expr: 'limit((sqrt(x + 1) - 1)/(sqrt(x + 4) - 2), x, 0)'
+      expected: '2'
+    - expr: 'diff(sqrt(x + 1), x).subs(x, 0)'
+      expected: '1/2'
+    - expr: 'diff(sqrt(x + 4), x).subs(x, 0)'
+      expected: '1/4'
+:::
+
+
+::: exercise
+id: l2-lhopital.handout-4-10-43
+number: "4.10.43"
+tier: standard
+topics:
+  - limits
+  - lhopital
+statement: |
+  Compute \(\lim_{x \to 0} \dfrac{\sqrt{x^2 + 1} - 1}{\sqrt{x + 1} - 1}\).
+solution: |
+  Let \(f(x) = \sqrt{x^2 + 1} - 1\) and \(g(x) = \sqrt{x + 1} - 1\). Both are differentiable at \(0\), and \(f(0) = 0\) and \(g(0) = 0\), so the form is \(0/0\).
+
+  The derivatives are
+  \[
+  \begin{aligned}
+  f'(x)&=\frac{x}{\sqrt{x^2 + 1}},\\
+  g'(x)&=\frac{1}{2\sqrt{x + 1}}.
+  \end{aligned}
+  \]
+  The value \(g'(0) = \frac{1}{2}\) is not \(0\), so the point statement applies. The numerator derivative is \(f'(0) = 0\). The ratio of the derivatives at \(0\) is
+  \[
+  \frac{f'(0)}{g'(0)} = \frac{0}{1/2} = 0.
+  \]
+  Therefore
+  \[
+  \lim_{x \to 0} \frac{\sqrt{x^2 + 1} - 1}{\sqrt{x + 1} - 1} = 0.
+  \]
+  The numerator vanishes to second order at \(0\) and the denominator to first order, so the quotient tends to \(0\).
+provenance: handout-answer
+steps:
+  - The form \(0/0\), with \(g'(0) = \frac{1}{2}\).
+  - The derivatives at \(0\) are \(f'(0) = 0\) and \(g'(0) = \frac{1}{2}\).
+  - The limit equals \(0\).
+verification:
+  checks:
+    - expr: 'limit((sqrt(x**2 + 1) - 1)/(sqrt(x + 1) - 1), x, 0)'
+      expected: '0'
+    - expr: 'diff(sqrt(x**2 + 1), x).subs(x, 0)'
+      expected: '0'
+    - expr: 'diff(sqrt(x + 1), x).subs(x, 0)'
+      expected: '1/2'
+:::

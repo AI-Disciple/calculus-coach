@@ -10,6 +10,7 @@ sources:
   - { source: sheet-0, page: 1 }
   - { source: midterm-app }
   - { source: midterm-2022, page: 1 }
+  - { source: handout, section: "4.10" }
 examWeight: medium
 examWeightNote: Limits decide the asymptotes in every midterm sketch.
 status: reviewed
@@ -597,4 +598,297 @@ verification:
       expected: (0, 1)
     - expr: (1/limit(1/(x - 2), x, 2, dir='-'), sign(limit(1/(x - 2), x, 2, dir='-')))
       expected: (0, -1)
+:::
+
+::: exercise
+id: l1-limits.handout-2-3-1
+number: "2.3.1"
+tier: basic
+topics:
+  - limits
+statement: |
+  Compute the limit \(\displaystyle\lim_{x\to 3}\frac{x^{2}+x-12}{x-3}\). If a limit does not exist, explain why.
+solution: |
+  At \(x=3\) the denominator is \(0\), and the numerator is \(9+3-12=0\). The quotient law does not apply. The numerator factors as
+  \[
+  x^{2}+x-12=(x-3)(x+4).
+  \]
+  For every \(x\neq 3\),
+  \[
+  \frac{x^{2}+x-12}{x-3}=x+4.
+  \]
+  The limit of \(x+4\) as \(x\) approaches \(3\) is \(7\). So
+  \[
+  \lim_{x\to 3}\frac{x^{2}+x-12}{x-3}=7.
+  \]
+provenance: handout-answer
+steps:
+  - The numerator and the denominator are both \(0\) at \(x=3\).
+  - Factor the numerator as \((x-3)(x+4)\) and cancel \(x-3\).
+  - The limit of \(x+4\) is \(7\).
+verification:
+  checks:
+    - expr: 'factor(x**2 + x - 12)'
+      expected: "(x - 3)*(x + 4)"
+    - expr: 'limit((x**2 + x - 12)/(x - 3), x, 3)'
+      expected: "7"
+:::
+
+
+::: exercise
+id: l1-limits.handout-2-3-4
+number: "2.3.4"
+tier: standard
+topics:
+  - limits
+statement: |
+  Compute \(\displaystyle\lim_{x\to 2}\frac{x^{2}+x-12}{x-2}\). If the limit does not exist, explain why.
+solution: |
+  At \(x=2\) the denominator is \(0\). The numerator is \(4+2-12=-6\), which is not \(0\). The numerator has no factor \(x-2\), so nothing cancels, and the quotient law does not apply.
+
+  Near \(x=2\) the numerator is close to \(-6\), so it is negative.
+
+  - For \(x>2\), the denominator \(x-2\) is positive and tends to \(0\). The quotient is negative and grows in size without bound, so the right-hand limit is \(-\infty\).
+  - For \(x<2\), the denominator is negative and tends to \(0\). The quotient is positive and grows without bound, so the left-hand limit is \(+\infty\).
+
+  The one-sided limits are infinite and have opposite signs, so they differ. The limit does not exist.
+provenance: handout-answer
+steps:
+  - The numerator tends to \(-6\), not \(0\), and the denominator tends to \(0\).
+  - The right-hand limit is \(-\infty\) and the left-hand limit is \(+\infty\).
+  - The one-sided limits differ, so the limit does not exist.
+verification:
+  checks:
+    - expr: '(x**2 + x - 12).subs(x, 2)'
+      expected: "-6"
+    - expr: '(1/limit((x**2 + x - 12)/(x - 2), x, 2, dir="+"), sign(limit((x**2 + x - 12)/(x - 2), x, 2, dir="+")))'
+      expected: "(0, -1)"
+    - expr: '(1/limit((x**2 + x - 12)/(x - 2), x, 2, dir="-"), sign(limit((x**2 + x - 12)/(x - 2), x, 2, dir="-")))'
+      expected: "(0, 1)"
+:::
+
+
+::: exercise
+id: l1-limits.handout-2-3-5
+number: "2.3.5"
+tier: standard
+topics:
+  - limits
+statement: |
+  Compute \(\displaystyle\lim_{x\to 1}\frac{\sqrt{x+8}-3}{x-1}\).
+solution: |
+  At \(x=1\) the numerator is \(\sqrt{9}-3=0\) and the denominator is \(0\). Multiply the numerator and the denominator by the conjugate \(\sqrt{x+8}+3\). The numerator becomes
+  \[
+  (\sqrt{x+8}-3)(\sqrt{x+8}+3)=(x+8)-9=x-1.
+  \]
+  For every \(x\neq 1\) in the domain,
+  \[
+  \frac{\sqrt{x+8}-3}{x-1}=\frac{1}{\sqrt{x+8}+3}.
+  \]
+  The square root is continuous at \(9\), so \(\sqrt{x+8}\) tends to \(\sqrt{9}=3\) as \(x\to 1\). The denominator tends to \(3+3=6\), which is not \(0\). The quotient law gives
+  \[
+  \lim_{x\to 1}\frac{\sqrt{x+8}-3}{x-1}=\frac{1}{6}.
+  \]
+provenance: handout-answer
+steps:
+  - Multiply by the conjugate \(\sqrt{x+8}+3\) so that the numerator becomes \(x-1\).
+  - Cancel \(x-1\) to get \(\frac{1}{\sqrt{x+8}+3}\).
+  - The denominator tends to \(6\), so the limit is \(\frac{1}{6}\).
+verification:
+  checks:
+    - expr: 'simplify((sqrt(x + 8) - 3)/(x - 1) - 1/(sqrt(x + 8) + 3))'
+      expected: "0"
+    - expr: 'limit((sqrt(x + 8) - 3)/(x - 1), x, 1)'
+      expected: "1/6"
+:::
+
+
+::: exercise
+id: l1-limits.handout-2-3-11
+number: "2.3.11"
+tier: standard
+topics:
+  - limits
+statement: |
+  Compute \(\displaystyle\lim_{x\to 0^{+}}\frac{\sqrt{2-x^{2}}}{x}\). If the limit does not exist, explain why.
+solution: |
+  The numerator is a square root of an inner function that tends to \(2\). The root is continuous at \(2\), so the numerator tends to \(\sqrt{2}\), which is positive.
+
+  The denominator tends to \(0\) through positive values, because \(x>0\). The quotient law does not apply, since the limit of the denominator is \(0\). Nothing cancels, because the numerator does not tend to \(0\).
+
+  For small \(x>0\) the quotient is positive and close to \(\frac{\sqrt{2}}{x}\), which grows without bound. So
+  \[
+  \lim_{x\to 0^{+}}\frac{\sqrt{2-x^{2}}}{x}=+\infty.
+  \]
+  The values do not approach a real number, so the limit does not exist as a finite limit.
+provenance: handout-answer
+steps:
+  - The numerator tends to \(\sqrt{2}\), which is not \(0\).
+  - The denominator tends to \(0\) through positive values.
+  - The quotient grows without bound, so the limit is \(+\infty\) and no finite limit exists.
+verification:
+  checks:
+    - expr: 'limit(sqrt(2 - x**2), x, 0)'
+      expected: "sqrt(2)"
+    - expr: '(1/limit(sqrt(2 - x**2)/x, x, 0, dir="+"), sign(limit(sqrt(2 - x**2)/x, x, 0, dir="+")))'
+      expected: "(0, 1)"
+:::
+
+
+::: exercise
+id: l1-limits.handout-2-3-13
+number: "2.3.13"
+tier: standard
+topics:
+  - limits
+statement: |
+  Compute \(\displaystyle\lim_{x\to a}\frac{x^{3}-a^{3}}{x-a}\).
+solution: |
+  Here \(a\) is a constant. At \(x=a\) the numerator and the denominator are both \(0\). The numerator is a difference of cubes:
+  \[
+  x^{3}-a^{3}=(x-a)(x^{2}+ax+a^{2}).
+  \]
+  For every \(x\neq a\),
+  \[
+  \frac{x^{3}-a^{3}}{x-a}=x^{2}+ax+a^{2}.
+  \]
+  A polynomial has the limit equal to its value at \(a\):
+  \[
+  \begin{aligned}
+  \lim_{x\to a}\frac{x^{3}-a^{3}}{x-a}&=a^{2}+a\cdot a+a^{2}\\
+  &=3a^{2}.
+  \end{aligned}
+  \]
+provenance: handout-answer
+steps:
+  - Factor \(x^{3}-a^{3}=(x-a)(x^{2}+ax+a^{2})\).
+  - Cancel \(x-a\) for \(x\neq a\).
+  - Evaluate the polynomial \(x^{2}+ax+a^{2}\) at \(x=a\) to get \(3a^{2}\).
+verification:
+  checks:
+    - expr: 'factor(x**3 - a**3)'
+      expected: "(x - a)*(x**2 + a*x + a**2)"
+    - expr: 'limit((x**3 - a**3)/(x - a), x, a)'
+      expected: "3*a**2"
+:::
+
+
+::: exercise
+id: l1-limits.handout-2-3-15
+number: "2.3.15"
+tier: basic
+topics:
+  - limits
+statement: |
+  Compute \(\displaystyle\lim_{x\to 1}f(x)\), where
+  \[
+  f(x)=\begin{cases}
+  x-5 & \text{if } x\neq 1,\\
+  7 & \text{if } x=1.
+  \end{cases}
+  \]
+solution: |
+  The limit at \(1\) depends only on the values of \(f\) at points \(x\neq 1\) near \(1\). For those points \(f(x)=x-5\). So
+  \[
+  \lim_{x\to 1}f(x)=\lim_{x\to 1}(x-5)=-4.
+  \]
+  The value \(f(1)=7\) plays no role in the limit. It differs from the limit, so \(f\) is not continuous at \(1\).
+provenance: handout-answer
+steps:
+  - For \(x\neq 1\) the function equals \(x-5\).
+  - The limit of \(x-5\) at \(1\) is \(-4\).
+  - The value \(f(1)=7\) does not enter the limit.
+verification:
+  checks:
+    - expr: 'limit(x - 5, x, 1)'
+      expected: "-4"
+    - expr: 'limit(x - 5, x, 1) - 7'
+      expected: "-11"
+:::
+
+
+::: exercise
+id: l1-limits.handout-2-3-18
+number: "2.3.18"
+tier: standard
+topics:
+  - limits
+statement: |
+  A function \(f\) has the following graph.
+
+  - For \(x<-2\), \(f(x)=6\), with an open circle at \((-2,6)\). The value \(f(-2)=8\) is a separate filled point.
+  - For \(-2<x<0\), \(f\) decreases from an open circle at \((-2,2)\), through the \(x\)-axis near \(x=-1.2\), down to an open circle at \((0,-2)\). At \(x=0\), the value is \(f(0)=-\frac{3}{2}\), a filled point.
+  - For \(0<x\le 2\), \(f\) rises steeply from an open circle at \((0,-1)\), passing through about \((1,3)\), to a filled point \((2,7)\).
+  - For \(x>2\), \(f\) starts at an open circle at \((2,0)\) and rises steeply to about \(8\) near \(x=3.5\). It stays near \(8\) until \(x=4.5\) and then rises to about \(10\) at \(x=5.3\).
+
+  Find: (a) \(\lim_{x\to 4}f(x)\), (b) \(\lim_{x\to -3}f(x)\), (c) \(\lim_{x\to 0}f(x)\), (d) \(\lim_{x\to 0^{-}}f(x)\), (e) \(\lim_{x\to 0^{+}}f(x)\), (f) \(f(-2)\), (g) \(\lim_{x\to 2^{-}}f(x)\), (h) \(\lim_{x\to -2^{-}}f(x)\), (i) \(\lim_{x\to 0}f(x+1)\), (j) \(f(0)\), (k) \(\lim_{x\to 1^{-}}f(x-4)\), (l) \(\lim_{x\to 0^{+}}f(x-2)\).
+solution: |
+  A limit reads the graph near the point and ignores the filled value at the point. For a shifted input, name the inner variable and find where it tends.
+
+  - (a) Near \(x=4\) the graph stays near height \(8\). The limit is \(8\).
+  - (b) For \(x<-2\) the graph is the horizontal line at height \(6\). The limit is \(6\).
+  - (c) The left-hand limit is \(-2\) and the right-hand limit is \(-1\). They differ, so the limit does not exist.
+  - (d) Approaching \(0\) from the left, the graph tends to the open circle at height \(-2\). The limit is \(-2\).
+  - (e) Approaching \(0\) from the right, the graph tends to the open circle at height \(-1\). The limit is \(-1\).
+  - (f) The filled point at \(x=-2\) has height \(8\). The value is \(f(-2)=8\).
+  - (g) Approaching \(2\) from the left, the graph rises to the filled point \((2,7)\). The limit is \(7\).
+  - (h) Approaching \(-2\) from the left, the graph is the line at height \(6\). The limit is \(6\).
+  - (i) Put \(u=x+1\). As \(x\to 0\), \(u\to 1\) from both sides, and the graph passes through about \((1,3)\). The limit is \(3\).
+  - (j) The filled point at \(x=0\) has height \(-\frac{3}{2}\). The value is \(f(0)=-\frac{3}{2}\).
+  - (k) Put \(u=x-4\). As \(x\to 1^{-}\), \(u\to -3\) from the left. For \(u<-2\) the graph is at height \(6\). The limit is \(6\).
+  - (l) Put \(u=x-2\). As \(x\to 0^{+}\), \(u\to -2\) from the right, so \(u>-2\). On \((-2,0)\) the graph starts at the open circle at height \(2\). The limit is \(2\).
+
+  The answers are (a) \(8\), (b) \(6\), (c) does not exist, (d) \(-2\), (e) \(-1\), (f) \(8\), (g) \(7\), (h) \(6\), (i) \(3\), (j) \(-\frac{3}{2}\), (k) \(6\), (l) \(2\).
+provenance: handout-answer
+steps:
+  - Read one-sided limits from the open circles and ignore filled values.
+  - For parts (c) the one-sided limits \(-2\) and \(-1\) differ.
+  - For a shifted input, find where the inner variable tends and from which side.
+verification:
+  checks:
+    - expr: '(limit(-2*x - 2, x, 0, dir="-"), limit(4*x - 1, x, 0, dir="+"))'
+      expected: "(-2, -1)"
+    - expr: '(limit(-2*x - 2, x, -2, dir="+"), (4*x - 1).subs(x, 2), (4*x - 1).subs(x, 1))'
+      expected: "(2, 7, 3)"
+    - expr: '(6, 6, 8, Rational(-3, 2))'
+      expected: "(6, 6, 8, -3/2)"
+:::
+
+
+::: exercise
+id: l1-limits.handout-4-10-48
+number: "4.10.48"
+tier: basic
+topics:
+  - limits
+statement: |
+  Compute \(\displaystyle\lim_{x\to 2}\frac{x^{3}-6x-2}{x^{3}-4x}\).
+solution: |
+  Factor the denominator:
+  \[
+  x^{3}-4x=x(x-2)(x+2).
+  \]
+  At \(x=2\) the denominator is \(0\). The numerator is \(8-12-2=-6\), which is not \(0\). The numerator has no factor \(x-2\), so nothing cancels, and the quotient law does not apply.
+
+  Near \(x=2\), the factors \(x\) and \(x+2\) are close to \(2\) and \(4\), so they are positive. The sign of the denominator is the sign of \(x-2\). The numerator is close to \(-6\), so it is negative.
+
+  - For \(x>2\), the denominator is positive and tends to \(0\). The quotient is negative and grows in size without bound, so the right-hand limit is \(-\infty\).
+  - For \(x<2\), the denominator is negative and tends to \(0\). The quotient is positive and grows without bound, so the left-hand limit is \(+\infty\).
+
+  The one-sided limits differ, so the limit does not exist.
+provenance: handout-answer
+steps:
+  - The numerator tends to \(-6\) and the denominator \(x(x-2)(x+2)\) tends to \(0\).
+  - The right-hand limit is \(-\infty\) and the left-hand limit is \(+\infty\).
+  - The one-sided limits differ, so the limit does not exist.
+verification:
+  checks:
+    - expr: 'factor(x**3 - 4*x)'
+      expected: "x*(x - 2)*(x + 2)"
+    - expr: '(x**3 - 6*x - 2).subs(x, 2)'
+      expected: "-6"
+    - expr: '(1/limit((x**3 - 6*x - 2)/(x**3 - 4*x), x, 2, dir="+"), sign(limit((x**3 - 6*x - 2)/(x**3 - 4*x), x, 2, dir="+")))'
+      expected: "(0, -1)"
+    - expr: '(1/limit((x**3 - 6*x - 2)/(x**3 - 4*x), x, 2, dir="-"), sign(limit((x**3 - 6*x - 2)/(x**3 - 4*x), x, 2, dir="-")))'
+      expected: "(0, 1)"
 :::

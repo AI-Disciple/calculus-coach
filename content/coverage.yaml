@@ -8,24 +8,24 @@ sources:
       - { id: "1.4", label: Shifts and Dilations, section: "1.4", nodes: [l1-transformations] }
       - { id: "2.1", label: The slope of a function, section: "2.1", nodes: [l1-derivative] }
       - { id: "2.2", label: An example, section: "2.2", nodes: [l1-derivative] }
-      - { id: "2.3", label: Limits, section: "2.3", nodes: [l1-limits] }
+      - { id: "2.3", label: Limits, section: "2.3", nodes: [l1-limits, l1-limit-techniques] }
       - { id: "2.4", label: The Derivative Function, section: "2.4", nodes: [l1-derivative] }
-      - { id: "2.5", label: Adjectives For Functions, section: "2.5", nodes: [l1-continuity] }
+      - { id: "2.5", label: Adjectives For Functions, section: "2.5", nodes: [l1-continuity, l2-ivt] }
       - { id: "3.1", label: The Power Rule, section: "3.1", nodes: [l1-derivative-rules] }
       - { id: "3.2", label: Linearity of the Derivative, section: "3.2", nodes: [l1-derivative-rules] }
       - { id: "3.3", label: The Product Rule, section: "3.3", nodes: [l1-derivative-rules] }
       - { id: "3.4", label: The Quotient Rule, section: "3.4", nodes: [l1-derivative-rules] }
       - { id: "3.5", label: The Chain Rule, section: "3.5", nodes: [l1-derivative-rules] }
-      - { id: "4.1", label: Trigonometric Functions, section: "4.1", nodes: [l1-trigonometry] }
+      - { id: "4.1", label: Trigonometric Functions, section: "4.1", nodes: [l1-trigonometry, l1-transformations] }
       - { id: "4.2", label: The Derivative of sin x, section: "4.2", nodes: [l1-derivative-rules] }
       - { id: "4.3", label: A hard limit, section: "4.3", nodes: [l1-limit-techniques] }
       - { id: "4.4", label: "The Derivative of sin x, continued", section: "4.4", nodes: [l1-derivative-rules] }
-      - { id: "4.5", label: Derivatives of the Trigonometric Functions, section: "4.5", nodes: [l1-derivative-rules] }
+      - { id: "4.5", label: Derivatives of the Trigonometric Functions, section: "4.5", nodes: [l1-derivative-rules, l1-limit-techniques] }
       - { id: "4.6", label: Exponential and Logarithmic functions, section: "4.6", nodes: [l1-exp-log] }
       - { id: "4.7", label: Derivatives of the exponential and logarithmic functions, section: "4.7", nodes: [l1-derivative-rules] }
       - { id: "4.8", label: Implicit Differentiation, section: "4.8", nodes: [l2-implicit-differentiation] }
       - { id: "4.9", label: Inverse Trigonometric Functions, section: "4.9", nodes: [l2-inverse-functions] }
-      - { id: "4.10", label: Limits revisited, section: "4.10", nodes: [l1-limit-techniques, l2-lhopital] }
+      - { id: "4.10", label: Limits revisited, section: "4.10", nodes: [l1-limit-techniques, l2-lhopital, l1-limits, l2-asymptotes] }
       - { id: "4.11", label: Hyperbolic Functions, section: "4.11", nodes: [l1-exp-log] }
       - { id: "5.1", label: Maxima and Minima, section: "5.1", nodes: [l2-monotonicity-extrema] }
       - { id: "5.2", label: The first derivative test, section: "5.2", nodes: [l2-monotonicity-extrema] }
@@ -54,10 +54,10 @@ sources:
       - { id: "6.3", label: "Newton's Method", section: "6.3", nodes: [l2-newton] }
       - { id: "6.4", label: Linear Approximations, section: "6.4", nodes: [l2-linear-approximation] }
       - { id: "6.5", label: The Mean Value Theorem, section: "6.5", nodes: [l2-mvt] }
-      - { id: "7.1", label: Two examples, section: "7.1", nodes: [l3-riemann-sums] }
+      - { id: "7.1", label: Two examples, section: "7.1", nodes: [l3-riemann-sums, l3-fundamental-theorem] }
       - { id: "7.2", label: The Fundamental Theorem of Calculus, section: "7.2", nodes: [l3-fundamental-theorem] }
       - { id: "7.3", label: Some Properties of Integrals, section: "7.3", nodes: [l3-fundamental-theorem] }
-      - { id: "8.1", label: Substitution, section: "8.1", nodes: [l3-substitution] }
+      - { id: "8.1", label: Substitution, section: "8.1", nodes: [l3-substitution, l3-trig-integrals] }
       - { id: "8.2", label: Powers of sine and cosine, section: "8.2", nodes: [l3-trig-integrals] }
       - { id: "8.3", label: Trigonometric Substitutions, section: "8.3", nodes: [l3-trig-integrals] }
       - { id: "8.4", label: Integration by Parts, section: "8.4", nodes: [l3-integration-by-parts] }
@@ -68,7 +68,7 @@ sources:
       - { id: "9.8", label: Probability, section: "9.8", nodes: [l3-probability-densities, l8-probability] }
       - { id: "10.1", label: Polar Coordinates, section: "10.1", nodes: [l7-polar-integrals] }
       - { id: "10.4", label: Parametric Equations, section: "10.4", nodes: [l5-chain-rule-path] }
-      - { id: "12.1", label: The Coordinate System, section: "12.1", nodes: [l4-coordinates-vectors] }
+      - { id: "12.1", label: The Coordinate System, section: "12.1", nodes: [l4-coordinates-vectors, l4-cylindrical-spherical] }
       - { id: "12.2", label: Vectors, section: "12.2", nodes: [l4-coordinates-vectors] }
       - { id: "12.3", label: The Dot Product, section: "12.3", nodes: [l4-dot-cross-product] }
       - { id: "12.4", label: The Cross Product, section: "12.4", nodes: [l4-dot-cross-product] }
@@ -76,10 +76,10 @@ sources:
       - { id: "12.6", label: Other Coordinate Systems, section: "12.6", nodes: [l4-cylindrical-spherical] }
       - { id: "14.1", label: Functions of Several Variables, section: "14.1", nodes: [l4-functions-several-variables, l4-graphs-planes, l4-cross-sections, l4-level-sets] }
       - { id: "14.2", label: Limits and Continuity, section: "14.2", nodes: [l5-limits-continuity] }
-      - { id: "14.3", label: Partial Differentiation, section: "14.3", nodes: [l5-partial-derivatives, l5-differentiability, l5-tangent-plane] }
+      - { id: "14.3", label: Partial Differentiation, section: "14.3", nodes: [l5-partial-derivatives, l5-differentiability, l5-tangent-plane, l5-higher-derivatives] }
       - { id: "14.4", label: The Chain Rule, section: "14.4", nodes: [l5-chain-rule-path, l5-chain-rule-general] }
       - { id: "14.5", label: Directional Derivatives, section: "14.5", nodes: [l5-tangent-plane, l5-directional-derivative, l5-steepest-ascent] }
-      - { id: "14.6", label: Higher order derivatives, section: "14.6", nodes: [l5-higher-derivatives, l5-hessian] }
+      - { id: "14.6", label: Higher order derivatives, section: "14.6", nodes: [l5-higher-derivatives, l5-hessian, l5-chain-rule-general] }
       - { id: "14.7", label: Maxima and minima, section: "14.7", nodes: [l6-critical-points, l6-second-derivative-test, l6-degenerate-case, l6-parameter-families, l6-global-extrema, l6-worded-optimisation] }
       - { id: "14.8", label: Lagrange Multipliers, section: "14.8", nodes: [l6-lagrange] }
       - { id: "15.1", label: Volume and Average Height, section: "15.1", nodes: [l7-double-integrals-rectangles, l7-general-regions, l7-order-of-integration, l7-average-value, l7-volumes] }
@@ -87,7 +87,7 @@ sources:
       - { id: "15.3", label: Moment and Center of Mass (only the part before Example 15.3.1 is core), section: "15.3", nodes: [l8-mass-centre] }
       - { id: "15.4", label: Surface area, section: "15.4", excluded: The professor says to skip this section. }
       - { id: "15.5", label: Triple Integrals, section: "15.5", nodes: [l8-triple-integrals, l8-volumes-between-surfaces] }
-      - { id: "15.6", label: Cylindrical and Spherical Coordinates, section: "15.6", nodes: [l8-cylindrical-spherical-integrals, l8-volumes-between-surfaces] }
+      - { id: "15.6", label: Cylindrical and Spherical Coordinates, section: "15.6", nodes: [l8-cylindrical-spherical-integrals, l8-volumes-between-surfaces, l8-mass-centre] }
       - { id: "15.7", label: Change of Variables, section: "15.7", nodes: [l8-change-of-variables] }
       - { id: A, label: Selected Answers, section: A, excluded: Answers to the handout exercises. Exercise nodes use them as solutions. }
       - { id: B, label: Useful Formulas, section: B, nodes: [l1-derivative-rules, l3-fundamental-theorem, l1-trigonometry] }
@@ -509,6 +509,7 @@ sources:
       - { id: ex8.1, label: "Exercise 8.1: price-demand profit, fixed 3000, marginal 2", page: 2, nodes: [l2-optimisation] }
       - { id: ex8.2, label: "Exercise 8.2: post-office box, length plus girth 108, square ends", page: 2, nodes: [l2-optimisation] }
       - { id: ex8.3, label: "Exercise 8.3: speed and acceleration from f(t)=-49 t^2/10 + 5t + 10", page: 2, nodes: [l2-optimisation, l1-derivative] }
+      - { id: ex11, label: "Exercise 11: lim_{x->1} (ln(x) - (x-1)/x) / ln(x)^2, Taylor or l'Hopital", page: 3, nodes: [l3-taylor, l1-limit-techniques] }
   - source: sheet-2
     items:
       - { id: ex1a, label: "Exercise 1a: height difference between consecutive contour levels", page: 1, nodes: [l4-level-sets] }

@@ -9,6 +9,7 @@ sources:
   - { source: lecture-notes-2, page: 1 }
   - { source: sheet-1, page: 2 }
   - { source: midterm-app }
+  - { source: handout, section: "4.10" }
 examWeight: high
 examWeightNote: The sketch is worth 6 of the 20 midterm points.
 status: reviewed
@@ -663,4 +664,271 @@ verification:
       expected: "-1"
     - expr: sign((1/(1-x**2)).subs(x, -3))
       expected: "-1"
+:::
+
+::: exercise
+id: l2-asymptotes.handout-4-10-50
+number: "4.10.50"
+tier: standard
+topics:
+  - asymptotes
+statement: |
+  The function \(f(x) = \dfrac{x}{\sqrt{x^{2} + 1}}\) has two horizontal asymptotes. Find them and give a rough sketch of \(f\) with its horizontal asymptotes.
+solution: |
+  **Domain.** The radicand \(x^{2} + 1\) is at least \(1\), so \(f\) is defined and continuous on \(\mathbb{R}\). There is no vertical asymptote.
+
+  **At \(+\infty\).** For \(x > 0\), \(\sqrt{x^{2} + 1} = x\sqrt{1 + \frac{1}{x^{2}}}\), so
+  \[
+  f(x) = \frac{1}{\sqrt{1 + \frac{1}{x^{2}}}} \to 1 \quad (x \to +\infty).
+  \]
+
+  **At \(-\infty\).** For \(x < 0\), \(\sqrt{x^{2} + 1} = -x\sqrt{1 + \frac{1}{x^{2}}}\), so
+  \[
+  f(x) = -\frac{1}{\sqrt{1 + \frac{1}{x^{2}}}} \to -1 \quad (x \to -\infty).
+  \]
+
+  The horizontal asymptotes are \(y = 1\) at \(+\infty\) and \(y = -1\) at \(-\infty\).
+
+  **Sketch.** The function is odd, and \(f(0) = 0\). The derivative is
+  \[
+  f'(x) = \frac{(x^{2} + 1) - x^{2}}{(x^{2} + 1)^{3/2}} = \frac{1}{(x^{2} + 1)^{3/2}} > 0,
+  \]
+  so \(f\) is increasing, with slope \(1\) at the origin. Since \(|x| < \sqrt{x^{2} + 1}\), we have \(|f(x)| < 1\), so the graph stays strictly between the two asymptotes. The second derivative
+  \[
+  f''(x) = -\frac{3x}{(x^{2} + 1)^{5/2}}
+  \]
+  is positive for \(x < 0\) and negative for \(x > 0\). The graph is an S-shaped curve through the origin: it rises from the line \(y = -1\) on the left, concave up, changes concavity at the origin, and flattens out toward the line \(y = 1\) on the right.
+provenance: handout-answer
+steps:
+  - |
+    Rewrite \(\sqrt{x^{2} + 1}\) as \(|x|\sqrt{1 + \frac{1}{x^{2}}}\), with \(|x| = x\) or \(-x\) according to the sign of \(x\).
+  - |
+    The limits are \(1\) at \(+\infty\) and \(-1\) at \(-\infty\).
+  - |
+    Sketch. \(f\) is odd and increasing, stays between \(-1\) and \(1\), and has its inflection point at the origin.
+verification:
+  checks:
+    - expr: limit(x/sqrt(x**2 + 1), x, oo)
+      expected: "1"
+    - expr: limit(x/sqrt(x**2 + 1), x, -oo)
+      expected: "-1"
+    - expr: diff(x/sqrt(x**2 + 1), x)
+      expected: 1/(x**2 + 1)**Rational(3, 2)
+    - expr: diff(x/sqrt(x**2 + 1), x, 2)
+      expected: -3*x/(x**2 + 1)**Rational(5, 2)
+    - expr: diff(x/sqrt(x**2 + 1), x).subs(x, 0)
+      expected: "1"
+    - expr: (x/sqrt(x**2 + 1)).subs(x, -x) + x/sqrt(x**2 + 1)
+      expected: "0"
+:::
+
+
+::: exercise
+id: l2-asymptotes.handout-5-5-29
+number: "5.5.29"
+tier: basic
+topics:
+  - asymptotes
+statement: |
+  For \(f(x) = \dfrac{x - 3}{2x - 2}\), identify any vertical and horizontal asymptotes, and the intervals where the function is concave up and increasing, concave up and decreasing, concave down and increasing, and concave down and decreasing.
+solution: |
+  **Domain.** The denominator vanishes at \(x = 1\), so the domain is \(\mathbb{R} \setminus \{1\}\). Dividing out the factor \(2\) and splitting the numerator gives
+  \[
+  f(x) = \frac{x - 3}{2(x - 1)} = \frac{1}{2} - \frac{1}{x - 1}.
+  \]
+
+  **Asymptotes.**
+
+  - As \(x \to 1^{+}\), the numerator tends to \(-2\) and the denominator to \(0^{+}\), so \(f(x) \to -\infty\).
+  - As \(x \to 1^{-}\), the denominator tends to \(0^{-}\), so \(f(x) \to +\infty\).
+  - As \(x \to \pm\infty\), \(\frac{1}{x - 1} \to 0\), so \(f(x) \to \frac{1}{2}\).
+
+  The line \(x = 1\) is a vertical asymptote, and the line \(y = \frac{1}{2}\) is a horizontal asymptote at both ends.
+
+  **Monotonicity.** The quotient rule gives
+  \[
+  f'(x) = \frac{1 \cdot (2x - 2) - (x - 3) \cdot 2}{(2x - 2)^{2}} = \frac{4}{(2x - 2)^{2}} = \frac{1}{(x - 1)^{2}}.
+  \]
+  This is positive on the whole domain, so \(f\) is increasing on \((-\infty, 1)\) and on \((1, \infty)\).
+
+  **Concavity.** The second derivative is
+  \[
+  f''(x) = -\frac{2}{(x - 1)^{3}}.
+  \]
+  It is positive for \(x < 1\) and negative for \(x > 1\). The sign change happens at the vertical asymptote, so there is no inflection point.
+
+  **The four cases.**
+
+  - Concave up and increasing: \((-\infty, 1)\).
+  - Concave down and increasing: \((1, \infty)\).
+  - Concave up and decreasing: none.
+  - Concave down and decreasing: none.
+provenance: written-for-site
+steps:
+  - |
+    Rewrite \(f(x) = \frac{1}{2} - \frac{1}{x - 1}\). The vertical asymptote is \(x = 1\) and the horizontal asymptote is \(y = \frac{1}{2}\).
+  - |
+    Monotonicity. \(f'(x) = \frac{1}{(x - 1)^{2}} > 0\).
+  - |
+    Concavity. \(f''(x) = -\frac{2}{(x - 1)^{3}}\) is positive for \(x < 1\) and negative for \(x > 1\).
+verification:
+  checks:
+    - expr: (x - 3)/(2*x - 2) - (Rational(1, 2) - 1/(x - 1))
+      expected: "0"
+    - expr: limit((x - 3)/(2*x - 2), x, oo)
+      expected: Rational(1, 2)
+    - expr: limit((x - 3)/(2*x - 2), x, -oo)
+      expected: Rational(1, 2)
+    - expr: sign(limit((x - 3)/(2*x - 2), x, 1, dir='+'))
+      expected: "-1"
+    - expr: sign(limit((x - 3)/(2*x - 2), x, 1, dir='-'))
+      expected: "1"
+    - expr: diff((x - 3)/(2*x - 2), x)
+      expected: 1/(x - 1)**2
+    - expr: diff((x - 3)/(2*x - 2), x, 2)
+      expected: -2/(x - 1)**3
+:::
+
+
+::: exercise
+id: l2-asymptotes.handout-5-5-31
+number: "5.5.31"
+tier: basic
+topics:
+  - asymptotes
+statement: |
+  For \(f(x) = 1 + \dfrac{1}{x^{2}}\), identify any vertical and horizontal asymptotes, and the intervals where the function is concave up and increasing, concave up and decreasing, concave down and increasing, and concave down and decreasing.
+solution: |
+  **Domain.** The domain is \(\mathbb{R} \setminus \{0\}\).
+
+  **Asymptotes.** As \(x \to 0^{+}\) and as \(x \to 0^{-}\), \(\frac{1}{x^{2}} \to +\infty\), so \(f(x) \to +\infty\) from both sides. The line \(x = 0\) is a vertical asymptote. As \(x \to \pm\infty\), \(\frac{1}{x^{2}} \to 0\), so \(f(x) \to 1\). The line \(y = 1\) is a horizontal asymptote at both ends, and the graph stays above it.
+
+  **Monotonicity.** The derivative is
+  \[
+  f'(x) = -\frac{2}{x^{3}}.
+  \]
+  It is positive for \(x < 0\) and negative for \(x > 0\). The function is increasing on \((-\infty, 0)\) and decreasing on \((0, \infty)\).
+
+  **Concavity.** The second derivative is
+  \[
+  f''(x) = \frac{6}{x^{4}},
+  \]
+  which is positive at every point of the domain. The graph is concave up everywhere, and there is no inflection point.
+
+  **The four cases.**
+
+  - Concave up and increasing: \((-\infty, 0)\).
+  - Concave up and decreasing: \((0, \infty)\).
+  - Concave down and increasing: none.
+  - Concave down and decreasing: none.
+provenance: written-for-site
+steps:
+  - |
+    Asymptotes. Vertical \(x = 0\), with limit \(+\infty\) on both sides, and horizontal \(y = 1\).
+  - |
+    Monotonicity. \(f'(x) = -\frac{2}{x^{3}}\) is positive for \(x < 0\) and negative for \(x > 0\).
+  - |
+    Concavity. \(f''(x) = \frac{6}{x^{4}} > 0\), so \(f\) is concave up on its whole domain.
+verification:
+  checks:
+    - expr: sign(limit(1 + 1/x**2, x, 0, dir='+'))
+      expected: "1"
+    - expr: sign(limit(1 + 1/x**2, x, 0, dir='-'))
+      expected: "1"
+    - expr: limit(1 + 1/x**2, x, oo)
+      expected: "1"
+    - expr: limit(1 + 1/x**2, x, -oo)
+      expected: "1"
+    - expr: diff(1 + 1/x**2, x)
+      expected: -2/x**3
+    - expr: diff(1 + 1/x**2, x, 2)
+      expected: 6/x**4
+:::
+
+
+::: exercise
+id: l2-asymptotes.handout-5-5-32
+number: "5.5.32"
+tier: standard
+topics:
+  - asymptotes
+statement: |
+  Let \(f(x) = \dfrac{1}{x^{2} - a^{2}}\), where \(a \ge 0\). Find any vertical and horizontal asymptotes and the intervals on which the function is concave up and increasing, concave up and decreasing, concave down and increasing, and concave down and decreasing. Discuss how the value of \(a\) affects these features.
+solution: |
+  **The case \(a > 0\).** The denominator \(x^{2} - a^{2}\) vanishes at \(x = \pm a\), so the domain is \(\mathbb{R} \setminus \{-a, a\}\). It is positive for \(|x| > a\) and negative for \(|x| < a\).
+
+  *Asymptotes.*
+
+  - As \(x \to a^{+}\) and as \(x \to -a^{-}\), the denominator tends to \(0^{+}\), so \(f(x) \to +\infty\).
+  - As \(x \to a^{-}\) and as \(x \to -a^{+}\), the denominator tends to \(0^{-}\), so \(f(x) \to -\infty\).
+  - As \(x \to \pm\infty\), \(f(x) \to 0\).
+
+  The lines \(x = a\) and \(x = -a\) are vertical asymptotes, and \(y = 0\) is a horizontal asymptote at both ends.
+
+  *Monotonicity.* The derivative is
+  \[
+  f'(x) = -\frac{2x}{(x^{2} - a^{2})^{2}},
+  \]
+  which is positive for \(x < 0\) and negative for \(x > 0\), with \(x \neq \pm a\).
+
+  *Concavity.* The second derivative is
+  \[
+  f''(x) = \frac{6x^{2} + 2a^{2}}{(x^{2} - a^{2})^{3}}.
+  \]
+  The numerator is positive, so \(f''\) has the sign of \(x^{2} - a^{2}\). The graph is concave up for \(|x| > a\) and concave down for \(|x| < a\). The sign changes occur only at the vertical asymptotes, so there is no inflection point. Combining the signs gives:
+
+  - Concave up and increasing: \((-\infty, -a)\).
+  - Concave down and increasing: \((-a, 0)\).
+  - Concave down and decreasing: \((0, a)\).
+  - Concave up and decreasing: \((a, \infty)\).
+
+  The point \(\left(0, -\frac{1}{a^{2}}\right)\) is a local maximum.
+
+  **The case \(a = 0\).** Here \(f(x) = \frac{1}{x^{2}}\), with domain \(\mathbb{R} \setminus \{0\}\). The line \(x = 0\) is the only vertical asymptote, with limit \(+\infty\) on both sides, and \(y = 0\) is the horizontal asymptote. The derivatives are \(f'(x) = -\frac{2}{x^{3}}\) and \(f''(x) = \frac{6}{x^{4}} > 0\). The graph is concave up everywhere:
+
+  - Concave up and increasing: \((-\infty, 0)\).
+  - Concave up and decreasing: \((0, \infty)\).
+  - Concave down: none.
+
+  **Effect of \(a\).** The horizontal asymptote \(y = 0\) does not depend on \(a\). For \(a > 0\) there are two vertical asymptotes, \(x = \pm a\), and a concave-down middle piece with maximum \(-\frac{1}{a^{2}}\) on \((-a, a)\). A larger \(a\) moves the asymptotes apart, widens the middle piece, and raises its maximum toward \(0\). As \(a \to 0^{+}\), the asymptotes merge, the middle piece disappears, and the maximum value tends to \(-\infty\). At \(a = 0\) there is a single vertical asymptote and no concave-down interval.
+provenance: written-for-site
+steps:
+  - |
+    For \(a > 0\), the vertical asymptotes are \(x = \pm a\) and the horizontal asymptote is \(y = 0\).
+  - |
+    Monotonicity. \(f'(x) = -\frac{2x}{(x^{2} - a^{2})^{2}}\) has the sign of \(-x\).
+  - |
+    Concavity. \(f''(x) = \frac{6x^{2} + 2a^{2}}{(x^{2} - a^{2})^{3}}\) has the sign of \(x^{2} - a^{2}\). List the four intervals.
+  - |
+    For \(a = 0\), \(f(x) = \frac{1}{x^{2}}\) is concave up everywhere.
+  - |
+    Effect of \(a\). It sets the position of the asymptotes and the height \(-\frac{1}{a^{2}}\) of the local maximum.
+verification:
+  checks:
+    - expr: diff(1/(x**2 - a**2), x)
+      expected: -2*x/(x**2 - a**2)**2
+    - expr: diff(1/(x**2 - a**2), x, 2)
+      expected: (6*x**2 + 2*a**2)/(x**2 - a**2)**3
+    - expr: (1/(x**2 - a**2)).subs(x, 0)
+      expected: -1/a**2
+    - expr: sign(limit(1/(x**2 - 4), x, 2, dir='+'))
+      expected: "1"
+    - expr: sign(limit(1/(x**2 - 4), x, 2, dir='-'))
+      expected: "-1"
+    - expr: sign(limit(1/(x**2 - 4), x, -2, dir='-'))
+      expected: "1"
+    - expr: sign(limit(1/(x**2 - 4), x, -2, dir='+'))
+      expected: "-1"
+    - expr: limit(1/(x**2 - a**2), x, oo)
+      expected: "0"
+    - expr: (sign(diff(1/(x**2 - 4), x).subs(x, -3)), sign(diff(1/(x**2 - 4), x, 2).subs(x, -3)))
+      expected: (1, 1)
+    - expr: (sign(diff(1/(x**2 - 4), x).subs(x, -1)), sign(diff(1/(x**2 - 4), x, 2).subs(x, -1)))
+      expected: (1, -1)
+    - expr: (sign(diff(1/(x**2 - 4), x).subs(x, 1)), sign(diff(1/(x**2 - 4), x, 2).subs(x, 1)))
+      expected: (-1, -1)
+    - expr: (sign(diff(1/(x**2 - 4), x).subs(x, 3)), sign(diff(1/(x**2 - 4), x, 2).subs(x, 3)))
+      expected: (-1, 1)
+    - expr: diff(1/x**2, x, 2)
+      expected: 6/x**4
 :::

@@ -1131,3 +1131,102 @@ verification:
     - expr: '(x**2+2*y**2-x).subs({x: -1, y: 0})'
       expected: '2'
 :::
+
+::: exercise
+id: l6-lagrange.sheet-2-16
+number: "sheet 2 exercise 16"
+tier: standard
+topics: [lagrange-multipliers]
+statement: |
+  Find three positive numbers whose sum is \(27\), such that the sum of their squares is as small as possible.
+solution: |
+  Let the numbers be \(x, y, z > 0\). Minimise \(f = x^2 + y^2 + z^2\) subject to \(g = x + y + z = 27\). The gradient equation \(\nabla f = \lambda \nabla g\) is
+  \[
+  (2x, 2y, 2z) = \lambda(1, 1, 1),
+  \]
+  so \(x = y = z = \lambda/2\). The constraint gives \(3x = 27\), so \(x = y = z = 9\), with \(\lambda = 18\) and \(f = 243\).
+
+  The point \((9, 9, 9)\) has positive coordinates, so it is admissible. To show it is the global minimum, expand the squares on the plane \(x + y + z = 27\):
+  \[
+  \begin{aligned}
+  (x - 9)^2 + (y - 9)^2 + (z - 9)^2&= x^2 + y^2 + z^2 - 18(x + y + z) + 243\\
+  &= x^2 + y^2 + z^2 - 243.
+  \end{aligned}
+  \]
+  The left side is nonnegative and vanishes only at \((9, 9, 9)\). So \(x^2 + y^2 + z^2 \ge 243\) for all triples with sum \(27\), with equality only there.
+
+  The sum of squares has no maximum on positive triples. It stays below \(27^2 = 729\), because \((x + y + z)^2 = f + 2(xy + yz + zx)\) and the cross terms are positive, and it approaches \(729\) when one number tends to \(27\).
+
+  The three numbers are \(9, 9, 9\), and the smallest sum of squares is \(243\).
+provenance: written-for-site
+steps:
+  - The system \((2x, 2y, 2z) = \lambda(1, 1, 1)\) with \(x + y + z = 27\).
+  - The only solution is \(x = y = z = 9\), and \(f = 243\).
+  - The identity \(\sum (x - 9)^2 = f - 243\) on the plane shows this is the minimum.
+verification:
+  checks:
+    - expr: "linsolve([x - y, y - z, x + y + z - 27], x, y, z)"
+      expected: "FiniteSet((9, 9, 9))"
+    - expr: "9**2 + 9**2 + 9**2"
+      expected: "243"
+    - expr: "expand((x**2 + y**2 + z**2 - 243 - ((x - 9)**2 + (y - 9)**2 + (z - 9)**2)).subs(z, 27 - x - y))"
+      expected: "0"
+    - expr: "(2*9 - 18, 2*9 - 18, 2*9 - 18)"
+      expected: "(0, 0, 0)"
+:::
+
+
+::: exercise
+id: l6-lagrange.sheet-2-17
+number: "sheet 2 exercise 17"
+tier: standard
+topics: [lagrange-multipliers, distance]
+statement: |
+  Find the points on the surface \(xyz = 1\) that lie closest to the origin \((0, 0, 0)\) in \(\mathbb{R}^3\).
+solution: |
+  The distance to the origin is smallest where its square \(f = x^2 + y^2 + z^2\) is smallest. Minimise \(f\) subject to \(g = xyz = 1\). On the surface no coordinate is zero, so
+  \[
+  \nabla g = (yz, xz, xy) \ne 0.
+  \]
+  The gradient equation \(\nabla f = \lambda \nabla g\) is
+  \[
+  \begin{aligned}
+  2x&= \lambda yz,\\
+  2y&= \lambda xz,\\
+  2z&= \lambda xy.
+  \end{aligned}
+  \]
+  Multiply the equations by \(x\), \(y\) and \(z\). The right sides all become \(\lambda xyz = \lambda\), so
+  \[
+  2x^2 = 2y^2 = 2z^2 = \lambda.
+  \]
+  Hence \(x^2 = y^2 = z^2\), and \((xyz)^2 = (x^2)^3 = 1\) gives \(x^2 = 1\). So \(x, y, z \in \{1, -1\}\), with \(\lambda = 2\). The condition \(xyz = 1\) allows an even number of minus signs, which leaves four points:
+  \[
+  (1, 1, 1), \quad (1, -1, -1), \quad (-1, 1, -1), \quad (-1, -1, 1).
+  \]
+  At each of them \(f = 3\).
+
+  A minimum exists. The surface is closed, and the part of it inside the ball \(f \le 4\) is closed and bounded and contains \((1, 1, 1)\). A continuous \(f\) takes its minimum there, and that point is among the candidates. All four candidates give \(f = 3\), so all four are minimum points.
+
+  The surface has no farthest point, since the points \((t, 1/t, 1)\) have \(f \to \infty\) as \(t \to \infty\).
+
+  The points closest to the origin are \((1, 1, 1)\), \((1, -1, -1)\), \((-1, 1, -1)\) and \((-1, -1, 1)\). Their distance to the origin is \(\sqrt{3}\).
+provenance: written-for-site
+steps:
+  - The system \(2x = \lambda yz\), \(2y = \lambda xz\), \(2z = \lambda xy\) with \(xyz = 1\).
+  - Multiplying by \(x, y, z\) gives \(x^2 = y^2 = z^2\), and then \(x^2 = 1\).
+  - Four sign patterns with product \(1\), each at squared distance \(3\).
+  - A minimum exists, so all four points are closest, at distance \(\sqrt{3}\).
+verification:
+  checks:
+    - expr: "real_roots(x**6 - 1)"
+      expected: "[-1, 1]"
+    - expr: "((1)*(1)*(1), (1)**2 + (1)**2 + (1)**2, 2*(1) - 2*(1)*(1), 2*(1) - 2*(1)*(1), 2*(1) - 2*(1)*(1))"
+      expected: "(1, 3, 0, 0, 0)"
+    - expr: "((1)*(-1)*(-1), (1)**2 + (-1)**2 + (-1)**2, 2*(1) - 2*(-1)*(-1), 2*(-1) - 2*(1)*(-1), 2*(-1) - 2*(1)*(-1))"
+      expected: "(1, 3, 0, 0, 0)"
+    - expr: "((-1)*(1)*(-1), (-1)**2 + (1)**2 + (-1)**2, 2*(-1) - 2*(1)*(-1), 2*(1) - 2*(-1)*(-1), 2*(-1) - 2*(-1)*(1))"
+      expected: "(1, 3, 0, 0, 0)"
+    - expr: "((-1)*(-1)*(1), (-1)**2 + (-1)**2 + (1)**2, 2*(-1) - 2*(-1)*(1), 2*(-1) - 2*(-1)*(1), 2*(1) - 2*(-1)*(-1))"
+      expected: "(1, 3, 0, 0, 0)"
+:::

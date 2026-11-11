@@ -2901,3 +2901,918 @@ verification:
     - expr: diff(atan(x), x, 2).subs(x, 1)
       expected: Rational(-1, 2)
 :::
+
+::: exercise
+id: l2-curve-sketching.handout-5-5-4
+number: "5.5.4"
+tier: exam
+topics:
+  - curve-sketching
+statement: |
+  Sketch the curve \(x^{2} + x^{2}y^{2} = a^{2}y^{2}\), where \(a > 0\). Identify clearly any interesting features, including local maximum and minimum points, inflection points, asymptotes, and intercepts. (The curve splits into the two graphs \(y = \pm\dfrac{x}{\sqrt{a^{2} - x^{2}}}\) on \(-a < x < a\).)
+solution: |
+  **Rewriting.** The equation says \(x^{2} = y^{2}(a^{2} - x^{2})\). If \(|x| \ge a\), the right side is at most \(0\) and the left side is at least \(a^{2} > 0\), so no point of the curve has \(|x| \ge a\). For \(-a < x < a\),
+  \[
+  y^{2} = \frac{x^{2}}{a^{2} - x^{2}},
+  \]
+  so the curve is the graph of \(f(x) = \dfrac{x}{\sqrt{a^{2} - x^{2}}}\) together with its mirror image \(y = -f(x)\) in the \(x\)-axis. It is enough to study \(f\).
+
+  **Domain and symmetry.** The domain is \((-a, a)\). The function is odd, because \(f(-x) = -f(x)\).
+
+  **Asymptotes.** As \(x \to a^{-}\), the numerator tends to \(a > 0\) and the denominator tends to \(0^{+}\), so \(f(x) \to +\infty\). By oddness, \(f(x) \to -\infty\) as \(x \to -a^{+}\). The lines \(x = a\) and \(x = -a\) are vertical asymptotes. The domain is bounded, so there is no horizontal or oblique asymptote.
+
+  **Derivative.** The quotient rule gives
+  \[
+  \begin{aligned}
+  f'(x) &= \frac{1}{\sqrt{a^{2} - x^{2}}} + \frac{x^{2}}{(a^{2} - x^{2})^{3/2}}\\
+  &= \frac{(a^{2} - x^{2}) + x^{2}}{(a^{2} - x^{2})^{3/2}}\\
+  &= \frac{a^{2}}{(a^{2} - x^{2})^{3/2}}.
+  \end{aligned}
+  \]
+  This is positive on \((-a, a)\). The function is strictly increasing and has no local maximum or minimum. The slope at the origin is \(f'(0) = \frac{1}{a}\).
+
+  **Second derivative.** Differentiating \(a^{2}(a^{2} - x^{2})^{-3/2}\) gives
+  \[
+  f''(x) = \frac{3a^{2}x}{(a^{2} - x^{2})^{5/2}}.
+  \]
+  The denominator is positive, so \(f''\) has the sign of \(x\). The graph is concave down on \((-a, 0)\) and concave up on \((0, a)\). The sign change at \(x = 0\) gives the inflection point \((0, 0)\), with tangent line \(y = \frac{x}{a}\).
+
+  **Intercepts.** \(f(x) = 0\) only for \(x = 0\), so the origin is the only intercept, on both graphs.
+
+  **Conclusion.** The graph of \(f\) rises from \(-\infty\) near \(x = -a\), passes through the origin with slope \(\frac{1}{a}\), and rises to \(+\infty\) near \(x = a\). It is concave down to the left of the origin and concave up to the right. The curve is this graph together with its reflection in the \(x\)-axis. The two graphs cross at the origin with slopes \(\frac{1}{a}\) and \(-\frac{1}{a}\), and all four arms approach the lines \(x = \pm a\).
+provenance: written-for-site
+steps:
+  - |
+    Rewrite. Solve for \(y^{2}\), show that \(|x| < a\), and split into the graphs \(y = \pm f(x)\).
+  - |
+    Symmetry and asymptotes. \(f\) is odd, with vertical asymptotes \(x = \pm a\).
+  - |
+    Derivative. \(f'(x) = \frac{a^{2}}{(a^{2} - x^{2})^{3/2}} > 0\), so there is no extremum.
+  - |
+    Second derivative. \(f''\) has the sign of \(x\), so the origin is the only inflection point.
+  - |
+    Intercepts. The origin is the only intercept.
+  - |
+    Conclusion. Describe the graph of \(f\) and its mirror image.
+verification:
+  checks:
+    - expr: (x**2 + x**2*y**2 - a**2*y**2).subs(y, x/sqrt(a**2 - x**2))
+      expected: "0"
+    - expr: (x**2 + x**2*y**2 - a**2*y**2).subs(y, -x/sqrt(a**2 - x**2))
+      expected: "0"
+    - expr: diff(x/sqrt(a**2 - x**2), x)
+      expected: a**2/(a**2 - x**2)**Rational(3, 2)
+    - expr: diff(x/sqrt(a**2 - x**2), x, 2)
+      expected: 3*a**2*x/(a**2 - x**2)**Rational(5, 2)
+    - expr: diff(x/sqrt(a**2 - x**2), x).subs(x, 0)**2
+      expected: 1/a**2
+    - expr: sign(limit(x/sqrt(4 - x**2), x, 2, dir='-'))
+      expected: "1"
+    - expr: sign(limit(x/sqrt(4 - x**2), x, -2, dir='+'))
+      expected: "-1"
+    - expr: (x/sqrt(a**2 - x**2)).subs(x, -x) + (x/sqrt(a**2 - x**2))
+      expected: "0"
+:::
+
+
+::: exercise
+id: l2-curve-sketching.handout-5-5-9
+number: "5.5.9"
+tier: standard
+topics:
+  - curve-sketching
+statement: |
+  Sketch the curve \(y = \dfrac{e^{x}}{x}\). Identify clearly any interesting features, including local maximum and minimum points, inflection points, asymptotes, and intercepts.
+solution: |
+  **Domain.** The domain is \(\mathbb{R} \setminus \{0\}\).
+
+  **Intercepts.** The factor \(e^{x}\) is positive, so \(f(x) = 0\) has no solution, and \(0\) is outside the domain. There are no intercepts. The sign of \(f\) is the sign of \(x\).
+
+  **Asymptotes.**
+
+  - As \(x \to 0^{+}\), the numerator tends to \(1\) and the denominator to \(0^{+}\), so \(f(x) \to +\infty\).
+  - As \(x \to 0^{-}\), the denominator tends to \(0^{-}\), so \(f(x) \to -\infty\).
+  - As \(x \to -\infty\), \(e^{x} \to 0\) and \(\frac{1}{x} \to 0\), so \(f(x) \to 0\), from below because \(f < 0\) there.
+  - As \(x \to +\infty\), \(e^{x}\) outgrows every power of \(x\), so \(f(x) \to +\infty\). The quotient \(\frac{f(x)}{x} = \frac{e^{x}}{x^{2}}\) also tends to \(+\infty\), so there is no oblique asymptote.
+
+  The line \(x = 0\) is a vertical asymptote, and the line \(y = 0\) is a horizontal asymptote at \(-\infty\) only.
+
+  **Derivative.** The quotient rule gives
+  \[
+  f'(x) = \frac{x e^{x} - e^{x}}{x^{2}} = \frac{(x - 1)e^{x}}{x^{2}}.
+  \]
+  The factor \(\frac{e^{x}}{x^{2}}\) is positive, so \(f'\) has the sign of \(x - 1\). The function is decreasing on \((-\infty, 0)\) and on \((0, 1)\), and increasing on \((1, \infty)\). The only sign change is at \(x = 1\), from negative to positive, so \((1, e)\) is a local minimum. There is no local maximum.
+
+  **Second derivative.** Differentiating \(f'\) gives
+  \[
+  f''(x) = \frac{e^{x}(x^{2} - 2x + 2)}{x^{3}}.
+  \]
+  The quadratic \(x^{2} - 2x + 2\) has discriminant \(4 - 8 = -4 < 0\), so it is positive for every \(x\). Thus \(f''\) has the sign of \(x^{3}\), which is the sign of \(x\). The graph is concave down on \((-\infty, 0)\) and concave up on \((0, \infty)\). The only sign change is at \(x = 0\), outside the domain, so there is no inflection point.
+
+  **Conclusion.** The left branch lies below the \(x\)-axis. It comes in from the left along \(y = 0\), decreases while concave down, and falls to \(-\infty\) along \(x = 0\). The right branch comes down from \(+\infty\) along \(x = 0\), is concave up, reaches the minimum \((1, e)\), and then rises to \(+\infty\) faster than any line.
+provenance: written-for-site
+steps:
+  - |
+    Domain and intercepts. \(x \ne 0\), and there is no intercept.
+  - |
+    Asymptotes. Vertical at \(x = 0\), horizontal \(y = 0\) at \(-\infty\), none at \(+\infty\).
+  - |
+    Derivative. \(f'(x) = \frac{(x - 1)e^{x}}{x^{2}}\), with a local minimum at \(x = 1\).
+  - |
+    Second derivative. \(f''\) has the sign of \(x\), so there is no inflection point.
+  - |
+    Conclusion. Describe the two branches.
+verification:
+  checks:
+    - expr: diff(exp(x)/x, x)
+      expected: (x - 1)*exp(x)/x**2
+    - expr: diff(exp(x)/x, x, 2)
+      expected: exp(x)*(x**2 - 2*x + 2)/x**3
+    - expr: solve(diff(exp(x)/x, x), x)
+      expected: "[1]"
+    - expr: (exp(x)/x).subs(x, 1)
+      expected: exp(1)
+    - expr: discriminant(x**2 - 2*x + 2, x)
+      expected: "-4"
+    - expr: sign(limit(exp(x)/x, x, 0, dir='+'))
+      expected: "1"
+    - expr: sign(limit(exp(x)/x, x, 0, dir='-'))
+      expected: "-1"
+    - expr: limit(exp(x)/x, x, -oo)
+      expected: "0"
+    - expr: sign(limit(exp(x)/x, x, oo))
+      expected: "1"
+    - expr: sign(limit(exp(x)/x**2, x, oo))
+      expected: "1"
+:::
+
+
+::: exercise
+id: l2-curve-sketching.handout-5-5-10
+number: "5.5.10"
+tier: standard
+topics:
+  - curve-sketching
+statement: |
+  Sketch the curve \(y = 4x + \sqrt{1 - x}\). Identify clearly any interesting features, including local maximum and minimum points, inflection points, asymptotes, and intercepts.
+solution: |
+  **Domain.** The square root needs \(1 - x \ge 0\), so the domain is \((-\infty, 1]\).
+
+  **Derivative.** For \(x < 1\),
+  \[
+  f'(x) = 4 - \frac{1}{2\sqrt{1 - x}} = \frac{8\sqrt{1 - x} - 1}{2\sqrt{1 - x}}.
+  \]
+  The numerator vanishes when \(\sqrt{1 - x} = \frac{1}{8}\), that is \(1 - x = \frac{1}{64}\), so \(x = \frac{63}{64}\).
+
+  **Sign chart.**
+
+  - For \(x < \frac{63}{64}\), \(\sqrt{1 - x} > \frac{1}{8}\), so \(f' > 0\).
+  - For \(\frac{63}{64} < x < 1\), \(\sqrt{1 - x} < \frac{1}{8}\), so \(f' < 0\).
+
+  The sign changes from positive to negative at \(x = \frac{63}{64}\), where
+  \[
+  f\left(\tfrac{63}{64}\right) = \frac{63}{16} + \frac{1}{8} = \frac{65}{16}.
+  \]
+  So \(\left(\frac{63}{64}, \frac{65}{16}\right)\) is a local maximum.
+
+  **Endpoint.** The graph ends at \((1, 4)\). As \(x \to 1^{-}\), \(f'(x) \to -\infty\), so the tangent at the endpoint is vertical.
+
+  **Second derivative.** Differentiating \(f'\) gives
+  \[
+  f''(x) = -\frac{1}{4(1 - x)^{3/2}} < 0
+  \]
+  on \((-\infty, 1)\). The graph is concave down throughout and has no inflection point.
+
+  **Asymptotes.** There is no vertical asymptote. As \(x \to -\infty\), \(f(x) \to -\infty\). The quotient \(\frac{f(x)}{x}\) tends to \(4\), but the difference \(f(x) - 4x = \sqrt{1 - x}\) tends to \(+\infty\), so there is no oblique asymptote either.
+
+  **Intercepts.** The \(y\)-intercept is \(f(0) = 1\). For \(f(x) = 0\) we need \(\sqrt{1 - x} = -4x\), so \(x \le 0\), and squaring gives
+  \[
+  16x^{2} + x - 1 = 0, \qquad x = \frac{-1 \pm \sqrt{65}}{32}.
+  \]
+  The root \(\frac{-1 + \sqrt{65}}{32}\) is positive and is rejected. The \(x\)-intercept is \(x = \frac{-1 - \sqrt{65}}{32} \approx -0.283\).
+
+  **Conclusion.** The graph rises from \(-\infty\), crossing the \(x\)-axis near \(-0.283\) and the \(y\)-axis at \(1\), all the time concave down. It reaches the maximum \(\left(\frac{63}{64}, \frac{65}{16}\right)\) just before the end of the domain, and then falls to the endpoint \((1, 4)\), which it reaches along a vertical tangent.
+provenance: written-for-site
+steps:
+  - |
+    Domain. \(x \le 1\).
+  - |
+    Derivative. \(f'(x) = 4 - \frac{1}{2\sqrt{1 - x}}\) vanishes only at \(x = \frac{63}{64}\), a local maximum with value \(\frac{65}{16}\).
+  - |
+    Endpoint. \(f(1) = 4\), with a vertical tangent.
+  - |
+    Second derivative. \(f'' < 0\), so the graph is concave down and has no inflection point.
+  - |
+    Asymptotes. None.
+  - |
+    Intercepts. \(f(0) = 1\), and \(x = \frac{-1 - \sqrt{65}}{32}\).
+verification:
+  checks:
+    - expr: diff(4*x + sqrt(1 - x), x)
+      expected: 4 - 1/(2*sqrt(1 - x))
+    - expr: solve(8*sqrt(1 - x) - 1, x)
+      expected: "[63/64]"
+    - expr: (4*x + sqrt(1 - x)).subs(x, Rational(63, 64))
+      expected: Rational(65, 16)
+    - expr: (4*x + sqrt(1 - x)).subs(x, 1)
+      expected: "4"
+    - expr: diff(4*x + sqrt(1 - x), x, 2)
+      expected: -1/(4*(1 - x)**Rational(3, 2))
+    - expr: sign(diff(4*x + sqrt(1 - x), x).subs(x, 0))
+      expected: "1"
+    - expr: sign(diff(4*x + sqrt(1 - x), x).subs(x, Rational(255, 256)))
+      expected: "-1"
+    - expr: sign(limit(diff(4*x + sqrt(1 - x), x), x, 1, dir='-'))
+      expected: "-1"
+    - expr: (4*x + sqrt(1 - x)).subs(x, 0)
+      expected: "1"
+    - expr: (4*x + sqrt(1 - x)).subs(x, (-1 - sqrt(65))/32)
+      expected: "0"
+    - expr: expand((4*x)**2 - (1 - x))
+      expected: 16*x**2 + x - 1
+:::
+
+
+::: exercise
+id: l2-curve-sketching.handout-5-5-11
+number: "5.5.11"
+tier: exam
+topics:
+  - curve-sketching
+statement: |
+  Sketch the curve \(y = \dfrac{x + 1}{\sqrt{5x^{2} + 35}}\). Identify clearly any interesting features, including local maximum and minimum points, inflection points, asymptotes, and intercepts.
+solution: |
+  **Domain.** The radicand is \(5x^{2} + 35 = 5(x^{2} + 7) > 0\), so the domain is \(\mathbb{R}\). Write
+  \[
+  f(x) = \frac{x + 1}{\sqrt{5}\,\sqrt{x^{2} + 7}}.
+  \]
+
+  **Derivative.** The quotient rule gives
+  \[
+  \begin{aligned}
+  f'(x) &= \frac{1}{\sqrt{5}} \cdot \frac{(x^{2} + 7) - x(x + 1)}{(x^{2} + 7)^{3/2}}\\
+  &= \frac{7 - x}{\sqrt{5}\,(x^{2} + 7)^{3/2}}.
+  \end{aligned}
+  \]
+  The derivative is positive for \(x < 7\), zero at \(x = 7\), and negative for \(x > 7\). So \(f\) increases up to a local maximum at \(x = 7\) and decreases afterwards, with
+  \[
+  f(7) = \frac{8}{\sqrt{280}} = \frac{4}{\sqrt{70}} \approx 0.478.
+  \]
+
+  **Asymptotes.** There is no vertical asymptote. For \(x > 0\),
+  \[
+  f(x) = \frac{1 + \frac{1}{x}}{\sqrt{5 + \frac{35}{x^{2}}}} \to \frac{1}{\sqrt{5}} \quad (x \to +\infty).
+  \]
+  For \(x < 0\), \(\sqrt{5x^{2} + 35} = -x\sqrt{5 + \frac{35}{x^{2}}}\), so
+  \[
+  f(x) = -\frac{1 + \frac{1}{x}}{\sqrt{5 + \frac{35}{x^{2}}}} \to -\frac{1}{\sqrt{5}} \quad (x \to -\infty).
+  \]
+  The lines \(y = \frac{1}{\sqrt{5}}\) and \(y = -\frac{1}{\sqrt{5}}\) are horizontal asymptotes at \(+\infty\) and at \(-\infty\). There is no oblique asymptote.
+
+  **Second derivative.** Differentiating \(f'\) gives
+  \[
+  f''(x) = \frac{2x^{2} - 21x - 7}{\sqrt{5}\,(x^{2} + 7)^{5/2}}.
+  \]
+  The numerator has the roots
+  \[
+  x = \frac{21 \pm \sqrt{441 + 56}}{4} = \frac{21 \pm \sqrt{497}}{4},
+  \]
+  which are \(x_{1} \approx -0.323\) and \(x_{2} \approx 10.823\). The denominator is positive, so \(f''\) is
+
+  - positive on \((-\infty, x_{1})\),
+  - negative on \((x_{1}, x_{2})\),
+  - positive on \((x_{2}, \infty)\).
+
+  Both zeros are sign changes, so there are two inflection points, \((x_{1}, f(x_{1})) \approx (-0.323, 0.114)\) and \((x_{2}, f(x_{2})) \approx (10.823, 0.475)\).
+
+  **Intercepts.** \(f(x) = 0\) only for \(x = -1\), and \(f(0) = \frac{1}{\sqrt{35}}\). The intercepts are \((-1, 0)\) and \(\left(0, \frac{1}{\sqrt{35}}\right)\).
+
+  **Conclusion.** The graph rises from the asymptote \(y = -\frac{1}{\sqrt{5}}\), concave up until \(x_{1}\), crosses the \(x\)-axis at \(-1\), and is concave down from \(x_{1}\) up to the maximum \(\left(7, \frac{4}{\sqrt{70}}\right)\). It then decreases, becomes concave up after \(x_{2}\), and approaches \(y = \frac{1}{\sqrt{5}}\) from above. The maximum value \(0.478\) exceeds \(\frac{1}{\sqrt{5}} \approx 0.447\).
+provenance: written-for-site
+steps:
+  - |
+    Domain. \(\mathbb{R}\), since \(5x^{2} + 35 > 0\).
+  - |
+    Derivative. \(f'(x) = \frac{7 - x}{\sqrt{5}\,(x^{2} + 7)^{3/2}}\), so the local maximum is \(\left(7, \frac{4}{\sqrt{70}}\right)\).
+  - |
+    Asymptotes. Horizontal \(y = \pm\frac{1}{\sqrt{5}}\), at \(+\infty\) and \(-\infty\) respectively.
+  - |
+    Second derivative. The roots of \(2x^{2} - 21x - 7\) are \(\frac{21 \pm \sqrt{497}}{4}\), and both are inflection points.
+  - |
+    Intercepts. \((-1, 0)\) and \(\left(0, \frac{1}{\sqrt{35}}\right)\).
+  - |
+    Conclusion. Describe the curve between its two horizontal asymptotes.
+verification:
+  checks:
+    - expr: diff((x + 1)/sqrt(5*x**2 + 35), x)
+      expected: (7 - x)/(sqrt(5)*(x**2 + 7)**Rational(3, 2))
+    - expr: diff((x + 1)/sqrt(5*x**2 + 35), x, 2)
+      expected: (2*x**2 - 21*x - 7)/(sqrt(5)*(x**2 + 7)**Rational(5, 2))
+    - expr: solve(7 - x, x)
+      expected: "[7]"
+    - expr: ((x + 1)/sqrt(5*x**2 + 35)).subs(x, 7)
+      expected: 2*sqrt(70)/35
+    - expr: limit((x + 1)/sqrt(5*x**2 + 35), x, oo)
+      expected: sqrt(5)/5
+    - expr: limit((x + 1)/sqrt(5*x**2 + 35), x, -oo)
+      expected: -sqrt(5)/5
+    - expr: (2*x**2 - 21*x - 7).subs(x, (21 + sqrt(497))/4)
+      expected: "0"
+    - expr: (2*x**2 - 21*x - 7).subs(x, (21 - sqrt(497))/4)
+      expected: "0"
+    - expr: floor(1000*((x + 1)/sqrt(5*x**2 + 35)).subs(x, (21 - sqrt(497))/4))
+      expected: "113"
+    - expr: floor(1000*((x + 1)/sqrt(5*x**2 + 35)).subs(x, (21 + sqrt(497))/4))
+      expected: "474"
+    - expr: ((x + 1)/sqrt(5*x**2 + 35)).subs(x, 0)
+      expected: sqrt(35)/35
+:::
+
+
+::: exercise
+id: l2-curve-sketching.handout-5-5-13
+number: "5.5.13"
+tier: standard
+topics:
+  - curve-sketching
+statement: |
+  Sketch the curve \(y = 6x + \sin 3x\). Identify clearly any interesting features, including local maximum and minimum points, inflection points, asymptotes, and intercepts.
+solution: |
+  **Domain and symmetry.** The domain is \(\mathbb{R}\). The function is odd, because \(f(-x) = -6x - \sin 3x = -f(x)\).
+
+  **Derivative.** The derivative is
+  \[
+  f'(x) = 6 + 3\cos 3x = 3(2 + \cos 3x).
+  \]
+  Since \(\cos 3x \ge -1\), we have \(f'(x) \ge 3 > 0\). The function is strictly increasing, with no critical point and no local extremum. The slope is \(9\) where \(\cos 3x = 1\) and \(3\) where \(\cos 3x = -1\).
+
+  **Second derivative.** The second derivative is
+  \[
+  f''(x) = -9\sin 3x.
+  \]
+  It vanishes when \(3x = k\pi\), that is \(x = \frac{k\pi}{3}\) for every integer \(k\). Between two consecutive zeros the sign of \(\sin 3x\) alternates, so \(f''\) changes sign at every \(x = \frac{k\pi}{3}\).
+
+  - On \(\left(\frac{2k\pi}{3}, \frac{(2k + 1)\pi}{3}\right)\), \(\sin 3x > 0\), so the graph is concave down.
+  - On \(\left(\frac{(2k + 1)\pi}{3}, \frac{(2k + 2)\pi}{3}\right)\), \(\sin 3x < 0\), so the graph is concave up.
+
+  The inflection points are
+  \[
+  \left(\frac{k\pi}{3},\; 2k\pi\right), \qquad k \in \mathbb{Z},
+  \]
+  because \(f\left(\frac{k\pi}{3}\right) = 2k\pi + \sin k\pi = 2k\pi\). They lie on the line \(y = 6x\). The tangent slope there is \(9\) for even \(k\) and \(3\) for odd \(k\).
+
+  **Asymptotes.** The function is continuous, so there is no vertical asymptote. Since \(6x - 1 \le f(x) \le 6x + 1\), \(f(x) \to \pm\infty\) as \(x \to \pm\infty\). The quotient \(\frac{f(x)}{x}\) tends to \(6\), but \(f(x) - 6x = \sin 3x\) has no limit, so there is no oblique asymptote.
+
+  **Intercepts.** \(f(0) = 0\). A second zero would need \(\sin 3x = -6x\), which forces \(|x| \le \frac{1}{6}\). Since \(f\) is strictly increasing and \(f(0) = 0\), there is no other zero. The only intercept is the origin.
+
+  **Conclusion.** The graph increases from \(-\infty\) to \(+\infty\) and never has a horizontal tangent. It winds around the line \(y = 6x\), staying within vertical distance \(1\) of it. It crosses that line at each inflection point \(\left(\frac{k\pi}{3}, 2k\pi\right)\), where the slope alternates between \(9\) and \(3\).
+provenance: written-for-site
+steps:
+  - |
+    Derivative. \(f'(x) = 3(2 + \cos 3x) \ge 3\), so \(f\) is strictly increasing with no extremum.
+  - |
+    Second derivative. \(f''(x) = -9\sin 3x\) changes sign at every \(x = \frac{k\pi}{3}\).
+  - |
+    Inflection points. \(\left(\frac{k\pi}{3}, 2k\pi\right)\), on the line \(y = 6x\).
+  - |
+    Asymptotes. None, because \(f(x) - 6x = \sin 3x\) has no limit.
+  - |
+    Intercepts. The origin only.
+verification:
+  checks:
+    - expr: diff(6*x + sin(3*x), x)
+      expected: 3*(2 + cos(3*x))
+    - expr: diff(6*x + sin(3*x), x, 2)
+      expected: -9*sin(3*x)
+    - expr: diff(6*x + sin(3*x), x).subs(x, 0)
+      expected: "9"
+    - expr: diff(6*x + sin(3*x), x).subs(x, pi/3)
+      expected: "3"
+    - expr: minimum(6 + 3*cos(3*x), x)
+      expected: "3"
+    - expr: (6*x + sin(3*x)).subs(x, pi/3)
+      expected: 2*pi
+    - expr: (6*x + sin(3*x)).subs(x, 2*pi/3)
+      expected: 4*pi
+    - expr: (6*x + sin(3*x)).subs(x, -pi/3)
+      expected: -2*pi
+    - expr: (6*x + sin(3*x)).subs(x, 0)
+      expected: "0"
+    - expr: diff(6*x + sin(3*x), x, 2).subs(x, pi/6)
+      expected: "-9"
+    - expr: diff(6*x + sin(3*x), x, 2).subs(x, pi/2)
+      expected: "9"
+:::
+
+
+::: exercise
+id: l2-curve-sketching.handout-5-5-15
+number: "5.5.15"
+tier: standard
+topics:
+  - curve-sketching
+statement: |
+  Sketch the curve \(y = x^{2} + \dfrac{1}{x}\). Identify clearly any interesting features, including local maximum and minimum points, inflection points, asymptotes, and intercepts.
+solution: |
+  **Domain.** The domain is \(\mathbb{R} \setminus \{0\}\).
+
+  **Asymptotes.** As \(x \to 0^{+}\), \(f(x) \to +\infty\), and as \(x \to 0^{-}\), \(f(x) \to -\infty\), because \(\frac{1}{x}\) dominates \(x^{2}\). The line \(x = 0\) is a vertical asymptote. As \(x \to \pm\infty\), \(f(x) \to +\infty\). The quotient \(\frac{f(x)}{x} = x + \frac{1}{x^{2}}\) is unbounded, so there is no horizontal or oblique asymptote. The graph follows the parabola \(y = x^{2}\) at both ends, since \(f(x) - x^{2} = \frac{1}{x} \to 0\).
+
+  **Derivative.** The derivative is
+  \[
+  f'(x) = 2x - \frac{1}{x^{2}} = \frac{2x^{3} - 1}{x^{2}}.
+  \]
+  The denominator is positive, so \(f'\) has the sign of \(2x^{3} - 1\). The only critical point is \(x = 2^{-1/3}\). The derivative is negative on \((-\infty, 0)\) and on \((0, 2^{-1/3})\), and positive on \((2^{-1/3}, \infty)\). The sign changes from negative to positive at \(x = 2^{-1/3} \approx 0.794\), where
+  \[
+  f\left(2^{-1/3}\right) = 2^{-2/3} + 2^{1/3} = 3 \cdot 2^{-2/3} \approx 1.89.
+  \]
+  This is a local minimum, and there is no local maximum.
+
+  **Second derivative.** The second derivative is
+  \[
+  f''(x) = 2 + \frac{2}{x^{3}} = \frac{2(x^{3} + 1)}{x^{3}}.
+  \]
+  It vanishes at \(x = -1\). Its sign is
+
+  - positive on \((-\infty, -1)\), where numerator and denominator are both negative,
+  - negative on \((-1, 0)\),
+  - positive on \((0, \infty)\).
+
+  The sign change at \(x = -1\) gives the inflection point \((-1, f(-1)) = (-1, 0)\). The change at \(x = 0\) is at the vertical asymptote, so it is not an inflection point.
+
+  **Intercepts.** \(f(x) = 0\) means \(x^{3} = -1\), so the only \(x\)-intercept is \((-1, 0)\), which is also the inflection point. There is no \(y\)-intercept.
+
+  **Conclusion.** The left branch comes down from \(+\infty\), concave up, crosses the \(x\)-axis at the inflection point \((-1, 0)\), becomes concave down, and falls to \(-\infty\) along \(x = 0\). The right branch comes down from \(+\infty\) along \(x = 0\), reaches the minimum \(\left(2^{-1/3}, 3 \cdot 2^{-2/3}\right)\), and then rises like \(x^{2}\), concave up.
+provenance: written-for-site
+steps:
+  - |
+    Asymptotes. Vertical at \(x = 0\), with opposite signs on the two sides, and no oblique line.
+  - |
+    Derivative. \(f'(x) = \frac{2x^{3} - 1}{x^{2}}\), with a local minimum at \(x = 2^{-1/3}\).
+  - |
+    Second derivative. \(f''(x) = \frac{2(x^{3} + 1)}{x^{3}}\) changes sign at \(x = -1\).
+  - |
+    Intercepts. The \(x\)-intercept \((-1, 0)\) is also the inflection point.
+verification:
+  checks:
+    - expr: diff(x**2 + 1/x, x)
+      expected: (2*x**3 - 1)/x**2
+    - expr: diff(x**2 + 1/x, x, 2)
+      expected: 2*(x**3 + 1)/x**3
+    - expr: (x**2 + 1/x).subs(x, 2**Rational(-1, 3))
+      expected: 3*2**Rational(1, 3)/2
+    - expr: diff(x**2 + 1/x, x).subs(x, 2**Rational(-1, 3))
+      expected: "0"
+    - expr: (x**2 + 1/x).subs(x, -1)
+      expected: "0"
+    - expr: factor(x**3 + 1)
+      expected: (x + 1)*(x**2 - x + 1)
+    - expr: sign(limit(x**2 + 1/x, x, 0, dir='+'))
+      expected: "1"
+    - expr: sign(limit(x**2 + 1/x, x, 0, dir='-'))
+      expected: "-1"
+    - expr: sign(limit((x**2 + 1/x)/x, x, oo))
+      expected: "1"
+    - expr: limit(x**2 + 1/x - x**2, x, oo)
+      expected: "0"
+:::
+
+
+::: exercise
+id: l2-curve-sketching.handout-5-5-16
+number: "5.5.16"
+tier: standard
+topics:
+  - curve-sketching
+statement: |
+  Sketch the curve \(y = (x + 5)^{1/4}\). Identify clearly any interesting features, including local maximum and minimum points, inflection points, asymptotes, and intercepts.
+solution: |
+  **Domain.** The fourth root needs \(x + 5 \ge 0\), so the domain is \([-5, \infty)\).
+
+  **Derivative.** For \(x > -5\),
+  \[
+  f'(x) = \frac{1}{4}(x + 5)^{-3/4} = \frac{1}{4(x + 5)^{3/4}}.
+  \]
+  This is positive, so \(f\) is strictly increasing and has no critical point. As \(x \to -5^{+}\), \(f'(x) \to +\infty\), so the tangent at the endpoint \((-5, 0)\) is vertical. The endpoint \((-5, 0)\) is the lowest point of the graph.
+
+  **Second derivative.** Differentiating \(f'\) gives
+  \[
+  f''(x) = -\frac{3}{16}(x + 5)^{-7/4} = -\frac{3}{16(x + 5)^{7/4}} < 0
+  \]
+  on \((-5, \infty)\). The graph is concave down throughout and has no inflection point.
+
+  **Asymptotes.** There is no vertical asymptote, because \(f\) is continuous on its domain. As \(x \to +\infty\), \(f(x) \to +\infty\), so there is no horizontal asymptote. The quotient \(\frac{f(x)}{x} = \frac{(x + 5)^{1/4}}{x}\) tends to \(0\), but \(f(x)\) itself is unbounded, so there is no oblique asymptote.
+
+  **Intercepts.** \(f(x) = 0\) only for \(x = -5\), so the \(x\)-intercept is the endpoint \((-5, 0)\). The \(y\)-intercept is \(f(0) = 5^{1/4} \approx 1.50\).
+
+  **Conclusion.** The graph starts at \((-5, 0)\) with a vertical tangent, rises steeply at first, and keeps rising while it flattens, because it is concave down. It passes through \((0, 5^{1/4})\) and grows without bound, but more slowly than any line.
+provenance: written-for-site
+steps:
+  - |
+    Domain. \([-5, \infty)\).
+  - |
+    Derivative. \(f' > 0\) on \((-5, \infty)\), with \(f'(x) \to +\infty\) at the endpoint, so the tangent there is vertical.
+  - |
+    Second derivative. \(f'' < 0\), so the graph is concave down and has no inflection point.
+  - |
+    Asymptotes. None.
+  - |
+    Intercepts. \((-5, 0)\) and \((0, 5^{1/4})\).
+verification:
+  checks:
+    - expr: diff((x + 5)**Rational(1, 4), x)
+      expected: 1/(4*(x + 5)**Rational(3, 4))
+    - expr: diff((x + 5)**Rational(1, 4), x, 2)
+      expected: -3/(16*(x + 5)**Rational(7, 4))
+    - expr: sign(limit(diff((x + 5)**Rational(1, 4), x), x, -5, dir='+'))
+      expected: "1"
+    - expr: ((x + 5)**Rational(1, 4)).subs(x, -5)
+      expected: "0"
+    - expr: ((x + 5)**Rational(1, 4)).subs(x, 0)
+      expected: 5**Rational(1, 4)
+    - expr: sign(limit((x + 5)**Rational(1, 4), x, oo))
+      expected: "1"
+    - expr: limit((x + 5)**Rational(1, 4)/x, x, oo)
+      expected: "0"
+:::
+
+
+::: exercise
+id: l2-curve-sketching.handout-5-5-21
+number: "5.5.21"
+tier: standard
+topics:
+  - curve-sketching
+statement: |
+  Sketch the curve \(y = x^{3} + 6x^{2} + 9x\). Identify clearly any interesting features, including local maximum and minimum points, inflection points, asymptotes, and intercepts.
+solution: |
+  **Domain.** The domain is \(\mathbb{R}\).
+
+  **Intercepts.** Factoring gives
+  \[
+  f(x) = x(x^{2} + 6x + 9) = x(x + 3)^{2}.
+  \]
+  The \(x\)-intercepts are \(x = 0\) and \(x = -3\). The root \(-3\) is double, so the graph touches the \(x\)-axis there and does not cross it. The \(y\)-intercept is \(f(0) = 0\).
+
+  **Derivative.** The derivative is
+  \[
+  f'(x) = 3x^{2} + 12x + 9 = 3(x + 1)(x + 3).
+  \]
+  The critical numbers are \(x = -3\) and \(x = -1\). The derivative is
+
+  - positive on \((-\infty, -3)\),
+  - negative on \((-3, -1)\),
+  - positive on \((-1, \infty)\).
+
+  The sign changes from positive to negative at \(x = -3\), so \((-3, 0)\) is a local maximum. It changes from negative to positive at \(x = -1\), where \(f(-1) = -1 + 6 - 9 = -4\), so \((-1, -4)\) is a local minimum.
+
+  **Second derivative.** The second derivative is
+  \[
+  f''(x) = 6x + 12 = 6(x + 2).
+  \]
+  It is negative for \(x < -2\) and positive for \(x > -2\), so the graph is concave down on \((-\infty, -2)\) and concave up on \((-2, \infty)\). The inflection point is \((-2, f(-2)) = (-2, -2)\).
+
+  **Asymptotes.** A polynomial has none. As \(x \to -\infty\), \(f(x) \to -\infty\), and as \(x \to +\infty\), \(f(x) \to +\infty\).
+
+  **Conclusion.** The graph rises from \(-\infty\) to the local maximum \((-3, 0)\), which lies on the \(x\)-axis. It falls through the inflection point \((-2, -2)\) to the local minimum \((-1, -4)\), then rises through the origin and on to \(+\infty\).
+provenance: written-for-site
+steps:
+  - |
+    Intercepts. \(f(x) = x(x + 3)^{2}\), with roots \(0\) and the double root \(-3\).
+  - |
+    Derivative. \(f'(x) = 3(x + 1)(x + 3)\), so the maximum is \((-3, 0)\) and the minimum is \((-1, -4)\).
+  - |
+    Second derivative. \(f''(x) = 6(x + 2)\), so the inflection point is \((-2, -2)\).
+  - |
+    Asymptotes. None.
+verification:
+  checks:
+    - expr: factor(x**3 + 6*x**2 + 9*x)
+      expected: x*(x + 3)**2
+    - expr: diff(x**3 + 6*x**2 + 9*x, x)
+      expected: 3*(x + 1)*(x + 3)
+    - expr: diff(x**3 + 6*x**2 + 9*x, x, 2)
+      expected: 6*(x + 2)
+    - expr: solve(diff(x**3 + 6*x**2 + 9*x, x), x)
+      expected: "[-3, -1]"
+    - expr: (x**3 + 6*x**2 + 9*x).subs(x, -3)
+      expected: "0"
+    - expr: (x**3 + 6*x**2 + 9*x).subs(x, -1)
+      expected: "-4"
+    - expr: (x**3 + 6*x**2 + 9*x).subs(x, -2)
+      expected: "-2"
+    - expr: solve(diff(x**3 + 6*x**2 + 9*x, x, 2), x)
+      expected: "[-2]"
+:::
+
+
+::: exercise
+id: l2-curve-sketching.handout-5-5-22
+number: "5.5.22"
+tier: standard
+topics:
+  - curve-sketching
+statement: |
+  Sketch the curve \(y = \dfrac{x}{x^{2} - 9}\). Identify clearly any interesting features, including local maximum and minimum points, inflection points, asymptotes, and intercepts.
+solution: |
+  **Domain and symmetry.** The denominator vanishes at \(x = \pm 3\), so the domain is \(\mathbb{R} \setminus \{-3, 3\}\). The function is odd, because \(f(-x) = -f(x)\), so its graph is symmetric about the origin.
+
+  **Intercepts.** \(f(x) = 0\) only for \(x = 0\). The origin is the only intercept.
+
+  **Asymptotes.** The sign of \(x^{2} - 9\) is positive for \(|x| > 3\) and negative for \(|x| < 3\). The one-sided limits are:
+
+  - As \(x \to 3^{-}\), the numerator tends to \(3\) and the denominator to \(0^{-}\), so \(f(x) \to -\infty\).
+  - As \(x \to 3^{+}\), the denominator tends to \(0^{+}\), so \(f(x) \to +\infty\).
+  - As \(x \to -3^{-}\), the numerator tends to \(-3\) and the denominator to \(0^{+}\), so \(f(x) \to -\infty\).
+  - As \(x \to -3^{+}\), the denominator tends to \(0^{-}\), so \(f(x) \to +\infty\).
+
+  Both \(x = 3\) and \(x = -3\) are vertical asymptotes. As \(x \to \pm\infty\), \(f(x) \to 0\), so \(y = 0\) is a horizontal asymptote at both ends. The graph lies above it for \(x > 3\) and below it for \(x < -3\).
+
+  **Derivative.** The quotient rule gives
+  \[
+  f'(x) = \frac{(x^{2} - 9) - 2x^{2}}{(x^{2} - 9)^{2}} = -\frac{x^{2} + 9}{(x^{2} - 9)^{2}}.
+  \]
+  This is negative at every point of the domain. The function is decreasing on each of \((-\infty, -3)\), \((-3, 3)\) and \((3, \infty)\), and there is no local extremum. The slope at the origin is \(f'(0) = -\frac{1}{9}\).
+
+  **Second derivative.** Differentiating \(f'\) gives
+  \[
+  f''(x) = \frac{2x(x^{2} + 27)}{(x^{2} - 9)^{3}}.
+  \]
+  The factor \(x^{2} + 27\) is positive, so \(f''\) has the sign of \(\frac{x}{x^{2} - 9}\), which is
+
+  - negative on \((-\infty, -3)\),
+  - positive on \((-3, 0)\),
+  - negative on \((0, 3)\),
+  - positive on \((3, \infty)\).
+
+  The sign changes at \(x = \pm 3\) happen at the vertical asymptotes. The change at \(x = 0\) gives the only inflection point, \((0, 0)\).
+
+  **Conclusion.** The left piece comes from \(y = 0\) below the axis and falls to \(-\infty\) along \(x = -3\), concave down. The middle piece comes down from \(+\infty\) along \(x = -3\), passes through the origin with slope \(-\frac{1}{9}\), where the concavity changes from up to down, and falls to \(-\infty\) along \(x = 3\). The right piece comes down from \(+\infty\) along \(x = 3\) and approaches \(y = 0\) from above, concave up.
+provenance: written-for-site
+steps:
+  - |
+    Domain and symmetry. \(x \ne \pm 3\), and \(f\) is odd.
+  - |
+    Asymptotes. Vertical at \(x = \pm 3\), horizontal \(y = 0\).
+  - |
+    Derivative. \(f'(x) = -\frac{x^{2} + 9}{(x^{2} - 9)^{2}} < 0\), so there is no extremum.
+  - |
+    Second derivative. \(f''(x) = \frac{2x(x^{2} + 27)}{(x^{2} - 9)^{3}}\) gives the single inflection point \((0, 0)\).
+  - |
+    Conclusion. Describe the three pieces.
+verification:
+  checks:
+    - expr: diff(x/(x**2 - 9), x)
+      expected: -(x**2 + 9)/(x**2 - 9)**2
+    - expr: diff(x/(x**2 - 9), x, 2)
+      expected: 2*x*(x**2 + 27)/(x**2 - 9)**3
+    - expr: diff(x/(x**2 - 9), x).subs(x, 0)
+      expected: -Rational(1, 9)
+    - expr: sign(limit(x/(x**2 - 9), x, 3, dir='-'))
+      expected: "-1"
+    - expr: sign(limit(x/(x**2 - 9), x, 3, dir='+'))
+      expected: "1"
+    - expr: sign(limit(x/(x**2 - 9), x, -3, dir='-'))
+      expected: "-1"
+    - expr: sign(limit(x/(x**2 - 9), x, -3, dir='+'))
+      expected: "1"
+    - expr: limit(x/(x**2 - 9), x, oo)
+      expected: "0"
+    - expr: limit(x/(x**2 - 9), x, -oo)
+      expected: "0"
+    - expr: (x/(x**2 - 9)).subs(x, -x) + x/(x**2 - 9)
+      expected: "0"
+    - expr: sign(diff(x/(x**2 - 9), x, 2).subs(x, -4))
+      expected: "-1"
+    - expr: sign(diff(x/(x**2 - 9), x, 2).subs(x, -1))
+      expected: "1"
+    - expr: sign(diff(x/(x**2 - 9), x, 2).subs(x, 1))
+      expected: "-1"
+    - expr: sign(diff(x/(x**2 - 9), x, 2).subs(x, 4))
+      expected: "1"
+:::
+
+
+::: exercise
+id: l2-curve-sketching.handout-5-5-25
+number: "5.5.25"
+tier: exam
+topics:
+  - curve-sketching
+statement: |
+  Sketch the curve \(y = 3\sin x - \sin^{3} x\) for \(x \in [0, 2\pi]\). Identify clearly any interesting features, including local maximum and minimum points, inflection points, asymptotes, and intercepts.
+solution: |
+  **Domain.** The domain is the closed interval \([0, 2\pi]\), and \(f\) is continuous on it, so there is no asymptote.
+
+  **Intercepts.** Factor \(f(x) = \sin x\,(3 - \sin^{2} x)\). The second factor is at least \(2\), so \(f(x) = 0\) exactly when \(\sin x = 0\). The \(x\)-intercepts are \(0\), \(\pi\) and \(2\pi\), and \(f(0) = 0\) is the \(y\)-intercept.
+
+  **Derivative.** The derivative is
+  \[
+  \begin{aligned}
+  f'(x) &= 3\cos x - 3\sin^{2} x\cos x\\
+  &= 3\cos x\,(1 - \sin^{2} x)\\
+  &= 3\cos^{3} x.
+  \end{aligned}
+  \]
+  It vanishes at \(x = \frac{\pi}{2}\) and \(x = \frac{3\pi}{2}\), and it has the sign of \(\cos x\):
+
+  - positive on \(\left[0, \frac{\pi}{2}\right)\),
+  - negative on \(\left(\frac{\pi}{2}, \frac{3\pi}{2}\right)\),
+  - positive on \(\left(\frac{3\pi}{2}, 2\pi\right]\).
+
+  The sign changes from positive to negative at \(\frac{\pi}{2}\), where \(f\left(\frac{\pi}{2}\right) = 3 - 1 = 2\), so \(\left(\frac{\pi}{2}, 2\right)\) is a local maximum. It changes from negative to positive at \(\frac{3\pi}{2}\), where \(f\left(\frac{3\pi}{2}\right) = -3 + 1 = -2\), so \(\left(\frac{3\pi}{2}, -2\right)\) is a local minimum. The graph starts at \((0, 0)\) and ends at \((2\pi, 0)\), both with slope \(f'(0) = f'(2\pi) = 3\).
+
+  **Second derivative.** Differentiating \(3\cos^{3} x\) gives
+  \[
+  f''(x) = -9\cos^{2} x\,\sin x.
+  \]
+  The factor \(\cos^{2} x\) is non-negative, so apart from its zeros \(f''\) has the sign of \(-\sin x\):
+
+  - negative on \(\left(0, \frac{\pi}{2}\right)\) and on \(\left(\frac{\pi}{2}, \pi\right)\),
+  - positive on \(\left(\pi, \frac{3\pi}{2}\right)\) and on \(\left(\frac{3\pi}{2}, 2\pi\right)\).
+
+  The graph is concave down on \((0, \pi)\) and concave up on \((\pi, 2\pi)\). The second derivative vanishes at \(\frac{\pi}{2}\) and \(\frac{3\pi}{2}\), but it keeps its sign there, so these two points are not inflection points. They are the local maximum and minimum, found from the sign of \(f'\). The only inflection point inside the interval is \((\pi, 0)\), where \(f'(\pi) = 3\cos^{3}\pi = -3\).
+
+  **Conclusion.** The graph leaves the origin with slope \(3\), concave down, and flattens into the maximum \(\left(\frac{\pi}{2}, 2\right)\). It falls through the inflection point \((\pi, 0)\) with slope \(-3\), flattens into the minimum \(\left(\frac{3\pi}{2}, -2\right)\), and rises concave up to \((2\pi, 0)\) with slope \(3\). It looks like one period of a sine curve with flatter peaks and steeper crossings, and its values stay between \(-2\) and \(2\).
+provenance: written-for-site
+steps:
+  - |
+    Intercepts. \(f(x) = \sin x\,(3 - \sin^{2} x)\) vanishes only at \(0\), \(\pi\) and \(2\pi\).
+  - |
+    Derivative. \(f'(x) = 3\cos^{3} x\), so the maximum is \(\left(\frac{\pi}{2}, 2\right)\) and the minimum is \(\left(\frac{3\pi}{2}, -2\right)\).
+  - |
+    Second derivative. \(f''(x) = -9\cos^{2} x\,\sin x\), which keeps its sign at \(\frac{\pi}{2}\) and \(\frac{3\pi}{2}\).
+  - |
+    Inflection. The only interior inflection point is \((\pi, 0)\).
+  - |
+    Conclusion. Describe the curve as a sine-like wave.
+verification:
+  checks:
+    - expr: diff(3*sin(x) - sin(x)**3, x)
+      expected: 3*cos(x)**3
+    - expr: diff(3*sin(x) - sin(x)**3, x, 2)
+      expected: -9*cos(x)**2*sin(x)
+    - expr: (3*sin(x) - sin(x)**3).subs(x, pi/2)
+      expected: "2"
+    - expr: (3*sin(x) - sin(x)**3).subs(x, 3*pi/2)
+      expected: "-2"
+    - expr: (3*sin(x) - sin(x)**3).subs(x, pi)
+      expected: "0"
+    - expr: diff(3*sin(x) - sin(x)**3, x).subs(x, 0)
+      expected: "3"
+    - expr: diff(3*sin(x) - sin(x)**3, x).subs(x, pi)
+      expected: "-3"
+    - expr: diff(3*sin(x) - sin(x)**3, x, 2).subs(x, pi/2)
+      expected: "0"
+    - expr: diff(3*sin(x) - sin(x)**3, x, 2).subs(x, 3*pi/2)
+      expected: "0"
+    - expr: sign(diff(3*sin(x) - sin(x)**3, x, 2).subs(x, pi/4))
+      expected: "-1"
+    - expr: sign(diff(3*sin(x) - sin(x)**3, x, 2).subs(x, 3*pi/4))
+      expected: "-1"
+    - expr: sign(diff(3*sin(x) - sin(x)**3, x, 2).subs(x, 5*pi/4))
+      expected: "1"
+    - expr: sign(diff(3*sin(x) - sin(x)**3, x, 2).subs(x, 7*pi/4))
+      expected: "1"
+:::
+
+
+::: exercise
+id: l2-curve-sketching.handout-5-5-26
+number: "5.5.26"
+tier: standard
+topics:
+  - curve-sketching
+statement: |
+  Sketch the curve \(y = \dfrac{x - 1}{x^{2}}\). Identify clearly any interesting features, including local maximum and minimum points, inflection points, asymptotes, and intercepts.
+solution: |
+  **Domain.** The domain is \(\mathbb{R} \setminus \{0\}\).
+
+  **Intercepts.** \(f(x) = 0\) only for \(x = 1\), so the \(x\)-intercept is \((1, 0)\). There is no \(y\)-intercept.
+
+  **Asymptotes.** Near \(x = 0\) the numerator tends to \(-1\) and \(x^{2}\) tends to \(0^{+}\) from both sides, so \(f(x) \to -\infty\) as \(x \to 0^{-}\) and as \(x \to 0^{+}\). The line \(x = 0\) is a vertical asymptote. As \(x \to \pm\infty\), \(f(x) = \frac{1}{x} - \frac{1}{x^{2}} \to 0\), so \(y = 0\) is a horizontal asymptote at both ends. The graph lies above it for \(x > 1\) and below it for \(x < 1\).
+
+  **Derivative.** The quotient rule gives
+  \[
+  f'(x) = \frac{x^{2} - 2x(x - 1)}{x^{4}} = \frac{2 - x}{x^{3}}.
+  \]
+  The sign of \(f'\) is
+
+  - negative on \((-\infty, 0)\), where \(2 - x > 0\) and \(x^{3} < 0\),
+  - positive on \((0, 2)\),
+  - negative on \((2, \infty)\).
+
+  The sign changes from positive to negative at \(x = 2\), where \(f(2) = \frac{1}{4}\), so \(\left(2, \frac{1}{4}\right)\) is a local maximum. There is no local minimum.
+
+  **Second derivative.** Differentiating \(f'(x) = (2 - x)x^{-3}\) gives
+  \[
+  f''(x) = \frac{2(x - 3)}{x^{4}}.
+  \]
+  The denominator is positive, so \(f''\) is negative on \((-\infty, 0)\) and on \((0, 3)\), and positive on \((3, \infty)\). The sign changes at \(x = 3\), where \(f(3) = \frac{2}{9}\), so the inflection point is \(\left(3, \frac{2}{9}\right)\). At \(x = 0\) the sign does not change, and \(f\) is undefined there.
+
+  **Conclusion.** The left branch comes in below the axis \(y = 0\), decreasing and concave down, and falls to \(-\infty\) along \(x = 0\). The right branch comes up from \(-\infty\) along \(x = 0\), crosses the \(x\)-axis at \((1, 0)\), reaches the maximum \(\left(2, \frac{1}{4}\right)\), and then decreases. It becomes concave up after the inflection point \(\left(3, \frac{2}{9}\right)\) and approaches \(y = 0\) from above.
+provenance: written-for-site
+steps:
+  - |
+    Intercepts. \((1, 0)\) only.
+  - |
+    Asymptotes. Vertical \(x = 0\) with limit \(-\infty\) on both sides, horizontal \(y = 0\).
+  - |
+    Derivative. \(f'(x) = \frac{2 - x}{x^{3}}\), so the local maximum is \(\left(2, \frac{1}{4}\right)\).
+  - |
+    Second derivative. \(f''(x) = \frac{2(x - 3)}{x^{4}}\), so the inflection point is \(\left(3, \frac{2}{9}\right)\).
+  - |
+    Conclusion. Describe the two branches.
+verification:
+  checks:
+    - expr: diff((x - 1)/x**2, x)
+      expected: (2 - x)/x**3
+    - expr: diff((x - 1)/x**2, x, 2)
+      expected: 2*(x - 3)/x**4
+    - expr: ((x - 1)/x**2).subs(x, 2)
+      expected: Rational(1, 4)
+    - expr: ((x - 1)/x**2).subs(x, 3)
+      expected: Rational(2, 9)
+    - expr: ((x - 1)/x**2).subs(x, 1)
+      expected: "0"
+    - expr: sign(limit((x - 1)/x**2, x, 0, dir='+'))
+      expected: "-1"
+    - expr: sign(limit((x - 1)/x**2, x, 0, dir='-'))
+      expected: "-1"
+    - expr: limit((x - 1)/x**2, x, oo)
+      expected: "0"
+    - expr: limit((x - 1)/x**2, x, -oo)
+      expected: "0"
+    - expr: solve(diff((x - 1)/x**2, x), x)
+      expected: "[2]"
+    - expr: solve(diff((x - 1)/x**2, x, 2), x)
+      expected: "[3]"
+:::
+
+
+::: exercise
+id: l2-curve-sketching.handout-5-5-28
+number: "5.5.28"
+tier: standard
+topics:
+  - curve-sketching
+statement: |
+  For \(f(x) = \dfrac{1}{1 + x^{2}}\), identify any vertical and horizontal asymptotes, and the intervals where the function is concave up and increasing, concave up and decreasing, concave down and increasing, and concave down and decreasing.
+solution: |
+  **Asymptotes.** The denominator satisfies \(1 + x^{2} \ge 1\), so \(f\) is defined and continuous on \(\mathbb{R}\) and has no vertical asymptote. As \(x \to \pm\infty\), \(1 + x^{2} \to +\infty\), so \(f(x) \to 0\). The line \(y = 0\) is a horizontal asymptote at both ends, and the graph stays above it.
+
+  **Monotonicity.** The derivative is
+  \[
+  f'(x) = -\frac{2x}{(1 + x^{2})^{2}}.
+  \]
+  The denominator is positive, so \(f'\) is positive for \(x < 0\) and negative for \(x > 0\). The function is increasing on \((-\infty, 0)\) and decreasing on \((0, \infty)\), with the maximum \(f(0) = 1\).
+
+  **Concavity.** The second derivative is
+  \[
+  \begin{aligned}
+  f''(x) &= -\frac{2(1 + x^{2})^{2} - 2x \cdot 2(1 + x^{2}) \cdot 2x}{(1 + x^{2})^{4}}\\
+  &= -\frac{2(1 + x^{2}) - 8x^{2}}{(1 + x^{2})^{3}}\
+  &= \frac{2(3x^{2} - 1)}{(1 + x^{2})^{3}}.
+  \end{aligned}
+  \]
+  The denominator is positive, so \(f''\) has the sign of \(3x^{2} - 1\). It is positive for \(|x| > \frac{1}{\sqrt{3}}\) and negative for \(|x| < \frac{1}{\sqrt{3}}\). The graph is concave up on \(\left(-\infty, -\frac{1}{\sqrt{3}}\right)\) and on \(\left(\frac{1}{\sqrt{3}}, \infty\right)\), and concave down on \(\left(-\frac{1}{\sqrt{3}}, \frac{1}{\sqrt{3}}\right)\). The inflection points are \(\left(\pm\frac{1}{\sqrt{3}}, \frac{3}{4}\right)\).
+
+  **The four cases.** Combine the sign of \(f'\) with the sign of \(f''\):
+
+  - Concave up and increasing: \(\left(-\infty, -\frac{1}{\sqrt{3}}\right)\).
+  - Concave down and increasing: \(\left(-\frac{1}{\sqrt{3}}, 0\right)\).
+  - Concave down and decreasing: \(\left(0, \frac{1}{\sqrt{3}}\right)\).
+  - Concave up and decreasing: \(\left(\frac{1}{\sqrt{3}}, \infty\right)\).
+provenance: written-for-site
+steps:
+  - |
+    Asymptotes. No vertical asymptote, and the horizontal asymptote \(y = 0\) at both ends.
+  - |
+    Monotonicity. \(f'(x) = -\frac{2x}{(1 + x^{2})^{2}}\) is positive for \(x < 0\) and negative for \(x > 0\).
+  - |
+    Concavity. \(f''(x) = \frac{2(3x^{2} - 1)}{(1 + x^{2})^{3}}\) changes sign at \(x = \pm\frac{1}{\sqrt{3}}\).
+  - |
+    Combine the signs to list the four intervals.
+verification:
+  checks:
+    - expr: diff(1/(1 + x**2), x)
+      expected: -2*x/(1 + x**2)**2
+    - expr: diff(1/(1 + x**2), x, 2)
+      expected: 2*(3*x**2 - 1)/(1 + x**2)**3
+    - expr: limit(1/(1 + x**2), x, oo)
+      expected: "0"
+    - expr: limit(1/(1 + x**2), x, -oo)
+      expected: "0"
+    - expr: (1/(1 + x**2)).subs(x, 1/sqrt(3))
+      expected: Rational(3, 4)
+    - expr: (3*x**2 - 1).subs(x, 1/sqrt(3))
+      expected: "0"
+    - expr: (sign(diff(1/(1 + x**2), x).subs(x, -1)), sign(diff(1/(1 + x**2), x, 2).subs(x, -1)))
+      expected: (1, 1)
+    - expr: (sign(diff(1/(1 + x**2), x).subs(x, -Rational(1, 2))), sign(diff(1/(1 + x**2), x, 2).subs(x, -Rational(1, 2))))
+      expected: (1, -1)
+    - expr: (sign(diff(1/(1 + x**2), x).subs(x, Rational(1, 2))), sign(diff(1/(1 + x**2), x, 2).subs(x, Rational(1, 2))))
+      expected: (-1, -1)
+    - expr: (sign(diff(1/(1 + x**2), x).subs(x, 1)), sign(diff(1/(1 + x**2), x, 2).subs(x, 1)))
+      expected: (-1, 1)
+:::

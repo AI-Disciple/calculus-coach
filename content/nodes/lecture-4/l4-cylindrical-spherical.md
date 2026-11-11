@@ -6,6 +6,7 @@ title: Cylindrical and spherical coordinates
 prerequisites: [l4-coordinates-vectors, l1-trigonometry]
 sources:
   - { source: handout, section: "12.6", page: 323 }
+  - { source: handout, section: "12.1" }
 examWeight: medium
 examWeightNote: These coordinates set up the cylindrical and spherical integrals of lecture 8, which appear on every recent final. Lecture 4 skipped this paragraph, and the professor said to read it before it is used.
 notation: |
@@ -753,4 +754,648 @@ verification:
       expected: "0"
     - expr: "cos(pi/2)/sin(pi/2)**2"
       expected: "0"
+:::
+
+::: exercise
+id: l4-cylindrical-spherical.handout-12-1-13
+number: "12.1.13"
+tier: standard
+topics:
+  - spherical-coordinates
+statement: |
+  Let \(a > 0\). Show that for all values of \(\theta\) and \(\phi\), the point
+  \[
+  (a\sin\phi\cos\theta,\; a\sin\phi\sin\theta,\; a\cos\phi)
+  \]
+  lies on the sphere \(x^2 + y^2 + z^2 = a^2\).
+solution: |
+  Write \(x = a\sin\phi\cos\theta\), \(y = a\sin\phi\sin\theta\) and \(z = a\cos\phi\). The first two squares share the factor \(a^2\sin^2\phi\), so
+  \[
+  \begin{aligned}
+  x^2+y^2&=a^2\sin^2\phi\cos^2\theta+a^2\sin^2\phi\sin^2\theta\\
+  &=a^2\sin^2\phi(\cos^2\theta+\sin^2\theta)\\
+  &=a^2\sin^2\phi.
+  \end{aligned}
+  \]
+  Adding \(z^2 = a^2\cos^2\phi\) gives
+  \[
+  \begin{aligned}
+  x^2+y^2+z^2&=a^2\sin^2\phi+a^2\cos^2\phi\\
+  &=a^2(\sin^2\phi+\cos^2\phi)=a^2.
+  \end{aligned}
+  \]
+  This holds for every \(\theta\) and \(\phi\), so every such point lies on the sphere of radius \(a\) centred at the origin. These are the spherical coordinates \((\rho, \theta, \phi)\) with \(\rho = a\).
+provenance: written-for-site
+steps:
+  - The first two squares sum to \(a^2\sin^2\phi\), using \(\cos^2\theta + \sin^2\theta = 1\).
+  - Adding \(z^2 = a^2\cos^2\phi\) gives \(a^2(\sin^2\phi + \cos^2\phi)\).
+  - The sum is \(a^2\) for all \(\theta\) and \(\phi\).
+verification:
+  checks:
+    - expr: '(a*sin(phi)*cos(theta))**2 + (a*sin(phi)*sin(theta))**2'
+      expected: 'a**2*sin(phi)**2'
+    - expr: '(a*sin(phi)*cos(theta))**2 + (a*sin(phi)*sin(theta))**2 + (a*cos(phi))**2'
+      expected: 'a**2'
+:::
+
+
+::: exercise
+id: l4-cylindrical-spherical.handout-12-6-1
+number: "12.6.1"
+tier: standard
+topics:
+  - cylindrical-coordinates
+  - spherical-coordinates
+statement: |
+  Convert the following points from rectangular to cylindrical and to spherical coordinates, with \(r \ge 0\), \(\rho \ge 0\), \(0 \le \theta < 2\pi\) and \(0 \le \phi \le \pi\). On the \(z\)-axis the angle \(\theta\) is arbitrary, so take \(\theta = 0\) there.
+
+  1. \((1, 1, 1)\)
+  2. \((7, -7, 5)\)
+  3. \((\cos 1, \sin 1, 1)\)
+  4. \((0, 0, -\pi)\)
+solution: |
+  For each point, \(r = \sqrt{x^2 + y^2}\) and \(z\) is unchanged. The angle \(\theta\) is the polar angle of \((x, y)\). The spherical data are \(\rho = \sqrt{x^2 + y^2 + z^2}\) and \(\cos\phi = z/\rho\).
+
+  **(a) \((1, 1, 1)\).** The radius is \(r = \sqrt{2}\). Both \(x\) and \(y\) are positive and \(\tan\theta = 1\), so \(\theta = \pi/4\). The height is \(z = 1\). The distance is \(\rho = \sqrt{3}\), and \(\cos\phi = 1/\sqrt{3}\) gives \(\phi = \arccos(1/\sqrt{3})\).
+  \[
+  \text{cylindrical } (\sqrt{2}, \pi/4, 1), \qquad \text{spherical } \bigl(\sqrt{3}, \pi/4, \arccos(1/\sqrt{3})\bigr).
+  \]
+
+  **(b) \((7, -7, 5)\).** The radius is \(r = \sqrt{49 + 49} = 7\sqrt{2}\). Here \(x > 0\) and \(y < 0\), so \((x, y)\) lies in the fourth quadrant. The value \(\arctan(-1) = -\pi/4\) is shifted by \(2\pi\) into \([0, 2\pi)\), so \(\theta = 7\pi/4\). The height is \(z = 5\). The distance is
+  \[
+  \rho = \sqrt{49 + 49 + 25} = \sqrt{123},
+  \]
+  and \(\phi = \arccos(5/\sqrt{123})\).
+  \[
+  \text{cylindrical } (7\sqrt{2}, 7\pi/4, 5), \qquad \text{spherical } \bigl(\sqrt{123}, 7\pi/4, \arccos(5/\sqrt{123})\bigr).
+  \]
+
+  **(c) \((\cos 1, \sin 1, 1)\).** The radius is
+  \[
+  r = \sqrt{\cos^2 1 + \sin^2 1} = 1.
+  \]
+  The point \((\cos 1, \sin 1)\) lies on the unit circle at the angle \(\theta = 1\), and \(0 < 1 < \pi/2\) agrees with both coordinates being positive. The height is \(z = 1\). The distance is \(\rho = \sqrt{1 + 1} = \sqrt{2}\), and \(\cos\phi = 1/\sqrt{2}\) gives \(\phi = \pi/4\).
+  \[
+  \text{cylindrical } (1, 1, 1), \qquad \text{spherical } (\sqrt{2}, 1, \pi/4).
+  \]
+
+  **(d) \((0, 0, -\pi)\).** The point lies on the \(z\)-axis, so \(r = 0\), and we take \(\theta = 0\). The height is \(z = -\pi\). The distance is \(\rho = \pi\), and \(\cos\phi = -\pi/\pi = -1\) gives \(\phi = \pi\), which is the negative \(z\)-axis.
+  \[
+  \text{cylindrical } (0, 0, -\pi), \qquad \text{spherical } (\pi, 0, \pi).
+  \]
+provenance: handout-answer
+steps:
+  - Point (a) has cylindrical coordinates \((\sqrt{2}, \pi/4, 1)\) and spherical coordinates \((\sqrt{3}, \pi/4, \arccos(1/\sqrt{3}))\).
+  - Point (b) lies in the fourth quadrant, so \(\theta = 7\pi/4\). Its spherical radius is \(\sqrt{123}\).
+  - Point (c) has \(r = 1\), \(\theta = 1\), \(\rho = \sqrt{2}\) and \(\phi = \pi/4\).
+  - Point (d) lies on the negative \(z\)-axis, so \(r = 0\), \(\rho = \pi\) and \(\phi = \pi\).
+verification:
+  checks:
+    - expr: '(sqrt(1**2 + 1**2), atan2(1, 1), 1)'
+      expected: '(sqrt(2), pi/4, 1)'
+    - expr: '(sqrt(1 + 1 + 1), acos(1/sqrt(3)))'
+      expected: '(sqrt(3), acos(1/sqrt(3)))'
+    - expr: 'sqrt(3)*sin(acos(1/sqrt(3)))'
+      expected: 'sqrt(2)'
+    - expr: '(sqrt(7**2 + 7**2), atan2(-7, 7) + 2*pi)'
+      expected: '(7*sqrt(2), 7*pi/4)'
+    - expr: '(sqrt(7**2 + 7**2 + 5**2), cos(7*pi/4), sin(7*pi/4))'
+      expected: '(sqrt(123), sqrt(2)/2, -sqrt(2)/2)'
+    - expr: 'sqrt(123)*sin(acos(5/sqrt(123)))'
+      expected: '7*sqrt(2)'
+    - expr: '(sqrt(cos(1)**2 + sin(1)**2), sqrt(cos(1)**2 + sin(1)**2 + 1**2))'
+      expected: '(1, sqrt(2))'
+    - expr: 'acos(1/sqrt(2))'
+      expected: 'pi/4'
+    - expr: '(sqrt(2)*sin(pi/4)*cos(1), sqrt(2)*sin(pi/4)*sin(1), sqrt(2)*cos(pi/4))'
+      expected: '(cos(1), sin(1), 1)'
+    - expr: '(sqrt(0**2 + 0**2 + (-pi)**2), acos(-pi/pi))'
+      expected: '(pi, pi)'
+:::
+
+
+::: exercise
+id: l4-cylindrical-spherical.handout-12-6-2
+number: "12.6.2"
+tier: basic
+topics:
+  - cylindrical-coordinates
+statement: |
+  Find an equation for the sphere \(x^2 + y^2 + z^2 = 4\) in cylindrical coordinates.
+solution: |
+  In cylindrical coordinates \(x^2 + y^2 = r^2\) and \(z\) is unchanged. Substitute into the left side:
+  \[
+  \begin{aligned}
+  x^2+y^2+z^2&=r^2\cos^2\theta+r^2\sin^2\theta+z^2\\
+  &=r^2+z^2.
+  \end{aligned}
+  \]
+  The equation of the sphere is
+  \[
+  r^2 + z^2 = 4.
+  \]
+  The angle \(\theta\) does not appear, since the sphere is symmetric about the \(z\)-axis.
+provenance: handout-answer
+steps:
+  - Replace \(x^2 + y^2\) by \(r^2\) and keep \(z\).
+  - The equation is \(r^2 + z^2 = 4\).
+verification:
+  checks:
+    - expr: '(r*cos(theta))**2 + (r*sin(theta))**2 + z**2'
+      expected: 'r**2 + z**2'
+    - expr: 'solve(r**2 + z**2 - 4, z)'
+      expected: '[-sqrt(4 - r**2), sqrt(4 - r**2)]'
+:::
+
+
+::: exercise
+id: l4-cylindrical-spherical.handout-12-6-3
+number: "12.6.3"
+tier: basic
+topics:
+  - cylindrical-coordinates
+statement: |
+  Find an equation for the \(yz\)-plane in cylindrical coordinates.
+solution: |
+  The \(yz\)-plane is the set of points with \(x = 0\). Substitute \(x = r\cos\theta\):
+  \[
+  r\cos\theta = 0.
+  \]
+  This is the equation of the plane. It holds when \(r = 0\), which is the \(z\)-axis, or when \(\cos\theta = 0\), that is \(\theta = \pi/2\) or \(\theta = 3\pi/2\). With \(r\) allowed to be negative, \(\theta = \pi/2\) alone already gives every point \((0, r, z)\) of the plane.
+provenance: handout-answer
+steps:
+  - The plane is \(x = 0\).
+  - Substituting \(x = r\cos\theta\) gives \(r\cos\theta = 0\).
+verification:
+  checks:
+    - expr: '(r*cos(pi/2), r*cos(3*pi/2))'
+      expected: '(0, 0)'
+    - expr: 'solve(cos(theta), theta)'
+      expected: '[pi/2, 3*pi/2]'
+    - expr: '(r*cos(pi/2), r*sin(pi/2))'
+      expected: '(0, r)'
+:::
+
+
+::: exercise
+id: l4-cylindrical-spherical.handout-12-6-4
+number: "12.6.4"
+tier: standard
+topics:
+  - cylindrical-coordinates
+statement: |
+  Find an equation equivalent to \(x^2 + y^2 + 2z^2 + 2z - 5 = 0\) in cylindrical coordinates.
+solution: |
+  Only the first two terms involve \(x\) and \(y\). With \(x = r\cos\theta\) and \(y = r\sin\theta\),
+  \[
+  \begin{aligned}
+  x^2+y^2&=r^2\cos^2\theta+r^2\sin^2\theta\\
+  &=r^2.
+  \end{aligned}
+  \]
+  The terms in \(z\) stay as they are. The equation becomes
+  \[
+  r^2 + 2z^2 + 2z - 5 = 0.
+  \]
+provenance: handout-answer
+steps:
+  - Replace \(x^2 + y^2\) by \(r^2\).
+  - Keep the terms in \(z\).
+verification:
+  checks:
+    - expr: '(r*cos(theta))**2 + (r*sin(theta))**2 + 2*z**2 + 2*z - 5'
+      expected: 'r**2 + 2*z**2 + 2*z - 5'
+:::
+
+
+::: exercise
+id: l4-cylindrical-spherical.handout-12-6-5
+number: "12.6.5"
+tier: standard
+topics:
+  - cylindrical-coordinates
+statement: |
+  The curve \(z = e^{-x^2}\) in the \(xz\)-plane is rotated around the \(z\)-axis. Find an equation for the resulting surface in cylindrical coordinates.
+solution: |
+  Rotating around the \(z\)-axis keeps the height \(z\) of each point and carries the point at distance \(|x|\) from the axis around a circle of that radius. So a point \((x, y, z)\) lies on the surface when the point \((\sqrt{x^2 + y^2}, 0, z)\) of the \(xz\)-plane lies on the curve. In cylindrical coordinates the distance from the axis is \(r\), so the condition is
+  \[
+  z = e^{-r^2}.
+  \]
+  The points of the curve with \(x < 0\) give the same equation, since \(e^{-x^2}\) depends only on \(x^2\). In rectangular coordinates the surface is
+  \[
+  z = e^{-(x^2+y^2)}.
+  \]
+provenance: handout-answer
+steps:
+  - Rotation about the \(z\)-axis keeps \(z\) and replaces \(|x|\) by \(r\).
+  - The surface is \(z = e^{-r^2}\).
+verification:
+  checks:
+    - expr: 'exp(-(r*cos(theta))**2 - (r*sin(theta))**2)'
+      expected: 'exp(-r**2)'
+    - expr: 'exp(-(x**2 + y**2)).subs({x: r*cos(theta), y: r*sin(theta)})'
+      expected: 'exp(-r**2)'
+:::
+
+
+::: exercise
+id: l4-cylindrical-spherical.handout-12-6-6
+number: "12.6.6"
+tier: standard
+topics:
+  - cylindrical-coordinates
+statement: |
+  The line \(z = x\) in the \(xz\)-plane is rotated around the \(z\)-axis. Find an equation for the resulting surface in cylindrical coordinates, and describe the whole surface.
+solution: |
+  The line contains points with \(x > 0\), which have \(z = x > 0\), and points with \(x < 0\), which have \(z = x < 0\). A point \((x, y, z)\) lies on the surface when the point \((\pm\sqrt{x^2 + y^2}, 0, z)\) of the \(xz\)-plane lies on the line. The distance from the axis is \(r\), so
+  \[
+  z = r \quad\text{or}\quad z = -r, \qquad r \ge 0.
+  \]
+  Squaring both gives one equation for the whole surface:
+  \[
+  z^2 = r^2.
+  \]
+  In rectangular coordinates this is \(z^2 = x^2 + y^2\). It is a double cone with its vertex at the origin. The equation \(z = r\) with \(r \ge 0\) describes only the upper half, the part with \(z \ge 0\). If negative values of \(r\) are allowed, the point \((r, \theta, z)\) with \(r < 0\) equals \((|r|, \theta + \pi, z)\), so \(z = r\) also covers the lower half.
+provenance: handout-answer
+steps:
+  - The rotated line gives the points with \(z = r\) and the points with \(z = -r\), for \(r \ge 0\).
+  - Together the surface is \(z^2 = r^2\), a double cone.
+  - The equation \(z = r\) with \(r \ge 0\) is the upper half.
+verification:
+  checks:
+    - expr: '(z**2 - (x**2 + y**2)).subs({x: r*cos(theta), y: r*sin(theta)})'
+      expected: 'z**2 - r**2'
+    - expr: 'solve(z**2 - r**2, z)'
+      expected: '[-r, r]'
+    - expr: '(z**2 - (x**2 + y**2)).subs({x: 3, y: 4, z: -5})'
+      expected: '0'
+discrepancy: |
+  The printed answer is \(z = r\), which describes only the upper half of the cone. The verified full surface is \(z = \pm r\), that is \(z^2 = r^2\).
+:::
+
+
+::: exercise
+id: l4-cylindrical-spherical.handout-12-6-7
+number: "12.6.7"
+tier: standard
+topics:
+  - spherical-coordinates
+statement: |
+  Find an equation for the plane \(y = 0\) in spherical coordinates.
+solution: |
+  Substitute \(y = \rho\sin\phi\sin\theta\):
+  \[
+  \rho\sin\phi\sin\theta = 0.
+  \]
+  The product is zero when one factor is zero:
+
+  - \(\rho = 0\) is the origin,
+  - \(\sin\phi = 0\) is the \(z\)-axis,
+  - \(\sin\theta = 0\) means \(\theta = 0\) or \(\theta = \pi\).
+
+  The origin and the \(z\)-axis lie in the plane \(y = 0\). The third condition gives the whole plane. For \(\theta = 0\) and \(0 \le \phi \le \pi\), the points are \((\rho\sin\phi, 0, \rho\cos\phi)\), the half-plane with \(x \ge 0\). For \(\theta = \pi\) they are \((-\rho\sin\phi, 0, \rho\cos\phi)\), the half-plane with \(x \le 0\). The plane is described by
+  \[
+  \sin\theta = 0.
+  \]
+provenance: handout-answer
+steps:
+  - Substitute \(y = \rho\sin\phi\sin\theta\).
+  - The factors \(\rho = 0\) and \(\sin\phi = 0\) give points already in the plane.
+  - The condition \(\sin\theta = 0\), with \(\theta = 0\) and \(\theta = \pi\), gives the two half-planes that make up the plane.
+verification:
+  checks:
+    - expr: '(rho*sin(phi)*sin(theta)).subs(theta, 0)'
+      expected: '0'
+    - expr: 'solve(sin(theta), theta)'
+      expected: '[0, pi]'
+    - expr: '(rho*sin(phi)*sin(0), rho*sin(phi)*sin(pi))'
+      expected: '(0, 0)'
+:::
+
+
+::: exercise
+id: l4-cylindrical-spherical.handout-12-6-8
+number: "12.6.8"
+tier: basic
+topics:
+  - spherical-coordinates
+statement: |
+  Find an equation for the plane \(z = 1\) in spherical coordinates.
+solution: |
+  Substitute \(z = \rho\cos\phi\):
+  \[
+  \rho\cos\phi = 1.
+  \]
+  The right side is not zero, so \(\cos\phi \neq 0\), and the equation can be solved for \(\rho\):
+  \[
+  \rho = \frac{1}{\cos\phi}.
+  \]
+  With \(\rho \ge 0\), this needs \(\cos\phi > 0\), that is \(0 \le \phi < \pi/2\). The plane lies above the \(xy\)-plane, which matches this range.
+provenance: handout-answer
+steps:
+  - Substitute \(z = \rho\cos\phi\) to get \(\rho\cos\phi = 1\).
+  - Solve for \(\rho = 1/\cos\phi\), with \(0 \le \phi < \pi/2\).
+verification:
+  checks:
+    - expr: '(rho*cos(phi)).subs({rho: 2, phi: pi/3})'
+      expected: '1'
+    - expr: 'solve(rho*cos(phi) - 1, rho)'
+      expected: '[1/cos(phi)]'
+    - expr: '(1/cos(pi/3))*cos(pi/3)'
+      expected: '1'
+:::
+
+
+::: exercise
+id: l4-cylindrical-spherical.handout-12-6-9
+number: "12.6.9"
+tier: standard
+topics:
+  - spherical-coordinates
+statement: |
+  Find an equation for the sphere with radius \(1\) and centre \((0, 1, 0)\) in spherical coordinates.
+solution: |
+  In rectangular coordinates the sphere is \(x^2 + (y - 1)^2 + z^2 = 1\). Expanding the square gives
+  \[
+  \begin{aligned}
+  x^2+y^2-2y+1+z^2&=1,\\
+  x^2+y^2+z^2&=2y.
+  \end{aligned}
+  \]
+  Substitute \(x^2 + y^2 + z^2 = \rho^2\) and \(y = \rho\sin\phi\sin\theta\):
+  \[
+  \rho^2 = 2\rho\sin\phi\sin\theta.
+  \]
+  Move everything to one side and factor:
+  \[
+  \rho\left(\rho - 2\sin\phi\sin\theta\right) = 0.
+  \]
+  The factor \(\rho = 0\) is the origin. The origin lies on the sphere, and it also satisfies the second factor when \(\theta = 0\), so nothing is lost by dropping it. The sphere is
+  \[
+  \rho = 2\sin\theta\sin\phi.
+  \]
+  Since \(\rho \ge 0\) and \(\sin\phi \ge 0\), this needs \(\sin\theta \ge 0\), that is \(0 \le \theta \le \pi\). This matches a sphere lying in the half-space \(y \ge 0\).
+provenance: handout-answer
+steps:
+  - Expand to \(x^2 + y^2 + z^2 = 2y\).
+  - Substitute to get \(\rho^2 = 2\rho\sin\phi\sin\theta\).
+  - Divide by \(\rho\) to get \(\rho = 2\sin\theta\sin\phi\), keeping the origin as the case \(\theta = 0\).
+verification:
+  checks:
+    - expr: 'expand(x**2 + (y - 1)**2 + z**2 - 1)'
+      expected: 'x**2 + y**2 + z**2 - 2*y'
+    - expr: '(x**2 + y**2 + z**2 - 2*y).subs({x: rho*sin(phi)*cos(theta), y: rho*sin(phi)*sin(theta), z: rho*cos(phi)})'
+      expected: 'rho**2 - 2*rho*sin(phi)*sin(theta)'
+    - expr: 'factor(rho**2 - 2*rho*sin(phi)*sin(theta))'
+      expected: 'rho*(rho - 2*sin(phi)*sin(theta))'
+    - expr: '(rho**2 - 2*rho*sin(phi)*sin(theta)).subs(rho, 2*sin(phi)*sin(theta))'
+      expected: '0'
+:::
+
+
+::: exercise
+id: l4-cylindrical-spherical.handout-12-6-11
+number: "12.6.11"
+tier: standard
+topics:
+  - spherical-coordinates
+statement: |
+  The line \(z = x\) in the \(xz\)-plane is rotated around the \(z\)-axis. Find an equation for the resulting surface in spherical coordinates, and describe the whole surface.
+solution: |
+  Rotating the line around the \(z\)-axis gives the double cone \(z^2 = x^2 + y^2\), as for the same line in cylindrical coordinates, where the surface is \(z^2 = r^2\). Substitute \(z = \rho\cos\phi\) and \(x^2 + y^2 = \rho^2\sin^2\phi\):
+  \[
+  \rho^2\cos^2\phi = \rho^2\sin^2\phi.
+  \]
+  For \(\rho \neq 0\), divide by \(\rho^2\) and rearrange:
+  \[
+  \cos^2\phi - \sin^2\phi = 0, \qquad \cos^2\phi = \sin^2\phi.
+  \]
+  So \(\sin\phi\) and \(\cos\phi\) have the same absolute value. For \(0 \le \phi \le \pi\) the solutions are
+  \[
+  \phi = \frac{\pi}{4} \quad\text{or}\quad \phi = \frac{3\pi}{4}.
+  \]
+  The angle \(\phi = \pi/4\) gives the upper cone, where \(z > 0\), and \(\phi = 3\pi/4\) gives the lower cone, where \(z < 0\). The origin has \(\rho = 0\) and is the vertex of both. The equation \(\phi = \pi/4\) alone with \(\rho \ge 0\) describes only the upper half. If negative \(\rho\) is allowed, the point \((-\rho, \theta, \pi/4)\) is \((\rho, \theta + \pi, 3\pi/4)\), so \(\phi = \pi/4\) then also covers the lower half.
+provenance: handout-answer
+steps:
+  - The rotated line is the double cone \(z^2 = x^2 + y^2\).
+  - Substituting gives \(\rho^2\cos^2\phi = \rho^2\sin^2\phi\), so \(\cos^2\phi = \sin^2\phi\) for \(\rho \neq 0\).
+  - The solutions are \(\phi = \pi/4\) (upper cone) and \(\phi = 3\pi/4\) (lower cone).
+verification:
+  checks:
+    - expr: '(z**2 - (x**2 + y**2)).subs({x: rho*sin(phi)*cos(theta), y: rho*sin(phi)*sin(theta), z: rho*cos(phi)})'
+      expected: 'rho**2*(cos(phi)**2 - sin(phi)**2)'
+    - expr: '(cos(pi/4)**2 - sin(pi/4)**2, cos(3*pi/4)**2 - sin(3*pi/4)**2)'
+      expected: '(0, 0)'
+    - expr: '(cos(pi/4) - sin(pi/4), cos(3*pi/4) + sin(3*pi/4))'
+      expected: '(0, 0)'
+    - expr: 'solve(cos(phi) - sin(phi), phi)'
+      expected: '[pi/4]'
+discrepancy: |
+  The printed answer is \(\phi = \pi/4\), which describes only the upper half of the cone. The verified full surface is \(\phi = \pi/4\) or \(\phi = 3\pi/4\).
+:::
+
+
+::: exercise
+id: l4-cylindrical-spherical.handout-12-6-12
+number: "12.6.12"
+tier: standard
+topics:
+  - cylindrical-coordinates
+statement: |
+  Plot the polar equations \(r = \sin\theta\) and \(r = \cos\theta\) and comment on their similarities. Hint: multiply both sides of each equation by \(r\) and convert back to rectangular coordinates.
+solution: |
+  **The curve \(r = \sin\theta\).** Multiply both sides by \(r\):
+  \[
+  r^2 = r\sin\theta.
+  \]
+  Replace \(r^2\) by \(x^2 + y^2\) and \(r\sin\theta\) by \(y\), then complete the square:
+  \[
+  \begin{aligned}
+  x^2+y^2&=y,\\
+  x^2+\left(y-\tfrac{1}{2}\right)^2&=\tfrac{1}{4}.
+  \end{aligned}
+  \]
+  This is the circle of radius \(\tfrac{1}{2}\) with centre \((0, \tfrac{1}{2})\). Multiplying by \(r\) adds the solution \(r = 0\), the origin, which lies on the circle (the curve passes through it at \(\theta = 0\)), so no point is added.
+
+  **The curve \(r = \cos\theta\).** Multiply by \(r\) and replace \(r\cos\theta\) by \(x\):
+  \[
+  \begin{aligned}
+  x^2+y^2&=x,\\
+  \left(x-\tfrac{1}{2}\right)^2+y^2&=\tfrac{1}{4}.
+  \end{aligned}
+  \]
+  This is the circle of radius \(\tfrac{1}{2}\) with centre \((\tfrac{1}{2}, 0)\). It also passes through the origin, at \(\theta = \pi/2\).
+
+  **The plots.** Plot a few points \((r\cos\theta, r\sin\theta)\):
+
+  - for \(r = \sin\theta\), the angle \(\theta = 0\) gives the origin, \(\theta = \pi/6\) gives \(r = \tfrac{1}{2}\), \(\theta = \pi/2\) gives the top point \((0, 1)\), and \(\theta = \pi\) returns to the origin,
+  - for \(r = \cos\theta\), the angle \(\theta = 0\) gives the right point \((1, 0)\), \(\theta = \pi/3\) gives \(r = \tfrac{1}{2}\), and \(\theta = \pi/2\) gives the origin.
+
+  As \(\theta\) runs through \(0 \le \theta \le \pi\), each curve traces its circle once. For \(\pi < \theta < 2\pi\) the radius is negative for \(r = \sin\theta\), and the points retrace the same circle.
+
+  **Similarities.** Both curves are circles of radius \(\tfrac{1}{2}\) through the origin, one with its diameter along the \(y\)-axis and the other along the \(x\)-axis. Since \(\cos\theta = \sin(\theta + \pi/2)\), the second circle is the first rotated by \(\pi/2\) clockwise about the origin.
+provenance: written-for-site
+steps:
+  - Multiplying \(r = \sin\theta\) by \(r\) gives \(x^2 + y^2 = y\), the circle with centre \((0, 1/2)\) and radius \(1/2\).
+  - Multiplying \(r = \cos\theta\) by \(r\) gives \(x^2 + y^2 = x\), the circle with centre \((1/2, 0)\) and radius \(1/2\).
+  - Both circles have radius \(1/2\) and pass through the origin. The second is the first rotated by \(\pi/2\) clockwise.
+verification:
+  checks:
+    - expr: '(r**2 - r*sin(theta))'
+      expected: '(x**2 + y**2 - y).subs({x: r*cos(theta), y: r*sin(theta)})'
+    - expr: '(r**2 - r*cos(theta))'
+      expected: '(x**2 + y**2 - x).subs({x: r*cos(theta), y: r*sin(theta)})'
+    - expr: 'expand(x**2 + (y - Rational(1, 2))**2 - Rational(1, 4))'
+      expected: 'x**2 + y**2 - y'
+    - expr: 'expand((x - Rational(1, 2))**2 + y**2 - Rational(1, 4))'
+      expected: 'x**2 + y**2 - x'
+    - expr: '(sqrt(3)/4)**2 + (Rational(1, 4) - Rational(1, 2))**2'
+      expected: '1/4'
+    - expr: 'cos(theta) - sin(theta + pi/2)'
+      expected: '0'
+:::
+
+
+::: exercise
+id: l4-cylindrical-spherical.handout-12-6-13
+number: "12.6.13"
+tier: standard
+topics:
+  - cylindrical-coordinates
+  - spherical-coordinates
+statement: |
+  Let \(m\) be a real number. Rotate the line \(z = mx\) in the \(xz\)-plane around the \(z\)-axis, and convert the resulting surface to cylindrical coordinates and to spherical coordinates. Treat the case \(m = 0\) separately.
+solution: |
+  **The surface.** The rotated line contains the points \((x, 0, mx)\) for every real \(x\), and the distance of such a point from the axis is \(|x|\). A point \((x, y, z)\) lies on the surface when \(z = \pm m\sqrt{x^2 + y^2}\), so
+  \[
+  z^2 = m^2\left(x^2 + y^2\right).
+  \]
+  For \(m \neq 0\) this is a double cone with its vertex at the origin. For \(m = 0\) it is the plane \(z = 0\).
+
+  **Cylindrical coordinates.** Replace \(x^2 + y^2\) by \(r^2\):
+  \[
+  z^2 = m^2r^2, \qquad\text{that is}\qquad z = mr \ \text{ or }\ z = -mr, \quad r \ge 0.
+  \]
+  The equation \(z = mr\) with \(r \ge 0\) is one nappe (the part above the \(xy\)-plane when \(m > 0\)). The other sign gives the other nappe.
+
+  **Spherical coordinates.** Substitute \(z = \rho\cos\phi\) and \(x^2 + y^2 = \rho^2\sin^2\phi\):
+  \[
+  \rho^2\cos^2\phi = m^2\rho^2\sin^2\phi.
+  \]
+  The origin \(\rho = 0\) satisfies it. For \(\rho \neq 0\), divide by \(\rho^2\):
+  \[
+  \cos^2\phi = m^2\sin^2\phi.
+  \]
+  - If \(m \neq 0\), then \(\sin\phi \neq 0\), since \(\sin\phi = 0\) would force \(\cos^2\phi = 0\), which is impossible. Divide by \(\sin^2\phi\) to get \(\cot^2\phi = m^2\), so
+    \[
+    \cot\phi = m \quad\text{or}\quad \cot\phi = -m.
+    \]
+    On \(0 < \phi < \pi\) the function \(\cot\) is one-to-one, so \(\phi = \operatorname{arccot} m\) or \(\phi = \pi - \operatorname{arccot} m\), where \(\operatorname{arccot}\) takes values in \((0, \pi)\). The equation \(\cot\phi = m\) alone is one nappe.
+  - If \(m = 0\), the equation is \(\cos^2\phi = 0\), so \(\phi = \pi/2\), the \(xy\)-plane.
+provenance: handout-answer
+steps:
+  - The surface is \(z^2 = m^2(x^2 + y^2)\), a double cone for \(m \neq 0\) and the plane \(z = 0\) for \(m = 0\).
+  - In cylindrical coordinates it is \(z^2 = m^2r^2\), that is \(z = \pm mr\).
+  - In spherical coordinates \(\cos^2\phi = m^2\sin^2\phi\), so \(\cot\phi = \pm m\) for \(m \neq 0\).
+  - For \(m = 0\) the equation gives \(\phi = \pi/2\).
+verification:
+  checks:
+    - expr: '(z**2 - m**2*(x**2 + y**2)).subs({x: r*cos(theta), y: r*sin(theta)})'
+      expected: 'z**2 - m**2*r**2'
+    - expr: 'solve(z**2 - m**2*r**2, z)'
+      expected: '[-m*r, m*r]'
+    - expr: '(z**2 - m**2*(x**2 + y**2)).subs({x: rho*sin(phi)*cos(theta), y: rho*sin(phi)*sin(theta), z: rho*cos(phi)})'
+      expected: 'rho**2*(cos(phi)**2 - m**2*sin(phi)**2)'
+    - expr: 'simplify(cos(acot(m))**2 - m**2*sin(acot(m))**2)'
+      expected: '0'
+    - expr: 'simplify(cos(pi - acot(m))**2 - m**2*sin(pi - acot(m))**2)'
+      expected: '0'
+    - expr: 'solve(cos(phi)**2, phi)'
+      expected: '[pi/2, 3*pi/2]'
+discrepancy: |
+  The printed answer \(z = mr\) and \(\cot\phi = m\) describes only one nappe, and it gives \(\phi = 0\) for \(m = 0\). The verified surface is \(z^2 = m^2r^2\) in cylindrical and \(\cot\phi = \pm m\) in spherical coordinates, and for \(m = 0\) it is \(\phi = \pi/2\), the \(xy\)-plane.
+:::
+
+
+::: exercise
+id: l4-cylindrical-spherical.handout-12-6-14
+number: "12.6.14"
+tier: standard
+topics:
+  - spherical-coordinates
+statement: |
+  Convert the spherical formula \(\rho = \sin\theta\sin\phi\) to rectangular coordinates and describe the surface. Hint: multiply both sides by \(\rho\).
+solution: |
+  Multiply both sides by \(\rho\):
+  \[
+  \rho^2 = \rho\sin\phi\sin\theta.
+  \]
+  The left side is \(x^2 + y^2 + z^2\) and the right side is \(y\), so
+  \[
+  x^2 + y^2 + z^2 = y.
+  \]
+  Complete the square in \(y\):
+  \[
+  \begin{aligned}
+  x^2+\left(y^2-y+\tfrac{1}{4}\right)+z^2&=\tfrac{1}{4},\\
+  x^2+\left(y-\tfrac{1}{2}\right)^2+z^2&=\tfrac{1}{4}.
+  \end{aligned}
+  \]
+  The surface is the sphere of radius \(\tfrac{1}{2}\) with centre \((0, \tfrac{1}{2}, 0)\). Multiplying by \(\rho\) adds the solution \(\rho = 0\), the origin, which already lies on the surface (take \(\theta = 0\)), so the sphere is the whole surface. The restriction \(\rho \ge 0\) forces \(\sin\theta \ge 0\), so the formula describes the sphere with \(0 \le \theta \le \pi\).
+provenance: handout-answer
+steps:
+  - Multiplying by \(\rho\) gives \(\rho^2 = \rho\sin\phi\sin\theta\), that is \(x^2 + y^2 + z^2 = y\).
+  - Completing the square gives \(x^2 + (y - 1/2)^2 + z^2 = 1/4\).
+  - The surface is a sphere of radius \(1/2\) centred at \((0, 1/2, 0)\).
+verification:
+  checks:
+    - expr: '(x**2 + y**2 + z**2 - y).subs({x: rho*sin(phi)*cos(theta), y: rho*sin(phi)*sin(theta), z: rho*cos(phi)})'
+      expected: 'rho**2 - rho*sin(phi)*sin(theta)'
+    - expr: 'expand(x**2 + (y - Rational(1, 2))**2 + z**2 - Rational(1, 4))'
+      expected: 'x**2 + y**2 + z**2 - y'
+    - expr: '0**2 + (1 - Rational(1, 2))**2 + 0**2'
+      expected: '1/4'
+    - expr: '(Rational(1, 2)*sin(pi/2)*sin(pi/2))'
+      expected: '1/2'
+:::
+
+
+::: exercise
+id: l4-cylindrical-spherical.handout-12-6-15
+number: "12.6.15"
+tier: standard
+topics:
+  - cylindrical-coordinates
+  - spherical-coordinates
+statement: |
+  The points of the first octant are described by \(x > 0\), \(y > 0\) and \(z > 0\). Give the similar inequalities for the first octant in cylindrical coordinates and in spherical coordinates. Use \(r > 0\), \(\rho > 0\), \(0 \le \theta < 2\pi\) and \(0 \le \phi \le \pi\).
+solution: |
+  **Cylindrical coordinates.** The height is \(z\), so \(z > 0\). With \(r > 0\), the conditions \(x = r\cos\theta > 0\) and \(y = r\sin\theta > 0\) say \(\cos\theta > 0\) and \(\sin\theta > 0\). In \([0, 2\pi)\) both hold exactly for \(0 < \theta < \pi/2\). The first octant is
+  \[
+  r > 0, \qquad 0 < \theta < \frac{\pi}{2}, \qquad z > 0.
+  \]
+
+  **Spherical coordinates.** Here \(x = \rho\sin\phi\cos\theta\), \(y = \rho\sin\phi\sin\theta\) and \(z = \rho\cos\phi\). On \(0 \le \phi \le \pi\), \(\sin\phi \ge 0\), and \(\sin\phi = 0\) puts the point on the \(z\)-axis, where \(x = y = 0\). So \(x > 0\) and \(y > 0\) force \(\sin\phi > 0\), and then \(\cos\theta > 0\) and \(\sin\theta > 0\), which gives \(0 < \theta < \pi/2\) as before. The condition \(z = \rho\cos\phi > 0\) gives \(\cos\phi > 0\), that is \(\phi < \pi/2\). Together with \(\sin\phi > 0\), this is \(0 < \phi < \pi/2\). The first octant is
+  \[
+  \rho > 0, \qquad 0 < \theta < \frac{\pi}{2}, \qquad 0 < \phi < \frac{\pi}{2}.
+  \]
+
+  **Check.** The values \(\rho = 2\), \(\theta = \pi/6\) and \(\phi = \pi/3\) lie in these ranges and give
+  \[
+  (x, y, z) = \left(\tfrac{3}{2}, \tfrac{\sqrt{3}}{2}, 1\right),
+  \]
+  and all three coordinates are positive.
+provenance: handout-answer
+steps:
+  - In cylindrical coordinates, \(z > 0\), \(r > 0\) and \(0 < \theta < \pi/2\).
+  - In spherical coordinates, \(\rho > 0\), \(0 < \theta < \pi/2\) and \(0 < \phi < \pi/2\).
+  - A test point with \(\rho = 2\), \(\theta = \pi/6\), \(\phi = \pi/3\) lies in the first octant.
+verification:
+  checks:
+    - expr: '(2*sin(pi/3)*cos(pi/6), 2*sin(pi/3)*sin(pi/6), 2*cos(pi/3))'
+      expected: '(3/2, sqrt(3)/2, 1)'
+    - expr: '(cos(pi/6), sin(pi/6), cos(pi/3), sin(pi/3))'
+      expected: '(sqrt(3)/2, 1/2, 1/2, sqrt(3)/2)'
+    - expr: '(sin(pi/2), cos(pi/2))'
+      expected: '(1, 0)'
 :::

@@ -12,6 +12,7 @@ sources:
   - { source: midterm-2022, page: 1 }
   - { source: midterm-2025, page: 1 }
   - { source: handout, section: "8.7", page: 189 }
+  - { source: handout, section: "8.1" }
 examWeight: medium
 status: reviewed
 ---
@@ -1918,4 +1919,41 @@ verification:
       expected: 2*sqrt(3) - 2*pi/3
     - expr: integrate(2*tan(u)**2, (u, 0, pi/3))
       expected: 2*sqrt(3) - 2*pi/3
+:::
+
+::: exercise
+id: l3-trig-integrals.handout-8-1-16
+number: "8.1.16"
+tier: standard
+topics:
+  - trigonometric-integrals
+statement: |
+  Evaluate \(\displaystyle\int_0^{\pi/6} \bigl(\cos^2 x - \sin^2 x\bigr)\,dx\).
+solution: |
+  The half-angle identities are \(\cos^2 x = \frac{1 + \cos 2x}{2}\) and \(\sin^2 x = \frac{1 - \cos 2x}{2}\). Their difference is
+  \[
+  \cos^2 x - \sin^2 x = \frac{1 + \cos 2x}{2} - \frac{1 - \cos 2x}{2} = \cos 2x.
+  \]
+  An antiderivative of \(\cos 2x\) is \(\frac{\sin 2x}{2}\), because the chain rule divides by the derivative of \(2x\), which is \(2\).
+  \[
+  \begin{aligned}
+  \int_0^{\pi/6} \cos 2x\,dx &= \Bigl[\frac{\sin 2x}{2}\Bigr]_0^{\pi/6}\\
+  &= \frac{\sin(\pi/3)}{2} - \frac{\sin 0}{2}\\
+  &= \frac{\sqrt{3}}{4}.
+  \end{aligned}
+  \]
+  The value is \(\dfrac{\sqrt{3}}{4}\).
+provenance: handout-answer
+steps:
+  - The half-angle identities give \(\cos^2 x - \sin^2 x = \cos 2x\).
+  - An antiderivative of \(\cos 2x\) is \(\frac{\sin 2x}{2}\).
+  - Evaluate at \(\pi/6\) and \(0\). The value is \(\sqrt{3}/4\).
+verification:
+  checks:
+    - expr: integrate(cos(x)**2 - sin(x)**2, (x, 0, pi/6))
+      expected: "sqrt(3)/4"
+    - expr: simplify((1 + cos(2*x))/2 - (1 - cos(2*x))/2 - cos(2*x))
+      expected: "0"
+    - expr: integrate(cos(2*x), (x, 0, pi/6))
+      expected: "sqrt(3)/4"
 :::

@@ -11,6 +11,8 @@ sources:
   - { source: lecture-notes-2, page: 2 }
   - { source: sheet-0, page: 1 }
   - { source: midterm-app }
+  - { source: handout, section: "2.3" }
+  - { source: handout, section: "4.5" }
 examWeight: medium
 status: reviewed
 notation: |
@@ -904,4 +906,633 @@ verification:
       expected: 2/5
     - expr: limit((1 - cos(x))/x**2, x, 0)
       expected: 1/2
+:::
+
+::: exercise
+id: l1-limit-techniques.handout-2-3-6
+number: "2.3.6"
+tier: standard
+topics:
+  - limits
+statement: |
+  Compute
+  \[
+  \lim_{x\to 0^{+}}\left(\sqrt{\frac{1}{x}+2}-\sqrt{\frac{1}{x}}\right).
+  \]
+solution: |
+  For \(x>0\), both square roots are large. Each term tends to \(+\infty\), so the limit laws give no value for the difference.
+
+  Multiply and divide by the conjugate \(\sqrt{\frac{1}{x}+2}+\sqrt{\frac{1}{x}}\), which is positive. The new numerator is
+  \[
+  \left(\frac{1}{x}+2\right)-\frac{1}{x}=2,
+  \]
+  so
+  \[
+  \sqrt{\frac{1}{x}+2}-\sqrt{\frac{1}{x}}=\frac{2}{\sqrt{\frac{1}{x}+2}+\sqrt{\frac{1}{x}}}.
+  \]
+  As \(x\to 0^{+}\), \(\frac{1}{x}\to+\infty\). Both square roots in the denominator tend to \(+\infty\), so the denominator tends to \(+\infty\). The numerator stays equal to \(2\).
+
+  Therefore the quotient tends to \(0\), and the limit is \(0\).
+provenance: handout-answer
+steps:
+  - Multiply by the conjugate to get \(\frac{2}{\sqrt{1/x+2}+\sqrt{1/x}}\).
+  - The denominator tends to \(+\infty\) as \(x\to 0^{+}\), so the limit is \(0\).
+verification:
+  checks:
+    - expr: (sqrt(6) - 2) - 2/(sqrt(6) + 2)
+      expected: "0"
+    - expr: limit(sqrt(1/x + 2) - sqrt(1/x), x, 0, dir='+')
+      expected: "0"
+:::
+
+
+::: exercise
+id: l1-limit-techniques.handout-2-3-20
+number: "2.3.20"
+tier: standard
+topics:
+  - standard-limits
+statement: |
+  Use a calculator to estimate \(\displaystyle\lim_{x\to 0}\frac{\tan(3x)}{\tan(5x)}\). Then evaluate the limit exactly with the standard limit \(\lim_{x\to 0}\frac{\sin x}{x}=1\).
+solution: |
+  ### Estimate
+
+  Evaluate the quotient at small values of \(x\), rounded to four decimals:
+
+  - at \(x=0.1\) the value is \(0.5662\),
+  - at \(x=0.01\) the value is \(0.5997\),
+  - at \(x=0.001\) the value is \(0.6000\).
+
+  The values approach \(0.6\).
+
+  ### Exact value
+
+  For \(x\neq 0\) near \(0\), write each tangent as sine over cosine and group the factors:
+  \[
+  \begin{aligned}
+  \frac{\tan(3x)}{\tan(5x)}&=\frac{\sin(3x)}{\cos(3x)}\cdot\frac{\cos(5x)}{\sin(5x)}\\
+  &=\frac{\sin(3x)}{3x}\cdot\frac{5x}{\sin(5x)}\cdot\frac{3}{5}\cdot\frac{\cos(5x)}{\cos(3x)}.
+  \end{aligned}
+  \]
+  Each factor has a limit as \(x\to 0\):
+
+  - \(\frac{\sin(3x)}{3x}\to 1\), since \(3x\to 0\).
+  - \(\frac{5x}{\sin(5x)}\) is the reciprocal of \(\frac{\sin(5x)}{5x}\), so it tends to \(1\).
+  - The constant factor is \(\frac{3}{5}\).
+  - \(\frac{\cos(5x)}{\cos(3x)}\to\frac{1}{1}=1\).
+
+  All limits are real numbers, so the product tends to \(1\cdot 1\cdot\frac{3}{5}\cdot 1=\frac{3}{5}\). The limit is \(\frac{3}{5}\).
+provenance: written-for-site
+steps:
+  - Table of values near \(0\) approaches \(0.6\).
+  - Rewrite with \(\frac{\sin(3x)}{3x}\), \(\frac{5x}{\sin(5x)}\), the constant \(\frac{3}{5}\) and \(\frac{\cos(5x)}{\cos(3x)}\).
+  - Each factor has a limit, and the product is \(\frac{3}{5}\).
+verification:
+  checks:
+    - expr: limit(tan(3*x)/tan(5*x), x, 0)
+      expected: 3/5
+    - expr: (floor(10000*tan(Rational(3, 10))/tan(Rational(5, 10)) + Rational(1, 2)), floor(10000*tan(Rational(3, 100))/tan(Rational(5, 100)) + Rational(1, 2)), floor(10000*tan(Rational(3, 1000))/tan(Rational(5, 1000)) + Rational(1, 2)))
+      expected: (5662, 5997, 6000)
+    - expr: (tan(3*Rational(1, 7))/tan(5*Rational(1, 7))) - (sin(3*Rational(1, 7))/(3*Rational(1, 7)))*(5*Rational(1, 7)/sin(5*Rational(1, 7)))*Rational(3, 5)*cos(5*Rational(1, 7))/cos(3*Rational(1, 7))
+      expected: "0"
+:::
+
+
+::: exercise
+id: l1-limit-techniques.handout-4-3-2
+number: "4.3.2"
+tier: standard
+topics:
+  - standard-limits
+statement: |
+  Compute \(\displaystyle\lim_{x\to 0}\frac{\sin(7x)}{\sin(2x)}\).
+solution: |
+  For \(x\neq 0\) near \(0\), insert the factors \(7x\) and \(2x\):
+  \[
+  \frac{\sin(7x)}{\sin(2x)}=\frac{\sin(7x)}{7x}\cdot\frac{2x}{\sin(2x)}\cdot\frac{7}{2}.
+  \]
+  As \(x\to 0\), the argument \(7x\) tends to \(0\), so \(\frac{\sin(7x)}{7x}\to 1\). In the same way \(\frac{\sin(2x)}{2x}\to 1\), so its reciprocal \(\frac{2x}{\sin(2x)}\to 1\).
+
+  All limits are real numbers, so the product tends to \(1\cdot 1\cdot\frac{7}{2}\). The limit is \(\frac{7}{2}\).
+provenance: handout-answer
+steps:
+  - Rewrite the quotient as \(\frac{\sin(7x)}{7x}\cdot\frac{2x}{\sin(2x)}\cdot\frac{7}{2}\).
+  - The two sine factors tend to \(1\), so the limit is \(\frac{7}{2}\).
+verification:
+  checks:
+    - expr: limit(sin(7*x)/sin(2*x), x, 0)
+      expected: 7/2
+    - expr: limit(sin(7*x)/(7*x), x, 0)*limit(2*x/sin(2*x), x, 0)*Rational(7, 2)
+      expected: 7/2
+:::
+
+
+::: exercise
+id: l1-limit-techniques.handout-4-3-3
+number: "4.3.3"
+tier: standard
+topics:
+  - standard-limits
+statement: |
+  Compute \(\displaystyle\lim_{x\to 0}\frac{\cot(4x)}{\csc(3x)}\).
+solution: |
+  Write \(\cot(4x)=\frac{\cos(4x)}{\sin(4x)}\) and \(\csc(3x)=\frac{1}{\sin(3x)}\). For \(x\neq 0\) near \(0\),
+  \[
+  \frac{\cot(4x)}{\csc(3x)}=\frac{\cos(4x)\,\sin(3x)}{\sin(4x)}.
+  \]
+  Insert the factors \(3x\) and \(4x\):
+  \[
+  \frac{\cos(4x)\,\sin(3x)}{\sin(4x)}=\cos(4x)\cdot\frac{\sin(3x)}{3x}\cdot\frac{4x}{\sin(4x)}\cdot\frac{3}{4}.
+  \]
+  Each factor has a limit as \(x\to 0\):
+
+  - \(\cos(4x)\to\cos 0=1\), since cosine is continuous.
+  - \(\frac{\sin(3x)}{3x}\to 1\).
+  - \(\frac{4x}{\sin(4x)}\to 1\), the reciprocal of \(\frac{\sin(4x)}{4x}\).
+
+  The product tends to \(1\cdot 1\cdot 1\cdot\frac{3}{4}\). The limit is \(\frac{3}{4}\).
+provenance: handout-answer
+steps:
+  - Rewrite as \(\frac{\cos(4x)\sin(3x)}{\sin(4x)}\).
+  - Insert \(3x\) and \(4x\) to get \(\cos(4x)\cdot\frac{\sin(3x)}{3x}\cdot\frac{4x}{\sin(4x)}\cdot\frac{3}{4}\).
+  - The limit is \(\frac{3}{4}\).
+verification:
+  checks:
+    - expr: limit(cot(4*x)/csc(3*x), x, 0)
+      expected: 3/4
+    - expr: simplify(cot(4*x)/csc(3*x) - cos(4*x)*sin(3*x)/sin(4*x))
+      expected: "0"
+:::
+
+
+::: exercise
+id: l1-limit-techniques.handout-4-3-5
+number: "4.3.5"
+tier: standard
+topics:
+  - standard-limits
+statement: |
+  Compute \(\displaystyle\lim_{x\to\pi/4}\frac{\sin x-\cos x}{\cos(2x)}\).
+solution: |
+  At \(x=\frac{\pi}{4}\) the numerator is \(\frac{\sqrt{2}}{2}-\frac{\sqrt{2}}{2}=0\), and the denominator is \(\cos\frac{\pi}{2}=0\). The quotient is a \(0/0\) form.
+
+  Use \(\cos(2x)=\cos^2 x-\sin^2 x\) and factor it:
+  \[
+  \cos(2x)=(\cos x-\sin x)(\cos x+\sin x).
+  \]
+  The numerator is \(\sin x-\cos x=-(\cos x-\sin x)\). For \(x\neq\frac{\pi}{4}\) near \(\frac{\pi}{4}\), the factor \(\cos x-\sin x\) is not \(0\) and cancels:
+  \[
+  \begin{aligned}
+  \frac{\sin x-\cos x}{\cos(2x)}&=\frac{-(\cos x-\sin x)}{(\cos x-\sin x)(\cos x+\sin x)}\\
+  &=\frac{-1}{\cos x+\sin x}.
+  \end{aligned}
+  \]
+  The denominator is continuous, and at \(x=\frac{\pi}{4}\) it equals \(\frac{\sqrt{2}}{2}+\frac{\sqrt{2}}{2}=\sqrt{2}\), which is not \(0\). The limit is
+  \[
+  \frac{-1}{\sqrt{2}}=-\frac{\sqrt{2}}{2}.
+  \]
+provenance: handout-answer
+steps:
+  - Both parts vanish at \(\frac{\pi}{4}\), and \(\cos(2x)=(\cos x-\sin x)(\cos x+\sin x)\).
+  - Cancel \(\cos x-\sin x\) to get \(\frac{-1}{\cos x+\sin x}\).
+  - The limit is \(-\frac{\sqrt{2}}{2}\).
+verification:
+  checks:
+    - expr: limit((sin(x) - cos(x))/cos(2*x), x, pi/4)
+      expected: -sqrt(2)/2
+    - expr: simplify(expand_trig((sin(x) - cos(x))/cos(2*x)) + 1/(cos(x) + sin(x)))
+      expected: "0"
+    - expr: (sin(pi/4) - cos(pi/4), cos(2*(pi/4)))
+      expected: (0, 0)
+:::
+
+
+::: exercise
+id: l1-limit-techniques.handout-4-3-6
+number: "4.3.6"
+tier: basic
+topics:
+  - squeeze
+statement: |
+  For all \(x\geq 0\), \(4x-9\leq f(x)\leq x^2-4x+7\). Find \(\displaystyle\lim_{x\to 4}f(x)\).
+solution: |
+  The bounds hold for all \(x\geq 0\), which includes every \(x\) near \(4\). Let \(g(x)=4x-9\) and \(h(x)=x^2-4x+7\). Both are polynomials, so their limits at \(4\) are their values:
+  \[
+  \begin{aligned}
+  g(4)&=16-9=7,\\
+  h(4)&=16-16+7=7.
+  \end{aligned}
+  \]
+  The functions \(g\) and \(h\) have the same limit \(7\) at \(4\), and \(g(x)\leq f(x)\leq h(x)\) near \(4\). The squeeze theorem gives
+  \[
+  \lim_{x\to 4}f(x)=7.
+  \]
+provenance: handout-answer
+steps:
+  - The lower bound \(4x-9\) and the upper bound \(x^2-4x+7\) both equal \(7\) at \(x=4\).
+  - The squeeze theorem gives \(\lim_{x\to 4}f(x)=7\).
+verification:
+  checks:
+    - expr: (limit(4*x - 9, x, 4), limit(x**2 - 4*x + 7, x, 4))
+      expected: (7, 7)
+    - expr: solve((x**2 - 4*x + 7) - (4*x - 9), x)
+      expected: "[4]"
+:::
+
+
+::: exercise
+id: l1-limit-techniques.handout-4-3-8
+number: "4.3.8"
+tier: standard
+topics:
+  - squeeze
+statement: |
+  Use the squeeze theorem to show that \(\displaystyle\lim_{x\to 0}x^4\cos\frac{2}{x}=0\).
+solution: |
+  Let \(f(x)=x^4\cos\frac{2}{x}\) for \(x\neq 0\). The cosine has no limit at \(0\), so the product law does not apply. Use a bound instead.
+
+  Cosine takes values in \([-1,1]\), so \(\bigl|\cos\frac{2}{x}\bigr|\leq 1\) for every \(x\neq 0\). Multiply by the positive number \(x^4\):
+  \[
+  \bigl|f(x)\bigr|\leq x^4.
+  \]
+  That is the two-sided bound
+  \[
+  -x^4\leq f(x)\leq x^4.
+  \]
+  Both \(-x^4\) and \(x^4\) tend to \(0\) as \(x\to 0\). The squeeze theorem gives
+  \[
+  \lim_{x\to 0}x^4\cos\frac{2}{x}=0.
+  \]
+provenance: written-for-site
+steps:
+  - Bound the cosine by \(1\) in absolute value to get \(-x^4\leq f(x)\leq x^4\).
+  - Both bounds tend to \(0\), so the squeeze theorem gives \(0\).
+verification:
+  checks:
+    - expr: (limit(-x**4, x, 0), limit(x**4, x, 0))
+      expected: (0, 0)
+    - expr: limit(x**4*cos(2/x), x, 0)
+      expected: "0"
+:::
+
+
+::: exercise
+id: l1-limit-techniques.handout-4-5-19
+number: "4.5.19"
+tier: standard
+topics:
+  - standard-limits
+statement: |
+  Let \(C\) be a circle of radius \(r\). Let \(A\) be an arc on \(C\) subtending a central angle \(\theta\). Let \(B\) be the chord of \(C\) whose endpoints are the endpoints of \(A\), so \(B\) also subtends \(\theta\). Let \(s\) be the length of \(A\) and \(d\) the length of \(B\). Sketch a diagram and compute \(\displaystyle\lim_{\theta\to 0^{+}}\frac{s}{d}\).
+solution: |
+  ### The diagram
+
+  Draw the circle with centre \(O\) and radius \(r\). Mark two points \(P\) and \(Q\) on it with \(\angle POQ=\theta\), where \(0<\theta<\pi\). The arc \(A\) runs from \(P\) to \(Q\), and the chord \(B\) is the straight segment \(PQ\). Draw the bisector of the angle at \(O\). It meets the chord at its midpoint \(M\) at a right angle.
+
+  ### The two lengths
+
+  The arc length is the radius times the angle in radians:
+  \[
+  s=r\theta.
+  \]
+  The triangle \(OMP\) has a right angle at \(M\), hypotenuse \(r\) and angle \(\frac{\theta}{2}\) at \(O\). The side opposite that angle is \(PM=r\sin\frac{\theta}{2}\), and the chord is twice that:
+  \[
+  d=2r\sin\frac{\theta}{2}.
+  \]
+
+  ### The limit
+
+  For \(0<\theta<\pi\) the ratio is
+  \[
+  \frac{s}{d}=\frac{r\theta}{2r\sin\frac{\theta}{2}}=\frac{\theta/2}{\sin(\theta/2)}.
+  \]
+  Put \(u=\frac{\theta}{2}\). As \(\theta\to 0^{+}\), \(u\to 0^{+}\), and \(\frac{\sin u}{u}\to 1\). The ratio \(\frac{u}{\sin u}\) is its reciprocal, so it tends to \(1\).
+
+  Therefore
+  \[
+  \lim_{\theta\to 0^{+}}\frac{s}{d}=1.
+  \]
+  A short arc is almost as long as its chord.
+provenance: written-for-site
+steps:
+  - The arc length is \(s=r\theta\).
+  - The right triangle \(OMP\) gives the chord \(d=2r\sin\frac{\theta}{2}\).
+  - The ratio is \(\frac{\theta/2}{\sin(\theta/2)}\), which tends to \(1\).
+verification:
+  checks:
+    - expr: (sqrt(2*r**2 - 2*r**2*cos(t)) - 2*r*sin(t/2)).subs(r, 2).subs(t, pi/3)
+      expected: "0"
+    - expr: limit((r*t)/(2*r*sin(t/2)), t, 0, dir='+')
+      expected: "1"
+:::
+
+
+::: exercise
+id: l1-limit-techniques.handout-4-10-10
+number: "4.10.10"
+tier: basic
+topics:
+  - limits-at-infinity
+statement: |
+  Compute \(\displaystyle\lim_{t\to\infty}\frac{t+5-\frac{2}{t}-\frac{1}{t^3}}{3t+12-\frac{1}{t^2}}\).
+solution: |
+  The highest power of \(t\) is \(t^1\). Divide the numerator and the denominator by \(t\). For \(t>0\),
+  \[
+  \frac{t+5-\frac{2}{t}-\frac{1}{t^3}}{3t+12-\frac{1}{t^2}}=\frac{1+\frac{5}{t}-\frac{2}{t^2}-\frac{1}{t^4}}{3+\frac{12}{t}-\frac{1}{t^3}}.
+  \]
+  As \(t\to\infty\), every term with a negative power of \(t\) tends to \(0\). The numerator tends to \(1\) and the denominator tends to \(3\). The denominator limit is not \(0\), so the quotient law applies:
+  \[
+  \lim_{t\to\infty}\frac{t+5-\frac{2}{t}-\frac{1}{t^3}}{3t+12-\frac{1}{t^2}}=\frac{1}{3}.
+  \]
+provenance: handout-answer
+steps:
+  - Divide the numerator and the denominator by \(t\).
+  - The numerator tends to \(1\) and the denominator tends to \(3\), so the limit is \(\frac{1}{3}\).
+verification:
+  checks:
+    - expr: limit((t + 5 - 2/t - 1/t**3)/(3*t + 12 - 1/t**2), t, oo)
+      expected: 1/3
+    - expr: simplify((t + 5 - 2/t - 1/t**3)/(3*t + 12 - 1/t**2) - (1 + 5/t - 2/t**2 - 1/t**4)/(3 + 12/t - 1/t**3))
+      expected: "0"
+:::
+
+
+::: exercise
+id: l1-limit-techniques.handout-4-10-18
+number: "4.10.18"
+tier: basic
+topics:
+  - limits
+statement: |
+  Compute \(\displaystyle\lim_{x\to 0}\frac{2+\frac{1}{x}}{3-\frac{2}{x}}\).
+solution: |
+  Both the numerator and the denominator are unbounded near \(0\), so the quotient law does not apply directly. Multiply the numerator and the denominator by \(x\). For \(x\neq 0\),
+  \[
+  \frac{2+\frac{1}{x}}{3-\frac{2}{x}}=\frac{2x+1}{3x-2}.
+  \]
+  The new numerator tends to \(1\) and the new denominator tends to \(-2\) as \(x\to 0\). The denominator limit is not \(0\), so
+  \[
+  \lim_{x\to 0}\frac{2+\frac{1}{x}}{3-\frac{2}{x}}=\frac{1}{-2}=-\frac{1}{2}.
+  \]
+provenance: handout-answer
+steps:
+  - Multiply the numerator and the denominator by \(x\) to get \(\frac{2x+1}{3x-2}\).
+  - The limit is \(\frac{1}{-2}=-\frac{1}{2}\).
+verification:
+  checks:
+    - expr: limit((2 + 1/x)/(3 - 2/x), x, 0)
+      expected: -1/2
+    - expr: simplify((2 + 1/x)/(3 - 2/x) - (2*x + 1)/(3*x - 2))
+      expected: "0"
+:::
+
+
+::: exercise
+id: l1-limit-techniques.handout-4-10-20
+number: "4.10.20"
+tier: standard
+topics:
+  - limits
+statement: |
+  Compute \(\displaystyle\lim_{x\to 0^{+}}\frac{3+x^{-1/2}+x^{-1}}{2+4x^{-1/2}}\).
+solution: |
+  For \(x>0\), the dominant term of the numerator is \(x^{-1}\), and the dominant term of the denominator is \(4x^{-1/2}\). Multiply the numerator and the denominator by \(x^{1/2}\), which is positive:
+  \[
+  \frac{3+x^{-1/2}+x^{-1}}{2+4x^{-1/2}}=\frac{3x^{1/2}+1+x^{-1/2}}{2x^{1/2}+4}.
+  \]
+  As \(x\to 0^{+}\):
+
+  - The numerator \(3x^{1/2}+1+x^{-1/2}\) tends to \(+\infty\), because \(x^{-1/2}\to+\infty\) and the other terms stay bounded.
+  - The denominator \(2x^{1/2}+4\) tends to \(4\).
+
+  A numerator that tends to \(+\infty\) over a denominator that tends to \(4\) tends to \(+\infty\). The limit is
+  \[
+  \lim_{x\to 0^{+}}\frac{3+x^{-1/2}+x^{-1}}{2+4x^{-1/2}}=+\infty.
+  \]
+  The limit does not exist as a real number.
+provenance: handout-answer
+steps:
+  - Multiply the numerator and the denominator by \(x^{1/2}\).
+  - The numerator tends to \(+\infty\) and the denominator tends to \(4\).
+  - The limit is \(+\infty\).
+verification:
+  checks:
+    - expr: limit((3 + x**Rational(-1, 2) + 1/x)/(2 + 4*x**Rational(-1, 2)), x, 0, dir='+') == oo
+      expected: "True"
+    - expr: simplify((3 + x**Rational(-1, 2) + 1/x)/(2 + 4*x**Rational(-1, 2)) - (3*sqrt(x) + 1 + 1/sqrt(x))/(2*sqrt(x) + 4))
+      expected: "0"
+:::
+
+
+::: exercise
+id: l1-limit-techniques.handout-4-10-21
+number: "4.10.21"
+tier: standard
+topics:
+  - limits-at-infinity
+statement: |
+  Compute \(\displaystyle\lim_{x\to\infty}\frac{x+x^{1/2}+x^{1/3}}{x^{2/3}+x^{1/4}}\).
+solution: |
+  The highest power in the denominator is \(x^{2/3}\). Divide the numerator and the denominator by \(x^{2/3}\). For \(x>0\),
+  \[
+  \frac{x+x^{1/2}+x^{1/3}}{x^{2/3}+x^{1/4}}=\frac{x^{1/3}+x^{-1/6}+x^{-1/3}}{1+x^{-5/12}}.
+  \]
+  As \(x\to\infty\):
+
+  - In the numerator, \(x^{1/3}\to+\infty\), while \(x^{-1/6}\to 0\) and \(x^{-1/3}\to 0\). The numerator tends to \(+\infty\).
+  - In the denominator, \(x^{-5/12}\to 0\), so the denominator tends to \(1\).
+
+  A numerator that tends to \(+\infty\) over a denominator that tends to \(1\) tends to \(+\infty\). The limit is
+  \[
+  \lim_{x\to\infty}\frac{x+x^{1/2}+x^{1/3}}{x^{2/3}+x^{1/4}}=+\infty.
+  \]
+provenance: handout-answer
+steps:
+  - Divide the numerator and the denominator by \(x^{2/3}\).
+  - The numerator tends to \(+\infty\) and the denominator tends to \(1\).
+  - The limit is \(+\infty\).
+verification:
+  checks:
+    - expr: limit((x + sqrt(x) + x**Rational(1, 3))/(x**Rational(2, 3) + x**Rational(1, 4)), x, oo) == oo
+      expected: "True"
+    - expr: simplify((x + sqrt(x) + x**Rational(1, 3))/(x**Rational(2, 3) + x**Rational(1, 4)) - (x**Rational(1, 3) + x**Rational(-1, 6) + x**Rational(-1, 3))/(1 + x**Rational(-5, 12)))
+      expected: "0"
+:::
+
+
+::: exercise
+id: l1-limit-techniques.handout-4-10-22
+number: "4.10.22"
+tier: exam
+topics:
+  - limits-at-infinity
+statement: |
+  Compute \(\displaystyle\lim_{t\to\infty}\frac{1-\sqrt{\frac{t}{t+1}}}{2-\sqrt{\frac{4t+1}{t+2}}}\).
+solution: |
+  Write
+  \[
+  a=\frac{t}{t+1},\qquad b=\frac{4t+1}{t+2}.
+  \]
+  As \(t\to\infty\), \(a\to 1\) and \(b\to 4\). Both the numerator \(1-\sqrt{a}\) and the denominator \(2-\sqrt{b}\) tend to \(0\), so each needs its own conjugate.
+
+  ### The numerator
+
+  Multiply by \(1+\sqrt{a}\). Since \(1-a=\frac{1}{t+1}\),
+  \[
+  1-\sqrt{a}=\frac{1-a}{1+\sqrt{a}}=\frac{1}{(t+1)\bigl(1+\sqrt{a}\bigr)}.
+  \]
+
+  ### The denominator
+
+  Multiply by \(2+\sqrt{b}\). Since \(4-b=\frac{4t+8-(4t+1)}{t+2}=\frac{7}{t+2}\),
+  \[
+  2-\sqrt{b}=\frac{4-b}{2+\sqrt{b}}=\frac{7}{(t+2)\bigl(2+\sqrt{b}\bigr)}.
+  \]
+
+  ### The quotient
+
+  Dividing the two results gives, for large \(t\),
+  \[
+  \frac{1-\sqrt{a}}{2-\sqrt{b}}=\frac{t+2}{t+1}\cdot\frac{2+\sqrt{b}}{7\bigl(1+\sqrt{a}\bigr)}.
+  \]
+  Each factor has a limit as \(t\to\infty\):
+
+  - \(\frac{t+2}{t+1}\to 1\).
+  - \(2+\sqrt{b}\to 2+2=4\), by continuity of the square root.
+  - \(7\bigl(1+\sqrt{a}\bigr)\to 7\cdot 2=14\), which is not \(0\).
+
+  The limit is
+  \[
+  \frac{1\cdot 4}{14}=\frac{2}{7}.
+  \]
+provenance: handout-answer
+steps:
+  - Multiply the numerator by \(1+\sqrt{a}\) to get \(\frac{1}{(t+1)(1+\sqrt{a})}\).
+  - Multiply the denominator by \(2+\sqrt{b}\) to get \(\frac{7}{(t+2)(2+\sqrt{b})}\).
+  - The quotient is \(\frac{t+2}{t+1}\cdot\frac{2+\sqrt{b}}{7(1+\sqrt{a})}\), with limit \(\frac{2}{7}\).
+verification:
+  checks:
+    - expr: limit((1 - sqrt(t/(t + 1)))/(2 - sqrt((4*t + 1)/(t + 2))), t, oo)
+      expected: 2/7
+    - expr: (1 - t/(t + 1), 4 - (4*t + 1)/(t + 2))
+      expected: (1/(t + 1), 7/(t + 2))
+    - expr: limit((t + 2)/(t + 1)*(2 + sqrt((4*t + 1)/(t + 2)))/(7*(1 + sqrt(t/(t + 1)))), t, oo)
+      expected: 2/7
+:::
+
+
+::: exercise
+id: l1-limit-techniques.handout-4-10-24
+number: "4.10.24"
+tier: standard
+topics:
+  - limits-at-infinity
+statement: |
+  Compute \(\displaystyle\lim_{x\to-\infty}\frac{x+x^{-1}}{1+\sqrt{1-x}}\).
+solution: |
+  For \(x<0\) the square root \(\sqrt{1-x}\) is defined, and it grows like \(\sqrt{-x}\). The numerator behaves like \(x\), which is negative and large. Divide the numerator and the denominator by \(\sqrt{-x}\), which is positive for \(x<0\).
+
+  The numerator becomes, using \(x=-(\sqrt{-x})^2\),
+  \[
+  \frac{x+x^{-1}}{\sqrt{-x}}=-\sqrt{-x}+\frac{1}{x\sqrt{-x}}.
+  \]
+  The denominator becomes
+  \[
+  \frac{1+\sqrt{1-x}}{\sqrt{-x}}=\frac{1}{\sqrt{-x}}+\sqrt{\frac{1-x}{-x}}=\frac{1}{\sqrt{-x}}+\sqrt{1-\frac{1}{x}}.
+  \]
+  As \(x\to-\infty\):
+
+  - In the numerator, \(-\sqrt{-x}\to-\infty\) and \(\frac{1}{x\sqrt{-x}}\to 0\). The numerator tends to \(-\infty\).
+  - In the denominator, \(\frac{1}{\sqrt{-x}}\to 0\) and \(\sqrt{1-\frac{1}{x}}\to 1\). The denominator tends to \(1\).
+
+  A numerator that tends to \(-\infty\) over a denominator that tends to \(1\) tends to \(-\infty\). The limit is
+  \[
+  \lim_{x\to-\infty}\frac{x+x^{-1}}{1+\sqrt{1-x}}=-\infty.
+  \]
+provenance: handout-answer
+steps:
+  - Divide the numerator and the denominator by \(\sqrt{-x}\), which is positive for \(x<0\).
+  - The numerator tends to \(-\infty\) and the denominator tends to \(1\).
+  - The limit is \(-\infty\).
+verification:
+  checks:
+    - expr: limit((x + 1/x)/(1 + sqrt(1 - x)), x, -oo) == -oo
+      expected: "True"
+    - expr: ((x + 1/x)/sqrt(-x) - (-sqrt(-x) + 1/(x*sqrt(-x)))).subs(x, -4)
+      expected: "0"
+    - expr: ((1 + sqrt(1 - x))/sqrt(-x) - (1/sqrt(-x) + sqrt(1 - 1/x))).subs(x, -4)
+      expected: "0"
+:::
+
+
+::: exercise
+id: l1-limit-techniques.handout-4-10-38
+number: "4.10.38"
+tier: basic
+topics:
+  - limits-at-infinity
+statement: |
+  Compute \(\displaystyle\lim_{x\to\infty}\frac{4x}{\sqrt{2x^2+1}}\).
+solution: |
+  For \(x>0\), factor \(x^2\) out of the radicand and use \(\sqrt{x^2}=x\):
+  \[
+  \sqrt{2x^2+1}=x\sqrt{2+\frac{1}{x^2}}.
+  \]
+  Then
+  \[
+  \frac{4x}{\sqrt{2x^2+1}}=\frac{4}{\sqrt{2+\frac{1}{x^2}}}.
+  \]
+  As \(x\to\infty\), \(\frac{1}{x^2}\to 0\). The square root is continuous at \(2\), so the denominator tends to \(\sqrt{2}\), which is not \(0\). The limit is
+  \[
+  \frac{4}{\sqrt{2}}=2\sqrt{2}.
+  \]
+provenance: handout-answer
+steps:
+  - Factor \(x\) out of the square root, valid for \(x>0\).
+  - The quotient becomes \(\frac{4}{\sqrt{2+1/x^2}}\), with limit \(\frac{4}{\sqrt{2}}=2\sqrt{2}\).
+verification:
+  checks:
+    - expr: limit(4*x/sqrt(2*x**2 + 1), x, oo)
+      expected: 2*sqrt(2)
+    - expr: (4*x/sqrt(2*x**2 + 1) - 4/sqrt(2 + 1/x**2)).subs(x, 3)
+      expected: "0"
+:::
+
+
+::: exercise
+id: l1-limit-techniques.handout-4-10-44
+number: "4.10.44"
+tier: basic
+topics:
+  - limits-at-infinity
+statement: |
+  Compute \(\displaystyle\lim_{x\to\infty}(x+5)\left(\frac{1}{2x}+\frac{1}{x+2}\right)\).
+solution: |
+  The first factor tends to \(+\infty\) and the second factor tends to \(0\), so the product law does not apply. Combine the fractions in the second factor:
+  \[
+  \frac{1}{2x}+\frac{1}{x+2}=\frac{(x+2)+2x}{2x(x+2)}=\frac{3x+2}{2x(x+2)}.
+  \]
+  Multiply by \(x+5\) and expand:
+  \[
+  (x+5)\cdot\frac{3x+2}{2x(x+2)}=\frac{3x^2+17x+10}{2x^2+4x}.
+  \]
+  The highest power is \(x^2\). Divide the numerator and the denominator by \(x^2\):
+  \[
+  \frac{3x^2+17x+10}{2x^2+4x}=\frac{3+\frac{17}{x}+\frac{10}{x^2}}{2+\frac{4}{x}}.
+  \]
+  As \(x\to\infty\), the numerator tends to \(3\) and the denominator tends to \(2\). The limit is
+  \[
+  \frac{3}{2}.
+  \]
+provenance: handout-answer
+steps:
+  - Combine the two fractions and expand to \(\frac{3x^2+17x+10}{2x^2+4x}\).
+  - Divide the numerator and the denominator by \(x^2\).
+  - The limit is \(\frac{3}{2}\).
+verification:
+  checks:
+    - expr: limit((x + 5)*(1/(2*x) + 1/(x + 2)), x, oo)
+      expected: 3/2
+    - expr: simplify((x + 5)*(1/(2*x) + 1/(x + 2)) - (3*x**2 + 17*x + 10)/(2*x**2 + 4*x))
+      expected: "0"
 :::

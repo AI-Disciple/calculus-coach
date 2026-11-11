@@ -8,6 +8,7 @@ sources:
   - { source: lecture-notes-2, page: 3 }
   - { source: sheet-1, page: 2 }
   - { source: midterm-app }
+  - { source: handout, section: "2.5" }
 examWeight: low
 status: reviewed
 ---
@@ -479,4 +480,85 @@ verification:
       expected: 3*(x - 1)*(x + 1)
     - expr: sign(diff(x**3 - 3*x + 1, x).subs(x, Rational(1, 2)))
       expected: "-1"
+:::
+
+::: exercise
+id: l2-ivt.handout-2-5-7
+number: "2.5.7"
+tier: standard
+topics:
+  - intermediate-value-theorem
+statement: |
+  Approximate a root of \(f(x) = x^{4} + x^{3} - 5x + 1\) to one decimal place.
+solution: |
+  The function \(f\) is a polynomial, so it is continuous on every closed interval. Tabulate values to find where the sign changes:
+  \[
+  \begin{aligned}
+  f(0)&=1,\\
+  f(1)&=1 + 1 - 5 + 1 = -2,\\
+  f(2)&=16 + 8 - 10 + 1 = 15.
+  \end{aligned}
+  \]
+  Since \(f(0) > 0 > f(1)\), the intermediate value theorem gives a root in \((0, 1)\). Since \(f(1) < 0 < f(2)\), it gives a second root in \((1, 2)\). The two intervals do not overlap, so the roots are different. Each can be approximated.
+
+  ### The root in (0, 1)
+
+  Refine with steps of \(0.1\):
+  \[
+  \begin{aligned}
+  f(0.2)&=\frac{6}{625}=0.0096,\\
+  f(0.3)&=-\frac{4649}{10000}=-0.4649.
+  \end{aligned}
+  \]
+  So the root lies in \((0.2, 0.3)\). Both \(0.2\) and \(0.3\) are candidates for the one decimal place, so test the midpoint:
+  \[
+  f(0.25)=\frac{1 + 4 - 64}{256}=-\frac{59}{256}<0.
+  \]
+  The signs satisfy \(f(0.2) > 0 > f(0.25)\), so the root lies in \((0.2, 0.25)\). Every number in this interval rounds to \(0.2\). The root is \(0.2\) to one decimal place.
+
+  ### The root in (1, 2)
+
+  Refine with steps of \(0.1\):
+  \[
+  \begin{aligned}
+  f(1.3)&=-\frac{4469}{10000}=-0.4469,\\
+  f(1.4)&=\frac{5856}{10000}=0.5856.
+  \end{aligned}
+  \]
+  So the root lies in \((1.3, 1.4)\). Test the midpoint:
+  \[
+  f(1.35)=\frac{5101}{160000}\approx 0.032>0.
+  \]
+  The signs satisfy \(f(1.3) < 0 < f(1.35)\), so the root lies in \((1.3, 1.35)\), and it rounds to \(1.3\).
+
+  The two roots are approximately \(0.2\) and \(1.3\).
+provenance: written-for-site
+steps:
+  - The values \(f(0) = 1\), \(f(1) = -2\) and \(f(2) = 15\) show a root in \((0, 1)\) and a root in \((1, 2)\).
+  - In \((0, 1)\), \(f(0.2) > 0 > f(0.25)\), so the root is in \((0.2, 0.25)\) and equals \(0.2\) to one decimal place.
+  - In \((1, 2)\), \(f(1.3) < 0 < f(1.35)\), so the root is in \((1.3, 1.35)\) and equals \(1.3\) to one decimal place.
+verification:
+  checks:
+    - expr: '(x**4 + x**3 - 5*x + 1).subs(x, 0)'
+      expected: '1'
+    - expr: '(x**4 + x**3 - 5*x + 1).subs(x, 1)'
+      expected: '-2'
+    - expr: '(x**4 + x**3 - 5*x + 1).subs(x, 2)'
+      expected: '15'
+    - expr: '(x**4 + x**3 - 5*x + 1).subs(x, Rational(1, 5))'
+      expected: 'Rational(6, 625)'
+    - expr: '(x**4 + x**3 - 5*x + 1).subs(x, Rational(3, 10))'
+      expected: '-Rational(4649, 10000)'
+    - expr: '(x**4 + x**3 - 5*x + 1).subs(x, Rational(1, 4))'
+      expected: '-Rational(59, 256)'
+    - expr: '(x**4 + x**3 - 5*x + 1).subs(x, Rational(13, 10))'
+      expected: '-Rational(4469, 10000)'
+    - expr: '(x**4 + x**3 - 5*x + 1).subs(x, Rational(7, 5))'
+      expected: 'Rational(5856, 10000)'
+    - expr: '(x**4 + x**3 - 5*x + 1).subs(x, Rational(27, 20))'
+      expected: 'Rational(5101, 160000)'
+    - expr: 'floor(10*CRootOf(x**4 + x**3 - 5*x + 1, 0) + Rational(1, 2))'
+      expected: '2'
+    - expr: 'floor(10*CRootOf(x**4 + x**3 - 5*x + 1, 1) + Rational(1, 2))'
+      expected: '13'
 :::

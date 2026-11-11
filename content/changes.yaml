@@ -1,4 +1,11 @@
 # What changed: one entry per content update, newest first. See content/guide/adding-content.md, step 6.
+- date: "2026-11-11"
+  title: Handout exercises and professor sheet gaps
+  text: |
+    About 500 handout exercises from the handout's sections 1.1 to 15.6 were added to their topics as Core, Extra and Exam level practice. This includes the first handout exercises for lecture 4: vectors, the dot and cross product, lines and planes, and cylindrical and spherical coordinates.
+    Exercises that were off topic were left out. These are the epsilon-delta exercises, the hyperbolic functions, the surface area exercises and the repetitive drills.
+    The missing exercises of the professor's sheet 1 (the new file) and sheet 2 were added. Some printed handout answers were wrong, and those exercises are shown with a discrepancy note.
+  nodes: [l1-continuity, l1-derivative, l1-derivative-rules, l1-exp-log, l1-functions, l1-limit-techniques, l1-limits, l1-transformations, l1-trigonometry, l2-asymptotes, l2-concavity, l2-curve-sketching, l2-implicit-differentiation, l2-inverse-functions, l2-ivt, l2-lhopital, l2-linear-approximation, l2-monotonicity-extrema, l2-mvt, l2-newton, l2-optimisation, l2-related-rates, l3-fundamental-theorem, l3-integration-by-parts, l3-numerical-integration, l3-riemann-sums, l3-substitution, l3-taylor, l3-trig-integrals, l4-coordinates-vectors, l4-cross-sections, l4-cylindrical-spherical, l4-dot-cross-product, l4-functions-several-variables, l4-level-sets, l4-lines-planes, l5-chain-rule-general, l5-chain-rule-path, l5-higher-derivatives, l5-limits-continuity, l5-partial-derivatives, l5-tangent-plane, l6-lagrange, l6-worded-optimisation, l7-polar-integrals, l8-mass-centre]
 - date: "2026-11-09"
   title: Lecture 7 notes and labels for lectures 5 to 7
   text: |

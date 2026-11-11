@@ -490,3 +490,204 @@ verification:
     - expr: (-diff(x + exp(x), x, 2)/diff(x + exp(x), x)**3).subs(x, 0)
       expected: -1/8
 :::
+
+::: exercise
+id: l2-inverse-functions.handout-4-9-4
+number: "4.9.4"
+tier: standard
+topics:
+  - inverse-functions
+  - inverse-trigonometric
+statement: |
+  Show that \(\arccot x + \arctan x = \frac{\pi}{2}\) for every real \(x\). Here \(\arccot\) takes values in \((0, \pi)\).
+solution: |
+  Both \(\arccot\) and \(\arctan\) are differentiable at every real \(x\), and their derivatives are
+  \[
+  \begin{aligned}
+  \frac{d}{dx} \arccot x&=-\frac{1}{1 + x^2},\\
+  \frac{d}{dx} \arctan x&=\frac{1}{1 + x^2}.
+  \end{aligned}
+  \]
+  So the sum has derivative
+  \[
+  \frac{d}{dx}\bigl(\arccot x + \arctan x\bigr) = -\frac{1}{1 + x^2} + \frac{1}{1 + x^2} = 0
+  \]
+  on the interval \((-\infty, \infty)\). A function with derivative \(0\) on an interval is constant there, so there is a constant \(k\) with \(\arccot x + \arctan x = k\) for every real \(x\).
+
+  To find \(k\), evaluate at \(x = 0\). Since \(\cot\frac{\pi}{2} = 0\) and \(\frac{\pi}{2}\) lies in \((0, \pi)\), we have \(\arccot 0 = \frac{\pi}{2}\). Also \(\arctan 0 = 0\). Hence
+  \[
+  k = \frac{\pi}{2} + 0 = \frac{\pi}{2}.
+  \]
+  Therefore \(\arccot x + \arctan x = \frac{\pi}{2}\) for every real \(x\).
+provenance: written-for-site
+steps:
+  - The derivatives of \(\arccot x\) and \(\arctan x\) are opposite, so the sum has derivative \(0\) on \(\mathbb{R}\).
+  - The sum is a constant \(k\).
+  - At \(x = 0\) the sum is \(\frac{\pi}{2} + 0\), so \(k = \frac{\pi}{2}\).
+verification:
+  checks:
+    - expr: 'diff(atan(x), x)'
+      expected: '1/(1 + x**2)'
+    - expr: 'diff(pi/2 - atan(x), x)'
+      expected: '-1/(1 + x**2)'
+    - expr: 'diff(pi/2 - atan(x) + atan(x), x)'
+      expected: '0'
+    - expr: 'acot(0) + atan(0)'
+      expected: 'pi/2'
+:::
+
+
+::: exercise
+id: l2-inverse-functions.handout-4-9-7
+number: "4.9.7"
+tier: standard
+topics:
+  - inverse-functions
+  - inverse-trigonometric
+statement: |
+  Find the derivative of \(\arccos(\sin(x^3))\).
+solution: |
+  The outer function is \(\arccos\), the middle function is \(\sin\), and the inner function is \(x^3\). Write \(u = \sin(x^3)\). The derivative of \(\arccos u\) is \(-\frac{1}{\sqrt{1 - u^2}}\) for \(|u| < 1\), which here means \(\cos(x^3) \neq 0\). The chain rule gives \(u' = 3x^2 \cos(x^3)\), so
+  \[
+  \begin{aligned}
+  \frac{d}{dx} \arccos(\sin(x^3))&=-\frac{1}{\sqrt{1 - \sin^2(x^3)}} \cdot 3x^2 \cos(x^3)\\
+  &=-\frac{3x^2 \cos(x^3)}{\sqrt{1 - \sin^2(x^3)}}.
+  \end{aligned}
+  \]
+  The identity \(1 - \sin^2(x^3) = \cos^2(x^3)\) gives \(\sqrt{1 - \sin^2(x^3)} = |\cos(x^3)|\), so the same derivative is
+  \[
+  -\frac{3x^2 \cos(x^3)}{|\cos(x^3)|}.
+  \]
+  This equals \(-3x^2\) where \(\cos(x^3) > 0\) and \(3x^2\) where \(\cos(x^3) < 0\). At \(x = 1\) the cosine \(\cos 1\) is positive, so the derivative is \(-3\).
+provenance: handout-answer
+steps:
+  - The outer function is \(\arccos\), the middle function is \(\sin\) and the inner function is \(x^3\).
+  - The derivative is \(-\frac{3x^2 \cos(x^3)}{\sqrt{1 - \sin^2(x^3)}}\) wherever \(\cos(x^3) \neq 0\).
+  - Since \(\sqrt{1 - \sin^2(x^3)} = |\cos(x^3)|\), the derivative is \(-3x^2\) where \(\cos(x^3) > 0\).
+verification:
+  checks:
+    - expr: 'diff(acos(sin(x**3)), x)'
+      expected: '-3*x**2*cos(x**3)/sqrt(1 - sin(x**3)**2)'
+    - expr: 'diff(sin(x**3), x)'
+      expected: '3*x**2*cos(x**3)'
+    - expr: 'diff(acos(sin(x**3)), x).subs(x, 1)'
+      expected: '-3'
+    - expr: 'diff(acos(sin(x**3)), x).subs(x, 2)'
+      expected: '12'
+:::
+
+
+::: exercise
+id: l2-inverse-functions.handout-4-9-8
+number: "4.9.8"
+tier: standard
+topics:
+  - inverse-functions
+  - inverse-trigonometric
+statement: |
+  Find the derivative of \(\ln\bigl((\arcsin x)^2\bigr)\).
+solution: |
+  The expression is defined for \(x \in [-1, 1]\) with \(x \neq 0\), because \(\arcsin x = 0\) only at \(x = 0\). It is differentiable for \(x \in (-1, 1)\) with \(x \neq 0\).
+
+  Write \(u = \arcsin x\). The outer function is \(\ln\), applied to \(u^2\). The chain rule gives
+  \[
+  \begin{aligned}
+  \frac{d}{dx} \ln(u^2)&=\frac{1}{u^2} \cdot 2u \cdot u'\\
+  &=\frac{2u'}{u}.
+  \end{aligned}
+  \]
+  The derivative of \(u = \arcsin x\) is \(\frac{1}{\sqrt{1 - x^2}}\). Substituting gives
+  \[
+  \frac{d}{dx} \ln\bigl((\arcsin x)^2\bigr) = \frac{2}{(\arcsin x)\sqrt{1 - x^2}}.
+  \]
+provenance: handout-answer
+steps:
+  - The outer function is \(\ln\) applied to \(u^2\) with \(u = \arcsin x\), so the derivative is \(2u'/u\).
+  - The derivative of \(\arcsin x\) is \(\frac{1}{\sqrt{1 - x^2}}\).
+  - The result is \(\frac{2}{(\arcsin x)\sqrt{1 - x^2}}\) for \(x \in (-1, 1)\), \(x \neq 0\).
+verification:
+  checks:
+    - expr: 'diff(log(asin(x)**2), x)'
+      expected: '2/(asin(x)*sqrt(1 - x**2))'
+    - expr: 'diff(asin(x), x)'
+      expected: '1/sqrt(1 - x**2)'
+    - expr: 'diff(log(asin(x)**2), x).subs(x, Rational(1, 2))'
+      expected: '8*sqrt(3)/pi'
+:::
+
+
+::: exercise
+id: l2-inverse-functions.handout-4-9-9
+number: "4.9.9"
+tier: basic
+topics:
+  - inverse-functions
+  - inverse-trigonometric
+statement: |
+  Find the derivative of \(\arccos(e^x)\).
+solution: |
+  The outer function is \(\arccos\), and the inner function is \(e^x\). The function \(\arccos(e^x)\) is defined for \(e^x \le 1\), that is \(x \le 0\), and differentiable for \(e^x < 1\), that is \(x < 0\). For such \(x\), the chain rule gives
+  \[
+  \begin{aligned}
+  \frac{d}{dx} \arccos(e^x)&=-\frac{1}{\sqrt{1 - (e^x)^2}} \cdot e^x\\
+  &=-\frac{e^x}{\sqrt{1 - e^{2x}}}.
+  \end{aligned}
+  \]
+provenance: handout-answer
+steps:
+  - The outer function is \(\arccos\) and the inner function is \(e^x\), with \(e^x < 1\) for \(x < 0\).
+  - The derivative is \(-\frac{e^x}{\sqrt{1 - e^{2x}}}\) for \(x < 0\).
+verification:
+  checks:
+    - expr: 'diff(acos(exp(x)), x)'
+      expected: '-exp(x)/sqrt(1 - exp(2*x))'
+    - expr: 'diff(acos(exp(x)), x).subs(x, -log(2))'
+      expected: '-1/sqrt(3)'
+:::
+
+
+::: exercise
+id: l2-inverse-functions.handout-4-9-11
+number: "4.9.11"
+tier: standard
+topics:
+  - inverse-functions
+  - inverse-trigonometric
+statement: |
+  Find the derivative of \(\log_5\bigl(\arctan(x^x)\bigr)\).
+solution: |
+  The function is defined for \(x > 0\). There \(x^x > 0\), so \(\arctan(x^x) > 0\) and the logarithm is defined. The function is a chain of four steps: \(x \mapsto x^x\), then \(\arctan\), then \(\ln\), then division by \(\ln 5\), since \(\log_5 w = \frac{\ln w}{\ln 5}\).
+
+  **The derivative of \(x^x\).** For \(x > 0\), \(x^x = e^{x \ln x}\). The chain rule and the product rule give
+  \[
+  \begin{aligned}
+  \frac{d}{dx} x^x&=e^{x \ln x}\Bigl(\ln x + x \cdot \frac{1}{x}\Bigr)\\
+  &=x^x (1 + \ln x).
+  \end{aligned}
+  \]
+
+  **The derivative of \(\arctan(x^x)\).** The derivative of \(\arctan u\) is \(\frac{1}{1 + u^2}\), and \((x^x)^2 = x^{2x}\), so
+  \[
+  \frac{d}{dx} \arctan(x^x) = \frac{x^x (1 + \ln x)}{1 + x^{2x}}.
+  \]
+
+  **The logarithm.** The derivative of \(\frac{\ln w}{\ln 5}\) is \(\frac{w'}{w \ln 5}\), with \(w = \arctan(x^x)\). Therefore
+  \[
+  \frac{d}{dx} \log_5\bigl(\arctan(x^x)\bigr) = \frac{(1 + \ln x)\, x^x}{\ln 5 \,\bigl(1 + x^{2x}\bigr) \arctan(x^x)}.
+  \]
+provenance: handout-answer
+steps:
+  - The derivative of \(x^x = e^{x \ln x}\) is \(x^x (1 + \ln x)\).
+  - The derivative of \(\arctan(x^x)\) is \(\frac{x^x (1 + \ln x)}{1 + x^{2x}}\).
+  - Dividing by \(w \ln 5\) with \(w = \arctan(x^x)\) gives \(\frac{(1 + \ln x)\, x^x}{\ln 5 (1 + x^{2x}) \arctan(x^x)}\).
+verification:
+  checks:
+    - expr: 'diff(x**x, x)'
+      expected: 'x**x*(1 + log(x))'
+    - expr: 'diff(atan(x**x), x)'
+      expected: 'x**x*(1 + log(x))/(1 + x**(2*x))'
+    - expr: 'diff(log(atan(x**x), 5), x)'
+      expected: '(1 + log(x))*x**x/(log(5)*(1 + x**(2*x))*atan(x**x))'
+    - expr: 'diff(log(atan(x**x), 5), x).subs(x, 1)'
+      expected: '2/(pi*log(5))'
+:::

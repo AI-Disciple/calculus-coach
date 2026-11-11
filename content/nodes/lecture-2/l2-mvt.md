@@ -530,3 +530,251 @@ verification:
     - expr: diff(x**3 + 3*x + 1, x)
       expected: 3*x**2 + 3
 :::
+
+::: exercise
+id: l2-mvt.handout-6-5-7
+number: "6.5.7"
+tier: basic
+topics:
+  - mean-value-theorem
+statement: |
+  Describe all functions with derivative \(\dfrac{1}{1 + x^2}\).
+solution: |
+  The derivative of \(\arctan x\) is \(\frac{1}{1 + x^2}\) for every real \(x\). So if \(f'(x) = \frac{1}{1 + x^2}\) on \((-\infty, \infty)\), then \(f'(x) = (\arctan x)'\) on that interval.
+
+  By the theorem on functions with the same derivative, there is a constant \(k\) with
+  \[
+  f(x) = \arctan x + k
+  \]
+  for every real \(x\). Conversely, every function \(\arctan x + k\) has derivative \(\frac{1}{1 + x^2}\), because the derivative of a constant is \(0\).
+
+  The functions with derivative \(\frac{1}{1 + x^2}\) are exactly
+  \[
+  f(x) = \arctan x + k, \qquad k \text{ a constant}.
+  \]
+provenance: handout-answer
+steps:
+  - The function \(\arctan x\) has derivative \(\frac{1}{1 + x^2}\).
+  - By the theorem, any other function with this derivative differs from \(\arctan x\) by a constant \(k\).
+  - The functions are \(\arctan x + k\).
+verification:
+  checks:
+    - expr: 'diff(atan(x) + k, x)'
+      expected: '1/(1 + x**2)'
+:::
+
+
+::: exercise
+id: l2-mvt.handout-6-5-8
+number: "6.5.8"
+tier: standard
+topics:
+  - mean-value-theorem
+statement: |
+  Describe all functions with derivative \(x^3 - \dfrac{1}{x}\) on the interval \((0, \infty)\).
+solution: |
+  Take \(F(x) = \frac{x^4}{4} - \ln x\), which is defined on \((0, \infty)\). The derivatives of the two terms are \(x^3\) and \(\frac{1}{x}\), so
+  \[
+  F'(x) = x^3 - \frac{1}{x}
+  \]
+  for every \(x\) in \((0, \infty)\).
+
+  If \(f'(x) = x^3 - \frac{1}{x}\) on the interval \((0, \infty)\), then \(f' = F'\) there. By the theorem on functions with the same derivative, there is a constant \(k\) with \(f(x) = F(x) + k\) on \((0, \infty)\). Conversely, every function \(F(x) + k\) has the required derivative.
+
+  The functions with derivative \(x^3 - \frac{1}{x}\) on \((0, \infty)\) are exactly
+  \[
+  f(x) = \frac{x^4}{4} - \ln x + k, \qquad k \text{ a constant}.
+  \]
+provenance: handout-answer
+steps:
+  - The function \(F(x) = \frac{x^4}{4} - \ln x\) has \(F'(x) = x^3 - \frac{1}{x}\) on \((0, \infty)\).
+  - Any function with this derivative on the interval \((0, \infty)\) differs from \(F\) by a constant.
+  - The functions are \(\frac{x^4}{4} - \ln x + k\).
+verification:
+  checks:
+    - expr: 'diff(x**4/4 - log(x) + k, x)'
+      expected: 'x**3 - 1/x'
+:::
+
+
+::: exercise
+id: l2-mvt.handout-6-5-9
+number: "6.5.9"
+tier: basic
+topics:
+  - mean-value-theorem
+statement: |
+  Describe all functions with derivative \(\sin(2x)\).
+solution: |
+  Try \(F(x) = -\frac{1}{2}\cos(2x)\). The chain rule gives
+  \[
+  \begin{aligned}
+  F'(x)&=-\frac{1}{2} \cdot \bigl(-\sin(2x)\bigr) \cdot 2\\
+  &=\sin(2x)
+  \end{aligned}
+  \]
+  for every real \(x\).
+
+  If \(f'(x) = \sin(2x)\) on \((-\infty, \infty)\), then \(f' = F'\) there. By the theorem on functions with the same derivative, there is a constant \(k\) with \(f(x) = F(x) + k\). Conversely, every function \(F(x) + k\) has derivative \(\sin(2x)\).
+
+  The functions with derivative \(\sin(2x)\) are exactly
+  \[
+  f(x) = -\frac{\cos(2x)}{2} + k, \qquad k \text{ a constant}.
+  \]
+provenance: handout-answer
+steps:
+  - The function \(F(x) = -\frac{1}{2}\cos(2x)\) has \(F'(x) = \sin(2x)\) by the chain rule.
+  - Any function with this derivative differs from \(F\) by a constant \(k\).
+  - The functions are \(-\frac{\cos(2x)}{2} + k\).
+verification:
+  checks:
+    - expr: 'diff(-cos(2*x)/2 + k, x)'
+      expected: 'sin(2*x)'
+:::
+
+
+::: exercise
+id: l2-mvt.handout-6-5-10
+number: "6.5.10"
+tier: exam
+topics:
+  - mean-value-theorem
+statement: |
+  Show that the equation \(6x^4 - 7x + 1 = 0\) does not have more than two distinct real roots.
+solution: |
+  Let \(f(x) = 6x^4 - 7x + 1\). It is a polynomial, so it is continuous everywhere and has a derivative everywhere, with
+  \[
+  f'(x) = 24x^3 - 7.
+  \]
+
+  Suppose \(f\) had three distinct real roots \(a < b < c\). Then \(f(a) = f(b) = f(c) = 0\).
+
+  - Rolle's theorem on \([a, b]\) gives a point \(p\) in \((a, b)\) with \(f'(p) = 0\).
+  - Rolle's theorem on \([b, c]\) gives a point \(q\) in \((b, c)\) with \(f'(q) = 0\).
+
+  Since \(p < b < q\), we have \(p < q\), and so \(p^3 < q^3\). Then
+  \[
+  f'(p) = 24p^3 - 7 < 24q^3 - 7 = f'(q),
+  \]
+  which contradicts \(f'(p) = 0 = f'(q)\). So \(f\) cannot have three distinct real roots, and the equation has at most two.
+
+  In fact it has exactly two. The value \(f(1) = 6 - 7 + 1 = 0\), so \(x = 1\) is a root, and
+  \[
+  6x^4 - 7x + 1 = (x - 1)(6x^3 + 6x^2 + 6x - 1).
+  \]
+  The cubic factor equals \(-1\) at \(x = 0\) and \(17\) at \(x = 1\), so it has a root in \((0, 1)\).
+provenance: written-for-site
+steps:
+  - Three roots would give two zeros \(p < q\) of \(f'(x) = 24x^3 - 7\) by Rolle's theorem.
+  - The function \(24x^3 - 7\) is strictly increasing, so it cannot take the value \(0\) twice.
+  - Hence there are at most two distinct real roots.
+verification:
+  checks:
+    - expr: 'diff(6*x**4 - 7*x + 1, x)'
+      expected: '24*x**3 - 7'
+    - expr: 'len(Poly(24*x**3 - 7, x).real_roots())'
+      expected: '1'
+    - expr: 'len(Poly(6*x**4 - 7*x + 1, x).real_roots())'
+      expected: '2'
+    - expr: 'expand((x - 1)*(6*x**3 + 6*x**2 + 6*x - 1))'
+      expected: '6*x**4 - 7*x + 1'
+    - expr: '(6*x**3 + 6*x**2 + 6*x - 1).subs(x, 1)'
+      expected: '17'
+:::
+
+
+::: exercise
+id: l2-mvt.handout-6-5-12
+number: "6.5.12"
+tier: standard
+topics:
+  - mean-value-theorem
+statement: |
+  Prove that for all real \(x\) and \(y\), \(|\cos x - \cos y| \le |x - y|\). State and prove an analogous result involving sine.
+solution: |
+  **Cosine.** Let \(x\) and \(y\) be real. If \(x = y\), both sides are \(0\). Otherwise the inequality is symmetric in \(x\) and \(y\), so assume \(x < y\). The function \(\cos\) is continuous on \([x, y]\) and has the derivative \(-\sin\) on \((x, y)\). The mean value theorem gives a point \(c\) in \((x, y)\) with
+  \[
+  \cos y - \cos x = -\sin c \,(y - x).
+  \]
+  Taking absolute values and using \(|\sin c| \le 1\),
+  \[
+  \begin{aligned}
+  |\cos x - \cos y|&=|\sin c|\, |x - y|\\
+  &\le |x - y|.
+  \end{aligned}
+  \]
+
+  **Sine.** For all real \(x\) and \(y\),
+  \[
+  |\sin x - \sin y| \le |x - y|.
+  \]
+  The proof is the same. If \(x = y\) both sides are \(0\). Otherwise assume \(x < y\). The function \(\sin\) is continuous on \([x, y]\) and has the derivative \(\cos\) on \((x, y)\), so the mean value theorem gives a point \(c\) in \((x, y)\) with
+  \[
+  \sin y - \sin x = \cos c \,(y - x).
+  \]
+  Since \(|\cos c| \le 1\), we get \(|\sin x - \sin y| = |\cos c|\, |x - y| \le |x - y|\).
+provenance: written-for-site
+steps:
+  - The mean value theorem on the interval between \(x\) and \(y\) gives \(\cos y - \cos x = -\sin c\,(y - x)\).
+  - Since \(|\sin c| \le 1\), the claim \(|\cos x - \cos y| \le |x - y|\) follows.
+  - The same argument with \(\sin\) and the derivative \(\cos\) gives \(|\sin x - \sin y| \le |x - y|\).
+verification:
+  checks:
+    - expr: 'diff(cos(x), x)'
+      expected: '-sin(x)'
+    - expr: 'diff(sin(x), x)'
+      expected: 'cos(x)'
+    - expr: 'sign(abs(1 - 3) - abs(cos(1) - cos(3)))'
+      expected: '1'
+    - expr: 'sign(abs(1 - 3) - abs(sin(1) - sin(3)))'
+      expected: '1'
+:::
+
+
+::: exercise
+id: l2-mvt.handout-6-5-13
+number: "6.5.13"
+tier: standard
+topics:
+  - mean-value-theorem
+statement: |
+  Show that \(\sqrt{1 + x} \le 1 + \dfrac{x}{2}\) if \(-1 < x < 1\).
+solution: |
+  Let \(f(x) = \sqrt{1 + x}\). It is continuous on \([-1, \infty)\) and has the derivative \(f'(x) = \frac{1}{2\sqrt{1 + x}}\) on \((-1, \infty)\). Also \(f(0) = 1\).
+
+  **The case \(x = 0\).** Both sides equal \(1\).
+
+  **The case \(x \neq 0\).** The interval between \(0\) and \(x\) lies in \((-1, 1)\), so \(f\) is continuous on it and has a derivative inside it. The mean value theorem gives a point \(c\) strictly between \(0\) and \(x\) with
+  \[
+  \begin{aligned}
+  \sqrt{1 + x} - 1&=f'(c)\,(x - 0)\\
+  &=\frac{x}{2\sqrt{1 + c}}.
+  \end{aligned}
+  \]
+
+  - If \(0 < x < 1\), then \(0 < c < x\), so \(1 + c > 1\) and \(\sqrt{1 + c} > 1\). Then \(\frac{1}{2\sqrt{1 + c}} < \frac{1}{2}\), and multiplying by \(x > 0\) gives \(\frac{x}{2\sqrt{1 + c}} < \frac{x}{2}\).
+  - If \(-1 < x < 0\), then \(x < c < 0\), so \(0 < 1 + c < 1\) and \(0 < \sqrt{1 + c} < 1\). Then \(\frac{1}{2\sqrt{1 + c}} > \frac{1}{2}\), and multiplying by \(x < 0\) reverses the inequality: \(\frac{x}{2\sqrt{1 + c}} < \frac{x}{2}\).
+
+  In both cases \(\sqrt{1 + x} - 1 < \frac{x}{2}\). Together with the case \(x = 0\),
+  \[
+  \sqrt{1 + x} \le 1 + \frac{x}{2} \quad \text{for } -1 < x < 1,
+  \]
+  with equality only at \(x = 0\).
+provenance: written-for-site
+steps:
+  - Apply the mean value theorem to \(\sqrt{1 + x}\) between \(0\) and \(x\), which gives \(\sqrt{1 + x} - 1 = \frac{x}{2\sqrt{1 + c}}\).
+  - For \(0 < x < 1\), \(\sqrt{1 + c} > 1\), so the quotient is below \(\frac{x}{2}\).
+  - For \(-1 < x < 0\), \(\sqrt{1 + c} < 1\) and \(x < 0\), so the quotient is again below \(\frac{x}{2}\).
+verification:
+  checks:
+    - expr: 'diff(sqrt(1 + x), x)'
+      expected: '1/(2*sqrt(1 + x))'
+    - expr: 'diff(sqrt(1 + x), x).subs(x, 0)'
+      expected: '1/2'
+    - expr: 'expand((1 + x/2)**2 - (1 + x))'
+      expected: 'x**2/4'
+    - expr: 'sign(1 + Rational(1, 4) - sqrt(Rational(3, 2)))'
+      expected: '1'
+    - expr: 'sign(1 - Rational(1, 4) - sqrt(Rational(1, 2)))'
+      expected: '1'
+:::

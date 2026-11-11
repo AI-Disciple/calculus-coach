@@ -451,3 +451,223 @@ verification:
     - expr: '(c/(1 + c**2)).subs(c, 1)'
       expected: "1/2"
 :::
+
+::: exercise
+id: l5-limits-continuity.handout-14-2-1
+number: "14.2.1"
+tier: basic
+topics:
+  - limits
+statement: |
+  Determine whether \(\displaystyle\lim_{(x,y)\to(0,0)}\frac{x^2}{x^2+y^2}\) exists. If it does, find it. If it does not, explain how you know.
+solution: |
+  The expression is defined for \((x,y)\neq(0,0)\). Test two paths.
+
+  - Along the \(y\)-axis, \(x=0\) and \(y\neq 0\), the expression equals \(\frac{0}{y^2}=0\). The limit along this path is \(0\).
+  - Along the \(x\)-axis, \(y=0\) and \(x\neq 0\), the expression equals \(\frac{x^2}{x^2}=1\). The limit along this path is \(1\).
+
+  The two path limits are \(0\) and \(1\). They differ, so the limit at the origin does not exist.
+provenance: handout-answer
+steps:
+  - Along x = 0 the expression is 0.
+  - Along y = 0 the expression is 1.
+  - The path limits differ, so the limit does not exist.
+verification:
+  checks:
+    - expr: '(x**2/(x**2 + y**2)).subs(x, 0)'
+      expected: "0"
+    - expr: 'simplify((x**2/(x**2 + y**2)).subs(y, 0))'
+      expected: "1"
+:::
+
+
+::: exercise
+id: l5-limits-continuity.handout-14-2-3
+number: "14.2.3"
+tier: standard
+topics:
+  - limits
+statement: |
+  Determine whether \(\displaystyle\lim_{(x,y)\to(0,0)}\frac{xy}{2x^2+y^2}\) exists. If it does, find it. If it does not, explain how you know.
+solution: |
+  The expression is defined for \((x,y)\neq(0,0)\), because \(2x^2+y^2>0\) there. Test two paths.
+
+  - Along the \(y\)-axis, \(x=0\) and \(y\neq 0\), the numerator is \(0\), so the expression equals \(0\). The limit along this path is \(0\).
+  - Along the line \(y=x\), with \(x\neq 0\), the expression equals \(\frac{x\cdot x}{2x^2+x^2}=\frac{x^2}{3x^2}=\frac13\). The limit along this path is \(\frac13\).
+
+  The two path limits are \(0\) and \(\frac13\). They differ, so the limit at the origin does not exist.
+provenance: handout-answer
+steps:
+  - Along x = 0 the expression is 0.
+  - Along y = x the expression is 1/3.
+  - The path limits differ, so the limit does not exist.
+verification:
+  checks:
+    - expr: '(x*y/(2*x**2 + y**2)).subs(x, 0)'
+      expected: "0"
+    - expr: 'simplify((x*y/(2*x**2 + y**2)).subs(y, x))'
+      expected: "Rational(1, 3)"
+:::
+
+
+::: exercise
+id: l5-limits-continuity.handout-14-2-4
+number: "14.2.4"
+tier: standard
+topics:
+  - limits
+  - continuity
+statement: |
+  Find \(\displaystyle\lim_{(x,y)\to(0,0)}\frac{x^4-y^4}{x^2+y^2}\), or show that it does not exist. (Hint: factor the numerator.)
+solution: |
+  The numerator factors as a difference of squares:
+  \[
+  x^4-y^4=(x^2-y^2)(x^2+y^2).
+  \]
+  For \((x,y)\neq(0,0)\) the factor \(x^2+y^2\) is not \(0\), and it cancels:
+  \[
+  \frac{x^4-y^4}{x^2+y^2}=x^2-y^2.
+  \]
+  A limit looks only at points near the origin, not at the origin itself. Near the origin the expression equals the polynomial \(x^2-y^2\). A polynomial is continuous everywhere, so
+  \[
+  \lim_{(x,y)\to(0,0)}(x^2-y^2)=0^2-0^2=0.
+  \]
+  The limit exists and equals \(0\).
+provenance: handout-answer
+steps:
+  - The numerator factors as (x^2 - y^2)(x^2 + y^2).
+  - Away from the origin the quotient equals the polynomial x^2 - y^2.
+  - The polynomial is continuous, so the limit is its value 0 at the origin.
+verification:
+  checks:
+    - expr: 'simplify((x**4 - y**4)/(x**2 + y**2) - (x**2 - y**2))'
+      expected: "0"
+    - expr: '(x**2 - y**2).subs({x: 0, y: 0})'
+      expected: "0"
+:::
+
+
+::: exercise
+id: l5-limits-continuity.handout-14-2-5
+number: "14.2.5"
+tier: standard
+topics:
+  - limits
+statement: |
+  Find \(\displaystyle\lim_{(x,y)\to(0,0)}\frac{\sin(x^2+y^2)}{x^2+y^2}\), or show that it does not exist.
+solution: |
+  The expression is defined for \((x,y)\neq(0,0)\). It depends on the point only through \(u=x^2+y^2\), the squared distance to the origin, and it equals \(\frac{\sin u}{u}\).
+
+  As \((x,y)\to(0,0)\), the distance goes to \(0\), so \(u\to 0\) with \(u>0\). The one-variable limit from lecture 1 is
+  \[
+  \lim_{u\to 0}\frac{\sin u}{u}=1.
+  \]
+  Every path to the origin sends \(u\) to \(0\), so every path gives the limit \(1\). The limit exists and equals \(1\).
+provenance: handout-answer
+steps:
+  - The expression equals sin(u)/u with u = x^2 + y^2.
+  - As the point approaches the origin, u goes to 0 through positive values.
+  - The one-variable limit of sin(u)/u is 1, so the limit is 1.
+verification:
+  checks:
+    - expr: 'limit(sin(u)/u, u, 0)'
+      expected: "1"
+    - expr: 'limit(sin(r**2)/r**2, r, 0)'
+      expected: "1"
+:::
+
+
+::: exercise
+id: l5-limits-continuity.handout-14-2-7
+number: "14.2.7"
+tier: standard
+topics:
+  - limits
+statement: |
+  Find \(\displaystyle\lim_{(x,y)\to(0,0)}\frac{e^{-x^2-y^2}-1}{x^2+y^2}\), or show that it does not exist.
+solution: |
+  The expression is defined for \((x,y)\neq(0,0)\). Put \(u=x^2+y^2\), so the expression equals \(\frac{e^{-u}-1}{u}\). As \((x,y)\to(0,0)\), \(u\to 0\) with \(u>0\).
+
+  Substitute \(v=-u\), which also goes to \(0\):
+  \[
+  \begin{aligned}
+  \frac{e^{-u}-1}{u}&=\frac{e^{v}-1}{-v}\\
+  &=-\frac{e^{v}-1}{v}.
+  \end{aligned}
+  \]
+  The one-variable limit from lecture 1 is \(\lim_{v\to 0}\frac{e^{v}-1}{v}=1\). So the expression approaches \(-1\) along every path.
+
+  The limit exists and equals \(-1\).
+provenance: handout-answer
+steps:
+  - The expression equals (e^(-u) - 1)/u with u = x^2 + y^2.
+  - With v = -u the expression is -(e^v - 1)/v.
+  - The one-variable limit (e^v - 1)/v is 1, so the limit is -1.
+verification:
+  checks:
+    - expr: 'limit((exp(-u) - 1)/u, u, 0)'
+      expected: "-1"
+    - expr: 'limit((exp(v) - 1)/v, v, 0)'
+      expected: "1"
+:::
+
+
+::: exercise
+id: l5-limits-continuity.handout-14-2-9
+number: "14.2.9"
+tier: standard
+topics:
+  - limits
+statement: |
+  Determine whether \(\displaystyle\lim_{(x,y)\to(0,0)}\frac{x^2+\sin^2 y}{2x^2+y^2}\) exists. If it does, find it. If it does not, explain how you know.
+solution: |
+  The expression is defined for \((x,y)\neq(0,0)\). Test two paths.
+
+  - Along the \(y\)-axis, \(x=0\) and \(y\neq 0\), the expression equals \(\frac{\sin^2 y}{y^2}=\left(\frac{\sin y}{y}\right)^2\). Since \(\frac{\sin y}{y}\to 1\), the limit along this path is \(1\).
+  - Along the \(x\)-axis, \(y=0\) and \(x\neq 0\), the expression equals \(\frac{x^2}{2x^2}=\frac12\). The limit along this path is \(\frac12\).
+
+  The two path limits are \(1\) and \(\frac12\). They differ, so the limit at the origin does not exist.
+provenance: handout-answer
+steps:
+  - Along x = 0 the expression is (sin y / y)^2, with limit 1.
+  - Along y = 0 the expression is 1/2.
+  - The path limits differ, so the limit does not exist.
+verification:
+  checks:
+    - expr: 'limit(sin(y)**2/y**2, y, 0)'
+      expected: "1"
+    - expr: 'limit(((x**2 + sin(y)**2)/(2*x**2 + y**2)).subs(x, 0), y, 0)'
+      expected: "1"
+    - expr: 'simplify(((x**2 + sin(y)**2)/(2*x**2 + y**2)).subs(y, 0))'
+      expected: "Rational(1, 2)"
+:::
+
+
+::: exercise
+id: l5-limits-continuity.handout-14-2-13
+number: "14.2.13"
+tier: standard
+topics:
+  - continuity
+statement: |
+  Does \(f(x,y)=\dfrac{x-y}{1+x+y}\) have any discontinuities? What about \(g(x,y)=\dfrac{x-y}{1+x^2+y^2}\)? Explain.
+solution: |
+  Both functions are rational functions. A rational function is continuous at every point where it is defined, that is, where its denominator is not \(0\). So the question is where each denominator vanishes.
+
+  **The function \(f\).** The denominator \(1+x+y\) is \(0\) exactly on the line \(x+y=-1\). At those points \(f\) has no value, so it cannot be continuous there. The function \(f\) is discontinuous at every point of the line \(x+y=-1\), and continuous at every other point of the plane.
+
+  **The function \(g\).** The denominator satisfies \(1+x^2+y^2\ge 1\), because \(x^2+y^2\ge 0\). It is never \(0\), so \(g\) is defined at every point of the plane. The function \(g\) is continuous everywhere and has no discontinuities.
+provenance: written-for-site
+steps:
+  - A rational function is continuous wherever its denominator is not 0.
+  - The denominator of f vanishes on the line x + y = -1, where f is undefined and so discontinuous.
+  - The denominator of g is at least 1, so g is continuous everywhere.
+verification:
+  checks:
+    - expr: 'solve(1 + x + y, y)'
+      expected: "[-x - 1]"
+    - expr: '(1 + x**2 + y**2).subs({x: 0, y: 0})'
+      expected: "1"
+    - expr: 'expand((1 + x**2 + y**2) - 1 - x**2 - y**2)'
+      expected: "0"
+:::

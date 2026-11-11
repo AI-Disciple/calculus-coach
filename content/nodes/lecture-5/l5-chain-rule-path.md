@@ -623,6 +623,251 @@ verification:
       expected: "exp(-t)*(Rational(1,3)*t**Rational(-2,3) - t**Rational(1,3))"
 :::
 
+::: exercise
+id: l5-chain-rule-path.handout-10-4-3
+number: "10.4.3"
+tier: basic
+topics:
+  - paths
+statement: |
+  What curve is described by \(x=3\cos t\), \(y=2\sin t\)? If \(t\) is read as time, describe how an object moves on the curve.
+solution: |
+  Divide each coordinate by its factor: \(\frac{x}{3}=\cos t\) and \(\frac{y}{2}=\sin t\). Since \(\cos^2 t+\sin^2 t=1\),
+  \[
+  \frac{x^2}{9}+\frac{y^2}{4}=1.
+  \]
+  The curve is an **ellipse** with semi-axes \(3\) along the \(x\)-axis and \(2\) along the \(y\)-axis.
+
+  At \(t=0\) the object is at \((3,0)\). The velocity is \((-3\sin t,\ 2\cos t)\), which equals \((0,2)\) at \(t=0\), so the object moves upward from \((3,0)\). It reaches \((0,2)\) at \(t=\frac{\pi}{2}\), \((-3,0)\) at \(t=\pi\) and \((0,-2)\) at \(t=\frac{3\pi}{2}\).
+
+  The object runs around the ellipse counterclockwise. It returns to \((3,0)\) at \(t=2\pi\), so the period is \(2\pi\).
+provenance: written-for-site
+steps:
+  - Eliminating t gives the ellipse x^2/9 + y^2/4 = 1.
+  - The object starts at (3, 0) with velocity (0, 2), so it moves counterclockwise.
+  - One full turn takes the time 2 pi.
+verification:
+  checks:
+    - expr: 'simplify((3*cos(t)/3)**2 + (2*sin(t)/2)**2)'
+      expected: "1"
+    - expr: '(3*cos(0), 2*sin(0))'
+      expected: "(3, 0)"
+    - expr: '(diff(3*cos(t), t).subs(t, 0), diff(2*sin(t), t).subs(t, 0))'
+      expected: "(0, 2)"
+    - expr: '(3*cos(pi/2), 2*sin(pi/2))'
+      expected: "(0, 2)"
+    - expr: '(3*cos(3*pi/2), 2*sin(3*pi/2))'
+      expected: "(0, -2)"
+:::
+
+
+::: exercise
+id: l5-chain-rule-path.handout-10-4-4
+number: "10.4.4"
+tier: basic
+topics:
+  - paths
+statement: |
+  What curve is described by \(x=3\sin t\), \(y=3\cos t\)? If \(t\) is read as time, describe how an object moves on the curve.
+solution: |
+  The coordinates satisfy
+  \[
+  x^2+y^2=9\sin^2 t+9\cos^2 t=9.
+  \]
+  The curve is the **circle** of radius \(3\) centred at the origin.
+
+  At \(t=0\) the object is at \((0,3)\). The velocity is \((3\cos t,\ -3\sin t)\), which equals \((3,0)\) at \(t=0\), so the object leaves the top of the circle toward the right. It reaches \((3,0)\) at \(t=\frac{\pi}{2}\) and \((0,-3)\) at \(t=\pi\).
+
+  The object runs around the circle clockwise, with period \(2\pi\). The parametrisation \(x=3\cos t\), \(y=3\sin t\) traces the same circle counterclockwise from \((3,0)\).
+provenance: written-for-site
+steps:
+  - Squaring and adding gives x^2 + y^2 = 9.
+  - The object starts at (0, 3) with velocity (3, 0), so it moves clockwise.
+  - The period is 2 pi.
+verification:
+  checks:
+    - expr: 'simplify((3*sin(t))**2 + (3*cos(t))**2)'
+      expected: "9"
+    - expr: '(3*sin(0), 3*cos(0))'
+      expected: "(0, 3)"
+    - expr: '(diff(3*sin(t), t).subs(t, 0), diff(3*cos(t), t).subs(t, 0))'
+      expected: "(3, 0)"
+    - expr: '(3*sin(pi/2), 3*cos(pi/2))'
+      expected: "(3, 0)"
+    - expr: '(3*sin(pi), 3*cos(pi))'
+      expected: "(0, -3)"
+:::
+
+
+::: exercise
+id: l5-chain-rule-path.handout-10-4-5
+number: "10.4.5"
+tier: standard
+topics:
+  - paths
+statement: |
+  Sketch the curve described by \(x=t^3-t\), \(y=t^2\). If \(t\) is read as time, describe how an object moves on the curve.
+solution: |
+  **Symmetry.** Replacing \(t\) by \(-t\) changes \(x\) to \(-x\) and leaves \(y\) unchanged, so the curve is symmetric about the \(y\)-axis. Since \(y=t^2\ge 0\), the curve lies in the upper half plane.
+
+  **Table of values.**
+  \[
+  \begin{array}{c|ccccccc}
+  t&-2&-1&-\tfrac12&0&\tfrac12&1&2\\\hline
+  x&-6&0&\tfrac38&0&-\tfrac38&0&6\\
+  y&4&1&\tfrac14&0&\tfrac14&1&4
+  \end{array}
+  \]
+
+  **Crossing.** The coordinate \(x=t(t-1)(t+1)\) is \(0\) at \(t=-1\), \(0\) and \(1\). The points are \((0,1)\) at \(t=\pm 1\) and \((0,0)\) at \(t=0\). The curve passes through \((0,1)\) twice, so it crosses itself there.
+
+  **Loop.** For \(-1<t<0\) the factors give \(x>0\), and for \(0<t<1\) they give \(x<0\). Between \(t=-1\) and \(t=1\) the curve is a closed loop that starts and ends at \((0,1)\) and touches the origin at \(t=0\). The extreme values of \(x\) occur where \(x'=3t^2-1=0\), that is \(t=\pm\frac{1}{\sqrt 3}\). There \(y=\frac13\) and \(x=\pm\frac{2\sqrt3}{9}\approx\pm 0.385\), with the positive value at \(t=-\frac{1}{\sqrt 3}\).
+
+  **Outside the loop.** For \(t>1\) both \(x\) and \(y\) increase, and for \(t<-1\) the point is on the left with \(y\) increasing as \(t\) decreases. The two ends go up and outward.
+
+  **Motion.** For \(t\to-\infty\) the object comes in from the upper left. It reaches \((0,1)\) at \(t=-1\) with velocity \((2,-2)\), goes down along the right side of the loop, and passes the origin at \(t=0\) with velocity \((-1,0)\). It goes up the left side, passes \((0,1)\) again at \(t=1\) with velocity \((2,2)\), and leaves toward the upper right. The loop is run clockwise.
+provenance: written-for-site
+steps:
+  - The curve is symmetric about the y-axis and lies in y >= 0.
+  - x = 0 at t = -1, 0 and 1, so the curve crosses itself at (0, 1) and touches the origin.
+  - The loop has extreme x = 2 sqrt(3)/9 and -2 sqrt(3)/9 at y = 1/3.
+  - The loop is run clockwise.
+verification:
+  checks:
+    - expr: 'FiniteSet(*solve(t**3 - t, t))'
+      expected: "FiniteSet(-1, 0, 1)"
+    - expr: '((t**3 - t).subs(t, -1), (t**2).subs(t, -1), (t**3 - t).subs(t, 1), (t**2).subs(t, 1))'
+      expected: "(0, 1, 0, 1)"
+    - expr: 'FiniteSet(*solve(diff(t**3 - t, t), t))'
+      expected: "FiniteSet(-sqrt(3)/3, sqrt(3)/3)"
+    - expr: '((t**3 - t).subs(t, -1/sqrt(3)), (t**2).subs(t, -1/sqrt(3)))'
+      expected: "(2*sqrt(3)/9, 1/3)"
+    - expr: '((t**3 - t).subs(t, Rational(1, 2)), (t**2).subs(t, Rational(1, 2)), (t**3 - t).subs(t, 2), (t**2).subs(t, 2))'
+      expected: "(-Rational(3, 8), Rational(1, 4), 6, 4)"
+    - expr: '(diff(t**3 - t, t).subs(t, -1), diff(t**2, t).subs(t, -1), diff(t**3 - t, t).subs(t, 0), diff(t**3 - t, t).subs(t, 1), diff(t**2, t).subs(t, 1))'
+      expected: "(2, -2, -1, 2, 2)"
+:::
+
+
+::: exercise
+id: l5-chain-rule-path.handout-10-4-6
+number: "10.4.6"
+tier: standard
+topics:
+  - paths
+statement: |
+  A wheel of radius \(1\) rolls along the \(x\)-axis without slipping. The point \(P\) lies halfway between the centre of the wheel and the rim, and starts at \((0,\tfrac12)\). As the wheel rolls, \(P\) traces a curve. Find parametric equations for the curve.
+solution: |
+  Let \(t\) be the angle in radians through which the wheel has turned. The wheel has radius \(1\) and does not slip, so it has rolled the distance \(t\), and its centre is at \((t,1)\).
+
+  At \(t=0\) the point \(P=(0,\tfrac12)\) lies straight below the centre at distance \(\frac12\). The vector from the centre to \(P\) is \((0,-\tfrac12)\). Rolling to the right turns the wheel clockwise, and the vector turns clockwise through the angle \(t\). A clockwise turn by \(t\) sends \((a,b)\) to \((a\cos t+b\sin t,\ -a\sin t+b\cos t)\), so the vector becomes
+  \[
+  \left(-\tfrac12\sin t,\ -\tfrac12\cos t\right).
+  \]
+  Adding it to the centre,
+  \[
+  \begin{aligned}
+  x&=t-\tfrac12\sin t,\\
+  y&=1-\tfrac12\cos t.
+  \end{aligned}
+  \]
+  A check at special values: \(t=0\) gives \((0,\tfrac12)\), the starting point. At \(t=\pi\) the point is at \((\pi,\tfrac32)\), directly above the centre. At \(t=2\pi\) it is back at height \(\frac12\), at \((2\pi,\tfrac12)\), after one circumference.
+provenance: handout-answer
+steps:
+  - After turning through t, the centre is at (t, 1).
+  - The vector from the centre to P turns clockwise from (0, -1/2) to (-sin(t)/2, -cos(t)/2).
+  - Adding gives x = t - sin(t)/2 and y = 1 - cos(t)/2.
+verification:
+  checks:
+    - expr: '(0*cos(t) + (-Rational(1, 2))*sin(t), -0*sin(t) + (-Rational(1, 2))*cos(t))'
+      expected: "(-sin(t)/2, -cos(t)/2)"
+    - expr: '(t + (-sin(t)/2), 1 + (-cos(t)/2))'
+      expected: "(t - sin(t)/2, 1 - cos(t)/2)"
+    - expr: '((t - sin(t)/2).subs(t, 0), (1 - cos(t)/2).subs(t, 0))'
+      expected: "(0, Rational(1, 2))"
+    - expr: '((t - sin(t)/2).subs(t, pi), (1 - cos(t)/2).subs(t, pi))'
+      expected: "(pi, Rational(3, 2))"
+    - expr: '((t - sin(t)/2).subs(t, 2*pi), (1 - cos(t)/2).subs(t, 2*pi))'
+      expected: "(2*pi, Rational(1, 2))"
+    - expr: 'simplify((t - sin(t)/2 - t)**2 + (1 - cos(t)/2 - 1)**2)'
+      expected: "Rational(1, 4)"
+:::
+
+
+::: exercise
+id: l5-chain-rule-path.handout-14-4-1
+number: "14.4.1"
+tier: standard
+topics:
+  - chain-rule
+  - paths
+statement: |
+  Use the chain rule to compute \(\frac{dz}{dt}\) for
+  \[
+  z=\sin(x^2+y^2),\qquad x=t^2+3,\quad y=t^3.
+  \]
+solution: |
+  The partial derivatives are \(z_x=2x\cos(x^2+y^2)\) and \(z_y=2y\cos(x^2+y^2)\). The speeds are \(x'=2t\) and \(y'=3t^2\). The chain rule gives
+  \[
+  \begin{aligned}
+  \frac{dz}{dt}&=z_x x'+z_y y'\\
+  &=4xt\cos(x^2+y^2)+6yt^2\cos(x^2+y^2).
+  \end{aligned}
+  \]
+  Along the path, \(x^2+y^2=(t^2+3)^2+t^6=t^6+t^4+6t^2+9\), and \(4xt+6yt^2=4t(t^2+3)+6t^5\). So
+  \[
+  \frac{dz}{dt}=(6t^5+4t^3+12t)\cos(t^6+t^4+6t^2+9).
+  \]
+  The inner function \(t^6+t^4+6t^2+9\) has derivative \(6t^5+4t^3+12t\), so the one-variable chain rule on the composition gives the same result.
+provenance: handout-answer
+steps:
+  - The partial derivatives are 2x cos(x^2 + y^2) and 2y cos(x^2 + y^2), and the speeds are 2t and 3t^2.
+  - The chain rule gives 4xt cos(x^2 + y^2) + 6yt^2 cos(x^2 + y^2).
+  - Substituting x and y gives (6t^5 + 4t^3 + 12t) cos(t^6 + t^4 + 6t^2 + 9).
+verification:
+  checks:
+    - expr: '(2*x*cos(x**2 + y**2)*2*t + 2*y*cos(x**2 + y**2)*3*t**2).subs({x: t**2 + 3, y: t**3}) - diff(sin((t**2 + 3)**2 + (t**3)**2), t)'
+      expected: "0"
+    - expr: 'diff(sin((t**2 + 3)**2 + (t**3)**2), t) - (6*t**5 + 4*t**3 + 12*t)*cos(t**6 + t**4 + 6*t**2 + 9)'
+      expected: "0"
+:::
+
+
+::: exercise
+id: l5-chain-rule-path.handout-14-4-2
+number: "14.4.2"
+tier: basic
+topics:
+  - chain-rule
+  - paths
+statement: |
+  Use the chain rule to compute \(\frac{dz}{dt}\) for
+  \[
+  z=x^2y,\qquad x=\sin t,\quad y=t^2+1.
+  \]
+solution: |
+  The partial derivatives are \(z_x=2xy\) and \(z_y=x^2\). The speeds are \(x'=\cos t\) and \(y'=2t\). The chain rule gives
+  \[
+  \frac{dz}{dt}=2xy\cos t+2tx^2.
+  \]
+  Along the path, \(x=\sin t\) and \(y=t^2+1\), and \(2\sin t\cos t=\sin 2t\), so
+  \[
+  \frac{dz}{dt}=(t^2+1)\sin 2t+2t\sin^2 t.
+  \]
+  The composition is \(\sin^2 t\,(t^2+1)\), and the product rule gives the same derivative.
+provenance: handout-answer
+steps:
+  - The partial derivatives are 2xy and x^2, and the speeds are cos t and 2t.
+  - The chain rule gives 2xy cos t + 2t x^2.
+  - Substituting x and y gives (t^2 + 1) sin 2t + 2t sin^2 t.
+verification:
+  checks:
+    - expr: '(2*x*y*cos(t) + 2*t*x**2).subs({x: sin(t), y: t**2 + 1}) - diff(sin(t)**2*(t**2 + 1), t)'
+      expected: "0"
+    - expr: 'diff(sin(t)**2*(t**2 + 1), t) - ((t**2 + 1)*sin(2*t) + 2*t*sin(t)**2)'
+      expected: "0"
+:::
+
 ::: sheet-item
 id: l5-chain-rule-path.sheet-formula
 category: formula

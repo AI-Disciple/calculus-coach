@@ -1,7 +1,7 @@
 import { expect, test, type Page } from '@playwright/test';
 
-// l2-monotonicity-extrema: Practise holds no Core exercise, one Extra and one Exam level exercise, and the
-// Learn section "First derivative test" has the one Core exercise in its Your turn.
+// l2-monotonicity-extrema: Practise holds 3 Core, 14 Extra and 2 Exam level exercises, and the Learn section
+// "First derivative test" has one more Core exercise in its Your turn.
 const NODE = '/node/l2-monotonicity-extrema';
 const PRACTISE = `${NODE}?section=practise`;
 const EXTRA_ID = 'l2-monotonicity-extrema.standard-5-2-3';
@@ -13,7 +13,7 @@ const tab = (page: Page, name: string) => tabs(page).getByRole('tab', { name: ne
 const exercise = (page: Page, id: string) => page.locator(`[id="exercise-${id}"]`);
 
 test.describe('level tabs in Practise', () => {
-  test('three tabs show their purpose and count, and an empty tab is disabled', async ({ page }) => {
+  test('three tabs show their purpose and count, and the counts match', async ({ page }) => {
     await page.goto(PRACTISE);
     await expect(tabs(page).getByRole('tab')).toHaveCount(3);
 
@@ -23,23 +23,26 @@ test.describe('level tabs in Practise', () => {
     await expect(core).toContainText('The essentials to master');
     await expect(extra).toContainText('To consolidate');
     await expect(exam).toContainText('At the level of the exam');
-    await expect(core).toHaveAccessibleName(/0 exercises$/);
-    await expect(extra).toHaveAccessibleName(/2 exercises$/);
+    await expect(core).toHaveAccessibleName(/3 exercises$/);
+    await expect(extra).toHaveAccessibleName(/14 exercises$/);
     await expect(exam).toHaveAccessibleName(/2 exercises$/);
 
-    await expect(core).toBeDisabled();
+    await expect(core).toBeEnabled();
     await expect(extra).toBeEnabled();
     await expect(exam).toBeEnabled();
     await expect(page.getByText('Exercises run from basic to exam level.')).toHaveCount(0);
   });
 
-  test('the first tab with exercises is selected and clicking another tab swaps the exercises', async ({ page }) => {
+  test('the first tab is selected and clicking another tab swaps the exercises', async ({ page }) => {
     await page.goto(PRACTISE);
-    await expect(tab(page, 'Extra')).toHaveAttribute('aria-selected', 'true');
+    await expect(tab(page, 'Core')).toHaveAttribute('aria-selected', 'true');
     await expect(tab(page, 'Exam level')).toHaveAttribute('aria-selected', 'false');
-    await expect(exercise(page, EXTRA_ID)).toBeVisible();
+    await expect(page.getByRole('tabpanel').locator('[id^="exercise-"]')).toHaveCount(3);
     await expect(exercise(page, EXAM_ID)).toBeHidden();
     await expect(page.getByRole('tabpanel')).toHaveCount(1);
+
+    await tab(page, 'Extra').click();
+    await expect(exercise(page, EXTRA_ID)).toBeVisible();
 
     await tab(page, 'Exam level').click();
     await expect(tab(page, 'Exam level')).toHaveAttribute('aria-selected', 'true');
@@ -50,7 +53,7 @@ test.describe('level tabs in Practise', () => {
 
   test('the arrow keys move between tabs and leave the node section alone', async ({ page }) => {
     await page.goto(PRACTISE);
-    await tab(page, 'Extra').focus();
+    await tab(page, 'Extra').click();
     await page.keyboard.press('ArrowRight');
     await expect(tab(page, 'Exam level')).toHaveAttribute('aria-selected', 'true');
     await expect(tab(page, 'Exam level')).toBeFocused();
@@ -58,13 +61,12 @@ test.describe('level tabs in Practise', () => {
     await expect(page).toHaveURL(/[?&]section=practise(?:&|#|$)/);
     await expect(page.locator('section.node-section h2')).toHaveText('Practise');
 
-    // Core is disabled, so ArrowLeft and Home go to Extra.
     await page.keyboard.press('ArrowLeft');
     await expect(tab(page, 'Extra')).toHaveAttribute('aria-selected', 'true');
     await page.keyboard.press('End');
     await expect(tab(page, 'Exam level')).toHaveAttribute('aria-selected', 'true');
     await page.keyboard.press('Home');
-    await expect(tab(page, 'Extra')).toHaveAttribute('aria-selected', 'true');
+    await expect(tab(page, 'Core')).toHaveAttribute('aria-selected', 'true');
     await expect(page).toHaveURL(/[?&]section=practise(?:&|#|$)/);
     await expect(page.locator('section.node-section h2')).toHaveText('Practise');
   });
@@ -79,6 +81,7 @@ test.describe('level tabs in Practise', () => {
 
   test('a revealed solution stays revealed after switching tabs away and back', async ({ page }) => {
     await page.goto(PRACTISE);
+    await tab(page, 'Extra').click();
     const extra = exercise(page, EXTRA_ID);
     await extra.getByRole('button', { name: 'Reveal solution' }).click();
     await expect(extra.getByRole('button', { name: 'Hide solution' })).toBeVisible();
@@ -101,6 +104,7 @@ test.describe('level tabs in Practise', () => {
 
   test('an exercise tier ladder reads Core, Extra, Exam level', async ({ page }) => {
     await page.goto(PRACTISE);
+    await tab(page, 'Extra').click();
     const ladder = exercise(page, EXTRA_ID).locator('ol.tier-ladder');
     await expect(ladder).toHaveAttribute('aria-label', 'Tier: Extra');
     await expect(ladder.locator('li')).toHaveText(['Core', 'Extra', 'Exam level']);
@@ -126,7 +130,7 @@ test.describe('Topic header', () => {
     const facts = page.locator('.node-facts .node-fact');
     await expect(facts).toHaveCount(2);
     await expect(facts.first()).toHaveText(/^about \d+ min$/);
-    await expect(facts.last()).toHaveText('5 exercises');
+    await expect(facts.last()).toHaveText('21 exercises');
   });
 
   test('names the prerequisites on one line and opens the sources in place', async ({ page }) => {

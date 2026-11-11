@@ -868,3 +868,841 @@ verification:
     - expr: "(pi*R**4/4)/(2*pi*R**3/3)"
       expected: "3*R/8"
 :::
+
+::: exercise
+id: l8-mass-centre.handout-15-3-1
+number: "15.3.1"
+tier: basic
+topics:
+  - centre-of-mass
+statement: |
+  Find the center of mass of a two-dimensional plate that occupies the square \([0, 1] \times [0, 1]\) and has density function \(\sigma(x, y) = xy\).
+solution: |
+  The mass is the integral of the density:
+  \[
+  \begin{aligned}
+  M &= \int_0^1\int_0^1 xy\, dy\, dx\\
+  &= \int_0^1 \frac{x}{2}\, dx = \frac14.
+  \end{aligned}
+  \]
+  The moment \(M_y\) multiplies the density by \(x\):
+  \[
+  M_y = \int_0^1\int_0^1 x\cdot xy\, dy\, dx = \int_0^1 \frac{x^2}{2}\, dx = \frac16.
+  \]
+  The moment \(M_x\) multiplies the density by \(y\):
+  \[
+  M_x = \int_0^1\int_0^1 y\cdot xy\, dy\, dx = \int_0^1 \frac{x}{3}\, dx = \frac16.
+  \]
+  Then
+  \[
+  \begin{aligned}
+  \bar x &= \frac{M_y}{M} = \frac{1/6}{1/4} = \frac23,\\
+  \bar y &= \frac{M_x}{M} = \frac{1/6}{1/4} = \frac23.
+  \end{aligned}
+  \]
+  The center of mass is \(\bigl(\frac23, \frac23\bigr)\).
+provenance: handout-answer
+steps:
+  - |
+    The mass is \(M = \int_0^1\int_0^1 xy\, dy\, dx = \frac14\).
+  - |
+    The moments are \(M_y = \frac16\) and \(M_x = \frac16\).
+  - |
+    The center of mass is \(\bar x = \bar y = \frac23\).
+verification:
+  checks:
+    - expr: 'integrate(x*y, (y, 0, 1), (x, 0, 1))'
+      expected: "Rational(1, 4)"
+    - expr: 'integrate(x*x*y, (y, 0, 1), (x, 0, 1))'
+      expected: "Rational(1, 6)"
+    - expr: 'integrate(y*x*y, (y, 0, 1), (x, 0, 1))'
+      expected: "Rational(1, 6)"
+    - expr: '(Rational(1, 6)/Rational(1, 4), Rational(1, 6)/Rational(1, 4))'
+      expected: "(Rational(2, 3), Rational(2, 3))"
+:::
+
+
+::: exercise
+id: l8-mass-centre.handout-15-3-2
+number: "15.3.2"
+tier: standard
+topics:
+  - centre-of-mass
+statement: |
+  Find the center of mass of a two-dimensional plate that occupies the triangle \(0 \le x \le 1\), \(0 \le y \le x\), and has density function \(\sigma(x, y) = xy\).
+solution: |
+  For each \(x\) from \(0\) to \(1\), \(y\) runs from \(0\) to \(x\). The mass is
+  \[
+  \begin{aligned}
+  M &= \int_0^1\int_0^x xy\, dy\, dx\\
+  &= \int_0^1 x\cdot\frac{x^2}{2}\, dx = \frac18.
+  \end{aligned}
+  \]
+  The moment \(M_y\) multiplies the density by \(x\):
+  \[
+  M_y = \int_0^1\int_0^x x^2 y\, dy\, dx = \int_0^1 \frac{x^4}{2}\, dx = \frac1{10}.
+  \]
+  The moment \(M_x\) multiplies the density by \(y\):
+  \[
+  M_x = \int_0^1\int_0^x x y^2\, dy\, dx = \int_0^1 \frac{x^4}{3}\, dx = \frac1{15}.
+  \]
+  Then
+  \[
+  \begin{aligned}
+  \bar x &= \frac{M_y}{M} = \frac{1/10}{1/8} = \frac45,\\
+  \bar y &= \frac{M_x}{M} = \frac{1/15}{1/8} = \frac{8}{15}.
+  \end{aligned}
+  \]
+  The center of mass is \(\bigl(\frac45, \frac{8}{15}\bigr)\).
+provenance: handout-answer
+steps:
+  - |
+    The limits are \(0 \le x \le 1\) and \(0 \le y \le x\), and the mass is \(M = \frac18\).
+  - |
+    The moments are \(M_y = \frac1{10}\) and \(M_x = \frac1{15}\).
+  - |
+    The center of mass is \(\bar x = \frac45\) and \(\bar y = \frac8{15}\).
+verification:
+  checks:
+    - expr: 'integrate(x*y, (y, 0, x), (x, 0, 1))'
+      expected: "Rational(1, 8)"
+    - expr: 'integrate(x*x*y, (y, 0, x), (x, 0, 1))'
+      expected: "Rational(1, 10)"
+    - expr: 'integrate(y*x*y, (y, 0, x), (x, 0, 1))'
+      expected: "Rational(1, 15)"
+    - expr: '(Rational(1, 10)/Rational(1, 8), Rational(1, 15)/Rational(1, 8))'
+      expected: "(Rational(4, 5), Rational(8, 15))"
+:::
+
+
+::: exercise
+id: l8-mass-centre.handout-15-3-3
+number: "15.3.3"
+tier: standard
+topics:
+  - centre-of-mass
+  - double-integrals
+statement: |
+  Find the center of mass of a two-dimensional plate that occupies the upper unit semicircle centered at \((0, 0)\) and has density function \(\sigma(x, y) = y\).
+solution: |
+  The plate is the half disk \(x^2 + y^2 \le 1\), \(y \ge 0\). In polar coordinates it is \(0 \le r \le 1\), \(0 \le \theta \le \pi\). Substitute \(x = r\cos\theta\) and \(y = r\sin\theta\), and use the area element \(r\, dr\, d\theta\). The density is \(y = r\sin\theta\).
+
+  The mass is
+  \[
+  \begin{aligned}
+  M &= \int_0^\pi\int_0^1 r\sin\theta\cdot r\, dr\, d\theta\\
+  &= \frac13\int_0^\pi \sin\theta\, d\theta = \frac23.
+  \end{aligned}
+  \]
+  The moment \(M_y\) multiplies the density by \(x = r\cos\theta\):
+  \[
+  \begin{aligned}
+  M_y &= \int_0^\pi\int_0^1 r\cos\theta\cdot r\sin\theta\cdot r\, dr\, d\theta\\
+  &= \frac14\int_0^\pi \sin\theta\cos\theta\, d\theta = 0.
+  \end{aligned}
+  \]
+  The moment \(M_x\) multiplies the density by \(y = r\sin\theta\):
+  \[
+  \begin{aligned}
+  M_x &= \int_0^\pi\int_0^1 r\sin\theta\cdot r\sin\theta\cdot r\, dr\, d\theta\\
+  &= \frac14\int_0^\pi \sin^2\theta\, d\theta = \frac{\pi}{8}.
+  \end{aligned}
+  \]
+  Then \(\bar x = \frac{M_y}{M} = 0\) and
+  \[
+  \bar y = \frac{M_x}{M} = \frac{\pi/8}{2/3} = \frac{3\pi}{16}.
+  \]
+  The center of mass is \(\bigl(0, \frac{3\pi}{16}\bigr)\).
+provenance: handout-answer
+steps:
+  - |
+    The half disk is \(0 \le r \le 1\), \(0 \le \theta \le \pi\), with density \(r\sin\theta\) and area element \(r\, dr\, d\theta\).
+  - |
+    The mass is \(\frac23\), \(M_y = 0\) and \(M_x = \frac{\pi}{8}\).
+  - |
+    The center of mass is \(\bigl(0, \frac{3\pi}{16}\bigr)\).
+verification:
+  checks:
+    - expr: 'integrate(r*sin(t)*r, (r, 0, 1), (t, 0, pi))'
+      expected: "Rational(2, 3)"
+    - expr: 'integrate(r*cos(t)*r*sin(t)*r, (r, 0, 1), (t, 0, pi))'
+      expected: "0"
+    - expr: 'integrate(r*sin(t)*r*sin(t)*r, (r, 0, 1), (t, 0, pi))'
+      expected: "pi/8"
+    - expr: '(pi/8)/Rational(2, 3)'
+      expected: "3*pi/16"
+:::
+
+
+::: exercise
+id: l8-mass-centre.handout-15-3-4
+number: "15.3.4"
+tier: standard
+topics:
+  - centre-of-mass
+  - double-integrals
+statement: |
+  Find the center of mass of a two-dimensional plate that occupies the upper unit semicircle centered at \((0, 0)\) and has density function \(\sigma(x, y) = x^2\).
+solution: |
+  The plate is the half disk \(0 \le r \le 1\), \(0 \le \theta \le \pi\). Substitute \(x = r\cos\theta\) and \(y = r\sin\theta\), and use the area element \(r\, dr\, d\theta\). The density is \(x^2 = r^2\cos^2\theta\).
+
+  The mass is
+  \[
+  \begin{aligned}
+  M &= \int_0^\pi\int_0^1 r^2\cos^2\theta\cdot r\, dr\, d\theta\\
+  &= \frac14\int_0^\pi \cos^2\theta\, d\theta = \frac{\pi}{8}.
+  \end{aligned}
+  \]
+  The moment \(M_y\) multiplies the density by \(x = r\cos\theta\):
+  \[
+  \begin{aligned}
+  M_y &= \int_0^\pi\int_0^1 r\cos\theta\cdot r^2\cos^2\theta\cdot r\, dr\, d\theta\\
+  &= \frac15\int_0^\pi \cos^3\theta\, d\theta = 0.
+  \end{aligned}
+  \]
+  The integral of \(\cos^3\theta\) over \([0, \pi]\) is \(0\), since \(\cos^3\theta = (1 - \sin^2\theta)\cos\theta\) has the antiderivative \(\sin\theta - \frac13\sin^3\theta\), which equals \(0\) at both ends.
+
+  The moment \(M_x\) multiplies the density by \(y = r\sin\theta\):
+  \[
+  \begin{aligned}
+  M_x &= \int_0^\pi\int_0^1 r\sin\theta\cdot r^2\cos^2\theta\cdot r\, dr\, d\theta\\
+  &= \frac15\int_0^\pi \sin\theta\cos^2\theta\, d\theta = \frac15\cdot\frac23 = \frac{2}{15}.
+  \end{aligned}
+  \]
+  Then \(\bar x = \frac{M_y}{M} = 0\) and
+  \[
+  \bar y = \frac{M_x}{M} = \frac{2/15}{\pi/8} = \frac{16}{15\pi}.
+  \]
+  The center of mass is \(\bigl(0, \frac{16}{15\pi}\bigr)\).
+provenance: handout-answer
+steps:
+  - |
+    The half disk is \(0 \le r \le 1\), \(0 \le \theta \le \pi\), with density \(r^2\cos^2\theta\).
+  - |
+    The mass is \(\frac{\pi}{8}\), \(M_y = 0\) and \(M_x = \frac{2}{15}\).
+  - |
+    The center of mass is \(\bigl(0, \frac{16}{15\pi}\bigr)\).
+verification:
+  checks:
+    - expr: 'integrate(r**2*cos(t)**2*r, (r, 0, 1), (t, 0, pi))'
+      expected: "pi/8"
+    - expr: 'integrate(r*cos(t)*r**2*cos(t)**2*r, (r, 0, 1), (t, 0, pi))'
+      expected: "0"
+    - expr: 'integrate(r*sin(t)*r**2*cos(t)**2*r, (r, 0, 1), (t, 0, pi))'
+      expected: "Rational(2, 15)"
+    - expr: 'Rational(2, 15)/(pi/8)'
+      expected: "16/(15*pi)"
+:::
+
+
+::: exercise
+id: l8-mass-centre.handout-15-3-5
+number: "15.3.5"
+tier: standard
+topics:
+  - centre-of-mass
+statement: |
+  Find the center of mass of a two-dimensional plate that occupies the triangle formed by \(x = 2\), \(y = x\) and \(y = 2x\), and has density function \(\sigma(x, y) = 2x\).
+solution: |
+  The lines \(y = x\) and \(y = 2x\) meet at the origin. The line \(x = 2\) meets them at \((2, 2)\) and \((2, 4)\). So the triangle has vertices \((0, 0)\), \((2, 2)\) and \((2, 4)\), and for each \(x\) from \(0\) to \(2\), \(y\) runs from \(x\) to \(2x\).
+
+  The mass is
+  \[
+  \begin{aligned}
+  M &= \int_0^2\int_x^{2x} 2x\, dy\, dx\\
+  &= \int_0^2 2x\cdot x\, dx = \frac{16}{3}.
+  \end{aligned}
+  \]
+  The moment \(M_y\) multiplies the density by \(x\):
+  \[
+  M_y = \int_0^2\int_x^{2x} 2x^2\, dy\, dx = \int_0^2 2x^3\, dx = 8.
+  \]
+  The moment \(M_x\) multiplies the density by \(y\). The inner integral is \(\int_x^{2x} y\, dy = \frac{(2x)^2 - x^2}{2} = \frac{3x^2}{2}\), so
+  \[
+  M_x = \int_0^2 2x\cdot\frac{3x^2}{2}\, dx = \int_0^2 3x^3\, dx = 12.
+  \]
+  Then
+  \[
+  \begin{aligned}
+  \bar x &= \frac{M_y}{M} = \frac{8}{16/3} = \frac32,\\
+  \bar y &= \frac{M_x}{M} = \frac{12}{16/3} = \frac94.
+  \end{aligned}
+  \]
+  The center of mass is \(\bigl(\frac32, \frac94\bigr)\).
+provenance: handout-answer
+steps:
+  - |
+    The vertices are \((0, 0)\), \((2, 2)\) and \((2, 4)\), so \(0 \le x \le 2\) and \(x \le y \le 2x\).
+  - |
+    The mass is \(\frac{16}{3}\), \(M_y = 8\) and \(M_x = 12\).
+  - |
+    The center of mass is \(\bigl(\frac32, \frac94\bigr)\).
+verification:
+  checks:
+    - expr: 'integrate(2*x, (y, x, 2*x), (x, 0, 2))'
+      expected: "Rational(16, 3)"
+    - expr: 'integrate(x*2*x, (y, x, 2*x), (x, 0, 2))'
+      expected: "8"
+    - expr: 'integrate(y*2*x, (y, x, 2*x), (x, 0, 2))'
+      expected: "12"
+    - expr: '(8/Rational(16, 3), 12/Rational(16, 3))'
+      expected: "(Rational(3, 2), Rational(9, 4))"
+:::
+
+
+::: exercise
+id: l8-mass-centre.handout-15-3-6
+number: "15.3.6"
+tier: standard
+topics:
+  - centre-of-mass
+statement: |
+  Find the center of mass of a two-dimensional plate that occupies the triangle formed by \(x = 0\), \(y = x\) and \(2x + y = 6\), and has density function \(\sigma(x, y) = x^2\).
+solution: |
+  The lines \(x = 0\) and \(y = x\) meet at the origin. The line \(x = 0\) meets \(2x + y = 6\) at \((0, 6)\). The lines \(y = x\) and \(2x + y = 6\) meet where \(3x = 6\), at \((2, 2)\). So the triangle has vertices \((0, 0)\), \((0, 6)\) and \((2, 2)\), and for each \(x\) from \(0\) to \(2\), \(y\) runs from \(x\) to \(6 - 2x\).
+
+  The mass is
+  \[
+  \begin{aligned}
+  M &= \int_0^2\int_x^{6-2x} x^2\, dy\, dx\\
+  &= \int_0^2 x^2(6 - 3x)\, dx = 16 - 12 = 4.
+  \end{aligned}
+  \]
+  The moment \(M_y\) multiplies the density by \(x\):
+  \[
+  \begin{aligned}
+  M_y &= \int_0^2 x^3(6 - 3x)\, dx\\
+  &= 6\cdot 4 - 3\cdot\frac{32}{5} = \frac{24}{5}.
+  \end{aligned}
+  \]
+  The moment \(M_x\) multiplies the density by \(y\). The inner integral is
+  \[
+  \int_x^{6-2x} y\, dy = \frac{(6 - 2x)^2 - x^2}{2} = \frac{36 - 24x + 3x^2}{2},
+  \]
+  so
+  \[
+  \begin{aligned}
+  M_x &= \frac12\int_0^2 x^2\bigl(36 - 24x + 3x^2\bigr)\, dx\\
+  &= \frac12\Bigl(96 - 96 + \frac{96}{5}\Bigr) = \frac{48}{5}.
+  \end{aligned}
+  \]
+  Then
+  \[
+  \begin{aligned}
+  \bar x &= \frac{M_y}{M} = \frac{24/5}{4} = \frac65,\\
+  \bar y &= \frac{M_x}{M} = \frac{48/5}{4} = \frac{12}{5}.
+  \end{aligned}
+  \]
+  The center of mass is \(\bigl(\frac65, \frac{12}{5}\bigr)\).
+provenance: handout-answer
+steps:
+  - |
+    The vertices are \((0, 0)\), \((0, 6)\) and \((2, 2)\), so \(0 \le x \le 2\) and \(x \le y \le 6 - 2x\).
+  - |
+    The mass is \(4\), \(M_y = \frac{24}{5}\) and \(M_x = \frac{48}{5}\).
+  - |
+    The center of mass is \(\bigl(\frac65, \frac{12}{5}\bigr)\).
+verification:
+  checks:
+    - expr: 'solve(Eq(x, 6 - 2*x), x)'
+      expected: "[2]"
+    - expr: 'integrate(x**2, (y, x, 6 - 2*x), (x, 0, 2))'
+      expected: "4"
+    - expr: 'integrate(x*x**2, (y, x, 6 - 2*x), (x, 0, 2))'
+      expected: "Rational(24, 5)"
+    - expr: 'integrate(y*x**2, (y, x, 6 - 2*x), (x, 0, 2))'
+      expected: "Rational(48, 5)"
+    - expr: '(Rational(24, 5)/4, Rational(48, 5)/4)'
+      expected: "(Rational(6, 5), Rational(12, 5))"
+:::
+
+
+::: exercise
+id: l8-mass-centre.handout-15-3-7
+number: "15.3.7"
+tier: standard
+topics:
+  - centre-of-mass
+statement: |
+  Find the center of mass of a two-dimensional plate that occupies the region enclosed by the parabolas \(x = y^2\) and \(y = x^2\), and has density function \(\sigma(x, y) = \sqrt{x}\).
+solution: |
+  The parabolas meet where \(x = y^2 = x^4\), so \(x = 0\) or \(x = 1\). The points are \((0, 0)\) and \((1, 1)\). For \(0 \le x \le 1\) the parabola \(x = y^2\) gives \(y = \sqrt{x}\), which lies above \(y = x^2\). So \(y\) runs from \(x^2\) to \(\sqrt{x}\).
+
+  The mass is
+  \[
+  \begin{aligned}
+  M &= \int_0^1\int_{x^2}^{\sqrt{x}} \sqrt{x}\, dy\, dx\\
+  &= \int_0^1 \bigl(x - x^{5/2}\bigr)\, dx = \frac12 - \frac27 = \frac{3}{14}.
+  \end{aligned}
+  \]
+  The moment \(M_y\) multiplies the density by \(x\):
+  \[
+  \begin{aligned}
+  M_y &= \int_0^1 x^{3/2}\bigl(\sqrt{x} - x^2\bigr)\, dx\\
+  &= \int_0^1 \bigl(x^2 - x^{7/2}\bigr)\, dx = \frac13 - \frac29 = \frac19.
+  \end{aligned}
+  \]
+  The moment \(M_x\) multiplies the density by \(y\). The inner integral is \(\int_{x^2}^{\sqrt{x}} y\, dy = \frac{x - x^4}{2}\), so
+  \[
+  \begin{aligned}
+  M_x &= \frac12\int_0^1 \sqrt{x}\,\bigl(x - x^4\bigr)\, dx\\
+  &= \frac12\int_0^1 \bigl(x^{3/2} - x^{9/2}\bigr)\, dx\\
+  &= \frac12\Bigl(\frac25 - \frac2{11}\Bigr) = \frac{6}{55}.
+  \end{aligned}
+  \]
+  Then
+  \[
+  \begin{aligned}
+  \bar x &= \frac{M_y}{M} = \frac{1/9}{3/14} = \frac{14}{27},\\
+  \bar y &= \frac{M_x}{M} = \frac{6/55}{3/14} = \frac{28}{55}.
+  \end{aligned}
+  \]
+  The center of mass is \(\bigl(\frac{14}{27}, \frac{28}{55}\bigr)\).
+provenance: handout-answer
+steps:
+  - |
+    The parabolas meet at \((0, 0)\) and \((1, 1)\), and the region has \(0 \le x \le 1\), \(x^2 \le y \le \sqrt{x}\).
+  - |
+    The mass is \(\frac{3}{14}\), \(M_y = \frac19\) and \(M_x = \frac{6}{55}\).
+  - |
+    The center of mass is \(\bigl(\frac{14}{27}, \frac{28}{55}\bigr)\).
+verification:
+  checks:
+    - expr: 'integrate(sqrt(x), (y, x**2, sqrt(x)), (x, 0, 1))'
+      expected: "Rational(3, 14)"
+    - expr: 'integrate(x*sqrt(x), (y, x**2, sqrt(x)), (x, 0, 1))'
+      expected: "Rational(1, 9)"
+    - expr: 'integrate(y*sqrt(x), (y, x**2, sqrt(x)), (x, 0, 1))'
+      expected: "Rational(6, 55)"
+    - expr: '(Rational(1, 9)/Rational(3, 14), Rational(6, 55)/Rational(3, 14))'
+      expected: "(Rational(14, 27), Rational(28, 55))"
+:::
+
+
+::: exercise
+id: l8-mass-centre.handout-15-3-8
+number: "15.3.8"
+tier: standard
+topics:
+  - centre-of-mass
+statement: |
+  Find the centroid of the area in the first quadrant bounded by \(x^2 - 8y + 4 = 0\), \(x^2 = 4y\) and \(x = 0\). The centroid is the center of mass when the density is \(1\) everywhere.
+solution: |
+  Solve each parabola for \(y\): \(y = \frac{x^2 + 4}{8}\) and \(y = \frac{x^2}{4}\). They meet where
+  \[
+  \frac{x^2 + 4}{8} = \frac{x^2}{4}, \qquad\text{so}\qquad x^2 + 4 = 2x^2 \quad\text{and}\quad x = 2
+  \]
+  in the first quadrant. For \(0 \le x \le 2\), the parabola \(y = \frac{x^2 + 4}{8}\) lies above \(y = \frac{x^2}{4}\), because their difference is \(\frac{4 - x^2}{8} \ge 0\). So \(y\) runs from \(\frac{x^2}{4}\) to \(\frac{x^2 + 4}{8}\).
+
+  The density is \(1\), so the mass equals the area:
+  \[
+  M = \int_0^2 \frac{4 - x^2}{8}\, dx = \frac18\Bigl(8 - \frac83\Bigr) = \frac23.
+  \]
+  The moment \(M_y\) multiplies by \(x\):
+  \[
+  M_y = \int_0^2 \frac{x(4 - x^2)}{8}\, dx = \frac18(8 - 4) = \frac12.
+  \]
+  The moment \(M_x\) multiplies by \(y\). The inner integral is
+  \[
+  \begin{aligned}
+  \int_{x^2/4}^{(x^2+4)/8} y\, dy &= \frac12\Bigl(\frac{(x^2 + 4)^2}{64} - \frac{x^4}{16}\Bigr)\\
+  &= \frac{16 + 8x^2 - 3x^4}{128},
+  \end{aligned}
+  \]
+  so
+  \[
+  \begin{aligned}
+  M_x &= \frac1{128}\int_0^2\bigl(16 + 8x^2 - 3x^4\bigr)\, dx\\
+  &= \frac1{128}\Bigl(32 + \frac{64}{3} - \frac{96}{5}\Bigr) = \frac{4}{15}.
+  \end{aligned}
+  \]
+  Then
+  \[
+  \begin{aligned}
+  \bar x &= \frac{M_y}{M} = \frac{1/2}{2/3} = \frac34,\\
+  \bar y &= \frac{M_x}{M} = \frac{4/15}{2/3} = \frac25.
+  \end{aligned}
+  \]
+  The centroid is \(\bigl(\frac34, \frac25\bigr)\).
+provenance: handout-answer
+steps:
+  - |
+    The curves meet at \(x = 2\), and the region is \(0 \le x \le 2\), \(\frac{x^2}{4} \le y \le \frac{x^2 + 4}{8}\).
+  - |
+    The area is \(M = \frac23\), \(M_y = \frac12\) and \(M_x = \frac{4}{15}\).
+  - |
+    The centroid is \(\bigl(\frac34, \frac25\bigr)\).
+verification:
+  checks:
+    - expr: 'solve(Eq((x**2 + 4)/8, x**2/4), x)'
+      expected: "[-2, 2]"
+    - expr: 'integrate(1, (y, x**2/4, (x**2 + 4)/8), (x, 0, 2))'
+      expected: "Rational(2, 3)"
+    - expr: 'integrate(x, (y, x**2/4, (x**2 + 4)/8), (x, 0, 2))'
+      expected: "Rational(1, 2)"
+    - expr: 'integrate(y, (y, x**2/4, (x**2 + 4)/8), (x, 0, 2))'
+      expected: "Rational(4, 15)"
+    - expr: '(Rational(1, 2)/Rational(2, 3), Rational(4, 15)/Rational(2, 3))'
+      expected: "(Rational(3, 4), Rational(2, 5))"
+:::
+
+
+::: exercise
+id: l8-mass-centre.handout-15-3-10
+number: "15.3.10"
+tier: standard
+topics:
+  - centre-of-mass
+statement: |
+  Find the center of mass of a two-dimensional object that occupies the region \(0 \le x \le \pi\), \(0 \le y \le \sin x\), with density \(\sigma = 1\).
+solution: |
+  The mass equals the area under the arch:
+  \[
+  M = \int_0^\pi\int_0^{\sin x} 1\, dy\, dx = \int_0^\pi \sin x\, dx = 2.
+  \]
+  The moment \(M_y\) multiplies by \(x\). Integration by parts, with \(u = x\) and \(dv = \sin x\, dx\), gives
+  \[
+  \begin{aligned}
+  M_y &= \int_0^\pi x\sin x\, dx\\
+  &= \bigl[-x\cos x + \sin x\bigr]_0^\pi = \pi.
+  \end{aligned}
+  \]
+  The moment \(M_x\) multiplies by \(y\). The inner integral is \(\int_0^{\sin x} y\, dy = \frac12\sin^2 x\), so
+  \[
+  M_x = \frac12\int_0^\pi \sin^2 x\, dx = \frac12\cdot\frac{\pi}{2} = \frac{\pi}{4}.
+  \]
+  Then
+  \[
+  \begin{aligned}
+  \bar x &= \frac{M_y}{M} = \frac{\pi}{2},\\
+  \bar y &= \frac{M_x}{M} = \frac{\pi/4}{2} = \frac{\pi}{8}.
+  \end{aligned}
+  \]
+  The value \(\bar x = \frac{\pi}{2}\) agrees with the symmetry of the arch about the line \(x = \frac{\pi}{2}\). The center of mass is \(\bigl(\frac{\pi}{2}, \frac{\pi}{8}\bigr)\).
+provenance: handout-answer
+steps:
+  - |
+    The mass is the area \(M = \int_0^\pi \sin x\, dx = 2\).
+  - |
+    Integration by parts gives \(M_y = \pi\), and \(M_x = \frac{\pi}{4}\).
+  - |
+    The center of mass is \(\bar x = \frac{\pi}{2}\) and \(\bar y = \frac{\pi}{8}\).
+verification:
+  checks:
+    - expr: 'integrate(1, (y, 0, sin(x)), (x, 0, pi))'
+      expected: "2"
+    - expr: 'integrate(x, (y, 0, sin(x)), (x, 0, pi))'
+      expected: "pi"
+    - expr: 'integrate(y, (y, 0, sin(x)), (x, 0, pi))'
+      expected: "pi/4"
+    - expr: '(pi/2, (pi/4)/2)'
+      expected: "(pi/2, pi/8)"
+:::
+
+
+::: exercise
+id: l8-mass-centre.handout-15-3-11
+number: "15.3.11"
+tier: standard
+topics:
+  - centre-of-mass
+  - double-integrals
+statement: |
+  A two-dimensional object has shape given by \(r = 1 + \cos\theta\) and density \(\sigma(r, \theta) = 2 + \cos\theta\). Set up the three integrals required to compute the center of mass.
+solution: |
+  The shape \(r = 1 + \cos\theta\) is the cardioid, with \(r \ge 0\), traced once for \(0 \le \theta \le 2\pi\). The object is the region \(0 \le r \le 1 + \cos\theta\).
+
+  In polar coordinates \(x = r\cos\theta\), \(y = r\sin\theta\), and the area element is \(r\, dr\, d\theta\). The mass integrates the density, \(M_x\) integrates \(y\) times the density, and \(M_y\) integrates \(x\) times the density:
+  \[
+  \begin{aligned}
+  M &= \int_0^{2\pi}\int_0^{1+\cos\theta} (2 + \cos\theta)\, r\, dr\, d\theta,\\
+  M_x &= \int_0^{2\pi}\int_0^{1+\cos\theta} \sin\theta\,(2 + \cos\theta)\, r^2\, dr\, d\theta,\\
+  M_y &= \int_0^{2\pi}\int_0^{1+\cos\theta} \cos\theta\,(2 + \cos\theta)\, r^2\, dr\, d\theta.
+  \end{aligned}
+  \]
+  In \(M_x\) and \(M_y\), one factor \(r\) comes from \(y\) or \(x\), and one from the area element, which gives \(r^2\). Then \(\bar x = M_y/M\) and \(\bar y = M_x/M\).
+
+  As a check on the set-up, the integrals evaluate to \(M = 4\pi\), \(M_x = 0\) and \(M_y = \frac{43\pi}{12}\). So \(\bar y = 0\), as the symmetry of the object about the \(x\)-axis requires, and \(\bar x = \frac{43}{48}\).
+provenance: handout-answer
+steps:
+  - |
+    The region is \(0 \le \theta \le 2\pi\), \(0 \le r \le 1 + \cos\theta\), with area element \(r\, dr\, d\theta\).
+  - |
+    \(M\) integrates \((2 + \cos\theta)\, r\), \(M_x\) integrates \(\sin\theta\,(2 + \cos\theta)\, r^2\), and \(M_y\) integrates \(\cos\theta\,(2 + \cos\theta)\, r^2\).
+verification:
+  checks:
+    - expr: 'integrate((2 + cos(t))*r, (r, 0, 1 + cos(t)), (t, 0, 2*pi))'
+      expected: "4*pi"
+    - expr: 'integrate(sin(t)*(2 + cos(t))*r**2, (r, 0, 1 + cos(t)), (t, 0, 2*pi))'
+      expected: "0"
+    - expr: 'integrate(cos(t)*(2 + cos(t))*r**2, (r, 0, 1 + cos(t)), (t, 0, 2*pi))'
+      expected: "43*pi/12"
+    - expr: '(43*pi/12)/(4*pi)'
+      expected: "Rational(43, 48)"
+:::
+
+
+::: exercise
+id: l8-mass-centre.handout-15-3-12
+number: "15.3.12"
+tier: standard
+topics:
+  - centre-of-mass
+  - double-integrals
+statement: |
+  A two-dimensional object has shape given by \(r = \cos\theta\) and density \(\sigma(r, \theta) = r + 1\). Set up the three integrals required to compute the center of mass.
+solution: |
+  The shape \(r = \cos\theta\) is the circle with centre \(\bigl(\frac12, 0\bigr)\) and radius \(\frac12\). It has \(r \ge 0\) for \(-\frac{\pi}{2} \le \theta \le \frac{\pi}{2}\), and it is traced once on that interval. The object is the disk \(0 \le r \le \cos\theta\) for those angles.
+
+  In polar coordinates \(x = r\cos\theta\), \(y = r\sin\theta\), and the area element is \(r\, dr\, d\theta\). The density is \(r + 1\), so
+  \[
+  \begin{aligned}
+  M &= \int_{-\pi/2}^{\pi/2}\int_0^{\cos\theta} (r + 1)\, r\, dr\, d\theta,\\
+  M_x &= \int_{-\pi/2}^{\pi/2}\int_0^{\cos\theta} \sin\theta\,(r + 1)\, r^2\, dr\, d\theta,\\
+  M_y &= \int_{-\pi/2}^{\pi/2}\int_0^{\cos\theta} \cos\theta\,(r + 1)\, r^2\, dr\, d\theta.
+  \end{aligned}
+  \]
+  The factor \(r^2\) in \(M_x\) and \(M_y\) combines the \(r\) from \(y\) or \(x\) with the \(r\) of the area element. Then \(\bar x = M_y/M\) and \(\bar y = M_x/M\).
+
+  As a check on the set-up, the integrals evaluate to \(M = \frac49 + \frac{\pi}{4}\), \(M_x = 0\) and \(M_y = \frac{4}{15} + \frac{\pi}{8}\). The value \(M_x = 0\) agrees with the symmetry of the object about the \(x\)-axis.
+provenance: handout-answer
+steps:
+  - |
+    The disk is \(-\frac{\pi}{2} \le \theta \le \frac{\pi}{2}\), \(0 \le r \le \cos\theta\), with area element \(r\, dr\, d\theta\).
+  - |
+    \(M\) integrates \((r + 1)\, r\), \(M_x\) integrates \(\sin\theta\,(r + 1)\, r^2\), and \(M_y\) integrates \(\cos\theta\,(r + 1)\, r^2\).
+verification:
+  checks:
+    - expr: 'integrate((r + 1)*r, (r, 0, cos(t)), (t, -pi/2, pi/2))'
+      expected: "Rational(4, 9) + pi/4"
+    - expr: 'integrate(sin(t)*(r + 1)*r**2, (r, 0, cos(t)), (t, -pi/2, pi/2))'
+      expected: "0"
+    - expr: 'integrate(cos(t)*(r + 1)*r**2, (r, 0, cos(t)), (t, -pi/2, pi/2))'
+      expected: "Rational(4, 15) + pi/8"
+:::
+
+
+::: exercise
+id: l8-mass-centre.handout-15-3-13
+number: "15.3.13"
+tier: exam
+topics:
+  - centre-of-mass
+  - double-integrals
+statement: |
+  A two-dimensional object sits inside \(r = 1 + \cos\theta\) and outside \(r = \cos\theta\), and has density \(1\) everywhere. Set up the integrals required to compute the center of mass.
+solution: |
+  The cardioid \(r = 1 + \cos\theta\) has \(r \ge 0\) and is traced once for \(0 \le \theta \le 2\pi\). The circle \(r = \cos\theta\) has \(r \ge 0\) only for \(-\frac{\pi}{2} \le \theta \le \frac{\pi}{2}\). The cardioid is the outer curve, because \(1 + \cos\theta > \cos\theta\) at every angle.
+
+  The inner radius depends on the angle range, so the region has two pieces.
+
+  - For \(-\frac{\pi}{2} \le \theta \le \frac{\pi}{2}\), the circle is present, and \(r\) runs from \(\cos\theta\) to \(1 + \cos\theta\).
+  - For \(\frac{\pi}{2} \le \theta \le \frac{3\pi}{2}\), \(\cos\theta \le 0\). The circle has no points in these directions, because its negative values of \(r\) are plotted back into the angles of the first piece. So \(r\) runs from \(0\) to \(1 + \cos\theta\).
+
+  The density is \(1\) and the area element is \(r\, dr\, d\theta\). The mass is
+  \[
+  M = \int_{-\pi/2}^{\pi/2}\int_{\cos\theta}^{1+\cos\theta} r\, dr\, d\theta
+  + \int_{\pi/2}^{3\pi/2}\int_0^{1+\cos\theta} r\, dr\, d\theta.
+  \]
+  The moment \(M_x\) adds the factor \(y = r\sin\theta\), and \(M_y\) adds the factor \(x = r\cos\theta\). Each integrand gains a factor \(r\), so \(r\, dr\, d\theta\) becomes \(r^2\sin\theta\, dr\, d\theta\) and \(r^2\cos\theta\, dr\, d\theta\):
+  \[
+  \begin{aligned}
+  M_x &= \int_{-\pi/2}^{\pi/2}\int_{\cos\theta}^{1+\cos\theta} r^2\sin\theta\, dr\, d\theta\\
+  &\quad + \int_{\pi/2}^{3\pi/2}\int_0^{1+\cos\theta} r^2\sin\theta\, dr\, d\theta,\\
+  M_y &= \int_{-\pi/2}^{\pi/2}\int_{\cos\theta}^{1+\cos\theta} r^2\cos\theta\, dr\, d\theta\\
+  &\quad + \int_{\pi/2}^{3\pi/2}\int_0^{1+\cos\theta} r^2\cos\theta\, dr\, d\theta.
+  \end{aligned}
+  \]
+  Then \(\bar x = M_y/M\) and \(\bar y = M_x/M\).
+
+  As a check on the set-up, the mass equals the area of the cardioid minus the area of the disk, \(\frac{3\pi}{2} - \frac{\pi}{4} = \frac{5\pi}{4}\). The moments are \(M_x = 0\) and \(M_y = \frac{9\pi}{8}\), so \(\bar y = 0\) and \(\bar x = \frac{9}{10}\).
+provenance: handout-answer
+steps:
+  - |
+    The region has two pieces: \(\cos\theta \le r \le 1 + \cos\theta\) for \(-\frac{\pi}{2} \le \theta \le \frac{\pi}{2}\), and \(0 \le r \le 1 + \cos\theta\) for \(\frac{\pi}{2} \le \theta \le \frac{3\pi}{2}\).
+  - |
+    \(M\) integrates \(r\), \(M_x\) integrates \(r^2\sin\theta\), and \(M_y\) integrates \(r^2\cos\theta\), over both pieces.
+verification:
+  checks:
+    - expr: 'integrate(r, (r, cos(t), 1 + cos(t)), (t, -pi/2, pi/2)) + integrate(r, (r, 0, 1 + cos(t)), (t, pi/2, 3*pi/2))'
+      expected: "5*pi/4"
+    - expr: 'integrate(r**2*sin(t), (r, cos(t), 1 + cos(t)), (t, -pi/2, pi/2)) + integrate(r**2*sin(t), (r, 0, 1 + cos(t)), (t, pi/2, 3*pi/2))'
+      expected: "0"
+    - expr: 'integrate(r**2*cos(t), (r, cos(t), 1 + cos(t)), (t, -pi/2, pi/2)) + integrate(r**2*cos(t), (r, 0, 1 + cos(t)), (t, pi/2, 3*pi/2))'
+      expected: "9*pi/8"
+    - expr: 'integrate(r, (r, 0, 1 + cos(t)), (t, 0, 2*pi)) - integrate(r, (r, 0, cos(t)), (t, -pi/2, pi/2))'
+      expected: "5*pi/4"
+    - expr: '(9*pi/8)/(5*pi/4)'
+      expected: "Rational(9, 10)"
+:::
+
+
+::: exercise
+id: l8-mass-centre.handout-15-6-12
+number: "15.6.12"
+tier: standard
+topics:
+  - mass
+  - spherical-coordinates
+statement: |
+  An object occupies the region inside the unit sphere at the origin, and has density equal to the distance from the \(x\)-axis. Find the mass.
+solution: |
+  The density is the distance from the \(x\)-axis, \(\sqrt{y^2 + z^2}\). Choose spherical coordinates with the polar axis along the \(x\)-axis:
+  \[
+  x = \rho\cos\phi, \qquad y = \rho\sin\phi\cos\theta, \qquad z = \rho\sin\phi\sin\theta.
+  \]
+  Then \(y^2 + z^2 = \rho^2\sin^2\phi\), so the density is \(\rho\sin\phi\) (with \(\sin\phi \ge 0\) for \(0 \le \phi \le \pi\)). The volume element keeps the form \(\rho^2\sin\phi\, d\rho\, d\phi\, d\theta\). The unit ball is \(0 \le \rho \le 1\), \(0 \le \phi \le \pi\), \(0 \le \theta \le 2\pi\).
+
+  The mass is
+  \[
+  \begin{aligned}
+  M &= \int_0^{2\pi}\int_0^\pi\int_0^1 \rho\sin\phi\cdot\rho^2\sin\phi\, d\rho\, d\phi\, d\theta\\
+  &= \int_0^1 \rho^3\, d\rho\cdot\int_0^\pi \sin^2\phi\, d\phi\cdot\int_0^{2\pi} d\theta.
+  \end{aligned}
+  \]
+  The three factors are \(\frac14\), \(\frac{\pi}{2}\) and \(2\pi\). The mass is \(\frac{\pi^2}{4}\).
+
+  Cylindrical coordinates about the \(x\)-axis give the same value. With \(s\) the distance from the axis, the density is \(s\), the ball is \(|x| \le \sqrt{1 - s^2}\), and
+  \[
+  M = \int_0^{2\pi}\int_0^1 s\cdot s\cdot 2\sqrt{1 - s^2}\, ds\, d\theta = \frac{\pi^2}{4}.
+  \]
+provenance: handout-answer
+steps:
+  - |
+    With the polar axis along the \(x\)-axis, the density is \(\rho\sin\phi\) and the volume element is \(\rho^2\sin\phi\, d\rho\, d\phi\, d\theta\).
+  - |
+    The integral factors as \(\frac14\cdot\frac{\pi}{2}\cdot 2\pi\).
+  - |
+    The mass is \(\frac{\pi^2}{4}\).
+verification:
+  checks:
+    - expr: 'integrate(rho*sin(p)*rho**2*sin(p), (rho, 0, 1), (p, 0, pi), (t, 0, 2*pi))'
+      expected: "pi**2/4"
+    - expr: '2*pi*integrate(2*sin(u)**2*cos(u)**2, (u, 0, pi/2))'
+      expected: "pi**2/4"
+    - expr: 'simplify((rho*sin(p)*cos(t))**2 + (rho*sin(p)*sin(t))**2 - (rho*sin(p))**2)'
+      expected: "0"
+:::
+
+
+::: exercise
+id: l8-mass-centre.handout-15-6-13
+number: "15.6.13"
+tier: basic
+topics:
+  - mass
+  - spherical-coordinates
+statement: |
+  An object occupies the region inside the unit sphere at the origin, and has density equal to the square of the distance from the origin. Find the mass.
+solution: |
+  In spherical coordinates the distance from the origin is \(\rho\), so the density is \(\rho^2\). The unit ball is \(0 \le \rho \le 1\), \(0 \le \phi \le \pi\), \(0 \le \theta \le 2\pi\), and the volume element is \(\rho^2\sin\phi\, d\rho\, d\phi\, d\theta\).
+
+  The mass is
+  \[
+  \begin{aligned}
+  M &= \int_0^{2\pi}\int_0^\pi\int_0^1 \rho^2\cdot\rho^2\sin\phi\, d\rho\, d\phi\, d\theta\\
+  &= \int_0^1 \rho^4\, d\rho\cdot\int_0^\pi \sin\phi\, d\phi\cdot\int_0^{2\pi} d\theta.
+  \end{aligned}
+  \]
+  The three factors are \(\frac15\), \(2\) and \(2\pi\). The mass is \(\frac{4\pi}{5}\).
+provenance: handout-answer
+steps:
+  - |
+    The density is \(\rho^2\), and the integrand is \(\rho^2\cdot\rho^2\sin\phi\).
+  - |
+    The integral factors as \(\frac15\cdot 2\cdot 2\pi\).
+  - |
+    The mass is \(\frac{4\pi}{5}\).
+verification:
+  checks:
+    - expr: 'integrate(rho**2*rho**2*sin(p), (rho, 0, 1), (p, 0, pi), (t, 0, 2*pi))'
+      expected: "4*pi/5"
+    - expr: 'integrate(rho**4, (rho, 0, 1))'
+      expected: "Rational(1, 5)"
+:::
+
+
+::: exercise
+id: l8-mass-centre.handout-15-6-14
+number: "15.6.14"
+tier: basic
+topics:
+  - mass
+  - spherical-coordinates
+statement: |
+  An object occupies the region between the unit sphere at the origin and a sphere of radius \(2\) with center at the origin, and has density equal to the distance from the origin. Find the mass.
+solution: |
+  In spherical coordinates the distance from the origin is \(\rho\), so the density is \(\rho\). The region between the spheres is \(1 \le \rho \le 2\), \(0 \le \phi \le \pi\), \(0 \le \theta \le 2\pi\).
+
+  The mass is
+  \[
+  \begin{aligned}
+  M &= \int_0^{2\pi}\int_0^\pi\int_1^2 \rho\cdot\rho^2\sin\phi\, d\rho\, d\phi\, d\theta\\
+  &= \int_1^2 \rho^3\, d\rho\cdot\int_0^\pi \sin\phi\, d\phi\cdot\int_0^{2\pi} d\theta.
+  \end{aligned}
+  \]
+  The first factor is \(\frac{2^4 - 1}{4} = \frac{15}{4}\). The other factors are \(2\) and \(2\pi\). The mass is \(\frac{15}{4}\cdot 2\cdot 2\pi = 15\pi\).
+provenance: handout-answer
+steps:
+  - |
+    The region is \(1 \le \rho \le 2\), and the integrand is \(\rho\cdot\rho^2\sin\phi\).
+  - |
+    The integral factors as \(\frac{15}{4}\cdot 2\cdot 2\pi\).
+  - |
+    The mass is \(15\pi\).
+verification:
+  checks:
+    - expr: 'integrate(rho*rho**2*sin(p), (rho, 1, 2), (p, 0, pi), (t, 0, 2*pi))'
+      expected: "15*pi"
+    - expr: 'integrate(rho**3, (rho, 1, 2))'
+      expected: "Rational(15, 4)"
+:::
+
+
+::: exercise
+id: l8-mass-centre.handout-15-6-15
+number: "15.6.15"
+tier: standard
+topics:
+  - mass
+  - spherical-coordinates
+statement: |
+  An object occupies the region in the first octant bounded by the cones \(\phi = \frac{\pi}{4}\) and \(\phi = \arctan 2\), and the sphere \(\rho = \sqrt{6}\), and has density proportional to the distance from the origin, \(\sigma = k\rho\). Find the mass.
+solution: |
+  The angle \(\phi\) is measured from the positive \(z\)-axis. Since \(\arctan 2 \approx 63.4^\circ\) exceeds \(\frac{\pi}{4} = 45^\circ\), the region lies between the cone \(\phi = \frac{\pi}{4}\) and the cone \(\phi = \arctan 2\). The sphere gives \(0 \le \rho \le \sqrt{6}\). The first octant restricts \(\theta\) to \(0 \le \theta \le \frac{\pi}{2}\).
+
+  The mass is
+  \[
+  \begin{aligned}
+  M &= \int_0^{\pi/2}\int_{\pi/4}^{\arctan 2}\int_0^{\sqrt{6}} k\rho\cdot\rho^2\sin\phi\, d\rho\, d\phi\, d\theta\\
+  &= k\int_0^{\sqrt{6}} \rho^3\, d\rho\cdot\int_{\pi/4}^{\arctan 2} \sin\phi\, d\phi\cdot\int_0^{\pi/2} d\theta.
+  \end{aligned}
+  \]
+  The factors are as follows.
+
+  - The \(\rho\) integral is \(\frac{(\sqrt{6})^4}{4} = \frac{36}{4} = 9\).
+  - The \(\phi\) integral is \(\cos\frac{\pi}{4} - \cos(\arctan 2) = \frac{\sqrt{2}}{2} - \frac{1}{\sqrt{5}}\), because \(\cos(\arctan 2) = \frac{1}{\sqrt{5}}\).
+  - The \(\theta\) integral is \(\frac{\pi}{2}\).
+
+  The mass is
+  \[
+  M = \frac{9k\pi}{2}\Bigl(\frac{\sqrt{2}}{2} - \frac{\sqrt{5}}{5}\Bigr)
+  = \frac{9k\pi\,\bigl(5\sqrt{2} - 2\sqrt{5}\bigr)}{20}.
+  \]
+provenance: handout-answer
+steps:
+  - |
+    The region is \(0 \le \rho \le \sqrt{6}\), \(\frac{\pi}{4} \le \phi \le \arctan 2\), \(0 \le \theta \le \frac{\pi}{2}\), with integrand \(k\rho\cdot\rho^2\sin\phi\).
+  - |
+    The factors are \(9\), \(\frac{\sqrt{2}}{2} - \frac{1}{\sqrt{5}}\) and \(\frac{\pi}{2}\).
+  - |
+    The mass is \(\frac{9k\pi(5\sqrt{2} - 2\sqrt{5})}{20}\).
+verification:
+  checks:
+    - expr: 'integrate(k*rho*rho**2*sin(p), (rho, 0, sqrt(6)), (p, pi/4, atan(2)), (t, 0, pi/2))'
+      expected: "9*k*pi*(5*sqrt(2) - 2*sqrt(5))/20"
+    - expr: 'cos(atan(2))'
+      expected: "sqrt(5)/5"
+    - expr: 'integrate(rho**3, (rho, 0, sqrt(6)))'
+      expected: "9"
+:::

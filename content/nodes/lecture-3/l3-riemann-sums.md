@@ -423,3 +423,184 @@ verification:
     - expr: integrate(x**2, (x, 1, 3))
       expected: 26/3
 :::
+
+::: exercise
+id: l3-riemann-sums.handout-7-1-3
+number: "7.1.3"
+tier: basic
+topics:
+  - riemann-sums
+statement: |
+  Use the left Riemann sum, the sum of integers and a limit to find the area under \(y = 2x\) and above the x-axis on \([0, x]\), for any \(x > 0\).
+solution: |
+  Split \([0, x]\) into \(n\) panels of width \(\frac{x}{n}\). The left sample point of index \(j\) is \(\frac{jx}{n}\), for \(j = 0, \ldots, n-1\), and the height there is \(\frac{2jx}{n}\). The rectangle of index \(j\) has area
+  \[
+  \frac{x}{n}\cdot\frac{2jx}{n} = \frac{2x^2}{n^2}\,j.
+  \]
+  The sum of the integers from \(0\) to \(n-1\) equals \(\frac{(n-1)n}{2}\). Let \(S_n\) be the sum of the areas. Then
+  \[
+  \begin{aligned}
+  S_n&=\frac{2x^2}{n^2}\cdot\frac{(n-1)n}{2}\\
+  &=x^2\cdot\frac{n-1}{n}\\
+  &=x^2\left(1 - \frac{1}{n}\right).
+  \end{aligned}
+  \]
+  As \(n \to \infty\), \(\frac{1}{n} \to 0\), so \(S_n \to x^2\). The area is \(x^2\).
+
+  The region is a triangle with base \(x\) and height \(2x\), whose area is \(\frac{1}{2}\cdot x\cdot 2x = x^2\).
+provenance: handout-answer
+steps:
+  - The width is \(\frac{x}{n}\), and the left heights are \(\frac{2jx}{n}\).
+  - The sum of the areas is \(\frac{2x^2}{n^2}\cdot\frac{(n-1)n}{2} = x^2\left(1 - \frac{1}{n}\right)\).
+  - The limit is \(x^2\).
+verification:
+  checks:
+    - expr: simplify(summation((x/n)*(2*j*x/n), (j, 0, n - 1)) - x**2*(1 - 1/n))
+      expected: "0"
+    - expr: limit(x**2*(1 - 1/n), n, oo)
+      expected: "x**2"
+    - expr: integrate(2*t, (t, 0, x))
+      expected: "x**2"
+:::
+
+
+::: exercise
+id: l3-riemann-sums.handout-7-1-5
+number: "7.1.5"
+tier: standard
+topics:
+  - riemann-sums
+statement: |
+  Use the left Riemann sum and a limit to find the area under \(y = 4x\) and above the x-axis between \(x = 2\) and any \(x > 2\).
+solution: |
+  The interval is \([2, x]\), of length \(w = x - 2\). Split it into \(n\) panels of width \(\frac{w}{n}\). The left sample point of index \(j\) is \(2 + \frac{jw}{n}\), for \(j = 0, \ldots, n-1\), and the height there is \(4\left(2 + \frac{jw}{n}\right)\). The rectangle of index \(j\) has area
+  \[
+  \frac{w}{n}\left(8 + \frac{4w}{n}\,j\right).
+  \]
+  The sum of the integers from \(0\) to \(n-1\) equals \(\frac{(n-1)n}{2}\). Let \(S_n\) be the sum of the areas. Then
+  \[
+  \begin{aligned}
+  S_n&=\frac{w}{n}\left(8n + \frac{4w}{n}\cdot\frac{(n-1)n}{2}\right)\\
+  &=8w + 2w^2\cdot\frac{n-1}{n}\\
+  &=8w + 2w^2\left(1 - \frac{1}{n}\right).
+  \end{aligned}
+  \]
+  As \(n \to \infty\), \(S_n \to 8w + 2w^2\). Substituting \(w = x - 2\) gives
+  \[
+  \begin{aligned}
+  8w + 2w^2&=2w(4 + w)\\
+  &=2(x - 2)(x + 2) = 2x^2 - 8.
+  \end{aligned}
+  \]
+  The area is \(2x^2 - 8\).
+
+  At \(x = 2\) this equals \(0\), as it should for an interval of length \(0\).
+provenance: handout-answer
+steps:
+  - The width is \(\frac{x-2}{n}\), and the left heights are \(4\left(2 + \frac{j(x-2)}{n}\right)\).
+  - The sum of the areas is \(8w + 2w^2\left(1 - \frac{1}{n}\right)\) with \(w = x - 2\).
+  - The limit is \(8w + 2w^2 = 2x^2 - 8\).
+verification:
+  checks:
+    - expr: simplify(summation(((x - 2)/n)*4*(2 + (x - 2)*j/n), (j, 0, n - 1)) - (8*(x - 2) + 2*(x - 2)**2*(1 - 1/n)))
+      expected: "0"
+    - expr: limit(8*(x - 2) + 2*(x - 2)**2*(1 - 1/n), n, oo)
+      expected: "2*x**2 - 8"
+    - expr: integrate(4*t, (t, 2, x))
+      expected: "2*x**2 - 8"
+:::
+
+
+::: exercise
+id: l3-riemann-sums.handout-7-1-7
+number: "7.1.7"
+tier: standard
+topics:
+  - riemann-sums
+statement: |
+  Let \(f(x) = x^2 + 3x + 2\). Approximate the area under the curve between \(x = 0\) and \(x = 2\) using \(4\) rectangles, and then using \(8\) rectangles. Use left endpoints.
+solution: |
+  ### Four rectangles
+
+  The width is \(\frac{2}{4} = \frac{1}{2}\), and the left endpoints are \(0, \frac{1}{2}, 1, \frac{3}{2}\). The heights are
+  \[
+  \begin{aligned}
+  f(0)&=2,\\
+  f\left(\tfrac{1}{2}\right)&=\frac{1}{4} + \frac{3}{2} + 2 = \frac{15}{4},\\
+  f(1)&=6,\\
+  f\left(\tfrac{3}{2}\right)&=\frac{9}{4} + \frac{9}{2} + 2 = \frac{35}{4}.
+  \end{aligned}
+  \]
+  The sum is
+  \[
+  L_4 = \frac{1}{2}\left(2 + \frac{15}{4} + 6 + \frac{35}{4}\right) = \frac{1}{2}\cdot\frac{41}{2} = \frac{41}{4} = 10.25.
+  \]
+
+  ### Eight rectangles
+
+  The width is \(\frac{1}{4}\), and the left endpoints are \(\frac{k}{4}\) for \(k = 0, \ldots, 7\). The heights \(f\left(\frac{k}{4}\right)\), written over the denominator \(16\), are
+  \[
+  \frac{32}{16},\ \frac{45}{16},\ \frac{60}{16},\ \frac{77}{16},\ \frac{96}{16},\ \frac{117}{16},\ \frac{140}{16},\ \frac{165}{16}.
+  \]
+  The numerators add up to \(732\), so
+  \[
+  L_8 = \frac{1}{4}\cdot\frac{732}{16} = \frac{183}{16} = 11.4375.
+  \]
+
+  ### Comparison
+
+  The integral is \(\int_0^2 f(x)\,dx = \frac{8}{3} + 6 + 4 = \frac{38}{3} \approx 12.67\). The function \(f\) is increasing on \([0, 2]\), so each left rectangle lies under the curve and each sum is smaller than the integral. Doubling the number of rectangles moves the sum from \(10.25\) to \(11.4375\), closer to \(\frac{38}{3}\).
+provenance: handout-answer
+steps:
+  - With \(4\) rectangles the width is \(\frac{1}{2}\) and the heights are \(2, \frac{15}{4}, 6, \frac{35}{4}\).
+  - The four-rectangle sum is \(\frac{41}{4}\).
+  - With \(8\) rectangles the width is \(\frac{1}{4}\) and the heights add up to \(\frac{732}{16}\).
+  - The eight-rectangle sum is \(\frac{183}{16}\).
+verification:
+  checks:
+    - expr: Rational(1, 2)*Sum((k/2)**2 + 3*k/2 + 2, (k, 0, 3)).doit()
+      expected: "41/4"
+    - expr: Rational(1, 4)*Sum((k/4)**2 + 3*k/4 + 2, (k, 0, 7)).doit()
+      expected: "183/16"
+    - expr: Sum(16*((k/4)**2 + 3*k/4 + 2), (k, 0, 7)).doit()
+      expected: "732"
+    - expr: integrate(x**2 + 3*x + 2, (x, 0, 2))
+      expected: "38/3"
+:::
+
+
+::: exercise
+id: l3-riemann-sums.handout-7-1-8
+number: "7.1.8"
+tier: basic
+topics:
+  - riemann-sums
+statement: |
+  Let \(f(x) = x^2 - 2x + 3\). Approximate the area under the curve between \(x = 1\) and \(x = 3\) using \(4\) rectangles. Use left endpoints.
+solution: |
+  The width is \(\frac{3 - 1}{4} = \frac{1}{2}\), and the left endpoints are \(1, \frac{3}{2}, 2, \frac{5}{2}\). The heights are
+  \[
+  \begin{aligned}
+  f(1)&=1 - 2 + 3 = 2,\\
+  f\left(\tfrac{3}{2}\right)&=\frac{9}{4} - 3 + 3 = \frac{9}{4},\\
+  f(2)&=4 - 4 + 3 = 3,\\
+  f\left(\tfrac{5}{2}\right)&=\frac{25}{4} - 5 + 3 = \frac{17}{4}.
+  \end{aligned}
+  \]
+  The sum of the areas is
+  \[
+  \frac{1}{2}\left(2 + \frac{9}{4} + 3 + \frac{17}{4}\right) = \frac{1}{2}\cdot\frac{23}{2} = \frac{23}{4} = 5.75.
+  \]
+  The approximate area is \(\frac{23}{4}\).
+provenance: handout-answer
+steps:
+  - The width is \(\frac{1}{2}\), and the left endpoints are \(1, \frac{3}{2}, 2, \frac{5}{2}\).
+  - The heights are \(2, \frac{9}{4}, 3, \frac{17}{4}\).
+  - The sum of the areas is \(\frac{23}{4}\).
+verification:
+  checks:
+    - expr: Rational(1, 2)*Sum((1 + k/2)**2 - 2*(1 + k/2) + 3, (k, 0, 3)).doit()
+      expected: "23/4"
+    - expr: (x**2 - 2*x + 3).subs(x, Rational(5, 2))
+      expected: "17/4"
+:::

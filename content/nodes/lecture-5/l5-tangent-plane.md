@@ -1261,3 +1261,153 @@ verification:
     - expr: 'sqrt(1**2 + 2**2)'
       expected: sqrt(5)
 :::
+
+::: exercise
+id: l5-tangent-plane.handout-14-3-8
+number: "14.3.8"
+tier: standard
+topics:
+  - tangent-planes
+  - implicit-surfaces
+statement: |
+  Find an equation for the plane tangent to \(2x^2+3y^2-z^2=4\) at \((1,1,-1)\).
+solution: |
+  Let \(F(x,y,z)=2x^2+3y^2-z^2-4\). Then \(F(1,1,-1)=2+3-1-4=0\), so the point lies on the surface.
+
+  The gradient is \(\nabla F=(4x,\ 6y,\ -2z)\). At the point its value is \((4,6,2)\).
+
+  The tangent plane is
+  \[
+  4(x-1)+6(y-1)+2(z+1)=0.
+  \]
+  Expanding gives \(2x+3y+z=4\). Solving for \(z\) gives
+  \[
+  z=-2(x-1)-3(y-1)-1.
+  \]
+  Near the point, \(z<0\) on the surface, so it is the graph of \(z=-\sqrt{2x^2+3y^2-4}\). The graph formula gives the same plane: the height is \(-1\), and the partials at \((1,1)\) are \(-2\) and \(-3\).
+provenance: handout-answer
+steps:
+  - The point (1, 1, -1) lies on the surface.
+  - The gradient there is (4, 6, 2).
+  - The plane is 4(x - 1) + 6(y - 1) + 2(z + 1) = 0, equivalent to z = -2(x - 1) - 3(y - 1) - 1.
+verification:
+  checks:
+    - expr: '(2*x**2 + 3*y**2 - z**2 - 4).subs({x: 1, y: 1, z: -1})'
+      expected: "0"
+    - expr: 'Tuple(diff(2*x**2 + 3*y**2 - z**2 - 4, x).subs({x: 1, y: 1, z: -1}), diff(2*x**2 + 3*y**2 - z**2 - 4, y).subs({x: 1, y: 1, z: -1}), diff(2*x**2 + 3*y**2 - z**2 - 4, z).subs({x: 1, y: 1, z: -1}))'
+      expected: "Tuple(4, 6, 2)"
+    - expr: 'expand(4*(x - 1) + 6*(y - 1) + 2*(z + 1))'
+      expected: "4*x + 6*y + 2*z - 8"
+    - expr: 'solve(4*(x - 1) + 6*(y - 1) + 2*(z + 1), z)[0] - (-2*(x - 1) - 3*(y - 1) - 1)'
+      expected: "0"
+    - expr: '(diff(-sqrt(2*x**2 + 3*y**2 - 4), x).subs({x: 1, y: 1}), diff(-sqrt(2*x**2 + 3*y**2 - 4), y).subs({x: 1, y: 1}))'
+      expected: "(-2, -3)"
+:::
+
+
+::: exercise
+id: l5-tangent-plane.handout-14-3-10
+number: "14.3.10"
+tier: basic
+topics:
+  - tangent-planes
+statement: |
+  Find an equation for the plane tangent to \(f(x,y)=x^2+y^3\) at \((3,1,10)\).
+solution: |
+  The height at the base point is \(f(3,1)=9+1=10\), so the point \((3,1,10)\) lies on the graph.
+
+  The partial derivatives are \(f_x=2x\) and \(f_y=3y^2\). At \((3,1)\) they equal \(6\) and \(3\).
+
+  The tangent plane is
+  \[
+  z=10+6(x-3)+3(y-1).
+  \]
+provenance: handout-answer
+steps:
+  - The height f(3, 1) equals 10.
+  - The partials at (3, 1) are 6 and 3.
+  - The plane is z = 10 + 6(x - 3) + 3(y - 1).
+verification:
+  checks:
+    - expr: '(x**2 + y**3).subs({x: 3, y: 1})'
+      expected: "10"
+    - expr: '(diff(x**2 + y**3, x).subs({x: 3, y: 1}), diff(x**2 + y**3, y).subs({x: 3, y: 1}))'
+      expected: "(6, 3)"
+    - expr: 'expand(10 + 6*(x - 3) + 3*(y - 1))'
+      expected: "6*x + 3*y - 11"
+:::
+
+
+::: exercise
+id: l5-tangent-plane.handout-14-3-11
+number: "14.3.11"
+tier: standard
+topics:
+  - tangent-planes
+statement: |
+  Find an equation for the plane tangent to \(f(x,y)=x\ln(xy)\) at \(\left(2,\tfrac12,0\right)\).
+solution: |
+  The function is defined where \(xy>0\). The height at the base point is \(f\left(2,\tfrac12\right)=2\ln 1=0\), so the point lies on the graph.
+
+  The product rule gives the partial derivatives:
+  \[
+  \begin{aligned}
+  f_x&=\ln(xy)+x\cdot\frac{y}{xy}=\ln(xy)+1,\\
+  f_y&=x\cdot\frac{x}{xy}=\frac{x}{y}.
+  \end{aligned}
+  \]
+  At \(\left(2,\tfrac12\right)\), \(\ln(xy)=\ln 1=0\), so \(f_x=1\) and \(f_y=\frac{2}{1/2}=4\).
+
+  The tangent plane is
+  \[
+  z=0+(x-2)+4\left(y-\tfrac12\right).
+  \]
+provenance: handout-answer
+steps:
+  - The height f(2, 1/2) equals 0.
+  - The partials at (2, 1/2) are 1 and 4.
+  - The plane is z = (x - 2) + 4(y - 1/2).
+verification:
+  checks:
+    - expr: '(x*log(x*y)).subs({x: 2, y: Rational(1, 2)})'
+      expected: "0"
+    - expr: '(diff(x*log(x*y), x).subs({x: 2, y: Rational(1, 2)}), diff(x*log(x*y), y).subs({x: 2, y: Rational(1, 2)}))'
+      expected: "(1, 4)"
+    - expr: 'expand((x - 2) + 4*(y - Rational(1, 2)))'
+      expected: "x + 4*y - 4"
+:::
+
+
+::: exercise
+id: l5-tangent-plane.handout-14-3-15
+number: "14.3.15"
+tier: standard
+topics:
+  - tangent-planes
+statement: |
+  The tangent plane to \(f(x,y)=x\ln(xy)\) at \(\left(2,\tfrac12,0\right)\) is \(z=(x-2)+4\left(y-\tfrac12\right)\). Use this plane to approximate \(f(1.98,\,0.4)\).
+solution: |
+  Near the base point, the graph stays close to its tangent plane, so the height of the plane at \((1.98,\,0.4)\) approximates \(f(1.98,\,0.4)\).
+
+  The displacements from the base point \(\left(2,\tfrac12\right)\) are \(x-2=-0.02\) and \(y-\tfrac12=-0.1\). The plane gives
+  \[
+  \begin{aligned}
+  z&=-0.02+4(-0.1)\\
+  &=-0.42.
+  \end{aligned}
+  \]
+  The approximation is \(f(1.98,\,0.4)\approx-0.42\).
+
+  For comparison, the exact value is \(1.98\ln(0.792)\approx-0.4617\). The approximation is off by about \(0.04\), mainly because the step in \(y\) is \(20\%\) of \(y\).
+provenance: written-for-site
+steps:
+  - The displacements from (2, 1/2) are -0.02 and -0.1.
+  - The plane gives -0.02 + 4(-0.1) = -0.42.
+  - The exact value is about -0.4617.
+verification:
+  checks:
+    - expr: '((x - 2) + 4*(y - Rational(1, 2))).subs({x: Rational(198, 100), y: Rational(2, 5)})'
+      expected: "-Rational(21, 50)"
+    - expr: 'floor(10000*Rational(99, 50)*log(Rational(99, 125)))'
+      expected: "-4618"
+:::

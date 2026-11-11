@@ -775,3 +775,235 @@ verification:
     - expr: (1 - cos(2*(x + pi)))/2 - (1 - cos(2*x))/2
       expected: "0"
 :::
+
+::: exercise
+id: l1-trigonometry.sheet-1-4-5
+number: "sheet 1 exercise 4.5"
+tier: basic
+topics:
+  - trigonometry
+  - periodicity
+statement: |
+  Give the domain of \(x\mapsto\sin(x)\) and of \(x\mapsto\cos(x)\), and sketch both graphs.
+solution: |
+  Sine and cosine are the coordinates of a point on the unit circle, and every angle \(x\) gives such a point. The domain of \(\sin\) is every real number, and so is the domain of \(\cos\).
+
+  Both graphs are waves with the same shape:
+
+  - The values lie between \(-1\) and \(1\), so the range of each is \([-1,1]\).
+  - Both repeat with period \(2\pi\).
+
+  The sine graph:
+
+  - It passes through \((0,0)\) and rises to the maximum \(1\) at \(x=\pi/2\).
+  - It returns to \(0\) at \(x=\pi\), reaches the minimum \(-1\) at \(x=3\pi/2\), and returns to \(0\) at \(x=2\pi\).
+  - It is odd: \(\sin(-x)=-\sin x\), so the graph is symmetric about the origin.
+
+  The cosine graph:
+
+  - It starts at its maximum, \(\cos 0=1\).
+  - It is \(0\) at \(x=\pi/2\), reaches the minimum \(-1\) at \(x=\pi\), is \(0\) at \(x=3\pi/2\) and is back at \(1\) at \(x=2\pi\).
+  - It is even: \(\cos(-x)=\cos x\), so the graph is symmetric about the \(y\)-axis.
+
+  The cosine graph is the sine graph shifted left by \(\pi/2\), because \(\cos x=\sin\bigl(x+\tfrac{\pi}{2}\bigr)\).
+provenance: written-for-site
+steps:
+  - The domain of each function is every real number.
+  - The range \([-1,1]\), the period \(2\pi\), the key values and the symmetry of each graph are described.
+  - The cosine graph is the sine graph shifted left by \(\pi/2\).
+verification:
+  checks:
+    - expr: (sin(0), sin(pi/2), sin(pi), sin(3*pi/2), sin(2*pi))
+      expected: "(0, 1, 0, -1, 0)"
+    - expr: (cos(0), cos(pi/2), cos(pi), cos(3*pi/2), cos(2*pi))
+      expected: "(1, 0, -1, 0, 1)"
+    - expr: sin(x + pi/2) - cos(x)
+      expected: "0"
+    - expr: (periodicity(sin(x), x), periodicity(cos(x), x))
+      expected: "(2*pi, 2*pi)"
+:::
+
+::: exercise
+id: l1-trigonometry.handout-4-1-3
+number: "4.1.3"
+tier: standard
+topics:
+  - trig-identity
+statement: |
+  Use an angle sum identity to compute \(\cos(\pi/12)\).
+solution: |
+  Write \(\frac{\pi}{12}\) as a difference of two standard angles:
+  \[
+  \frac{\pi}{12}=\frac{\pi}{4}-\frac{\pi}{6}.
+  \]
+  The angle sum identity is \(\cos(\alpha+\beta)=\cos\alpha\cos\beta-\sin\alpha\sin\beta\). Put \(\beta=-\gamma\). Cosine is even and sine is odd, so
+  \[
+  \cos(\alpha-\gamma)=\cos\alpha\cos\gamma+\sin\alpha\sin\gamma.
+  \]
+  With \(\alpha=\frac{\pi}{4}\) and \(\gamma=\frac{\pi}{6}\),
+  \[
+  \begin{aligned}
+  \cos\frac{\pi}{12}&=\cos\frac{\pi}{4}\cos\frac{\pi}{6}+\sin\frac{\pi}{4}\sin\frac{\pi}{6}\\
+  &=\frac{\sqrt{2}}{2}\cdot\frac{\sqrt{3}}{2}+\frac{\sqrt{2}}{2}\cdot\frac{1}{2}\\
+  &=\frac{\sqrt{6}+\sqrt{2}}{4}.
+  \end{aligned}
+  \]
+
+  For a check, the half-angle formula gives
+  \[
+  \cos^{2}\frac{\pi}{12}=\frac{1+\cos\frac{\pi}{6}}{2}=\frac{2+\sqrt{3}}{4}.
+  \]
+  The square of \(\frac{\sqrt{6}+\sqrt{2}}{4}\) is \(\frac{8+2\sqrt{12}}{16}=\frac{2+\sqrt{3}}{4}\), which agrees. The angle \(\frac{\pi}{12}\) lies in the first quadrant, so the cosine is positive.
+provenance: handout-answer
+steps:
+  - Write \(\frac{\pi}{12}=\frac{\pi}{4}-\frac{\pi}{6}\).
+  - Apply \(\cos(\alpha-\gamma)=\cos\alpha\cos\gamma+\sin\alpha\sin\gamma\) with the standard values.
+  - The result is \(\frac{\sqrt{6}+\sqrt{2}}{4}\), and its square matches the half-angle formula.
+verification:
+  checks:
+    - expr: 'cos(pi/12)'
+      expected: "(sqrt(2) + sqrt(6))/4"
+    - expr: 'cos(pi/4)*cos(pi/6) + sin(pi/4)*sin(pi/6)'
+      expected: "(sqrt(2) + sqrt(6))/4"
+    - expr: '((sqrt(2) + sqrt(6))/4)**2'
+      expected: "(1 + cos(pi/6))/2"
+:::
+
+
+::: exercise
+id: l1-trigonometry.handout-4-1-4
+number: "4.1.4"
+tier: standard
+topics:
+  - trig-identity
+statement: |
+  Use an angle sum identity to compute \(\tan(5\pi/12)\).
+solution: |
+  Write \(\frac{5\pi}{12}\) as a sum of two standard angles:
+  \[
+  \frac{5\pi}{12}=\frac{\pi}{4}+\frac{\pi}{6}.
+  \]
+  The angle sum identities are
+  \[
+  \begin{aligned}
+  \sin(\alpha+\beta)&=\sin\alpha\cos\beta+\cos\alpha\sin\beta,\\
+  \cos(\alpha+\beta)&=\cos\alpha\cos\beta-\sin\alpha\sin\beta.
+  \end{aligned}
+  \]
+  With \(\alpha=\frac{\pi}{4}\) and \(\beta=\frac{\pi}{6}\),
+  \[
+  \begin{aligned}
+  \sin\frac{5\pi}{12}&=\frac{\sqrt{2}}{2}\cdot\frac{\sqrt{3}}{2}+\frac{\sqrt{2}}{2}\cdot\frac{1}{2}\\
+  &=\frac{\sqrt{6}+\sqrt{2}}{4},\\
+  \cos\frac{5\pi}{12}&=\frac{\sqrt{2}}{2}\cdot\frac{\sqrt{3}}{2}-\frac{\sqrt{2}}{2}\cdot\frac{1}{2}\\
+  &=\frac{\sqrt{6}-\sqrt{2}}{4}.
+  \end{aligned}
+  \]
+  The tangent is the quotient. Multiply the numerator and the denominator by \(\sqrt{6}+\sqrt{2}\):
+  \[
+  \begin{aligned}
+  \tan\frac{5\pi}{12}&=\frac{\sqrt{6}+\sqrt{2}}{\sqrt{6}-\sqrt{2}}\\
+  &=\frac{(\sqrt{6}+\sqrt{2})^{2}}{6-2}\\
+  &=\frac{8+4\sqrt{3}}{4}\\
+  &=2+\sqrt{3}.
+  \end{aligned}
+  \]
+  The form \(-\dfrac{1+\sqrt{3}}{1-\sqrt{3}}\) is the same number. It equals \(\dfrac{1+\sqrt{3}}{\sqrt{3}-1}\), and multiplying the numerator and the denominator by \(\sqrt{3}+1\) gives \(\dfrac{4+2\sqrt{3}}{2}=2+\sqrt{3}\).
+provenance: handout-answer
+steps:
+  - Write \(\frac{5\pi}{12}=\frac{\pi}{4}+\frac{\pi}{6}\).
+  - Use the sum identities to get the sine and the cosine of \(\frac{5\pi}{12}\).
+  - Divide and rationalise the denominator to get \(2+\sqrt{3}\).
+verification:
+  checks:
+    - expr: 'sin(pi/4)*cos(pi/6) + cos(pi/4)*sin(pi/6)'
+      expected: "(sqrt(6) + sqrt(2))/4"
+    - expr: 'cos(pi/4)*cos(pi/6) - sin(pi/4)*sin(pi/6)'
+      expected: "(sqrt(6) - sqrt(2))/4"
+    - expr: 'tan(5*pi/12)'
+      expected: "2 + sqrt(3)"
+    - expr: '-(1 + sqrt(3))/(1 - sqrt(3))'
+      expected: "2 + sqrt(3)"
+:::
+
+
+::: exercise
+id: l1-trigonometry.handout-4-1-6
+number: "4.1.6"
+tier: standard
+topics:
+  - trig-identity
+  - double-angle
+statement: |
+  Verify the identity \(2\csc(2\theta)=\sec(\theta)\csc(\theta)\).
+solution: |
+  Both sides are defined when \(\sin\theta\neq 0\) and \(\cos\theta\neq 0\). Then \(\sin(2\theta)=2\sin\theta\cos\theta\) is nonzero as well, so the left side is defined too.
+
+  Start from the left side and write the cosecant as the reciprocal of the sine:
+  \[
+  \begin{aligned}
+  2\csc(2\theta)&=\frac{2}{\sin(2\theta)}\\
+  &=\frac{2}{2\sin\theta\cos\theta}\\
+  &=\frac{1}{\sin\theta\cos\theta}.
+  \end{aligned}
+  \]
+  Split the product in the denominator and use \(\sec\theta=\frac{1}{\cos\theta}\) and \(\csc\theta=\frac{1}{\sin\theta}\):
+  \[
+  \frac{1}{\sin\theta\cos\theta}=\frac{1}{\cos\theta}\cdot\frac{1}{\sin\theta}=\sec\theta\csc\theta.
+  \]
+  The left side equals the right side wherever both are defined.
+provenance: written-for-site
+steps:
+  - Write \(2\csc(2\theta)=\frac{2}{\sin(2\theta)}\) and use \(\sin(2\theta)=2\sin\theta\cos\theta\).
+  - Cancel the factor \(2\) to get \(\frac{1}{\sin\theta\cos\theta}\).
+  - Split into \(\sec\theta\csc\theta\).
+verification:
+  checks:
+    - expr: 'expand_trig(sin(2*theta)) - 2*sin(theta)*cos(theta)'
+      expected: "0"
+    - expr: 'simplify(expand_trig(2/sin(2*theta)) - 1/(sin(theta)*cos(theta)))'
+      expected: "0"
+    - expr: 'simplify(2/sin(2*theta) - 1/(cos(theta)*sin(theta)))'
+      expected: "0"
+:::
+
+
+::: exercise
+id: l1-trigonometry.handout-4-1-7
+number: "4.1.7"
+tier: standard
+topics:
+  - trig-identity
+statement: |
+  Verify the identity \(\sin(3\theta)-\sin(\theta)=2\cos(2\theta)\sin(\theta)\).
+solution: |
+  Write the two angles in terms of \(2\theta\) and \(\theta\):
+  \[
+  3\theta=2\theta+\theta,\qquad\theta=2\theta-\theta.
+  \]
+  The angle sum identity is \(\sin(\alpha+\beta)=\sin\alpha\cos\beta+\cos\alpha\sin\beta\). Sine is odd and cosine is even, so replacing \(\beta\) by \(-\beta\) gives \(\sin(\alpha-\beta)=\sin\alpha\cos\beta-\cos\alpha\sin\beta\). With \(\alpha=2\theta\) and \(\beta=\theta\),
+  \[
+  \begin{aligned}
+  \sin(3\theta)&=\sin(2\theta)\cos\theta+\cos(2\theta)\sin\theta,\\
+  \sin\theta&=\sin(2\theta)\cos\theta-\cos(2\theta)\sin\theta.
+  \end{aligned}
+  \]
+  Subtract the second line from the first. The terms \(\sin(2\theta)\cos\theta\) cancel, and the terms \(\cos(2\theta)\sin\theta\) add:
+  \[
+  \sin(3\theta)-\sin\theta=2\cos(2\theta)\sin\theta.
+  \]
+  This is the identity, and it holds for every real \(\theta\).
+provenance: written-for-site
+steps:
+  - Write \(3\theta=2\theta+\theta\) and \(\theta=2\theta-\theta\).
+  - Expand both sines with the angle sum identity.
+  - "Subtract: the \\(\\sin(2\\theta)\\cos\\theta\\) terms cancel and \\(2\\cos(2\\theta)\\sin\\theta\\) remains."
+verification:
+  checks:
+    - expr: 'expand_trig(sin(2*theta + theta)) - (sin(2*theta)*cos(theta) + cos(2*theta)*sin(theta))'
+      expected: "0"
+    - expr: 'expand_trig(sin(2*theta - theta)) - (sin(2*theta)*cos(theta) - cos(2*theta)*sin(theta))'
+      expected: "0"
+    - expr: 'simplify(expand_trig(sin(3*theta) - sin(theta) - 2*cos(2*theta)*sin(theta)))'
+      expected: "0"
+:::

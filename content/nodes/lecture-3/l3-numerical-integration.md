@@ -859,3 +859,246 @@ verification:
     - expr: Rational(64, 15*14**4)
       expected: "4/36015"
 :::
+
+::: exercise
+id: l3-numerical-integration.handout-8-6-5
+number: "8.6.5"
+tier: standard
+topics:
+  - numerical-integration
+statement: |
+  Compute the trapezoid approximation and the Simpson approximation, each with \(4\) subintervals, of
+  \[
+  \int_1^2 \frac{1}{1 + x^2}\,dx.
+  \]
+solution: |
+  The width is \(\Delta x = \frac{2 - 1}{4} = \frac{1}{4}\). The nodes are \(1, \frac{5}{4}, \frac{3}{2}, \frac{7}{4}, 2\). The samples of \(\frac{1}{1 + x^2}\) are
+  \[
+  \frac{1}{2},\quad \frac{16}{41},\quad \frac{4}{13},\quad \frac{16}{65},\quad \frac{1}{5}.
+  \]
+
+  The trapezoid approximation weights the endpoints by \(\frac{1}{2}\):
+  \[
+  \begin{aligned}
+  T_4&=\frac{1}{4}\left(\frac{1}{4} + \frac{16}{41} + \frac{4}{13} + \frac{16}{65} + \frac{1}{10}\right)\\
+  &=\frac{2759}{8528} \approx 0.3235.
+  \end{aligned}
+  \]
+  Simpson's rule uses the weights \(1, 4, 2, 4, 1\) and the factor \(\frac{\Delta x}{3} = \frac{1}{12}\):
+  \[
+  \begin{aligned}
+  S_4&=\frac{1}{12}\left(\frac{1}{2} + \frac{64}{41} + \frac{8}{13} + \frac{64}{65} + \frac{1}{5}\right)\\
+  &=\frac{1583}{4920} \approx 0.3217.
+  \end{aligned}
+  \]
+
+  The integral equals \(\arctan 2 - \arctan 1 = \arctan 2 - \frac{\pi}{4} \approx 0.32175\). Simpson's rule is closer to it than the trapezoid rule.
+provenance: handout-answer
+steps:
+  - The width is \(\frac{1}{4}\), and the samples are \(\frac{1}{2}, \frac{16}{41}, \frac{4}{13}, \frac{16}{65}, \frac{1}{5}\).
+  - The trapezoid approximation equals \(\frac{2759}{8528} \approx 0.3235\).
+  - The Simpson approximation equals \(\frac{1583}{4920} \approx 0.3217\).
+verification:
+  checks:
+    - expr: Rational(1, 4)*(Rational(1, 4) + Rational(16, 41) + Rational(4, 13) + Rational(16, 65) + Rational(1, 10))
+      expected: "2759/8528"
+    - expr: Rational(1, 12)*(Rational(1, 2) + Rational(64, 41) + Rational(8, 13) + Rational(64, 65) + Rational(1, 5))
+      expected: "1583/4920"
+    - expr: floor(10000*Rational(2759, 8528) + Rational(1, 2))
+      expected: "3235"
+    - expr: floor(10000*Rational(1583, 4920) + Rational(1, 2))
+      expected: "3217"
+    - expr: floor(100000*(atan(2) - pi/4) + Rational(1, 2))
+      expected: "32175"
+:::
+
+
+::: exercise
+id: l3-numerical-integration.handout-8-6-8
+number: "8.6.8"
+tier: standard
+topics:
+  - numerical-integration
+statement: |
+  Compute the trapezoid approximation and the Simpson approximation, each with \(4\) subintervals, of
+  \[
+  \int_0^1 \sqrt{x^3 + 1}\,dx.
+  \]
+solution: |
+  The width is \(\Delta x = \frac{1}{4}\). The nodes are \(0, \frac{1}{4}, \frac{1}{2}, \frac{3}{4}, 1\). The samples of \(\sqrt{x^3 + 1}\) are
+  \[
+  1,\quad \frac{\sqrt{65}}{8},\quad \frac{3\sqrt{2}}{4},\quad \frac{\sqrt{91}}{8},\quad \sqrt{2}.
+  \]
+  For example, \(f\left(\frac{1}{4}\right) = \sqrt{\frac{1}{64} + 1} = \frac{\sqrt{65}}{8}\), and \(f\left(\frac{1}{2}\right) = \sqrt{\frac{9}{8}} = \frac{3\sqrt{2}}{4}\).
+
+  The trapezoid approximation is
+  \[
+  \begin{aligned}
+  T_4&=\frac{1}{4}\left(\frac{1}{2} + \frac{\sqrt{65}}{8} + \frac{3\sqrt{2}}{4}\right.\\
+  &\quad\left.+ \frac{\sqrt{91}}{8} + \frac{\sqrt{2}}{2}\right)\\
+  &=\frac{1}{8} + \frac{\sqrt{65}}{32} + \frac{\sqrt{91}}{32} + \frac{5\sqrt{2}}{16}\\
+  &\approx 1.1170.
+  \end{aligned}
+  \]
+  Simpson's rule uses the weights \(1, 4, 2, 4, 1\) and the factor \(\frac{1}{12}\):
+  \[
+  \begin{aligned}
+  S_4&=\frac{1}{12}\left(1 + \frac{\sqrt{65}}{2} + \frac{3\sqrt{2}}{2}\right.\\
+  &\quad\left.+ \frac{\sqrt{91}}{2} + \sqrt{2}\right)\\
+  &=\frac{1}{12} + \frac{\sqrt{65}}{24} + \frac{\sqrt{91}}{24} + \frac{5\sqrt{2}}{24}\\
+  &\approx 1.1114.
+  \end{aligned}
+  \]
+provenance: handout-answer
+steps:
+  - The width is \(\frac{1}{4}\), and the samples are \(1, \frac{\sqrt{65}}{8}, \frac{3\sqrt{2}}{4}, \frac{\sqrt{91}}{8}, \sqrt{2}\).
+  - The trapezoid approximation is \(\frac{1}{8} + \frac{\sqrt{65}}{32} + \frac{\sqrt{91}}{32} + \frac{5\sqrt{2}}{16} \approx 1.1170\).
+  - The Simpson approximation is \(\frac{1}{12} + \frac{\sqrt{65}}{24} + \frac{\sqrt{91}}{24} + \frac{5\sqrt{2}}{24} \approx 1.1114\).
+verification:
+  checks:
+    - expr: (sqrt(Rational(1, 4)**3 + 1), sqrt(Rational(1, 2)**3 + 1), sqrt(Rational(3, 4)**3 + 1))
+      expected: "(sqrt(65)/8, 3*sqrt(2)/4, sqrt(91)/8)"
+    - expr: Rational(1, 4)*(Rational(1, 2) + sqrt(65)/8 + 3*sqrt(2)/4 + sqrt(91)/8 + sqrt(2)/2)
+      expected: "1/8 + sqrt(65)/32 + sqrt(91)/32 + 5*sqrt(2)/16"
+    - expr: Rational(1, 12)*(1 + 4*sqrt(65)/8 + 2*3*sqrt(2)/4 + 4*sqrt(91)/8 + sqrt(2))
+      expected: "1/12 + sqrt(65)/24 + sqrt(91)/24 + 5*sqrt(2)/24"
+    - expr: floor(10000*(Rational(1, 8) + sqrt(65)/32 + sqrt(91)/32 + 5*sqrt(2)/16) + Rational(1, 2))
+      expected: "11170"
+    - expr: floor(10000*(Rational(1, 12) + sqrt(65)/24 + sqrt(91)/24 + 5*sqrt(2)/24) + Rational(1, 2))
+      expected: "11114"
+:::
+
+
+::: exercise
+id: l3-numerical-integration.handout-8-6-10
+number: "8.6.10"
+tier: exam
+topics:
+  - numerical-integration
+statement: |
+  Compute the trapezoid approximation and the Simpson approximation, each with \(4\) subintervals, of
+  \[
+  \int_1^4 \sqrt{1 + \frac{1}{x}}\,dx.
+  \]
+solution: |
+  The width is \(\Delta x = \frac{4 - 1}{4} = \frac{3}{4}\). The nodes are \(1, \frac{7}{4}, \frac{5}{2}, \frac{13}{4}, 4\). Since \(1 + \frac{1}{x} = \frac{x + 1}{x}\), the samples of \(\sqrt{1 + \frac{1}{x}}\) are
+  \[
+  \begin{aligned}
+  f(1)&=\sqrt{2},\\
+  f\left(\tfrac{7}{4}\right)&=\sqrt{\tfrac{11}{7}} = \frac{\sqrt{77}}{7},\\
+  f\left(\tfrac{5}{2}\right)&=\sqrt{\tfrac{7}{5}} = \frac{\sqrt{35}}{5},\\
+  f\left(\tfrac{13}{4}\right)&=\sqrt{\tfrac{17}{13}} = \frac{\sqrt{221}}{13},\\
+  f(4)&=\sqrt{\tfrac{5}{4}} = \frac{\sqrt{5}}{2}.
+  \end{aligned}
+  \]
+
+  The trapezoid approximation weights the endpoints by \(\frac{1}{2}\):
+  \[
+  \begin{aligned}
+  T_4&=\frac{3}{4}\left(\frac{\sqrt{2}}{2} + \frac{\sqrt{77}}{7} + \frac{\sqrt{35}}{5}\right.\\
+  &\quad\left.+ \frac{\sqrt{221}}{13} + \frac{\sqrt{5}}{4}\right)\\
+  &\approx 3.6348 \approx 3.63.
+  \end{aligned}
+  \]
+  Simpson's rule uses the weights \(1, 4, 2, 4, 1\) and the factor \(\frac{\Delta x}{3} = \frac{1}{4}\):
+  \[
+  \begin{aligned}
+  S_4&=\frac{1}{4}\left(\sqrt{2} + \frac{4\sqrt{77}}{7} + \frac{2\sqrt{35}}{5}\right.\\
+  &\quad\left.+ \frac{4\sqrt{221}}{13} + \frac{\sqrt{5}}{2}\right)\\
+  &=\frac{\sqrt{2}}{4} + \frac{\sqrt{77}}{7} + \frac{\sqrt{35}}{10}\\
+  &\quad+ \frac{\sqrt{221}}{13} + \frac{\sqrt{5}}{8}\\
+  &\approx 3.6218 \approx 3.62.
+  \end{aligned}
+  \]
+provenance: handout-answer
+steps:
+  - The width is \(\frac{3}{4}\), and the samples are \(\sqrt{2}, \frac{\sqrt{77}}{7}, \frac{\sqrt{35}}{5}, \frac{\sqrt{221}}{13}, \frac{\sqrt{5}}{2}\).
+  - The trapezoid approximation is about \(3.6348\), which rounds to \(3.63\).
+  - The Simpson approximation is about \(3.6218\), which rounds to \(3.62\).
+verification:
+  checks:
+    - expr: (sqrt(1 + 1/Rational(7, 4)), sqrt(1 + 1/Rational(5, 2)), sqrt(1 + 1/Rational(13, 4)))
+      expected: "(sqrt(77)/7, sqrt(35)/5, sqrt(221)/13)"
+    - expr: Rational(3, 4)*(sqrt(2)/2 + sqrt(77)/7 + sqrt(35)/5 + sqrt(221)/13 + sqrt(5)/4)
+      expected: "3*sqrt(5)/16 + 3*sqrt(2)/8 + 3*sqrt(221)/52 + 3*sqrt(35)/20 + 3*sqrt(77)/28"
+    - expr: Rational(1, 4)*(sqrt(2) + 4*sqrt(77)/7 + 2*sqrt(35)/5 + 4*sqrt(221)/13 + sqrt(5)/2)
+      expected: "sqrt(2)/4 + sqrt(77)/7 + sqrt(35)/10 + sqrt(221)/13 + sqrt(5)/8"
+    - expr: floor(100*Rational(3, 4)*(sqrt(2)/2 + sqrt(77)/7 + sqrt(35)/5 + sqrt(221)/13 + sqrt(5)/4) + Rational(1, 2))
+      expected: "363"
+    - expr: floor(100*Rational(1, 4)*(sqrt(2) + 4*sqrt(77)/7 + 2*sqrt(35)/5 + 4*sqrt(221)/13 + sqrt(5)/2) + Rational(1, 2))
+      expected: "362"
+:::
+
+
+::: exercise
+id: l3-numerical-integration.handout-8-6-11
+number: "8.6.11"
+tier: exam
+topics:
+  - numerical-integration
+statement: |
+  Show that Simpson's rule with two subintervals is exact for a cubic \(f(x) = ax^3 + bx^2 + cx + d\). That is, show that
+  \[
+  \int_{x_0}^{x_2} f(x)\,dx = \frac{x_2 - x_0}{3 \cdot 2}\Bigl(f(x_0) + 4f\bigl(\tfrac{x_0 + x_2}{2}\bigr) + f(x_2)\Bigr).
+  \]
+  Shifting to a symmetric interval simplifies the algebra.
+solution: |
+  ### Shift to a symmetric interval
+
+  Let \(m = \frac{x_0 + x_2}{2}\) be the midpoint and \(h = \frac{x_2 - x_0}{2}\) the half-length. Then \(x_0 = m - h\), \(x_2 = m + h\), and the factor in front is
+  \[
+  \frac{x_2 - x_0}{3 \cdot 2} = \frac{2h}{6} = \frac{h}{3}.
+  \]
+  Define \(g(u) = f(m + u)\). Expanding the cubes and squares gives another cubic:
+  \[
+  g(u) = au^3 + Bu^2 + Cu + D,
+  \]
+  with \(B = 3am + b\) and \(D = am^3 + bm^2 + cm + d\). The value of \(C\) will not matter.
+
+  Let \(G\) be an antiderivative of \(g\). The function \(x \mapsto G(x - m)\) has derivative \(g(x - m) = f(x)\), so it is an antiderivative of \(f\). Therefore
+  \[
+  \int_{x_0}^{x_2} f(x)\,dx = G(h) - G(-h).
+  \]
+
+  ### The integral
+
+  Take \(G(u) = \frac{a}{4}u^4 + \frac{B}{3}u^3 + \frac{C}{2}u^2 + Du\). The even powers \(u^4\) and \(u^2\) take the same value at \(h\) and \(-h\), so they cancel in the difference. The odd powers \(u^3\) and \(u\) take opposite values, so they double:
+  \[
+  G(h) - G(-h) = \frac{2B}{3}h^3 + 2Dh.
+  \]
+
+  ### The Simpson expression
+
+  The odd terms of \(g\) cancel in \(g(h) + g(-h)\), and the even terms double:
+  \[
+  g(h) + g(-h) = 2Bh^2 + 2D.
+  \]
+  The midpoint value is \(g(0) = D\). Then
+  \[
+  \begin{aligned}
+  &\frac{h}{3}\bigl(g(-h) + 4g(0) + g(h)\bigr)\\
+  &=\frac{h}{3}\bigl(2Bh^2 + 2D + 4D\bigr)\\
+  &=\frac{2B}{3}h^3 + 2Dh.
+  \end{aligned}
+  \]
+
+  ### Conclusion
+
+  The two expressions are equal, so Simpson's rule with two subintervals returns the integral of every cubic exactly. The coefficients \(a\) and \(C\) drop out of both sides, which is why the cubic term costs nothing.
+provenance: written-for-site
+steps:
+  - Put \(m = \frac{x_0 + x_2}{2}\) and \(h = \frac{x_2 - x_0}{2}\), so the factor is \(\frac{h}{3}\).
+  - The shifted cubic \(g(u) = f(m + u)\) has the form \(au^3 + Bu^2 + Cu + D\).
+  - The integral over \([-h, h]\) equals \(\frac{2B}{3}h^3 + 2Dh\), because odd powers cancel.
+  - Simpson's expression equals \(\frac{h}{3}(2Bh^2 + 6D) = \frac{2B}{3}h^3 + 2Dh\).
+verification:
+  checks:
+    - expr: simplify(integrate(a*x**3 + b*x**2 + c*x + d, (x, x0, x2)) - (x2 - x0)/6*((a*x0**3 + b*x0**2 + c*x0 + d) + 4*(a*((x0 + x2)/2)**3 + b*((x0 + x2)/2)**2 + c*(x0 + x2)/2 + d) + (a*x2**3 + b*x2**2 + c*x2 + d)))
+      expected: "0"
+    - expr: expand(a*(m + u)**3 + b*(m + u)**2 + c*(m + u) + d - (a*u**3 + (3*a*m + b)*u**2 + (3*a*m**2 + 2*b*m + c)*u + (a*m**3 + b*m**2 + c*m + d)))
+      expected: "0"
+    - expr: integrate(a*u**3 + bb*u**2 + cc*u + dd, (u, -h, h)) - (2*bb*h**3/3 + 2*dd*h)
+      expected: "0"
+    - expr: expand(h/3*((a*(-h)**3 + bb*h**2 + cc*(-h) + dd) + 4*dd + (a*h**3 + bb*h**2 + cc*h + dd)) - (2*bb*h**3/3 + 2*dd*h))
+      expected: "0"
+:::

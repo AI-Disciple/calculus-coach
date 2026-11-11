@@ -13,6 +13,7 @@ sources:
   - { source: midterm-2024, page: 1 }
   - { source: midterm-2026-key, page: 4 }
   - { source: handout, page: 165 }
+  - { source: handout, section: "7.1" }
 examWeight: high
 examWeightNote: Every midterm has a set of five to seven integrals.
 notation: |
@@ -1442,5 +1443,831 @@ verification:
     - expr: integrate(Abs(t**2 - 4*t + 3), (t, 0, 4))
       expected: "4"
     - expr: expand(t*(t - 3)**2/3 - (t**3/3 - 2*t**2 + 3*t))
+      expected: "0"
+:::
+
+::: exercise
+id: l3-fundamental-theorem.handout-7-1-1
+number: "7.1.1"
+tier: basic
+topics:
+  - antiderivatives
+  - fundamental-theorem
+statement: |
+  An object moves in a straight line with speed \(v(t) = 2t + 2\). At \(t = 1\) it is at position \(5\). Find its position at \(t = 2\).
+solution: |
+  The position \(s(t)\) is an antiderivative of the speed, so \(s'(t) = 2t + 2\). Then
+  \[
+  s(t) = t^2 + 2t + C.
+  \]
+  The condition \(s(1) = 5\) fixes the constant:
+  \[
+  1 + 2 + C = 5, \qquad C = 2.
+  \]
+  So \(s(t) = t^2 + 2t + 2\), and
+  \[
+  s(2) = 4 + 4 + 2 = 10.
+  \]
+  The position at \(t = 2\) is \(10\).
+provenance: handout-answer
+steps:
+  - The position is an antiderivative of the speed, \(s(t) = t^2 + 2t + C\).
+  - The condition \(s(1) = 5\) gives \(C = 2\).
+  - The position at \(t = 2\) is \(10\).
+verification:
+  checks:
+    - expr: diff(t**2 + 2*t + 2, t)
+      expected: "2*t + 2"
+    - expr: (t**2 + 2*t + 2).subs(t, 1)
+      expected: "5"
+    - expr: (t**2 + 2*t + 2).subs(t, 2)
+      expected: "10"
+    - expr: 5 + integrate(2*t + 2, (t, 1, 2))
+      expected: "10"
+:::
+
+
+::: exercise
+id: l3-fundamental-theorem.handout-7-1-2
+number: "7.1.2"
+tier: standard
+topics:
+  - antiderivatives
+  - fundamental-theorem
+statement: |
+  An object moves in a straight line with speed \(v(t) = t^2 + 2\). At \(t = 0\) it is at position \(5\). Find its position at \(t = 2\).
+solution: |
+  The position is an antiderivative of the speed:
+  \[
+  s(t) = \frac{t^3}{3} + 2t + C.
+  \]
+  The condition \(s(0) = 5\) gives \(C = 5\). Then
+  \[
+  \begin{aligned}
+  s(2)&=\frac{8}{3} + 4 + 5\\
+  &=\frac{8}{3} + \frac{27}{3} = \frac{35}{3}.
+  \end{aligned}
+  \]
+  The position at \(t = 2\) is \(\frac{35}{3}\).
+provenance: handout-answer
+steps:
+  - The position is \(s(t) = \frac{t^3}{3} + 2t + C\).
+  - The condition \(s(0) = 5\) gives \(C = 5\).
+  - The position at \(t = 2\) is \(\frac{35}{3}\).
+verification:
+  checks:
+    - expr: diff(t**3/3 + 2*t + 5, t)
+      expected: "t**2 + 2"
+    - expr: (t**3/3 + 2*t + 5).subs(t, 0)
+      expected: "5"
+    - expr: (t**3/3 + 2*t + 5).subs(t, 2)
+      expected: "35/3"
+:::
+
+
+::: exercise
+id: l3-fundamental-theorem.handout-7-2-1
+number: "7.2.1"
+tier: basic
+topics:
+  - antiderivatives
+  - fundamental-theorem
+statement: |
+  Find the antiderivatives of \(8\sqrt{x}\).
+solution: |
+  Write \(8\sqrt{x} = 8x^{1/2}\), defined for \(x \ge 0\). An antiderivative of \(x^{1/2}\) is \(\frac{x^{3/2}}{3/2} = \frac{2}{3}x^{3/2}\). Therefore
+  \[
+  \int 8x^{1/2}\,dx = 8 \cdot \frac{2}{3}x^{3/2} = \frac{16}{3}x^{3/2}.
+  \]
+  Every antiderivative differs from this one by a constant. The antiderivatives are
+  \[
+  \frac{16}{3}x^{3/2} + C.
+  \]
+provenance: handout-answer
+steps:
+  - Rewrite \(8\sqrt{x}\) as \(8x^{1/2}\).
+  - An antiderivative of \(x^{1/2}\) is \(\frac{2}{3}x^{3/2}\).
+  - The antiderivatives are \(\frac{16}{3}x^{3/2} + C\).
+verification:
+  checks:
+    - expr: diff(Rational(16, 3)*x**Rational(3, 2), x)
+      expected: "8*sqrt(x)"
+    - expr: diff(2*x**Rational(3, 2)/3, x)
+      expected: "sqrt(x)"
+:::
+
+
+::: exercise
+id: l3-fundamental-theorem.handout-7-2-5
+number: "7.2.5"
+tier: basic
+topics:
+  - antiderivatives
+  - fundamental-theorem
+statement: |
+  Find the antiderivatives of \(\frac{7}{s}\), that is, of \(7s^{-1}\).
+solution: |
+  The power rule \(\int s^n\,ds = \frac{s^{n+1}}{n+1}\) fails for \(n = -1\), because the denominator is \(0\). An antiderivative of \(\frac{1}{s}\) is \(\ln|s|\), on any interval that does not contain \(0\). Therefore
+  \[
+  \int \frac{7}{s}\,ds = 7\ln|s| + C.
+  \]
+  For \(s > 0\) the absolute value can be dropped, and the antiderivatives are \(7\ln s + C\). For \(s < 0\) the antiderivatives are \(7\ln(-s) + C\).
+provenance: handout-answer
+steps:
+  - The power rule does not apply to \(s^{-1}\).
+  - An antiderivative of \(\frac{1}{s}\) is \(\ln|s|\) on an interval that avoids \(0\).
+  - The antiderivatives are \(7\ln|s| + C\), which equals \(7\ln s + C\) for \(s > 0\).
+verification:
+  checks:
+    - expr: diff(7*log(s), s)
+      expected: "7/s"
+    - expr: diff(7*log(-s), s)
+      expected: "7/s"
+:::
+
+
+::: exercise
+id: l3-fundamental-theorem.handout-7-2-6
+number: "7.2.6"
+tier: standard
+topics:
+  - antiderivatives
+  - fundamental-theorem
+statement: |
+  Find the antiderivatives of \((5x + 1)^2\).
+solution: |
+  The inner function \(5x + 1\) is linear with slope \(5\). The derivative of \((5x + 1)^3\) is \(3(5x + 1)^2 \cdot 5 = 15(5x + 1)^2\). So the factor \(\frac{1}{15}\) is needed:
+  \[
+  \frac{d}{dx}\,\frac{(5x + 1)^3}{15} = (5x + 1)^2.
+  \]
+  The antiderivatives are
+  \[
+  \frac{(5x + 1)^3}{15} + C.
+  \]
+  Expanding first gives the same family. The expansion is \(25x^2 + 10x + 1\), with antiderivative \(\frac{25x^3}{3} + 5x^2 + x\). That equals \(\frac{(5x+1)^3}{15} - \frac{1}{15}\), which differs from the first form by a constant.
+provenance: handout-answer
+steps:
+  - The derivative of \((5x + 1)^3\) is \(15(5x + 1)^2\).
+  - Divide by \(15\) to get an antiderivative \(\frac{(5x+1)^3}{15}\).
+  - The antiderivatives are \(\frac{(5x + 1)^3}{15} + C\).
+verification:
+  checks:
+    - expr: diff((5*x + 1)**3/15, x)
+      expected: "(5*x + 1)**2"
+    - expr: expand((5*x + 1)**2)
+      expected: "25*x**2 + 10*x + 1"
+    - expr: expand((5*x + 1)**3/15 - 1/Integer(15) - (25*x**3/3 + 5*x**2 + x))
+      expected: "0"
+:::
+
+
+::: exercise
+id: l3-fundamental-theorem.handout-7-2-9
+number: "7.2.9"
+tier: standard
+topics:
+  - antiderivatives
+  - fundamental-theorem
+statement: |
+  Find the antiderivatives of \(\frac{2}{x\sqrt{x}}\).
+solution: |
+  For \(x > 0\), \(x\sqrt{x} = x^{3/2}\), so the integrand is \(2x^{-3/2}\). The power rule with exponent \(-\frac{3}{2}\) gives
+  \[
+  \begin{aligned}
+  \int 2x^{-3/2}\,dx&=2 \cdot \frac{x^{-1/2}}{-1/2}\\
+  &=-4x^{-1/2}.
+  \end{aligned}
+  \]
+  The antiderivatives, on \((0, \infty)\), are
+  \[
+  -\frac{4}{\sqrt{x}} + C.
+  \]
+provenance: handout-answer
+steps:
+  - Rewrite the integrand as \(2x^{-3/2}\).
+  - The power rule gives \(\frac{2x^{-1/2}}{-1/2} = -4x^{-1/2}\).
+  - The antiderivatives are \(-\frac{4}{\sqrt{x}} + C\).
+verification:
+  checks:
+    - expr: diff(-4/sqrt(x), x)
+      expected: "2/(x*sqrt(x))"
+    - expr: simplify(2/(x*sqrt(x)) - 2*x**Rational(-3, 2))
+      expected: "0"
+:::
+
+
+::: exercise
+id: l3-fundamental-theorem.handout-7-2-10
+number: "7.2.10"
+tier: standard
+topics:
+  - antiderivatives
+  - fundamental-theorem
+statement: |
+  Find the antiderivatives of \(|2t - 4|\). Treat \(t < 2\) and \(t \ge 2\) separately, and choose the constants so that the antiderivative is continuous.
+solution: |
+  The expression \(2t - 4\) changes sign at \(t = 2\).
+
+  - For \(t < 2\), \(|2t - 4| = 4 - 2t\), with antiderivative \(4t - t^2 + C_1\).
+  - For \(t \ge 2\), \(|2t - 4| = 2t - 4\), with antiderivative \(t^2 - 4t + C_2\).
+
+  An antiderivative is differentiable, so it is continuous at \(t = 2\). The two formulas must agree there:
+  \[
+  \begin{aligned}
+  4 \cdot 2 - 2^2 + C_1&=2^2 - 4 \cdot 2 + C_2\\
+  4 + C_1&=-4 + C_2.
+  \end{aligned}
+  \]
+  So \(C_2 = C_1 + 8\). Write \(C = C_1\). The antiderivatives are
+  \[
+  F(t) =
+  \begin{cases}
+  4t - t^2 + C, & t < 2,\\
+  t^2 - 4t + 8 + C, & t \ge 2.
+  \end{cases}
+  \]
+  Both pieces have derivative \(0\) at \(t = 2\), which equals \(|2 \cdot 2 - 4|\), so \(F\) is differentiable there.
+provenance: handout-answer
+steps:
+  - Split at \(t = 2\), where \(2t - 4\) changes sign.
+  - Integrate each piece, \(4t - t^2 + C_1\) and \(t^2 - 4t + C_2\).
+  - Continuity at \(t = 2\) gives \(C_2 = C_1 + 8\).
+verification:
+  checks:
+    - expr: diff(4*t - t**2, t)
+      expected: "4 - 2*t"
+    - expr: diff(t**2 - 4*t + 8, t)
+      expected: "2*t - 4"
+    - expr: (4*t - t**2).subs(t, 2) - (t**2 - 4*t + 8).subs(t, 2)
+      expected: "0"
+    - expr: ((t**2 - 4*t + 8) - (4*t - t**2)).subs(t, 4) + (4*t - t**2).subs(t, 4) - (4*t - t**2).subs(t, 0)
+      expected: "8"
+    - expr: integrate(Abs(2*t - 4), (t, 0, 4))
+      expected: "8"
+:::
+
+
+::: exercise
+id: l3-fundamental-theorem.handout-7-2-11
+number: "7.2.11"
+tier: basic
+topics:
+  - antiderivatives
+  - fundamental-theorem
+statement: |
+  Compute \(\displaystyle\int_1^4 (t^2 + 3t)\,dt\).
+solution: |
+  An antiderivative of \(t^2 + 3t\) is \(\frac{t^3}{3} + \frac{3t^2}{2}\). Evaluating from \(1\) to \(4\) gives
+  \[
+  \begin{aligned}
+  &\int_1^4 (t^2 + 3t)\,dt\\
+  &=\left[\frac{t^3}{3} + \frac{3t^2}{2}\right]_1^4\\
+  &=\left(\frac{64}{3} + 24\right) - \left(\frac{1}{3} + \frac{3}{2}\right)\\
+  &=21 + \frac{45}{2} = \frac{87}{2}.
+  \end{aligned}
+  \]
+  The integral equals \(\frac{87}{2}\).
+provenance: handout-answer
+steps:
+  - An antiderivative is \(\frac{t^3}{3} + \frac{3t^2}{2}\).
+  - The value at \(4\) is \(\frac{64}{3} + 24\), and the value at \(1\) is \(\frac{1}{3} + \frac{3}{2}\).
+  - The integral equals \(\frac{87}{2}\).
+verification:
+  checks:
+    - expr: integrate(t**2 + 3*t, (t, 1, 4))
+      expected: "87/2"
+    - expr: diff(t**3/3 + 3*t**2/2, t)
+      expected: "t**2 + 3*t"
+:::
+
+
+::: exercise
+id: l3-fundamental-theorem.handout-7-2-13
+number: "7.2.13"
+tier: basic
+topics:
+  - antiderivatives
+  - fundamental-theorem
+statement: |
+  Compute \(\displaystyle\int_1^{10} \frac{1}{x}\,dx\).
+solution: |
+  On \([1, 10]\) the variable \(x\) is positive, and an antiderivative of \(\frac{1}{x}\) is \(\ln x\). Then
+  \[
+  \int_1^{10} \frac{1}{x}\,dx = \bigl[\ln x\bigr]_1^{10} = \ln 10 - \ln 1 = \ln 10.
+  \]
+  The integral equals \(\ln 10\), approximately \(2.303\).
+provenance: handout-answer
+steps:
+  - An antiderivative of \(\frac{1}{x}\) on \([1, 10]\) is \(\ln x\).
+  - The integral equals \(\ln 10 - \ln 1\).
+  - The value is \(\ln 10\).
+verification:
+  checks:
+    - expr: integrate(1/x, (x, 1, 10))
+      expected: "log(10)"
+    - expr: diff(log(x), x)
+      expected: "1/x"
+:::
+
+
+::: exercise
+id: l3-fundamental-theorem.handout-7-2-14
+number: "7.2.14"
+tier: basic
+topics:
+  - antiderivatives
+  - fundamental-theorem
+statement: |
+  Compute \(\displaystyle\int_0^5 e^x\,dx\).
+solution: |
+  The function \(e^x\) is its own derivative, so it is its own antiderivative. Then
+  \[
+  \int_0^5 e^x\,dx = \bigl[e^x\bigr]_0^5 = e^5 - e^0 = e^5 - 1.
+  \]
+  The integral equals \(e^5 - 1\), approximately \(147.4\).
+provenance: handout-answer
+steps:
+  - An antiderivative of \(e^x\) is \(e^x\).
+  - The integral equals \(e^5 - e^0\).
+  - The value is \(e^5 - 1\).
+verification:
+  checks:
+    - expr: integrate(exp(x), (x, 0, 5))
+      expected: "exp(5) - 1"
+:::
+
+
+::: exercise
+id: l3-fundamental-theorem.handout-7-2-16
+number: "7.2.16"
+tier: basic
+topics:
+  - antiderivatives
+  - fundamental-theorem
+statement: |
+  Compute \(\displaystyle\int_1^2 x^5\,dx\).
+solution: |
+  An antiderivative of \(x^5\) is \(\frac{x^6}{6}\). Then
+  \[
+  \begin{aligned}
+  \int_1^2 x^5\,dx&=\left[\frac{x^6}{6}\right]_1^2\\
+  &=\frac{2^6}{6} - \frac{1}{6}\\
+  &=\frac{63}{6} = \frac{21}{2}.
+  \end{aligned}
+  \]
+  The integral equals \(\frac{21}{2}\).
+provenance: handout-answer
+steps:
+  - An antiderivative of \(x^5\) is \(\frac{x^6}{6}\).
+  - The integral equals \(\frac{2^6}{6} - \frac{1}{6}\).
+  - The value is \(\frac{21}{2}\).
+verification:
+  checks:
+    - expr: integrate(x**5, (x, 1, 2))
+      expected: "21/2"
+    - expr: Rational(2**6, 6) - Rational(1, 6)
+      expected: "21/2"
+:::
+
+
+::: exercise
+id: l3-fundamental-theorem.handout-7-2-17
+number: "7.2.17"
+tier: basic
+topics:
+  - fundamental-theorem
+  - parameters
+statement: |
+  Find the derivative of \(G(x) = \displaystyle\int_1^x (t^2 - 3t)\,dt\).
+solution: |
+  The integrand \(t^2 - 3t\) is continuous, and the lower limit is the constant \(1\). By the fundamental theorem, \(G'(x)\) is the integrand evaluated at the upper limit:
+  \[
+  G'(x) = x^2 - 3x.
+  \]
+  As a check, an antiderivative of \(t^2 - 3t\) is \(\frac{t^3}{3} - \frac{3t^2}{2}\), so
+  \[
+  G(x) = \frac{x^3}{3} - \frac{3x^2}{2} - \left(\frac{1}{3} - \frac{3}{2}\right).
+  \]
+  The constant has derivative \(0\), and the derivative of the rest is \(x^2 - 3x\).
+provenance: handout-answer
+steps:
+  - The integrand is continuous and the upper limit is \(x\).
+  - The fundamental theorem gives \(G'(x) = x^2 - 3x\).
+verification:
+  checks:
+    - expr: diff(integrate(t**2 - 3*t, (t, 1, x)), x)
+      expected: "x**2 - 3*x"
+    - expr: diff(Integral(t**2 - 3*t, (t, 1, x)), x)
+      expected: "x**2 - 3*x"
+:::
+
+
+::: exercise
+id: l3-fundamental-theorem.handout-7-2-18
+number: "7.2.18"
+tier: standard
+topics:
+  - fundamental-theorem
+  - parameters
+statement: |
+  Find the derivative of \(G(x) = \displaystyle\int_1^{x^2} (t^2 - 3t)\,dt\).
+solution: |
+  Let \(H(u) = \int_1^u (t^2 - 3t)\,dt\). By the fundamental theorem, \(H'(u) = u^2 - 3u\). Then \(G(x) = H(x^2)\), and the chain rule gives
+  \[
+  \begin{aligned}
+  G'(x)&=H'(x^2) \cdot 2x\\
+  &=\bigl((x^2)^2 - 3x^2\bigr) \cdot 2x\\
+  &=2x(x^4 - 3x^2).
+  \end{aligned}
+  \]
+  The derivative is \(2x(x^4 - 3x^2) = 2x^5 - 6x^3\).
+provenance: handout-answer
+steps:
+  - Write \(G(x) = H(x^2)\) with \(H(u) = \int_1^u (t^2 - 3t)\,dt\).
+  - The fundamental theorem gives \(H'(u) = u^2 - 3u\).
+  - The chain rule gives \(G'(x) = 2x(x^4 - 3x^2)\).
+verification:
+  checks:
+    - expr: diff(integrate(t**2 - 3*t, (t, 1, x**2)), x)
+      expected: "2*x*(x**4 - 3*x**2)"
+    - expr: diff(Integral(t**2 - 3*t, (t, 1, x**2)), x)
+      expected: "2*x**5 - 6*x**3"
+:::
+
+
+::: exercise
+id: l3-fundamental-theorem.handout-7-2-20
+number: "7.2.20"
+tier: standard
+topics:
+  - fundamental-theorem
+  - parameters
+statement: |
+  Find the derivative of \(G(x) = \displaystyle\int_1^{x^2} e^{t^2}\,dt\).
+solution: |
+  The function \(e^{t^2}\) has no elementary antiderivative, so \(G\) cannot be computed in closed form. The fundamental theorem still gives the derivative.
+
+  Let \(H(u) = \int_1^u e^{t^2}\,dt\). Then \(H'(u) = e^{u^2}\), and \(G(x) = H(x^2)\). The chain rule gives
+  \[
+  \begin{aligned}
+  G'(x)&=H'(x^2) \cdot 2x\\
+  &=e^{(x^2)^2} \cdot 2x\\
+  &=2x\,e^{x^4}.
+  \end{aligned}
+  \]
+  The derivative is \(2x\,e^{x^4}\).
+provenance: handout-answer
+steps:
+  - Write \(G(x) = H(x^2)\) with \(H(u) = \int_1^u e^{t^2}\,dt\).
+  - The fundamental theorem gives \(H'(u) = e^{u^2}\).
+  - The chain rule gives \(G'(x) = 2x\,e^{x^4}\).
+verification:
+  checks:
+    - expr: diff(Integral(exp(t**2), (t, 1, x**2)), x)
+      expected: "2*x*exp(x**4)"
+    - expr: exp(u**2).subs(u, x**2)*diff(x**2, x)
+      expected: "2*x*exp(x**4)"
+:::
+
+
+::: exercise
+id: l3-fundamental-theorem.handout-7-3-1
+number: "7.3.1"
+tier: standard
+topics:
+  - antiderivatives
+  - fundamental-theorem
+statement: |
+  An object moves with velocity \(v(t) = -9.8t + 20\) m/s. Describe the motion between \(t = 0\) and \(t = 5\), and find the total distance travelled and the net distance travelled.
+solution: |
+  Write \(v(t) = -\frac{49}{5}t + 20\). The velocity is \(0\) at
+  \[
+  t = \frac{20}{49/5} = \frac{100}{49} \approx 2.04.
+  \]
+
+  ### Description of the motion
+
+  - On \([0, \frac{100}{49}]\) the velocity is positive, so the object moves forward and rises.
+  - On \([\frac{100}{49}, 5]\) the velocity is negative, so the object moves backward and falls.
+
+  The position is \(s(t) = -4.9t^2 + 20t + k\), where \(k = s(0)\) is the starting position.
+
+  ### Net distance
+
+  The net distance is the change of position:
+  \[
+  \begin{aligned}
+  s(5) - s(0)&=-4.9 \cdot 25 + 100\\
+  &=-122.5 + 100 = -\frac{45}{2}.
+  \end{aligned}
+  \]
+  At \(t = 5\) the object is \(\frac{45}{2} = 22.5\) m below its starting point.
+
+  ### Total distance
+
+  The turning point is at \(t = \frac{100}{49}\). The position change up to there is
+  \[
+  \begin{aligned}
+  &s\left(\tfrac{100}{49}\right) - s(0)\\
+  &=-\frac{49}{10}\cdot\frac{10000}{2401} + \frac{2000}{49}\\
+  &=-\frac{1000}{49} + \frac{2000}{49} = \frac{1000}{49}.
+  \end{aligned}
+  \]
+  The position change from the turning point to \(t = 5\) is
+  \[
+  -\frac{45}{2} - \frac{1000}{49} = -\frac{2205 + 2000}{98} = -\frac{4205}{98}.
+  \]
+  The total distance adds the lengths of the two pieces:
+  \[
+  \frac{1000}{49} + \frac{4205}{98} = \frac{2000 + 4205}{98} = \frac{6205}{98}.
+  \]
+  The total distance is \(\frac{6205}{98} \approx 63.3\) m, and the net distance is \(-\frac{45}{2}\) m.
+provenance: handout-answer
+steps:
+  - The velocity vanishes at \(t = \frac{100}{49}\), positive before and negative after.
+  - The net distance is \(\int_0^5 v(t)\,dt = -\frac{45}{2}\).
+  - The distance up to the turning point is \(\frac{1000}{49}\), and the distance back is \(\frac{4205}{98}\).
+  - The total distance is \(\frac{6205}{98}\).
+verification:
+  checks:
+    - expr: solve(-Rational(49, 5)*t + 20, t)
+      expected: "[Rational(100, 49)]"
+    - expr: integrate(-Rational(49, 5)*t + 20, (t, 0, 5))
+      expected: "-45/2"
+    - expr: integrate(-Rational(49, 5)*t + 20, (t, 0, Rational(100, 49)))
+      expected: "1000/49"
+    - expr: integrate(-Rational(49, 5)*t + 20, (t, Rational(100, 49), 5))
+      expected: "-4205/98"
+    - expr: integrate(-Rational(49, 5)*t + 20, (t, 0, Rational(100, 49))) - integrate(-Rational(49, 5)*t + 20, (t, Rational(100, 49), 5))
+      expected: "6205/98"
+:::
+
+
+::: exercise
+id: l3-fundamental-theorem.handout-7-3-2
+number: "7.3.2"
+tier: basic
+topics:
+  - antiderivatives
+  - fundamental-theorem
+statement: |
+  An object moves with velocity \(v(t) = \sin t\). Set up and evaluate a single definite integral for the net distance travelled between \(t = 0\) and \(t = 2\pi\).
+solution: |
+  The net distance is the change of position, which is the integral of the velocity over the whole interval:
+  \[
+  \int_0^{2\pi} \sin t\,dt.
+  \]
+  An antiderivative of \(\sin t\) is \(-\cos t\), so
+  \[
+  \begin{aligned}
+  \int_0^{2\pi} \sin t\,dt&=\bigl[-\cos t\bigr]_0^{2\pi}\\
+  &=-\cos 2\pi + \cos 0\\
+  &=-1 + 1 = 0.
+  \end{aligned}
+  \]
+  The net distance is \(0\). The object ends at its starting point. The total distance is larger, because the velocity is negative on \((\pi, 2\pi)\). Splitting there gives \(2 + 2 = 4\).
+provenance: handout-answer
+steps:
+  - The net distance is the single integral \(\int_0^{2\pi} \sin t\,dt\).
+  - An antiderivative is \(-\cos t\).
+  - The integral equals \(-1 + 1 = 0\).
+verification:
+  checks:
+    - expr: integrate(sin(t), (t, 0, 2*pi))
+      expected: "0"
+    - expr: integrate(sin(t), (t, 0, pi)) - integrate(sin(t), (t, pi, 2*pi))
+      expected: "4"
+:::
+
+
+::: exercise
+id: l3-fundamental-theorem.handout-7-3-3
+number: "7.3.3"
+tier: standard
+topics:
+  - antiderivatives
+  - fundamental-theorem
+statement: |
+  An object moves with velocity \(v(t) = 1 + 2\sin t\) m/s. Find the net distance travelled between \(t = 0\) and \(t = 2\pi\), and the total distance travelled over the same period.
+solution: |
+  An antiderivative of \(v\) is \(V(t) = t - 2\cos t\).
+
+  ### Net distance
+
+  \[
+  \begin{aligned}
+  \int_0^{2\pi} v(t)\,dt&=V(2\pi) - V(0)\\
+  &=(2\pi - 2) - (0 - 2) = 2\pi.
+  \end{aligned}
+  \]
+  The net distance is \(2\pi\) m.
+
+  ### Sign of the velocity
+
+  The velocity vanishes when \(\sin t = -\frac{1}{2}\). On \([0, 2\pi]\) this happens at \(t = \frac{7\pi}{6}\) and \(t = \frac{11\pi}{6}\).
+
+  - On \([0, \frac{7\pi}{6}]\) and on \([\frac{11\pi}{6}, 2\pi]\) the velocity is nonnegative.
+  - On \([\frac{7\pi}{6}, \frac{11\pi}{6}]\) the velocity is nonpositive.
+
+  ### Total distance
+
+  The integral over the middle piece is
+  \[
+  \begin{aligned}
+  &V\left(\tfrac{11\pi}{6}\right) - V\left(\tfrac{7\pi}{6}\right)\\
+  &=\frac{4\pi}{6} - 2\cos\tfrac{11\pi}{6} + 2\cos\tfrac{7\pi}{6}\\
+  &=\frac{2\pi}{3} - \sqrt{3} - \sqrt{3} = \frac{2\pi}{3} - 2\sqrt{3}.
+  \end{aligned}
+  \]
+  This number is negative. The total distance equals the net distance minus twice the negative piece:
+  \[
+  \begin{aligned}
+  2\pi - 2\left(\frac{2\pi}{3} - 2\sqrt{3}\right)&=2\pi - \frac{4\pi}{3} + 4\sqrt{3}\\
+  &=\frac{2\pi}{3} + 4\sqrt{3}.
+  \end{aligned}
+  \]
+  The total distance is \(\frac{2\pi}{3} + 4\sqrt{3} \approx 9.02\) m.
+provenance: handout-answer
+steps:
+  - An antiderivative of \(v\) is \(t - 2\cos t\), and the net distance is \(2\pi\).
+  - The velocity is negative exactly on \((\frac{7\pi}{6}, \frac{11\pi}{6})\).
+  - The integral over that piece is \(\frac{2\pi}{3} - 2\sqrt{3}\).
+  - The total distance is \(2\pi - 2\left(\frac{2\pi}{3} - 2\sqrt{3}\right) = \frac{2\pi}{3} + 4\sqrt{3}\).
+verification:
+  checks:
+    - expr: integrate(1 + 2*sin(t), (t, 0, 2*pi))
+      expected: "2*pi"
+    - expr: (1 + 2*sin(t)).subs(t, 7*pi/6)
+      expected: "0"
+    - expr: (1 + 2*sin(t)).subs(t, 11*pi/6)
+      expected: "0"
+    - expr: integrate(1 + 2*sin(t), (t, 7*pi/6, 11*pi/6))
+      expected: "2*pi/3 - 2*sqrt(3)"
+    - expr: 2*pi - 2*integrate(1 + 2*sin(t), (t, 7*pi/6, 11*pi/6))
+      expected: "2*pi/3 + 4*sqrt(3)"
+:::
+
+
+::: exercise
+id: l3-fundamental-theorem.handout-7-3-4
+number: "7.3.4"
+tier: standard
+topics:
+  - antiderivatives
+  - fundamental-theorem
+statement: |
+  Let \(f(x) = (x + 2)(x + 1)(x - 1)(x - 2)\) on \([-2, 2]\). Find the total area between the curve and the x-axis, with all area counted as positive.
+solution: |
+  Group the factors as \((x + 2)(x - 2) = x^2 - 4\) and \((x + 1)(x - 1) = x^2 - 1\). Then
+  \[
+  f(x) = (x^2 - 4)(x^2 - 1) = x^4 - 5x^2 + 4.
+  \]
+  The function is even, and its roots are \(\pm 1\) and \(\pm 2\). By symmetry the total area is twice the area on \([0, 2]\).
+
+  - On \((0, 1)\) both factors \(x^2 - 4\) and \(x^2 - 1\) are negative, so \(f > 0\).
+  - On \((1, 2)\) the factor \(x^2 - 4\) is negative and \(x^2 - 1\) is positive, so \(f < 0\).
+
+  An antiderivative of \(f\) is \(F(x) = \frac{x^5}{5} - \frac{5x^3}{3} + 4x\). Its values are
+  \[
+  \begin{aligned}
+  F(0)&=0,\\
+  F(1)&=\frac{1}{5} - \frac{5}{3} + 4 = \frac{38}{15},\\
+  F(2)&=\frac{32}{5} - \frac{40}{3} + 8 = \frac{16}{15}.
+  \end{aligned}
+  \]
+  The area on \([0, 1]\) is \(F(1) - F(0) = \frac{38}{15}\). The signed integral on \([1, 2]\) is \(F(2) - F(1) = -\frac{22}{15}\), so the area there is \(\frac{22}{15}\). The total area is
+  \[
+  2\left(\frac{38}{15} + \frac{22}{15}\right) = 2 \cdot 4 = 8.
+  \]
+  The total area is \(8\).
+provenance: handout-answer
+steps:
+  - Expand \(f(x) = x^4 - 5x^2 + 4\). It is even with roots \(\pm 1\) and \(\pm 2\).
+  - The function is positive on \((0, 1)\) and negative on \((1, 2)\).
+  - Use \(F(x) = \frac{x^5}{5} - \frac{5x^3}{3} + 4x\) on each piece.
+  - The total area is \(2\left(\frac{38}{15} + \frac{22}{15}\right) = 8\).
+verification:
+  checks:
+    - expr: expand((x + 2)*(x + 1)*(x - 1)*(x - 2))
+      expected: "x**4 - 5*x**2 + 4"
+    - expr: integrate(x**4 - 5*x**2 + 4, (x, 0, 1))
+      expected: "38/15"
+    - expr: integrate(x**4 - 5*x**2 + 4, (x, 1, 2))
+      expected: "-22/15"
+    - expr: 2*(integrate(x**4 - 5*x**2 + 4, (x, 0, 1)) - integrate(x**4 - 5*x**2 + 4, (x, 1, 2)))
+      expected: "8"
+:::
+
+
+::: exercise
+id: l3-fundamental-theorem.handout-7-3-5
+number: "7.3.5"
+tier: standard
+topics:
+  - antiderivatives
+  - fundamental-theorem
+statement: |
+  Let \(f(x) = x^2 - 3x + 2\) on \([0, 4]\). Find the total area between the curve and the x-axis, with all area counted as positive.
+solution: |
+  The function factors as \(f(x) = (x - 1)(x - 2)\). Its roots are \(1\) and \(2\), so the interval splits into three pieces.
+
+  - On \([0, 1]\), \(f \ge 0\).
+  - On \([1, 2]\), \(f \le 0\).
+  - On \([2, 4]\), \(f \ge 0\).
+
+  An antiderivative of \(f\) is \(F(x) = \frac{x^3}{3} - \frac{3x^2}{2} + 2x\). Its values are
+  \[
+  \begin{aligned}
+  F(0)&=0,\\
+  F(1)&=\frac{1}{3} - \frac{3}{2} + 2 = \frac{5}{6},\\
+  F(2)&=\frac{8}{3} - 6 + 4 = \frac{2}{3},\\
+  F(4)&=\frac{64}{3} - 24 + 8 = \frac{16}{3}.
+  \end{aligned}
+  \]
+  The three areas are
+  \[
+  \begin{aligned}
+  F(1) - F(0)&=\frac{5}{6},\\
+  -\bigl(F(2) - F(1)\bigr)&=\frac{5}{6} - \frac{4}{6} = \frac{1}{6},\\
+  F(4) - F(2)&=\frac{16}{3} - \frac{2}{3} = \frac{14}{3}.
+  \end{aligned}
+  \]
+  The total area is
+  \[
+  \frac{5}{6} + \frac{1}{6} + \frac{14}{3} = 1 + \frac{14}{3} = \frac{17}{3}.
+  \]
+  The total area is \(\frac{17}{3}\). The signed integral \(F(4) - F(0) = \frac{16}{3}\) is smaller, because the middle piece counts negatively.
+provenance: handout-answer
+steps:
+  - Factor \(f(x) = (x - 1)(x - 2)\) and split \([0, 4]\) at \(1\) and \(2\).
+  - The function is nonnegative on \([0, 1]\) and \([2, 4]\), and nonpositive on \([1, 2]\).
+  - The three areas are \(\frac{5}{6}\), \(\frac{1}{6}\) and \(\frac{14}{3}\).
+  - The total area is \(\frac{17}{3}\).
+verification:
+  checks:
+    - expr: factor(x**2 - 3*x + 2)
+      expected: "(x - 1)*(x - 2)"
+    - expr: integrate(x**2 - 3*x + 2, (x, 0, 1))
+      expected: "5/6"
+    - expr: integrate(x**2 - 3*x + 2, (x, 1, 2))
+      expected: "-1/6"
+    - expr: integrate(x**2 - 3*x + 2, (x, 2, 4))
+      expected: "14/3"
+    - expr: integrate(Abs(x**2 - 3*x + 2), (x, 0, 4))
+      expected: "17/3"
+:::
+
+
+::: exercise
+id: l3-fundamental-theorem.handout-7-3-6
+number: "7.3.6"
+tier: standard
+topics:
+  - antiderivatives
+  - fundamental-theorem
+statement: |
+  Evaluate the three integrals
+  \[
+  A = \int_0^3 (-x^2 + 9)\,dx, \qquad B = \int_0^4 (-x^2 + 9)\,dx, \qquad C = \int_4^3 (-x^2 + 9)\,dx,
+  \]
+  where \(C\) has lower limit \(4\) and upper limit \(3\). Verify that \(A = B + C\).
+solution: |
+  An antiderivative of \(-x^2 + 9\) is \(F(x) = -\frac{x^3}{3} + 9x\). Its values are
+  \[
+  \begin{aligned}
+  F(0)&=0,\\
+  F(3)&=-9 + 27 = 18,\\
+  F(4)&=-\frac{64}{3} + 36 = \frac{44}{3}.
+  \end{aligned}
+  \]
+  The three integrals are
+  \[
+  \begin{aligned}
+  A&=F(3) - F(0) = 18,\\
+  B&=F(4) - F(0) = \frac{44}{3},\\
+  C&=F(3) - F(4) = 18 - \frac{44}{3} = \frac{10}{3}.
+  \end{aligned}
+  \]
+  The integral \(C\) runs from \(4\) down to \(3\). It equals \(-\int_3^4 (-x^2 + 9)\,dx\). The integrand is negative on \((3, 4]\), so the integral from \(3\) to \(4\) is negative and \(C\) is positive.
+
+  The sum is
+  \[
+  B + C = \frac{44}{3} + \frac{10}{3} = \frac{54}{3} = 18 = A.
+  \]
+  This is additivity: the integral from \(0\) to \(4\) followed by the integral back from \(4\) to \(3\) equals the integral from \(0\) to \(3\).
+provenance: handout-answer
+steps:
+  - An antiderivative is \(F(x) = -\frac{x^3}{3} + 9x\).
+  - The integrals are \(A = 18\), \(B = \frac{44}{3}\) and \(C = F(3) - F(4) = \frac{10}{3}\).
+  - The sum \(B + C = 18\) equals \(A\).
+verification:
+  checks:
+    - expr: integrate(-x**2 + 9, (x, 0, 3))
+      expected: "18"
+    - expr: integrate(-x**2 + 9, (x, 0, 4))
+      expected: "44/3"
+    - expr: integrate(-x**2 + 9, (x, 4, 3))
+      expected: "10/3"
+    - expr: integrate(-x**2 + 9, (x, 0, 4)) + integrate(-x**2 + 9, (x, 4, 3)) - integrate(-x**2 + 9, (x, 0, 3))
       expected: "0"
 :::

@@ -16,6 +16,7 @@ sources:
   - { source: functions-and-graphs, page: 24 }
   - { source: sheet-0, page: 1 }
   - { source: midterm-app }
+  - { source: handout, section: "4.1" }
 examWeight: low
 status: reviewed
 notation: |
@@ -599,4 +600,553 @@ verification:
       expected: "0"
     - expr: (1**2 + 1, (-1)**2 + (-1))
       expected: (2, 0)
+:::
+
+::: exercise
+id: l1-transformations.handout-1-4-2
+number: "1.4.2"
+tier: standard
+topics:
+  - shifts
+  - symmetry
+statement: |
+  Start from the graph of \(y=1/x\). Sketch the graph of \(f(x)=-1-\dfrac{1}{x+2}\).
+solution: |
+  Build the graph from \(y=1/x\) in three steps.
+
+  1. Shift left by \(2\), which replaces \(x\) by \(x+2\): \(y=\dfrac{1}{x+2}\).
+  2. Reflect in the \(x\)-axis, which changes the sign of the height: \(y=-\dfrac{1}{x+2}\).
+  3. Shift down by \(1\): \(y=-1-\dfrac{1}{x+2}\).
+
+  The reflection comes before the downward shift. Reflecting after the shift would turn \(-1\) into \(+1\).
+
+  The asymptotes of \(y=1/x\) are the two axes. The shifts move them to the vertical line \(x=-2\) and the horizontal line \(y=-1\).
+
+  The point \((1,1)\) moves to \((-1,1)\), then to \((-1,-1)\), then to \((-1,-2)\). The formula agrees:
+  \[
+  f(-1)=-1-\frac{1}{1}=-2.
+  \]
+
+  The axis crossings are
+  \[
+  \begin{aligned}
+  f(0)&=-1-\tfrac{1}{2}=-\tfrac{3}{2},\\
+  f(x)=0&\iff\frac{1}{x+2}=-1\iff x=-3.
+  \end{aligned}
+  \]
+
+  For \(x>-2\) the term \(\frac{1}{x+2}\) is positive, so \(f(x)<-1\). That branch lies below the line \(y=-1\) and runs from \(-\infty\) at \(x=-2\) up toward \(-1\). For \(x<-2\) the term is negative, so \(f(x)>-1\). That branch lies above the line \(y=-1\), passes through \((-3,0)\), and rises to \(+\infty\) as \(x\) approaches \(-2\) from the left.
+provenance: written-for-site
+steps:
+  - Shift left by \(2\), reflect in the \(x\)-axis, then shift down by \(1\).
+  - The asymptotes are \(x=-2\) and \(y=-1\).
+  - The graph passes through \((-1,-2)\), \((-3,0)\) and \(\left(0,-\tfrac{3}{2}\right)\).
+verification:
+  checks:
+    - expr: '(-1 - 1/(x + 2)).subs(x, -1)'
+      expected: "-2"
+    - expr: '(-1 - 1/(x + 2)).subs(x, 0)'
+      expected: "-3/2"
+    - expr: 'solve(-1 - 1/(x + 2), x)'
+      expected: "[-3]"
+    - expr: 'limit(-1 - 1/(x + 2), x, oo)'
+      expected: "-1"
+    - expr: '(1/limit(-1 - 1/(x + 2), x, -2, dir="+"), sign(limit(-1 - 1/(x + 2), x, -2, dir="+")))'
+      expected: "(0, -1)"
+    - expr: '(1/limit(-1 - 1/(x + 2), x, -2, dir="-"), sign(limit(-1 - 1/(x + 2), x, -2, dir="-")))'
+      expected: "(0, 1)"
+:::
+
+
+::: exercise
+id: l1-transformations.handout-1-4-4
+number: "1.4.4"
+tier: standard
+topics:
+  - shifts
+  - symmetry
+statement: |
+  Start from the graph of \(y=1/x\). Sketch the graph of \(f(x)=\dfrac{x}{1-x}\).
+solution: |
+  Rewrite the formula so that it contains \(1/(x-1)\). For \(x\neq 1\),
+  \[
+  \begin{aligned}
+  \frac{x}{1-x}&=-\frac{x}{x-1}\\
+  &=-\frac{(x-1)+1}{x-1}\\
+  &=-1-\frac{1}{x-1}.
+  \end{aligned}
+  \]
+
+  Build the graph from \(y=1/x\) in three steps.
+
+  1. Shift right by \(1\), which replaces \(x\) by \(x-1\): \(y=\dfrac{1}{x-1}\).
+  2. Reflect in the \(x\)-axis: \(y=-\dfrac{1}{x-1}\).
+  3. Shift down by \(1\): \(y=-1-\dfrac{1}{x-1}\).
+
+  The asymptotes move to the vertical line \(x=1\) and the horizontal line \(y=-1\).
+
+  The point \((1,1)\) of \(y=1/x\) moves to \((2,1)\), then to \((2,-1)\), then to \((2,-2)\). The original formula agrees:
+  \[
+  f(2)=\frac{2}{1-2}=-2.
+  \]
+  The graph passes through the origin, because \(f(0)=0\), and through \(\left(-1,-\tfrac{1}{2}\right)\).
+
+  For \(x>1\) the term \(\frac{1}{x-1}\) is positive, so \(f(x)<-1\). That branch lies below \(y=-1\), falls to \(-\infty\) as \(x\) approaches \(1\) from the right, and passes through \((2,-2)\). For \(x<1\) the term is negative, so \(f(x)>-1\). That branch lies above \(y=-1\), passes through \((0,0)\), and rises to \(+\infty\) as \(x\) approaches \(1\) from the left.
+provenance: written-for-site
+steps:
+  - Rewrite \(\dfrac{x}{1-x}\) as \(-1-\dfrac{1}{x-1}\).
+  - Shift right by \(1\), reflect in the \(x\)-axis, then shift down by \(1\).
+  - The asymptotes are \(x=1\) and \(y=-1\), and the graph passes through the origin and \((2,-2)\).
+verification:
+  checks:
+    - expr: 'simplify(x/(1 - x) - (-1 - 1/(x - 1)))'
+      expected: "0"
+    - expr: '(x/(1 - x)).subs(x, 2)'
+      expected: "-2"
+    - expr: '(x/(1 - x)).subs(x, 0)'
+      expected: "0"
+    - expr: 'limit(x/(1 - x), x, oo)'
+      expected: "-1"
+    - expr: '(1/limit(x/(1 - x), x, 1, dir="+"), sign(limit(x/(1 - x), x, 1, dir="+")))'
+      expected: "(0, -1)"
+    - expr: '(1/limit(x/(1 - x), x, 1, dir="-"), sign(limit(x/(1 - x), x, 1, dir="-")))'
+      expected: "(0, 1)"
+:::
+
+
+::: exercise
+id: l1-transformations.handout-1-4-5
+number: "1.4.5"
+tier: standard
+topics:
+  - symmetry
+statement: |
+  Start from the graph of \(y=\sqrt{x}\). Sketch the graph of \(f(x)=-\sqrt{-x}\).
+solution: |
+  Build the graph from \(y=\sqrt{x}\) in two steps.
+
+  1. Reflect in the \(y\)-axis, which replaces \(x\) by \(-x\): \(y=\sqrt{-x}\). The root needs \(-x\ge 0\), so the domain is \((-\infty,0]\).
+  2. Reflect in the \(x\)-axis, which changes the sign of the height: \(y=-\sqrt{-x}\).
+
+  The two reflections can be applied in either order, because one changes only the input and the other only the output.
+
+  A point \((x,y)\) moves to \((-x,-y)\). Together the reflections are a half turn about the origin. The point \((1,1)\) moves to \((-1,-1)\), and the formula agrees:
+  \[
+  f(-1)=-\sqrt{1}=-1.
+  \]
+  The graph starts at the origin and runs down and to the left through \((-1,-1)\) and \((-4,-2)\). Its domain is \((-\infty,0]\), and every height is at most \(0\).
+provenance: written-for-site
+steps:
+  - Reflect in the \(y\)-axis to get \(\sqrt{-x}\) on the domain \((-\infty,0]\).
+  - Reflect in the \(x\)-axis to get \(-\sqrt{-x}\).
+  - The graph passes through \((0,0)\), \((-1,-1)\) and \((-4,-2)\).
+verification:
+  checks:
+    - expr: '(-sqrt(-x)).subs(x, -1)'
+      expected: "-1"
+    - expr: '(-sqrt(-x)).subs(x, -4)'
+      expected: "-2"
+    - expr: '(-sqrt(-x)).subs(x, 0)'
+      expected: "0"
+    - expr: '(1/limit(-sqrt(-x), x, -oo), sign(limit(-sqrt(-x), x, -oo)))'
+      expected: "(0, -1)"
+:::
+
+
+::: exercise
+id: l1-transformations.handout-1-4-6
+number: "1.4.6"
+tier: standard
+topics:
+  - shifts
+statement: |
+  Start from the graph of the upper unit semicircle \(y=\sqrt{1-x^{2}}\). Sketch the graph of \(f(x)=2+\sqrt{1-(x-1)^{2}}\).
+solution: |
+  Build the graph from the semicircle in two steps.
+
+  1. Shift right by \(1\), which replaces \(x\) by \(x-1\): \(y=\sqrt{1-(x-1)^{2}}\).
+  2. Shift up by \(2\): \(y=2+\sqrt{1-(x-1)^{2}}\).
+
+  The root needs \(1-(x-1)^{2}\ge 0\), so \(|x-1|\le 1\) and the domain is \([0,2]\). The heights run from \(2\) to \(3\).
+
+  The shifts carry three points of the semicircle:
+  \[
+  \begin{aligned}
+  (-1,0)&\mapsto(0,2),\\
+  (0,1)&\mapsto(1,3),\\
+  (1,0)&\mapsto(2,2).
+  \end{aligned}
+  \]
+  The graph is the upper half of the circle of radius \(1\) centred at \((1,2)\). It starts at \((0,2)\), reaches the top \((1,3)\) and ends at \((2,2)\).
+provenance: written-for-site
+steps:
+  - Shift right by \(1\), then up by \(2\).
+  - The domain is \([0,2]\).
+  - The graph is the upper half of the circle of radius \(1\) with centre \((1,2)\).
+verification:
+  checks:
+    - expr: '(2 + sqrt(1 - (x - 1)**2)).subs(x, 0)'
+      expected: "2"
+    - expr: '(2 + sqrt(1 - (x - 1)**2)).subs(x, 1)'
+      expected: "3"
+    - expr: '(2 + sqrt(1 - (x - 1)**2)).subs(x, 2)'
+      expected: "2"
+    - expr: '(x - 1)**2 + (sqrt(1 - (x - 1)**2))**2'
+      expected: "1"
+:::
+
+
+::: exercise
+id: l1-transformations.handout-1-4-8
+number: "1.4.8"
+tier: standard
+topics:
+  - dilations
+statement: |
+  Start from the graph of the upper unit semicircle \(y=\sqrt{1-x^{2}}\). Sketch the graph of \(f(x)=2\sqrt{1-\left(\dfrac{x}{3}\right)^{2}}\).
+solution: |
+  Build the graph from the semicircle in two steps.
+
+  1. Replace \(x\) by \(x/3\). This is a horizontal dilation with \(A=3\): distances from the \(y\)-axis are multiplied by \(3\), and the heights stay. The formula is \(y=\sqrt{1-(x/3)^{2}}\).
+  2. Multiply the height by \(2\). This is a vertical dilation with \(B=2\), and the formula is \(y=2\sqrt{1-(x/3)^{2}}\).
+
+  The root needs \(|x/3|\le 1\), so the domain is \([-3,3]\). The dilations carry three points of the semicircle:
+  \[
+  \begin{aligned}
+  (-1,0)&\mapsto(-3,0),\\
+  (0,1)&\mapsto(0,2),\\
+  (1,0)&\mapsto(3,0).
+  \end{aligned}
+  \]
+  Squaring the equation \(y=f(x)\) gives
+  \[
+  \left(\frac{x}{3}\right)^{2}+\left(\frac{y}{2}\right)^{2}=1,\qquad y\ge 0.
+  \]
+  The graph is the upper half of the ellipse with half-width \(3\) and half-height \(2\), centred at the origin.
+provenance: written-for-site
+steps:
+  - Dilate horizontally by \(3\), then vertically by \(2\).
+  - The domain is \([-3,3]\) and the top point is \((0,2)\).
+  - The graph is the upper half of the ellipse \(\frac{x^{2}}{9}+\frac{y^{2}}{4}=1\).
+verification:
+  checks:
+    - expr: '(2*sqrt(1 - (x/3)**2)).subs(x, 3)'
+      expected: "0"
+    - expr: '(2*sqrt(1 - (x/3)**2)).subs(x, -3)'
+      expected: "0"
+    - expr: '(2*sqrt(1 - (x/3)**2)).subs(x, 0)'
+      expected: "2"
+    - expr: '(x/3)**2 + (2*sqrt(1 - (x/3)**2)/2)**2'
+      expected: "1"
+:::
+
+
+::: exercise
+id: l1-transformations.handout-1-4-10
+number: "1.4.10"
+tier: standard
+topics:
+  - dilations
+  - shifts
+statement: |
+  Start from the graph of the upper unit semicircle \(y=\sqrt{1-x^{2}}\). Sketch the graph of \(f(x)=4+2\sqrt{1-\dfrac{(x-5)^{2}}{9}}\).
+solution: |
+  Write the square under the root as \(\dfrac{(x-5)^{2}}{9}=\left(\dfrac{x-5}{3}\right)^{2}\). Then
+  \[
+  f(x)=4+2\sqrt{1-\left(\frac{x-5}{3}\right)^{2}}.
+  \]
+
+  Build the graph from the semicircle. The dilations come first and the shifts after them.
+
+  1. Replace \(x\) by \(x/3\), a horizontal dilation with \(A=3\): \(y=\sqrt{1-(x/3)^{2}}\).
+  2. Multiply the height by \(2\): \(y=2\sqrt{1-(x/3)^{2}}\).
+  3. Shift right by \(5\), which replaces \(x\) by \(x-5\): \(y=2\sqrt{1-\left(\frac{x-5}{3}\right)^{2}}\).
+  4. Shift up by \(4\).
+
+  The root needs \(|x-5|\le 3\), so the domain is \([2,8]\), and the heights run from \(4\) to \(6\). After the dilations the semicircle has the endpoints \((\pm 3,0)\) and the top \((0,2)\). The shifts move them:
+  \[
+  \begin{aligned}
+  (-3,0)&\mapsto(2,4),\\
+  (0,2)&\mapsto(5,6),\\
+  (3,0)&\mapsto(8,4).
+  \end{aligned}
+  \]
+  The graph is the upper half of the ellipse with half-width \(3\) and half-height \(2\), centred at \((5,4)\).
+provenance: written-for-site
+steps:
+  - Write the square as \(\left(\frac{x-5}{3}\right)^{2}\).
+  - Dilate by \(3\) horizontally and by \(2\) vertically, then shift right by \(5\) and up by \(4\).
+  - The graph is the upper half of an ellipse centred at \((5,4)\), from \((2,4)\) over \((5,6)\) to \((8,4)\).
+verification:
+  checks:
+    - expr: '(4 + 2*sqrt(1 - (x - 5)**2/9)).subs(x, 2)'
+      expected: "4"
+    - expr: '(4 + 2*sqrt(1 - (x - 5)**2/9)).subs(x, 5)'
+      expected: "6"
+    - expr: '(4 + 2*sqrt(1 - (x - 5)**2/9)).subs(x, 8)'
+      expected: "4"
+    - expr: '((x - 5)/3)**2 + ((2*sqrt(1 - (x - 5)**2/9))/2)**2'
+      expected: "1"
+:::
+
+
+::: exercise
+id: l1-transformations.handout-1-4-12
+number: "1.4.12"
+tier: standard
+topics:
+  - dilations
+  - shifts
+statement: |
+  Start from the graph of the upper unit semicircle \(y=\sqrt{1-x^{2}}\). Sketch the graph of \(f(x)=\sqrt{100-25(x-1)^{2}}+2\).
+solution: |
+  Factor \(100\) out of the root so that the form \(1-(\cdot)^{2}\) appears:
+  \[
+  \begin{aligned}
+  \sqrt{100-25(x-1)^{2}}&=\sqrt{100\left(1-\frac{(x-1)^{2}}{4}\right)}\\
+  &=10\sqrt{1-\left(\frac{x-1}{2}\right)^{2}}.
+  \end{aligned}
+  \]
+  So
+  \[
+  f(x)=10\sqrt{1-\left(\frac{x-1}{2}\right)^{2}}+2.
+  \]
+
+  Build the graph from the semicircle. The dilations come first and the shifts after them.
+
+  1. Replace \(x\) by \(x/2\), a horizontal dilation with \(A=2\).
+  2. Multiply the height by \(10\).
+  3. Shift right by \(1\).
+  4. Shift up by \(2\).
+
+  The root needs \(|x-1|\le 2\), so the domain is \([-1,3]\), and the heights run from \(2\) to \(12\). After the dilations the semicircle has the endpoints \((\pm 2,0)\) and the top \((0,10)\). The shifts move them:
+  \[
+  \begin{aligned}
+  (-2,0)&\mapsto(-1,2),\\
+  (0,10)&\mapsto(1,12),\\
+  (2,0)&\mapsto(3,2).
+  \end{aligned}
+  \]
+  The graph is the upper half of the ellipse with half-width \(2\) and half-height \(10\), centred at \((1,2)\). It is tall and narrow.
+provenance: written-for-site
+steps:
+  - Factor to get \(f(x)=10\sqrt{1-\left(\frac{x-1}{2}\right)^{2}}+2\).
+  - Dilate by \(2\) horizontally and by \(10\) vertically, then shift right by \(1\) and up by \(2\).
+  - The graph is the upper half of an ellipse from \((-1,2)\) over \((1,12)\) to \((3,2)\).
+verification:
+  checks:
+    - expr: '(sqrt(100 - 25*(x - 1)**2) + 2).subs(x, -1)'
+      expected: "2"
+    - expr: '(sqrt(100 - 25*(x - 1)**2) + 2).subs(x, 1)'
+      expected: "12"
+    - expr: '(sqrt(100 - 25*(x - 1)**2) + 2).subs(x, 3)'
+      expected: "2"
+    - expr: 'simplify(sqrt(100 - 25*(x - 1)**2)**2 - (10*sqrt(1 - ((x - 1)/2)**2))**2)'
+      expected: "0"
+:::
+
+
+::: exercise
+id: l1-transformations.handout-1-4-13
+number: "1.4.13"
+tier: basic
+topics:
+  - shifts
+statement: |
+  The function \(f\) is defined on about \([0,3.3]\). Its graph starts very low near \((0,-1.4)\) and rises steeply, crossing zero at about \(x=0.1\), up to a local maximum of \(2\) at about \(x=0.55\). It then falls to a local minimum of about \(0.45\) at \(x=1.75\), rises to a second local maximum of \(2\) at about \(x=2.9\), and falls to about \(1\) at the right end \(x=3.3\).
+
+  Sketch the graph of \(y=f(x-1)\).
+solution: |
+  Replacing \(x\) by \(x-1\) shifts the graph right by \(1\). A point \((a,b)\) of the graph of \(f\) moves to \((a+1,b)\), and the heights stay.
+
+  - The start \((0,-1.4)\) moves to \((1,-1.4)\).
+  - The zero near \(x=0.1\) moves to \(x=1.1\).
+  - The first local maximum \((0.55,2)\) moves to \((1.55,2)\).
+  - The local minimum \((1.75,0.45)\) moves to \((2.75,0.45)\).
+  - The second local maximum \((2.9,2)\) moves to \((3.9,2)\).
+  - The right end \((3.3,1)\) moves to \((4.3,1)\).
+
+  The new graph is defined on about \([1,4.3]\). It has the same shape as the graph of \(f\), moved one unit to the right.
+provenance: written-for-site
+steps:
+  - Add \(1\) to every \(x\)-coordinate and keep the heights.
+  - The domain becomes about \([1,4.3]\).
+  - The maxima are at \(x=1.55\) and \(x=3.9\), and the minimum is at \(x=2.75\).
+verification:
+  checks:
+    - expr: '(0 + 1, Rational(1, 10) + 1, Rational(11, 20) + 1, Rational(7, 4) + 1, Rational(29, 10) + 1, Rational(33, 10) + 1)'
+      expected: "(1, 11/10, 31/20, 11/4, 39/10, 43/10)"
+:::
+
+
+::: exercise
+id: l1-transformations.handout-1-4-16
+number: "1.4.16"
+tier: standard
+topics:
+  - dilations
+statement: |
+  The function \(f\) is defined on about \([0,3.3]\). Its graph starts very low near \((0,-1.4)\) and rises steeply, crossing zero at about \(x=0.1\), up to a local maximum of \(2\) at about \(x=0.55\). It then falls to a local minimum of about \(0.45\) at \(x=1.75\), rises to a second local maximum of \(2\) at about \(x=2.9\), and falls to about \(1\) at the right end \(x=3.3\).
+
+  Sketch the graph of \(y=2f(3x)\).
+solution: |
+  Two dilations act on the graph.
+
+  - Replacing \(x\) by \(3x\) is the horizontal dilation with \(A=1/3\), because \(x/A=3x\). Distances from the \(y\)-axis are divided by \(3\).
+  - The factor \(2\) in front is the vertical dilation with \(B=2\). Every height is multiplied by \(2\).
+
+  A point \((a,b)\) of the graph of \(f\) moves to \((a/3,\,2b)\).
+
+  - The start \((0,-1.4)\) moves to \((0,-2.8)\).
+  - The zero near \(x=0.1\) moves to \(x=1/30\), about \(0.03\).
+  - The first local maximum \((0.55,2)\) moves to \(\left(\frac{11}{60},4\right)\), about \((0.18,4)\).
+  - The local minimum \((1.75,0.45)\) moves to \(\left(\frac{7}{12},0.9\right)\), about \((0.58,0.9)\).
+  - The second local maximum \((2.9,2)\) moves to \(\left(\frac{29}{30},4\right)\), about \((0.97,4)\).
+  - The right end \((3.3,1)\) moves to \((1.1,2)\).
+
+  The new graph is defined on about \([0,1.1]\). It is the graph of \(f\) squeezed horizontally by the factor \(3\) and stretched vertically by the factor \(2\).
+provenance: written-for-site
+steps:
+  - Divide every \(x\)-coordinate by \(3\).
+  - Multiply every height by \(2\).
+  - The domain becomes about \([0,1.1]\), the maxima have height \(4\) and the minimum has height \(0.9\).
+verification:
+  checks:
+    - expr: '(Rational(1, 10)/3, Rational(11, 20)/3, Rational(7, 4)/3, Rational(29, 10)/3, Rational(33, 10)/3)'
+      expected: "(1/30, 11/60, 7/12, 29/30, 11/10)"
+    - expr: '(2*Rational(-7, 5), 2*2, 2*Rational(9, 20), 2*1)'
+      expected: "(-14/5, 4, 9/10, 2)"
+:::
+
+
+::: exercise
+id: l1-transformations.handout-1-4-17
+number: "1.4.17"
+tier: standard
+topics:
+  - dilations
+  - shifts
+statement: |
+  The function \(f\) is defined on about \([0,3.3]\). Its graph starts very low near \((0,-1.4)\) and rises steeply, crossing zero at about \(x=0.1\), up to a local maximum of \(2\) at about \(x=0.55\). It then falls to a local minimum of about \(0.45\) at \(x=1.75\), rises to a second local maximum of \(2\) at about \(x=2.9\), and falls to about \(1\) at the right end \(x=3.3\).
+
+  Sketch the graph of \(y=2f(3(x-2))+1\).
+solution: |
+  Do the dilations first and the shifts after them.
+
+  1. Replace \(x\) by \(3x\), the horizontal dilation with \(A=1/3\). Distances from the \(y\)-axis are divided by \(3\).
+  2. Multiply every height by \(2\).
+  3. Shift right by \(2\), which replaces \(x\) by \(x-2\). The formula is now \(2f(3(x-2))\).
+  4. Shift up by \(1\).
+
+  A point \((a,b)\) of the graph of \(f\) moves to \(\left(\dfrac{a}{3}+2,\ 2b+1\right)\).
+
+  - The start \((0,-1.4)\) moves to \((2,-1.8)\).
+  - The zero near \(x=0.1\) moves to \(\left(2+\frac{1}{30},\,1\right)\), about \((2.03,1)\).
+  - The first local maximum \((0.55,2)\) moves to \(\left(2+\frac{11}{60},\,5\right)\), about \((2.18,5)\).
+  - The local minimum \((1.75,0.45)\) moves to \(\left(2+\frac{7}{12},\,1.9\right)\), about \((2.58,1.9)\).
+  - The second local maximum \((2.9,2)\) moves to \(\left(2+\frac{29}{30},\,5\right)\), about \((2.97,5)\).
+  - The right end \((3.3,1)\) moves to \((3.1,3)\).
+
+  The new graph is defined on about \([2,3.1]\).
+provenance: written-for-site
+steps:
+  - Divide every \(x\)-coordinate by \(3\) and multiply every height by \(2\).
+  - Then add \(2\) to every \(x\)-coordinate and add \(1\) to every height.
+  - The domain becomes about \([2,3.1]\), and the maxima have height \(5\).
+verification:
+  checks:
+    - expr: '(Rational(0)/3 + 2, Rational(1, 10)/3 + 2, Rational(11, 20)/3 + 2, Rational(7, 4)/3 + 2, Rational(29, 10)/3 + 2, Rational(33, 10)/3 + 2)'
+      expected: "(2, 61/30, 131/60, 31/12, 89/30, 31/10)"
+    - expr: '(2*Rational(-7, 5) + 1, 2*0 + 1, 2*2 + 1, 2*Rational(9, 20) + 1, 2*1 + 1)'
+      expected: "(-9/5, 1, 5, 19/10, 3)"
+:::
+
+
+::: exercise
+id: l1-transformations.handout-1-4-18
+number: "1.4.18"
+tier: standard
+topics:
+  - dilations
+  - shifts
+statement: |
+  The function \(f\) is defined on about \([0,3.3]\). Its graph starts very low near \((0,-1.4)\) and rises steeply, crossing zero at about \(x=0.1\), up to a local maximum of \(2\) at about \(x=0.55\). It then falls to a local minimum of about \(0.45\) at \(x=1.75\), rises to a second local maximum of \(2\) at about \(x=2.9\), and falls to about \(1\) at the right end \(x=3.3\).
+
+  Sketch the graph of \(y=\dfrac{1}{2}f(3x-3)\).
+solution: |
+  Factor the input first, because a shift is read from the form \(x-C\):
+  \[
+  3x-3=3(x-1).
+  \]
+  So \(y=\tfrac{1}{2}f(3(x-1))\). The input \(3(x-1)\) is zero at \(x=1\), so the start of the graph moves to \(x=1\). A shift of \(3\) would put the start at \(x=3\).
+
+  Do the dilations first and the shift after them.
+
+  1. Replace \(x\) by \(3x\), the horizontal dilation with \(A=1/3\).
+  2. Multiply every height by \(\tfrac{1}{2}\).
+  3. Shift right by \(1\).
+
+  A point \((a,b)\) of the graph of \(f\) moves to \(\left(\dfrac{a}{3}+1,\ \dfrac{b}{2}\right)\).
+
+  - The start \((0,-1.4)\) moves to \((1,-0.7)\).
+  - The zero near \(x=0.1\) moves to \(\left(1+\frac{1}{30},\,0\right)\), about \((1.03,0)\).
+  - The first local maximum \((0.55,2)\) moves to \(\left(1+\frac{11}{60},\,1\right)\), about \((1.18,1)\).
+  - The local minimum \((1.75,0.45)\) moves to \(\left(1+\frac{7}{12},\,0.225\right)\), about \((1.58,0.23)\).
+  - The second local maximum \((2.9,2)\) moves to \(\left(1+\frac{29}{30},\,1\right)\), about \((1.97,1)\).
+  - The right end \((3.3,1)\) moves to \((2.1,0.5)\).
+
+  The new graph is defined on about \([1,2.1]\), and its maxima have height \(1\).
+provenance: written-for-site
+steps:
+  - Factor \(3x-3=3(x-1)\), so the shift is right by \(1\).
+  - Divide every \(x\)-coordinate by \(3\), add \(1\), and halve every height.
+  - The domain becomes about \([1,2.1]\), and the maxima have height \(1\).
+verification:
+  checks:
+    - expr: 'expand(3*(x - 1) - (3*x - 3))'
+      expected: "0"
+    - expr: '(Rational(0)/3 + 1, Rational(1, 10)/3 + 1, Rational(11, 20)/3 + 1, Rational(7, 4)/3 + 1, Rational(29, 10)/3 + 1, Rational(33, 10)/3 + 1)'
+      expected: "(1, 31/30, 71/60, 19/12, 59/30, 21/10)"
+    - expr: '(Rational(-7, 5)/2, Rational(0)/2, Rational(2)/2, Rational(9, 20)/2, Rational(1)/2)'
+      expected: "(-7/10, 0, 1, 9/40, 1/2)"
+:::
+
+
+::: exercise
+id: l1-transformations.handout-4-1-8
+number: "4.1.8"
+tier: basic
+topics:
+  - dilations
+  - trigonometry
+statement: |
+  Sketch \(y=2\sin(x)\).
+solution: |
+  The factor \(2\) is a vertical dilation with \(B=2\). Every height of \(y=\sin x\) is multiplied by \(2\), and the \(x\)-coordinates stay.
+
+  The graph keeps the zeros of sine and the period of sine:
+  \[
+  \begin{aligned}
+  2\sin x=0&\iff x=k\pi,\quad k\in\mathbb{Z},\\
+  2\sin(x+2\pi)&=2\sin x.
+  \end{aligned}
+  \]
+  The extreme values double. The maximum \(2\) occurs at \(x=\frac{\pi}{2}+2k\pi\) and the minimum \(-2\) occurs at \(x=\frac{3\pi}{2}+2k\pi\). The graph oscillates between \(-2\) and \(2\), so the amplitude is \(2\).
+
+  Over one period from \(0\) to \(2\pi\), the graph rises from \((0,0)\) to \(\left(\frac{\pi}{2},2\right)\), falls through \((\pi,0)\) to \(\left(\frac{3\pi}{2},-2\right)\), and returns to \((2\pi,0)\).
+provenance: written-for-site
+steps:
+  - Multiply every height of \(y=\sin x\) by \(2\).
+  - The zeros stay at \(k\pi\), and the period stays \(2\pi\).
+  - The graph oscillates between \(-2\) and \(2\).
+verification:
+  checks:
+    - expr: '(2*sin(pi/2), 2*sin(3*pi/2))'
+      expected: "(2, -2)"
+    - expr: 'solveset(2*sin(x), x, Interval(0, 2*pi))'
+      expected: "FiniteSet(0, pi, 2*pi)"
+    - expr: 'simplify(2*sin(x + 2*pi) - 2*sin(x))'
+      expected: "0"
+    - expr: '(maximum(2*sin(x), x, Interval(0, 2*pi)), minimum(2*sin(x), x, Interval(0, 2*pi)))'
+      expected: "(2, -2)"
 :::

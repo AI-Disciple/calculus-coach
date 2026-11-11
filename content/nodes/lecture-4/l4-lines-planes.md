@@ -617,3 +617,899 @@ verification:
     - expr: "(7*4 - 2*0 - 4*7, 7*2 - 2*1 - 4*3)"
       expected: "(0, 0)"
 :::
+
+::: exercise
+id: l4-lines-planes.handout-12-5-1
+number: "12.5.1"
+tier: basic
+topics:
+  - planes
+statement: |
+  Find an equation of the plane containing \((6,2,1)\) and perpendicular to \(\langle 1,1,1\rangle\).
+solution: |
+  The vector \(\langle 1,1,1\rangle\) is a normal to the plane. The vector from \((6,2,1)\) to \((x,y,z)\) is \(\langle x-6,\,y-2,\,z-1\rangle\). It is perpendicular to the normal exactly when
+  \[
+  (x-6)+(y-2)+(z-1)=0.
+  \]
+  The right-hand side after expanding is the normal evaluated at the known point, \(1\cdot 6+1\cdot 2+1\cdot 1=9\).
+
+  The plane is
+  \[
+  x+y+z=9.
+  \]
+provenance: handout-answer
+steps:
+  - The normal is \(\langle 1,1,1\rangle\).
+  - The point-normal equation is \((x-6)+(y-2)+(z-1)=0\).
+  - Expanding gives \(x+y+z=9\).
+verification:
+  checks:
+    - expr: 'expand((x - 6) + (y - 2) + (z - 1))'
+      expected: "x + y + z - 9"
+    - expr: '1*6 + 1*2 + 1*1'
+      expected: "9"
+:::
+
+
+::: exercise
+id: l4-lines-planes.handout-12-5-2
+number: "12.5.2"
+tier: basic
+topics:
+  - planes
+statement: |
+  Find an equation of the plane containing \((-1,2,-3)\) and perpendicular to \(\langle 4,5,-1\rangle\).
+solution: |
+  The vector \(\langle 4,5,-1\rangle\) is a normal to the plane. The vector from \((-1,2,-3)\) to \((x,y,z)\) is \(\langle x+1,\,y-2,\,z+3\rangle\). It is perpendicular to the normal exactly when
+  \[
+  4(x+1)+5(y-2)-(z+3)=0.
+  \]
+  Expanding gives
+  \[
+  \begin{aligned}
+  4x+4+5y-10-z-3&=0,\\
+  4x+5y-z-9&=0.
+  \end{aligned}
+  \]
+  The constant on the right is the normal evaluated at the known point, \(4\cdot(-1)+5\cdot 2+(-1)\cdot(-3)=-4+10+3=9\).
+
+  The plane is
+  \[
+  4x+5y-z=9.
+  \]
+provenance: handout-answer
+steps:
+  - The normal is \(\langle 4,5,-1\rangle\).
+  - The point-normal equation is \(4(x+1)+5(y-2)-(z+3)=0\).
+  - Expanding gives \(4x+5y-z=9\).
+verification:
+  checks:
+    - expr: 'expand(4*(x + 1) + 5*(y - 2) - (z + 3))'
+      expected: "4*x + 5*y - z - 9"
+    - expr: '4*(-1) + 5*2 + (-1)*(-3)'
+      expected: "9"
+discrepancy: |
+  The printed answer is \(4x+5y-z=3\). The verified value is \(4x+5y-z=9\).
+:::
+
+
+::: exercise
+id: l4-lines-planes.handout-12-5-3
+number: "12.5.3"
+tier: standard
+topics:
+  - planes
+statement: |
+  Find an equation of the plane containing \((1,2,-3)\), \((0,1,-2)\) and \((1,2,-2)\).
+solution: |
+  Name the points \(A=(1,2,-3)\), \(B=(0,1,-2)\) and \(C=(1,2,-2)\). Two vectors in the plane are
+  \[
+  \begin{aligned}
+  \overrightarrow{AB}&=\langle -1,-1,1\rangle,\\
+  \overrightarrow{AC}&=\langle 0,0,1\rangle.
+  \end{aligned}
+  \]
+  Their cross product is a normal to the plane. The components are
+  \[
+  \begin{aligned}
+  (-1)\cdot 1-1\cdot 0&=-1,\\
+  1\cdot 0-(-1)\cdot 1&=1,\\
+  (-1)\cdot 0-(-1)\cdot 0&=0.
+  \end{aligned}
+  \]
+  The normal is \(\langle -1,1,0\rangle\). With the point \(A\), the plane is
+  \[
+  -(x-1)+(y-2)=0,
+  \]
+  which expands to \(-x+y-1=0\). So the plane is
+  \[
+  x-y=-1.
+  \]
+  The left side \(x-y\) equals \(-1\) at \(A\), at \(B\) (\(0-1\)) and at \(C\) (\(1-2\)).
+provenance: handout-answer
+steps:
+  - Vectors \(\overrightarrow{AB}=\langle -1,-1,1\rangle\) and \(\overrightarrow{AC}=\langle 0,0,1\rangle\) computed.
+  - Cross product \(\langle -1,1,0\rangle\) computed as the normal.
+  - Plane \(x-y=-1\) written and checked at all three points.
+verification:
+  checks:
+    - expr: '(0 - 1, 1 - 2, -2 - (-3))'
+      expected: "(-1, -1, 1)"
+    - expr: '(1 - 1, 2 - 2, -2 - (-3))'
+      expected: "(0, 0, 1)"
+    - expr: '((-1)*1 - 1*0, 1*0 - (-1)*1, (-1)*0 - (-1)*0)'
+      expected: "(-1, 1, 0)"
+    - expr: 'expand(-(x - 1) + (y - 2))'
+      expected: "-x + y - 1"
+    - expr: '(1 - 2, 0 - 1, 1 - 2)'
+      expected: "(-1, -1, -1)"
+:::
+
+
+::: exercise
+id: l4-lines-planes.handout-12-5-4
+number: "12.5.4"
+tier: standard
+topics:
+  - planes
+statement: |
+  Find an equation of the plane containing \((1,0,0)\), \((4,2,0)\) and \((3,2,1)\).
+solution: |
+  Name the points \(A=(1,0,0)\), \(B=(4,2,0)\) and \(C=(3,2,1)\). Two vectors in the plane are
+  \[
+  \begin{aligned}
+  \overrightarrow{AB}&=\langle 3,2,0\rangle,\\
+  \overrightarrow{AC}&=\langle 2,2,1\rangle.
+  \end{aligned}
+  \]
+  Their cross product is a normal to the plane. The components are
+  \[
+  \begin{aligned}
+  2\cdot 1-0\cdot 2&=2,\\
+  0\cdot 2-3\cdot 1&=-3,\\
+  3\cdot 2-2\cdot 2&=2.
+  \end{aligned}
+  \]
+  The normal is \(\langle 2,-3,2\rangle\). With the point \(A\), the plane is
+  \[
+  2(x-1)-3y+2z=0,
+  \]
+  so
+  \[
+  2x-3y+2z=2.
+  \]
+  The left side equals \(2\) at \(A\), \(8-6+0=2\) at \(B\), and \(6-6+2=2\) at \(C\).
+provenance: handout-answer
+steps:
+  - Vectors \(\langle 3,2,0\rangle\) and \(\langle 2,2,1\rangle\) computed from \(A\).
+  - Cross product \(\langle 2,-3,2\rangle\) computed as the normal.
+  - Plane \(2x-3y+2z=2\) written and checked at \(B\) and \(C\).
+verification:
+  checks:
+    - expr: '(4 - 1, 2 - 0, 0 - 0)'
+      expected: "(3, 2, 0)"
+    - expr: '(3 - 1, 2 - 0, 1 - 0)'
+      expected: "(2, 2, 1)"
+    - expr: '(2*1 - 0*2, 0*2 - 3*1, 3*2 - 2*2)'
+      expected: "(2, -3, 2)"
+    - expr: 'expand(2*(x - 1) - 3*y + 2*z)'
+      expected: "2*x - 3*y + 2*z - 2"
+    - expr: '(2*1 - 3*0 + 2*0, 2*4 - 3*2 + 2*0, 2*3 - 3*2 + 2*1)'
+      expected: "(2, 2, 2)"
+:::
+
+
+::: exercise
+id: l4-lines-planes.handout-12-5-5
+number: "12.5.5"
+tier: standard
+topics:
+  - planes
+  - lines
+statement: |
+  Find an equation of the plane containing the point \((1,0,0)\) and the line \(\langle 1,0,2\rangle + t\langle 3,2,1\rangle\).
+solution: |
+  The plane contains the direction \(\mathbf{d}=\langle 3,2,1\rangle\) of the line. It also contains the vector from \((1,0,0)\) to the point \((1,0,2)\) of the line, which is \(\mathbf{w}=\langle 0,0,2\rangle\).
+
+  The cross product \(\mathbf{d}\times\mathbf{w}\) is a normal. Its components are
+  \[
+  \begin{aligned}
+  2\cdot 2-1\cdot 0&=4,\\
+  1\cdot 0-3\cdot 2&=-6,\\
+  3\cdot 0-2\cdot 0&=0.
+  \end{aligned}
+  \]
+  The normal is \(\langle 4,-6,0\rangle\). With the point \((1,0,0)\), the plane is
+  \[
+  4(x-1)-6y=0.
+  \]
+  Dividing by \(2\) gives
+  \[
+  2x-3y=2.
+  \]
+  A different multiple of the normal gives an equivalent equation. The point \((1,0,2)\) satisfies it, because \(2-0=2\). A general point of the line has \(2(1+3t)-3\cdot 2t=2\), so the whole line lies in the plane.
+provenance: handout-answer
+steps:
+  - Direction \(\langle 3,2,1\rangle\) and connecting vector \(\langle 0,0,2\rangle\) found.
+  - Cross product \(\langle 4,-6,0\rangle\) computed as the normal.
+  - Plane \(2x-3y=2\) written and checked on the line.
+verification:
+  checks:
+    - expr: '(1 - 1, 0 - 0, 2 - 0)'
+      expected: "(0, 0, 2)"
+    - expr: '(2*2 - 1*0, 1*0 - 3*2, 3*0 - 2*0)'
+      expected: "(4, -6, 0)"
+    - expr: 'expand(4*(x - 1) - 6*y)'
+      expected: "4*x - 6*y - 4"
+    - expr: 'expand(2*(1 + 3*t) - 3*(2*t))'
+      expected: "2"
+    - expr: '2*1 - 3*0'
+      expected: "2"
+:::
+
+
+::: exercise
+id: l4-lines-planes.handout-12-5-6
+number: "12.5.6"
+tier: exam
+topics:
+  - planes
+  - lines
+statement: |
+  Find an equation of the plane containing the line of intersection of the planes \(x+y+z=1\) and \(x-y+2z=2\), and perpendicular to the \(xy\)-plane.
+solution: |
+  **Direction of the line.** The normals of the two given planes are \(\mathbf{n}_1=\langle 1,1,1\rangle\) and \(\mathbf{n}_2=\langle 1,-1,2\rangle\). The line of intersection lies in both planes, so its direction \(\mathbf{d}\) is perpendicular to both normals. The cross product \(\mathbf{n}_1\times\mathbf{n}_2\) has components
+  \[
+  \begin{aligned}
+  1\cdot 2-1\cdot(-1)&=3,\\
+  1\cdot 1-1\cdot 2&=-1,\\
+  1\cdot(-1)-1\cdot 1&=-2.
+  \end{aligned}
+  \]
+  The direction is \(\mathbf{d}=\langle 3,-1,-2\rangle\).
+
+  **A point on the line.** Set \(z=0\) in both equations. Then \(x+y=1\) and \(x-y=2\), so \(x=3/2\) and \(y=-1/2\). The point \((3/2,-1/2,0)\) lies on the line.
+
+  **Normal of the required plane.** The required plane contains the line, so its normal \(\mathbf{n}\) is perpendicular to \(\mathbf{d}\). The plane is perpendicular to the \(xy\)-plane, whose normal is \(\mathbf{k}=\langle 0,0,1\rangle\). So \(\mathbf{n}\) is perpendicular to \(\mathbf{k}\) as well. The cross product \(\mathbf{d}\times\mathbf{k}\) has components
+  \[
+  \begin{aligned}
+  (-1)\cdot 1-(-2)\cdot 0&=-1,\\
+  (-2)\cdot 0-3\cdot 1&=-3,\\
+  3\cdot 0-(-1)\cdot 0&=0.
+  \end{aligned}
+  \]
+  A normal is \(\langle 1,3,0\rangle\), the negative of this vector.
+
+  **The plane.** Through \((3/2,-1/2,0)\) with normal \(\langle 1,3,0\rangle\), the right-hand side is \(\tfrac32+3\cdot(-\tfrac12)=0\). The plane is
+  \[
+  x+3y=0.
+  \]
+  A general point of the line is \((3/2+3t,\,-1/2-t,\,-2t)\). There \(x+3y=\tfrac32+3t-\tfrac32-3t=0\), so the whole line lies in the plane.
+provenance: handout-answer
+steps:
+  - Direction \(\langle 3,-1,-2\rangle\) of the line of intersection found as \(\mathbf{n}_1\times\mathbf{n}_2\).
+  - Point \((3/2,-1/2,0)\) found on the line.
+  - Normal \(\langle 1,3,0\rangle\) found perpendicular to the direction and to \(\mathbf{k}\).
+  - Plane \(x+3y=0\) written and checked on the line.
+verification:
+  checks:
+    - expr: '(1*2 - 1*(-1), 1*1 - 1*2, 1*(-1) - 1*1)'
+      expected: "(3, -1, -2)"
+    - expr: '(Rational(3, 2) + (-Rational(1, 2)), Rational(3, 2) - (-Rational(1, 2)))'
+      expected: "(1, 2)"
+    - expr: '((-1)*1 - (-2)*0, (-2)*0 - 3*1, 3*0 - (-1)*0)'
+      expected: "(-1, -3, 0)"
+    - expr: 'expand((Rational(3, 2) + 3*t) + 3*(-Rational(1, 2) - t))'
+      expected: "0"
+    - expr: 'expand((Rational(3, 2) + 3*t) + (-Rational(1, 2) - t) + (-2*t))'
+      expected: "1"
+    - expr: 'expand((Rational(3, 2) + 3*t) - (-Rational(1, 2) - t) + 2*(-2*t))'
+      expected: "2"
+:::
+
+
+::: exercise
+id: l4-lines-planes.handout-12-5-7
+number: "12.5.7"
+tier: basic
+topics:
+  - lines
+statement: |
+  Find an equation of the line through \((1,0,3)\) and \((1,2,4)\).
+solution: |
+  A direction is the difference of the position vectors,
+  \[
+  \langle 1,2,4\rangle-\langle 1,0,3\rangle=\langle 0,2,1\rangle.
+  \]
+  With base point \((1,0,3)\), the line is
+  \[
+  \langle 1,0,3\rangle+t\langle 0,2,1\rangle.
+  \]
+  The parametric equations are
+  \[
+  \begin{aligned}
+  x&=1,\\
+  y&=2t,\\
+  z&=3+t.
+  \end{aligned}
+  \]
+  At \(t=1\) the line is at \((1,2,4)\), the other given point.
+provenance: handout-answer
+steps:
+  - Direction \(\langle 0,2,1\rangle\) computed from the two points.
+  - Line written from the base point \((1,0,3)\).
+  - The second point recovered at \(t=1\).
+verification:
+  checks:
+    - expr: '(1 - 1, 2 - 0, 4 - 3)'
+      expected: "(0, 2, 1)"
+    - expr: '(1 + 0*1, 0 + 2*1, 3 + 1*1)'
+      expected: "(1, 2, 4)"
+:::
+
+
+::: exercise
+id: l4-lines-planes.handout-12-5-8
+number: "12.5.8"
+tier: basic
+topics:
+  - lines
+  - planes
+statement: |
+  Find an equation of the line through \((1,0,3)\) and perpendicular to the plane \(x+2y-z=1\).
+solution: |
+  A normal to the plane is the coefficient vector \(\langle 1,2,-1\rangle\). A line perpendicular to the plane is parallel to a normal, so \(\langle 1,2,-1\rangle\) is a direction of the line.
+
+  With base point \((1,0,3)\), the line is
+  \[
+  \langle 1,0,3\rangle+t\langle 1,2,-1\rangle.
+  \]
+  The parametric equations are
+  \[
+  \begin{aligned}
+  x&=1+t,\\
+  y&=2t,\\
+  z&=3-t.
+  \end{aligned}
+  \]
+  As a check, the vectors \(\langle 2,-1,0\rangle\) and \(\langle 1,0,1\rangle\) are parallel to the plane, because \(2-2-0=0\) and \(1+0-1=0\). Their dot products with the direction \(\langle 1,2,-1\rangle\) are
+  \[
+  \begin{aligned}
+  2-2+0&=0,\\
+  1+0-1&=0.
+  \end{aligned}
+  \]
+provenance: handout-answer
+steps:
+  - Normal \(\langle 1,2,-1\rangle\) read off from the plane equation.
+  - The normal used as the direction of the line.
+  - Line written from the base point \((1,0,3)\).
+verification:
+  checks:
+    - expr: '(1*2 + 2*(-1) + (-1)*0, 1*1 + 2*0 + (-1)*1)'
+      expected: "(0, 0)"
+    - expr: '(1 + 1*0, 0 + 2*0, 3 - 1*0)'
+      expected: "(1, 0, 3)"
+:::
+
+
+::: exercise
+id: l4-lines-planes.handout-12-5-9
+number: "12.5.9"
+tier: basic
+topics:
+  - lines
+  - planes
+statement: |
+  Find an equation of the line through the origin and perpendicular to the plane \(x+y-z=2\).
+solution: |
+  A normal to the plane is the coefficient vector \(\langle 1,1,-1\rangle\). A line perpendicular to the plane is parallel to a normal, so \(\langle 1,1,-1\rangle\) is a direction of the line.
+
+  The line passes through the origin, so the base point is \(\langle 0,0,0\rangle\) and the line is
+  \[
+  t\langle 1,1,-1\rangle.
+  \]
+  The parametric equations are
+  \[
+  \begin{aligned}
+  x&=t,\\
+  y&=t,\\
+  z&=-t.
+  \end{aligned}
+  \]
+  As a check, the vectors \(\langle 1,-1,0\rangle\) and \(\langle 1,0,1\rangle\) are parallel to the plane, because \(1-1-0=0\) and \(1+0-1=0\). Their dot products with the direction \(\langle 1,1,-1\rangle\) are
+  \[
+  \begin{aligned}
+  1-1+0&=0,\\
+  1+0-1&=0.
+  \end{aligned}
+  \]
+provenance: handout-answer
+steps:
+  - Normal \(\langle 1,1,-1\rangle\) read off from the plane equation.
+  - The normal used as the direction of the line.
+  - Line through the origin written as \(t\langle 1,1,-1\rangle\).
+verification:
+  checks:
+    - expr: '(1*1 + 1*(-1) + (-1)*0, 1*1 + 1*0 + (-1)*1)'
+      expected: "(0, 0)"
+:::
+
+
+::: exercise
+id: l4-lines-planes.handout-12-5-10
+number: "12.5.10"
+tier: standard
+topics:
+  - lines
+statement: |
+  Find \(a\) and \(c\) so that \((a,1,c)\) is on the line through \((0,2,3)\) and \((2,7,5)\).
+solution: |
+  A direction is \(\langle 2,7,5\rangle-\langle 0,2,3\rangle=\langle 2,5,2\rangle\). With base point \((0,2,3)\), the line has parametric equations
+  \[
+  \begin{aligned}
+  x&=2t,\\
+  y&=2+5t,\\
+  z&=3+2t.
+  \end{aligned}
+  \]
+  The point \((a,1,c)\) lies on the line when some \(t\) gives \(y=1\). The equation \(2+5t=1\) gives \(t=-1/5\). Then
+  \[
+  \begin{aligned}
+  a&=2\cdot\left(-\frac15\right)=-\frac25,\\
+  c&=3+2\cdot\left(-\frac15\right)=\frac{13}{5}.
+  \end{aligned}
+  \]
+  So \(a=-2/5\) and \(c=13/5\).
+provenance: handout-answer
+steps:
+  - Direction \(\langle 2,5,2\rangle\) and the parametric equations written.
+  - Parameter \(t=-1/5\) found from \(y=1\).
+  - Values \(a=-2/5\) and \(c=13/5\) read off.
+verification:
+  checks:
+    - expr: '(2 - 0, 7 - 2, 5 - 3)'
+      expected: "(2, 5, 2)"
+    - expr: 'solve(2 + 5*t - 1, t)[0]'
+      expected: "Rational(-1, 5)"
+    - expr: '(2*Rational(-1, 5), 3 + 2*Rational(-1, 5))'
+      expected: "(Rational(-2, 5), Rational(13, 5))"
+    - expr: '(2*1, 2 + 5*1, 3 + 2*1)'
+      expected: "(2, 7, 5)"
+:::
+
+
+::: exercise
+id: l4-lines-planes.handout-12-5-12
+number: "12.5.12"
+tier: standard
+topics:
+  - lines
+statement: |
+  Determine whether the lines \(\langle 1,3,-1\rangle+t\langle 1,1,0\rangle\) and \(\langle 0,0,0\rangle+s\langle 1,4,5\rangle\) are parallel, intersect, or neither.
+solution: |
+  **Parallel test.** The lines are parallel exactly when the directions are multiples of each other. If \(\langle 1,4,5\rangle=k\langle 1,1,0\rangle\), the first component gives \(k=1\), and then the third component would be \(0\). It is \(5\). The lines are not parallel.
+
+  **Common point.** The two lines use different parameters, \(t\) and \(s\), because a common point need not have equal parameters. A common point satisfies
+  \[
+  \begin{aligned}
+  1+t&=s,\\
+  3+t&=4s,\\
+  -1&=5s.
+  \end{aligned}
+  \]
+  Subtracting the first equation from the second gives \(2=3s\). So \(s=2/3\) and \(t=-1/3\). The third equation requires \(s=-1/5\). The value \(s=2/3\) gives \(5s=10/3\), which differs from \(-1\). The system has no solution, so the lines do not meet.
+
+  The lines are not parallel and do not meet, so they are **skew**.
+provenance: handout-answer
+steps:
+  - Directions \(\langle 1,1,0\rangle\) and \(\langle 1,4,5\rangle\) shown not to be multiples of each other.
+  - First two coordinates solved for \(s=2/3\) and \(t=-1/3\).
+  - Third coordinate fails, so the lines are skew.
+verification:
+  checks:
+    - expr: 'solve([1 + t - s, 3 + t - 4*s], [t, s])[t]'
+      expected: "Rational(-1, 3)"
+    - expr: 'solve([1 + t - s, 3 + t - 4*s], [t, s])[s]'
+      expected: "Rational(2, 3)"
+    - expr: '(-1) - 5*Rational(2, 3)'
+      expected: "Rational(-13, 3)"
+    - expr: '(1*5 - 1*4, 1*1 - 0*5, 1*4 - 1*1)'
+      expected: "(1, 1, 3)"
+:::
+
+
+::: exercise
+id: l4-lines-planes.handout-12-5-13
+number: "12.5.13"
+tier: standard
+topics:
+  - lines
+statement: |
+  Determine whether the lines \(\langle 1,0,2\rangle+t\langle -1,-1,2\rangle\) and \(\langle 4,4,2\rangle+s\langle 2,2,-4\rangle\) are parallel, intersect, or neither.
+solution: |
+  **Parallel test.** The second direction is a multiple of the first:
+  \[
+  \langle 2,2,-4\rangle=-2\langle -1,-1,2\rangle.
+  \]
+  The lines are parallel or they are the same line.
+
+  **Same line?** The same line would contain \((4,4,2)\). On the first line, \(x=1-t\) and \(y=-t\). The equation \(1-t=4\) gives \(t=-3\). The equation \(-t=4\) gives \(t=-4\). No single \(t\) works, so \((4,4,2)\) is not on the first line.
+
+  The lines are parallel and distinct, so they do not intersect.
+provenance: handout-answer
+steps:
+  - Direction \(\langle 2,2,-4\rangle\) shown to equal \(-2\langle -1,-1,2\rangle\).
+  - Point \((4,4,2)\) tested on the first line and rejected.
+  - The lines are parallel and distinct.
+verification:
+  checks:
+    - expr: '(-2*(-1), -2*(-1), -2*2)'
+      expected: "(2, 2, -4)"
+    - expr: '(solve(1 - t - 4, t)[0], solve(-t - 4, t)[0])'
+      expected: "(-3, -4)"
+:::
+
+
+::: exercise
+id: l4-lines-planes.handout-12-5-14
+number: "12.5.14"
+tier: standard
+topics:
+  - lines
+statement: |
+  Determine whether the lines \(\langle 1,2,-1\rangle+t\langle 1,2,3\rangle\) and \(\langle 1,0,1\rangle+s\langle 2/3,2,4/3\rangle\) are parallel, intersect, or neither.
+solution: |
+  **Parallel test.** The first components of the directions are \(1\) and \(2/3\), so a multiple would be \(2/3\). The second components are \(2\) and \(2\), so a multiple would be \(1\). The multiples differ, so the lines are not parallel.
+
+  **Common point.** Use the parameters \(t\) and \(s\). A common point satisfies
+  \[
+  \begin{aligned}
+  1+t&=1+\tfrac23 s,\\
+  2+2t&=2s,\\
+  -1+3t&=1+\tfrac43 s.
+  \end{aligned}
+  \]
+  The first equation gives \(t=\tfrac23 s\). Substituting into the second gives \(2+\tfrac43 s=2s\), so \(\tfrac23 s=2\) and \(s=3\). Then \(t=2\).
+
+  The third equation at these values reads \(-1+6=1+4\), which is \(5=5\). The system is consistent.
+
+  The lines intersect at the point reached at \(t=2\) on the first line,
+  \[
+  (1+2,\,2+4,\,-1+6)=(3,6,5).
+  \]
+  At \(s=3\) the second line gives \((1+2,\,6,\,1+4)=(3,6,5)\).
+provenance: handout-answer
+steps:
+  - Directions compared and found not to be multiples.
+  - First two coordinates solved for \(t=2\) and \(s=3\).
+  - Third coordinate confirmed, and the point \((3,6,5)\) found.
+verification:
+  checks:
+    - expr: 'solve([1 + t - (1 + 2*s/3), 2 + 2*t - 2*s], [t, s])[t]'
+      expected: "2"
+    - expr: 'solve([1 + t - (1 + 2*s/3), 2 + 2*t - 2*s], [t, s])[s]'
+      expected: "3"
+    - expr: '(-1 + 3*2) - (1 + Rational(4, 3)*3)'
+      expected: "0"
+    - expr: '(1 + 2, 2 + 2*2, -1 + 3*2)'
+      expected: "(3, 6, 5)"
+    - expr: '(1 + Rational(2, 3)*3, 0 + 2*3, 1 + Rational(4, 3)*3)'
+      expected: "(3, 6, 5)"
+:::
+
+
+::: exercise
+id: l4-lines-planes.handout-12-5-15
+number: "12.5.15"
+tier: standard
+topics:
+  - lines
+statement: |
+  Determine whether the lines \(\langle 1,1,2\rangle+t\langle 1,2,-3\rangle\) and \(\langle 2,3,-1\rangle+s\langle 2,4,-6\rangle\) are parallel, intersect, or neither.
+solution: |
+  **Parallel test.** The second direction is a multiple of the first:
+  \[
+  \langle 2,4,-6\rangle=2\langle 1,2,-3\rangle.
+  \]
+  The lines are parallel or they are the same line.
+
+  **Same line?** Test whether \((2,3,-1)\) is on the first line. The first line has \(x=1+t\), \(y=1+2t\) and \(z=2-3t\). At \(t=1\) these give
+  \[
+  (1+1,\,1+2,\,2-3)=(2,3,-1).
+  \]
+  So \((2,3,-1)\) lies on the first line. Two parallel lines with a common point are the same line.
+
+  The lines are the same line, so every point of one is a point of the other.
+provenance: handout-answer
+steps:
+  - Direction \(\langle 2,4,-6\rangle\) shown to equal \(2\langle 1,2,-3\rangle\).
+  - Point \((2,3,-1)\) found on the first line at \(t=1\).
+  - The lines coincide.
+verification:
+  checks:
+    - expr: '(2*1, 2*2, 2*(-3))'
+      expected: "(2, 4, -6)"
+    - expr: '(1 + 1, 1 + 2*1, 2 - 3*1)'
+      expected: "(2, 3, -1)"
+:::
+
+
+::: exercise
+id: l4-lines-planes.handout-12-5-16
+number: "12.5.16"
+tier: basic
+topics:
+  - planes
+statement: |
+  Find a unit normal vector to each of the coordinate planes.
+solution: |
+  Each coordinate plane has an equation whose coefficient vector is a normal.
+
+  - The \(xy\)-plane is \(z=0\), with normal \(\langle 0,0,1\rangle\).
+  - The \(xz\)-plane is \(y=0\), with normal \(\langle 0,1,0\rangle\).
+  - The \(yz\)-plane is \(x=0\), with normal \(\langle 1,0,0\rangle\).
+
+  Each of these vectors has length \(1\). The negative of a unit normal is also a unit normal. The unit normals are
+  \[
+  \begin{aligned}
+  xy\text{-plane}:&\ \pm\langle 0,0,1\rangle,\\
+  xz\text{-plane}:&\ \pm\langle 0,1,0\rangle,\\
+  yz\text{-plane}:&\ \pm\langle 1,0,0\rangle.
+  \end{aligned}
+  \]
+  As a check, the cross product \(\langle 1,0,0\rangle\times\langle 0,1,0\rangle\) has components \(0\cdot 0-0\cdot 1=0\), \(0\cdot 0-1\cdot 0=0\) and \(1\cdot 1-0\cdot 0=1\). It is \(\langle 0,0,1\rangle\), the normal of the \(xy\)-plane spanned by the two vectors.
+provenance: written-for-site
+steps:
+  - Equation of each coordinate plane written.
+  - Coefficient vector read off as a normal of length \(1\).
+  - Both signs listed.
+verification:
+  checks:
+    - expr: '(sqrt(0**2 + 0**2 + 1**2), sqrt(0**2 + 1**2 + 0**2), sqrt(1**2 + 0**2 + 0**2))'
+      expected: "(1, 1, 1)"
+    - expr: '(0*0 - 0*1, 0*0 - 1*0, 1*1 - 0*0)'
+      expected: "(0, 0, 1)"
+    - expr: '(0*1 - 0*0, 0*0 - 1*1, 1*0 - 0*0)'
+      expected: "(0, -1, 0)"
+    - expr: '(1*1 - 0*0, 0*0 - 0*1, 0*0 - 1*0)'
+      expected: "(1, 0, 0)"
+:::
+
+
+::: exercise
+id: l4-lines-planes.handout-12-5-19
+number: "12.5.19"
+tier: standard
+topics:
+  - planes
+  - distance
+statement: |
+  Find the distance from \((2,2,2)\) to the plane \(x+y+z=-1\).
+solution: |
+  A normal is \(\mathbf{n}=\langle 1,1,1\rangle\). Setting \(y=0\) and \(z=0\) gives the point \(Q=(-1,0,0)\), which lies on the plane because \(-1+0+0=-1\).
+
+  With \(P=(2,2,2)\), the vector and dot product are
+  \[
+  \begin{aligned}
+  \overrightarrow{QP}&=\langle 2+1,\,2-0,\,2-0\rangle\\
+  &=\langle 3,2,2\rangle,\\
+  \overrightarrow{QP}\cdot\mathbf{n}&=3+2+2\\
+  &=7,\\
+  \lvert\mathbf{n}\rvert&=\sqrt{1+1+1}=\sqrt{3}.
+  \end{aligned}
+  \]
+  The distance is \(\lvert 7\rvert/\sqrt{3}=7/\sqrt{3}=7\sqrt{3}/3\).
+provenance: handout-answer
+steps:
+  - Normal \(\langle 1,1,1\rangle\) and a point \(Q=(-1,0,0)\) on the plane named.
+  - Dot product \(7\) and length \(\sqrt{3}\) computed.
+  - Distance \(7/\sqrt{3}\) stated.
+verification:
+  checks:
+    - expr: '(-1) + 0 + 0'
+      expected: "-1"
+    - expr: '(2 - (-1), 2 - 0, 2 - 0)'
+      expected: "(3, 2, 2)"
+    - expr: 'Abs(3*1 + 2*1 + 2*1)/sqrt(1**2 + 1**2 + 1**2)'
+      expected: "7/sqrt(3)"
+:::
+
+
+::: exercise
+id: l4-lines-planes.handout-12-5-20
+number: "12.5.20"
+tier: standard
+topics:
+  - planes
+  - distance
+statement: |
+  Find the distance from \((2,-1,-1)\) to the plane \(2x-3y+z=2\).
+solution: |
+  A normal is \(\mathbf{n}=\langle 2,-3,1\rangle\). Setting \(y=0\) and \(z=0\) gives \(x=1\), so \(Q=(1,0,0)\) lies on the plane, because \(2\cdot 1=2\).
+
+  With \(P=(2,-1,-1)\), the vector and dot product are
+  \[
+  \begin{aligned}
+  \overrightarrow{QP}&=\langle 2-1,\,-1-0,\,-1-0\rangle\\
+  &=\langle 1,-1,-1\rangle,\\
+  \overrightarrow{QP}\cdot\mathbf{n}&=2+3-1\\
+  &=4,\\
+  \lvert\mathbf{n}\rvert&=\sqrt{4+9+1}=\sqrt{14}.
+  \end{aligned}
+  \]
+  The distance is \(\lvert 4\rvert/\sqrt{14}=4/\sqrt{14}\).
+provenance: handout-answer
+steps:
+  - Normal \(\langle 2,-3,1\rangle\) and a point \(Q=(1,0,0)\) on the plane named.
+  - Dot product \(4\) and length \(\sqrt{14}\) computed.
+  - Distance \(4/\sqrt{14}\) stated.
+verification:
+  checks:
+    - expr: '2*1 - 3*0 + 0'
+      expected: "2"
+    - expr: '(2 - 1, -1 - 0, -1 - 0)'
+      expected: "(1, -1, -1)"
+    - expr: 'Abs(1*2 + (-1)*(-3) + (-1)*1)/sqrt(2**2 + (-3)**2 + 1**2)'
+      expected: "4/sqrt(14)"
+:::
+
+
+::: exercise
+id: l4-lines-planes.handout-12-5-21
+number: "12.5.21"
+tier: standard
+topics:
+  - lines
+  - distance
+statement: |
+  Find the distance from \((2,-1,1)\) to the line \(\langle 2,2,0\rangle+t\langle 1,2,3\rangle\).
+solution: |
+  A point on the line is \(Q=(2,2,0)\), at \(t=0\). The direction is \(\mathbf{A}=\langle 1,2,3\rangle\). With \(P=(2,-1,1)\),
+  \[
+  \overrightarrow{QP}=\langle 0,-3,1\rangle.
+  \]
+  The cross product \(\overrightarrow{QP}\times\mathbf{A}\) has components
+  \[
+  \begin{aligned}
+  (-3)\cdot 3-1\cdot 2&=-11,\\
+  1\cdot 1-0\cdot 3&=1,\\
+  0\cdot 2-(-3)\cdot 1&=3.
+  \end{aligned}
+  \]
+  The cross product is \(\langle -11,1,3\rangle\). The sum of the squares of its components is \(121+1+9=131\), so its length is \(\sqrt{131}\). The sum of the squares of the components of \(\mathbf{A}\) is \(1+4+9=14\), so \(\lvert\mathbf{A}\rvert=\sqrt{14}\).
+
+  The distance is \(\sqrt{131}/\sqrt{14}\).
+provenance: handout-answer
+steps:
+  - Point \(Q\), direction \(\mathbf{A}\) and \(\overrightarrow{QP}=\langle 0,-3,1\rangle\) named.
+  - Cross product \(\langle -11,1,3\rangle\) computed.
+  - Lengths divided, and the distance \(\sqrt{131}/\sqrt{14}\) stated.
+verification:
+  checks:
+    - expr: '(2 - 2, -1 - 2, 1 - 0)'
+      expected: "(0, -3, 1)"
+    - expr: '((-3)*3 - 1*2, 1*1 - 0*3, 0*2 - (-3)*1)'
+      expected: "(-11, 1, 3)"
+    - expr: 'sqrt((-11)**2 + 1**2 + 3**2)/sqrt(1**2 + 2**2 + 3**2)'
+      expected: "sqrt(131)/sqrt(14)"
+:::
+
+
+::: exercise
+id: l4-lines-planes.handout-12-5-22
+number: "12.5.22"
+tier: standard
+topics:
+  - lines
+  - distance
+statement: |
+  Find the distance from \((1,0,1)\) to the line \(\langle 3,2,1\rangle+t\langle 2,-1,-2\rangle\).
+solution: |
+  A point on the line is \(Q=(3,2,1)\), at \(t=0\). The direction is \(\mathbf{A}=\langle 2,-1,-2\rangle\). With \(P=(1,0,1)\),
+  \[
+  \overrightarrow{QP}=\langle -2,-2,0\rangle.
+  \]
+  The cross product \(\overrightarrow{QP}\times\mathbf{A}\) has components
+  \[
+  \begin{aligned}
+  (-2)\cdot(-2)-0\cdot(-1)&=4,\\
+  0\cdot 2-(-2)\cdot(-2)&=-4,\\
+  (-2)\cdot(-1)-(-2)\cdot 2&=6.
+  \end{aligned}
+  \]
+  The cross product is \(\langle 4,-4,6\rangle\). The sum of the squares of its components is \(16+16+36=68\), so its length is \(\sqrt{68}\). The sum of the squares of the components of \(\mathbf{A}\) is \(4+1+4=9\), so \(\lvert\mathbf{A}\rvert=3\).
+
+  The distance is \(\sqrt{68}/3=2\sqrt{17}/3\).
+provenance: handout-answer
+steps:
+  - Point \(Q\), direction \(\mathbf{A}\) and \(\overrightarrow{QP}=\langle -2,-2,0\rangle\) named.
+  - Cross product \(\langle 4,-4,6\rangle\) computed.
+  - Lengths divided, and the distance \(\sqrt{68}/3\) stated.
+verification:
+  checks:
+    - expr: '(1 - 3, 0 - 2, 1 - 1)'
+      expected: "(-2, -2, 0)"
+    - expr: '((-2)*(-2) - 0*(-1), 0*2 - (-2)*(-2), (-2)*(-1) - (-2)*2)'
+      expected: "(4, -4, 6)"
+    - expr: 'sqrt(4**2 + (-4)**2 + 6**2)/sqrt(2**2 + (-1)**2 + (-2)**2)'
+      expected: "sqrt(68)/3"
+:::
+
+
+::: exercise
+id: l4-lines-planes.handout-12-5-23
+number: "12.5.23"
+tier: standard
+topics:
+  - planes
+statement: |
+  Find the cosine of the angle between the planes \(x+y+z=2\) and \(x+2y+3z=8\).
+solution: |
+  The angle between two planes is the angle between their normals. The normals are \(\mathbf{n}_1=\langle 1,1,1\rangle\) and \(\mathbf{n}_2=\langle 1,2,3\rangle\). The dot product and lengths are
+  \[
+  \begin{aligned}
+  \mathbf{n}_1\cdot\mathbf{n}_2&=1+2+3=6,\\
+  \lvert\mathbf{n}_1\rvert&=\sqrt{3},\\
+  \lvert\mathbf{n}_2\rvert&=\sqrt{1+4+9}=\sqrt{14}.
+  \end{aligned}
+  \]
+  So
+  \[
+  \begin{aligned}
+  \cos\theta&=\frac{6}{\sqrt{3}\sqrt{14}}\\
+  &=\frac{6}{\sqrt{42}}\\
+  &=\frac{6\sqrt{42}}{42}=\frac{\sqrt{42}}{7}.
+  \end{aligned}
+  \]
+provenance: handout-answer
+steps:
+  - Normals \(\langle 1,1,1\rangle\) and \(\langle 1,2,3\rangle\) read off.
+  - Dot product \(6\) and lengths \(\sqrt{3}\), \(\sqrt{14}\) computed.
+  - Cosine \(\sqrt{42}/7\) stated.
+verification:
+  checks:
+    - expr: '1*1 + 1*2 + 1*3'
+      expected: "6"
+    - expr: '(1*1 + 1*2 + 1*3)/(sqrt(1**2 + 1**2 + 1**2)*sqrt(1**2 + 2**2 + 3**2))'
+      expected: "sqrt(42)/7"
+:::
+
+
+::: exercise
+id: l4-lines-planes.handout-12-5-24
+number: "12.5.24"
+tier: standard
+topics:
+  - planes
+statement: |
+  Find the cosine of the angle between the planes \(x-y+2z=2\) and \(3x-2y+z=5\).
+solution: |
+  The angle between two planes is the angle between their normals. The normals are \(\mathbf{n}_1=\langle 1,-1,2\rangle\) and \(\mathbf{n}_2=\langle 3,-2,1\rangle\). The dot product and lengths are
+  \[
+  \begin{aligned}
+  \mathbf{n}_1\cdot\mathbf{n}_2&=3+2+2=7,\\
+  \lvert\mathbf{n}_1\rvert&=\sqrt{1+1+4}=\sqrt{6},\\
+  \lvert\mathbf{n}_2\rvert&=\sqrt{9+4+1}=\sqrt{14}.
+  \end{aligned}
+  \]
+  So
+  \[
+  \begin{aligned}
+  \cos\theta&=\frac{7}{\sqrt{6}\sqrt{14}}\\
+  &=\frac{7}{\sqrt{84}}=\frac{7}{2\sqrt{21}}\\
+  &=\frac{7\sqrt{21}}{42}=\frac{\sqrt{21}}{6}.
+  \end{aligned}
+  \]
+provenance: handout-answer
+steps:
+  - Normals \(\langle 1,-1,2\rangle\) and \(\langle 3,-2,1\rangle\) read off.
+  - Dot product \(7\) and lengths \(\sqrt{6}\), \(\sqrt{14}\) computed.
+  - Cosine \(\sqrt{21}/6\) stated.
+verification:
+  checks:
+    - expr: '1*3 + (-1)*(-2) + 2*1'
+      expected: "7"
+    - expr: '(1*3 + (-1)*(-2) + 2*1)/(sqrt(1**2 + (-1)**2 + 2**2)*sqrt(3**2 + (-2)**2 + 1**2))'
+      expected: "sqrt(21)/6"
+:::

@@ -507,3 +507,234 @@ verification:
     - expr: 'Tuple(diff(log(y - x**2) + sqrt(4 - y), x).subs({x: 1, y: 2}), diff(log(y - x**2) + sqrt(4 - y), y).subs({x: 1, y: 2}))'
       expected: Tuple(-2, 1 - sqrt(2)/4)
 :::
+
+::: exercise
+id: l5-partial-derivatives.handout-14-3-1
+number: "14.3.1"
+tier: basic
+topics:
+  - partial-derivatives
+statement: |
+  Find \(f_x\) and \(f_y\) where \(f(x,y)=\cos(x^2y)+y^3\).
+solution: |
+  Hold \(y\) constant. The chain rule on \(\cos(x^2y)\) multiplies \(-\sin(x^2y)\) by the inner derivative \(2xy\), and \(y^3\) contributes \(0\). The partial is
+  \[
+  f_x=-2xy\sin(x^2y).
+  \]
+
+  Hold \(x\) constant. The inner derivative of \(x^2y\) in \(y\) is \(x^2\), and \(y^3\) contributes \(3y^2\). The partial is
+  \[
+  f_y=-x^2\sin(x^2y)+3y^2.
+  \]
+provenance: handout-answer
+steps:
+  - The partial f_x equals -2xy sin(x^2 y).
+  - The partial f_y equals -x^2 sin(x^2 y) + 3y^2.
+verification:
+  checks:
+    - expr: 'diff(cos(x**2*y) + y**3, x) + 2*x*y*sin(x**2*y)'
+      expected: "0"
+    - expr: 'diff(cos(x**2*y) + y**3, y) - (-x**2*sin(x**2*y) + 3*y**2)'
+      expected: "0"
+:::
+
+
+::: exercise
+id: l5-partial-derivatives.handout-14-3-2
+number: "14.3.2"
+tier: standard
+topics:
+  - partial-derivatives
+statement: |
+  Find \(f_x\) and \(f_y\) where \(f(x,y)=\dfrac{xy}{x^2+y}\).
+solution: |
+  The function is defined where \(x^2+y\neq 0\).
+
+  Hold \(y\) constant and apply the quotient rule. The numerator \(xy\) has \(x\)-derivative \(y\), and the denominator has \(x\)-derivative \(2x\):
+  \[
+  \begin{aligned}
+  f_x&=\frac{y(x^2+y)-xy\cdot 2x}{(x^2+y)^2}\\
+  &=\frac{y^2-x^2y}{(x^2+y)^2}.
+  \end{aligned}
+  \]
+
+  Hold \(x\) constant. The numerator has \(y\)-derivative \(x\), and the denominator has \(y\)-derivative \(1\):
+  \[
+  \begin{aligned}
+  f_y&=\frac{x(x^2+y)-xy\cdot 1}{(x^2+y)^2}\\
+  &=\frac{x^3}{(x^2+y)^2}.
+  \end{aligned}
+  \]
+provenance: handout-answer
+steps:
+  - The quotient rule in x gives f_x = (y^2 - x^2 y)/(x^2 + y)^2.
+  - The quotient rule in y gives f_y = x^3/(x^2 + y)^2.
+verification:
+  checks:
+    - expr: 'simplify(diff(x*y/(x**2 + y), x) - (y**2 - x**2*y)/(x**2 + y)**2)'
+      expected: "0"
+    - expr: 'simplify(diff(x*y/(x**2 + y), y) - x**3/(x**2 + y)**2)'
+      expected: "0"
+:::
+
+
+::: exercise
+id: l5-partial-derivatives.handout-14-3-4
+number: "14.3.4"
+tier: standard
+topics:
+  - partial-derivatives
+statement: |
+  Find \(f_x\) and \(f_y\) where \(f(x,y)=xy\ln(xy)\).
+solution: |
+  The function is defined where \(xy>0\).
+
+  Hold \(y\) constant. The product rule treats \(xy\) and \(\ln(xy)\) as two factors. The factor \(xy\) has \(x\)-derivative \(y\), and the factor \(\ln(xy)\) has \(x\)-derivative \(\frac{y}{xy}=\frac1x\):
+  \[
+  \begin{aligned}
+  f_x&=y\ln(xy)+xy\cdot\frac1x\\
+  &=y\ln(xy)+y.
+  \end{aligned}
+  \]
+
+  Hold \(x\) constant. The factor \(xy\) has \(y\)-derivative \(x\), and \(\ln(xy)\) has \(y\)-derivative \(\frac1y\):
+  \[
+  \begin{aligned}
+  f_y&=x\ln(xy)+xy\cdot\frac1y\\
+  &=x\ln(xy)+x.
+  \end{aligned}
+  \]
+provenance: handout-answer
+steps:
+  - The product rule in x gives f_x = y ln(xy) + y.
+  - The product rule in y gives f_y = x ln(xy) + x.
+verification:
+  checks:
+    - expr: 'simplify(diff(x*y*log(x*y), x) - (y*log(x*y) + y))'
+      expected: "0"
+    - expr: 'simplify(diff(x*y*log(x*y), y) - (x*log(x*y) + x))'
+      expected: "0"
+:::
+
+
+::: exercise
+id: l5-partial-derivatives.handout-14-3-6
+number: "14.3.6"
+tier: basic
+topics:
+  - partial-derivatives
+statement: |
+  Find \(f_x\) and \(f_y\) where \(f(x,y)=x\tan y\).
+solution: |
+  The function is defined where \(\cos y\neq 0\).
+
+  Hold \(y\) constant. The factor \(\tan y\) stays in place, so
+  \[
+  f_x=\tan y.
+  \]
+  Hold \(x\) constant. The factor \(x\) stays in place, and the derivative of \(\tan y\) is \(\sec^2 y\), so
+  \[
+  f_y=x\sec^2 y.
+  \]
+provenance: handout-answer
+steps:
+  - The partial f_x equals tan y.
+  - The partial f_y equals x sec^2 y.
+verification:
+  checks:
+    - expr: 'diff(x*tan(y), x) - tan(y)'
+      expected: "0"
+    - expr: 'simplify(diff(x*tan(y), y) - x/cos(y)**2)'
+      expected: "0"
+:::
+
+
+::: exercise
+id: l5-partial-derivatives.handout-14-3-14
+number: "14.3.14"
+tier: basic
+topics:
+  - partial-derivatives
+statement: |
+  Let \(f(x,y)\) be a differentiable function. Give a geometric interpretation of \(f_x(a,b)\) and of \(f_y(a,b)\) as they relate to the graph of \(f\).
+solution: |
+  The graph of \(f\) is the surface \(z=f(x,y)\).
+
+  **The partial in \(x\).** The plane \(y=b\) cuts the surface in the curve \(z=f(x,b)\). This is a curve in that plane, with \(x\) as its variable. By definition, \(f_x(a,b)\) is the derivative of \(x\mapsto f(x,b)\) at \(x=a\). So \(f_x(a,b)\) is the slope of the tangent line to that curve at the point \((a,b,f(a,b))\). It is the slope of the graph in the \(x\)-direction.
+
+  **The partial in \(y\).** The plane \(x=a\) cuts the surface in the curve \(z=f(a,y)\). The value \(f_y(a,b)\) is the derivative of \(y\mapsto f(a,y)\) at \(y=b\), the slope of the tangent line to that curve at the same point. It is the slope of the graph in the \(y\)-direction.
+
+  Both tangent lines lie in the tangent plane to the graph at \((a,b,f(a,b))\).
+
+  **Example.** Let \(f(x,y)=xy^3\) and \((a,b)=(2,1)\). The cut \(y=1\) is the line \(z=x\), with slope \(1\), and \(f_x=y^3\) equals \(1\) at the point. The cut \(x=2\) is the curve \(z=2y^3\), with slope \(6\) at \(y=1\), and \(f_y=3xy^2\) equals \(6\) at the point.
+provenance: written-for-site
+steps:
+  - The plane y = b cuts the graph in z = f(x, b), and f_x(a, b) is the slope of that curve at x = a.
+  - The plane x = a cuts the graph in z = f(a, y), and f_y(a, b) is the slope of that curve at y = b.
+  - For f = x y^3 at (2, 1) the slopes are 1 and 6.
+verification:
+  checks:
+    - expr: '(diff(x*y**3, x).subs({x: 2, y: 1}), diff(x*y**3, y).subs({x: 2, y: 1}))'
+      expected: "(1, 6)"
+    - expr: '(diff(x*1**3, x).subs(x, 2), diff(2*y**3, y).subs(y, 1))'
+      expected: "(1, 6)"
+:::
+
+
+::: exercise
+id: l5-partial-derivatives.handout-14-3-17
+number: "14.3.17"
+tier: standard
+topics:
+  - partial-derivatives
+  - chain-rule
+statement: |
+  Let \(f(t)\) and \(g(t)\) be differentiable functions of one variable. Find the partial derivatives \(z_x\) and \(z_y\) for each of the following.
+
+  - a) \(z=f(x)\,g(y)\)
+  - b) \(z=f(xy)\)
+  - c) \(z=f(x/y)\)
+solution: |
+  **a)** In \(z_x\), the factor \(g(y)\) is constant. In \(z_y\), the factor \(f(x)\) is constant. So
+  \[
+  \begin{aligned}
+  z_x&=f'(x)\,g(y),\\
+  z_y&=f(x)\,g'(y).
+  \end{aligned}
+  \]
+
+  **b)** Let \(u=xy\), so \(z=f(u)\). The one-variable chain rule gives \(\frac{\partial z}{\partial x}=f'(u)\,u_x\). Here \(u_x=y\) and \(u_y=x\), so
+  \[
+  \begin{aligned}
+  z_x&=y\,f'(xy),\\
+  z_y&=x\,f'(xy).
+  \end{aligned}
+  \]
+
+  **c)** Let \(u=x/y\) for \(y\neq 0\), so \(z=f(u)\). Here \(u_x=\frac1y\) and \(u_y=-\frac{x}{y^2}\), so
+  \[
+  \begin{aligned}
+  z_x&=\frac{1}{y}\,f'\!\left(\frac{x}{y}\right),\\
+  z_y&=-\frac{x}{y^2}\,f'\!\left(\frac{x}{y}\right).
+  \end{aligned}
+  \]
+provenance: written-for-site
+steps:
+  - In a) one factor is constant in each partial, so z_x = f'(x) g(y) and z_y = f(x) g'(y).
+  - In b) the inner function xy has partials y and x, so z_x = y f'(xy) and z_y = x f'(xy).
+  - In c) the inner function x/y has partials 1/y and -x/y^2.
+verification:
+  checks:
+    - expr: 'diff(Function("f")(x)*Function("g")(y), x) - Derivative(Function("f")(x), x)*Function("g")(y)'
+      expected: "0"
+    - expr: 'diff(Function("f")(x)*Function("g")(y), y) - Function("f")(x)*Derivative(Function("g")(y), y)'
+      expected: "0"
+    - expr: 'simplify(diff(Function("f")(x*y), x) - y*Subs(Derivative(Function("f")(u), u), u, x*y))'
+      expected: "0"
+    - expr: 'simplify(diff(Function("f")(x*y), y) - x*Subs(Derivative(Function("f")(u), u), u, x*y))'
+      expected: "0"
+    - expr: 'simplify(diff(Function("f")(x/y), x) - Subs(Derivative(Function("f")(u), u), u, x/y)/y)'
+      expected: "0"
+    - expr: 'simplify(diff(Function("f")(x/y), y) + x/y**2*Subs(Derivative(Function("f")(u), u), u, x/y))'
+      expected: "0"
+:::

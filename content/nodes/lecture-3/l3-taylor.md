@@ -756,3 +756,86 @@ verification:
     - expr: limit(((1+x)**Rational(1,3)*(1-x)**Rational(1,3) - 1)/x**2, x, 0)
       expected: -1/3
 :::
+
+::: exercise
+id: l3-taylor.sheet-1-11
+number: "sheet 1 exercise 11"
+tier: standard
+topics:
+  - taylor
+  - limits
+statement: |
+  Compute
+  \[
+  \lim_{x\to 1}\frac{\ln(x)-\frac{x-1}{x}}{\ln(x)^2}
+  \]
+  using Taylor series or L'Hôpital's rule.
+solution: |
+  The numerator and the denominator both vanish at \(x=1\), so the quotient is a \(0/0\) form. The expression is defined for \(x>0\) with \(x\neq 1\), because \(\ln(x)\neq 0\) there.
+
+  ### Taylor expansion about \(1\)
+
+  Take the base point \(1\) and the increment \(\delta x=x-1\). Expand the two functions of the numerator to order \(2\).
+
+  For \(f(x)=\ln x\), the derivatives are \(f'(x)=\frac{1}{x}\) and \(f''(x)=-\frac{1}{x^2}\). The values at \(1\) are \(f(1)=0\), \(f'(1)=1\) and \(f''(1)=-1\), so
+  \[
+  \ln x=\delta x-\frac{\delta x^2}{2}+\delta x^2\cdot\mathrm{small}.
+  \]
+
+  For \(g(x)=\frac{x-1}{x}=1-\frac{1}{x}\), the derivatives are \(g'(x)=\frac{1}{x^2}\) and \(g''(x)=-\frac{2}{x^3}\). The values at \(1\) are \(g(1)=0\), \(g'(1)=1\) and \(g''(1)=-2\), so
+  \[
+  \frac{x-1}{x}=\delta x-\delta x^2+\delta x^2\cdot\mathrm{small}.
+  \]
+
+  ### The numerator and the denominator
+
+  Subtract the two expansions. The terms of order \(1\) cancel:
+  \[
+  \begin{aligned}
+  \ln x-\frac{x-1}{x}&=\left(\delta x-\frac{\delta x^2}{2}\right)-\left(\delta x-\delta x^2\right)\\
+  &\quad+\delta x^2\cdot\mathrm{small}\\
+  &=\frac{\delta x^2}{2}+\delta x^2\cdot\mathrm{small}.
+  \end{aligned}
+  \]
+  The expansion of order \(1\) gives \(\ln x=\delta x\,(1+\mathrm{small})\), so
+  \[
+  \ln(x)^2=\delta x^2\,(1+\mathrm{small})^2.
+  \]
+
+  ### The limit
+
+  Divide and cancel \(\delta x^2\):
+  \[
+  \frac{\ln x-\frac{x-1}{x}}{\ln(x)^2}=\frac{\frac{1}{2}+\mathrm{small}}{(1+\mathrm{small})^2}.
+  \]
+  As \(x\to 1\), the factors called small tend to \(0\). The quotient tends to \(\frac{1/2}{1}\), so the limit is \(\frac{1}{2}\).
+
+  ### Check with L'Hôpital's rule
+
+  Let \(N(x)=\ln x-1+\frac{1}{x}\), which equals the numerator, and \(D(x)=\ln(x)^2\). Both vanish at \(1\). Their derivatives are
+  \[
+  N'(x)=\frac{1}{x}-\frac{1}{x^2}=\frac{x-1}{x^2},\qquad D'(x)=\frac{2\ln x}{x}.
+  \]
+  The ratio is
+  \[
+  \frac{N'(x)}{D'(x)}=\frac{x-1}{2x\ln x}=\frac{1}{2x}\cdot\frac{x-1}{\ln x}.
+  \]
+  The factor \(\frac{1}{2x}\) tends to \(\frac{1}{2}\), and \(\frac{x-1}{\ln x}\) tends to \(1\) as \(x\to 1\). The ratio tends to \(\frac{1}{2}\), which confirms the value.
+provenance: written-for-site
+steps:
+  - The expansions about \(1\) are \(\ln x=\delta x-\frac{\delta x^2}{2}+\cdots\) and \(\frac{x-1}{x}=\delta x-\delta x^2+\cdots\).
+  - The numerator equals \(\frac{\delta x^2}{2}+\delta x^2\cdot\mathrm{small}\), and the denominator equals \(\delta x^2\,(1+\mathrm{small})^2\).
+  - The limit is \(\frac{1}{2}\).
+verification:
+  checks:
+    - expr: (diff(log(x), x).subs(x, 1), diff(log(x), x, 2).subs(x, 1))
+      expected: (1, -1)
+    - expr: (diff(1 - 1/x, x).subs(x, 1), diff(1 - 1/x, x, 2).subs(x, 1))
+      expected: (1, -2)
+    - expr: limit((log(x) - (x - 1)/x)/log(x)**2, x, 1)
+      expected: 1/2
+    - expr: simplify(diff(log(x) - 1 + 1/x, x) - (x - 1)/x**2)
+      expected: "0"
+    - expr: limit(((x - 1)/x**2)/(2*log(x)/x), x, 1)
+      expected: 1/2
+:::

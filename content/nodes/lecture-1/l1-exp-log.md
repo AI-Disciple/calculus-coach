@@ -683,3 +683,195 @@ verification:
     - expr: simplify(diff((exp(x) - exp(-x))/(exp(x) + exp(-x)), x) - 4/(exp(x) + exp(-x))**2)
       expected: "0"
 :::
+
+::: exercise
+id: l1-exp-log.sheet-1-4-3
+number: "sheet 1 exercise 4.3"
+tier: basic
+topics:
+  - exponentials
+statement: |
+  Give the domain of \(f(x)=e^x\) and sketch its graph.
+solution: |
+  The power \(e^x\) is defined for every real exponent \(x\). The domain of \(f(x)=e^x\) is every real number.
+
+  The graph has these features:
+
+  - The values are always positive, so the graph stays above the \(x\)-axis and has no \(x\)-intercept. The range is every real \(y>0\).
+  - The \(y\)-intercept is \(f(0)=e^0=1\). The graph also passes through \((1,e)\), with \(e\approx 2.72\), and through \((-1,1/e)\), with \(1/e\approx 0.37\).
+  - The function is increasing: a larger \(x\) gives a larger \(e^x\).
+  - As \(x\) decreases without bound, \(e^x\) approaches \(0\) from above. The line \(y=0\) is a horizontal asymptote on the left.
+  - As \(x\) grows, \(e^x\) grows without bound, faster than any line.
+
+  The graph is the reflection of \(y=\ln x\) across the line \(y=x\).
+provenance: written-for-site
+steps:
+  - The domain is stated in a full sentence as every real number.
+  - The graph is described, with the point \((0,1)\), the asymptote \(y=0\) and the range \(y>0\).
+verification:
+  checks:
+    - expr: limit(exp(x), x, -oo)
+      expected: "0"
+    - expr: limit(x*exp(-x), x, oo)
+      expected: "0"
+    - expr: exp(0)
+      expected: "1"
+    - expr: solve(exp(x), x)
+      expected: "[]"
+    - expr: diff(exp(x), x) - exp(x)
+      expected: "0"
+:::
+
+::: exercise
+id: l1-exp-log.handout-4-6-2
+number: "4.6.2"
+tier: standard
+topics:
+  - logarithms
+statement: |
+  Expand \(\log_{2}\!\left(\dfrac{x^{3}}{3x-5+\frac{7}{x}}\right)\).
+solution: |
+  The argument is a quotient, so the quotient law splits the logarithm:
+  \[
+  \begin{aligned}
+  &\log_{2}\!\left(\frac{x^{3}}{3x-5+\frac{7}{x}}\right)\\
+  &=\log_{2}(x^{3})-\log_{2}\!\left(3x-5+\frac{7}{x}\right).
+  \end{aligned}
+  \]
+  The power law converts the first term, \(\log_{2}(x^{3})=3\log_{2}(x)\). The second term is the logarithm of a sum, and the laws give no rule for a sum, so it stays as it is. The expansion is
+  \[
+  3\log_{2}(x)-\log_{2}\!\left(3x-5+\frac{7}{x}\right).
+  \]
+
+  The expression needs \(x>0\) for \(\log_{2}(x)\) and for the fraction \(\frac{7}{x}\). On \(x>0\),
+  \[
+  3x-5+\frac{7}{x}=\frac{3x^{2}-5x+7}{x}.
+  \]
+  The quadratic \(3x^{2}-5x+7\) has discriminant \(25-84=-59<0\) and a positive leading coefficient, so it is positive for every \(x\). The denominator is therefore positive for \(x>0\), and the expansion holds for every \(x>0\).
+provenance: written-for-site
+steps:
+  - Apply the quotient law to separate the numerator and the denominator.
+  - Apply the power law to \(\log_{2}(x^{3})\) and leave the logarithm of the sum alone.
+  - Check that the expansion holds for every \(x>0\).
+verification:
+  checks:
+    - expr: '(log(x**3/(3*x - 5 + 7/x), 2) - (3*log(x, 2) - log(3*x - 5 + 7/x, 2))).subs(x, 2)'
+      expected: "0"
+    - expr: 'simplify(expand_log(log(x**3/(3*x - 5 + 7/x), 2), force=True) - (3*log(x, 2) - log(3*x - 5 + 7/x, 2)))'
+      expected: "0"
+    - expr: 'discriminant(3*x**2 - 5*x + 7, x)'
+      expected: "-59"
+    - expr: 'simplify(3*x - 5 + 7/x - (3*x**2 - 5*x + 7)/x)'
+      expected: "0"
+:::
+
+
+::: exercise
+id: l1-exp-log.handout-4-6-3
+number: "4.6.3"
+tier: basic
+topics:
+  - logarithms
+statement: |
+  Write \(\log_{2}(3x)+17\log_{2}(x-2)-2\log_{2}(x^{2}+4x+1)\) as a single logarithm.
+solution: |
+  Move the coefficients into the arguments with the power law:
+  \[
+  \begin{aligned}
+  17\log_{2}(x-2)&=\log_{2}\bigl((x-2)^{17}\bigr),\\
+  2\log_{2}(x^{2}+4x+1)&=\log_{2}\bigl((x^{2}+4x+1)^{2}\bigr).
+  \end{aligned}
+  \]
+  The product law combines the first two terms, and the quotient law absorbs the third:
+  \[
+  \begin{aligned}
+  &\log_{2}(3x)+\log_{2}\bigl((x-2)^{17}\bigr)\\
+  &\quad-\log_{2}\bigl((x^{2}+4x+1)^{2}\bigr)\\
+  &=\log_{2}\!\left(\frac{3x\,(x-2)^{17}}{(x^{2}+4x+1)^{2}}\right).
+  \end{aligned}
+  \]
+
+  The original expression needs \(3x>0\) and \(x-2>0\), so \(x>2\). On that range \(x^{2}+4x+1>0\) as well. The single logarithm equals the original expression for \(x>2\).
+provenance: written-for-site
+steps:
+  - Use the power law to put \(17\) and \(2\) into exponents.
+  - Use the product law for the sum and the quotient law for the difference.
+  - The result is valid for \(x>2\).
+verification:
+  checks:
+    - expr: '(log(3*x, 2) + 17*log(x - 2, 2) - 2*log(x**2 + 4*x + 1, 2) - log(3*x*(x - 2)**17/(x**2 + 4*x + 1)**2, 2)).subs(x, 3)'
+      expected: "0"
+    - expr: 'simplify(expand_log(log(3*x*(x - 2)**17/(x**2 + 4*x + 1)**2, 2), force=True) - (log(3*x, 2) + 17*log(x - 2, 2) - 2*log(x**2 + 4*x + 1, 2)))'
+      expected: "0"
+:::
+
+
+::: exercise
+id: l1-exp-log.handout-4-6-4
+number: "4.6.4"
+tier: basic
+topics:
+  - logarithms
+statement: |
+  Solve \(\log_{2}\bigl(1+\sqrt{x}\bigr)=6\) for \(x\).
+solution: |
+  The expression needs \(x\ge 0\). Inverse cancellation says \(2^{\log_{2}(u)}=u\) for \(u>0\). Take the power of \(2\) of both sides:
+  \[
+  \begin{aligned}
+  1+\sqrt{x}&=2^{6}\\
+  &=64.
+  \end{aligned}
+  \]
+  Then \(\sqrt{x}=63\), and squaring gives
+  \[
+  x=63^{2}=3969.
+  \]
+  The value is nonnegative. For a check, \(\sqrt{3969}=63\), so \(1+\sqrt{3969}=64\) and \(\log_{2}(64)=6\). The solution is \(x=3969\).
+provenance: written-for-site
+steps:
+  - "Convert to exponential form: \\(1+\\sqrt{x}=2^{6}=64\\)."
+  - Solve \(\sqrt{x}=63\), so \(x=3969\).
+  - Check that \(\log_{2}(64)=6\).
+verification:
+  checks:
+    - expr: 'solve(1 + sqrt(x) - 2**6, x)'
+      expected: "[3969]"
+    - expr: 'log(1 + sqrt(3969), 2)'
+      expected: "6"
+:::
+
+
+::: exercise
+id: l1-exp-log.handout-4-6-6
+number: "4.6.6"
+tier: standard
+topics:
+  - logarithms
+statement: |
+  Solve \(\log_{2}\bigl(\log_{3}(x)\bigr)=1\) for \(x\).
+solution: |
+  The outer logarithm needs a positive argument, so \(\log_{3}(x)>0\), which means \(x>1\).
+
+  Unwrap the outer logarithm first. Take the power of \(2\) of both sides:
+  \[
+  \log_{3}(x)=2^{1}=2.
+  \]
+  Unwrap the inner logarithm. Take the power of \(3\) of both sides:
+  \[
+  x=3^{2}=9.
+  \]
+  The value satisfies \(x>1\). For a check, \(\log_{3}(9)=2\) and \(\log_{2}(2)=1\). The solution is \(x=9\).
+provenance: written-for-site
+steps:
+  - The domain is \(x>1\), so that \(\log_{3}(x)>0\).
+  - Unwrap the outer logarithm to get \(\log_{3}(x)=2\).
+  - Unwrap the inner logarithm to get \(x=3^{2}=9\).
+verification:
+  checks:
+    - expr: 'log(log(9, 3), 2)'
+      expected: "1"
+    - expr: 'log(9, 3)'
+      expected: "2"
+    - expr: 'solve(log(x, 3) - 2, x)'
+      expected: "[9]"
+:::

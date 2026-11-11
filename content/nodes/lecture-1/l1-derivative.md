@@ -727,3 +727,352 @@ verification:
     - expr: (diff(x**2 - 1, x).subs(x, -1), diff(1 - x**2, x).subs(x, -1))
       expected: (-2, 2)
 :::
+
+::: exercise
+id: l1-derivative.handout-2-1-5
+number: "2.1.5"
+tier: basic
+topics:
+  - derivative-definition
+  - tangent-line
+statement: |
+  Draw the graph of \(y=f(x)=x^3\) between \(x=0\) and \(x=1.5\). Find the slope of the chord between
+
+  (a) \(x=1\) and \(x=1.1\),
+
+  (b) \(x=1\) and \(x=1.001\),
+
+  (c) \(x=1\) and \(x=1.00001\).
+
+  Then use algebra to find a simple formula for the slope of the chord between \(1\) and \(1+\Delta x\). Use the expansion \((A+B)^3=A^3+3A^2B+3AB^2+B^3\). Determine what happens as \(\Delta x\) approaches \(0\), and in your graph of \(y=x^3\) draw the straight line through the point \((1,1)\) whose slope is equal to the value you just found.
+solution: |
+  The graph rises from \((0,0)\) through \((1,1)\) to \((1.5,\,3.375)\). It is steeper to the right.
+
+  The slope of the chord from \(x=1\) to \(x=1+\Delta x\) is
+  \[
+  \frac{\Delta y}{\Delta x}=\frac{(1+\Delta x)^3-1}{\Delta x}.
+  \]
+  The three chords of the question use \(\Delta x=0.1\), \(0.001\) and \(0.00001\).
+
+  ### The formula for the slope
+
+  Expand with \(A=1\) and \(B=\Delta x\). For \(\Delta x\neq 0\),
+  \[
+  \begin{aligned}
+  \frac{(1+\Delta x)^3-1}{\Delta x}&=\frac{3\Delta x+3(\Delta x)^2+(\Delta x)^3}{\Delta x}\\
+  &=3+3\Delta x+(\Delta x)^2.
+  \end{aligned}
+  \]
+
+  ### The three chords
+
+  Put the three steps into the formula:
+  \[
+  \begin{aligned}
+  \Delta x=0.1:&\quad 3+0.3+0.01=3.31,\\
+  \Delta x=0.001:&\quad 3+0.003+0.000001=3.003001,\\
+  \Delta x=0.00001:&\quad 3+0.00003+0.0000000001=3.0000300001.
+  \end{aligned}
+  \]
+  So the slopes are (a) \(3.31\), (b) \(3.003001\), (c) \(3.00003\), about \(3.0000\) to four decimals.
+
+  ### The limit and the tangent line
+
+  As \(\Delta x\to 0\), the terms \(3\Delta x\) and \((\Delta x)^2\) tend to \(0\). The slope tends to \(3\), so \(f'(1)=3\).
+
+  The straight line through \((1,1)\) with slope \(3\) is
+  \[
+  y=1+3(x-1)=3x-2.
+  \]
+  It touches the graph of \(y=x^3\) at \((1,1)\). The chord slopes in (a) to (c) decrease towards its slope \(3\).
+provenance: handout-answer
+steps:
+  - The chord slope simplifies to \(3+3\Delta x+(\Delta x)^2\).
+  - The three chord slopes are \(3.31\), \(3.003001\) and \(3.0000300001\).
+  - The limit is \(3\), and the line through \((1,1)\) is \(y=3x-2\).
+verification:
+  checks:
+    - expr: simplify(((1 + h)**3 - 1)/h - (3 + 3*h + h**2))
+      expected: "0"
+    - expr: (((1 + Rational(1, 10))**3 - 1)/Rational(1, 10), ((1 + Rational(1, 1000))**3 - 1)/Rational(1, 1000), ((1 + Rational(1, 100000))**3 - 1)/Rational(1, 100000))
+      expected: (331/100, 3003001/1000000, 30000300001/10000000000)
+    - expr: limit(((1 + h)**3 - 1)/h, h, 0)
+      expected: "3"
+    - expr: 1 + 3*(x - 1)
+      expected: 3*x - 2
+:::
+
+
+::: exercise
+id: l1-derivative.handout-2-1-6
+number: "2.1.6"
+tier: basic
+topics:
+  - derivative-definition
+statement: |
+  Find an algebraic expression for the difference quotient
+  \[
+  \frac{f(x+\Delta x)-f(x)}{\Delta x}
+  \]
+  when \(f(x)=mx+b\). Simplify the expression as much as possible. Then determine what happens as \(\Delta x\) approaches \(0\). That value is \(f'(x)\).
+solution: |
+  Here \(m\) and \(b\) are constants. For \(\Delta x\neq 0\),
+  \[
+  \begin{aligned}
+  \frac{f(x+\Delta x)-f(x)}{\Delta x}&=\frac{m(x+\Delta x)+b-(mx+b)}{\Delta x}\\
+  &=\frac{m\,\Delta x}{\Delta x}\\
+  &=m.
+  \end{aligned}
+  \]
+  The quotient equals \(m\) for every step \(\Delta x\neq 0\), so it does not depend on \(x\) or on \(\Delta x\). The limit as \(\Delta x\to 0\) is \(m\).
+
+  Therefore \(f'(x)=m\) for every \(x\). The derivative of a line is its slope.
+provenance: handout-answer
+steps:
+  - The terms \(mx\) and \(b\) cancel in the numerator, leaving \(m\,\Delta x\).
+  - The quotient equals \(m\), so \(f'(x)=m\).
+verification:
+  checks:
+    - expr: simplify(((m*(x + h) + b) - (m*x + b))/h)
+      expected: m
+    - expr: limit(((m*(x + h) + b) - (m*x + b))/h, h, 0)
+      expected: m
+    - expr: diff(m*x + b, x)
+      expected: m
+:::
+
+
+::: exercise
+id: l1-derivative.handout-2-1-8
+number: "2.1.8"
+tier: basic
+topics:
+  - derivative-definition
+  - horizontal-tangent
+statement: |
+  Sketch the parabola \(y=x^2\). For what values of \(x\) on the parabola is the slope of the tangent line positive? Negative? What do you notice about the graph at the point or points where the sign of the slope changes from positive to negative, and vice versa?
+solution: |
+  The parabola opens upwards with its lowest point at the origin. It is symmetric about the \(y\)-axis.
+
+  The slope of the tangent line at \(x\) is the derivative. For a step \(h\neq 0\),
+  \[
+  \frac{(x+h)^2-x^2}{h}=2x+h,
+  \]
+  and the limit as \(h\to 0\) is \(f'(x)=2x\).
+
+  The sign of \(2x\) gives the sign of the slope:
+
+  - For \(x>0\) the slope is positive, and the tangent line rises to the right.
+  - For \(x<0\) the slope is negative, and the tangent line falls to the right.
+  - For \(x=0\) the slope is \(0\), and the tangent line is the horizontal line \(y=0\).
+
+  The slope changes sign only at \(x=0\), from negative to positive as \(x\) increases. At that point the tangent line is horizontal, and the graph has its lowest point, a turning point where it stops falling and starts rising.
+
+  A change from positive to negative would give a horizontal tangent at the top of an arch, as for \(y=-x^2\) at the origin. The parabola \(y=x^2\) has no such point.
+provenance: written-for-site
+steps:
+  - The derivative of \(x^2\) is \(2x\).
+  - The slope is positive for \(x>0\) and negative for \(x<0\).
+  - The slope is \(0\) at the vertex, where the tangent is horizontal and the graph turns.
+verification:
+  checks:
+    - expr: limit(((x + h)**2 - x**2)/h, h, 0)
+      expected: 2*x
+    - expr: solve(diff(x**2, x), x)
+      expected: "[0]"
+    - expr: (sign(diff(x**2, x).subs(x, -3)), sign(diff(x**2, x).subs(x, 3)))
+      expected: (-1, 1)
+    - expr: (diff(x**2, x, 2), diff(-x**2, x, 2))
+      expected: (2, -2)
+:::
+
+
+::: exercise
+id: l1-derivative.handout-2-2-1
+number: "2.2.1"
+tier: basic
+topics:
+  - derivative-definition
+statement: |
+  An object is travelling in a straight line. Its position, the distance from a fixed point, is given at four times:
+
+  - at \(t=0\) seconds the distance is \(0\) meters,
+  - at \(t=1\) seconds it is \(10\) meters,
+  - at \(t=2\) seconds it is \(25\) meters,
+  - at \(t=3\) seconds it is \(60\) meters.
+
+  Find the average speed of the object during each of the time intervals \([0,1]\), \([0,2]\), \([0,3]\), \([1,2]\), \([1,3]\) and \([2,3]\). If you had to guess the speed at \(t=2\) just on the basis of these, what would you guess?
+solution: |
+  The average speed over \([a,b]\) is the distance travelled divided by the time elapsed,
+  \[
+  \frac{d(b)-d(a)}{b-a}.
+  \]
+  The six intervals give
+  \[
+  \begin{aligned}
+  [0,1]:&\quad \frac{10-0}{1-0}=10,\\
+  [0,2]:&\quad \frac{25-0}{2-0}=\frac{25}{2},\\
+  [0,3]:&\quad \frac{60-0}{3-0}=20,\\
+  [1,2]:&\quad \frac{25-10}{2-1}=15,\\
+  [1,3]:&\quad \frac{60-10}{3-1}=25,\\
+  [2,3]:&\quad \frac{60-25}{3-2}=35.
+  \end{aligned}
+  \]
+  All speeds are in meters per second.
+
+  ### The guess at \(t=2\)
+
+  The interval \([1,2]\) ends at \(t=2\) and gives \(15\). The interval \([2,3]\) starts at \(t=2\) and gives \(35\). The speed is increasing, so the speed at \(t=2\) lies between these two values.
+
+  The interval \([1,3]\) has \(t=2\) in the middle, and it gives \(25\). This is also the average of \(15\) and \(35\). A reasonable guess for the speed at \(t=2\) is about \(25\) m/s.
+provenance: handout-answer
+steps:
+  - The average speed over \([a,b]\) is \(\frac{d(b)-d(a)}{b-a}\).
+  - The six average speeds are \(10\), \(\frac{25}{2}\), \(20\), \(15\), \(25\) and \(35\).
+  - The speed at \(t=2\) lies between \(15\) and \(35\), and the centred interval gives the guess \(25\) m/s.
+verification:
+  checks:
+    - expr: (Rational(10 - 0, 1 - 0), Rational(25 - 0, 2 - 0), Rational(60 - 0, 3 - 0), Rational(25 - 10, 2 - 1), Rational(60 - 10, 3 - 1), Rational(60 - 25, 3 - 2))
+      expected: (10, 25/2, 20, 15, 25, 35)
+    - expr: Rational(15 + 35, 2)
+      expected: "25"
+:::
+
+
+::: exercise
+id: l1-derivative.handout-2-4-4
+number: "2.4.4"
+tier: basic
+topics:
+  - derivative-definition
+statement: |
+  Find the derivative of \(y=f(x)=ax^2+bx+c\), where \(a\), \(b\) and \(c\) are constants, from the definition of the derivative.
+solution: |
+  For a step \(\Delta x\neq 0\), expand \(f(x+\Delta x)\):
+  \[
+  \begin{aligned}
+  f(x+\Delta x)&=a(x+\Delta x)^2+b(x+\Delta x)+c\\
+  &=ax^2+2ax\,\Delta x+a(\Delta x)^2\\
+  &\quad+bx+b\,\Delta x+c.
+  \end{aligned}
+  \]
+  Subtracting \(f(x)=ax^2+bx+c\) leaves
+  \[
+  f(x+\Delta x)-f(x)=2ax\,\Delta x+a(\Delta x)^2+b\,\Delta x.
+  \]
+  Dividing by \(\Delta x\) gives the difference quotient
+  \[
+  \frac{f(x+\Delta x)-f(x)}{\Delta x}=2ax+a\,\Delta x+b.
+  \]
+  As \(\Delta x\to 0\), the term \(a\,\Delta x\) tends to \(0\). The limit is
+  \[
+  f'(x)=2ax+b.
+  \]
+provenance: handout-answer
+steps:
+  - The difference \(f(x+\Delta x)-f(x)\) equals \(2ax\,\Delta x+a(\Delta x)^2+b\,\Delta x\).
+  - The quotient is \(2ax+a\,\Delta x+b\).
+  - The limit is \(f'(x)=2ax+b\).
+verification:
+  checks:
+    - expr: simplify(((a*(x + h)**2 + b*(x + h) + c) - (a*x**2 + b*x + c))/h - (2*a*x + a*h + b))
+      expected: "0"
+    - expr: limit(((a*(x + h)**2 + b*(x + h) + c) - (a*x**2 + b*x + c))/h, h, 0)
+      expected: 2*a*x + b
+:::
+
+
+::: exercise
+id: l1-derivative.handout-2-4-8
+number: "2.4.8"
+tier: standard
+topics:
+  - derivative-definition
+statement: |
+  Find the derivative of \(y=f(x)=\dfrac{2}{\sqrt{2x+1}}\), from the definition of the derivative.
+solution: |
+  The function is defined for \(2x+1>0\), that is for \(x>-\frac{1}{2}\). Fix such an \(x\), and let \(h\neq 0\) be small enough that \(2(x+h)+1>0\). Write
+  \[
+  A=\sqrt{2x+1},\qquad B=\sqrt{2(x+h)+1}.
+  \]
+  The difference quotient is
+  \[
+  \begin{aligned}
+  \frac{f(x+h)-f(x)}{h}&=\frac{1}{h}\left(\frac{2}{B}-\frac{2}{A}\right)\\
+  &=\frac{2(A-B)}{h\,AB}.
+  \end{aligned}
+  \]
+  Multiply \(A-B\) by the conjugate \(A+B\). The product is
+  \[
+  A^2-B^2=(2x+1)-(2x+2h+1)=-2h,
+  \]
+  so \(A-B=\frac{-2h}{A+B}\). For \(h\neq 0\) the quotient becomes
+  \[
+  \frac{2}{h\,AB}\cdot\frac{-2h}{A+B}=\frac{-4}{AB\,(A+B)}.
+  \]
+  As \(h\to 0\), the square root is continuous, so \(B\to A\), and \(A>0\). The denominator tends to \(A\cdot A\cdot 2A=2A^3\). The limit is
+  \[
+  f'(x)=\frac{-4}{2A^3}=\frac{-2}{(2x+1)^{3/2}},\qquad x>-\frac{1}{2}.
+  \]
+provenance: handout-answer
+steps:
+  - Combine the fractions over \(AB\) and multiply \(A-B\) by the conjugate \(A+B\).
+  - The quotient simplifies to \(\frac{-4}{AB(A+B)}\).
+  - The limit gives \(f'(x)=-\frac{2}{(2x+1)^{3/2}}\).
+verification:
+  checks:
+    - expr: ((2/sqrt(2*(x + h) + 1) - 2/sqrt(2*x + 1))/h + 4/(sqrt(2*x + 1)*sqrt(2*(x + h) + 1)*(sqrt(2*x + 1) + sqrt(2*(x + h) + 1)))).subs(x, 0).subs(h, Rational(3, 2))
+      expected: "0"
+    - expr: limit((2/sqrt(2*(x + h) + 1) - 2/sqrt(2*x + 1))/h, h, 0)
+      expected: -2/(2*x + 1)**Rational(3, 2)
+    - expr: diff(2/sqrt(2*x + 1), x)
+      expected: -2/(2*x + 1)**Rational(3, 2)
+:::
+
+
+::: exercise
+id: l1-derivative.handout-2-4-9
+number: "2.4.9"
+tier: standard
+topics:
+  - derivative-definition
+statement: |
+  Find the derivative of \(y=g(t)=\dfrac{2t-1}{t+2}\), from the definition of the derivative.
+solution: |
+  The function is defined for \(t\neq -2\). Fix such a \(t\), and let \(h\neq 0\) be small enough that \(t+h\neq -2\). The difference of the values has the common denominator \((t+h+2)(t+2)\):
+  \[
+  g(t+h)-g(t)=\frac{(2t+2h-1)(t+2)-(2t-1)(t+h+2)}{(t+h+2)(t+2)}.
+  \]
+  Expand the two products in the numerator:
+  \[
+  \begin{aligned}
+  (2t+2h-1)(t+2)&=2t^2+2th+3t+4h-2,\\
+  (2t-1)(t+h+2)&=2t^2+2th+3t-h-2.
+  \end{aligned}
+  \]
+  Their difference is \(5h\), so
+  \[
+  g(t+h)-g(t)=\frac{5h}{(t+h+2)(t+2)}.
+  \]
+  Dividing by \(h\) gives the difference quotient
+  \[
+  \frac{g(t+h)-g(t)}{h}=\frac{5}{(t+h+2)(t+2)}.
+  \]
+  As \(h\to 0\), the factor \(t+h+2\) tends to \(t+2\), which is not \(0\). The limit is
+  \[
+  g'(t)=\frac{5}{(t+2)^2},\qquad t\neq -2.
+  \]
+provenance: handout-answer
+steps:
+  - Put the difference of the values over the common denominator \((t+h+2)(t+2)\).
+  - The numerator simplifies to \(5h\), so the quotient equals \(\frac{5}{(t+h+2)(t+2)}\).
+  - The limit gives \(g'(t)=\frac{5}{(t+2)^2}\).
+verification:
+  checks:
+    - expr: simplify(((2*(t + h) - 1)/(t + h + 2) - (2*t - 1)/(t + 2))/h - 5/((t + h + 2)*(t + 2)))
+      expected: "0"
+    - expr: limit(((2*(t + h) - 1)/(t + h + 2) - (2*t - 1)/(t + 2))/h, h, 0)
+      expected: 5/(t + 2)**2
+    - expr: expand((2*t + 2*h - 1)*(t + 2) - (2*t - 1)*(t + h + 2))
+      expected: 5*h
+:::

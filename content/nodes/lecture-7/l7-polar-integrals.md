@@ -1183,3 +1183,863 @@ verification:
     - expr: integrate(r**2, (r, 0, sqrt(2)), (theta, 0, 2*pi))
       expected: "4*pi*sqrt(2)/3"
 :::
+
+::: exercise
+id: l7-polar-integrals.handout-10-1-1
+number: "10.1.1"
+tier: basic
+topics:
+  - polar-coordinates
+statement: |
+  Plot these polar points \((r, \theta)\) on one graph and give the rectangular coordinates of each: \(\bigl(2, \tfrac{\pi}{3}\bigr)\), \(\bigl(-3, \tfrac{\pi}{2}\bigr)\), \(\bigl(-2, -\tfrac{\pi}{4}\bigr)\), \(\bigl(\tfrac12, \pi\bigr)\), \(\bigl(1, \tfrac{4\pi}{3}\bigr)\) and \(\bigl(0, \tfrac{3\pi}{2}\bigr)\).
+solution: |
+  Each point has rectangular coordinates \(x = r\cos\theta\) and \(y = r\sin\theta\). A negative \(r\) places the point on the ray opposite to the angle \(\theta\).
+
+  - \(\bigl(2, \tfrac{\pi}{3}\bigr)\): \(x = 2\cos\frac{\pi}{3} = 1\) and \(y = 2\sin\frac{\pi}{3} = \sqrt{3}\). The point \((1, \sqrt{3})\) lies in the first quadrant, at distance \(2\) from the origin along the ray at \(60^\circ\).
+  - \(\bigl(-3, \tfrac{\pi}{2}\bigr)\): \(x = -3\cos\frac{\pi}{2} = 0\) and \(y = -3\sin\frac{\pi}{2} = -3\). The ray \(\theta = \pi/2\) is the positive \(y\)-axis, and the negative \(r\) reverses it, so the point \((0, -3)\) lies on the negative \(y\)-axis.
+  - \(\bigl(-2, -\tfrac{\pi}{4}\bigr)\): \(x = -2\cos\bigl(-\frac{\pi}{4}\bigr) = -\sqrt{2}\) and \(y = -2\sin\bigl(-\frac{\pi}{4}\bigr) = \sqrt{2}\). The ray at \(-45^\circ\) points into the fourth quadrant, and the negative \(r\) reverses it, so the point \((-\sqrt{2}, \sqrt{2})\) lies in the second quadrant.
+  - \(\bigl(\tfrac12, \pi\bigr)\): \(x = \frac12\cos\pi = -\frac12\) and \(y = \frac12\sin\pi = 0\). The point \(\bigl(-\frac12, 0\bigr)\) lies on the negative \(x\)-axis.
+  - \(\bigl(1, \tfrac{4\pi}{3}\bigr)\): \(x = \cos\frac{4\pi}{3} = -\frac12\) and \(y = \sin\frac{4\pi}{3} = -\frac{\sqrt{3}}{2}\). The point \(\bigl(-\frac12, -\frac{\sqrt{3}}{2}\bigr)\) lies in the third quadrant, on the unit circle.
+  - \(\bigl(0, \tfrac{3\pi}{2}\bigr)\): \(x = 0\) and \(y = 0\). Every pair with \(r = 0\) is the origin, whatever the angle.
+
+  The rectangular coordinates are \((1, \sqrt{3})\), \((0, -3)\), \((-\sqrt{2}, \sqrt{2})\), \(\bigl(-\frac12, 0\bigr)\), \(\bigl(-\frac12, -\frac{\sqrt{3}}{2}\bigr)\) and \((0, 0)\).
+provenance: written-for-site
+steps:
+  - |
+    The conversion is \(x = r\cos\theta\), \(y = r\sin\theta\).
+  - |
+    A negative \(r\) reverses the direction of the ray.
+  - |
+    The six points are \((1, \sqrt{3})\), \((0, -3)\), \((-\sqrt{2}, \sqrt{2})\), \(\bigl(-\frac12, 0\bigr)\), \(\bigl(-\frac12, -\frac{\sqrt{3}}{2}\bigr)\) and the origin.
+verification:
+  checks:
+    - expr: '(2*cos(pi/3), 2*sin(pi/3))'
+      expected: "(1, sqrt(3))"
+    - expr: '(-3*cos(pi/2), -3*sin(pi/2))'
+      expected: "(0, -3)"
+    - expr: '(-2*cos(-pi/4), -2*sin(-pi/4))'
+      expected: "(-sqrt(2), sqrt(2))"
+    - expr: '(Rational(1, 2)*cos(pi), Rational(1, 2)*sin(pi))'
+      expected: "(-Rational(1, 2), 0)"
+    - expr: '(cos(4*pi/3), sin(4*pi/3))'
+      expected: "(-Rational(1, 2), -sqrt(3)/2)"
+    - expr: '(0*cos(3*pi/2), 0*sin(3*pi/2))'
+      expected: "(0, 0)"
+:::
+
+
+::: exercise
+id: l7-polar-integrals.handout-10-1-2
+number: "10.1.2"
+tier: basic
+topics:
+  - polar-coordinates
+statement: |
+  Find an equation in polar coordinates that has the same graph as the rectangular equation \(y = 3x\).
+solution: |
+  Substitute \(x = r\cos\theta\) and \(y = r\sin\theta\):
+  \[
+  r\sin\theta = 3r\cos\theta.
+  \]
+  The origin satisfies the equation, and the origin is the point with \(r = 0\). For \(r \ne 0\), divide by \(r\) to get \(\sin\theta = 3\cos\theta\). If \(\cos\theta\) were \(0\), then \(\sin\theta\) would be \(0\) as well, and no angle has both. So \(\cos\theta \ne 0\), and dividing by it gives
+  \[
+  \tan\theta = 3.
+  \]
+  The line through the origin with slope \(3\) is the set of points with \(\theta = \arctan 3\), where \(r\) takes every real value. The origin belongs to it at \(r = 0\).
+
+  The polar equation is \(\theta = \arctan 3\).
+provenance: handout-answer
+steps:
+  - |
+    Substituting gives \(r\sin\theta = 3r\cos\theta\).
+  - |
+    For \(r \ne 0\) this gives \(\tan\theta = 3\).
+  - |
+    The line is \(\theta = \arctan 3\), with \(r\) any real number.
+verification:
+  checks:
+    - expr: 'tan(atan(3))'
+      expected: "3"
+    - expr: 'sin(atan(3))/cos(atan(3))'
+      expected: "3"
+:::
+
+
+::: exercise
+id: l7-polar-integrals.handout-10-1-6
+number: "10.1.6"
+tier: standard
+topics:
+  - polar-coordinates
+statement: |
+  Find a polar equation with the same graph as \(y = x^3\).
+solution: |
+  Substitute \(x = r\cos\theta\) and \(y = r\sin\theta\):
+  \[
+  r\sin\theta = r^3\cos^3\theta.
+  \]
+  The origin satisfies this equation. For \(r \ne 0\), divide by \(r\):
+  \[
+  \sin\theta = r^2\cos^3\theta.
+  \]
+  Solve for \(r^2\) at the angles with \(\cos\theta \ne 0\):
+  \[
+  r^2 = \frac{\sin\theta}{\cos^3\theta} = \sin\theta\,\sec^3\theta.
+  \]
+  At \(\theta = 0\) this gives \(r = 0\), so the origin is on the curve. The right side is nonnegative only when \(\sin\theta\) and \(\cos\theta\) have the same sign, which is the first and third quadrants. The two signs of \(r\) give the two branches of the cubic.
+
+  Check at \(\theta = \pi/4\). Then \(r^2 = \frac{\sqrt{2}/2}{(\sqrt{2}/2)^3} = 2\), so \(r = \sqrt{2}\), and the point is \((1, 1)\). It satisfies \(y = x^3\).
+
+  The polar equation is \(r^2 = \sin\theta\,\sec^3\theta\).
+provenance: handout-answer
+steps:
+  - |
+    Substituting gives \(r\sin\theta = r^3\cos^3\theta\).
+  - |
+    Dividing by \(r\) and solving for \(r^2\) gives \(r^2 = \sin\theta\sec^3\theta\).
+  - |
+    At \(\theta = \pi/4\) the point is \((1, 1)\), which lies on \(y = x^3\).
+verification:
+  checks:
+    - expr: 'sin(t) - (sin(t)/cos(t)**3)*cos(t)**3'
+      expected: "0"
+    - expr: '(sqrt(2)*sin(pi/4), (sqrt(2)*cos(pi/4))**3)'
+      expected: "(1, 1)"
+    - expr: '(sin(pi/4)/cos(pi/4)**3)'
+      expected: "2"
+:::
+
+
+::: exercise
+id: l7-polar-integrals.handout-10-1-8
+number: "10.1.8"
+tier: standard
+topics:
+  - polar-coordinates
+statement: |
+  Find a polar equation with the same graph as \(y = 5x + 2\).
+solution: |
+  Substitute \(x = r\cos\theta\) and \(y = r\sin\theta\):
+  \[
+  r\sin\theta = 5r\cos\theta + 2.
+  \]
+  The line does not pass through the origin, so no factor \(r\) cancels. Collect the terms in \(r\):
+  \[
+  r\,(\sin\theta - 5\cos\theta) = 2.
+  \]
+  At the angles where \(\sin\theta \ne 5\cos\theta\), divide by the bracket:
+  \[
+  r = \frac{2}{\sin\theta - 5\cos\theta}.
+  \]
+  The angle \(\theta = \arctan 5\) (and \(\theta = \arctan 5 + \pi\)) is excluded, since the ray in that direction is parallel to the line and never meets it.
+
+  Check two points. At \(\theta = \pi/2\) the formula gives \(r = 2\), the point \((0, 2)\), and \(2 = 5\cdot 0 + 2\). At \(\theta = \pi\) it gives \(r = \frac{2}{5}\), the point \(\bigl(-\frac25, 0\bigr)\), and \(0 = 5\bigl(-\frac25\bigr) + 2\).
+
+  The polar equation is \(r = \dfrac{2}{\sin\theta - 5\cos\theta}\).
+provenance: handout-answer
+steps:
+  - |
+    Substituting gives \(r\sin\theta = 5r\cos\theta + 2\).
+  - |
+    Collecting the terms in \(r\) gives \(r(\sin\theta - 5\cos\theta) = 2\).
+  - |
+    Dividing gives \(r = 2/(\sin\theta - 5\cos\theta)\).
+verification:
+  checks:
+    - expr: '(2/(sin(t) - 5*cos(t)))*(sin(t) - 5*cos(t))'
+      expected: "2"
+    - expr: '2*sin(pi/2) - (5*2*cos(pi/2) + 2)'
+      expected: "0"
+    - expr: '(2*cos(pi)/(sin(pi) - 5*cos(pi)), 2*sin(pi)/(sin(pi) - 5*cos(pi)))'
+      expected: "(-Rational(2, 5), 0)"
+    - expr: 'sin(atan(5)) - 5*cos(atan(5))'
+      expected: "0"
+:::
+
+
+::: exercise
+id: l7-polar-integrals.handout-10-1-9
+number: "10.1.9"
+tier: basic
+topics:
+  - polar-coordinates
+statement: |
+  Find a polar equation with the same graph as \(x = 2\).
+solution: |
+  Substitute \(x = r\cos\theta\):
+  \[
+  r\cos\theta = 2.
+  \]
+  The origin does not lie on the line, so no factor \(r\) cancels. At the angles with \(\cos\theta \ne 0\), divide by \(\cos\theta\):
+  \[
+  r = \frac{2}{\cos\theta} = 2\sec\theta.
+  \]
+  The curve is the vertical line through \((2, 0)\). The angle \(\theta = 0\) gives the point \((2, 0)\), and \(\theta\) between \(-\pi/2\) and \(\pi/2\) gives the whole line, since \(y = 2\tan\theta\) takes every real value.
+
+  The polar equation is \(r = 2\sec\theta\).
+provenance: handout-answer
+steps:
+  - |
+    Substituting gives \(r\cos\theta = 2\).
+  - |
+    Dividing by \(\cos\theta\) gives \(r = 2\sec\theta\).
+verification:
+  checks:
+    - expr: '(2/cos(t))*cos(t)'
+      expected: "2"
+    - expr: '(2/cos(t))*sin(t)'
+      expected: "2*tan(t)"
+:::
+
+
+::: exercise
+id: l7-polar-integrals.handout-10-1-10
+number: "10.1.10"
+tier: standard
+topics:
+  - polar-coordinates
+statement: |
+  Find a polar equation with the same graph as \(y = x^2 + 1\).
+solution: |
+  Substitute \(x = r\cos\theta\) and \(y = r\sin\theta\):
+  \[
+  r\sin\theta = r^2\cos^2\theta + 1.
+  \]
+  Move every term to one side:
+  \[
+  0 = r^2\cos^2\theta - r\sin\theta + 1.
+  \]
+  This is a quadratic equation in \(r\). The parabola does not pass through the origin, so no factor \(r\) cancels, and the equation stays in this implicit form.
+
+  The quadratic formula would give \(r\) when \(\cos\theta \ne 0\), with discriminant \(\sin^2\theta - 4\cos^2\theta\). The discriminant is nonnegative exactly when \(\tan^2\theta \ge 4\), so only the directions steeper than slope \(2\) in absolute value meet the parabola. At \(\theta = \arctan 2\) the discriminant is \(0\): \(\sin^2\theta = \frac45\) and \(\cos^2\theta = \frac15\). The double root is \(r = \sqrt{5}\), and the point \((1, 2)\) is where the line \(y = 2x\) touches the parabola.
+
+  The polar equation is \(0 = r^2\cos^2\theta - r\sin\theta + 1\).
+provenance: handout-answer
+steps:
+  - |
+    Substituting gives \(r\sin\theta = r^2\cos^2\theta + 1\).
+  - |
+    Moving all terms to one side gives \(0 = r^2\cos^2\theta - r\sin\theta + 1\).
+  - |
+    The point \((1, 2)\) at \(\theta = \arctan 2\), \(r = \sqrt{5}\) satisfies the equation.
+verification:
+  checks:
+    - expr: 'sqrt(5)**2*cos(atan(2))**2 - sqrt(5)*sin(atan(2)) + 1'
+      expected: "0"
+    - expr: 'sin(atan(2))**2 - 4*cos(atan(2))**2'
+      expected: "0"
+    - expr: '(1**2*cos(pi/2)**2 - 1*sin(pi/2) + 1)'
+      expected: "0"
+:::
+
+
+::: exercise
+id: l7-polar-integrals.handout-10-1-12
+number: "10.1.12"
+tier: standard
+topics:
+  - polar-coordinates
+statement: |
+  Find a polar equation with the same graph as \(y = x^2 + y^2\).
+solution: |
+  Substitute \(y = r\sin\theta\) and \(x^2 + y^2 = r^2\):
+  \[
+  r\sin\theta = r^2.
+  \]
+  The origin satisfies this equation. For \(r \ne 0\), divide by \(r\):
+  \[
+  r = \sin\theta.
+  \]
+  At \(\theta = 0\) this gives \(r = 0\), so the origin lies on the curve \(r = \sin\theta\) as well, and the two graphs agree.
+
+  The curve is a circle. Multiplying \(r = \sin\theta\) by \(r\) gives \(x^2 + y^2 = y\), which is \(x^2 + \bigl(y - \frac12\bigr)^2 = \frac14\), the circle with centre \(\bigl(0, \frac12\bigr)\) and radius \(\frac12\). It is traced once as \(\theta\) runs from \(0\) to \(\pi\).
+
+  The polar equation is \(r = \sin\theta\).
+provenance: handout-answer
+steps:
+  - |
+    Substituting gives \(r\sin\theta = r^2\).
+  - |
+    Dividing by \(r\) gives \(r = \sin\theta\).
+  - |
+    The graph is the circle with centre \(\bigl(0, \frac12\bigr)\) and radius \(\frac12\).
+verification:
+  checks:
+    - expr: '((sin(pi/6)*cos(pi/6))**2 + (sin(pi/6)*sin(pi/6))**2) - sin(pi/6)*sin(pi/6)'
+      expected: "0"
+    - expr: 'expand(x**2 + (y - Rational(1, 2))**2 - Rational(1, 4) - (x**2 + y**2 - y))'
+      expected: "0"
+    - expr: 'sin(pi/2)'
+      expected: "1"
+:::
+
+
+::: exercise
+id: l7-polar-integrals.handout-10-1-13
+number: "10.1.13"
+tier: basic
+topics:
+  - polar-coordinates
+statement: |
+  Sketch the curve \(r = \cos\theta\). Describe it: name the curve, give its centre and radius, and give the interval of \(\theta\) over which it is traced once.
+solution: |
+  Multiply the equation by \(r\):
+  \[
+  r^2 = r\cos\theta.
+  \]
+  In rectangular coordinates this is \(x^2 + y^2 = x\). Completing the square gives
+  \[
+  \Bigl(x - \frac12\Bigr)^2 + y^2 = \frac14.
+  \]
+  The curve is the circle with centre \(\bigl(\frac12, 0\bigr)\) and radius \(\frac12\).
+
+  The sketch follows from a few values.
+
+  - At \(\theta = 0\), \(r = 1\), the point \((1, 0)\) on the \(x\)-axis. This is the largest value of \(r\) and the point of the circle farthest from the origin.
+  - At \(\theta = \pm\frac{\pi}{3}\), \(r = \frac12\), the points \(\bigl(\frac14, \pm\frac{\sqrt{3}}{4}\bigr)\).
+  - At \(\theta = \pm\frac{\pi}{2}\), \(r = 0\), so the curve passes through the origin, tangent to the \(y\)-axis.
+
+  For \(\theta\) between \(-\frac{\pi}{2}\) and \(\frac{\pi}{2}\), \(r \ge 0\), and the curve runs once around the circle. For \(\theta\) between \(\frac{\pi}{2}\) and \(\frac{3\pi}{2}\), \(r\) is negative and the same points are traced again.
+
+  The curve is the circle with centre \(\bigl(\frac12, 0\bigr)\) and radius \(\frac12\), traced once for \(-\frac{\pi}{2} \le \theta \le \frac{\pi}{2}\).
+provenance: written-for-site
+steps:
+  - |
+    Multiplying by \(r\) gives \(x^2 + y^2 = x\).
+  - |
+    Completing the square gives the circle with centre \(\bigl(\frac12, 0\bigr)\) and radius \(\frac12\).
+  - |
+    The curve is traced once for \(-\frac{\pi}{2} \le \theta \le \frac{\pi}{2}\).
+verification:
+  checks:
+    - expr: 'expand((x - Rational(1, 2))**2 + y**2 - Rational(1, 4) - (x**2 + y**2 - x))'
+      expected: "0"
+    - expr: '(cos(0), cos(pi/3), cos(pi/2), cos(-pi/2))'
+      expected: "(1, Rational(1, 2), 0, 0)"
+    - expr: '((cos(pi/3)*cos(pi/3) - Rational(1, 2))**2 + (cos(pi/3)*sin(pi/3))**2)'
+      expected: "Rational(1, 4)"
+:::
+
+
+::: exercise
+id: l7-polar-integrals.handout-10-1-14
+number: "10.1.14"
+tier: standard
+topics:
+  - polar-coordinates
+statement: |
+  Sketch the curve \(r = \sin\bigl(\theta + \tfrac{\pi}{4}\bigr)\). Describe it: name the curve, give its centre and radius, the largest value of \(r\), and the angles at which it passes through the origin.
+solution: |
+  The sine addition formula gives
+  \[
+  \sin\Bigl(\theta + \frac{\pi}{4}\Bigr) = \frac{\sin\theta + \cos\theta}{\sqrt{2}}.
+  \]
+  So the equation is \(r = \frac{\sin\theta + \cos\theta}{\sqrt{2}}\). Multiply by \(r\) and substitute \(x = r\cos\theta\), \(y = r\sin\theta\):
+  \[
+  x^2 + y^2 = \frac{x + y}{\sqrt{2}}.
+  \]
+  Completing the square in \(x\) and in \(y\) gives
+  \[
+  \Bigl(x - \frac{1}{2\sqrt{2}}\Bigr)^2 + \Bigl(y - \frac{1}{2\sqrt{2}}\Bigr)^2 = \frac14.
+  \]
+  The curve is the circle with centre \(\bigl(\frac{1}{2\sqrt{2}}, \frac{1}{2\sqrt{2}}\bigr)\) and radius \(\frac12\). The centre is at distance \(\sqrt{2\cdot\frac18} = \frac12\) from the origin, so the circle passes through the origin.
+
+  The sketch follows from the sine of \(\theta + \frac{\pi}{4}\).
+
+  - The largest value \(r = 1\) occurs when \(\theta + \frac{\pi}{4} = \frac{\pi}{2}\), that is at \(\theta = \frac{\pi}{4}\). The point is \(\bigl(\frac{\sqrt{2}}{2}, \frac{\sqrt{2}}{2}\bigr)\), the end of the diameter through the origin.
+  - The value \(r = 0\) occurs when \(\theta + \frac{\pi}{4} = 0\) or \(\pi\), that is at \(\theta = -\frac{\pi}{4}\) and \(\theta = \frac{3\pi}{4}\). The circle is tangent to the line \(y = -x\) at the origin.
+  - For \(-\frac{\pi}{4} \le \theta \le \frac{3\pi}{4}\), \(r \ge 0\) and the circle is traced once. For the next half turn \(r\) is negative and the same points are traced again.
+
+  The curve is the circle with centre \(\bigl(\frac{1}{2\sqrt{2}}, \frac{1}{2\sqrt{2}}\bigr)\) and radius \(\frac12\). It is the circle \(r = \sin\theta\) turned clockwise by \(\frac{\pi}{4}\) about the origin.
+provenance: written-for-site
+steps:
+  - |
+    The addition formula gives \(r = (\sin\theta + \cos\theta)/\sqrt{2}\).
+  - |
+    Multiplying by \(r\) gives \(x^2 + y^2 = (x + y)/\sqrt{2}\), a circle of radius \(\frac12\) through the origin.
+  - |
+    The largest \(r\) is \(1\) at \(\theta = \pi/4\), and \(r = 0\) at \(\theta = -\pi/4\) and \(3\pi/4\).
+verification:
+  checks:
+    - expr: 'expand_trig(sin(t + pi/4))'
+      expected: "(sin(t) + cos(t))/sqrt(2)"
+    - expr: 'expand((x - 1/(2*sqrt(2)))**2 + (y - 1/(2*sqrt(2)))**2 - Rational(1, 4) - (x**2 + y**2 - (x + y)/sqrt(2)))'
+      expected: "0"
+    - expr: 'sqrt(2*(1/(2*sqrt(2)))**2)'
+      expected: "Rational(1, 2)"
+    - expr: '(sin(pi/4 + pi/4), sin(-pi/4 + pi/4), sin(3*pi/4 + pi/4))'
+      expected: "(1, 0, 0)"
+:::
+
+
+::: exercise
+id: l7-polar-integrals.handout-10-1-15
+number: "10.1.15"
+tier: basic
+topics:
+  - polar-coordinates
+statement: |
+  Sketch the curve \(r = -\sec\theta\). Describe it: name the curve and give the angles at which it is defined.
+solution: |
+  Write \(\sec\theta = \frac{1}{\cos\theta}\) and multiply by \(\cos\theta\):
+  \[
+  r\cos\theta = -1.
+  \]
+  Since \(x = r\cos\theta\), this is the line \(x = -1\).
+
+  The sketch follows from a few values.
+
+  - At \(\theta = 0\), \(r = -1\). The negative \(r\) reverses the ray, so the point is \((-1, 0)\).
+  - At \(\theta = \frac{\pi}{4}\), \(r = -\sqrt{2}\), and the point is \(\bigl(-\sqrt{2}\cos\frac{\pi}{4}, -\sqrt{2}\sin\frac{\pi}{4}\bigr) = (-1, -1)\).
+  - As \(\theta\) approaches \(\pm\frac{\pi}{2}\), \(|r|\) grows without bound, so the curve runs off along the line and never reaches the \(y\)-axis.
+
+  The curve is defined for \(\cos\theta \ne 0\). The angles between \(-\frac{\pi}{2}\) and \(\frac{\pi}{2}\) already give the whole line, because \(y = r\sin\theta = -\tan\theta\) takes every real value there. The angles \(\theta + \pi\) repeat the same points.
+
+  The curve is the vertical line \(x = -1\).
+provenance: written-for-site
+steps:
+  - |
+    Multiplying \(r = -\sec\theta\) by \(\cos\theta\) gives \(r\cos\theta = -1\).
+  - |
+    Since \(x = r\cos\theta\), the curve is the vertical line \(x = -1\).
+verification:
+  checks:
+    - expr: '(-1/cos(t))*cos(t)'
+      expected: "-1"
+    - expr: '(-1/cos(t))*sin(t)'
+      expected: "-tan(t)"
+    - expr: '(-sqrt(2)*cos(pi/4), -sqrt(2)*sin(pi/4))'
+      expected: "(-1, -1)"
+:::
+
+
+::: exercise
+id: l7-polar-integrals.handout-10-1-18
+number: "10.1.18"
+tier: standard
+topics:
+  - polar-coordinates
+statement: |
+  Sketch the curve \(r = \cot\theta\,\csc\theta\). Describe it: rewrite it in rectangular coordinates, name the curve, and say at which angles \(r\) is undefined.
+solution: |
+  Write the equation with sines and cosines:
+  \[
+  r = \frac{\cos\theta}{\sin^2\theta}.
+  \]
+  Clear the denominator, then multiply by \(r\):
+  \[
+  r\sin^2\theta = \cos\theta, \qquad r^2\sin^2\theta = r\cos\theta.
+  \]
+  Since \(y = r\sin\theta\) and \(x = r\cos\theta\), the second equation is
+  \[
+  y^2 = x.
+  \]
+  The curve lies on the parabola \(y^2 = x\), which opens to the right with vertex at the origin.
+
+  The parametrisation shows that the whole parabola occurs. Along the curve,
+  \[
+  x = r\cos\theta = \cot^2\theta, \qquad y = r\sin\theta = \cot\theta,
+  \]
+  and \(\cot\theta\) takes every real value. The vertex is reached at \(\theta = \pm\frac{\pi}{2}\), where \(r = 0\). The angle \(\theta = \frac{\pi}{4}\) gives \(r = 1\cdot\sqrt{2} = \sqrt{2}\), the point \((1, 1)\).
+
+  The value \(r\) is undefined at \(\theta = 0\) and \(\theta = \pi\), where \(\sin\theta = 0\). As \(\theta\) approaches those angles, \(y = \cot\theta\) grows without bound, so the two halves of the parabola run off to infinity.
+
+  The curve is the parabola \(y^2 = x\).
+provenance: written-for-site
+steps:
+  - |
+    The equation becomes \(r = \cos\theta/\sin^2\theta\).
+  - |
+    Multiplying by \(r\sin^2\theta\) gives \(r^2\sin^2\theta = r\cos\theta\), which is \(y^2 = x\).
+  - |
+    The curve is the parabola \(y^2 = x\), and \(r\) is undefined at \(\theta = 0, \pi\).
+verification:
+  checks:
+    - expr: '(cos(t)/sin(t)**2)*cos(t) - ((cos(t)/sin(t)**2)*sin(t))**2'
+      expected: "0"
+    - expr: 'cot(t)*csc(t)'
+      expected: "cos(t)/sin(t)**2"
+    - expr: '(cot(pi/4)*csc(pi/4)*cos(pi/4), cot(pi/4)*csc(pi/4)*sin(pi/4))'
+      expected: "(1, 1)"
+:::
+
+
+::: exercise
+id: l7-polar-integrals.handout-10-1-19
+number: "10.1.19"
+tier: basic
+topics:
+  - polar-coordinates
+statement: |
+  Sketch the curve \(r = \dfrac{1}{\sin\theta + \cos\theta}\). Describe it: rewrite it in rectangular coordinates, give its intercepts, and give its smallest distance from the origin.
+solution: |
+  Clear the denominator:
+  \[
+  r\sin\theta + r\cos\theta = 1.
+  \]
+  Since \(y = r\sin\theta\) and \(x = r\cos\theta\), this is
+  \[
+  x + y = 1.
+  \]
+  The curve is a line. It is defined whenever \(\sin\theta + \cos\theta \ne 0\), that is for \(\theta \ne -\frac{\pi}{4}\) modulo \(\pi\). The excluded direction is parallel to the line.
+
+  The sketch follows from a few values.
+
+  - At \(\theta = 0\), \(r = 1\), the intercept \((1, 0)\).
+  - At \(\theta = \frac{\pi}{2}\), \(r = 1\), the intercept \((0, 1)\).
+  - At \(\theta = \frac{\pi}{4}\), \(r = \frac{1}{\sqrt{2}/2 + \sqrt{2}/2} = \frac{1}{\sqrt{2}}\). This is the smallest value of \(r\) on the line, because the ray at \(\frac{\pi}{4}\) is perpendicular to the line \(x + y = 1\). The nearest point is \(\bigl(\frac12, \frac12\bigr)\).
+
+  The curve is the line \(x + y = 1\), with intercepts \((1, 0)\) and \((0, 1)\) and distance \(\frac{1}{\sqrt{2}}\) from the origin.
+provenance: written-for-site
+steps:
+  - |
+    Clearing the denominator gives \(r\sin\theta + r\cos\theta = 1\), which is \(x + y = 1\).
+  - |
+    The intercepts are \((1, 0)\) and \((0, 1)\).
+  - |
+    The nearest point is \(\bigl(\frac12, \frac12\bigr)\), at distance \(1/\sqrt{2}\).
+verification:
+  checks:
+    - expr: '(1/(sin(t) + cos(t)))*sin(t) + (1/(sin(t) + cos(t)))*cos(t)'
+      expected: "1"
+    - expr: '(1/(sin(0) + cos(0)), 1/(sin(pi/2) + cos(pi/2)))'
+      expected: "(1, 1)"
+    - expr: '1/(sin(pi/4) + cos(pi/4))'
+      expected: "sqrt(2)/2"
+    - expr: 'sqrt(2)/2*cos(pi/4) + sqrt(2)/2*sin(pi/4)'
+      expected: "1"
+:::
+
+
+::: exercise
+id: l7-polar-integrals.handout-10-1-20
+number: "10.1.20"
+tier: standard
+topics:
+  - polar-coordinates
+statement: |
+  Sketch the curve \(r^2 = -2\sec\theta\csc\theta\). Describe it: rewrite it in rectangular coordinates, name the curve, and say in which quadrants it lies.
+solution: |
+  Write the equation with sines and cosines:
+  \[
+  r^2 = -\frac{2}{\sin\theta\cos\theta}.
+  \]
+  Clear the denominator:
+  \[
+  r^2\sin\theta\cos\theta = -2.
+  \]
+  Since \(r^2\sin\theta\cos\theta = (r\cos\theta)(r\sin\theta) = xy\), this is
+  \[
+  xy = -2.
+  \]
+  The curve is a hyperbola with the coordinate axes as asymptotes.
+
+  The quadrants follow from the sign condition. The left side \(r^2\) is positive, so the equation has a real \(r\) only when \(\sin\theta\cos\theta < 0\). That happens for \(\theta\) in the second and fourth quadrants. For example, at \(\theta = \frac{\pi}{6}\) the right side equals \(-\frac{8\sqrt{3}}{3}\), which is negative, so no point exists in that direction. Both signs of \(r\) are allowed, and each reverses the ray into the opposite quadrant, which is again a second or fourth quadrant.
+
+  The vertices lie on the line \(y = -x\). At \(\theta = \frac{3\pi}{4}\), \(\sin\theta\cos\theta = -\frac12\), so \(r^2 = 4\) and \(r = \pm 2\). The points are \((-\sqrt{2}, \sqrt{2})\) and \((\sqrt{2}, -\sqrt{2})\), the points of the hyperbola nearest to the origin.
+
+  The curve is the hyperbola \(xy = -2\), with one branch in the second quadrant and one in the fourth.
+provenance: written-for-site
+steps:
+  - |
+    The equation becomes \(r^2\sin\theta\cos\theta = -2\), which is \(xy = -2\).
+  - |
+    A real \(r\) requires \(\sin\theta\cos\theta < 0\), so the curve lies in the second and fourth quadrants.
+  - |
+    The vertices \((-\sqrt{2}, \sqrt{2})\) and \((\sqrt{2}, -\sqrt{2})\) lie at distance \(2\) from the origin.
+verification:
+  checks:
+    - expr: '(-2/(sin(t)*cos(t)))*sin(t)*cos(t)'
+      expected: "-2"
+    - expr: '-2/(sin(pi/6)*cos(pi/6))'
+      expected: "-8*sqrt(3)/3"
+    - expr: '-2/(sin(3*pi/4)*cos(3*pi/4))'
+      expected: "4"
+    - expr: '(2*cos(3*pi/4))*(2*sin(3*pi/4))'
+      expected: "-2"
+:::
+
+
+::: exercise
+id: l7-polar-integrals.handout-15-2-7
+number: "15.2.7"
+tier: standard
+topics:
+  - double-integrals
+  - polar-coordinates
+statement: |
+  Find the area inside \(r = 1 + \sin\theta\) and outside \(r = 2\sin\theta\).
+solution: |
+  The cardioid \(r = 1 + \sin\theta\) has \(r \ge 0\), and it is traced once for \(0 \le \theta \le 2\pi\). The circle \(r = 2\sin\theta\) has \(r \ge 0\) for \(0 \le \theta \le \pi\), and it is traced once on that interval. For \(\pi < \theta < 2\pi\) the value \(r\) is negative, and the same circle is traced again.
+
+  Compare the two radii at each angle:
+  \[
+  (1 + \sin\theta) - 2\sin\theta = 1 - \sin\theta \ge 0.
+  \]
+  The difference is zero only at \(\theta = \frac{\pi}{2}\), the point \((0, 2)\). So the circle lies inside the cardioid and touches it at that one point. The region is the cardioid with the disk removed, and the angle range needs no split.
+
+  The area of the cardioid is
+  \[
+  \begin{aligned}
+  \int_0^{2\pi}\int_0^{1+\sin\theta} r\, dr\, d\theta
+  &= \frac12\int_0^{2\pi}(1 + \sin\theta)^2\, d\theta\\
+  &= \frac12\int_0^{2\pi}\bigl(1 + 2\sin\theta + \sin^2\theta\bigr)\, d\theta.
+  \end{aligned}
+  \]
+  Over \([0, 2\pi]\), the integral of \(1\) equals \(2\pi\), the integral of \(\sin\theta\) equals \(0\), and the integral of \(\sin^2\theta\) equals \(\pi\). The area of the cardioid is \(\frac12(2\pi + \pi) = \frac{3\pi}{2}\).
+
+  The area of the disk is
+  \[
+  \int_0^{\pi}\int_0^{2\sin\theta} r\, dr\, d\theta
+  = 2\int_0^{\pi}\sin^2\theta\, d\theta = 2\cdot\frac{\pi}{2} = \pi.
+  \]
+  The area inside the cardioid and outside the circle is \(\frac{3\pi}{2} - \pi = \frac{\pi}{2}\).
+provenance: handout-answer
+steps:
+  - |
+    The difference of the radii is \(1 - \sin\theta \ge 0\), so the circle lies inside the cardioid, tangent at \(\theta = \pi/2\).
+  - |
+    The cardioid has area \(\frac{3\pi}{2}\), and the circle has area \(\pi\).
+  - |
+    The area is \(\frac{3\pi}{2} - \pi = \frac{\pi}{2}\).
+verification:
+  checks:
+    - expr: 'integrate(r, (r, 0, 1 + sin(t)), (t, 0, 2*pi))'
+      expected: "3*pi/2"
+    - expr: 'integrate(r, (r, 0, 2*sin(t)), (t, 0, pi))'
+      expected: "pi"
+    - expr: 'integrate(r, (r, 0, 1 + sin(t)), (t, 0, 2*pi)) - integrate(r, (r, 0, 2*sin(t)), (t, 0, pi))'
+      expected: "pi/2"
+    - expr: '(1 + sin(pi/2)) - 2*sin(pi/2)'
+      expected: "0"
+:::
+
+
+::: exercise
+id: l7-polar-integrals.handout-15-2-8
+number: "15.2.8"
+tier: standard
+topics:
+  - double-integrals
+  - polar-coordinates
+statement: |
+  Find the area inside both \(r = 2\sin\theta\) and \(r = 2\cos\theta\).
+solution: |
+  Both curves are circles of radius \(1\): \(r = 2\sin\theta\) is centred at \((0, 1)\), and \(r = 2\cos\theta\) is centred at \((1, 0)\). In the first quadrant, \(0 \le \theta \le \frac{\pi}{2}\), both have \(r \ge 0\), and the common region lies there.
+
+  The circles meet where \(2\sin\theta = 2\cos\theta\), so \(\tan\theta = 1\) and \(\theta = \frac{\pi}{4}\). The radius there is \(\sqrt{2}\), the point \((1, 1)\).
+
+  A point lies inside both circles when its radius is below both curves, so the outer limit is the smaller of the two.
+
+  - For \(0 \le \theta \le \frac{\pi}{4}\), \(\sin\theta \le \cos\theta\), so the outer limit is \(2\sin\theta\).
+  - For \(\frac{\pi}{4} \le \theta \le \frac{\pi}{2}\), \(\cos\theta \le \sin\theta\), so the outer limit is \(2\cos\theta\).
+
+  The region is symmetric across the line \(y = x\), and the two pieces have equal area. The area is
+  \[
+  \begin{aligned}
+  2\int_0^{\pi/4}\int_0^{2\sin\theta} r\, dr\, d\theta
+  &= 2\int_0^{\pi/4} 2\sin^2\theta\, d\theta\\
+  &= 2\int_0^{\pi/4}(1 - \cos 2\theta)\, d\theta.
+  \end{aligned}
+  \]
+  An antiderivative is \(\theta - \frac12\sin 2\theta\). At \(\theta = \frac{\pi}{4}\) it equals \(\frac{\pi}{4} - \frac12\), and at \(\theta = 0\) it equals \(0\). The area is \(2\bigl(\frac{\pi}{4} - \frac12\bigr) = \frac{\pi}{2} - 1\).
+provenance: handout-answer
+steps:
+  - |
+    The circles meet at \(\theta = \pi/4\), and the outer limit is \(2\sin\theta\) before that angle and \(2\cos\theta\) after it.
+  - |
+    By symmetry the area is \(2\int_0^{\pi/4}\int_0^{2\sin\theta} r\, dr\, d\theta\).
+  - |
+    The area is \(\frac{\pi}{2} - 1\).
+verification:
+  checks:
+    - expr: '(2*sin(pi/4) - 2*cos(pi/4), 2*sin(pi/4))'
+      expected: "(0, sqrt(2))"
+    - expr: '2*integrate(r, (r, 0, 2*sin(t)), (t, 0, pi/4))'
+      expected: "pi/2 - 1"
+    - expr: 'integrate(r, (r, 0, 2*sin(t)), (t, 0, pi/4)) + integrate(r, (r, 0, 2*cos(t)), (t, pi/4, pi/2))'
+      expected: "pi/2 - 1"
+:::
+
+
+::: exercise
+id: l7-polar-integrals.handout-15-2-9
+number: "15.2.9"
+tier: exam
+topics:
+  - double-integrals
+  - polar-coordinates
+statement: |
+  Find the area inside the four-leaf rose \(r = \cos 2\theta\) and outside \(r = \frac12\).
+solution: |
+  The rose has four petals, centred on the directions \(\theta = 0, \frac{\pi}{2}, \pi, \frac{3\pi}{2}\). Where \(\cos 2\theta\) is negative, the point is plotted in the opposite direction, so the petals along the \(y\)-axis come from negative values of \(r\). Turning the plane through \(\frac{\pi}{2}\) sends \(r = \cos 2\theta\) to \(r = -\cos 2\theta\), which is the same set of points. So the four petals are congruent, and the circle \(r = \frac12\) cuts each petal in the same way. The required area is four times the area of one petal outside the circle.
+
+  Take the petal around the positive \(x\)-axis. A point of the petal is outside the circle when its distance from the origin, \(\cos 2\theta\), exceeds \(\frac12\). That happens when \(\cos 2\theta \ge \frac12\), that is \(-\frac{\pi}{3} \le 2\theta \le \frac{\pi}{3}\), so
+  \[
+  -\frac{\pi}{6} \le \theta \le \frac{\pi}{6}.
+  \]
+  On that interval the radius runs from \(\frac12\) to \(\cos 2\theta\). The integrand is even in \(\theta\), so the interval can be halved. The total area is
+  \[
+  \begin{aligned}
+  4\cdot 2\int_0^{\pi/6}\int_{1/2}^{\cos 2\theta} r\, dr\, d\theta
+  &= 4\int_0^{\pi/6}\Bigl(\cos^2 2\theta - \frac14\Bigr)\, d\theta.
+  \end{aligned}
+  \]
+  Use \(\cos^2 2\theta = \frac{1 + \cos 4\theta}{2}\). The integrand becomes \(\frac14 + \frac12\cos 4\theta\), with antiderivative \(\frac{\theta}{4} + \frac18\sin 4\theta\).
+
+  - At \(\theta = \frac{\pi}{6}\) it equals \(\frac{\pi}{24} + \frac18\sin\frac{2\pi}{3} = \frac{\pi}{24} + \frac{\sqrt{3}}{16}\).
+  - At \(\theta = 0\) it equals \(0\).
+
+  Multiplication by \(4\) gives the area \(\frac{\pi}{6} + \frac{\sqrt{3}}{4}\).
+provenance: handout-answer
+steps:
+  - |
+    The four petals are congruent, so the area is four times the part of one petal outside \(r = \frac12\).
+  - |
+    On the petal around the \(x\)-axis, \(\cos 2\theta \ge \frac12\) gives \(-\frac{\pi}{6} \le \theta \le \frac{\pi}{6}\).
+  - |
+    The area is \(4\int_0^{\pi/6}\bigl(\cos^2 2\theta - \frac14\bigr)\, d\theta = \frac{\pi}{6} + \frac{\sqrt{3}}{4}\).
+verification:
+  checks:
+    - expr: 'cos(2*(pi/6))'
+      expected: "Rational(1, 2)"
+    - expr: '4*2*integrate(r, (r, Rational(1, 2), cos(2*t)), (t, 0, pi/6))'
+      expected: "sqrt(3)/4 + pi/6"
+    - expr: '4*integrate(cos(2*t)**2 - Rational(1, 4), (t, 0, pi/6))'
+      expected: "sqrt(3)/4 + pi/6"
+:::
+
+
+::: exercise
+id: l7-polar-integrals.handout-15-2-10
+number: "15.2.10"
+tier: standard
+topics:
+  - double-integrals
+  - polar-coordinates
+statement: |
+  Find the area inside the cardioid \(r = 2(1 + \cos\theta)\) and outside \(r = 2\).
+solution: |
+  The curves meet where \(2(1 + \cos\theta) = 2\), so \(\cos\theta = 0\) and \(\theta = \pm\frac{\pi}{2}\). For \(-\frac{\pi}{2} \le \theta \le \frac{\pi}{2}\), \(\cos\theta \ge 0\), so the cardioid has \(r \ge 2\) and lies outside the circle \(r = 2\). For the other angles the cardioid is inside the circle. The region has
+  \[
+  -\frac{\pi}{2} \le \theta \le \frac{\pi}{2}, \qquad 2 \le r \le 2(1 + \cos\theta).
+  \]
+  The area is
+  \[
+  \begin{aligned}
+  \int_{-\pi/2}^{\pi/2}\int_2^{2(1+\cos\theta)} r\, dr\, d\theta
+  &= \frac12\int_{-\pi/2}^{\pi/2}\bigl(4(1 + \cos\theta)^2 - 4\bigr)\, d\theta\\
+  &= 2\int_{-\pi/2}^{\pi/2}\bigl(2\cos\theta + \cos^2\theta\bigr)\, d\theta.
+  \end{aligned}
+  \]
+  On \(\bigl[-\frac{\pi}{2}, \frac{\pi}{2}\bigr]\), the integral of \(2\cos\theta\) equals \(4\). The integral of \(\cos^2\theta = \frac{1 + \cos 2\theta}{2}\) equals \(\frac{\pi}{2}\). The area is \(2\bigl(4 + \frac{\pi}{2}\bigr) = 8 + \pi\).
+provenance: handout-answer
+steps:
+  - |
+    The curves meet at \(\theta = \pm\pi/2\), and the cardioid is the outer curve between those angles.
+  - |
+    The area integral is \(\int_{-\pi/2}^{\pi/2}\int_2^{2(1+\cos\theta)} r\, dr\, d\theta\).
+  - |
+    The area is \(8 + \pi\).
+verification:
+  checks:
+    - expr: '2*(1 + cos(pi/2)) - 2'
+      expected: "0"
+    - expr: 'integrate(r, (r, 2, 2*(1 + cos(t))), (t, -pi/2, pi/2))'
+      expected: "8 + pi"
+    - expr: '2*integrate(2*cos(t) + cos(t)**2, (t, -pi/2, pi/2))'
+      expected: "8 + pi"
+:::
+
+
+::: exercise
+id: l7-polar-integrals.handout-15-2-11
+number: "15.2.11"
+tier: basic
+topics:
+  - double-integrals
+  - polar-coordinates
+statement: |
+  Find the area of one loop of the three-leaf rose \(r = \cos 3\theta\).
+solution: |
+  One loop is traced while \(\cos 3\theta \ge 0\) on an interval around \(\theta = 0\). The radius is \(0\) when \(3\theta = \pm\frac{\pi}{2}\), so the loop has
+  \[
+  -\frac{\pi}{6} \le \theta \le \frac{\pi}{6}, \qquad 0 \le r \le \cos 3\theta.
+  \]
+  The area is
+  \[
+  \int_{-\pi/6}^{\pi/6}\int_0^{\cos 3\theta} r\, dr\, d\theta
+  = \frac12\int_{-\pi/6}^{\pi/6}\cos^2 3\theta\, d\theta.
+  \]
+  Use \(\cos^2 3\theta = \frac{1 + \cos 6\theta}{2}\). An antiderivative of the integrand \(\frac12\cos^2 3\theta\) is
+  \[
+  \frac{\theta}{4} + \frac{\sin 6\theta}{24}.
+  \]
+  At \(\theta = \pm\frac{\pi}{6}\) the sine term is \(\sin(\pm\pi) = 0\), so only \(\frac{\theta}{4}\) contributes. The difference is \(\frac14\cdot\frac{\pi}{6} - \frac14\cdot\bigl(-\frac{\pi}{6}\bigr) = \frac{\pi}{12}\).
+
+  The area of one loop is \(\frac{\pi}{12}\).
+provenance: handout-answer
+steps:
+  - |
+    One loop has \(-\frac{\pi}{6} \le \theta \le \frac{\pi}{6}\) and \(0 \le r \le \cos 3\theta\).
+  - |
+    The area is \(\frac12\int_{-\pi/6}^{\pi/6}\cos^2 3\theta\, d\theta\).
+  - |
+    The area is \(\frac{\pi}{12}\).
+verification:
+  checks:
+    - expr: '(cos(3*(-pi/6)), cos(3*(pi/6)))'
+      expected: "(0, 0)"
+    - expr: 'integrate(r, (r, 0, cos(3*t)), (t, -pi/6, pi/6))'
+      expected: "pi/12"
+:::
+
+
+::: exercise
+id: l7-polar-integrals.handout-15-2-17
+number: "15.2.17"
+tier: standard
+topics:
+  - double-integrals
+  - polar-coordinates
+statement: |
+  Find the volume under \(z = r\) above the region inside \(r = 3 + \cos\theta\).
+solution: |
+  The curve \(r = 3 + \cos\theta\) has \(r \ge 2\), so it is traced once for \(0 \le \theta \le 2\pi\), and the region inside it has \(0 \le r \le 3 + \cos\theta\). The height is \(z = r\), so the integrand, including the Jacobian, is \(r\cdot r = r^2\).
+
+  The volume is
+  \[
+  \begin{aligned}
+  \int_0^{2\pi}\int_0^{3+\cos\theta} r^2\, dr\, d\theta
+  &= \frac13\int_0^{2\pi}(3 + \cos\theta)^3\, d\theta.
+  \end{aligned}
+  \]
+  Expand the cube:
+  \[
+  \begin{aligned}
+  (3 + \cos\theta)^3 &= 27 + 27\cos\theta + 9\cos^2\theta\\
+  &\quad + \cos^3\theta.
+  \end{aligned}
+  \]
+  On \([0, 2\pi]\):
+
+  - The integral of \(27\) equals \(54\pi\).
+  - The integrals of \(\cos\theta\) and \(\cos^3\theta\) equal \(0\).
+  - The integral of \(\cos^2\theta\) equals \(\pi\), so the term \(9\cos^2\theta\) contributes \(9\pi\).
+
+  The integral of \((3 + \cos\theta)^3\) is \(54\pi + 9\pi = 63\pi\). Multiplication by \(\frac13\) gives the volume \(21\pi\).
+provenance: handout-answer
+steps:
+  - |
+    The region is \(0 \le \theta \le 2\pi\), \(0 \le r \le 3 + \cos\theta\), and the integrand is \(r^2\).
+  - |
+    The volume is \(\frac13\int_0^{2\pi}(3 + \cos\theta)^3\, d\theta\).
+  - |
+    The integral equals \(63\pi\), so the volume is \(21\pi\).
+verification:
+  checks:
+    - expr: 'integrate(r**2, (r, 0, 3 + cos(t)), (t, 0, 2*pi))'
+      expected: "21*pi"
+    - expr: 'integrate(expand((3 + cos(t))**3), (t, 0, 2*pi))'
+      expected: "63*pi"
+:::

@@ -784,3 +784,173 @@ verification:
     - expr: floor(10**6*(Rational(577, 408) - sqrt(2)))
       expected: "2"
 :::
+
+::: exercise
+id: l2-newton.handout-6-3-3
+number: "6.3.3"
+tier: standard
+topics:
+  - newton
+statement: |
+  The function \(f(x) = x^3 - 3x^2 - 3x + 6\) has a root between \(3\) and \(4\), because \(f(3) = -3\) and \(f(4) = 10\). Approximate the root to two decimal places.
+solution: |
+  The derivative is \(f'(x) = 3x^2 - 6x - 3\), and the Newton step is
+  \[
+  x_{k+1} = x_k - \frac{x_k^3 - 3x_k^2 - 3x_k + 6}{3x_k^2 - 6x_k - 3}.
+  \]
+  The derivative can be written \(f'(x) = 3\bigl((x - 1)^2 - 2\bigr)\). It increases for \(x > 1\) and equals \(6\) at \(x = 3\), so \(f' > 0\) on \([3, 4]\). Then \(f\) is strictly increasing on \([3, 4]\), and the sign change from \(f(3) = -3\) to \(f(4) = 10\) gives exactly one root there.
+
+  Start at the midpoint \(x_0 = \frac{7}{2}\). The values are
+  \[
+  \begin{aligned}
+  f\bigl(\tfrac{7}{2}\bigr)&=\frac{13}{8},\\
+  f'\bigl(\tfrac{7}{2}\bigr)&=\frac{51}{4},\\
+  x_1&=\frac{7}{2} - \frac{13/8}{51/4}\\
+  &=\frac{7}{2} - \frac{13}{102}\\
+  &=\frac{172}{51}.
+  \end{aligned}
+  \]
+
+  At \(x_1 = \frac{172}{51} \approx 3.372549\), the values are \(f(x_1) \approx 0.119758\) and \(f'(x_1) \approx 10.886967\). Therefore
+  \[
+  x_2 = x_1 - \frac{f(x_1)}{f'(x_1)} \approx 3.372549 - 0.011000 = 3.361549.
+  \]
+
+  To see that \(x_2\) gives two decimal places, locate the root with two function values:
+  \[
+  \begin{aligned}
+  f(3.355)&=-0.069111125,\\
+  f(3.365)&=0.037977125.
+  \end{aligned}
+  \]
+  The first value is negative and the second is positive, so the root lies in \((3.355,\ 3.365)\). Every number in this interval rounds to \(3.36\) at two decimal places. The iterate \(x_2 \approx 3.3615\) lies in it as well.
+
+  The root, to two decimal places, is \(3.36\).
+provenance: handout-answer
+steps:
+  - The derivative \(f'(x) = 3x^2 - 6x - 3\) is positive on \([3, 4]\), so there is exactly one root there.
+  - From \(x_0 = \frac{7}{2}\), \(x_1 = \frac{172}{51}\) and \(x_2 \approx 3.361549\).
+  - The sign change of \(f\) on \((3.355,\ 3.365)\) gives the value \(3.36\).
+verification:
+  checks:
+    - expr: '(x**3 - 3*x**2 - 3*x + 6).subs(x, 3)'
+      expected: '-3'
+    - expr: '(x**3 - 3*x**2 - 3*x + 6).subs(x, 4)'
+      expected: '10'
+    - expr: '(x**3 - 3*x**2 - 3*x + 6).subs(x, Rational(7, 2))'
+      expected: '13/8'
+    - expr: '(3*x**2 - 6*x - 3).subs(x, Rational(7, 2))'
+      expected: '51/4'
+    - expr: '(x - (x**3 - 3*x**2 - 3*x + 6)/(3*x**2 - 6*x - 3)).subs(x, Rational(7, 2))'
+      expected: '172/51'
+    - expr: 'floor(10**6*(x - (x**3 - 3*x**2 - 3*x + 6)/(3*x**2 - 6*x - 3)).subs(x, Rational(172, 51)))'
+      expected: '3361548'
+    - expr: '(x**3 - 3*x**2 - 3*x + 6).subs(x, Rational(671, 200))'
+      expected: 'Rational(-69111125, 10**9)'
+    - expr: '(x**3 - 3*x**2 - 3*x + 6).subs(x, Rational(673, 200))'
+      expected: 'Rational(37977125, 10**9)'
+    - expr: 'floor(100*nsolve(x**3 - 3*x**2 - 3*x + 6, x, 3.5) + Rational(1, 2))'
+      expected: '336'
+:::
+
+
+::: exercise
+id: l2-newton.handout-6-3-4
+number: "6.3.4"
+tier: standard
+topics:
+  - newton
+statement: |
+  A rectangular piece of cardboard of dimensions \(8 \times 17\) is used to make an open-top box by cutting out a small square of side \(x\) from each corner and bending up the sides. If \(x = 2\), then the volume of the box is \(2 \cdot 4 \cdot 13 = 104\). Use Newton's method to find a value of \(x\) for which the box has volume \(100\), accurate to \(3\) significant figures.
+solution: |
+  After the cut, the box has height \(x\) and a base of \(8 - 2x\) by \(17 - 2x\), with \(0 < x < 4\). The volume is
+  \[
+  V(x) = x(8 - 2x)(17 - 2x) = 4x^3 - 50x^2 + 136x.
+  \]
+  Check: \(V(2) = 32 - 200 + 272 = 104\). The volume \(100\) is a root of
+  \[
+  f(x) = 4x^3 - 50x^2 + 136x - 100,
+  \]
+  with \(f'(x) = 12x^2 - 100x + 136\) and the Newton step \(x_{k+1} = x_k - \frac{f(x_k)}{f'(x_k)}\).
+
+  **Where the roots are.** The values \(V(1) = 90\), \(V(1.5) = 105\), \(V(2) = 104\) and \(V(3) = 66\) show that \(f\) is negative at \(1\), positive at \(1.5\) and \(2\), and negative at \(3\). So \(f\) has a root in \((1,\ 1.5)\) and another in \((2,\ 3)\). Start at \(x_0 = 1\) for the first and at \(x_0 = 2\) for the second.
+
+  **The smaller root, from \(x_0 = 1\).**
+  \[
+  \begin{aligned}
+  f(1)&=-10,\\
+  f'(1)&=48,\\
+  x_1&=1 + \frac{10}{48} = \frac{29}{24}.
+  \end{aligned}
+  \]
+  At \(x_1\), \(f\bigl(\frac{29}{24}\bigr) = -\frac{5575}{3456}\) and \(f'\bigl(\frac{29}{24}\bigr) = \frac{523}{16}\), so
+  \[
+  x_2 = \frac{29}{24} + \frac{5575/3456}{523/16} = \frac{71039}{56484} \approx 1.257684.
+  \]
+  The values
+  \[
+  \begin{aligned}
+  f(1.255)&=-0.1646245,\\
+  f(1.265)&=0.1258885
+  \end{aligned}
+  \]
+  have opposite signs, so the root lies in \((1.255,\ 1.265)\). Every number there rounds to \(1.26\) at three significant figures.
+
+  **The larger root, from \(x_0 = 2\).**
+  \[
+  \begin{aligned}
+  f(2)&=4,\\
+  f'(2)&=-16,\\
+  x_1&=2 + \frac{4}{16} = \frac{9}{4}.
+  \end{aligned}
+  \]
+  At \(x_1\), \(f\bigl(\frac{9}{4}\bigr) = -\frac{25}{16}\) and \(f'\bigl(\frac{9}{4}\bigr) = -\frac{113}{4}\), so
+  \[
+  x_2 = \frac{9}{4} - \frac{25}{452} = \frac{248}{113} \approx 2.194690.
+  \]
+  The values
+  \[
+  \begin{aligned}
+  f(2.185)&=0.1754765,\\
+  f(2.195)&=-0.0789905
+  \end{aligned}
+  \]
+  have opposite signs, so the root lies in \((2.185,\ 2.195)\). Every number there rounds to \(2.19\) at three significant figures.
+
+  The cubic \(f\) has a third root, but the three roots add up to \(\frac{50}{4} = 12.5\), so the third is about \(9.05\). It is larger than \(4\) and gives no box.
+
+  The box has volume \(100\) for \(x \approx 1.26\) and for \(x \approx 2.19\).
+provenance: handout-answer
+steps:
+  - The volume is \(V(x) = 4x^3 - 50x^2 + 136x\), and the equation is \(f(x) = V(x) - 100 = 0\) with \(0 < x < 4\).
+  - From \(x_0 = 1\), \(x_1 = \frac{29}{24}\) and \(x_2 \approx 1.257684\), and a sign change on \((1.255,\ 1.265)\) gives \(1.26\).
+  - From \(x_0 = 2\), \(x_1 = \frac{9}{4}\) and \(x_2 \approx 2.194690\), and a sign change on \((2.185,\ 2.195)\) gives \(2.19\).
+verification:
+  checks:
+    - expr: 'expand(x*(8 - 2*x)*(17 - 2*x) - 100)'
+      expected: '4*x**3 - 50*x**2 + 136*x - 100'
+    - expr: '(x*(8 - 2*x)*(17 - 2*x)).subs(x, 2)'
+      expected: '104'
+    - expr: '(x - (4*x**3 - 50*x**2 + 136*x - 100)/(12*x**2 - 100*x + 136)).subs(x, 1)'
+      expected: '29/24'
+    - expr: '(x - (4*x**3 - 50*x**2 + 136*x - 100)/(12*x**2 - 100*x + 136)).subs(x, Rational(29, 24))'
+      expected: '71039/56484'
+    - expr: '(x - (4*x**3 - 50*x**2 + 136*x - 100)/(12*x**2 - 100*x + 136)).subs(x, 2)'
+      expected: '9/4'
+    - expr: '(x - (4*x**3 - 50*x**2 + 136*x - 100)/(12*x**2 - 100*x + 136)).subs(x, Rational(9, 4))'
+      expected: '248/113'
+    - expr: '(4*x**3 - 50*x**2 + 136*x - 100).subs(x, Rational(251, 200))'
+      expected: 'Rational(-1646245, 10**7)'
+    - expr: '(4*x**3 - 50*x**2 + 136*x - 100).subs(x, Rational(253, 200))'
+      expected: 'Rational(1258885, 10**7)'
+    - expr: '(4*x**3 - 50*x**2 + 136*x - 100).subs(x, Rational(437, 200))'
+      expected: 'Rational(1754765, 10**7)'
+    - expr: '(4*x**3 - 50*x**2 + 136*x - 100).subs(x, Rational(439, 200))'
+      expected: 'Rational(-789905, 10**7)'
+    - expr: 'floor(100*nsolve(4*x**3 - 50*x**2 + 136*x - 100, x, 1) + Rational(1, 2))'
+      expected: '126'
+    - expr: 'floor(100*nsolve(4*x**3 - 50*x**2 + 136*x - 100, x, 2) + Rational(1, 2))'
+      expected: '219'
+    - expr: 'floor(nsolve(4*x**3 - 50*x**2 + 136*x - 100, x, 9))'
+      expected: '9'
+:::

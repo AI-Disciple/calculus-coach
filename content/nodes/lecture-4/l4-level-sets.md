@@ -829,3 +829,58 @@ verification:
     - expr: "1 - 4*c**2 - (-4*(c**2) + 1)"
       expected: "0"
 :::
+
+::: exercise
+id: l4-level-sets.handout-14-1-7
+number: "14.1.7"
+tier: standard
+topics:
+  - level-sets
+  - contour-maps
+statement: |
+  Two contour maps are drawn. Both consist of concentric circles centred at the origin, and in both the heights of consecutive level curves differ by the same amount. One map belongs to a cone, and the other to a paraboloid. In the first map, the innermost circle has radius about \(1\) and the circles crowd together as the radius grows, so the spacing shrinks outwards. In the second map, the circles are evenly spaced from the centre, with radii about \(0.25\), \(0.5\), \(0.75\) and so on. Which map is the cone and which is the paraboloid? Explain.
+solution: |
+  Take the cone \(z=m\sqrt{x^2+y^2}\) with a slope \(m>0\), and the paraboloid \(z=x^2+y^2\). Write \(r\) for the distance from the origin. Let consecutive level curves have heights \(h,2h,3h,\dots\) for a step \(h>0\).
+
+  ### The cone
+
+  The level curve of height \(k\) satisfies \(m r=k\), so its radius is \(r=k/m\). The radii of the consecutive curves are
+  \[
+  \frac{h}{m},\ \frac{2h}{m},\ \frac{3h}{m},\ \dots
+  \]
+  The gap between two consecutive circles is
+  \[
+  \frac{(n+1)h}{m}-\frac{nh}{m}=\frac{h}{m}.
+  \]
+  The gap is the same for every \(n\). The circles of the cone are evenly spaced.
+
+  ### The paraboloid
+
+  The level curve of height \(k\) satisfies \(r^2=k\), so its radius is \(r=\sqrt{k}\). The radii of consecutive curves are \(\sqrt{nh}\), and the gap is
+  \[
+  \begin{aligned}
+  \sqrt{(n+1)h}-\sqrt{nh}&=\sqrt{h}\left(\sqrt{n+1}-\sqrt{n}\right),\\
+  &=\frac{\sqrt{h}}{\sqrt{n+1}+\sqrt{n}}.
+  \end{aligned}
+  \]
+  The denominator grows with \(n\), so the gap shrinks towards \(0\). The circles of the paraboloid crowd together as the radius grows. The first circle has radius \(\sqrt{h}\), which is about \(1\) when the step is \(h=1\).
+
+  ### Conclusion
+
+  The map with the crowding circles is the paraboloid, and the map with the evenly spaced circles is the cone. With evenly spaced heights, closer curves mean a steeper surface. The cone has the same slope \(m\) at every distance, so its curves are evenly spaced. The slope of the paraboloid grows with \(r\), so its curves get closer as the radius grows.
+provenance: written-for-site
+steps:
+  - Cone, radii \(r=k/m\) with constant gap \(h/m\).
+  - Paraboloid, radii \(r=\sqrt{k}\) with gap \(\sqrt{h}/(\sqrt{n+1}+\sqrt{n})\), which shrinks.
+  - The first map (crowding circles) is the paraboloid, and the second map (even spacing) is the cone.
+verification:
+  checks:
+    - expr: '(n + 1)*h/m - n*h/m - h/m'
+      expected: "0"
+    - expr: 'simplify(sqrt(h)*(sqrt(n + 1) - sqrt(n)) - sqrt(h)/(sqrt(n + 1) + sqrt(n)))'
+      expected: "0"
+    - expr: 'limit(sqrt(n + 1) - sqrt(n), n, oo)'
+      expected: "0"
+    - expr: 'solve(m*r - k, r)[0]'
+      expected: "k/m"
+:::

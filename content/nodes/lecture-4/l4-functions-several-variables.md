@@ -485,3 +485,64 @@ verification:
     - expr: "sqrt(4 - 1) + sqrt(4 - 4)"
       expected: "sqrt(3)"
 :::
+
+::: exercise
+id: l4-functions-several-variables.handout-14-1-6
+number: "14.1.6"
+tier: standard
+topics:
+  - domain
+statement: |
+  Find the domain of each of the following functions of two variables:
+
+  1. \(f(x,y)=\sqrt{9-x^2}+\sqrt{y^2-4}\),
+  2. \(g(x,y)=\arcsin(x^2+y^2-2)\),
+  3. \(h(x,y)=\sqrt{16-x^2-4y^2}\).
+solution: |
+  ### Part 1
+
+  The root \(\sqrt{9-x^2}\) is real when \(9-x^2\ge 0\), that is, \(x^2\le 9\), so \(-3\le x\le 3\). The root \(\sqrt{y^2-4}\) is real when \(y^2\ge 4\), that is, \(y\le -2\) or \(y\ge 2\). Both roots must be real at the same point, so
+  \[
+  D(f)=\{(x,y):\lvert x\rvert\le 3\text{ and }\lvert y\rvert\ge 2\}.
+  \]
+  This is the vertical strip \(-3\le x\le 3\) with the horizontal band \(-2<y<2\) removed. Two pieces remain, one above the line \(y=2\) and one below the line \(y=-2\), boundaries included.
+
+  ### Part 2
+
+  The function \(\arcsin u\) is defined for \(-1\le u\le 1\). Here \(u=x^2+y^2-2\), so the condition is
+  \[
+  -1\le x^2+y^2-2\le 1.
+  \]
+  Adding \(2\) to all three parts gives
+  \[
+  D(g)=\{(x,y):1\le x^2+y^2\le 3\}.
+  \]
+  This is the closed ring between the circle of radius \(1\) and the circle of radius \(\sqrt{3}\), both centred at the origin, with both circles included.
+
+  ### Part 3
+
+  The root is real when \(16-x^2-4y^2\ge 0\), that is, \(x^2+4y^2\le 16\). Dividing by \(16\) gives
+  \[
+  D(h)=\left\{(x,y):\frac{x^2}{16}+\frac{y^2}{4}\le 1\right\}.
+  \]
+  This is the closed region bounded by the ellipse with semi-axes \(4\) along the \(x\)-axis and \(2\) along the \(y\)-axis, boundary included.
+provenance: handout-answer
+steps:
+  - Part 1, two conditions \(x^2\le 9\) and \(y^2\ge 4\) hold together.
+  - Part 2, the condition \(-1\le x^2+y^2-2\le 1\) gives \(1\le x^2+y^2\le 3\).
+  - Part 3, the condition \(x^2+4y^2\le 16\) gives the filled ellipse.
+verification:
+  checks:
+    - expr: 'solve_univariate_inequality(9 - x**2 >= 0, x, relational=False)'
+      expected: "Interval(-3, 3)"
+    - expr: 'solve_univariate_inequality(y**2 - 4 >= 0, y, relational=False)'
+      expected: "Union(Interval(-oo, -2), Interval(2, oo))"
+    - expr: 'solve_univariate_inequality(Abs(u - 2) <= 1, u, relational=False)'
+      expected: "Interval(1, 3)"
+    - expr: 'sqrt(9 - 3**2) + sqrt(2**2 - 4)'
+      expected: "0"
+    - expr: '(asin(1**2 + 0**2 - 2), asin(sqrt(3)**2 + 0**2 - 2))'
+      expected: "(-pi/2, pi/2)"
+    - expr: '(16 - 4**2 - 4*0**2, 16 - 0**2 - 4*2**2)'
+      expected: "(0, 0)"
+:::

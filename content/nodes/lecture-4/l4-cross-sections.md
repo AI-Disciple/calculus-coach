@@ -593,3 +593,198 @@ verification:
     - expr: "(2*(-1) + 3, 2*3 + 3)"
       expected: "(1, 9)"
 :::
+
+::: exercise
+id: l4-cross-sections.handout-14-1-1
+number: "14.1.1"
+tier: basic
+topics:
+  - cross-sections
+  - level-sets
+statement: |
+  Let \(f(x,y)=(x-y)^2\). Determine the equations and shapes of the cross-sections of the graph \(z=f(x,y)\) cut by the planes \(x=0\), \(y=0\) and \(x=y\), and describe the level curves.
+solution: |
+  ### Cross sections
+
+  - On the plane \(x=0\), the points have the form \((0,y,z)\) with \(z=f(0,y)=(0-y)^2=y^2\). The cut is the parabola \(z=y^2\) in the plane \(Oyz\).
+  - On the plane \(y=0\), the points have the form \((x,0,z)\) with \(z=f(x,0)=x^2\). The cut is the parabola \(z=x^2\) in the plane \(Oxz\).
+  - On the vertical plane \(x=y\), the points have the form \((t,t,z)\) with \(z=f(t,t)=(t-t)^2=0\). The cut is the line \(z=0\), the line \(y=x\) of the \(xy\)-plane.
+
+  ### Level curves
+
+  The level curve of height \(k\) is the set where \((x-y)^2=k\).
+
+  - For \(k<0\), a square cannot be negative, so the level curve is empty.
+  - For \(k=0\), the equation \(x-y=0\) gives the line \(y=x\).
+  - For \(k>0\), the equation gives \(x-y=\pm\sqrt{k}\), that is, the two lines
+    \[
+    y=x-\sqrt{k}\quad\text{and}\quad y=x+\sqrt{k}.
+    \]
+
+  The level curves are lines of slope \(1\). The function is constant along each of them, so the graph is a parabolic trough that does not change in the direction \(\langle 1,1\rangle\).
+provenance: handout-answer
+steps:
+  - The cut by \(x=0\) is \(z=y^2\), the cut by \(y=0\) is \(z=x^2\), and the cut by \(x=y\) is \(z=0\).
+  - The level equation \((x-y)^2=k\) gives \(x-y=\pm\sqrt{k}\) for \(k>0\).
+  - The level curves are lines of slope \(1\).
+verification:
+  checks:
+    - expr: '((x - y)**2).subs(x, 0)'
+      expected: "y**2"
+    - expr: '((x - y)**2).subs(y, 0)'
+      expected: "x**2"
+    - expr: '((x - y)**2).subs(y, x)'
+      expected: "0"
+    - expr: '((x - y)**2).subs(y, x - sqrt(k))'
+      expected: "k"
+    - expr: '((x - y)**2).subs(y, x + sqrt(k))'
+      expected: "k"
+:::
+
+
+::: exercise
+id: l4-cross-sections.handout-14-1-2
+number: "14.1.2"
+tier: standard
+topics:
+  - cross-sections
+  - level-sets
+statement: |
+  Let \(f(x,y)=\lvert x\rvert+\lvert y\rvert\). Determine the equations and shapes of the cross-sections of the graph \(z=f(x,y)\) cut by the planes \(x=0\), \(y=0\) and \(x=y\), and describe the level curves.
+solution: |
+  ### Cross sections
+
+  - On the plane \(x=0\), the height is \(z=f(0,y)=\lvert y\rvert\). The cut is the V-shaped curve \(z=\lvert y\rvert\) in the plane \(Oyz\).
+  - On the plane \(y=0\), the height is \(z=f(x,0)=\lvert x\rvert\). The cut is the V-shaped curve \(z=\lvert x\rvert\) in the plane \(Oxz\).
+  - On the vertical plane \(x=y\), the points have the form \((t,t,z)\) with \(z=f(t,t)=2\lvert t\rvert\). The cut is a V with the same corner at the origin and twice the slope, over the line \(y=x\).
+
+  ### Level curves
+
+  The level curve of height \(k\) is the set where \(\lvert x\rvert+\lvert y\rvert=k\).
+
+  - For \(k<0\), the level curve is empty.
+  - For \(k=0\), both \(\lvert x\rvert\) and \(\lvert y\rvert\) must vanish, so the level curve is the origin.
+  - For \(k>0\), the equation reads \(\pm x\pm y=k\) in the four quadrants. For example, \(x+y=k\) holds in the first quadrant. The four segments join the points \((k,0)\), \((0,k)\), \((-k,0)\) and \((0,-k)\).
+
+  For \(k>0\) the level curve is a diamond, a square with side \(k\sqrt{2}\) turned by \(45\) degrees, centred at the origin. The graph is a pyramid with its apex at the origin, opening upwards.
+provenance: handout-answer
+steps:
+  - The cuts are \(z=\lvert y\rvert\), \(z=\lvert x\rvert\) and \(z=2\lvert t\rvert\) over \(y=x\).
+  - The level equation \(\lvert x\rvert+\lvert y\rvert=k\) has the four quadrant pieces \(\pm x\pm y=k\).
+  - The level curves are diamonds with vertices \((\pm k,0)\) and \((0,\pm k)\).
+verification:
+  checks:
+    - expr: '(Abs(x) + Abs(y)).subs(x, 0)'
+      expected: "Abs(y)"
+    - expr: '(Abs(x) + Abs(y)).subs(y, 0)'
+      expected: "Abs(x)"
+    - expr: '(Abs(x) + Abs(y)).subs(y, x)'
+      expected: "2*Abs(x)"
+    - expr: '(Abs(4) + Abs(0), Abs(2) + Abs(2), Abs(0) + Abs(-4), Abs(-2) + Abs(2))'
+      expected: "(4, 4, 4, 4)"
+    - expr: 'sqrt((4 - 0)**2 + (0 - 4)**2)'
+      expected: "4*sqrt(2)"
+:::
+
+
+::: exercise
+id: l4-cross-sections.handout-14-1-3
+number: "14.1.3"
+tier: standard
+topics:
+  - cross-sections
+  - level-sets
+statement: |
+  Let \(f(x,y)=e^{-(x^2+y^2)}\sin(x^2+y^2)\). Determine the equations and shapes of the cross-sections of the graph \(z=f(x,y)\) cut by the planes \(x=0\), \(y=0\) and \(x=y\), and describe the level curves.
+solution: |
+  ### Cross sections
+
+  - On the plane \(x=0\), the height is \(z=f(0,y)=e^{-y^2}\sin(y^2)\) in the plane \(Oyz\).
+  - On the plane \(y=0\), the height is \(z=f(x,0)=e^{-x^2}\sin(x^2)\) in the plane \(Oxz\).
+  - On the vertical plane \(x=y\), the points have the form \((t,t,z)\), and \(t^2+t^2=2t^2\). The height is \(z=f(t,t)=e^{-2t^2}\sin(2t^2)\).
+
+  All three cuts are even functions of the horizontal coordinate. Write \(g(u)=e^{-u}\sin u\) for \(u\ge 0\). Then \(g(0)=0\), and
+  \[
+  g'(u)=e^{-u}(\cos u-\sin u).
+  \]
+  The derivative vanishes first at \(u=\pi/4\), where
+  \[
+  g\left(\frac{\pi}{4}\right)=\frac{\sqrt{2}}{2}e^{-\pi/4}\approx 0.32.
+  \]
+  So each cut starts at height \(0\) at the origin, rises to a maximum of about \(0.32\), and returns to \(0\) where \(u=\pi\). For larger \(u\) it oscillates with shrinking amplitude and tends to \(0\). The cut by \(x=y\) is the cut by \(y=0\) compressed horizontally, because \(u=2t^2\) there and \(u=x^2\) on the other cut.
+
+  ### Level curves
+
+  The value of \(f\) depends only on \(u=x^2+y^2\), the squared distance from the origin. Two points at the same distance from the origin have the same height. Every level set \(f=k\) is therefore a union of circles centred at the origin, one circle for each value \(u\ge 0\) with \(g(u)=k\), where the circle has radius \(\sqrt{u}\). The level \(k=0\) contains the origin and the circles with \(u=\pi,2\pi,3\pi,\dots\)
+
+  The contour map consists of concentric circles, and the graph is a damped ripple around the \(z\)-axis.
+provenance: handout-answer
+steps:
+  - The cuts are \(z=e^{-y^2}\sin(y^2)\), \(z=e^{-x^2}\sin(x^2)\) and \(z=e^{-2t^2}\sin(2t^2)\).
+  - The function depends only on \(x^2+y^2\), through \(g(u)=e^{-u}\sin u\).
+  - The level curves are concentric circles around the origin.
+verification:
+  checks:
+    - expr: '(exp(-(x**2 + y**2))*sin(x**2 + y**2)).subs(x, 0)'
+      expected: "exp(-y**2)*sin(y**2)"
+    - expr: '(exp(-(x**2 + y**2))*sin(x**2 + y**2)).subs(y, 0)'
+      expected: "exp(-x**2)*sin(x**2)"
+    - expr: '(exp(-(x**2 + y**2))*sin(x**2 + y**2)).subs(y, x)'
+      expected: "exp(-2*x**2)*sin(2*x**2)"
+    - expr: 'diff(exp(-u)*sin(u), u)'
+      expected: "exp(-u)*(cos(u) - sin(u))"
+    - expr: 'diff(exp(-u)*sin(u), u).subs(u, pi/4)'
+      expected: "0"
+    - expr: 'exp(-pi/4)*sin(pi/4)'
+      expected: "sqrt(2)*exp(-pi/4)/2"
+    - expr: '(exp(-(x**2 + y**2))*sin(x**2 + y**2)).subs({x: 3, y: 4}) - (exp(-(x**2 + y**2))*sin(x**2 + y**2)).subs({x: 5, y: 0})'
+      expected: "0"
+:::
+
+
+::: exercise
+id: l4-cross-sections.handout-14-1-4
+number: "14.1.4"
+tier: standard
+topics:
+  - cross-sections
+  - level-sets
+statement: |
+  Let \(f(x,y)=\sin(x-y)\). Determine the equations and shapes of the cross-sections of the graph \(z=f(x,y)\) cut by the planes \(x=0\), \(y=0\) and \(x=y\), and describe the level curves.
+solution: |
+  ### Cross sections
+
+  - On the plane \(x=0\), the height is \(z=f(0,y)=\sin(-y)=-\sin y\). The cut is a sine wave, flipped upside down, in the plane \(Oyz\).
+  - On the plane \(y=0\), the height is \(z=f(x,0)=\sin x\). The cut is a sine wave in the plane \(Oxz\).
+  - On the vertical plane \(x=y\), the points have the form \((t,t,z)\) with \(z=f(t,t)=\sin 0=0\). The cut is the line \(z=0\) over the line \(y=x\).
+
+  ### Level curves
+
+  The level curve of height \(k\) is the set where \(\sin(x-y)=k\).
+
+  - For \(\lvert k\rvert>1\), the level curve is empty, because \(\lvert\sin\rvert\le 1\).
+  - For \(\lvert k\rvert\le 1\), the number \(c=x-y\) must satisfy \(\sin c=k\). The solutions are
+    \[
+    c=\arcsin k+2\pi n\quad\text{or}\quad c=\pi-\arcsin k+2\pi n,
+    \]
+    with \(n\) an integer. Each value of \(c\) gives the line \(y=x-c\).
+
+  The level curves are parallel lines of slope \(1\). The function depends only on \(x-y\), so the graph is a sine wave that does not change in the direction \(\langle 1,1\rangle\), like a corrugated sheet. The level curve for \(k=0\) consists of the lines \(y=x-n\pi\).
+provenance: handout-answer
+steps:
+  - The cuts are \(z=-\sin y\), \(z=\sin x\) and \(z=0\).
+  - The level equation \(\sin(x-y)=k\) fixes \(x-y\), so each solution is a line of slope \(1\).
+  - The level curves are parallel lines of slope \(1\), empty when \(\lvert k\rvert>1\).
+verification:
+  checks:
+    - expr: 'sin(x - y).subs(x, 0)'
+      expected: "-sin(y)"
+    - expr: 'sin(x - y).subs(y, 0)'
+      expected: "sin(x)"
+    - expr: 'sin(x - y).subs(y, x)'
+      expected: "0"
+    - expr: 'sin(x - y).subs(y, x - asin(k))'
+      expected: "k"
+    - expr: 'sin(x - y).subs(y, x - (pi - asin(k)))'
+      expected: "k"
+:::

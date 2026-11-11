@@ -8,6 +8,7 @@ sources:
   - { source: handout, section: "14.6", page: 371 }
   - { source: handout, section: "14.6", page: 372 }
   - { source: lecture-notes-5, page: 4 }
+  - { source: handout, section: "14.3" }
 examWeight: medium
 taught: lecture
 status: reviewed
@@ -413,4 +414,416 @@ verification:
       expected: "0"
     - expr: 'simplify(diff(x**y, y, x) - x**(y - 1)*(1 + y*log(x)))'
       expected: "0"
+:::
+
+::: exercise
+id: l5-higher-derivatives.handout-14-3-16
+number: "14.3.16"
+tier: standard
+topics:
+  - clairaut
+  - second-partials
+statement: |
+  A colleague has calculated the partial derivatives of a function \(f\) and reports
+  \[
+  f_x(x,y)=2x+3y,\qquad f_y(x,y)=4x+6y.
+  \]
+  Do you believe them? Why or why not? If not, what answer might you have accepted for \(f_y\)?
+solution: |
+  Differentiate each reported partial in the other variable:
+  \[
+  \begin{aligned}
+  f_{xy}&=\frac{\partial}{\partial y}(2x+3y)=3,\\
+  f_{yx}&=\frac{\partial}{\partial x}(4x+6y)=4.
+  \end{aligned}
+  \]
+  Both mixed partials are polynomials, so they are continuous. Clairaut's theorem then requires \(f_{xy}=f_{yx}\). The values \(3\) and \(4\) differ, so no function has these two partial derivatives. The report is wrong.
+
+  The first partial \(f_x=2x+3y\) fixes \(f_{xy}=3\). An acceptable \(f_y\) must satisfy \(\frac{\partial f_y}{\partial x}=3\), so \(f_y=3x+h(y)\) for some function \(h\) of \(y\) alone. The simplest change to the report keeps the term \(6y\) and gives
+  \[
+  f_y=3x+6y.
+  \]
+  This pair comes from \(f(x,y)=x^2+3xy+3y^2\), which has \(f_x=2x+3y\) and \(f_y=3x+6y\).
+provenance: written-for-site
+steps:
+  - The reported partials give f_xy = 3 and f_yx = 4.
+  - The mixed partials are continuous, so Clairaut's theorem forbids 3 and 4 from differing.
+  - Any f_y with derivative 3 in x is acceptable, for example 3x + 6y.
+verification:
+  checks:
+    - expr: '(diff(2*x + 3*y, y), diff(4*x + 6*y, x))'
+      expected: "(3, 4)"
+    - expr: 'diff(3*x + 6*y, x)'
+      expected: "3"
+    - expr: '(diff(x**2 + 3*x*y + 3*y**2, x), diff(x**2 + 3*x*y + 3*y**2, y))'
+      expected: "(2*x + 3*y, 3*x + 6*y)"
+:::
+
+
+::: exercise
+id: l5-higher-derivatives.handout-14-6-1
+number: "14.6.1"
+tier: standard
+topics:
+  - second-partials
+  - clairaut
+statement: |
+  Find all first and second partial derivatives of
+  \[
+  f=\frac{xy}{x^2+y^2}.
+  \]
+solution: |
+  The function is defined for \((x,y)\neq(0,0)\). Write \(D=x^2+y^2\), so \(D_x=2x\) and \(D_y=2y\).
+
+  **First partials.** The quotient rule gives
+  \[
+  \begin{aligned}
+  f_x&=\frac{y\,D-xy\cdot 2x}{D^2}=\frac{y^3-x^2y}{D^2},\\
+  f_y&=\frac{x\,D-xy\cdot 2y}{D^2}=\frac{x^3-xy^2}{D^2}.
+  \end{aligned}
+  \]
+
+  **Pure second partials.** Differentiate \(f_x\) in \(x\). The numerator \(y^3-x^2y\) has \(x\)-derivative \(-2xy\), and the denominator \(D^2\) has \(x\)-derivative \(4xD\):
+  \[
+  \begin{aligned}
+  f_{xx}&=\frac{-2xy\,D^2-(y^3-x^2y)\,4xD}{D^4}\\
+  &=\frac{-2xy\,D-4x(y^3-x^2y)}{D^3}\\
+  &=\frac{2x^3y-6xy^3}{D^3}.
+  \end{aligned}
+  \]
+  The same steps for \(f_y\) in \(y\) give
+  \[
+  f_{yy}=\frac{2xy^3-6x^3y}{D^3}.
+  \]
+
+  **Mixed partials.** Differentiate \(f_x\) in \(y\). The numerator has \(y\)-derivative \(3y^2-x^2\), and the denominator \(D^2\) has \(y\)-derivative \(4yD\):
+  \[
+  \begin{aligned}
+  f_{xy}&=\frac{(3y^2-x^2)\,D-4y(y^3-x^2y)}{D^3}\\
+  &=\frac{6x^2y^2-x^4-y^4}{D^3}.
+  \end{aligned}
+  \]
+  Differentiate \(f_y\) in \(x\). The numerator has \(x\)-derivative \(3x^2-y^2\), and the denominator has \(x\)-derivative \(4xD\):
+  \[
+  \begin{aligned}
+  f_{yx}&=\frac{(3x^2-y^2)\,D-4x(x^3-xy^2)}{D^3}\\
+  &=\frac{6x^2y^2-x^4-y^4}{D^3}.
+  \end{aligned}
+  \]
+  The two mixed partials are equal.
+provenance: handout-answer
+steps:
+  - The quotient rule gives f_x = (y^3 - x^2 y)/D^2 and f_y = (x^3 - x y^2)/D^2, with D = x^2 + y^2.
+  - The pure second partials are f_xx = (2x^3 y - 6x y^3)/D^3 and f_yy = (2x y^3 - 6x^3 y)/D^3.
+  - Both mixed partials equal (6x^2 y^2 - x^4 - y^4)/D^3.
+verification:
+  checks:
+    - expr: 'simplify(diff(x*y/(x**2 + y**2), x) - (y**3 - x**2*y)/(x**2 + y**2)**2)'
+      expected: "0"
+    - expr: 'simplify(diff(x*y/(x**2 + y**2), y) - (x**3 - x*y**2)/(x**2 + y**2)**2)'
+      expected: "0"
+    - expr: 'simplify(diff(x*y/(x**2 + y**2), x, 2) - (2*x**3*y - 6*x*y**3)/(x**2 + y**2)**3)'
+      expected: "0"
+    - expr: 'simplify(diff(x*y/(x**2 + y**2), y, 2) - (2*x*y**3 - 6*x**3*y)/(x**2 + y**2)**3)'
+      expected: "0"
+    - expr: 'simplify(diff(x*y/(x**2 + y**2), x, y) - (6*x**2*y**2 - x**4 - y**4)/(x**2 + y**2)**3)'
+      expected: "0"
+    - expr: 'simplify(diff(x*y/(x**2 + y**2), y, x) - (6*x**2*y**2 - x**4 - y**4)/(x**2 + y**2)**3)'
+      expected: "0"
+:::
+
+
+::: exercise
+id: l5-higher-derivatives.handout-14-6-2
+number: "14.6.2"
+tier: basic
+topics:
+  - second-partials
+statement: |
+  Find all first and second partial derivatives of \(f=x^3y^2+y^5\).
+solution: |
+  Hold \(y\) constant for the \(x\)-partial. The term \(y^5\) does not depend on \(x\), so
+  \[
+  f_x=3x^2y^2.
+  \]
+  Hold \(x\) constant for the \(y\)-partial:
+  \[
+  f_y=2x^3y+5y^4.
+  \]
+
+  Differentiating again,
+  \[
+  \begin{aligned}
+  f_{xx}&=6xy^2,\\
+  f_{yy}&=2x^3+20y^3,\\
+  f_{xy}&=\frac{\partial}{\partial y}\bigl(3x^2y^2\bigr)=6x^2y,\\
+  f_{yx}&=\frac{\partial}{\partial x}\bigl(2x^3y+5y^4\bigr)=6x^2y.
+  \end{aligned}
+  \]
+  The mixed partials agree.
+provenance: handout-answer
+steps:
+  - f_x = 3x^2 y^2 and f_y = 2x^3 y + 5y^4.
+  - f_xx = 6x y^2 and f_yy = 2x^3 + 20y^3.
+  - Both mixed partials equal 6x^2 y.
+verification:
+  checks:
+    - expr: 'diff(x**3*y**2 + y**5, x) - 3*x**2*y**2'
+      expected: "0"
+    - expr: 'diff(x**3*y**2 + y**5, y) - (2*x**3*y + 5*y**4)'
+      expected: "0"
+    - expr: 'diff(x**3*y**2 + y**5, x, 2) - 6*x*y**2'
+      expected: "0"
+    - expr: 'diff(x**3*y**2 + y**5, y, 2) - (2*x**3 + 20*y**3)'
+      expected: "0"
+    - expr: 'diff(x**3*y**2 + y**5, x, y) - 6*x**2*y'
+      expected: "0"
+    - expr: 'diff(x**3*y**2 + y**5, y, x) - 6*x**2*y'
+      expected: "0"
+:::
+
+
+::: exercise
+id: l5-higher-derivatives.handout-14-6-5
+number: "14.6.5"
+tier: standard
+topics:
+  - second-partials
+statement: |
+  Find all first and second partial derivatives of \(f=\sin(3x)\cos(2y)\).
+solution: |
+  Hold \(y\) constant for the \(x\)-partial. The factor \(\cos(2y)\) stays, and the chain rule on \(\sin(3x)\) brings out the factor \(3\):
+  \[
+  f_x=3\cos(3x)\cos(2y).
+  \]
+  Hold \(x\) constant for the \(y\)-partial. The chain rule on \(\cos(2y)\) brings out \(-2\sin(2y)\):
+  \[
+  f_y=-2\sin(3x)\sin(2y).
+  \]
+
+  Differentiating again,
+  \[
+  \begin{aligned}
+  f_{xx}&=-9\sin(3x)\cos(2y),\\
+  f_{yy}&=-4\sin(3x)\cos(2y),\\
+  f_{xy}&=\frac{\partial}{\partial y}\bigl(3\cos(3x)\cos(2y)\bigr)=-6\cos(3x)\sin(2y),\\
+  f_{yx}&=\frac{\partial}{\partial x}\bigl(-2\sin(3x)\sin(2y)\bigr)=-6\cos(3x)\sin(2y).
+  \end{aligned}
+  \]
+  The mixed partials agree.
+provenance: handout-answer
+steps:
+  - f_x = 3 cos(3x) cos(2y) and f_y = -2 sin(3x) sin(2y).
+  - f_xx = -9 sin(3x) cos(2y) and f_yy = -4 sin(3x) cos(2y).
+  - Both mixed partials equal -6 cos(3x) sin(2y).
+verification:
+  checks:
+    - expr: 'diff(sin(3*x)*cos(2*y), x) - 3*cos(3*x)*cos(2*y)'
+      expected: "0"
+    - expr: 'diff(sin(3*x)*cos(2*y), y) + 2*sin(3*x)*sin(2*y)'
+      expected: "0"
+    - expr: 'diff(sin(3*x)*cos(2*y), x, 2) + 9*sin(3*x)*cos(2*y)'
+      expected: "0"
+    - expr: 'diff(sin(3*x)*cos(2*y), y, 2) + 4*sin(3*x)*cos(2*y)'
+      expected: "0"
+    - expr: 'diff(sin(3*x)*cos(2*y), x, y) + 6*cos(3*x)*sin(2*y)'
+      expected: "0"
+    - expr: 'diff(sin(3*x)*cos(2*y), y, x) + 6*cos(3*x)*sin(2*y)'
+      expected: "0"
+:::
+
+
+::: exercise
+id: l5-higher-derivatives.handout-14-6-6
+number: "14.6.6"
+tier: standard
+topics:
+  - second-partials
+statement: |
+  Find all first and second partial derivatives of \(f=e^{x+y^2}\).
+solution: |
+  The exponent \(x+y^2\) has \(x\)-derivative \(1\) and \(y\)-derivative \(2y\). The first partials are
+  \[
+  \begin{aligned}
+  f_x&=e^{x+y^2},\\
+  f_y&=2y\,e^{x+y^2}.
+  \end{aligned}
+  \]
+
+  Differentiating \(f_x\) in \(x\) reproduces it, so \(f_{xx}=e^{x+y^2}\). Differentiating \(f_x\) in \(y\) gives
+  \[
+  f_{xy}=2y\,e^{x+y^2}.
+  \]
+  Differentiating \(f_y=2y\,e^{x+y^2}\) in \(x\) keeps the factor \(2y\) and reproduces the exponential, so \(f_{yx}=2y\,e^{x+y^2}\). Differentiating \(f_y\) in \(y\) uses the product rule. The factor \(2y\) contributes \(2e^{x+y^2}\), and the exponential contributes \(2y\cdot 2y\,e^{x+y^2}\):
+  \[
+  f_{yy}=4y^2e^{x+y^2}+2e^{x+y^2}.
+  \]
+  The mixed partials agree.
+provenance: handout-answer
+steps:
+  - f_x = e^(x + y^2) and f_y = 2y e^(x + y^2).
+  - f_xx = e^(x + y^2) and f_xy = f_yx = 2y e^(x + y^2).
+  - The product rule gives f_yy = 4y^2 e^(x + y^2) + 2 e^(x + y^2).
+verification:
+  checks:
+    - expr: 'diff(exp(x + y**2), x) - exp(x + y**2)'
+      expected: "0"
+    - expr: 'diff(exp(x + y**2), y) - 2*y*exp(x + y**2)'
+      expected: "0"
+    - expr: 'diff(exp(x + y**2), x, 2) - exp(x + y**2)'
+      expected: "0"
+    - expr: 'diff(exp(x + y**2), y, 2) - (4*y**2*exp(x + y**2) + 2*exp(x + y**2))'
+      expected: "0"
+    - expr: 'diff(exp(x + y**2), x, y) - 2*y*exp(x + y**2)'
+      expected: "0"
+    - expr: 'diff(exp(x + y**2), y, x) - 2*y*exp(x + y**2)'
+      expected: "0"
+:::
+
+
+::: exercise
+id: l5-higher-derivatives.handout-14-6-7
+number: "14.6.7"
+tier: exam
+topics:
+  - second-partials
+  - clairaut
+statement: |
+  Find all first and second partial derivatives of \(f=\ln\sqrt{x^3+y^4}\).
+solution: |
+  The function is defined where \(D=x^3+y^4>0\). Since \(\ln\sqrt{D}=\frac12\ln D\), write \(f=\frac12\ln D\), with \(D_x=3x^2\) and \(D_y=4y^3\).
+
+  **First partials.**
+  \[
+  \begin{aligned}
+  f_x&=\frac{3x^2}{2D},\\
+  f_y&=\frac{4y^3}{2D}=\frac{2y^3}{D}.
+  \end{aligned}
+  \]
+
+  **Pure second partials.** Differentiate \(f_x\) in \(x\) by the quotient rule:
+  \[
+  \begin{aligned}
+  f_{xx}&=\frac{6x\,D-3x^2\cdot 3x^2}{2D^2}\\
+  &=\frac{3x}{D}-\frac{9x^4}{2D^2}.
+  \end{aligned}
+  \]
+  Differentiate \(f_y\) in \(y\):
+  \[
+  \begin{aligned}
+  f_{yy}&=\frac{6y^2\,D-2y^3\cdot 4y^3}{D^2}\\
+  &=\frac{6y^2}{D}-\frac{8y^6}{D^2}.
+  \end{aligned}
+  \]
+
+  **Mixed partials.** Differentiate \(f_x=\frac{3x^2}{2D}\) in \(y\). The numerator does not depend on \(y\), so only the denominator contributes:
+  \[
+  f_{xy}=-\frac{3x^2\cdot 4y^3}{2D^2}=-\frac{6x^2y^3}{D^2}.
+  \]
+  Differentiate \(f_y=\frac{2y^3}{D}\) in \(x\). Again only the denominator depends on \(x\):
+  \[
+  f_{yx}=-\frac{2y^3\cdot 3x^2}{D^2}=-\frac{6x^2y^3}{D^2}.
+  \]
+  The mixed partials agree.
+provenance: handout-answer
+steps:
+  - Writing f = (1/2) ln(x^3 + y^4) gives f_x = 3x^2/(2D) and f_y = 2y^3/D.
+  - The quotient rule gives f_xx = 3x/D - 9x^4/(2D^2) and f_yy = 6y^2/D - 8y^6/D^2.
+  - Both mixed partials equal -6x^2 y^3/D^2.
+verification:
+  checks:
+    - expr: 'simplify(diff(log(sqrt(x**3 + y**4)), x) - 3*x**2/(2*(x**3 + y**4)))'
+      expected: "0"
+    - expr: 'simplify(diff(log(sqrt(x**3 + y**4)), y) - 2*y**3/(x**3 + y**4))'
+      expected: "0"
+    - expr: 'simplify(diff(log(sqrt(x**3 + y**4)), x, 2) - (3*x/(x**3 + y**4) - 9*x**4/(2*(x**3 + y**4)**2)))'
+      expected: "0"
+    - expr: 'simplify(diff(log(sqrt(x**3 + y**4)), y, 2) - (6*y**2/(x**3 + y**4) - 8*y**6/(x**3 + y**4)**2))'
+      expected: "0"
+    - expr: 'simplify(diff(log(sqrt(x**3 + y**4)), x, y) + 6*x**2*y**3/(x**3 + y**4)**2)'
+      expected: "0"
+    - expr: 'simplify(diff(log(sqrt(x**3 + y**4)), y, x) + 6*x**2*y**3/(x**3 + y**4)**2)'
+      expected: "0"
+:::
+
+
+::: exercise
+id: l5-higher-derivatives.handout-14-6-12
+number: "14.6.12"
+tier: basic
+topics:
+  - clairaut
+  - second-partials
+statement: |
+  How many third-order partial derivatives does a function of two variables have? How many of these are distinct, assuming the function is nice enough for Clairaut's theorem?
+solution: |
+  A third-order partial derivative differentiates three times, and each step is a derivative in \(x\) or in \(y\). That gives \(2\cdot 2\cdot 2=8\) third-order partial derivatives:
+  \[
+  f_{xxx},\ f_{xxy},\ f_{xyx},\ f_{xyy},\ f_{yxx},\ f_{yxy},\ f_{yyx},\ f_{yyy}.
+  \]
+
+  If the mixed partials are continuous, the order of differentiation does not matter, and a derivative depends only on how many times it differentiates in \(x\). That number is \(3\), \(2\), \(1\) or \(0\), so there are \(4\) distinct third-order derivatives:
+  \[
+  \begin{aligned}
+  f_{xxx},\quad f_{xxy}&=f_{xyx}=f_{yxx},\\
+  f_{xyy}&=f_{yxy}=f_{yyx},\quad f_{yyy}.
+  \end{aligned}
+  \]
+  The answer is \(8\) derivatives, of which \(4\) are distinct.
+provenance: written-for-site
+steps:
+  - Each of the three differentiations is in x or in y, giving 2^3 = 8 derivatives.
+  - With Clairaut's theorem, only the number of x-differentiations matters.
+  - That number is 0, 1, 2 or 3, so there are 4 distinct derivatives.
+verification:
+  checks:
+    - expr: '2**3'
+      expected: "8"
+    - expr: '3 + 1'
+      expected: "4"
+    - expr: 'diff(x**4*y**3 + exp(x*y), x, x, y) - diff(x**4*y**3 + exp(x*y), x, y, x)'
+      expected: "0"
+    - expr: 'diff(x**4*y**3 + exp(x*y), x, y, x) - diff(x**4*y**3 + exp(x*y), y, x, x)'
+      expected: "0"
+    - expr: 'diff(x**4*y**3 + exp(x*y), x, y, y) - diff(x**4*y**3 + exp(x*y), y, x, y)'
+      expected: "0"
+    - expr: 'diff(x**4*y**3 + exp(x*y), y, x, y) - diff(x**4*y**3 + exp(x*y), y, y, x)'
+      expected: "0"
+:::
+
+
+::: exercise
+id: l5-higher-derivatives.handout-14-6-13
+number: "14.6.13"
+tier: standard
+topics:
+  - clairaut
+  - second-partials
+statement: |
+  How many \(n\)-th order partial derivatives does a function of two variables have? How many of these are distinct, assuming Clairaut's theorem applies?
+solution: |
+  An \(n\)-th order partial derivative differentiates \(n\) times, and each step is in \(x\) or in \(y\). That gives \(2^n\) derivatives.
+
+  Group them by the number \(k\) of differentiations in \(x\), where \(k=0,1,\dots,n\). For each \(k\), the remaining \(n-k\) differentiations are in \(y\), and \(\binom{n}{k}\) orders of the letters are possible. The groups together contain
+  \[
+  \sum_{k=0}^{n}\binom{n}{k}=2^n
+  \]
+  derivatives, which matches the count above.
+
+  If the mixed partials are continuous, the order of differentiation does not matter. All derivatives in the same group are then equal, and each group gives one distinct derivative. There are \(n+1\) values of \(k\), so there are \(n+1\) distinct \(n\)-th order derivatives.
+
+  For \(n=3\) this gives \(8\) and \(4\), as in the third-order count. The answer is \(2^n\) derivatives, of which \(n+1\) are distinct.
+provenance: written-for-site
+steps:
+  - Each of the n differentiations is in x or in y, giving 2^n derivatives.
+  - Grouping by the number k of x-differentiations, the group sizes binomial(n, k) add up to 2^n.
+  - With Clairaut's theorem each group is one derivative, and k runs over n + 1 values.
+verification:
+  checks:
+    - expr: 'summation(binomial(6, k), (k, 0, 6))'
+      expected: "2**6"
+    - expr: 'summation(1, (k, 0, 6))'
+      expected: "6 + 1"
+    - expr: '(2**3, 3 + 1)'
+      expected: "(8, 4)"
 :::

@@ -439,3 +439,53 @@ verification:
     - expr: (Rational(4, 3)*pi*(Rational(200002, 10000)**3 - 20**3))/(4*pi*20**2*Rational(2, 10000)) - 1
       expected: Rational(1, 100000) + Rational(1, 30000000000)
 :::
+
+::: exercise
+id: l2-linear-approximation.handout-6-4-3
+number: "6.4.3"
+tier: basic
+topics:
+  - linear-approximation
+  - differentials
+statement: |
+  Let \(f(x) = \sin(2x)\). If \(a = \pi\) and \(dx = \Delta x = \frac{\pi}{100}\), what are \(\Delta y\) and \(dy\)?
+solution: |
+  The derivative follows from the chain rule:
+  \[
+  \begin{aligned}
+  f'(x)&=2\cos(2x),\\
+  f'(\pi)&=2\cos(2\pi) = 2.
+  \end{aligned}
+  \]
+  The differential is
+  \[
+  dy = f'(a)\, dx = 2 \cdot \frac{\pi}{100} = \frac{\pi}{50}.
+  \]
+
+  The increment is the true change of \(f\) from \(a\) to \(a + \Delta x\). Since \(\sin\) has period \(2\pi\),
+  \[
+  \begin{aligned}
+  \Delta y&=f\Bigl(\pi + \frac{\pi}{100}\Bigr) - f(\pi)\\
+  &=\sin\Bigl(2\pi + \frac{\pi}{50}\Bigr) - \sin(2\pi)\\
+  &=\sin\frac{\pi}{50} - 0.
+  \end{aligned}
+  \]
+  So \(\Delta y = \sin\frac{\pi}{50}\) and \(dy = \frac{\pi}{50}\). Numerically \(\sin\frac{\pi}{50} \approx 0.062791\) and \(\frac{\pi}{50} \approx 0.062832\), so the differential approximates the increment to within about \(4 \times 10^{-5}\).
+provenance: handout-answer
+steps:
+  - The derivative \(f'(\pi) = 2\cos(2\pi) = 2\).
+  - The differential \(dy = 2 \cdot \frac{\pi}{100} = \frac{\pi}{50}\).
+  - The increment \(\Delta y = \sin\bigl(2\pi + \frac{\pi}{50}\bigr) - \sin(2\pi) = \sin\frac{\pi}{50}\).
+verification:
+  checks:
+    - expr: 'diff(sin(2*x), x).subs(x, pi)'
+      expected: '2'
+    - expr: 'diff(sin(2*x), x).subs(x, pi)*pi/100'
+      expected: 'pi/50'
+    - expr: 'sin(2*(pi + pi/100)) - sin(2*pi)'
+      expected: 'sin(pi/50)'
+    - expr: 'floor(10**6*sin(pi/50))'
+      expected: '62790'
+    - expr: 'floor(10**6*pi/50)'
+      expected: '62831'
+:::

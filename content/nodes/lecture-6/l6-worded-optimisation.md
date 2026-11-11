@@ -1289,3 +1289,382 @@ verification:
     - expr: 'sqrt(24**3/6)'
       expected: '48'
 :::
+
+::: exercise
+id: l6-worded-optimisation.sheet-2-12
+number: "sheet 2 exercise 12"
+tier: exam
+topics: [worded-optimisation, global-extrema]
+statement: |
+  A lactating mammal has a fixed daily time \(T\), divided between foraging \(t_f\), resting \(t_r\) and caring for its offspring \(t_c\). During foraging it obtains energy at rate
+  \[
+  q(t_f) = q_{\max}\left(1 - e^{-k t_f}\right),
+  \]
+  while its daily maintenance cost is \(E_m\). The energy available for milk production is \(E_{\text{milk}} = q(t_f) - E_m\), and the amount of milk produced is proportional to this energy, \(M = \eta E_{\text{milk}}\). Milk production increases offspring growth according to
+  \[
+  G(M) = \frac{g_{\max} M}{K + M},
+  \]
+  while offspring survival also depends on maternal care according to
+  \[
+  S(G, t_c) = \frac{G}{G + K_G}\cdot\frac{t_c}{K_c + t_c}.
+  \]
+  Find the values of \(t_f\), \(t_r\), \(t_c\) that maximize offspring survival, subject to the time constraint \(t_f + t_r + t_c = T\), with all three times nonnegative. All constants are positive, and \(q_{\max} > E_m\).
+solution: |
+  ### Setting up
+
+  Write the milk amount as a function of the foraging time:
+  \[
+  M(t_f) = \eta\left(q_{\max}\left(1 - e^{-k t_f}\right) - E_m\right).
+  \]
+  This function is strictly increasing. It is negative at \(t_f = 0\) and tends to \(\eta (q_{\max} - E_m) > 0\). With \(E_{\text{milk}} \le 0\) there is no milk, so \(M = 0\) and \(S = 0\). Milk is produced exactly when \(t_f > t_0\), where
+  \[
+  t_0 = \frac{1}{k}\ln\frac{q_{\max}}{q_{\max} - E_m}.
+  \]
+  If \(T \le t_0\), every split gives \(S = 0\) and there is nothing to optimise. So assume \(T > t_0\).
+
+  ### Resting time is wasted
+
+  The resting time \(t_r\) does not appear in \(S\). The caring factor \(t_c/(K_c + t_c)\) is strictly increasing in \(t_c\), and the growth factor does not depend on \(t_c\). If a split has \(t_r > 0\) and \(S > 0\), moving the resting time to caring raises \(S\). Hence the optimum has
+  \[
+  t_r = 0, \qquad t_c = T - t_f.
+  \]
+
+  ### One variable
+
+  The growth factor simplifies:
+  \[
+  \frac{G}{G + K_G} = \frac{g_{\max} M}{g_{\max} M + K_G (K + M)} = a\,\frac{M}{M + b},
+  \]
+  with
+  \[
+  a = \frac{g_{\max}}{g_{\max} + K_G}, \qquad b = \frac{K_G K}{g_{\max} + K_G}.
+  \]
+  On \(t_0 < t_f < T\) the survival is therefore
+  \[
+  S(t_f) = a\,\frac{M}{M + b}\cdot\frac{T - t_f}{K_c + T - t_f},
+  \]
+  and \(S = 0\) for \(t_f \le t_0\) and at \(t_f = T\).
+
+  ### Critical point
+
+  On \((t_0, T)\) all factors are positive, so the logarithm of \(S\) has the same critical points. With \(M' = \eta q_{\max} k\, e^{-k t_f}\),
+  \[
+  \begin{aligned}
+  \frac{d}{dt_f}\ln S&= \frac{M'}{M} - \frac{M'}{M + b}\\
+  &\quad - \frac{1}{T - t_f} + \frac{1}{K_c + T - t_f}\\
+  &= \frac{b\,M'}{M(M + b)} - \frac{K_c}{(T - t_f)(K_c + T - t_f)}.
+  \end{aligned}
+  \]
+  Call this difference \(H(t_f)\). A critical point solves \(H(t_f) = 0\), that is
+  \[
+  \frac{b\,\eta q_{\max} k\, e^{-k t_f}}{M(M + b)} = \frac{K_c}{(T - t_f)(K_c + T - t_f)}.
+  \]
+
+  The first term of \(H\) is positive and strictly decreasing, because \(M'\) decreases while \(M\) increases and stays positive. It tends to \(+\infty\) as \(t_f \to t_0^+\), since \(M \to 0^+\). The subtracted term is positive and strictly increasing, and it tends to \(+\infty\) as \(t_f \to T^-\). So \(H\) is strictly decreasing from \(+\infty\) to \(-\infty\), and it has exactly one zero \(t_f^*\) in \((t_0, T)\).
+
+  ### Conclusion
+
+  The function \(S\) is continuous on \([t_0, T]\), positive inside, and zero at both ends. Its maximum is therefore attained inside, at a critical point, and the only critical point is \(t_f^*\). So the maximum survival is at
+  \[
+  t_f = t_f^*, \qquad t_c = T - t_f^*, \qquad t_r = 0,
+  \]
+  where \(t_f^*\) is the unique solution in \((t_0, T)\) of \(H(t_f) = 0\). The equation mixes an exponential with a rational function, so \(t_f^*\) has no closed form and is found numerically.
+
+  For illustration take \(T = 10\), \(q_{\max} = 10\), \(E_m = 2\), \(k = 1\), \(\eta = 1\) and \(g_{\max} = K = K_G = K_c = 1\). Then \(a = b = 1/2\) and \(t_0 = \ln(5/4) \approx 0.223\). The equation \(H = 0\) gives \(t_f^* \approx 2.0156\), so \(t_c \approx 7.9844\), \(t_r = 0\) and \(S \approx 0.4134\).
+provenance: written-for-site
+steps:
+  - Resting adds nothing and caring raises \(S\), so \(t_r = 0\) and \(t_c = T - t_f\).
+  - Growth factor \(a M/(M + b)\), with \(M(t_f)\) positive exactly for \(t_f > t_0\).
+  - The condition \(H(t_f) = 0\) with \(H\) strictly decreasing from \(+\infty\) to \(-\infty\), so one root.
+  - \(S\) vanishes at \(t_0\) and \(T\), so the root is the maximum.
+verification:
+  checks:
+    - expr: "simplify((Symbol('gm', positive=True)*Symbol('Mm', positive=True)/(Symbol('K', positive=True) + Symbol('Mm', positive=True)))/((Symbol('gm', positive=True)*Symbol('Mm', positive=True)/(Symbol('K', positive=True) + Symbol('Mm', positive=True))) + Symbol('KG', positive=True)) - (Symbol('gm', positive=True)/(Symbol('gm', positive=True) + Symbol('KG', positive=True)))*Symbol('Mm', positive=True)/(Symbol('Mm', positive=True) + Symbol('KG', positive=True)*Symbol('K', positive=True)/(Symbol('gm', positive=True) + Symbol('KG', positive=True))))"
+      expected: "0"
+    - expr: "simplify(diff(log(((Symbol('gm', positive=True)/(Symbol('gm', positive=True) + Symbol('KG', positive=True)))*(Symbol('eta', positive=True)*(Symbol('qm', positive=True)*(1 - exp(-Symbol('k', positive=True)*Symbol('tf', positive=True))) - Symbol('Em', positive=True)))/((Symbol('eta', positive=True)*(Symbol('qm', positive=True)*(1 - exp(-Symbol('k', positive=True)*Symbol('tf', positive=True))) - Symbol('Em', positive=True))) + (Symbol('KG', positive=True)*Symbol('K', positive=True)/(Symbol('gm', positive=True) + Symbol('KG', positive=True))))*(Symbol('T', positive=True) - Symbol('tf', positive=True))/(Symbol('Kc', positive=True) + Symbol('T', positive=True) - Symbol('tf', positive=True)))), Symbol('tf', positive=True)) - ((Symbol('KG', positive=True)*Symbol('K', positive=True)/(Symbol('gm', positive=True) + Symbol('KG', positive=True)))*(Symbol('eta', positive=True)*Symbol('qm', positive=True)*Symbol('k', positive=True)*exp(-Symbol('k', positive=True)*Symbol('tf', positive=True)))/((Symbol('eta', positive=True)*(Symbol('qm', positive=True)*(1 - exp(-Symbol('k', positive=True)*Symbol('tf', positive=True))) - Symbol('Em', positive=True)))*((Symbol('eta', positive=True)*(Symbol('qm', positive=True)*(1 - exp(-Symbol('k', positive=True)*Symbol('tf', positive=True))) - Symbol('Em', positive=True))) + (Symbol('KG', positive=True)*Symbol('K', positive=True)/(Symbol('gm', positive=True) + Symbol('KG', positive=True))))) - Symbol('Kc', positive=True)/((Symbol('T', positive=True) - Symbol('tf', positive=True))*(Symbol('Kc', positive=True) + Symbol('T', positive=True) - Symbol('tf', positive=True)))))"
+      expected: "0"
+    - expr: "solve(10*(1 - exp(-tt)) - 2, tt)"
+      expected: "[log(Rational(5, 4))]"
+    - expr: "sign(N(((1/2)*10*exp(-tf)/((10*(1 - exp(-tf)) - 2)*((10*(1 - exp(-tf)) - 2) + 1/2)) - 1/((10 - tf)*(11 - tf))).subs(tf, 0.3)))"
+      expected: "1"
+    - expr: "sign(N(((1/2)*10*exp(-tf)/((10*(1 - exp(-tf)) - 2)*((10*(1 - exp(-tf)) - 2) + 1/2)) - 1/((10 - tf)*(11 - tf))).subs(tf, 9.9)))"
+      expected: "-1"
+    - expr: "floor(10000*nsolve(((1/2)*10*exp(-tf)/((10*(1 - exp(-tf)) - 2)*((10*(1 - exp(-tf)) - 2) + 1/2)) - 1/((10 - tf)*(11 - tf))), tf, (0.3, 9.9), solver='bisect', prec=30))"
+      expected: "20155"
+    - expr: "floor(10000*(10 - nsolve(((1/2)*10*exp(-tf)/((10*(1 - exp(-tf)) - 2)*((10*(1 - exp(-tf)) - 2) + 1/2)) - 1/((10 - tf)*(11 - tf))), tf, (0.3, 9.9), solver='bisect', prec=30)))"
+      expected: "79844"
+    - expr: "floor(10000*(((1/2)*(10*(1 - exp(-tf)) - 2)/((10*(1 - exp(-tf)) - 2) + 1/2)*(10 - tf)/(1 + 10 - tf))).subs(tf, nsolve(((1/2)*10*exp(-tf)/((10*(1 - exp(-tf)) - 2)*((10*(1 - exp(-tf)) - 2) + 1/2)) - 1/((10 - tf)*(11 - tf))), tf, (0.3, 9.9), solver='bisect', prec=30)))"
+      expected: "4133"
+:::
+
+
+::: exercise
+id: l6-worded-optimisation.sheet-2-18
+number: "sheet 2 exercise 18"
+tier: exam
+topics: [worded-optimisation, lagrange-multipliers]
+statement: |
+  When designing a new aircraft one wants to minimize the fuel consumption while maximizing the load \(L\) (number of passengers), the range \(D\) (maximum distance the plane can fly) and the speed \(s\). The fuel consumption, in tons, follows the law \(L^2\) during the take-off and
+  \[
+  (s - 10)^2 + s\sqrt{D^2 + L} - \ln s
+  \]
+  at high altitude. Read the two terms as adding up to the total fuel consumption, with \(L \ge 0\), \(D \ge 0\) and \(s > 0\). The fuel capacity of the plane is \(5\) tons.
+
+  Compute the optimized range relation (Pareto curve) for \(L\) and \(D\) after minimizing the fuel consumption with respect to the speed, and express the optimal speed as a function of \(L\) and \(D\). Then compute the best configuration \((L_{\text{opt}}, D_{\text{opt}})\) maximizing the utility function
+  \[
+  U = L - \frac{L^2}{2} + D - D^3
+  \]
+  within the Pareto curve.
+solution: |
+  ### Minimising over the speed
+
+  Write \(w = \sqrt{D^2 + L}\), which is fixed while the speed varies. The total fuel is
+  \[
+  F(s) = L^2 + (s - 10)^2 + s\,w - \ln s, \qquad s > 0.
+  \]
+  The derivatives in \(s\) are
+  \[
+  \begin{aligned}
+  F'(s)&= 2(s - 10) + w - \frac{1}{s},\\
+  F''(s)&= 2 + \frac{1}{s^2} > 0.
+  \end{aligned}
+  \]
+  So \(F\) is strictly convex. Also \(F'(s) \to -\infty\) as \(s \to 0^+\) and \(F'(s) \to +\infty\) as \(s \to \infty\), so \(F'\) has exactly one zero, and it is the global minimiser. Multiplying \(F'(s) = 0\) by \(s\) gives
+  \[
+  2s^2 + (w - 20)s - 1 = 0.
+  \]
+  The product of the roots is \(-1/2\), so exactly one root is positive. The optimal speed is
+  \[
+  s^*(L, D) = \frac{20 - w + \sqrt{(20 - w)^2 + 8}}{4}, \qquad w = \sqrt{D^2 + L}.
+  \]
+
+  ### The minimal fuel
+
+  At the optimal speed \(F'(s) = 0\) reads \(w = 20 - 2s + 1/s\). Substituting this into \(F\) gives
+  \[
+  \begin{aligned}
+  F_{\min}(L, D)&= L^2 + (s - 10)^2 + s\left(20 - 2s + \frac{1}{s}\right) - \ln s\\
+  &= L^2 + 101 - s^2 - \ln s, \qquad s = s^*(L, D).
+  \end{aligned}
+  \]
+
+  ### The Pareto curve
+
+  Since \(F'(s^*) = 0\), a change of \(L\) or \(D\) moves \(F_{\min}\) only through the explicit dependence of \(F\):
+  \[
+  \begin{aligned}
+  \frac{\partial F_{\min}}{\partial L}&= 2L + \frac{s}{2w} > 0,\\
+  \frac{\partial F_{\min}}{\partial D}&= \frac{s D}{w} \ge 0.
+  \end{aligned}
+  \]
+  More load or more range costs more fuel. With the capacity limit \(F_{\min} \le 5\), the configurations that cannot be improved are those with \(F_{\min}(L, D) = 5\). This is the **Pareto curve**:
+  \[
+  L^2 + 101 - s^*(L, D)^2 - \ln s^*(L, D) = 5.
+  \]
+
+  It is easier to describe with the speed as parameter. The Pareto relation gives \(L^2 = s^2 + \ln s - 96\). The speed condition gives \(D^2 + L = (20 - 2s + 1/s)^2\). So the curve is
+  \[
+  \begin{aligned}
+  L(s)&= \sqrt{s^2 + \ln s - 96},\\
+  D(s)&= \sqrt{\left(20 - 2s + \tfrac{1}{s}\right)^2 - L(s)}.
+  \end{aligned}
+  \]
+  The root \(L(s)\) is real from \(s_a \approx 9.6814\), where \(L = 0\) and \(D \approx 0.7405\). The root \(D(s)\) stays real up to \(s_b \approx 9.6947\), where \(D = 0\) and \(L \approx 0.5093\). Along this short arc \(L\) increases and \(D\) decreases, so a larger load buys a shorter range. The optimal speed on the curve stays between \(9.68\) and \(9.70\).
+
+  ### The best configuration on the curve
+
+  On the arc the utility is a function of the parameter,
+  \[
+  U(s) = L(s) - \frac{s^2 + \ln s - 96}{2} + D(s) - D(s)^3.
+  \]
+  The equation \(U'(s) = 0\) has no closed-form solution. Solving it numerically gives
+  \[
+  s \approx 9.6879, \qquad L_{\text{opt}} \approx 0.3566, \qquad D_{\text{opt}} \approx 0.4153,
+  \]
+  with \(U \approx 0.6367\). Here \(U''(s) < 0\), so this is a local maximum, and the endpoints give only \(U(s_a) \approx 0.3345\) and \(U(s_b) \approx 0.3796\). So it is the maximum on the curve.
+
+  As a check, the Lagrange condition \(\nabla U = \lambda \nabla F_{\min}\) reads
+  \[
+  (1 - L)\,\frac{sD}{w} = (1 - 3D^2)\left(2L + \frac{s}{2w}\right),
+  \]
+  and it holds at this point, where \(w = \sqrt{D^2 + L} \approx 0.7273\) and the fuel equals \(5\) tons. The best configuration carries about \(0.36\) in load and \(0.42\) in range, flying at speed \(s \approx 9.69\).
+provenance: written-for-site
+steps:
+  - Total fuel \(F(s) = L^2 + (s - 10)^2 + s\sqrt{D^2 + L} - \ln s\), strictly convex in \(s\).
+  - Optimal speed from \(2s^2 + (w - 20)s - 1 = 0\), the positive root.
+  - Minimal fuel \(L^2 + 101 - s^2 - \ln s\), and the Pareto curve \(F_{\min} = 5\).
+  - Parametrisation by \(s\) on \([9.6814, 9.6947]\).
+  - Maximum of \(U\) at \(s \approx 9.688\), \(L \approx 0.357\), \(D \approx 0.415\).
+verification:
+  checks:
+    - expr: "diff(LL**2 + (s - 10)**2 + s*w - log(s), s)"
+      expected: "2*(s - 10) + w - 1/s"
+    - expr: "diff(LL**2 + (s - 10)**2 + s*w - log(s), s, 2)"
+      expected: "2 + 1/s**2"
+    - expr: "simplify((2*s**2 + (w - 20)*s - 1).subs(s, (20 - w + sqrt((20 - w)**2 + 8))/4))"
+      expected: "0"
+    - expr: "simplify(((20 - w + sqrt((20 - w)**2 + 8))/4)*((20 - w - sqrt((20 - w)**2 + 8))/4))"
+      expected: "-1/2"
+    - expr: "expand((s - 10)**2 + s*(20 - 2*s + 1/s))"
+      expected: "101 - s**2"
+    - expr: "(diff(LL**2 + (s - 10)**2 + s*sqrt(DD**2 + LL) - log(s), LL), diff(LL**2 + (s - 10)**2 + s*sqrt(DD**2 + LL) - log(s), DD))"
+      expected: "(2*LL + s/(2*sqrt(DD**2 + LL)), s*DD/sqrt(DD**2 + LL))"
+    - expr: "floor(10000*nsolve((s**2 + log(s) - 96), s, (9.6, 9.7), solver='bisect', prec=30))"
+      expected: "96814"
+    - expr: "floor(10000*nsolve((20 - 2*s + 1/s)**2 - sqrt((s**2 + log(s) - 96)), s, (9.68, 9.71), solver='bisect', prec=30))"
+      expected: "96947"
+    - expr: "floor(10000*((20 - 2*s + 1/s)).subs(s, nsolve((s**2 + log(s) - 96), s, (9.6, 9.7), solver='bisect', prec=30)))"
+      expected: "7404"
+    - expr: "floor(10000*nsolve(diff((sqrt((s**2 + log(s) - 96)) - (s**2 + log(s) - 96)/2 + sqrt((20 - 2*s + 1/s)**2 - sqrt((s**2 + log(s) - 96))) - sqrt((20 - 2*s + 1/s)**2 - sqrt((s**2 + log(s) - 96)))**3), s), s, (9.686, 9.690), solver='bisect', prec=30))"
+      expected: "96879"
+    - expr: "floor(10000*(sqrt((s**2 + log(s) - 96))).subs(s, nsolve(diff((sqrt((s**2 + log(s) - 96)) - (s**2 + log(s) - 96)/2 + sqrt((20 - 2*s + 1/s)**2 - sqrt((s**2 + log(s) - 96))) - sqrt((20 - 2*s + 1/s)**2 - sqrt((s**2 + log(s) - 96)))**3), s), s, (9.686, 9.690), solver='bisect', prec=30)))"
+      expected: "3565"
+    - expr: "floor(10000*(sqrt((20 - 2*s + 1/s)**2 - sqrt((s**2 + log(s) - 96)))).subs(s, nsolve(diff((sqrt((s**2 + log(s) - 96)) - (s**2 + log(s) - 96)/2 + sqrt((20 - 2*s + 1/s)**2 - sqrt((s**2 + log(s) - 96))) - sqrt((20 - 2*s + 1/s)**2 - sqrt((s**2 + log(s) - 96)))**3), s), s, (9.686, 9.690), solver='bisect', prec=30)))"
+      expected: "4152"
+    - expr: "floor(10000*((sqrt((s**2 + log(s) - 96)) - (s**2 + log(s) - 96)/2 + sqrt((20 - 2*s + 1/s)**2 - sqrt((s**2 + log(s) - 96))) - sqrt((20 - 2*s + 1/s)**2 - sqrt((s**2 + log(s) - 96)))**3)).subs(s, nsolve(diff((sqrt((s**2 + log(s) - 96)) - (s**2 + log(s) - 96)/2 + sqrt((20 - 2*s + 1/s)**2 - sqrt((s**2 + log(s) - 96))) - sqrt((20 - 2*s + 1/s)**2 - sqrt((s**2 + log(s) - 96)))**3), s), s, (9.686, 9.690), solver='bisect', prec=30)))"
+      expected: "6366"
+    - expr: "floor(10000*((sqrt((s**2 + log(s) - 96)))**2 + (s - 10)**2 + s*sqrt((sqrt((20 - 2*s + 1/s)**2 - sqrt((s**2 + log(s) - 96))))**2 + sqrt((s**2 + log(s) - 96))) - log(s)).subs(s, nsolve(diff((sqrt((s**2 + log(s) - 96)) - (s**2 + log(s) - 96)/2 + sqrt((20 - 2*s + 1/s)**2 - sqrt((s**2 + log(s) - 96))) - sqrt((20 - 2*s + 1/s)**2 - sqrt((s**2 + log(s) - 96)))**3), s), s, (9.686, 9.690), solver='bisect', prec=30)) + 1/2)"
+      expected: "50000"
+    - expr: "floor(10**6*abs((1 - sqrt((s**2 + log(s) - 96)))*s*sqrt((20 - 2*s + 1/s)**2 - sqrt((s**2 + log(s) - 96)))/(20 - 2*s + 1/s) - (1 - 3*sqrt((20 - 2*s + 1/s)**2 - sqrt((s**2 + log(s) - 96)))**2)*(2*sqrt((s**2 + log(s) - 96)) + s/(2*(20 - 2*s + 1/s)))).subs(s, nsolve(diff((sqrt((s**2 + log(s) - 96)) - (s**2 + log(s) - 96)/2 + sqrt((20 - 2*s + 1/s)**2 - sqrt((s**2 + log(s) - 96))) - sqrt((20 - 2*s + 1/s)**2 - sqrt((s**2 + log(s) - 96)))**3), s), s, (9.686, 9.690), solver='bisect', prec=30)))"
+      expected: "0"
+:::
+
+
+::: exercise
+id: l6-worded-optimisation.sheet-2-19
+number: "sheet 2 exercise 19"
+tier: exam
+topics: [worded-optimisation]
+statement: |
+  An athlete must complete a cycling time trial of fixed distance \(D\) as quickly as possible. Divide the race into four successive regimes: an initial sprint, an anaerobic phase, an aerobic steady phase and a final sprint. In each regime, power and speed are constant.
+
+  In each phase \(i\) the velocity of the athlete is proportional to the power \(P_i\) he exerts. The energy the athlete spends is the product of the constant power \(P_i\) and the duration \(\tau_i\) of the phase. In turn
+  \[
+  P_i = \eta\left(P_i^{\text{aer}} + P_i^{\text{ana}}\right),
+  \]
+  where each term corresponds to a different mechanism and \(\eta < 1\) is the efficiency of the metabolism. The aerobic power \(P_i^{\text{aer}}\) is proportional to the amount of absorbed oxygen \(V_{i,O_2}\), which is bounded by the athlete capacity \(V_{i,\max}\) (in each phase the effort alters the breath). The second term is the glycolytic source of energy, producing anaerobic power when \(P_i^{\text{aer}}\) does not reach \(P_i/\eta\). The anaerobic power is bounded by the athlete capacity \(P^{\text{ana}}_{i,\max}\) in each phase. The production of glycolytic energy is accompanied by production of lactate, which is proportional to \(P_i^{\text{ana}}\) by a factor \(\alpha\). The total lactate the athlete can manage is \(L_{\max} \ge \alpha E^{\text{ana}}\).
+
+  Determine the duration and power of each regime that minimize the total race time.
+solution: |
+  ### The model
+
+  The statement leaves some links open, so fix them first. Let \(i = 1, \dots, 4\) label the regimes, with durations \(\tau_i \ge 0\).
+
+  - The speed is \(v_i = c P_i\) with \(c > 0\), so the distance covered is \(\sum_i c P_i \tau_i = D\).
+  - The aerobic power is \(P_i^{\text{aer}} = \kappa V_{i,O_2}\) with \(\kappa > 0\). Since \(V_{i,O_2} \le V_{i,\max}\), we get \(0 \le P_i^{\text{aer}} \le a_i\), where \(a_i = \kappa V_{i,\max}\).
+  - The anaerobic power satisfies \(0 \le P_i^{\text{ana}} \le q_i\), where \(q_i = P^{\text{ana}}_{i,\max}\).
+  - The anaerobic energy is \(E^{\text{ana}} = \sum_i P_i^{\text{ana}} \tau_i\), and the lactate limit is \(\alpha E^{\text{ana}} \le L_{\max}\).
+  - The goal is to minimise \(T = \sum_i \tau_i\).
+
+  Put \(W = D/(c\eta)\), the total metabolic energy the race needs, and \(\Lambda = L_{\max}/\alpha\), the most anaerobic energy the athlete can use. The distance condition becomes
+  \[
+  \sum_{i=1}^4 \left(P_i^{\text{aer}} + P_i^{\text{ana}}\right)\tau_i = W.
+  \]
+  The energy needed is fixed by the distance, so the race is shortest when this energy is delivered at the highest power the lactate budget allows.
+
+  ### A lower bound on the time
+
+  Take any \(\theta \in [0, 1]\). Using \(\alpha E^{\text{ana}} \le L_{\max}\), then the capacity bounds,
+  \[
+  \begin{aligned}
+  W - \theta\Lambda&\le \sum_i \left(P_i^{\text{aer}} + P_i^{\text{ana}}\right)\tau_i - \theta\sum_i P_i^{\text{ana}} \tau_i\\
+  &= \sum_i \left(P_i^{\text{aer}} + (1 - \theta) P_i^{\text{ana}}\right)\tau_i\\
+  &\le \sum_i \left(a_i + (1 - \theta) q_i\right)\tau_i\\
+  &\le M_\theta\, T,
+  \end{aligned}
+  \]
+  where \(M_\theta = \max_i \left(a_i + (1 - \theta) q_i\right)\). Hence every plan satisfies
+  \[
+  T \ge \frac{W - \theta\Lambda}{M_\theta} \qquad \text{for every } \theta \in [0, 1].
+  \]
+  A plan whose time equals the bound for some \(\theta\) is optimal.
+
+  ### Case A: one regime does everything
+
+  Assume \(W > \Lambda\). Let \(k\) be a regime with the largest aerobic capacity \(a = a_k\), and take \(\theta = 1\). Then \(M_1 = a\) and
+  \[
+  T \ge T^* = \frac{W - \Lambda}{a} = \frac{\dfrac{D}{c\eta} - \dfrac{L_{\max}}{\alpha}}{\kappa V_{k,\max}}.
+  \]
+  This time is reached when regime \(k\) can burn the whole lactate budget, that is when \(q_k T^* \ge \Lambda\). The plan is
+  \[
+  \tau_k = T^*, \qquad P_k^{\text{aer}} = a_k, \qquad P_k^{\text{ana}} = \frac{\Lambda}{T^*}, \qquad \tau_i = 0 \ (i \ne k).
+  \]
+  Its power is \(P_k = \eta\left(a_k + \Lambda/T^*\right) = \eta W/T^* = D/(c T^*)\). The distance is \(c P_k T^* = D\), the lactate is exactly \(L_{\max}\), and \(P_k^{\text{ana}} \le q_k\) holds by the condition. The athlete rides at one constant power for the whole race. The other three regimes get duration zero.
+
+  ### Case B: the best regime cannot burn all the lactate
+
+  If \(q_k T^* < \Lambda\), the bound at \(\theta = 1\) is not reached. A smaller \(\theta\) then gives a better bound, and the best one is a \(\theta\) at which two regimes \(j\) and \(k\) tie for the maximum in \(M_\theta\). The matching plan uses only those two regimes, both at full aerobic power \(P^{\text{aer}} = a\) and full anaerobic power \(P^{\text{ana}} = q\). Its durations solve two linear equations, one for the energy and one for the lactate:
+  \[
+  \begin{aligned}
+  (a_j + q_j)\tau_j + (a_k + q_k)\tau_k&= W,\\
+  q_j \tau_j + q_k \tau_k&= \Lambda.
+  \end{aligned}
+  \]
+
+  ### An instance
+
+  Take these illustrative metabolic data, in consistent units,
+  \[
+  \begin{aligned}
+  (a_1, a_2, a_3, a_4)&= (5, 4, 8, 6),\\
+  (q_1, q_2, q_3, q_4)&= (9, 12, 1, 7),
+  \end{aligned}
+  \]
+  with \(W = 200\) and \(\Lambda = 30\). The largest aerobic capacity is \(a_3 = 8\) in the steady aerobic phase. Case A would give \(T^* = (200 - 30)/8 = 21.25\), but \(q_3 T^* = 21.25 < 30\), so case B applies.
+
+  The tie between regimes \(3\) and \(4\) in \(M_\theta\) is
+  \[
+  8 + (1 - \theta) = 6 + 7(1 - \theta),
+  \]
+  so \(\theta = 2/3\). Then \(M_{2/3} = 25/3\) and the bound is
+  \[
+  T \ge \frac{200 - \tfrac{2}{3}\cdot 30}{25/3} = \frac{108}{5} = 21.6.
+  \]
+  The two linear equations for regimes \(3\) and \(4\) are
+  \[
+  \begin{aligned}
+  9\tau_3 + 13\tau_4&= 200,\\
+  \tau_3 + 7\tau_4&= 30.
+  \end{aligned}
+  \]
+  They give \(\tau_3 = 101/5\) and \(\tau_4 = 7/5\), and the total time \(101/5 + 7/5 = 108/5\) equals the bound. So this plan is optimal:
+
+  - Regimes \(1\) and \(2\) are not used.
+  - The aerobic steady phase lasts \(\tau_3 = 20.2\) at power \(P_3 = 9\eta\).
+  - The final sprint lasts \(\tau_4 = 1.4\) at power \(P_4 = 13\eta\).
+
+  The two powers carry the athlete exactly the distance \(D\), since \(9 \cdot 101/5 + 13 \cdot 7/5 = 200 = W\), and the lactate used is \(101/5 + 7 \cdot 7/5 = 30 = \Lambda\).
+
+  ### Summary
+
+  The race time is \(T^* = (W - \Lambda)/a_k\) when the regime with the best aerobic capacity can absorb the whole lactate budget. The athlete then keeps one constant power, \(D/(c T^*)\), for the entire race. Otherwise the athlete steadies at the best aerobic power and finishes with a sprint, both at full anaerobic output, with durations fixed by the energy and lactate equations.
+provenance: written-for-site
+steps:
+  - Model stated, with \(W = D/(c\eta)\) and \(\Lambda = L_{\max}/\alpha\).
+  - The bound \(T \ge (W - \theta\Lambda)/M_\theta\) for every \(\theta \in [0, 1]\).
+  - Case A, \(\theta = 1\), gives \(T^* = (W - \Lambda)/a_k\) at constant power.
+  - Case B uses two regimes at full anaerobic power, with durations from the energy and lactate equations.
+  - Instance with \(\theta = 2/3\), \(T = 108/5\), \(\tau_3 = 101/5\) and \(\tau_4 = 7/5\).
+verification:
+  checks:
+    - expr: "simplify(a*((W - Lam)/a) + Lam - W)"
+      expected: "0"
+    - expr: "1*(200 - 30)/8 - 30"
+      expected: "-35/4"
+    - expr: "(200 - 30)/8"
+      expected: "85/4"
+    - expr: "Rational(200, 13)"
+      expected: "200/13"
+    - expr: "linsolve([9*t3 + 13*t4 - 200, t3 + 7*t4 - 30], t3, t4)"
+      expected: "FiniteSet((101/5, 7/5))"
+    - expr: "Rational(101, 5) + Rational(7, 5)"
+      expected: "108/5"
+    - expr: "(200 - Rational(2, 3)*30)/Max(5 + Rational(9, 3), 4 + Rational(12, 3), 8 + Rational(1, 3), 6 + Rational(7, 3))"
+      expected: "108/5"
+    - expr: "solve(8 + (1 - th) - (6 + 7*(1 - th)), th)"
+      expected: "[2/3]"
+    - expr: "(8 + 1 - 0)*Rational(101, 5) + (6 + 7)*Rational(7, 5)"
+      expected: "200"
+    - expr: "1*Rational(101, 5) + 7*Rational(7, 5)"
+      expected: "30"
+:::

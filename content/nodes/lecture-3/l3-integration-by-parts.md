@@ -1099,3 +1099,313 @@ verification:
     - expr: integrate(x*atan(x), (x, 0, 1))
       expected: "pi/4 - 1/2"
 :::
+
+::: exercise
+id: l3-integration-by-parts.handout-8-4-2
+number: "8.4.2"
+tier: standard
+topics:
+  - integration-by-parts
+statement: |
+  Find the antiderivative of \(x^2\cos x\,dx\).
+solution: |
+  Integrate by parts twice. The formula is \(\int u\,v'\,dx = u\,v - \int u'\,v\,dx\).
+
+  First take \(u = x^2\) and \(v' = \cos x\), so \(u' = 2x\) and \(v = \sin x\).
+  \[
+  \int x^2\cos x\,dx = x^2\sin x - \int 2x\sin x\,dx.
+  \]
+  Differentiating the polynomial factor lowers its degree, so a second step is enough. Now take \(u = x\) and \(v' = \sin x\), so \(u' = 1\) and \(v = -\cos x\).
+  \[
+  \begin{aligned}
+  \int x\sin x\,dx &= -x\cos x + \int \cos x\,dx\\
+  &= -x\cos x + \sin x + C.
+  \end{aligned}
+  \]
+  Substituting this into the first formula gives
+  \[
+  \begin{aligned}
+  \int x^2\cos x\,dx &= x^2\sin x - 2\bigl(-x\cos x + \sin x\bigr) + C\\
+  &= x^2\sin x + 2x\cos x - 2\sin x + C.
+  \end{aligned}
+  \]
+  The antiderivative is \(x^2\sin x + 2x\cos x - 2\sin x + C\).
+provenance: handout-answer
+steps:
+  - First step, \(u = x^2\) and \(v' = \cos x\). The result is \(x^2\sin x - \int 2x\sin x\,dx\).
+  - Second step, \(u = x\) and \(v' = \sin x\). The result is \(\int x\sin x\,dx = -x\cos x + \sin x\).
+  - Combine. The antiderivative is \(x^2\sin x + 2x\cos x - 2\sin x + C\).
+verification:
+  checks:
+    - expr: diff(x**2*sin(x) + 2*x*cos(x) - 2*sin(x), x)
+      expected: "x**2*cos(x)"
+    - expr: diff(-x*cos(x) + sin(x), x)
+      expected: "x*sin(x)"
+:::
+
+
+::: exercise
+id: l3-integration-by-parts.handout-8-4-5
+number: "8.4.5"
+tier: standard
+topics:
+  - integration-by-parts
+statement: |
+  Find the antiderivative of \(\sin^2 x\,dx\) by integrating by parts. Then compare with the result of the double-angle identity.
+solution: |
+  Write \(\sin^2 x = \sin x\cdot\sin x\) and take \(u = \sin x\), \(v' = \sin x\). Then \(u' = \cos x\) and \(v = -\cos x\).
+  \[
+  \int \sin^2 x\,dx = -\sin x\cos x + \int \cos^2 x\,dx.
+  \]
+  The Pythagorean identity gives \(\cos^2 x = 1 - \sin^2 x\), so
+  \[
+  \int \sin^2 x\,dx = -\sin x\cos x + x - \int \sin^2 x\,dx.
+  \]
+  The unknown integral appears on both sides. Collecting it on the left gives
+  \[
+  2\int \sin^2 x\,dx = x - \sin x\cos x + C,
+  \]
+  and therefore
+  \[
+  \int \sin^2 x\,dx = \frac{x}{2} - \frac{\sin x\cos x}{2} + C.
+  \]
+  The identity \(\sin^2 x = \frac{1 - \cos 2x}{2}\) gives \(\frac{x}{2} - \frac{\sin 2x}{4} + C\). Since \(\sin 2x = 2\sin x\cos x\), the two results agree.
+
+  The antiderivative is \(\dfrac{x}{2} - \dfrac{\sin x\cos x}{2} + C = \dfrac{x}{2} - \dfrac{\sin 2x}{4} + C\).
+provenance: handout-answer
+steps:
+  - Take \(u = \sin x\) and \(v' = \sin x\). The result is \(-\sin x\cos x + \int\cos^2 x\,dx\).
+  - Replace \(\cos^2 x\) by \(1 - \sin^2 x\). The unknown integral returns with a minus sign.
+  - Solve for it. The antiderivative is \(\frac{x}{2} - \frac{\sin x\cos x}{2} + C\).
+verification:
+  checks:
+    - expr: diff(x/2 - sin(x)*cos(x)/2, x)
+      expected: "sin(x)**2"
+    - expr: x/2 - sin(2*x)/4 - (x/2 - sin(x)*cos(x)/2)
+      expected: "0"
+:::
+
+
+::: exercise
+id: l3-integration-by-parts.handout-8-4-8
+number: "8.4.8"
+tier: standard
+topics:
+  - integration-by-parts
+statement: |
+  Find the antiderivative of \(x^3\sin x\,dx\).
+solution: |
+  Each integration by parts lowers the power of \(x\) by one, so three steps are needed. The formula is \(\int u\,v'\,dx = u\,v - \int u'\,v\,dx\).
+
+  Step 1. Take \(u = x^3\) and \(v' = \sin x\), so \(v = -\cos x\).
+  \[
+  \int x^3\sin x\,dx = -x^3\cos x + 3\int x^2\cos x\,dx.
+  \]
+  Step 2. Take \(u = x^2\) and \(v' = \cos x\), so \(v = \sin x\).
+  \[
+  \int x^2\cos x\,dx = x^2\sin x - 2\int x\sin x\,dx.
+  \]
+  Step 3. Take \(u = x\) and \(v' = \sin x\), so \(v = -\cos x\).
+  \[
+  \int x\sin x\,dx = -x\cos x + \sin x + C.
+  \]
+  Substituting back, step 2 gives \(x^2\sin x + 2x\cos x - 2\sin x\) for the middle integral. Then
+  \[
+  \begin{aligned}
+  \int x^3\sin x\,dx &= -x^3\cos x + 3\bigl(x^2\sin x + 2x\cos x - 2\sin x\bigr) + C\\
+  &= -x^3\cos x + 3x^2\sin x + 6x\cos x - 6\sin x + C.
+  \end{aligned}
+  \]
+  The antiderivative is \(-x^3\cos x + 3x^2\sin x + 6x\cos x - 6\sin x + C\).
+provenance: handout-answer
+steps:
+  - Step 1 gives \(-x^3\cos x + 3\int x^2\cos x\,dx\).
+  - Step 2 gives \(\int x^2\cos x\,dx = x^2\sin x - 2\int x\sin x\,dx\), and step 3 gives \(\int x\sin x\,dx = -x\cos x + \sin x\).
+  - Combine. The antiderivative is \(-x^3\cos x + 3x^2\sin x + 6x\cos x - 6\sin x + C\).
+verification:
+  checks:
+    - expr: diff(-x**3*cos(x) + 3*x**2*sin(x) + 6*x*cos(x) - 6*sin(x), x)
+      expected: "x**3*sin(x)"
+    - expr: diff(x**2*sin(x) + 2*x*cos(x) - 2*sin(x), x)
+      expected: "x**2*cos(x)"
+:::
+
+
+::: exercise
+id: l3-integration-by-parts.handout-8-4-10
+number: "8.4.10"
+tier: exam
+topics:
+  - integration-by-parts
+statement: |
+  Find the antiderivative of \(x\sin^2 x\,dx\).
+solution: |
+  First reduce the power of the sine with the identity \(\sin^2 x = \frac{1 - \cos 2x}{2}\). Then
+  \[
+  \int x\sin^2 x\,dx = \frac{1}{2}\int x\,dx - \frac{1}{2}\int x\cos 2x\,dx.
+  \]
+  The first integral is \(\frac{x^2}{2}\). For the second, take \(u = x\) and \(v' = \cos 2x\), so \(u' = 1\) and \(v = \frac{\sin 2x}{2}\).
+  \[
+  \begin{aligned}
+  \int x\cos 2x\,dx &= \frac{x\sin 2x}{2} - \int \frac{\sin 2x}{2}\,dx\\
+  &= \frac{x\sin 2x}{2} + \frac{\cos 2x}{4} + C.
+  \end{aligned}
+  \]
+  Substituting gives
+  \[
+  \begin{aligned}
+  \int x\sin^2 x\,dx &= \frac{x^2}{4} - \frac{1}{2}\Bigl(\frac{x\sin 2x}{2} + \frac{\cos 2x}{4}\Bigr) + C\\
+  &= \frac{x^2}{4} - \frac{x\sin 2x}{4} - \frac{\cos 2x}{8} + C.
+  \end{aligned}
+  \]
+  Use \(\sin 2x = 2\sin x\cos x\) and \(\cos 2x = 2\cos^2 x - 1\). Then \(\frac{x\sin 2x}{4} = \frac{x\sin x\cos x}{2}\) and \(\frac{\cos 2x}{8} = \frac{\cos^2 x}{4} - \frac{1}{8}\). The constant \(\frac{1}{8}\) is absorbed into \(C\), so
+  \[
+  \int x\sin^2 x\,dx = \frac{x^2}{4} - \frac{\cos^2 x}{4} - \frac{x\sin x\cos x}{2} + C.
+  \]
+  The antiderivative is \(\dfrac{x^2}{4} - \dfrac{\cos^2 x}{4} - \dfrac{x\sin x\cos x}{2} + C\).
+provenance: handout-answer
+steps:
+  - Reduce the power with \(\sin^2 x = \frac{1-\cos 2x}{2}\).
+  - Integrate \(x\cos 2x\) by parts with \(u = x\) and \(v' = \cos 2x\).
+  - Combine and rewrite with \(\sin 2x = 2\sin x\cos x\) and \(\cos 2x = 2\cos^2 x - 1\). The constant \(\frac{1}{8}\) joins \(C\).
+verification:
+  checks:
+    - expr: diff(x**2/4 - cos(x)**2/4 - x*sin(x)*cos(x)/2, x)
+      expected: "x*sin(x)**2"
+    - expr: diff(x**2/4 - x*sin(2*x)/4 - cos(2*x)/8, x)
+      expected: "x*sin(x)**2"
+    - expr: diff(x*sin(2*x)/2 + cos(2*x)/4, x)
+      expected: "x*cos(2*x)"
+:::
+
+
+::: exercise
+id: l3-integration-by-parts.handout-8-4-11
+number: "8.4.11"
+tier: standard
+topics:
+  - integration-by-parts
+statement: |
+  Find the antiderivative of \(x\sin x\cos x\,dx\).
+solution: |
+  The identity \(\sin 2x = 2\sin x\cos x\) gives \(x\sin x\cos x = \frac{x\sin 2x}{2}\). So
+  \[
+  \int x\sin x\cos x\,dx = \frac{1}{2}\int x\sin 2x\,dx.
+  \]
+  Take \(u = x\) and \(v' = \sin 2x\), so \(u' = 1\) and \(v = -\frac{\cos 2x}{2}\).
+  \[
+  \begin{aligned}
+  \int x\sin 2x\,dx &= -\frac{x\cos 2x}{2} + \int \frac{\cos 2x}{2}\,dx\\
+  &= -\frac{x\cos 2x}{2} + \frac{\sin 2x}{4} + C.
+  \end{aligned}
+  \]
+  Multiplying by \(\frac{1}{2}\) gives
+  \[
+  \int x\sin x\cos x\,dx = -\frac{x\cos 2x}{4} + \frac{\sin 2x}{8} + C.
+  \]
+  Now \(\cos 2x = 2\cos^2 x - 1\) and \(\sin 2x = 2\sin x\cos x\), so
+  \[
+  \begin{aligned}
+  -\frac{x\cos 2x}{4} &= -\frac{x\cos^2 x}{2} + \frac{x}{4},\\
+  \frac{\sin 2x}{8} &= \frac{\sin x\cos x}{4}.
+  \end{aligned}
+  \]
+  The antiderivative is \(\dfrac{x}{4} - \dfrac{x\cos^2 x}{2} + \dfrac{\sin x\cos x}{4} + C\).
+provenance: handout-answer
+steps:
+  - Rewrite \(x\sin x\cos x = \frac{1}{2}x\sin 2x\).
+  - Integrate \(x\sin 2x\) by parts with \(u = x\) and \(v' = \sin 2x\).
+  - Convert back with \(\cos 2x = 2\cos^2 x - 1\). The antiderivative is \(\frac{x}{4} - \frac{x\cos^2 x}{2} + \frac{\sin x\cos x}{4} + C\).
+verification:
+  checks:
+    - expr: diff(x/4 - x*cos(x)**2/2 + sin(x)*cos(x)/4, x)
+      expected: "x*sin(x)*cos(x)"
+    - expr: x/4 - x*cos(x)**2/2 + sin(x)*cos(x)/4 - (-x*cos(2*x)/4 + sin(2*x)/8)
+      expected: "0"
+:::
+
+
+::: exercise
+id: l3-integration-by-parts.handout-8-4-12
+number: "8.4.12"
+tier: exam
+topics:
+  - integration-by-parts
+statement: |
+  Find the antiderivative of \(\arctan\bigl(\sqrt{x}\bigr)\,dx\) on \((0, \infty)\). Substitute \(u = \sqrt{x}\) first.
+solution: |
+  Set \(u = \sqrt{x}\). Then \(x = u^2\) and \(dx = 2u\,du\), and \(u > 0\).
+  \[
+  \int \arctan\bigl(\sqrt{x}\bigr)\,dx = \int 2u\arctan u\,du.
+  \]
+  Integrate by parts with the arctangent as the factor to differentiate. Take \(f = \arctan u\) and \(g' = 2u\), so \(f' = \frac{1}{1+u^2}\) and \(g = u^2\).
+  \[
+  \int 2u\arctan u\,du = u^2\arctan u - \int \frac{u^2}{1+u^2}\,du.
+  \]
+  Write \(\frac{u^2}{1+u^2} = 1 - \frac{1}{1+u^2}\). Then
+  \[
+  \begin{aligned}
+  \int \frac{u^2}{1+u^2}\,du &= u - \arctan u + C,
+  \end{aligned}
+  \]
+  so
+  \[
+  \begin{aligned}
+  \int 2u\arctan u\,du &= u^2\arctan u - u + \arctan u + C\\
+  &= (u^2 + 1)\arctan u - u + C.
+  \end{aligned}
+  \]
+  Return to \(x\) with \(u = \sqrt{x}\) and \(u^2 = x\).
+
+  The antiderivative is \((x+1)\arctan\sqrt{x} - \sqrt{x} + C\).
+provenance: handout-answer
+steps:
+  - Set \(u = \sqrt{x}\), so \(dx = 2u\,du\) and the integral is \(\int 2u\arctan u\,du\).
+  - By parts with \(f = \arctan u\) and \(g' = 2u\), the result is \(u^2\arctan u - \int\frac{u^2}{1+u^2}\,du\).
+  - Use \(\frac{u^2}{1+u^2} = 1 - \frac{1}{1+u^2}\), then return to \(x\). The antiderivative is \((x+1)\arctan\sqrt{x} - \sqrt{x} + C\).
+verification:
+  checks:
+    - expr: diff((x + 1)*atan(sqrt(x)) - sqrt(x), x)
+      expected: "atan(sqrt(x))"
+    - expr: diff((u**2 + 1)*atan(u) - u, u)
+      expected: "2*u*atan(u)"
+    - expr: simplify(u**2/(1 + u**2) - (1 - 1/(1 + u**2)))
+      expected: "0"
+:::
+
+
+::: exercise
+id: l3-integration-by-parts.handout-8-4-13
+number: "8.4.13"
+tier: exam
+topics:
+  - integration-by-parts
+statement: |
+  Find the antiderivative of \(\sin\bigl(\sqrt{x}\bigr)\,dx\) on \((0, \infty)\). Substitute \(u = \sqrt{x}\) first.
+solution: |
+  Set \(u = \sqrt{x}\). Then \(x = u^2\) and \(dx = 2u\,du\), and \(u > 0\).
+  \[
+  \int \sin\bigl(\sqrt{x}\bigr)\,dx = \int 2u\sin u\,du.
+  \]
+  Integrate by parts. Take \(f = 2u\) and \(g' = \sin u\), so \(f' = 2\) and \(g = -\cos u\).
+  \[
+  \begin{aligned}
+  \int 2u\sin u\,du &= -2u\cos u + \int 2\cos u\,du\\
+  &= -2u\cos u + 2\sin u + C.
+  \end{aligned}
+  \]
+  Return to \(x\) with \(u = \sqrt{x}\).
+
+  The antiderivative is \(2\sin\sqrt{x} - 2\sqrt{x}\cos\sqrt{x} + C\).
+provenance: handout-answer
+steps:
+  - Set \(u = \sqrt{x}\), so \(dx = 2u\,du\) and the integral is \(\int 2u\sin u\,du\).
+  - By parts with \(f = 2u\) and \(g' = \sin u\), the result is \(-2u\cos u + 2\sin u\).
+  - Return to \(x\). The antiderivative is \(2\sin\sqrt{x} - 2\sqrt{x}\cos\sqrt{x} + C\).
+verification:
+  checks:
+    - expr: diff(2*sin(sqrt(x)) - 2*sqrt(x)*cos(sqrt(x)), x)
+      expected: "sin(sqrt(x))"
+    - expr: diff(-2*u*cos(u) + 2*sin(u), u)
+      expected: "2*u*sin(u)"
+:::

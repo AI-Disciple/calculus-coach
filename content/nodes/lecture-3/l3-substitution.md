@@ -1408,3 +1408,596 @@ verification:
     - expr: integrate((2*x + 3)/(x**2 + 3*x + 4), (x, -1, 1))
       expected: 2*log(2)
 :::
+
+::: exercise
+id: l3-substitution.handout-8-1-1
+number: "8.1.1"
+tier: basic
+topics:
+  - substitution
+statement: |
+  Find the antiderivative of \((1-t)^9\,dt\).
+solution: |
+  The inside function is \(u = 1 - t\). Its derivative is \(u' = -1\), so \(du = -dt\) and \(dt = -du\).
+
+  \[
+  \begin{aligned}
+  \int (1-t)^9\,dt &= -\int u^9\,du\\
+  &= -\frac{u^{10}}{10} + C\\
+  &= -\frac{(1-t)^{10}}{10} + C.
+  \end{aligned}
+  \]
+  The derivative of \(-\frac{(1-t)^{10}}{10}\) is \(-\frac{10(1-t)^9\cdot(-1)}{10} = (1-t)^9\), which confirms the sign.
+
+  The antiderivative is \(-\dfrac{(1-t)^{10}}{10} + C\).
+provenance: handout-answer
+steps:
+  - Set \(u = 1 - t\), so \(dt = -du\).
+  - Integrate \(-u^9\) to get \(-u^{10}/10\).
+  - Return to \(t\). The antiderivative is \(-(1-t)^{10}/10 + C\).
+verification:
+  checks:
+    - expr: diff(-(1 - t)**10/10, t)
+      expected: "(1 - t)**9"
+    - expr: integrate((1 - t)**9, (t, 0, 1))
+      expected: "Rational(1, 10)"
+:::
+
+
+::: exercise
+id: l3-substitution.handout-8-1-2
+number: "8.1.2"
+tier: standard
+topics:
+  - substitution
+statement: |
+  Find the antiderivative of \((x^2+1)^2\,dx\). Compare expanding the square with substituting \(u = x^2 + 1\).
+solution: |
+  The substitution \(u = x^2 + 1\) needs the factor \(du = 2x\,dx\) in the integrand. The integrand has no factor \(x\), so the substitution does not remove \(x\): it leaves \(x = \sqrt{u-1}\) and the integral \(\int \frac{u^2}{2\sqrt{u-1}}\,du\), which is harder than the original.
+
+  Expanding works directly. The square is
+  \[
+  (x^2+1)^2 = x^4 + 2x^2 + 1.
+  \]
+  Each term is a power of \(x\), so
+  \[
+  \begin{aligned}
+  \int (x^2+1)^2\,dx &= \int (x^4 + 2x^2 + 1)\,dx\\
+  &= \frac{x^5}{5} + \frac{2x^3}{3} + x + C.
+  \end{aligned}
+  \]
+  The antiderivative is \(\dfrac{x^5}{5} + \dfrac{2x^3}{3} + x + C\).
+provenance: handout-answer
+steps:
+  - A substitution needs the derivative of the inside function as a factor. Here the factor \(2x\) is missing.
+  - Expand \((x^2+1)^2 = x^4 + 2x^2 + 1\).
+  - Integrate term by term. The antiderivative is \(x^5/5 + 2x^3/3 + x + C\).
+verification:
+  checks:
+    - expr: expand((x**2 + 1)**2)
+      expected: "x**4 + 2*x**2 + 1"
+    - expr: diff(x**5/5 + 2*x**3/3 + x, x)
+      expected: "(x**2 + 1)**2"
+:::
+
+
+::: exercise
+id: l3-substitution.handout-8-1-3
+number: "8.1.3"
+tier: basic
+topics:
+  - substitution
+statement: |
+  Find the antiderivative of \(x\,(x^2+1)^{100}\,dx\).
+solution: |
+  The derivative of \(x^2 + 1\) is \(2x\), and the integrand contains the factor \(x\). Set \(u = x^2 + 1\). Then \(du = 2x\,dx\), so \(x\,dx = \frac{1}{2}\,du\).
+
+  \[
+  \begin{aligned}
+  \int x\,(x^2+1)^{100}\,dx &= \frac{1}{2}\int u^{100}\,du\\
+  &= \frac{1}{2}\cdot\frac{u^{101}}{101} + C\\
+  &= \frac{(x^2+1)^{101}}{202} + C.
+  \end{aligned}
+  \]
+  The antiderivative is \(\dfrac{(x^2+1)^{101}}{202} + C\).
+provenance: handout-answer
+steps:
+  - Set \(u = x^2 + 1\), so \(x\,dx = \frac{1}{2}\,du\).
+  - Integrate \(\frac{1}{2}u^{100}\) to get \(u^{101}/202\).
+  - Return to \(x\). The antiderivative is \((x^2+1)^{101}/202 + C\).
+verification:
+  checks:
+    - expr: diff((x**2 + 1)**101/202, x)
+      expected: "x*(x**2 + 1)**100"
+:::
+
+
+::: exercise
+id: l3-substitution.handout-8-1-4
+number: "8.1.4"
+tier: standard
+topics:
+  - substitution
+statement: |
+  Find the antiderivative of \(\dfrac{1}{\sqrt[3]{1-5t}}\,dt = (1-5t)^{-1/3}\,dt\) on the interval \(t < \frac{1}{5}\).
+solution: |
+  On \(t < \frac{1}{5}\) the inside function \(u = 1 - 5t\) is positive. Its derivative is \(-5\), so \(du = -5\,dt\) and \(dt = -\frac{1}{5}\,du\).
+
+  \[
+  \begin{aligned}
+  \int (1-5t)^{-1/3}\,dt &= -\frac{1}{5}\int u^{-1/3}\,du\\
+  &= -\frac{1}{5}\cdot\frac{u^{2/3}}{2/3} + C\\
+  &= -\frac{3}{10}\,(1-5t)^{2/3} + C.
+  \end{aligned}
+  \]
+  The derivative check is
+  \[
+  \frac{d}{dt}\Bigl(-\frac{3}{10}(1-5t)^{2/3}\Bigr) = -\frac{3}{10}\cdot\frac{2}{3}(1-5t)^{-1/3}\cdot(-5) = (1-5t)^{-1/3}.
+  \]
+  The antiderivative is \(-\dfrac{3}{10}(1-5t)^{2/3} + C\).
+provenance: handout-answer
+steps:
+  - Set \(u = 1 - 5t\), so \(dt = -\frac{1}{5}\,du\).
+  - Integrate \(-\frac{1}{5}u^{-1/3}\) to get \(-\frac{3}{10}u^{2/3}\).
+  - Return to \(t\). The antiderivative is \(-\frac{3}{10}(1-5t)^{2/3} + C\).
+verification:
+  checks:
+    - expr: diff(-Rational(3, 10)*(1 - 5*t)**Rational(2, 3), t)
+      expected: "(1 - 5*t)**Rational(-1, 3)"
+:::
+
+
+::: exercise
+id: l3-substitution.handout-8-1-6
+number: "8.1.6"
+tier: basic
+topics:
+  - substitution
+statement: |
+  Find the antiderivative of \(x\sqrt{100 - x^2}\,dx\) on \((-10, 10)\).
+solution: |
+  The derivative of \(100 - x^2\) is \(-2x\), and the integrand contains the factor \(x\). Set \(u = 100 - x^2\). Then \(du = -2x\,dx\), so \(x\,dx = -\frac{1}{2}\,du\). On \((-10, 10)\) one has \(u > 0\).
+
+  \[
+  \begin{aligned}
+  \int x\sqrt{100 - x^2}\,dx &= -\frac{1}{2}\int u^{1/2}\,du\\
+  &= -\frac{1}{2}\cdot\frac{2}{3}\,u^{3/2} + C\\
+  &= -\frac{(100 - x^2)^{3/2}}{3} + C.
+  \end{aligned}
+  \]
+  The antiderivative is \(-\dfrac{(100 - x^2)^{3/2}}{3} + C\).
+provenance: handout-answer
+steps:
+  - Set \(u = 100 - x^2\), so \(x\,dx = -\frac{1}{2}\,du\).
+  - Integrate \(-\frac{1}{2}u^{1/2}\) to get \(-\frac{1}{3}u^{3/2}\).
+  - Return to \(x\). The antiderivative is \(-(100-x^2)^{3/2}/3 + C\).
+verification:
+  checks:
+    - expr: diff(-(100 - x**2)**Rational(3, 2)/3, x)
+      expected: "x*sqrt(100 - x**2)"
+:::
+
+
+::: exercise
+id: l3-substitution.handout-8-1-7
+number: "8.1.7"
+tier: standard
+topics:
+  - substitution
+statement: |
+  Find the antiderivative of \(\dfrac{x^2}{\sqrt{1 - x^3}}\,dx\) on \((-\infty, 1)\).
+solution: |
+  The derivative of \(1 - x^3\) is \(-3x^2\), and the numerator is \(x^2\). Set \(u = 1 - x^3\). Then \(du = -3x^2\,dx\), so \(x^2\,dx = -\frac{1}{3}\,du\). On \((-\infty, 1)\) one has \(u > 0\).
+
+  \[
+  \begin{aligned}
+  \int \frac{x^2}{\sqrt{1 - x^3}}\,dx &= -\frac{1}{3}\int u^{-1/2}\,du\\
+  &= -\frac{1}{3}\cdot 2u^{1/2} + C\\
+  &= -\frac{2}{3}\sqrt{1 - x^3} + C.
+  \end{aligned}
+  \]
+  The antiderivative is \(-\dfrac{2}{3}\sqrt{1 - x^3} + C\).
+provenance: handout-answer
+steps:
+  - Set \(u = 1 - x^3\), so \(x^2\,dx = -\frac{1}{3}\,du\).
+  - Integrate \(-\frac{1}{3}u^{-1/2}\) to get \(-\frac{2}{3}u^{1/2}\).
+  - Return to \(x\). The antiderivative is \(-\frac{2}{3}\sqrt{1-x^3} + C\).
+verification:
+  checks:
+    - expr: diff(-2*sqrt(1 - x**3)/3, x)
+      expected: "x**2/sqrt(1 - x**3)"
+:::
+
+
+::: exercise
+id: l3-substitution.handout-8-1-8
+number: "8.1.8"
+tier: standard
+topics:
+  - substitution
+statement: |
+  Find the antiderivative of \(\cos(\pi t)\,\cos\bigl(\sin(\pi t)\bigr)\,dt\).
+solution: |
+  The inside function of the outer cosine is \(u = \sin(\pi t)\). By the chain rule its derivative is \(\pi\cos(\pi t)\), so \(du = \pi\cos(\pi t)\,dt\) and \(\cos(\pi t)\,dt = \frac{1}{\pi}\,du\).
+
+  \[
+  \begin{aligned}
+  \int \cos(\pi t)\cos\bigl(\sin(\pi t)\bigr)\,dt &= \frac{1}{\pi}\int \cos u\,du\\
+  &= \frac{\sin u}{\pi} + C\\
+  &= \frac{\sin\bigl(\sin(\pi t)\bigr)}{\pi} + C.
+  \end{aligned}
+  \]
+  The antiderivative is \(\dfrac{\sin(\sin(\pi t))}{\pi} + C\).
+provenance: handout-answer
+steps:
+  - Set \(u = \sin(\pi t)\), so \(\cos(\pi t)\,dt = \frac{1}{\pi}\,du\).
+  - Integrate \(\frac{1}{\pi}\cos u\) to get \(\frac{1}{\pi}\sin u\).
+  - Return to \(t\). The antiderivative is \(\sin(\sin(\pi t))/\pi + C\).
+verification:
+  checks:
+    - expr: diff(sin(sin(pi*t))/pi, t)
+      expected: "cos(pi*t)*cos(sin(pi*t))"
+:::
+
+
+::: exercise
+id: l3-substitution.handout-8-1-9
+number: "8.1.9"
+tier: standard
+topics:
+  - substitution
+statement: |
+  Find the antiderivative of \(\dfrac{\sin x}{\cos^3 x}\,dx\) on an interval where \(\cos x \ne 0\).
+solution: |
+  The derivative of \(\cos x\) is \(-\sin x\). Set \(u = \cos x\). Then \(du = -\sin x\,dx\), so \(\sin x\,dx = -du\), and the integrand becomes a power of \(u\) with \(u \ne 0\).
+
+  \[
+  \begin{aligned}
+  \int \frac{\sin x}{\cos^3 x}\,dx &= -\int u^{-3}\,du\\
+  &= -\frac{u^{-2}}{-2} + C\\
+  &= \frac{1}{2\cos^2 x} + C.
+  \end{aligned}
+  \]
+  Since \(\frac{1}{\cos^2 x} = \sec^2 x\), the same antiderivative reads \(\frac{1}{2}\sec^2 x + C\).
+provenance: handout-answer
+steps:
+  - Set \(u = \cos x\), so \(\sin x\,dx = -du\).
+  - Integrate \(-u^{-3}\) to get \(\frac{1}{2}u^{-2}\).
+  - Return to \(x\). The antiderivative is \(\frac{1}{2\cos^2 x} + C\).
+verification:
+  checks:
+    - expr: diff(1/(2*cos(x)**2), x)
+      expected: "sin(x)/cos(x)**3"
+:::
+
+
+::: exercise
+id: l3-substitution.handout-8-1-11
+number: "8.1.11"
+tier: standard
+topics:
+  - substitution
+statement: |
+  Evaluate \(\displaystyle\int_0^{\pi} \sin^5(3x)\cos(3x)\,dx\).
+solution: |
+  The derivative of \(\sin 3x\) is \(3\cos 3x\). Set \(u = \sin 3x\). Then \(du = 3\cos 3x\,dx\), so \(\cos 3x\,dx = \frac{1}{3}\,du\).
+
+  - The limit \(x = 0\) gives \(u = \sin 0 = 0\).
+  - The limit \(x = \pi\) gives \(u = \sin 3\pi = 0\).
+
+  Both new limits are \(0\), so
+  \[
+  \int_0^{\pi} \sin^5(3x)\cos(3x)\,dx = \frac{1}{3}\int_0^{0} u^5\,du = 0.
+  \]
+  The value is \(0\).
+provenance: handout-answer
+steps:
+  - Set \(u = \sin 3x\), so \(\cos 3x\,dx = \frac{1}{3}\,du\).
+  - The limits \(x = 0\) and \(x = \pi\) both give \(u = 0\).
+  - An integral from \(0\) to \(0\) is \(0\).
+verification:
+  checks:
+    - expr: integrate(sin(3*x)**5*cos(3*x), (x, 0, pi))
+      expected: "0"
+    - expr: (sin(3*pi), sin(0))
+      expected: "(0, 0)"
+:::
+
+
+::: exercise
+id: l3-substitution.handout-8-1-12
+number: "8.1.12"
+tier: standard
+topics:
+  - substitution
+statement: |
+  Find the antiderivative of \(\sec^2 x\,\tan x\,dx\) on an interval where \(\cos x \ne 0\).
+solution: |
+  The derivative of \(\tan x\) is \(\sec^2 x\). Set \(u = \tan x\). Then \(du = \sec^2 x\,dx\).
+
+  \[
+  \begin{aligned}
+  \int \sec^2 x\,\tan x\,dx &= \int u\,du\\
+  &= \frac{u^2}{2} + C\\
+  &= \frac{\tan^2 x}{2} + C.
+  \end{aligned}
+  \]
+  The choice \(u = \sec x\) also works, because the derivative of \(\sec x\) is \(\sec x\tan x\) and the integrand equals \(\sec x\cdot(\sec x\tan x)\). It gives \(\frac{\sec^2 x}{2} + C\). Since \(\sec^2 x = 1 + \tan^2 x\), the two results differ by the constant \(\frac{1}{2}\), which the constant \(C\) absorbs.
+
+  The antiderivative is \(\dfrac{\tan^2 x}{2} + C\).
+provenance: handout-answer
+steps:
+  - Set \(u = \tan x\), so \(du = \sec^2 x\,dx\).
+  - Integrate \(u\) to get \(u^2/2\).
+  - Return to \(x\). The antiderivative is \(\tan^2 x/2 + C\).
+verification:
+  checks:
+    - expr: diff(tan(x)**2/2, x)
+      expected: "sec(x)**2*tan(x)"
+    - expr: diff(sec(x)**2/2, x)
+      expected: "sec(x)**2*tan(x)"
+    - expr: sec(x)**2/2 - tan(x)**2/2
+      expected: "Rational(1, 2)"
+:::
+
+
+::: exercise
+id: l3-substitution.handout-8-1-13
+number: "8.1.13"
+tier: standard
+topics:
+  - substitution
+statement: |
+  Evaluate \(\displaystyle\int_0^{\sqrt{\pi}/2} x\,\sec^2(x^2)\,\tan(x^2)\,dx\).
+solution: |
+  The derivative of \(x^2\) is \(2x\), and the integrand contains the factor \(x\). Set \(u = x^2\). Then \(du = 2x\,dx\), so \(x\,dx = \frac{1}{2}\,du\).
+
+  - The limit \(x = 0\) gives \(u = 0\).
+  - The limit \(x = \frac{\sqrt{\pi}}{2}\) gives \(u = \frac{\pi}{4}\).
+
+  The integral becomes
+  \[
+  \frac{1}{2}\int_0^{\pi/4} \sec^2 u\,\tan u\,du.
+  \]
+  The derivative of \(\tan u\) is \(\sec^2 u\), so \(\frac{\tan^2 u}{2}\) is an antiderivative of \(\sec^2 u\tan u\). At \(u = \frac{\pi}{4}\), \(\tan u = 1\). At \(u = 0\), \(\tan u = 0\).
+
+  \[
+  \begin{aligned}
+  \frac{1}{2}\int_0^{\pi/4} \sec^2 u\,\tan u\,du &= \frac{1}{2}\Bigl[\frac{\tan^2 u}{2}\Bigr]_0^{\pi/4}\\
+  &= \frac{1}{2}\Bigl(\frac{1}{2} - 0\Bigr)\\
+  &= \frac{1}{4}.
+  \end{aligned}
+  \]
+  The value is \(\dfrac{1}{4}\).
+provenance: handout-answer
+steps:
+  - Set \(u = x^2\), so \(x\,dx = \frac{1}{2}\,du\), and the limits become \(0\) and \(\pi/4\).
+  - An antiderivative of \(\sec^2 u\tan u\) is \(\tan^2 u/2\).
+  - Evaluate \(\frac{1}{2}\cdot\frac{1}{2}\). The value is \(1/4\).
+verification:
+  checks:
+    - expr: integrate(x*sec(x**2)**2*tan(x**2), (x, 0, sqrt(pi)/2))
+      expected: "Rational(1, 4)"
+    - expr: (sqrt(pi)/2)**2
+      expected: "pi/4"
+    - expr: integrate(sec(u)**2*tan(u), (u, 0, pi/4))/2
+      expected: "Rational(1, 4)"
+:::
+
+
+::: exercise
+id: l3-substitution.handout-8-1-14
+number: "8.1.14"
+tier: standard
+topics:
+  - substitution
+statement: |
+  Find the antiderivative of \(\dfrac{\sin(\tan x)}{\cos^2 x}\,dx\) on an interval where \(\cos x \ne 0\).
+solution: |
+  The derivative of \(\tan x\) is \(\frac{1}{\cos^2 x}\). The factor \(\frac{1}{\cos^2 x}\,dx\) is therefore the differential of \(\tan x\). Set \(u = \tan x\). Then \(du = \frac{dx}{\cos^2 x}\).
+
+  \[
+  \begin{aligned}
+  \int \frac{\sin(\tan x)}{\cos^2 x}\,dx &= \int \sin u\,du\\
+  &= -\cos u + C\\
+  &= -\cos(\tan x) + C.
+  \end{aligned}
+  \]
+  The antiderivative is \(-\cos(\tan x) + C\).
+provenance: handout-answer
+steps:
+  - Set \(u = \tan x\), so \(du = dx/\cos^2 x\).
+  - Integrate \(\sin u\) to get \(-\cos u\).
+  - Return to \(x\). The antiderivative is \(-\cos(\tan x) + C\).
+verification:
+  checks:
+    - expr: diff(-cos(tan(x)), x)
+      expected: "sin(tan(x))/cos(x)**2"
+    - expr: diff(tan(x), x)
+      expected: "1/cos(x)**2"
+:::
+
+
+::: exercise
+id: l3-substitution.handout-8-1-15
+number: "8.1.15"
+tier: basic
+topics:
+  - substitution
+statement: |
+  Evaluate \(\displaystyle\int_3^4 \frac{1}{(3x-7)^2}\,dx\).
+solution: |
+  On \([3, 4]\) the quantity \(3x - 7\) lies between \(2\) and \(5\), so the integrand is continuous. Set \(u = 3x - 7\). Then \(du = 3\,dx\), so \(dx = \frac{1}{3}\,du\).
+
+  - The limit \(x = 3\) gives \(u = 2\).
+  - The limit \(x = 4\) gives \(u = 5\).
+
+  \[
+  \begin{aligned}
+  \int_3^4 \frac{dx}{(3x-7)^2} &= \frac{1}{3}\int_2^5 u^{-2}\,du\\
+  &= \frac{1}{3}\Bigl[-\frac{1}{u}\Bigr]_2^5\\
+  &= \frac{1}{3}\Bigl(-\frac{1}{5} + \frac{1}{2}\Bigr)\\
+  &= \frac{1}{3}\cdot\frac{3}{10} = \frac{1}{10}.
+  \end{aligned}
+  \]
+  The value is \(\dfrac{1}{10}\).
+provenance: handout-answer
+steps:
+  - Set \(u = 3x - 7\), so \(dx = \frac{1}{3}\,du\), and the limits become \(2\) and \(5\).
+  - An antiderivative of \(u^{-2}\) is \(-1/u\).
+  - Evaluate \(\frac{1}{3}\bigl(\frac{1}{2} - \frac{1}{5}\bigr)\). The value is \(1/10\).
+verification:
+  checks:
+    - expr: integrate(1/(3*x - 7)**2, (x, 3, 4))
+      expected: "Rational(1, 10)"
+    - expr: integrate(u**(-2), (u, 2, 5))/3
+      expected: "Rational(1, 10)"
+:::
+
+
+::: exercise
+id: l3-substitution.handout-8-1-17
+number: "8.1.17"
+tier: standard
+topics:
+  - substitution
+statement: |
+  Find the antiderivative of \(\dfrac{6x}{(x^2-7)^{1/9}}\,dx\) on the interval \(x > \sqrt{7}\).
+solution: |
+  The derivative of \(x^2 - 7\) is \(2x\), and the numerator is \(6x = 3\cdot 2x\). Set \(u = x^2 - 7\). Then \(du = 2x\,dx\), so \(6x\,dx = 3\,du\). On \(x > \sqrt{7}\) one has \(u > 0\).
+
+  \[
+  \begin{aligned}
+  \int \frac{6x}{(x^2-7)^{1/9}}\,dx &= 3\int u^{-1/9}\,du\\
+  &= 3\cdot\frac{u^{8/9}}{8/9} + C\\
+  &= \frac{27}{8}\,(x^2-7)^{8/9} + C.
+  \end{aligned}
+  \]
+  The antiderivative is \(\dfrac{27}{8}(x^2-7)^{8/9} + C\).
+provenance: handout-answer
+steps:
+  - Set \(u = x^2 - 7\), so \(6x\,dx = 3\,du\).
+  - Integrate \(3u^{-1/9}\) to get \(\frac{27}{8}u^{8/9}\).
+  - Return to \(x\). The antiderivative is \(\frac{27}{8}(x^2-7)^{8/9} + C\).
+verification:
+  checks:
+    - expr: diff(Rational(27, 8)*(x**2 - 7)**Rational(8, 9), x)
+      expected: "6*x*(x**2 - 7)**Rational(-1, 9)"
+:::
+
+
+::: exercise
+id: l3-substitution.handout-8-1-18
+number: "8.1.18"
+tier: exam
+topics:
+  - substitution
+statement: |
+  Evaluate \(\displaystyle\int_{-1}^{1} (2x^3 - 1)\,(x^4 - 2x)^6\,dx\).
+solution: |
+  The derivative of \(x^4 - 2x\) is \(4x^3 - 2 = 2(2x^3 - 1)\). The factor \(2x^3 - 1\) is therefore half of that derivative. Set \(u = x^4 - 2x\). Then \(du = 2(2x^3-1)\,dx\), so \((2x^3-1)\,dx = \frac{1}{2}\,du\).
+
+  - The limit \(x = -1\) gives \(u = 1 + 2 = 3\).
+  - The limit \(x = 1\) gives \(u = 1 - 2 = -1\).
+
+  The new lower limit is larger than the new upper limit. The formula for the change of limits still applies.
+  \[
+  \begin{aligned}
+  \int_{-1}^{1} (2x^3-1)(x^4-2x)^6\,dx &= \frac{1}{2}\int_{3}^{-1} u^6\,du\\
+  &= \frac{1}{2}\Bigl[\frac{u^7}{7}\Bigr]_3^{-1}\\
+  &= \frac{1}{14}\bigl((-1)^7 - 3^7\bigr)\\
+  &= -\frac{1 + 2187}{14}\\
+  &= -\frac{2188}{14} = -\frac{1094}{7}.
+  \end{aligned}
+  \]
+  The value is \(-\dfrac{3^7 + 1}{14} = -\dfrac{1094}{7}\).
+provenance: handout-answer
+steps:
+  - The derivative of \(x^4 - 2x\) is \(2(2x^3 - 1)\). Set \(u = x^4 - 2x\), so \((2x^3-1)\,dx = \frac{1}{2}\,du\).
+  - The limits \(x = -1\) and \(x = 1\) give \(u = 3\) and \(u = -1\), in that order.
+  - Evaluate \(\frac{1}{2}\bigl[u^7/7\bigr]_3^{-1} = -\frac{3^7+1}{14}\).
+verification:
+  checks:
+    - expr: integrate((2*x**3 - 1)*(x**4 - 2*x)**6, (x, -1, 1))
+      expected: "-Rational(1094, 7)"
+    - expr: diff(x**4 - 2*x, x) - 2*(2*x**3 - 1)
+      expected: "0"
+    - expr: (x**4 - 2*x).subs(x, -1)
+      expected: "3"
+    - expr: (x**4 - 2*x).subs(x, 1)
+      expected: "-1"
+    - expr: integrate(u**6, (u, 3, -1))/2
+      expected: "-Rational(1094, 7)"
+:::
+
+
+::: exercise
+id: l3-substitution.handout-8-1-19
+number: "8.1.19"
+tier: basic
+topics:
+  - substitution
+statement: |
+  Evaluate \(\displaystyle\int_{-1}^{1} \sin^7 x\,dx\).
+solution: |
+  The integrand \(f(x) = \sin^7 x\) is odd: \(f(-x) = (\sin(-x))^7 = -\sin^7 x = -f(x)\). Split the interval at \(0\) and substitute \(u = -x\) on the left half. Then \(dx = -du\), and the limits \(x = -1\) and \(x = 0\) become \(u = 1\) and \(u = 0\).
+
+  \[
+  \begin{aligned}
+  \int_{-1}^{0} f(x)\,dx &= \int_{1}^{0} f(-u)\,(-du)\\
+  &= \int_{0}^{1} f(-u)\,du\\
+  &= -\int_{0}^{1} f(u)\,du.
+  \end{aligned}
+  \]
+  The left half is the negative of the right half, so
+  \[
+  \int_{-1}^{1} \sin^7 x\,dx = -\int_0^1 \sin^7 u\,du + \int_0^1 \sin^7 x\,dx = 0.
+  \]
+  No antiderivative is needed. The value is \(0\).
+provenance: handout-answer
+steps:
+  - The integrand \(\sin^7 x\) is odd.
+  - The substitution \(u = -x\) turns the integral over \([-1, 0]\) into the negative of the integral over \([0, 1]\).
+  - The two halves cancel. The value is \(0\).
+verification:
+  checks:
+    - expr: integrate(sin(x)**7, (x, -1, 1))
+      expected: "0"
+    - expr: sin(-x)**7 + sin(x)**7
+      expected: "0"
+:::
+
+
+::: exercise
+id: l3-substitution.handout-8-1-20
+number: "8.1.20"
+tier: standard
+topics:
+  - substitution
+statement: |
+  Let \(f\) be a differentiable function. Find the antiderivative of \(f(x)\,f'(x)\,dx\).
+solution: |
+  The factor \(f'(x)\,dx\) is the differential of \(f\). Set \(u = f(x)\). Then \(du = f'(x)\,dx\).
+
+  \[
+  \begin{aligned}
+  \int f(x)\,f'(x)\,dx &= \int u\,du\\
+  &= \frac{u^2}{2} + C\\
+  &= \frac{f(x)^2}{2} + C.
+  \end{aligned}
+  \]
+  The product rule gives the same check: \(\frac{d}{dx}\bigl(f(x)^2\bigr) = 2f(x)f'(x)\), so \(\frac{d}{dx}\frac{f(x)^2}{2} = f(x)f'(x)\).
+
+  The antiderivative is \(\dfrac{f(x)^2}{2} + C\).
+provenance: handout-answer
+steps:
+  - Set \(u = f(x)\), so \(du = f'(x)\,dx\).
+  - Integrate \(u\) to get \(u^2/2\).
+  - Return to \(x\). The antiderivative is \(f(x)^2/2 + C\).
+verification:
+  checks:
+    - expr: diff(f(x)**2/2, x) - f(x)*diff(f(x), x)
+      expected: "0"
+    - expr: diff((sin(x) + x**2)**2/2, x) - (sin(x) + x**2)*diff(sin(x) + x**2, x)
+      expected: "0"
+:::
