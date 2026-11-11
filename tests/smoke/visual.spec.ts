@@ -5,7 +5,7 @@ test('open the visual stand-in and move the critical-point control', async ({ pa
   await page.goto('/node/visuals-stand-in');
   await expect(page.getByRole('heading', { level: 1, name: 'Multivariable visuals (stand-in)' })).toBeVisible();
   await expect(page.locator('.js-plotly-plot').first()).toBeVisible({ timeout: 30_000 });
-  await expect(page.getByText('x^2 + y^2 + z^2 = 1', { exact: true })).toBeVisible();
+  await expect(page.getByLabel('x^2 + y^2 + z^2 = 1', { exact: true })).toBeVisible();
   await expect(page.getByText('Showing the level curve z = 0.')).toBeVisible();
   await expect(page.getByText('Z = 2 + 2(x - 1) + 2(y - 1)')).toBeVisible();
   await page.getByRole('slider', { name: 'x0', exact: true }).fill('0');

@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
+import katex from 'katex';
 import type { Data, Layout } from 'plotly.js';
 import {
   constraintReading,
@@ -99,12 +100,17 @@ function layout3d(theme: Theme, span?: number): Partial<Layout> {
     showlegend: false,
     scene: {
       bgcolor: theme.canvas,
-      aspectmode: 'cube',
+      aspectmode: 'data',
       xaxis: { ...axis, title: { text: 'x' } },
       yaxis: { ...axis, title: { text: 'y' } },
       zaxis: { ...axis, title: { text: 'z' } },
     },
   };
+}
+
+function equationHtml(equation: string): string {
+  const tex = equation.replace(/([xyz])\^2\/([\d.]+)/g, '\\frac{$1^2}{$2}');
+  return katex.renderToString(tex, { throwOnError: false });
 }
 
 function RangeControl({
@@ -394,14 +400,18 @@ function QuadricViewer({ params }: { params: VisualParams }) {
         </label>
         <RangeControl label="Slice" value={slice} min={-2} max={2} step={0.1} onChange={setSlice} />
       </div>
-      <p className="visual-readout">{quadricEquation(id, p)}</p>
+      <p
+        className="visual-readout"
+        aria-label={quadricEquation(id, p)}
+        dangerouslySetInnerHTML={{ __html: equationHtml(quadricEquation(id, p)) }}
+      />
       <p className="visual-readout">
         {segments.length === 0
           ? `The plane for ${axis === 'z' ? `the level curve z = ${formatNumber(slice)}` : `the cut ${axis} = ${formatNumber(slice)}`} misses the surface.`
           : `Showing ${axis === 'z' ? `the level curve z = ${formatNumber(slice)}` : `the cut ${axis} = ${formatNumber(slice)}`}.`}
       </p>
       <div className="visual-plot-grid">
-        <Figure data={[...quadricSurface(id, p, theme), planeTrace(axis, slice, theme, span), ...(segments.length ? [curve3d] : [])]} layout={layout3d(theme)} />
+        <Figure data={[...quadricSurface(id, p, theme), planeTrace(axis, slice, theme, span), ...(segments.length ? [curve3d] : [])]} layout={layout3d(theme, span)} />
         <Figure data={segments.length ? [curve2d] : []} layout={layout2d(theme, freeAxes[0], freeAxes[1], span)} />
       </div>
     </div>
