@@ -7,6 +7,7 @@ import { doneShare, formatDoneShare } from '../progress/readiness.ts';
 import { currentTheme, toggleTheme, type Theme } from './theme.ts';
 import { useDueCount } from './useDueCount.ts';
 import { useMastery } from './useMastery.ts';
+import { isNotOnFinal } from './NotOnFinal.tsx';
 
 const EXPANDED_KEY = 'sidebar-expanded';
 
@@ -182,7 +183,12 @@ function SidebarLecture({
 }) {
   const { number, title, nodes } = lecture;
   const listId = `sidebar-lecture-${number}`;
-  const share = mastery ? doneShare(nodes.map((node) => node.id), mastery) : undefined;
+  const share = mastery
+    ? doneShare(
+        nodes.filter((node) => !isNotOnFinal(node)).map((node) => node.id),
+        mastery,
+      )
+    : undefined;
 
   return (
     <li className={current ? 'sidebar-lecture is-current' : 'sidebar-lecture'}>
@@ -228,9 +234,14 @@ function SidebarLecture({
         <ul id={listId} className="sidebar-nodes">
           {nodes.map((node) => {
             const state = mastery ? (mastery.get(node.id) ?? 'not-started') : undefined;
+            const notOnFinal = isNotOnFinal(node);
             return (
               <li key={node.id}>
-                <NavLink to={`/node/${node.id}`} className="sidebar-node-link">
+                <NavLink
+                  to={`/node/${node.id}`}
+                  className={notOnFinal ? 'sidebar-node-link is-not-on-final' : 'sidebar-node-link'}
+                  title={notOnFinal ? 'Not on the final' : undefined}
+                >
                   {state ? (
                     <span
                       className={`sidebar-state sidebar-state-${state}`}
@@ -238,7 +249,10 @@ function SidebarLecture({
                       aria-label={STATE_LABEL[state]}
                     />
                   ) : null}
-                  <span className="sidebar-node-title">{node.title}</span>
+                  <span className="sidebar-node-title">
+                    {node.title}
+                    {notOnFinal ? <span className="visually-hidden">, not on the final</span> : null}
+                  </span>
                 </NavLink>
               </li>
             );

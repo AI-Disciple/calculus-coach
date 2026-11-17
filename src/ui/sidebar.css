@@ -332,3 +332,14 @@
     min-height: 0;
   }
 }
+
+/* A topic the final does not examine: greyed out and struck through, still reachable. */
+.sidebar-node-link.is-not-on-final {
+  color: var(--muted);
+  opacity: 0.6;
+}
+
+.sidebar-node-link.is-not-on-final .sidebar-node-title {
+  text-decoration: line-through;
+  text-decoration-thickness: 1px;
+}

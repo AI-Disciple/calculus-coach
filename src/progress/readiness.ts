@@ -119,11 +119,11 @@ export function formatPoints(points: number): string {
   return String(Math.round(points * 2) / 2);
 }
 
-/** The exam-tagged exercises of the visible nodes. Hidden nodes stay out of the counts. */
+/** The exam-tagged exercises of the visible nodes. Hidden nodes and nodes not on the final stay out of the counts. */
 function examExercises(course: CourseCatalog): CourseExerciseRef[] {
   return course.lectures.flatMap((lecture) =>
     lecture.nodes
-      .filter((node) => !node.hidden)
+      .filter((node) => !node.hidden && !node.notOnFinal)
       .flatMap((node) => node.exercises.filter((exercise) => exercise.examBlock !== undefined)),
   );
 }

@@ -3,7 +3,7 @@ id: l8-volumes-between-surfaces
 lecture: 8
 order: 4
 title: Volumes between two surfaces
-prerequisites: [l8-triple-integrals, l4-cross-sections]
+prerequisites: [l7-volumes, l7-polar-integrals, l4-cross-sections]
 sources:
   - { source: handout, section: "15.5", page: 404 }
   - { source: handout, section: "15.5", page: 407 }
@@ -17,7 +17,8 @@ sources:
   - { source: mock-exam-1, page: 1 }
   - { source: mock-2022, page: 2 }
 examWeight: high
-examWeightNote: The last block of every recent final, with a sketch of a cut. Placement in this lecture is provisional until the lecture has taken place. Statements taken from the handout stay provisional until the lecture 8 notes arrive.
+examWeightNote: The last block of every recent final, with a sketch of a cut. The final asks for the volume as a double integral of top minus bottom. Triple integrals are off the final.
+taught: handout
 status: reviewed
 notation: |
   \(\frac{df}{dx}\), \(f_x\) and \(f'\) are the course's names for a derivative. The handout writes that derivative as \(\frac{\partial f}{\partial x}\). The volume integrals on this page use an ordinary \(d\), as in \(dz\, dy\, dx\).
@@ -221,7 +222,7 @@ solution: |
 ::: guided-example
 title: Reading the 2025 split shadow
 problem: |
-  Final 2025, question 6, asks for the integral setups of \(\int_V x\, dV\). The solid \(V\) lies above the first quadrant of the \(xy\)-plane, so \(x \ge 0\), \(y \ge 0\) and \(z \ge 0\), and it lies below both \(z = 1 - x - y\) and \(z = x^2 + y^2\). Sketch the cut by \(y = 0\), then the shadow, then the curve that separates the two ceilings. Try each step on paper before you show it.
+  Final 2025, question 6, asks for the integral setups of \(\int_V x\, dV\). That triple integral is off this year's final, but a volume question needs the same sketches of the cut and the split shadow. The solid \(V\) lies above the first quadrant of the \(xy\)-plane, so \(x \ge 0\), \(y \ge 0\) and \(z \ge 0\), and it lies below both \(z = 1 - x - y\) and \(z = x^2 + y^2\). Sketch the cut by \(y = 0\), then the shadow, then the curve that separates the two ceilings. Try each step on paper before you show it.
 steps:
   - |
     In the cut \(y = 0\), the solid lies above \(z = 0\) and below both \(z = 1 - x\) and \(z = x^2\). Its upper boundary is the lower of those two curves. They meet when \(x^2 + x - 1 = 0\). The root in \([0, 1]\) is \(\alpha = (\sqrt{5} - 1)/2\).
@@ -332,6 +333,7 @@ explanation: |
 
 ::: exercise
 id: l8-volumes-between-surfaces.15.5.9
+outOfScope: true
 number: "15.5.9"
 tier: standard
 topics: [volumes]
@@ -441,6 +443,7 @@ verification:
 
 ::: exercise
 id: l8-volumes-between-surfaces.final-2024-q6
+outOfScope: true
 tier: exam
 topics: [volumes]
 examBlock: triple-integrals-volumes
@@ -483,6 +486,7 @@ verification:
 
 ::: exercise
 id: l8-volumes-between-surfaces.final-2025-q6
+outOfScope: true
 tier: exam
 topics: [volumes]
 examBlock: triple-integrals-volumes
@@ -707,6 +711,7 @@ verification:
 
 ::: exercise
 id: l8-volumes-between-surfaces.mock-2022-q9
+outOfScope: true
 tier: exam
 topics: [volumes, change-of-variables]
 examBlock: triple-integrals-volumes

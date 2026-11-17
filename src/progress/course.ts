@@ -12,6 +12,8 @@ export type CourseNodeRef = {
   id: string;
   title: string;
   hidden?: boolean;
+  /** A visible topic the final does not examine. It stays out of the readiness counts. */
+  notOnFinal?: boolean;
   exercises: CourseExerciseRef[];
   /** The ids of the node's sections, as the node page shows them. A node without the list has none to mark. */
   sectionIds?: string[];
@@ -33,6 +35,7 @@ export function catalogFromBundle(bundle: ContentBundle): CourseCatalog {
       id: node.id,
       title: node.title,
       ...(node.hidden ? { hidden: true } : {}),
+      ...(node.examWeight === 'not-examined' && !node.hidden ? { notOnFinal: true } : {}),
       exercises: node.blocks.flatMap((block) =>
         block.type === 'exercise'
           ? [{ id: block.id, tier: block.tier, ...(block.examBlock ? { examBlock: block.examBlock } : {}) }]

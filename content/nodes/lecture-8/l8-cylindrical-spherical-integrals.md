@@ -7,9 +7,10 @@ prerequisites: [l8-triple-integrals, l4-cylindrical-spherical]
 sources:
   - { source: handout, section: "15.6", page: 407 }
   - { source: sheet-3, page: 2 }
-examWeight: high
+examWeight: not-examined
 examWeightNote: |
-  Triple integrals and volumes carry 15% of the two recent finals. Placement in this lecture is provisional until the lecture has taken place. Handout wording stays provisional until the lecture 8 notes arrive.
+  The professor's email of November 2026 excludes triple integrals from the final, and these are triple integrals. Polar coordinates in a double integral stay on the final, in their own topic in lecture 7.
+taught: handout
 status: reviewed
 notation: |
   \(\frac{df}{dx}\), \(f_x\) and \(f'\) are the course's names for a derivative. The handout writes the same derivative as \(\frac{\partial f}{\partial x}\).

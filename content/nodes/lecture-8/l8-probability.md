@@ -8,9 +8,9 @@ sources:
   - { source: handout, section: "9.8", page: 223 }
   - { source: final-2022, page: 9 }
   - { source: final-2022, page: 11 }
-examWeight: low
-examWeightNote: Only on the 2021 and 2022 finals. Placement in this lecture is provisional until the lecture has taken place. Wording taken from the handout and from the 2022 paper stays provisional until the lecture 8 notes arrive.
-optional: true
+examWeight: not-examined
+examWeightNote: Only on the 2021 and 2022 finals. The class never covered it, and the study guide of November 2026 does not list it.
+taught: handout
 status: draft
 notation: |
   \(f_x\), \(\frac{df}{dx}\) and \(\frac{\partial f}{\partial x}\) all name the partial derivative of \(f\) with respect to \(x\). The symbol \(f_X\) is the density of the random variable \(X\), and \(f_{X,Y}\) is the joint density of the pair.

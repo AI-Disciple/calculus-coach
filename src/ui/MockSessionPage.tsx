@@ -326,7 +326,7 @@ function MockSessionBody({ paper }: { paper: Paper }) {
                   <li key={exerciseId}>
                     {found.exercise.outOfScope ? (
                       <div className="exercise-meta">
-                        <span className="badge badge-out-of-scope">Out of current scope</span>
+                        <span className="badge badge-out-of-scope">Not on the final</span>
                       </div>
                     ) : null}
                     <Prose text={found.exercise.statement} />

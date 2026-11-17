@@ -353,7 +353,7 @@ export function ExerciseView({
           <span className="badge badge-exam-topic">Exam topic: {examTopicTitle(exercise.examBlock)}</span>
         ) : null}
         {exercise.outOfScope ? (
-          <span className="badge badge-out-of-scope">Out of current scope</span>
+          <span className="badge badge-out-of-scope">Not on the final</span>
         ) : null}
         {exercise.pastExam ? (
           <span className="past-exam">

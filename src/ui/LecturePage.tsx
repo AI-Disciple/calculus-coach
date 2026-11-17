@@ -5,6 +5,7 @@ import { fetchMastery } from '../progress/client.ts';
 import type { Mastery } from '../progress/dashboard.ts';
 import { NotFound } from './NotFound.tsx';
 import { OriginBadge } from './OriginBadge.tsx';
+import { isNotOnFinal } from './NotOnFinal.tsx';
 
 /** A node that is not started has no badge. Only these two states show one. */
 const MASTERY_BADGE: Partial<Record<Mastery, string>> = {
@@ -68,6 +69,7 @@ export function LecturePage() {
                 {badge ? <span className={`badge badge-mastery-${state}`}>{badge}</span> : null}
                 {node.status === 'draft' ? <span className="badge">Draft</span> : null}
                 <OriginBadge node={node} />
+                {isNotOnFinal(node) ? <span className="badge badge-out-of-scope">Not on the final</span> : null}
               </li>
             );
           })}

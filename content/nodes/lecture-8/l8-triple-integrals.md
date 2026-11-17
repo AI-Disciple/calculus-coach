@@ -7,8 +7,9 @@ prerequisites: [l7-general-regions]
 sources:
   - { source: handout, section: "15.5", page: 404 }
   - { source: sheet-3, page: 1 }
-examWeight: high
-examWeightNote: Triple integrals and volumes carry 15% of the two recent finals. Placement in this lecture is provisional until the lecture has taken place. Handout wording stays provisional until the lecture 8 notes arrive.
+examWeight: not-examined
+examWeightNote: The professor's email of November 2026 excludes triple integrals from the final, so skip Mock exam 2 exercise 6. Volumes between two surfaces stay on the final, as double integrals of top minus bottom.
+taught: handout
 status: reviewed
 notation: |
   The professor writes a partial derivative as \(\frac{df}{dx}\), \(f_x\) or \(f'\). The handout writes the same derivative as \(\frac{\partial f}{\partial x}\).

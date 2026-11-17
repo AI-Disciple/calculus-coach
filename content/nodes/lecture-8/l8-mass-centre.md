@@ -9,8 +9,9 @@ sources:
   - { source: handout, section: "15.5", page: 404 }
   - { source: handout, section: "15.6", page: 410 }
   - { source: mock-exam-1, page: 1 }
-examWeight: low
-examWeightNote: Only the part before Example 15.3.1 is core. Placement in this lecture is provisional until the lecture has taken place. Statements taken from the handout stay provisional until the lecture 8 notes arrive.
+examWeight: not-examined
+examWeightNote: The study guide of November 2026 no longer lists handout section 15.3, and the class never covered mass. Mock exam 1 exercise 7c, a mass over a solid, is a triple integral, so it is off the final too.
+taught: handout
 status: reviewed
 notation: |
   \(f_x\), \(\frac{df}{dx}\) and \(\frac{\partial f}{\partial x}\) all name the partial derivative of \(f\) with respect to \(x\). A derivative in one variable is also written \(f'\). The mass formulas use an ordinary \(d\), as in \(dy\, dx\).

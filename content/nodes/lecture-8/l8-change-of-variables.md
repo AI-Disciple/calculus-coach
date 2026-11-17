@@ -14,8 +14,9 @@ sources:
   - { source: retake-2023, page: 1 }
   - { source: mock-exam-1, page: 1 }
   - { source: mock-2022, page: 2 }
-examWeight: high
-examWeightNote: Every recent final has a double integral with a named substitution. Placement in this lecture is provisional until the lecture has taken place. Statements taken from the handout stay provisional until the lecture 8 notes arrive.
+examWeight: not-examined
+examWeightNote: The professor's email of November 2026 excludes substitutions in double integrals from the final, except polar coordinates. Earlier finals and both mocks had one, so skip Mock exam 1 exercises 4 and 5 and Mock exam 2 exercise 4d. Polar coordinates are taught in their own topic in lecture 7.
+taught: handout
 status: reviewed
 notation: |
   The professor writes \(\frac{df}{dx}\) and \(f_x\). The handout writes that same derivative as \(\frac{\partial f}{\partial x}\).

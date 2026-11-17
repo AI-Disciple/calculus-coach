@@ -84,7 +84,7 @@
 - id: final-2025
   kind: mock
   presentation: current-format
-  title: Final 12 December 2025
+  title: Final 12 December 2025, the official Mock exam 2
   year: 2025
   durationMinutes: 120
   totalPoints: 20
@@ -1550,7 +1550,7 @@
 - id: mock-exam-2
   kind: mock
   presentation: as-printed
-  title: Mock exam 2
+  title: Older mock exam 2, a reprint of the 2022 final
   year: 2022
   durationMinutes: 180
   totalPoints: 13

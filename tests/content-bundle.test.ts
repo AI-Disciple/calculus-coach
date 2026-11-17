@@ -698,16 +698,25 @@ describe('the real content bundle', () => {
     for (const id of probabilityIds) expect(idsOn('mock-exam-2')).not.toContain(id);
     expect(idsOn('mock-exam-2').some((id) => final2022Ids.has(id))).toBe(true);
 
-    for (const { node, exercise } of exercises) {
-      if (exercise.outOfScope) expect(node.hidden).toBe(true);
-    }
     expect(exercises.some(({ exercise }) => exercise.outOfScope)).toBe(true);
+    // Every exercise of a topic the final does not examine is out of scope.
     for (const lecture of bundle.lectures) {
       for (const node of lecture.nodes) {
+        if (node.examWeight !== 'not-examined') continue;
         for (const block of node.blocks) {
-          if (block.type === 'exercise') expect(block.outOfScope).toBeUndefined();
+          if (block.type === 'exercise') expect(block.outOfScope).toBe(true);
         }
       }
+    }
+    // The professor's skip list: Mock exam 1 exercises 4, 5 and 7c, Mock exam 2 (the 2025 final) 4d and 6.
+    for (const id of [
+      'l8-change-of-variables.mock-exam-1-q4',
+      'l8-change-of-variables.mock-exam-1-q5',
+      'l8-mass-centre.mock-exam-1-q7c',
+      'l8-change-of-variables.final-2025-q4d',
+      'l8-volumes-between-surfaces.final-2025-q6',
+    ]) {
+      expect(exercises.find(({ exercise }) => exercise.id === id)?.exercise.outOfScope).toBe(true);
     }
 
     const excluded = (source: string, id: string) =>

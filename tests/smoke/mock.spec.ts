@@ -63,7 +63,7 @@ test('an older final tags out-of-scope questions and keeps an in-scope question 
   await expect(page.getByText('180 minutes')).toBeVisible();
   await expect(page.getByText('As printed')).toBeVisible();
   await page.getByRole('button', { name: 'Start' }).click();
-  await expect(page.getByText('Out of current scope').first()).toBeVisible();
+  await expect(page.getByText('Not on the final').first()).toBeVisible();
   await expect(page.getByText(/Find the unit vector in the direction in which/).first()).toBeVisible();
 
   // The deep link opens the Practise section that holds the exam exercise.
@@ -77,7 +77,7 @@ test('an older final tags out-of-scope questions and keeps an in-scope question 
 
   await page.goto('/node/outside-current-course');
   await expect(page.getByRole('heading', { name: 'Outside the current course' })).toBeVisible();
-  await expect(page.getByText('Out of current scope').first()).toBeVisible();
+  await expect(page.getByText('Not on the final').first()).toBeVisible();
 });
 
 test('a midterm checkpoint is optional and opens as printed', async ({ page }) => {

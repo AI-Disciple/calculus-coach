@@ -128,11 +128,11 @@
 - { id: final-2022, title: Final 2022 with solutions, kind: past-paper, pageNumbering: pdf }
 - { id: retake-2023, title: Retake January 2023, kind: past-paper, pageNumbering: pdf }
 - { id: final-2024, title: Final 2024, kind: past-paper, pageNumbering: pdf }
-- { id: final-2025, title: Final 2025, kind: past-paper, pageNumbering: pdf }
+- { id: final-2025, title: "Final 2025 (official Mock exam 2)", kind: past-paper, pageNumbering: pdf }
 - { id: mock-2022, title: Mock exam 2022, kind: past-paper, pageNumbering: pdf }
 - { id: mock-2022-solutions, title: Mock exam 2022 solutions (other edition), kind: past-paper, pageNumbering: pdf }
 - { id: mock-exam-1, title: Mock exam 1, kind: past-paper, pageNumbering: pdf }
-- { id: mock-exam-2, title: Mock exam 2, kind: past-paper, pageNumbering: pdf }
+- { id: mock-exam-2, title: "Older mock exam 2 (2022 final reprint)", kind: past-paper, pageNumbering: pdf }
 - { id: home-assignment-2022, title: Home assignment 2022, kind: past-paper, pageNumbering: pdf }
 - { id: home-assignment-2022-solutions, title: Home assignment 2022 solutions, kind: past-paper, pageNumbering: pdf }
 

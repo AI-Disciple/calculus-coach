@@ -22,6 +22,7 @@ import { NodeProgressProvider, useNodeProgress } from './nodeProgress.tsx';
 import { estimatedMinutes, exerciseCount } from './nodeTime.ts';
 import { Prose } from './prose.tsx';
 import { OriginBadge } from './OriginBadge.tsx';
+import { NotOnFinalNotice } from './NotOnFinal.tsx';
 import { SourceLink } from './SourceLink.tsx';
 import { StreakProvider } from './streak.tsx';
 
@@ -29,7 +30,7 @@ const EXAM_WEIGHT = {
   high: 'High exam weight',
   medium: 'Medium exam weight',
   low: 'Low exam weight',
-  'not-examined': 'Not examined',
+  'not-examined': 'Not on the final',
 } as const;
 
 /** Arrow keys belong to these controls, so they do not change the section. */
@@ -214,6 +215,7 @@ function NodeView({ lecture, node }: { lecture: Lecture; node: CourseNode }) {
         <h1>
           <span className="topic-number">{topicNumber}</span> {node.title}
         </h1>
+        <NotOnFinalNotice node={node} />
         {node.status === 'draft' ? (
           <p className="node-draft-note">
             <span className="badge badge-status-draft">Draft</span> Content is still thin.

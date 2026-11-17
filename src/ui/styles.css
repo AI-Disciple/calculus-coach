@@ -3449,3 +3449,22 @@ details[open] > .bank-node-summary::before {
   text-decoration: underline;
   cursor: pointer;
 }
+
+/* The lasting note on a topic the final does not examine. */
+.not-on-final-note {
+  margin: 0.8rem 0 0;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--red-text);
+  border-radius: 10px;
+  background: var(--red-bg);
+  color: var(--red-text);
+  font-size: 0.95rem;
+}
+
+.not-on-final-note > div {
+  margin-top: 0.35rem;
+}
+
+.not-on-final-dialog .button {
+  margin-top: 0.4rem;
+}

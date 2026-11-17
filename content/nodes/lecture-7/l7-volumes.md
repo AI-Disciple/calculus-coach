@@ -461,6 +461,7 @@ verification:
 
 ::: exercise
 id: l7-volumes.ex-15.1.23
+outOfScope: true
 number: "15.1.23"
 tier: standard
 topics: [double-integrals]

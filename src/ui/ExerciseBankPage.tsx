@@ -252,7 +252,7 @@ function BankExerciseRow({ entry, right }: { entry: BankExercise; right: boolean
             {TIER_LABEL[exercise.tier]}
           </span>
           {origin ? <span className="bank-origin">{origin}</span> : null}
-          {exercise.outOfScope ? <span className="badge badge-out-of-scope">Out of current scope</span> : null}
+          {exercise.outOfScope ? <span className="badge badge-out-of-scope">Not on the final</span> : null}
           {right ? (
             <span className="exercise-done" role="img" aria-label="Marked right">
               ✓

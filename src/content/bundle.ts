@@ -74,6 +74,11 @@ export async function checkContentBundle(contentDir: string, options: CheckOptio
   const addingContent = await loadAddingContent(contentDir, problems);
 
   const visible = nodes.filter((n) => !n.hidden);
+  // Every exercise of a topic the final does not examine is out of scope, so the bank, the mocks and the topic say so.
+  for (const node of visible) {
+    if (node.examWeight !== 'not-examined') continue;
+    for (const block of node.blocks) if (block.type === 'exercise') block.outOfScope = true;
+  }
   const bundle: ContentBundle = {
     lectures: lectures.map((lecture) => ({
       ...lecture,

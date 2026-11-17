@@ -1,4 +1,12 @@
 # What changed: one entry per content update, newest first. See content/guide/adding-content.md, step 6.
+- date: "2026-11-17"
+  title: Final exam scope and lecture 8
+  text: |
+    The professor's email and the new study guide narrow the final. Substitutions in double integrals are off the final, except polar coordinates. Triple integrals are off the final. The study guide no longer lists mass and centre of mass, and probability was never taught.
+    Five lecture 8 topics now show Not on the final: change of variables, triple integrals, triple integrals in cylindrical and spherical coordinates, mass and centre of mass, and probability. They are greyed out in the sidebar, and each shows a notice the first time it opens. Nothing builds on them. Their exercises show Not on the final in the bank and in the mocks. This covers Mock exam 1 exercises 4, 5 and 7c, and Mock exam 2 exercises 4d and 6.
+    Lecture 8 had no new theory. The class worked through sheet 3 exercise 1 and exercise 3 items 2 to 4, which already sit in the lecture 7 topics. Lecture 8 is now called Exercise session on double integrals. Volumes between two surfaces stay on the final and show From the handout. Four triple-integral or substitution exercises in that topic, and handout exercise 15.1.23, show Not on the final.
+    The official Mock exam 2 is the 12 December 2025 final, which the app already had. The paper the app called Mock exam 2 is a reprint of the 2022 final and is now named that way. The official Mock exam 1 was already in the app.
+  nodes: [l8-change-of-variables, l8-triple-integrals, l8-cylindrical-spherical-integrals, l8-mass-centre, l8-probability, l8-volumes-between-surfaces, l7-volumes]
 - date: "2026-11-11"
   title: Handout exercises and professor sheet gaps
   text: |
